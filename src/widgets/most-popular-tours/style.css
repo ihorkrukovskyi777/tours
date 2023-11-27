@@ -1,0 +1,195 @@
+.most_popular_tour {
+    margin: 65px 0 80px 0;
+}
+.most_popular_tour h2 {
+    margin: 0 0 30px 0;
+    line-height: 1;
+}
+.most_popular_tour .items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+}
+.most_popular_tour .item_wrap {
+    display: flex;
+    flex-direction: column;
+}
+.most_popular_tour .item {
+    /*padding: 100px 18px 13px 18px;*/
+    padding: 18px;
+    display: block;
+    position: relative;
+    color: #fff;
+    height: 100%;
+    min-height: 230px;
+    flex-direction: column;
+}
+.most_popular_tour .item .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px 8px 0 0;
+}
+.most_popular_tour .elem svg {
+    width: 18px;
+    height: 20px;
+}
+.most_popular_tour .flags_wrap {
+    display: flex;
+    flex-direction: row-reverse;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    z-index: 1;
+}
+.most_popular_tour .elem {
+    display: flex;
+    align-items: center;
+}
+.most_popular_tour .elem svg path {
+    fill: var(--main_color);
+}
+.most_popular_tour .item:after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.69) -2.14%, rgba(0, 0, 0, 0.1311) 121.52%);
+    border-radius: 8px 8px 0 0;
+}
+.most_popular_tour .item .intro {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+.most_popular_tour .item .intro > a{
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    line-height: 1.05;
+    text-align: center;
+    color: #fff;
+    font: 700 48px/1.105 var(--fontBold);    
+}
+.most_popular_tour .item .intro > a:hover{
+    text-decoration: underline;
+}
+.most_popular_tour .item .intro > a span{
+    content:"Free Tours";
+    display:block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 100%;
+    text-align: center;
+    font-size: 22px;
+    font-family: 'BrandonGrotesque-Medium';
+    font-weight: 450;
+}
+.most_popular_tour .item h3 {
+    /*margin: 0 0 65px 0;*/
+    margin: auto 0;
+    font-size: 48px;
+    line-height: 1.05;
+    text-align: center;
+    color: #fff;
+}
+.most_popular_tour .reviews {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    line-height: 1.16;
+    font-family: var(--fontMedium);
+    margin-top: auto;
+    z-index: 1;
+    bottom: 20px;
+    position: relative;
+}
+.most_popular_tour .count_rate {
+    margin-right: 12px;
+    font-size: 12px;
+}
+.most_popular_tour .rate_stars {
+    margin-right: 10px;
+    display: flex;
+}
+.most_popular_tour .rate_stars svg:not(:last-of-type) {
+    margin-right: 4px;
+}
+.most_popular_tour .rate_number {
+   font-size: 12px;
+}
+.most_popular_tour .react-stars img {
+    width: 12px;
+    height: 12px;
+}
+.most_popular_tour .item_bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 20px;
+    background: var(--bg_color);
+    border-radius: 0 0 8px 8px;
+    min-height: 100px;
+}
+.most_popular_tour .elem {
+    margin-bottom: 15px;
+}
+.most_popular_tour .elem,
+.most_popular_tour .button {
+    font-size: 20px;
+    line-height: 1.2;
+    font-family: var(--fontMedium);
+}
+.most_popular_tour .elem svg,
+.most_popular_tour .elem span:first-of-type {
+    margin-right: 8px;
+}
+
+/*RESPONSIVE*/
+@media(max-width: 1199px) {
+    .most_popular_tour .items {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media(max-width: 767px) {
+    .most_popular_tour {
+        margin: 30px 0 65px 0;
+    }
+}
+@media(max-width: 600px) {
+    .most_popular_tour .items {
+        grid-template-columns: 100%;
+        grid-gap: 25px;
+    }
+    /*.most_popular_tour .item h3 {*/
+    /*    margin-bottom: 50px;*/
+    /*}*/
+    .most_popular_tour .item {
+        /*padding: 85px 15px 10px 15px;*/
+        min-height: 210px;
+    }
+    .most_popular_tour .count_rate {
+        margin-right: 5px;
+    }
+    .most_popular_tour .rate_stars {
+        margin-right: 7px;
+    }
+}
+@media(max-width: 400px) {
+    .most_popular_tour .item .intro>a {
+        font-size: 40px;
+    }
+}

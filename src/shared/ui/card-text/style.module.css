@@ -1,0 +1,26 @@
+.block_wrap {
+    display: flex;
+    flex-direction: column;
+}
+.block_title {
+    max-width: 280px;
+    margin: 0 0 30px;
+    transition: .3s;
+}
+.block_text {
+    color: #686868;
+    background: var(--bg_color);
+    border-radius: 8px;
+    margin-top: auto;
+    padding: 20px 20px 30px;
+}
+@media (max-width:991px) {
+    .block_title {
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+    .block_text {
+        margin-top: 0;
+        padding: 20px 15px;
+    }
+}

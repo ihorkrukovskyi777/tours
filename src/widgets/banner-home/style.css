@@ -1,0 +1,38 @@
+.home_banner {
+    padding: 100px 0 120px;
+}
+.home_banner .link {
+    display: flex;
+    align-items: center;
+}
+.home_banner .link svg {
+    margin-right: 6px;
+}
+.home_banner .intro {
+    position: relative;
+    z-index: 1;
+}
+.home_banner .link a {
+    position: relative;
+    color: #fff;
+    transition: .3s ease-in-out;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--fontMedium);
+}
+.home_banner .link a:after {
+    content: '';
+    width: 100%;
+    display: block;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition: .3s ease-in-out;
+}
+.home_banner .wrapper {
+    width: 100%;
+    max-width: 385px;
+    margin: 0 auto;
+}

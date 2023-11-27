@@ -1,0 +1,12 @@
+.social {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+.url {
+    display: flex;
+    transition: .3s;
+}
+.url:hover {
+    opacity: .6;
+}

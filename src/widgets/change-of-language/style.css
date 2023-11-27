@@ -1,0 +1,131 @@
+#change-of-language {
+    padding-bottom: 90px
+}
+
+#change-of-language .wpml-ls-legacy-dropdown .wpml-ls-sub-menu {
+    position: static;
+    visibility: visible
+}
+
+#change-of-language ul {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 15px 30px;
+    margin-bottom: 30px;
+}
+
+#change-of-language li {
+    position: relative;
+    color: #000;
+    font: 500 18px/1.105 var(--fontMedium);
+    background: #f7f7f7;
+    border-radius: 8px;
+    display: flex;
+    transition: .4s
+}
+
+#change-of-language li.active {
+    pointer-events: none
+}
+
+#change-of-language li a {
+    padding: 16px 50px 16px 16px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#change-of-language #lang-footer li.none {
+    display: none
+}
+
+#change-of-language li.wpml-ls-current-language a {
+    color: #686868
+}
+
+#change-of-language li:hover {
+    opacity: .79
+}
+
+#change-of-language li img {
+    position: absolute;
+    right: 15px;
+    height: 24px;
+    width: 24px;
+    top: 14px;
+    border-radius: 40px;
+    object-fit: cover
+}
+
+#change-of-language .wpml-ls-legacy-dropdown a.wpml-ls-item-toggle:after {
+    display: none
+}
+
+#change-of-language li:not(.wpml-ls-current-language) .wpml-ls-native,#change-of-language li .wpml-ls-bracket {
+    display: none
+}
+
+#change-of-language .load-more-language {
+    text-align: center;
+    margin-top: 50px
+}
+
+#change-of-language .load-more-language.none {
+    display: none
+}
+
+#change-of-language .load-more-language button {
+    outline: none;
+    border: none;
+    padding: 10px 15px
+}
+
+#change-of-language ul li:nth-child(n+7) {
+    display: none
+}
+
+#change-of-language.loaded ul li {
+    display: block
+}
+#change-of-language.loaded .block-center {
+    display: none;
+}
+
+#change-of-language ul li a .wpml-ls-native,
+#change-of-language ul li a .wpml-ls-display {
+    display: flex;
+    flex-direction: row-reverse;
+    display: none
+}
+
+#change-of-language ul li a .wpml-ls-native span,
+#change-of-language ul li a .wpml-ls-display span,
+.page-template-city-template #change-of-language ul li a .city,.city-mr .city {
+    margin-right: 4px
+}
+
+#change-of-language li.wpml-ls-current-language a {
+    pointer-events: none
+}
+
+#change-of-language.hidden-text-free-tours .text-free-tours,
+#change-of-language.hidden-text-city .city,
+#change-of-language.hidden-text-tour .text-tour {
+    display: none
+}
+
+@media (max-width: 991px) {
+    #change-of-language ul {
+        grid-template-columns:1fr 1fr
+    }
+}
+
+@media (max-width: 560px) {
+    #change-of-language ul {
+        grid-template-columns:1fr;
+        grid-gap: 10px
+    }
+}

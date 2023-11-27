@@ -1,0 +1,18 @@
+.button_custom {
+    background-color: var(--main_color);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 11px 16px;
+    font-family: var(--fontMedium);
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    transition: .3s ease-in-out;
+}
+
+.button_custom:hover {
+    background:var(--hover_color);
+}

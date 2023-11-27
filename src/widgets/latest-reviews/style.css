@@ -1,0 +1,29 @@
+.latest_reviews{
+    margin: 80px 0;
+}
+.latest_reviews .wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 15px 30px;
+    align-items: start;
+    margin-top: 30px;
+}
+.latest_reviews .title{
+    margin: 0;
+    text-transform: capitalize;
+}
+/* Responsive */
+@media(max-width:767px){
+    .latest_reviews{
+        margin: 65px 0;
+    }
+    .latest_reviews .wrapper{
+        grid-template-columns: 100%;
+    }
+    .latest_reviews .btn_wrap {
+        margin-top: 25px;
+    }
+    .latest_reviews .button_basic {
+        font-size: 16px;
+    }
+}

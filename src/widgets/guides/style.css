@@ -1,0 +1,199 @@
+.guides_section {
+    margin: 80px 0 80px 0;
+}
+.guides_section .container {
+    position: relative;
+}
+.guides_section .top_wrapper {
+    padding: 30px 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 80px auto;
+    text-align: center;
+    background: #F7F7F7;
+    border-radius: 8px;
+}
+.guides_section .description {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #000;
+}
+.guides_section .top_wrapper h2 {
+    margin: 0 0 15px 0;
+    line-height: 1;
+    text-transform: inherit;
+}
+.guides_section h2 {
+    margin: 0 0 30px 0;
+    /*text-transform: capitalize;*/
+}
+.guides_section .swiper-slide {
+    height: auto;
+}
+.guides_section .disabled_swiper_button {
+    display: none;
+}
+.guides_section .swiper-slide > a {
+    display: block;
+    height: 100%;
+    color: #000;
+}
+.guides_section .item {
+    padding: 10px 10px 20px 10px;
+    background: var(--bg_color);
+    border-radius: 16px;
+    height: 100%;
+    cursor: pointer;
+}
+.guides_section .swiper-wrapper {
+    height: auto;
+}
+.guides_section .img_box {
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+.guides_section .img_box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.guides_section .item_title {
+    margin-bottom: 10px;
+    font-size: 24px;
+    line-height: 1.05;
+    font-family: var(--fontBold);
+    color: #000;
+    text-align: center;
+}
+.guides_section .rating_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    min-height: 22px;
+}
+.guides_section .rating_box svg {
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+}
+.guides_section .rating_number {
+    font-size: 16px;
+    font-family: var(--fontMedium);
+    display: flex;
+    align-items: center;
+}
+.guides_section .flags_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.guides_section .flag {
+    width: 24px;
+    height: 24px;
+    margin-left: -5px;
+}
+.guides_section .flag img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: static;
+}
+.guides_section .swiper {
+    position: relative;
+    padding-bottom: 38px;
+    /*overflow: initial;*/
+}
+.guides_section .swiper-pagination.swiper-pagination-bullets {
+    bottom: 0;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.guides_section .swiper-button-next.disabled_swiper_button {
+    display: none;
+}
+.guides_section .swiper-button-next {
+    right: -4px;
+}
+.guides_section .swiper-button-prev {
+    left: -4px;
+}
+.guides_section .swiper-button-prev:hover,
+.guides_section .swiper-button-next:hover {
+    background: #f14742;
+}
+.guides_section .swiper-button-prev svg {
+    transform: rotate(180deg);
+}
+.guides_section .swiper-button-next:after,
+.guides_section .swiper-button-prev:after {
+    display: none;
+}
+.guides_section .swiper-button-next.swiper-button-disabled,
+.guides_section .swiper-button-prev.swiper-button-disabled {
+    opacity: 0;
+    display: none;
+}
+.guides_section .flags_wrap {
+    margin: 0;
+}
+/*RESPONSIVE*/
+@media(max-width: 1600px) {
+    .guides_section .swiper-button-prev {
+        left: 0;
+    }
+    .guides_section .swiper-button-next {
+        right: 0;
+    }
+}
+@media(max-width: 991px) {
+    .guides_section .swiper-button-prev,
+    .guides_section .swiper-button-next {
+        display: none;
+    }
+}
+@media(max-width: 767px) {
+    .guides_section {
+        margin: 65px 0;
+    }
+    .guides_section .top_wrapper {
+        margin-bottom: 65px;
+        padding: 18px;
+        text-align: left;
+    }
+    .guides_section .description {
+        color: #686868;
+    }
+    .guides_section .swiper {
+        padding-bottom: 24px;
+    }
+    .guides_section .item {
+        padding: 8px 8px 15px 8px;
+    }
+    .guides_section .item_title {
+        font-size: 20px;
+        margin-bottom: 4px;
+    }
+    .guides_section .rating_number {
+        font-size: 12px;
+    }
+    .guides_section .rating_box {
+        margin-bottom: 8px;
+    }
+    .guides_section .flag {
+        width: 16px;
+        height: 16px;
+    }
+}

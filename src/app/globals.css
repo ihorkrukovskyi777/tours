@@ -1,0 +1,126 @@
+/* FONTS */
+@import '../assets/fonts/fonts.css';
+
+
+
+:root {
+  --main_color: #e10600;
+  --second_color: #FFC107;
+  --hover_color: #f14742;
+  --title_color: #000;
+  --bg_color: #f7f7f7;
+  --font-ciliric: 'Carlito';
+  --font: 'BrandonGrotesque-Regular' , var(--font-ciliric);
+  --fontMedium: 'BrandonGrotesque-Medium' , var(--font-ciliric);
+  --fontBold: 'BrandonGrotesque-Bold' , var(--font-ciliric);
+  --font_300: 'Geomanist300' , var(--font-ciliric);
+  --font_400: 'Geomanist400' , var(--font-ciliric);
+  --font_500: 'Geomanist500' , var(--font-ciliric);
+  --font_700: 'Geomanist700' , var(--font-ciliric);
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body{
+  font: 400 20px/1.1 var(--font);
+  color: var(--text_color);
+  margin: 0;
+}
+h1 {
+  font: 700 72px var(--fontBold);
+  color: var(--title_color);
+}
+h2 {
+  font: 700 40px/1.105 var(--fontBold);
+  color: var(--title_color);
+}
+h3 {
+  font: 700 32px/1.105 var(--fontBold);
+  color: var(--title_color);
+}
+h4 {
+  font: 400 28px var(--fontBold);
+  color: var(--title_color);
+  font-weight: 700;
+}
+h5 {
+  font: 400 24px var(--fontBold);
+  color: var(--title_color);
+}
+h6 {
+  font: 400 18px var(--fontBold);
+  color: var(--title_color);
+}
+@media(max-width: 767px) {
+  h1 {
+      font-size: 48px;
+  }
+  h2 {
+      font-size: 32px;
+  }
+  h3 {
+      font-size: 32px;
+  }
+  body {
+      font-size: 14px;
+  }
+}
+.container {
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1260px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.block-center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+/* swiper global css */
+.swiper .swiper-button-next,
+.swiper .swiper-button-prev {
+  bottom: calc(50% - 43px) !important;
+  top: auto;
+  width: 48px;
+  height: 48px;
+  background: var(--main_color);
+  border-radius: 8px;
+  transition: .3s ease-in-out;
+}
+.swiper .swiper-button-next::before,
+.swiper .swiper-button-prev::before {
+  display: flex;
+  content: '';
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  background: url('../assets/images/svg/arrow-swiper.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+}
+.swiper .swiper-button-prev::before{
+  transform: rotate(180deg);
+}
+.swiper .swiper-pagination-bullet-active {
+  background: var(--main_color);
+}
+.swiper .swiper-pagination-bullet {
+  margin: 0 6px !important;
+  opacity: 1;
+  background: #F2F2F2;
+}
+.swiper .swiper-pagination-bullet-active {
+  background: var(--main_color);
+}

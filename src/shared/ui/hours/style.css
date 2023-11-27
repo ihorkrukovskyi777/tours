@@ -1,0 +1,9 @@
+.normal {
+    display: flex;
+    align-items: center;
+}
+
+.normal svg,
+.normal img {
+    margin-right: 4px;
+}

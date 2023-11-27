@@ -1,0 +1,14 @@
+.item {
+    padding: 10px 10px 20px;
+    background: var(--bg_color);
+    border-radius: 16px;
+    height: 100%;
+    cursor: pointer;
+}
+.img_box {
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}

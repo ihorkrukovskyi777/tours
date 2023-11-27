@@ -1,0 +1,19 @@
+.city_banner {
+    padding: 115px 0 20px;
+}
+.city_banner .flex-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 65px;
+}
+.city_banner .pick_text {
+    width: 100%;
+    margin-bottom: 18px;
+    color: #fff;
+    text-align: center;
+}
+.city_banner .intro {
+    position: relative;
+    z-index: 1;
+}
