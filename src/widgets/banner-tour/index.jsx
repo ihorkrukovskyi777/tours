@@ -2,7 +2,6 @@ import Banner from '@/shared/ui/banner';
 import Reviews from '@/shared/ui/reviews/reviews';
 import LanguageImages from '@/shared/ui/language-images';
 import Hours from '@/shared/ui/hours';
-import Image from 'next/image';
 import DefaultImage from '@/assets/images/languages/USUKflag.jpg';
 import ClockSvg from '@/assets/images/svg/clock-svg';
 import './style.css';

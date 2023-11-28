@@ -7,12 +7,15 @@ import Guides from "@/widgets/guides"
 import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language"
 import TextQuote from "@/widgets/text-quote"
 import MostPopularCity from "@/widgets/most-popular-city"
+import TourCalendar from "../../widgets/tour-calendar";
 
 
 export default function Home() {
   return (
     <main>
+
         <BannerCity title="Free Walking Tour London" size="city_banner"/>
+        <TourCalendar />
         <MostPopularTours/>
         <TextQuote />
         <LatestReviews/>

@@ -28,7 +28,7 @@ export default function Guides({title="Your Guides in Bogota" , items=["Best Fre
               >
                   {items.map((item , index) =>{
                       return (
-                          <div className="swiper-slide">
+                          <div className="swiper-slide" key={index}>
                             <SwiperSlide>
                             <CardGuide img={DefaultImage} url={'/'} bottomView={<LanguageImages data={languagesAll} />}>
                             <div className="item_title">Wonders of London - Meraviglie di Londra</div>
