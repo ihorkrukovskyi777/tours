@@ -52,7 +52,7 @@ return (
     <ul className={`tabs ${SettingsTab}`}>
         {tabsBack.map((item) => {
             return (
-                <li onClick={() => setActive(item.id)} className={active === item.id ? "tab_item active" : "tab_item"} >
+                <li onClick={() => setActive(item.id)} className={active === item.id ? "tab_item active" : "tab_item"} key={item.id} >
                     <div className="icon_wrap">
                         <EnSvg/>
                     </div>

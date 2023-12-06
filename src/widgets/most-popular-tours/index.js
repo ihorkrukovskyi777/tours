@@ -6,9 +6,14 @@ import CakendarSvg from '@/assets/images/svg/calendar-svg'
 import DefaultFlag from '@/assets/images/languages/USUKflag.jpg'
 import './style.css';
 
+const dataSlider = [ 
+    {id: 121212, title:'Free Witchcraft Tour London'},
+    {id: 533, title:'Free Witchcraft Tour Lviv'},
+    {id: 1324, title:'Free Witchcraft Tour Madrid'},
+]
 
 const languagesAll = [DefaultFlag , DefaultFlag , DefaultFlag];
-export default function MostPopularTours({title='Most Popular Tours' , items=[' Free Witchcraft Tour London ',' Free Witchcraft Tour Lviv',' Free Witchcraft Tour Madrid ']}) {
+export default function MostPopularTours({title='Most Popular Tours' , items=[dataSlider]}) {
   return (
     <section className="most_popular_tour">
         <div className="container">
@@ -17,7 +22,7 @@ export default function MostPopularTours({title='Most Popular Tours' , items=[' 
                 <div className="items">
                     {items.map((item) => {
                         return (
-                            <Card url={item} title={item} topElement={<LanguageImages data={languagesAll} />} bottomElement={<Reviews rating={2} count_reviews={1111} />} >
+                            <Card key={item.id} url={item} title={item.title} topElement={<LanguageImages data={languagesAll} />} bottomElement={<Reviews rating={2} count_reviews={1111} />} >
                                 <div className="item_bottom">
                                     <div className="elem">
                                         <ClockSvg/>
@@ -37,8 +42,6 @@ export default function MostPopularTours({title='Most Popular Tours' , items=[' 
                 </div>    
             </div>
         </div>   
-
-       
     </section>
     
   )

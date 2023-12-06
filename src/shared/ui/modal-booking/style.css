@@ -1,0 +1,303 @@
+.custom_modal .trigger{
+    text-align: center;
+    padding: 7px 13px;
+    background: #3e3e3e;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-family: cursive;
+}
+
+.custom_modal {
+    position: fixed;
+    left: 0;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+	display: flex;
+	align-items: center;
+}
+.custom_modal h1 {
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+.custom_modal.transition {
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+.custom_modal .modal_content {
+	max-width: 90%;
+	background: #fff;
+	border-radius: 16px;
+	z-index: 2;
+	margin: 0 auto;
+	padding: 30px;
+	max-height: 90vh;
+	overflow: auto;
+}
+.custom_modal .close_button {
+	width: 24px;
+	height: 24px;
+	padding: 4px;
+	z-index: 2;
+	cursor: pointer;
+    margin-left: auto;
+    display: block;
+}
+.custom_modal .close_button svg{
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+.custom_modal .close_button svg path {
+	transition: 0.3s;
+}
+.custom_modal .close_button:hover svg path {
+	fill: var(--btn_bg_color);
+}
+.custom_modal.show_modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+.custom_modal .item {
+    width: 600px;
+}
+.custom_modal .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.custom_modal .title_text {
+    font-family: var(--fontBold);
+    font-weight: 700;
+    font-size: 24px;
+    color: #000;
+    margin: 0;
+}
+.custom_modal .close-button {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    z-index: 2;
+    cursor: pointer;
+    margin-left: auto;
+}
+.custom_modal .close-button svg {
+    transition: .3s;
+}
+.custom_modal .close-button:hover svg path {
+    fill: var(--main_color);
+}
+.custom_modal .choosen-date {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #000;
+    text-align: center;
+    margin-top: 30px;
+}
+.custom_modal .available-tours {
+    font-size: 16px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #686868;
+}
+
+/* step 3 */
+.step-3 .subtitle-text {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #686868;
+}
+.step-3 .close-button {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    z-index: 2;
+    cursor: pointer;
+    margin-left: auto;
+}
+.step-3 .title {
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 30px;
+}
+.step-3 .subtitle-text.subtitle-text-mobile {
+    margin-bottom: 8px;
+    display: none;
+}
+.step-3 .subtitle-text {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #686868;
+}
+.step-3 .title-text {
+    font-size: 32px;
+    max-width: 210px;
+}
+.step-3 .title-text-step1,
+.step-3 .title-text {
+    font-family: var(--fontBold);
+    font-weight: 700;
+    font-size: 24px;
+    color: #000;
+    margin: 0;
+}
+.step-3 .guide {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+.step-3 .photo-wrap {
+    width: 90px;
+    height: 90px;
+}
+.step-3 .photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.step-3 .guide-name {
+    font-size: 20px;
+    font-family: var(--fontBold);
+    font-weight: 700;
+    color: #000;
+}
+.step-3 .guide-rate {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+.step-3 .icon-wrap {
+    width: 20px;
+    height: 20px;
+}
+.step-3 .guide-rate span {
+    font-size: 14px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #000;
+    margin-left: 2px;
+}
+.step-3 .guide-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.step-3 .flex-change {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: var(--bg_color);
+    border: 2px solid var(--bg_color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 15px;
+}
+.step-3 .flex-change .flex-box {
+    display: flex;
+    align-items: center;
+}
+.step-3 .item-data {
+    display: flex;
+}
+.step-3 .choosen-date {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #000;
+    text-align: left;
+    margin-top: 0;
+    margin-right: 5px;
+}
+.step-3 span {
+    margin-right: 3px;
+}
+.step-3 .time-current-modal {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #000;
+}
+.item.step-3 .flex-change .tour-item {
+    width: auto ;
+    padding: 0 ;
+    margin: 0 ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg_color);
+    border: 2px solid var(--bg_color);
+    border-radius: 8px;
+    pointer-events: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.step-3 .tour-item .tour-item__time {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.step-3 .duration {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin-left: 5px;
+    font-weight: 500;
+    font-family: var(--fontMedium);
+    color: #000;
+}
+.step-3 .people {
+    display: flex;
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #000;
+}
+.step-3 .country-box-select {
+    display: flex;
+    margin-left: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.custom_modal .modal_content .gray {
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    justify-content: center;
+}
+.custom_modal .modal_content .gray:hover {
+    color: #fff;
+}
+
+
+.custom_modal .small {
+    width: 385px;
+}
+.custom_modal .default {
+    width: 600px;
+}
+.custom_modal .large {
+    width: 800px;
+}
+
+@media(max-width: 767px) {
+    .item-3 .subtitle-text.subtitle-text-mobile {
+        display: block;
+    }
+}

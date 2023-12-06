@@ -1,59 +1,86 @@
+'use client';
 import Button from "../../shared/ui/button/button";
-import EnSVG from '@/assets/images/languages/en-svg'
+import ModalBooking from "@/shared/ui/modal-booking";
 import CalendarSvg from '@/assets/images/svg/calendar-svg'
-import CounterNumners from "@/shared/ui/counter-numbers";
+import CounterNumbers from "@/shared/ui/counter-numbers";
 import TabsLanguages from "@/shared/ui/tabs-languages";
+import TourItem from "@/shared/ui/tour-item";
+import Step1 from "@/shared/ui/modal-booking/step-1";
+import Step2 from "@/shared/ui/modal-booking/step-2";
+import Step3 from "@/shared/ui/modal-booking/step-3";
+import { useState } from "react";
+import CalendarLogo from "@/assets/images/svg/calendar-logo";
 
 
 import './style.css';
+
 export default function TourCalendar() {
+
+const [showmodal , setShowmodal] = useState(false);
+const [stepModal , setStepModal] = useState(1);
+const [changeData , setChangeData] = useState(false);
+
+
+function isOpened(event) {
+   showmodal ? setShowmodal(false)  : setShowmodal(true);
+   showmodal && setStepModal(1);
+   event?.stepOpen && setStepModal(event.stepOpen);
+   setChangeData(false);
+
+}
+
+function nextStep(event) {
+    event?.stepOpen ? setStepModal(event?.stepOpen) : setStepModal(stepModal + 1);
+    setChangeData(false);
+    
+}
+function prevStep() {
+    setStepModal(stepModal - 1);
+    setChangeData(false);
+}
+function changeTime() {
+    setChangeData(true);
+    
+}
+
+
   return (
     <section id="tour_calendar_section" className="tour_calendar">
         <div className="container">
             <div className="wrapper">
                 <h2 className="title">Tour Calendar</h2>
                 <div className="wrap-box">
-                    <Button>
+                    <Button onClick={isOpened}>
                         <div className="calendar_icon"><CalendarSvg/></div>
                         <span>Pick a Date</span>
                     </Button>
-
 
                     <TabsLanguages/>
                     
                     <div className="how_many">
                         <div className="block_title">How many people are coming?</div>
-                        <CounterNumners startNumber={1}/>
+                        <CounterNumbers startNumber={1}/>
                     </div>
+                    <div className="logo-calendar"><CalendarLogo/></div>
 
-
-                    <div className="logo-calendar">
-                    svg
-                    </div>
-
-                    <div className="days_wrap ">
-                        <div className="day_name">Today, 28 November</div>
-                        <div className="tours_wrap">
-                            <div className="tour_block">
-                                <div className="top_part">
-                                    <div className="tour_name">Free Graffiti Tour Bogota</div>
-                                    <div className="tour_hour">10:00</div>
-                                </div>
-                                <div className="bottom_part">
-                                    <div className="tour_duration">
-                                        <div className="clock_wrap">
-                                            <EnSVG/>
-                                            <span>2:30 Hour</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="days_wrap active">
+                        <div className="day_name">Tomorrow, 01 December</div>
+                        <TourItem isOpened={isOpened} />
+                        <TourItem isOpened={isOpened} />
                     </div>
 
                 </div>
             </div>                        
-        </div>   
+        </div>
+        <ModalBooking ModalShow={showmodal} isOpened={isOpened} nextStep={nextStep} prevStep={prevStep} changeTime={changeTime} changeData={changeData}  >
+            {stepModal === 1 || changeData ? <Step1 size="default" title="London Tour Calendar" nextStep={nextStep} prevStep={prevStep} isOpened={isOpened} /> : null}
+            {stepModal === 2 && <Step2 size="small" title="London Tour Calendar" nextStep={nextStep} prevStep={prevStep} isOpened={isOpened} />}
+            {stepModal === 3 && <Step3 size="large" title="London Tour Calendar" prevStep={prevStep} changeTime={changeTime} isOpened={isOpened}  />}
+        </ModalBooking>
+
+
+
+
 
     </section>
     

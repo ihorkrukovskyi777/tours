@@ -12,7 +12,10 @@
     font-size: 20px;
     transition: .3s ease-in-out;
 }
-
+.button_custom.gray {
+    color: #686868;
+    background: var(--bg_color);
+}
 .button_custom:hover {
     background:var(--hover_color);
 }

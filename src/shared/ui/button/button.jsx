@@ -1,10 +1,10 @@
 'use client';
-import styles from './style.module.css';
+import './style.css';
 import Image from 'next/image'; 
 
-export default function Button({children , icon = null , onClick= () => {} , prevent=false }) {
+export default function Button({children , icon = null , onClick= () => {} , prevent=false , customClass='' }) {
     return (
-        <button className={styles.button_custom} 
+        <button className={`button_custom ${customClass}`} 
             onClick={ (e) => {
                 if(prevent) {
                     e.preventDefault();

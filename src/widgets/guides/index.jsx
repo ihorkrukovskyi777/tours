@@ -11,8 +11,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+const dataSlider = [
+  { id:423, title: 'Your Guides in Bogota'},
+  { id:242, title: 'Your Guides in London'},
+  { id:2342, title: 'Your Guides in London123'},
+  { id:467, title: 'Your Guides in London11'},
+  { id:765, title: 'Your Guides in London11121'},
+  { id:756, title: 'Your Guides in London1212'},
+]
 
-export default function Guides({title="Your Guides in Bogota" , items=["Best Free Tours in London",2,4,6,7,2,1,1]}) {
+export default function Guides({title="Your Guides in Bogota" , items=[dataSlider]}) {
   return (
     <section className="guides_section">
         <div className="container">
@@ -26,18 +34,18 @@ export default function Guides({title="Your Guides in Bogota" , items=["Best Fre
                 pagination={{ clickable: true }}
 
               >
-                  {items.map((item , index) =>{
+                  {items.map((item) =>{
                       return (
-                          <div className="swiper-slide" key={index}>
+                          <div className="swiper-slide" key={item.id}>
                             <SwiperSlide>
-                            <CardGuide img={DefaultImage} url={'/'} bottomView={<LanguageImages data={languagesAll} />}>
-                            <div className="item_title">Wonders of London - Meraviglie di Londra</div>
-                            <div className="rating_box">
-                                <FullStarSvg />
-                                <div className="rating_number">4.88</div>  
-                            </div> 
+                              <CardGuide img={DefaultImage} url={'/'} bottomView={<LanguageImages data={languagesAll} />}>
+                              <div className="item_title">Wonders of London - Meraviglie di Londra</div>
+                              <div className="rating_box">
+                                  <FullStarSvg />
+                                  <div className="rating_number">4.88</div>  
+                              </div> 
 
-                            </CardGuide>
+                              </CardGuide>
                             </SwiperSlide>
                           </div>
                           

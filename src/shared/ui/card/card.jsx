@@ -1,8 +1,5 @@
 import Image from 'next/image';
-import styles from './style.module.css';
 import DefaultImage from '@/assets/images/default-image.jpeg';
-
-//import StarRatings from 'react-star-ratings';
 
 
 export default function Card({img='' , url = '#' , title, children , size='small' , topElement, bottomElement}) {

@@ -2,7 +2,7 @@
 import styles from './style.module.css';
 import { useState } from 'react';
 
-export default function CounterNumners({startNumber=1}) {
+export default function CounterNumbers({startNumber=1}) {
  const [conter , setCounter] = useState(startNumber)   
  function update(event) {
     if(event.type === 'increment') {
@@ -16,7 +16,7 @@ export default function CounterNumners({startNumber=1}) {
     <div className={styles.counter_wrap}>
         <div className={styles.wrap}>
             <div className={styles.minus} onClick={() => update({type: 'decrement'})}><span></span></div>
-            <span class={styles.number}>{conter}</span>
+            <span className={styles.number}>{conter}</span>
             <div className={styles.plus} onClick={() => update({type: 'increment'})}>
                 <span className={styles.horizontal}></span>
                 <span className={styles.vertical}></span>

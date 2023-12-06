@@ -1,0 +1,97 @@
+.calendar {
+    height: auto!important;
+    width: 308px;
+    perspective: 1000px;
+    cursor: default;
+    position: relative;
+    margin-top: 30px;
+    overflow: hidden;
+}
+.calendar #days {
+    display: flex;
+    flex-wrap: wrap;
+}
+.calendar .disable {
+    opacity: .4;
+    pointer-events: none;
+}
+.calendar #days div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100%/7);
+    max-width: 34px;
+    margin: 5px;
+    height: 34px;
+    line-height: 28px;
+    transition: color .4s ease-in-out 0s,background .4s ease-in-out 0s;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: var(--fontMedium);
+}
+.calendar .header-calendar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.calendar .header-calendar .next-month,
+.calendar .header-calendar .prev-month {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f2f2f2;
+    border-radius: 8px;
+    z-index: 1;
+    cursor: pointer;
+}
+.calendar .days-header {
+    display: flex;
+}
+.calendar .days-header div {
+    font-weight: 500;
+    width: calc(100%/7);
+    height: 44px;
+    padding: 5px;
+    text-align: center;
+    font-family: var(--fontMedium);
+    font-size: 16px;
+    color: #000;
+    text-transform: capitalize;
+    opacity: .4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calendar #days div:hover {
+    color: #fff;
+    background-color: var(--main_color);
+}
+.calendar .month-and-year span {
+    font-family: var(--fontMedium);
+    font-size: 20px;
+    color: var(--title_color);
+}
+@media(max-width: 500px) {
+    .calendar #days div {
+        max-width: 60px;
+        margin: 4px 0;
+        font-size: 15px;
+    }
+    .calendar-body .calendar {
+        width: 100% !important;
+    }
+}
+@media(max-width: 350px) {
+    .tour_calendar .tab_item {
+        font-size: 12px;
+    }
+}
+@media(max-width: 319px) {
+    .calendar .month-and-year span {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,161 @@
+.step-3 .subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+}
+.step-3 .subtitle-text {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #686868;
+}
+.step-3 .title {
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 30px;
+}
+.step-3 .title-text {
+    font-size: 32px;
+    max-width: 210px;
+}
+.step-3 .icon-wrap {
+    margin-right: 2px;
+}
+.step-3 form,
+.step-3 .form-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px 0;
+    justify-content: space-between;
+}
+.step-3 form .item-form {
+    width: calc(50% - 20px);
+    margin-bottom: 28px;
+}
+.step-3 form .item-form label span {
+    color: #686868;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: var(--fontMedium);
+    margin-bottom: 4px;
+    display: block;
+}
+.step-3 form .item-form label span.red {
+    display: inline-block;
+    color: red;
+}
+.step-3 form .item-form input {
+    border: 2px solid #F6F6F6;
+    border-radius: 8px;
+    color: #000;
+    padding: 15px;
+    width: 100%;
+    font-weight: 300;
+    font-size: 18px;
+    font-family: var(--fontMedium);
+    height: 54px;
+}
+.step-3 form .full-width.checkbox-item {
+    margin-bottom: 0;
+}
+.step-3 form .full-width {
+    width: 100%;
+}
+.step-3 form .full-width.checkbox-item .form-group {
+    display: flex;
+    align-items: center;
+}
+.step-3 form .item-form.checkbox-item input {
+    width: auto;
+}
+.step-3 form .full-width.checkbox-item input {
+    position: absolute;
+    opacity: 0;
+    max-height: 30px;
+    display: block;
+}
+.step-3 form .checkbox-item label {
+    display: flex;
+    align-items: center;
+    color: red;
+    font-weight: 500;
+    font-family: var(--fontMedium);
+    position: relative;
+}
+.step-3 .terms-and-conditions {
+    list-style-type: none;
+    display: inline-flex;
+    margin-left: 5px;
+    font-weight: 700;
+    color: #000;
+    cursor: pointer;
+}
+.step-3 .form-group label:before {
+    content: '';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid red;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 8px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.step-3 .form-group input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    width: 5px;
+    width: 5px;
+    height: 11px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.step-3 .error-box  {
+    font-size: 16px;
+    color: red;
+    padding: 3px;
+    font-weight: 500;
+    font-family: var(--fontMedium);
+    display: none;
+}
+.step-3 .btns-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+}
+.step-3 .btns-wrap input {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+.step-3 .form-group input:checked + label:before {
+    background-color: red;
+}
+.step-3 form .item-form span.error-message {
+    font-size: 16px;
+    color: red;
+    padding: 3px;
+    font-weight: 500;
+    font-family: var(--fontMedium);
+}
+
+.iti--separate-dial-code .iti__selected-flag {
+    background-color: #F2F2F2;
+    border-radius: 6px 0 0 6px;
+    height: calc(100% - 2px);
+    padding: 0 6px 0 8px;
+    left: 1px;
+    top: 1px;
+}
+.iti--allow-dropdown .iti__flag-container:hover .iti__selected-flag {
+    background-color: #F2F2F2;
+}

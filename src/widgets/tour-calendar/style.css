@@ -164,101 +164,7 @@
 }
 
 
-/* Days Wrap */
-.tour_calendar .days_wrap{
-    display: none;
-}
-.tour_calendar .days_wrap.active{
-    display: block;
-}
-.tour_calendar .tours_wrap {
-    cursor: pointer;
-}
-.tour_calendar .day_item{
-    margin-top: 30px;
-    display: none;
-}
-.tour_calendar .days_wrap .day_item:first-child,
-.tour_calendar .days_wrap .day_item:nth-child(2) {
-    display: block;
-}
-.tour_calendar .day_name{
-    font-size: 14px;
-    font-weight: 700;
-    font-family: var(--fontMedium);
-    color: #686868;
-}
-.tour_calendar .tours_wrap{
-    margin-top: 12px;
-}
-.tour_calendar .tour_block{
-    background: var(--bg_color);
-    border-radius: 8px;
-    padding: 15px;
-    margin-top: 20px;
-    pointer-events: none;
-}
-.tour_calendar .tour_block:first-child{
-    margin-top: 0;
-}
-.tour_calendar .top_part, .tour_calendar .bottom_part{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.tour_calendar .tour_name, .tour_calendar .tour_hour{
-    font-size: 18px;
-    font-weight: 500;
-    font-family: var(--fontMedium);
-    color: var(--title_color);
-}
-.tour_calendar .bottom_part{
-    margin-top: 12px;
-}
-.tour_calendar .tour_duration{
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: var(--fontMedium);
-    color: var(--title_color);
-}
-.tour_calendar .clock_wrap{
-    display: flex;
-    align-items: center;
-    width: 12px;
-    height: 13px;
-    margin-right: 6px;
-}
-.tour_calendar .clock_wrap svg{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-.tour_calendar .tour_duration span{
-    line-height: 1.22;
-    text-transform: lowercase;
-}
-.tour_calendar .tour_language{
-    width: 16px;
-    height: 16px;
-    display: flex;
-    align-items: center;
-}
-.tour_calendar .tour_language svg,
-.tour_calendar .tour_language img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-.tour_calendar .btn_wrap{
-    text-align: center;
-}
-.tour_calendar .load_more{
-    padding: 8px 14px;
-    margin-top: 30px;
-}
+
 
 /* Faq Wrap */
 .tour_calendar .faq_wrap{
@@ -274,11 +180,7 @@
     grid-row-gap: 15px;
     margin-top: 30px;
 }
-.tour_calendar .item{
-    background: var(--bg_color);
-    border-radius: 8px;
-    /* padding: 20px 15px; */
-}
+
 .tour_calendar .question{
     display: flex;
     align-items: center;
@@ -345,7 +247,6 @@
 .tour_calendar .calendar_wrap .btn_wrap {
     display: none;
 }
-/* Responsive */
 
 /* Responsive */
 @media(max-width: 1199px) {
@@ -402,9 +303,6 @@
         width: 18px;
         height: 18px;
     }
-    /* .tour_calendar .tab_item.mobile-hide {
-         display: none;
-     }*/
     .tour_calendar .see-all {
         display: flex;
         font-size: 16px;
@@ -452,95 +350,3 @@
     }
 }
 
-
-
-.calendar .header-calendar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-.calendar .header-calendar .next-month,
-.calendar .header-calendar .prev-month {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: #f2f2f2;
-    border-radius: 8px;
-    z-index: 1;
-    cursor: pointer;
-}
-.calendar .days-header {
-    display: flex;
-
-
-}
-.calendar .days-header div {
-    font-weight: 500;
-    width: calc(100%/7);
-    height: 44px;
-    padding: 5px;
-    text-align: center;
-    font-family: var(--fontMedium);
-    font-size: 16px;
-    color: #000;
-    text-transform: capitalize;
-    opacity: .4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.calendar #days {
-    display: flex;
-    flex-wrap: wrap;
-}
-.calendar #days div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: calc(100%/7);
-    max-width: 34px;
-    margin: 5px;
-    height: 34px;
-    line-height: 28px;
-    transition: color .4s ease-in-out 0s,background .4s ease-in-out 0s;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    font-family: var(--fontMedium);
-}
-.calendar #days .disable {
-    opacity: .4;
-    pointer-events: none;
-}
-.calendar #days div:hover {
-    color: #fff;
-    background-color: var(--main_color);
-}
-.calendar .month-and-year span {
-    font-family: var(--fontMedium);
-    font-size: 20px;
-    color: var(--title_color);
-}
-@media(max-width: 500px) {
-    .calendar #days div {
-        max-width: 60px;
-        margin: 4px 0;
-        font-size: 15px;
-    }
-    .calendar-body .calendar {
-        width: 100% !important;
-    }
-}
-@media(max-width: 350px) {
-    .tour_calendar .tab_item {
-        font-size: 12px;
-    }
-}
-@media(max-width: 319px) {
-    .calendar .month-and-year span {
-        font-size: 16px;
-    }
-}
