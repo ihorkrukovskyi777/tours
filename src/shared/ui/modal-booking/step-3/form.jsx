@@ -1,8 +1,11 @@
 
 import { useState , useEffect } from 'react';
-
 import 'intl-tel-input/build/css/intlTelInput.css';
 import intlTelInput from 'intl-tel-input';
+import { InputMask } from '@react-input/mask';
+import { GetCountryPhone } from '@/entities/api/getCountryPhone';
+
+
 
 
 
@@ -21,17 +24,23 @@ const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"
 
 export default function FormCalendar() {
 
+    
+    //INPUT
+    const [placeholder , setPlaceholder] = useState('099 12 14 567');
+
     useEffect(() => {
         const input = document.querySelector("#phone");
         intlTelInput(input, {
             separateDialCode: true,
             formatOnDisplay: true,
             hiddenInput: "full_number",
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js",
         });
-
-         input.addEventListener("countrychange", function() {
-            console.log(111);
+         input.addEventListener("countrychange", function(event) { 
+            // const iti = intlTelInput(input);
+            // const countryData = iti.getSelectedCountryData();
+            setPlaceholder('123 45 46 456');
+            document.querySelector("#phone").value='';
         });
     }, [])
 
@@ -113,7 +122,6 @@ export default function FormCalendar() {
           console.error('Invalid Form')
           setValidate(false);
         }
-        console.log(state)
       }
   
   
@@ -151,10 +159,11 @@ export default function FormCalendar() {
                     <label htmlFor=""> 
                         <span>Phone Number<span className="red">*</span></span>
                         <div className="international-phone">
-                            <input id='phone' />
+                            <InputMask id='phone' mask="(___) ___ __ __" replacement="_" placeholder={placeholder}/>
                            
                         </div>
                     </label>
+                    
                 </div>
                 <div className="item-form full-width checkbox-item">
                     <div className="form-group">

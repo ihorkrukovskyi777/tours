@@ -159,3 +159,6 @@
 .iti--allow-dropdown .iti__flag-container:hover .iti__selected-flag {
     background-color: #F2F2F2;
 }
+.step-3 .iti  {
+    width: 100%;
+}
