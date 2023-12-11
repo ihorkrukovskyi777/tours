@@ -38,7 +38,7 @@
     font-size: 16px;
     font-family: var(--fontMedium);
     margin-bottom: 4px;
-    display: block;
+    display: inline-block;
 }
 .step-3 form .item-form label span.red {
     display: inline-block;
@@ -148,17 +148,80 @@
     font-family: var(--fontMedium);
 }
 
-.iti--separate-dial-code .iti__selected-flag {
-    background-color: #F2F2F2;
-    border-radius: 6px 0 0 6px;
-    height: calc(100% - 2px);
-    padding: 0 6px 0 8px;
-    left: 1px;
-    top: 1px;
+.step-3 form .item-form .international-phone input {
+    padding-left: 41px;
+    border: none;
 }
-.iti--allow-dropdown .iti__flag-container:hover .iti__selected-flag {
-    background-color: #F2F2F2;
+
+
+.step-3 .react-tel-input .flag-dropdown {
+    border: none;
+    border-radius: 6px 0 0 6px !important; 
 }
-.step-3 .iti  {
+.step-3 form .item-form #phone {
+    display: flex;
+    padding-left: 8px;
+    position: absolute;
+    left: 0;
+    outline: navajowhite;
+
+}
+.step-3 form .international-phone {
+    display: flex;
+    border: 2px solid #F6F6F6;
+    border-radius: 8px;
+    position: relative;
+}
+.step-3  .react-tel-input .selected-flag:hover,
+.step-3  .react-tel-input .selected-flag:focus{
+    background-color: #F6F6F6;
+}
+.step-3 form .wrap-input {
+    position: relative;
+    z-index: 11;
+}
+.step-3 form .international-phone.border {
+    border-color: #000;
+    overflow: hidden;
+}
+.step-3 form .react-tel-input .flag-dropdown {
+    background: #F2F2F2;
+    width: inherit;
+}
+.step-3 form .international-phone .react-tel-input input {
+    padding-right: 0;
+    pointer-events: none;
+    width:inherit;
+    background: #F2F2F2;
+    border-radius: inherit;
+    z-index: 111;
+    background: transparent;
+}
+.step-3 .selected-flag {
     width: 100%;
+}
+.step-3 form .react-tel-input{ 
+    width: inherit;
+    background-color: #F6F6F6;
+    border-radius: 8px 0 0 8px;
+}
+.step-3 form .international-phone:focus {
+    border: 2px solid #ccc;
+}
+
+.step-3 .react-tel-input .flag-dropdown.open .selected-flag,
+.step-3 .react-tel-input .flag-dropdown.open,
+.step-3 .react-tel-input .selected-flag:hover,
+.step-3 .react-tel-input .selected-flag:focus {
+    background: transparent;
+    border-radius: 8px 0 0 8px; 
+}
+
+.step-3 form .international-phone div {
+    background-color: #F6F6F6 !important    ;
+}
+.step-3 .btns-wrap button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
 }

@@ -8,7 +8,9 @@ import TourItem from "@/shared/ui/tour-item";
 import Step1 from "@/shared/ui/modal-booking/step-1";
 import Step2 from "@/shared/ui/modal-booking/step-2";
 import Step3 from "@/shared/ui/modal-booking/step-3";
-import { useState } from "react";
+import { useState , useEffect } from "react"; 
+import { getCountryPhone } from '@/entities/api/getCountryPhone';
+import { getTours } from "@/entities/api/getTours";
 import CalendarLogo from "@/assets/images/svg/calendar-logo";
 
 
@@ -43,6 +45,20 @@ function changeTime() {
     
 }
 
+const [phoneNumbers , setPhoneNumbers] = useState(null);
+const [tours , setTours] = useState(null);
+
+useEffect(() => {
+   getCountryPhone().then( (data) => setPhoneNumbers(data));
+   getTours().then( (data) => setTours(data));
+},[])
+
+
+console.log(tours , 'tours');
+
+
+
+
 
   return (
     <section id="tour_calendar_section" className="tour_calendar">
@@ -72,10 +88,10 @@ function changeTime() {
                 </div>
             </div>                        
         </div>
-        <ModalBooking ModalShow={showmodal} isOpened={isOpened} nextStep={nextStep} prevStep={prevStep} changeTime={changeTime} changeData={changeData}  >
+        <ModalBooking ModalShow={showmodal} isOpened={isOpened} nextStep={nextStep} prevStep={prevStep} changeTime={changeTime} changeData={changeData} allPhoneNumbers={phoneNumbers} tours={tours} >
             {stepModal === 1 || changeData ? <Step1 size="default" title="London Tour Calendar" nextStep={nextStep} prevStep={prevStep} isOpened={isOpened} /> : null}
             {stepModal === 2 && <Step2 size="small" title="London Tour Calendar" nextStep={nextStep} prevStep={prevStep} isOpened={isOpened} />}
-            {stepModal === 3 && <Step3 size="large" title="London Tour Calendar" prevStep={prevStep} changeTime={changeTime} isOpened={isOpened}  />}
+            {stepModal === 3 && <Step3 size="large" title="London Tour Calendar" prevStep={prevStep} changeTime={changeTime} isOpened={isOpened} allPhoneNumbers={phoneNumbers}  />}
         </ModalBooking>
 
 

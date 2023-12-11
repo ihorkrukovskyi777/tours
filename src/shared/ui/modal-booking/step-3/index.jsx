@@ -5,7 +5,7 @@ import FormCalendar from './form';
 
 import './style.css';
 
-export default function Step3({changeTime , isOpened , size}) {
+export default function Step3({changeTime , isOpened , size , allPhoneNumbers}) {
     return ( 
         <div className={`step-3 ${size}`}>
             <div className="subtitle">
@@ -63,7 +63,7 @@ export default function Step3({changeTime , isOpened , size}) {
                 </div>
             </div>
 
-           <FormCalendar/>
+           <FormCalendar allPhoneNumbers={allPhoneNumbers}/>
             
            
 

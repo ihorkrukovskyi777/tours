@@ -1,16 +1,26 @@
-
-import { useState , useEffect } from 'react';
-import 'intl-tel-input/build/css/intlTelInput.css';
-import intlTelInput from 'intl-tel-input';
+'use client'
+import { useState } from 'react';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css';
+import ru from 'react-phone-input-2/lang/ru.json'
+import classNames from 'classnames';
 import { InputMask } from '@react-input/mask';
-import { GetCountryPhone } from '@/entities/api/getCountryPhone';
 
 
+export default function FormCalendar({allPhoneNumbers}) {
+    const  [languagePageSlug , setLanguagePageSlug] = useState('ES');
+    console.log(allPhoneNumbers , 'allPhoneNumbers');
+    const localizationWP = [];
+    Object.keys(allPhoneNumbers).map((elem) => {
+        localizationWP[elem] = allPhoneNumbers[elem].name;
+    });
+    // Get Mask Number
+    const  [validation_numbers , setValidation_numbers] = useState(allPhoneNumbers[languagePageSlug]['validation_numbers']);
+    const [placeholder , setPlaceholder] = useState(allPhoneNumbers[languagePageSlug]['mask_number']);
+    const getMask = placeholder.replace(/[0-9]/g, "_");
+    const [maskView , setMaskView] = useState(getMask)
 
-
-
-
-const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+    const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
     const validateForm = errors => {
         let valid = true;  
         for (let value of Object.keys(errors)) {
@@ -21,47 +31,29 @@ const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"
         }
         return valid;
     };
-
-export default function FormCalendar() {
-
-    
-    //INPUT
-    const [placeholder , setPlaceholder] = useState('099 12 14 567');
-
-    useEffect(() => {
-        const input = document.querySelector("#phone");
-        intlTelInput(input, {
-            separateDialCode: true,
-            formatOnDisplay: true,
-            hiddenInput: "full_number",
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js",
-        });
-         input.addEventListener("countrychange", function(event) { 
-            // const iti = intlTelInput(input);
-            // const countryData = iti.getSelectedCountryData();
-            setPlaceholder('123 45 46 456');
-            document.querySelector("#phone").value='';
-        });
-    }, [])
-
-    const [phone, setPhone] = useState('');
-    const [country , setCountry] = useState('ua');
+    //validation
     const [loadvalidate , setLoadvalidate] = useState(false);
     const [validate , setValidate] = useState(null);
+    const widthInputs = {1: 68 , 2: 80 , 3: 92, 4:98 , 5:116,  6: 121};
+    const padding = 7;
+    const [border , setBorder] = useState(false)
+    const [inputCountryWidth , setInputCountryWidth] = useState(widthInputs[2])
     const stateAll = {
         firstName: null,
         lastName: null,
         email: null,
+        phone: null,
         accept: null,
         errors: {
             firstName: '',
             lastName: '',
             email: '',
+            phone: '',
             accept: '',
+           
         }
     }
     const [state , setState] = useState(stateAll);
-
 
     function handleChange(event)  {
         //event.preventDefault();
@@ -90,10 +82,14 @@ export default function FormCalendar() {
                 ? ''
                 : 'Email is not valid!';
             break;
-        //   case 'phone': 
-        //     if(value.length < 1 ) errorMsg = 'This field is requared';
-        //     errors.lastName = errorMsg
-        //     break;
+          case 'phone':
+            const valuePhone = value.toString().split('').filter(e => e.trim().length).join('').length;
+            const validateArray = event.target.getAttribute('validation-number').split(',').map(i=>Number(i));
+            if(!validateArray.includes(valuePhone)) {
+                errorMsg = '"Phone number" has an invalid format';
+            }         
+            errors.phone = errorMsg
+            break;
           case 'accept':
             if(checked === false ) errorMsg = 'This field is requared';
             errors.accept = errorMsg  
@@ -104,33 +100,51 @@ export default function FormCalendar() {
 
         setState({errors, [name]: value});
         !loadvalidate && setLoadvalidate(true); 
-      }
+    }
     
-      function handleSubmit(event) {
+    function handleSubmit(event) {
         event.preventDefault();
         if(validate === null) {
             errors.firstName = 'This field is requared';
             errors.lastName = 'This field is requared';
             errors.email = 'This field is requared';
+            errors.phone = 'This field is requared';
             errors.accept = 'This field is requared';
         }
 
         if(validateForm(state.errors) && loadvalidate === true) {
           console.info('Valid Form');
           setValidate(true);
+          //REDIRECT TO CHECKOUT PAGE
+          const formData = {
+            firstName: document.querySelector("#booking input[name='firstName']").value,
+            lastName:  document.querySelector("#booking input[name='lastName']").value,
+            email: document.querySelector("#booking input[name='email']").value,
+            phone_country:  document.querySelector("#booking .react-tel-input input").value,
+            phone: document.querySelector("#booking input[name='phone']").value,
+            accept:document.querySelector("#booking input[name='accept']").value ,
+          }  
+          console.log(formData , 'formData');
         }else{
           console.error('Invalid Form')
           setValidate(false);
         }
-      }
-  
-  
+    }
 
     const {errors} = state;
+    
+    const [value , setValue] = useState(null);
+   
+    function borderSet() {
+        setBorder(true)
+    }
+    function borderReset() {
+        setBorder(false)
+    }
+    
   
-
     return ( 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id='booking'>
             <div className="form-wrap">
                 <div className="item-form"> 
                     <label htmlFor=""> 
@@ -158,10 +172,29 @@ export default function FormCalendar() {
                 <div className="item-form">
                     <label htmlFor=""> 
                         <span>Phone Number<span className="red">*</span></span>
-                        <div className="international-phone">
-                            <InputMask id='phone' mask="(___) ___ __ __" replacement="_" placeholder={placeholder}/>
-                           
+                        <div className={classNames({'border':border} , 'international-phone')}>
+                            <div className="wrap-input" style={{width: inputCountryWidth}}>
+                                <PhoneInput
+                                    country={'es'}
+                                    localization={localizationWP}
+                                    onChange={(value, country) => {          
+                                        errors.phone = 'This field is requared';      
+                                        setInputCountryWidth(widthInputs[value.length]);
+                                        document.getElementById("phone").value = '';
+                                        document.getElementById("phone").focus();    
+                                        const selectedCountryData = country.countryCode.toUpperCase();
+                                        const placeholderInput = allPhoneNumbers[selectedCountryData]['mask_number'];
+                                        const maskInput = placeholderInput.replace(/[0-9]/g, "_");
+                                        setPlaceholder(placeholderInput);
+                                        setValidation_numbers(allPhoneNumbers[selectedCountryData]['validation_numbers'])
+                                        setMaskView(maskInput);
+                                        
+                                    }}
+                                />
+                            </div>
+                            <InputMask id='phone' name='phone' mask={maskView} replacement="_" placeholder={placeholder} style={{paddingLeft: inputCountryWidth + padding }} onChange={handleChange} validation-number={validation_numbers} />
                         </div>
+                        {errors.phone.length > 0 ? <span className='error-message'>{errors.phone}</span> : null}
                     </label>
                     
                 </div>
