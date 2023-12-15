@@ -1,10 +1,11 @@
 import ClockSvg from '@/assets/images/svg/clock-svg';
+import classNames from 'classnames';
 import './style.css';
 
 
-export default function ModalTourItem({title , hour , language , timeTour , nextStep}) {
+export default function ModalTourItem({title , hour , language , timeTour , nextStep , isActive="false"}) {
    return(
-    <div className="modal-tour-item" onClick={() => nextStep()}>
+    <div className={classNames('modal-tour-item' , {'active': isActive})} onClick={nextStep}>
         <h5>Free Harry Potter Tour London</h5>
         <div className="tour-item__time">
             <div className="start-time">00:00</div>

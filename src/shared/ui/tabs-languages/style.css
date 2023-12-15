@@ -21,6 +21,7 @@
     margin: 0 4px;
     cursor: pointer;
     order: 9999;
+    height: 54px;
 }
 .tabs .see-all {
     width: calc(25% - 8px);

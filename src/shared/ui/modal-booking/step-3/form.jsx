@@ -1,25 +1,11 @@
 'use client'
 import { useState } from 'react';
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css';
-import ru from 'react-phone-input-2/lang/ru.json'
-import classNames from 'classnames';
-import { InputMask } from '@react-input/mask';
+import InternationalInput from '../../international-input';
 
 
 export default function FormCalendar({allPhoneNumbers}) {
-    const  [languagePageSlug , setLanguagePageSlug] = useState('ES');
-    console.log(allPhoneNumbers , 'allPhoneNumbers');
-    const localizationWP = [];
-    Object.keys(allPhoneNumbers).map((elem) => {
-        localizationWP[elem] = allPhoneNumbers[elem].name;
-    });
-    // Get Mask Number
-    const  [validation_numbers , setValidation_numbers] = useState(allPhoneNumbers[languagePageSlug]['validation_numbers']);
-    const [placeholder , setPlaceholder] = useState(allPhoneNumbers[languagePageSlug]['mask_number']);
-    const getMask = placeholder.replace(/[0-9]/g, "_");
-    const [maskView , setMaskView] = useState(getMask)
-
+  
+    //validation
     const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
     const validateForm = errors => {
         let valid = true;  
@@ -31,13 +17,9 @@ export default function FormCalendar({allPhoneNumbers}) {
         }
         return valid;
     };
-    //validation
     const [loadvalidate , setLoadvalidate] = useState(false);
     const [validate , setValidate] = useState(null);
-    const widthInputs = {1: 68 , 2: 80 , 3: 92, 4:98 , 5:116,  6: 121};
-    const padding = 7;
-    const [border , setBorder] = useState(false)
-    const [inputCountryWidth , setInputCountryWidth] = useState(widthInputs[2])
+    const [valueMask , setValueMask] = useState('');
     const stateAll = {
         firstName: null,
         lastName: null,
@@ -54,54 +36,62 @@ export default function FormCalendar({allPhoneNumbers}) {
         }
     }
     const [state , setState] = useState(stateAll);
+    function validateSwitch(name) {
+        let hasNumber = /\d/;
+        let errorMsg = '';
+        let value = document.querySelector(`#booking input[name=${name}]`).value;
+        let checked = document.querySelector(`#booking input[name=${name}]`).checked;
+        switch (name) {
+            case 'firstName':
+              if(value.length < 1 ) errorMsg = 'This field is requared' 
+              if(value.length > 50) errorMsg = '"First name" max length is 50 symbols';
+              if(hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
+              errors.firstName = errorMsg      
+              break;
+  
+            case 'lastName': 
+              if(value.length < 1 ) errorMsg = 'This field is requared';
+              if(value.length > 50) errorMsg = '"First name" max length is 50 symbols'; 
+              if(hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
+              errors.lastName = errorMsg
+              break;
+  
+            case 'email': 
+              errors.email = 
+                validEmailRegex.test(value)
+                  ? ''
+                  : 'Email is not valid!';
+              break;
+            case 'phone':
+              const valuePhone = value.toString().split('').filter(e => e.trim().length).join('').length;
+              const validateArray = document.querySelector(`#booking input[name=${name}]`).getAttribute('validation-number').split(',').map(i=>Number(i));
+              if(!validateArray.includes(valuePhone)) {
+                  errorMsg = '"Phone number" has an invalid format';
+              }         
+              errors.phone = errorMsg
+              break;
+            case 'accept':
+              if(checked === false ) errorMsg = 'This field is requared';
+              errors.accept = errorMsg  
+              break;
+            default:
+              break;
+          }
+    }
 
     function handleChange(event)  {
         //event.preventDefault();
-        const { name, value , checked } = event.target;
+        const { name  } = event.target;
         let errors = state.errors;
-        let hasNumber = /\d/;
-        let errorMsg = '';   
-        switch (name) {
-          case 'firstName':
-            if(value.length < 1 ) errorMsg = 'This field is requared' 
-            if(value.length > 50) errorMsg = '"First name" max length is 50 symbols';
-            if(hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
-            errors.firstName = errorMsg      
-            break;
-
-          case 'lastName': 
-            if(value.length < 1 ) errorMsg = 'This field is requared';
-            if(value.length > 50) errorMsg = '"First name" max length is 50 symbols'; 
-            if(hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
-            errors.lastName = errorMsg
-            break;
-
-          case 'email': 
-            errors.email = 
-              validEmailRegex.test(value)
-                ? ''
-                : 'Email is not valid!';
-            break;
-          case 'phone':
-            const valuePhone = value.toString().split('').filter(e => e.trim().length).join('').length;
-            const validateArray = event.target.getAttribute('validation-number').split(',').map(i=>Number(i));
-            if(!validateArray.includes(valuePhone)) {
-                errorMsg = '"Phone number" has an invalid format';
-            }         
-            errors.phone = errorMsg
-            break;
-          case 'accept':
-            if(checked === false ) errorMsg = 'This field is requared';
-            errors.accept = errorMsg  
-            break;
-          default:
-            break;
-        }
-
+        validateSwitch(name);   
         setState({errors, [name]: value});
+        if(name === 'phone') {
+            setValueMask(value);
+        }
         !loadvalidate && setLoadvalidate(true); 
+
     }
-    
+
     function handleSubmit(event) {
         event.preventDefault();
         if(validate === null) {
@@ -110,6 +100,13 @@ export default function FormCalendar({allPhoneNumbers}) {
             errors.email = 'This field is requared';
             errors.phone = 'This field is requared';
             errors.accept = 'This field is requared';
+            document.querySelectorAll('#booking input').forEach((item) => {
+                if(item.hasAttribute('name')) {
+                    validateSwitch(item.getAttribute('name'));
+                    setState({errors, [name]: value}); 
+                }
+            });
+            !loadvalidate && setLoadvalidate(true); 
         }
 
         if(validateForm(state.errors) && loadvalidate === true) {
@@ -127,6 +124,7 @@ export default function FormCalendar({allPhoneNumbers}) {
           console.log(formData , 'formData');
         }else{
           console.error('Invalid Form')
+          console.log(stateAll)
           setValidate(false);
         }
     }
@@ -134,13 +132,8 @@ export default function FormCalendar({allPhoneNumbers}) {
     const {errors} = state;
     
     const [value , setValue] = useState(null);
-   
-    function borderSet() {
-        setBorder(true)
-    }
-    function borderReset() {
-        setBorder(false)
-    }
+
+    // end validation
     
   
     return ( 
@@ -172,28 +165,7 @@ export default function FormCalendar({allPhoneNumbers}) {
                 <div className="item-form">
                     <label htmlFor=""> 
                         <span>Phone Number<span className="red">*</span></span>
-                        <div className={classNames({'border':border} , 'international-phone')}>
-                            <div className="wrap-input" style={{width: inputCountryWidth}}>
-                                <PhoneInput
-                                    country={'es'}
-                                    localization={localizationWP}
-                                    onChange={(value, country) => {          
-                                        errors.phone = 'This field is requared';      
-                                        setInputCountryWidth(widthInputs[value.length]);
-                                        document.getElementById("phone").value = '';
-                                        document.getElementById("phone").focus();    
-                                        const selectedCountryData = country.countryCode.toUpperCase();
-                                        const placeholderInput = allPhoneNumbers[selectedCountryData]['mask_number'];
-                                        const maskInput = placeholderInput.replace(/[0-9]/g, "_");
-                                        setPlaceholder(placeholderInput);
-                                        setValidation_numbers(allPhoneNumbers[selectedCountryData]['validation_numbers'])
-                                        setMaskView(maskInput);
-                                        
-                                    }}
-                                />
-                            </div>
-                            <InputMask id='phone' name='phone' mask={maskView} replacement="_" placeholder={placeholder} style={{paddingLeft: inputCountryWidth + padding }} onChange={handleChange} validation-number={validation_numbers} />
-                        </div>
+                        <InternationalInput language='es' allPhoneNumbers={allPhoneNumbers} handleChange={handleChange} valueMask={valueMask}  />
                         {errors.phone.length > 0 ? <span className='error-message'>{errors.phone}</span> : null}
                     </label>
                     

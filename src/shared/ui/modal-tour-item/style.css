@@ -11,6 +11,9 @@
     transition: .3s;
     margin-bottom: 10px;
 }
+.modal-tour-item.active {
+    border-color: var(--main_color);
+}
 .modal-tour-item:hover {
     border-color: var(--main_color);
 }

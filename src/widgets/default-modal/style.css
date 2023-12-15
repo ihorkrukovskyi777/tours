@@ -1,16 +1,4 @@
-.custom_modal .trigger{
-    text-align: center;
-    padding: 7px 13px;
-    background: #3e3e3e;
-    color: #fff;
-    font-size: 15px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    font-family: cursive;
-}
-
-.custom_modal {
+.default-modal {
     position: fixed;
     left: 0;
     z-index: 999;
@@ -24,14 +12,14 @@
 	display: flex;
 	align-items: center;
 }
-.custom_modal h1 {
+.default-modal h1 {
     font-size: 30px;
     margin-bottom: 30px;
 }
-.custom_modal.transition {
+.default-modal.transition {
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
-.custom_modal .modal_content {
+.default-modal .modal_content {
 	max-width: 90%;
 	background: #fff;
 	border-radius: 16px;
@@ -40,8 +28,10 @@
 	padding: 30px;
 	max-height: 90vh;
 	overflow: auto;
+    width: 100%;
+    max-width: 500px;
 }
-.custom_modal .close_button {
+.default-modal .close_button {
 	width: 24px;
 	height: 24px;
 	padding: 4px;
@@ -50,54 +40,57 @@
     margin-left: auto;
     display: block;
 }
-.custom_modal .close_button svg{
+.default-modal .close_button svg{
 	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: contain;
 }
-.custom_modal .close_button svg path {
+.default-modal .close_button svg path {
 	transition: 0.3s;
 }
-.custom_modal .close_button:hover svg path {
+.default-modal .close_button:hover svg path {
 	fill: var(--btn_bg_color);
 }
-.custom_modal.show_modal {
+.default-modal.show_modal {
     opacity: 1;
     visibility: visible;
     transform: scale(1.0);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
-.custom_modal .item {
+.default-modal .item {
     width: 600px;
 }
-.custom_modal .title {
+.default-modal .title {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.custom_modal .title_text {
+.default-modal .title_text {
     font-family: var(--fontBold);
     font-weight: 700;
     font-size: 24px;
     color: #000;
     margin: 0;
 }
-.custom_modal .close-button {
+.default-modal .close-button {
     width: 24px;
     height: 24px;
     padding: 4px;
     z-index: 2;
     cursor: pointer;
     margin-left: auto;
+    font: 700 32px/1.105 var(--fontBold);
+    color: var(--title_color);
+    display: block;
 }
-.custom_modal .close-button svg {
+.default-modal .close-button svg {
     transition: .3s;
 }
-.custom_modal .close-button:hover svg path {
+.default-modal .close-button:hover svg path {
     fill: var(--main_color);
 }
-.custom_modal .choosen-date {
+.default-modal .choosen-date {
     font-size: 20px;
     font-family: var(--fontMedium);
     font-weight: 500;
@@ -105,37 +98,37 @@
     text-align: center;
     margin-top: 30px;
 }
-.custom_modal .available-tours {
+.default-modal .available-tours {
     font-size: 16px;
     font-family: var(--fontMedium);
     font-weight: 500;
     color: #686868;
 }
-
-
-.custom_modal .modal_content .gray {
+.default-modal .modal_content .gray {
     width: 100%;
     padding: 15px;
     margin-top: 30px;
     justify-content: center;
 }
-.custom_modal .modal_content .gray:hover {
+.default-modal .modal_content .gray:hover {
     color: #fff;
 }
+.default-modal .small {
+    max-width: 385px;
+}
+.default-modal .default {
+    max-width: 500px;
+}
+.default-modal .middle {
+    max-width: 600px;
+}
+.default-modal .large {
+    max-width: 800px;
+}
+.default-modal h2 {
+    text-align: center;
+    margin-bottom: 22px;
+    font: 700 32px/1.105 var(--fontBold);
+    color: var(--title_color);
+}
 
-
-.custom_modal .small {
-    width: 385px;
-}
-.custom_modal .default {
-    width: 600px;
-}
-.custom_modal .large {
-    width: 800px;
-}
-
-@media(max-width: 767px) {
-    .item-3 .subtitle-text.subtitle-text-mobile {
-        display: block;
-    }
-}

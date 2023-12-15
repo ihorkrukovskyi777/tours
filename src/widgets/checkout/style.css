@@ -24,7 +24,8 @@
     margin: 0;
     list-style: none;
 }
-.checkout_section li:not(:last-of-type) {
+.checkout_section .left_side li:not(:last-of-type),
+.checkout_section .left_box li:not(:last-of-type) {
     margin-bottom: 20px;
 }
 .checkout_section li span,
@@ -139,7 +140,7 @@
 
 .checkout_section .btn_wrap {
     text-align: center;
-    margin-top: 80px;
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
@@ -184,4 +185,92 @@
     flex-shrink: 0;
     margin-top: 1px;
     width: 20px;
+}
+.checkout_section .react-tel-input .selected-flag {
+    border-radius: 0;
+}
+.checkout_section .react-tel-input .form-control {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+}
+.checkout_section form .international-phone {
+    border: none;
+}
+
+
+.checkout_section .custom-modal {
+    position: fixed;
+    left: 0;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    display: flex;
+    align-items: center;
+}
+.checkout_section .custom-modal.show {
+    opacity: 1;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+.checkout_section .edit-calendar-wrap {
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    margin: auto;
+    border-radius: 16px;
+    z-index: 2;
+    margin: 0 auto;
+    padding: 30px;
+    max-height: 90vh;
+    overflow: auto;
+}
+.checkout_section .edit-calendar-wrap .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 32px;
+    font-family: var(--fontMedium);
+    margin-bottom: 40px;
+}
+.checkout_section .edit-calendar-wrap .close-button {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    z-index: 2;
+    cursor: pointer;
+    margin-left: auto;
+}
+.checkout_section #form_contact_guide h2 {
+    margin-bottom: 20px;
+}
+.checkout_section #form_contact_guide textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    resize: none;
+    min-height: 150px;
+    padding: 15px;
+    font-family: var(--font);
+    font-size: 24px;
+}
+.checkout_section #form_contact_guide .item {
+    width: 100%;
+}
+.checkout_section #form_contact_guide .button_custom {
+    margin: 20px auto auto;
+}
+
+.checkout_section #form_contact_guide .error-message {
+    font-size: 16px;
+    color: red;
+    font-weight: 500;
+    padding: 2px 3px 3px;
+    text-align: center;
+    font-family: var(--fontMedium);
 }

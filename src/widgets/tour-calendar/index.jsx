@@ -12,7 +12,8 @@ import { useState , useEffect } from "react";
 import { getCountryPhone } from '@/entities/api/getCountryPhone';
 import { getTours } from "@/entities/api/getTours";
 import CalendarLogo from "@/assets/images/svg/calendar-logo";
-
+import Loader from "@/shared/ui/loader";
+import Faqs from "../faqs/faqs";
 
 import './style.css';
 
@@ -28,7 +29,6 @@ function isOpened(event) {
    showmodal && setStepModal(1);
    event?.stepOpen && setStepModal(event.stepOpen);
    setChangeData(false);
-
 }
 
 function nextStep(event) {
@@ -41,8 +41,7 @@ function prevStep() {
     setChangeData(false);
 }
 function changeTime() {
-    setChangeData(true);
-    
+    setChangeData(true);  
 }
 
 const [phoneNumbers , setPhoneNumbers] = useState(null);
@@ -56,36 +55,52 @@ useEffect(() => {
 
 console.log(tours , 'tours');
 
-
-
-
-
   return (
     <section id="tour_calendar_section" className="tour_calendar">
         <div className="container">
             <div className="wrapper">
-                <h2 className="title">Tour Calendar</h2>
-                <div className="wrap-box">
-                    <Button onClick={isOpened}>
-                        <div className="calendar_icon"><CalendarSvg/></div>
-                        <span>Pick a Date</span>
-                    </Button>
+                <div className="calendar_wrap">
+                    <h2 className="title">Tour Calendar</h2>
+                    <div className="wrap-box">
+                        <div className="wrap-button">
+                            {phoneNumbers === <Loader/> ? 'loader' : 
+                                <Button onClick={isOpened}>
+                                    <div className="calendar_icon"><CalendarSvg/></div>
+                                    <span>Pick a Date</span>
+                                </Button>
+                            }
+                        </div>
+                        {tours === null ? <TabsLanguages loading={true} /> : 
+                            <TabsLanguages />
+                        }
+                        
+                        <div className="how_many">
+                            <div className="block_title">How many people are coming?</div>
+                            <CounterNumbers startNumber={1}/>
+                        </div>
+                        <div className="logo-calendar"><CalendarLogo/></div>
 
-                    <TabsLanguages/>
-                    
-                    <div className="how_many">
-                        <div className="block_title">How many people are coming?</div>
-                        <CounterNumbers startNumber={1}/>
+                        <div className="days_wrap active">
+                        
+                        {tours === null ? 
+                            <div className="loader1" id="showing_loader">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        : 
+                           <>
+                            <div className="day_name">Tomorrow, 01 December</div>
+                            <TourItem isOpened={isOpened} />
+                            <TourItem isOpened={isOpened} />
+                           </>    
+                        }
+                        </div>
                     </div>
-                    <div className="logo-calendar"><CalendarLogo/></div>
-
-                    <div className="days_wrap active">
-                        <div className="day_name">Tomorrow, 01 December</div>
-                        <TourItem isOpened={isOpened} />
-                        <TourItem isOpened={isOpened} />
-                    </div>
-
-                </div>
+                </div>  
+                <Faqs />
             </div>                        
         </div>
         <ModalBooking ModalShow={showmodal} isOpened={isOpened} nextStep={nextStep} prevStep={prevStep} changeTime={changeTime} changeData={changeData} allPhoneNumbers={phoneNumbers} tours={tours} >
@@ -93,10 +108,6 @@ console.log(tours , 'tours');
             {stepModal === 2 && <Step2 size="small" title="London Tour Calendar" nextStep={nextStep} prevStep={prevStep} isOpened={isOpened} />}
             {stepModal === 3 && <Step3 size="large" title="London Tour Calendar" prevStep={prevStep} changeTime={changeTime} isOpened={isOpened} allPhoneNumbers={phoneNumbers}  />}
         </ModalBooking>
-
-
-
-
 
     </section>
     

@@ -1,0 +1,85 @@
+.form .international-phone input {
+    padding-left: 41px;
+    border: none;
+}
+
+
+form .react-tel-input .flag-dropdown {
+    border: none;
+    border-radius: 6px 0 0 6px !important; 
+}
+form #phone {
+    display: flex;
+    padding-left: 8px;
+    position: absolute;
+    left: 0;
+    outline: navajowhite;
+
+}
+form .international-phone {
+    display: flex;
+    border: 2px solid #F6F6F6;
+    border-radius: 8px;
+    position: relative;
+    width: 100%;
+}
+form .react-tel-input .selected-flag:hover,
+form .react-tel-input .selected-flag:focus{
+    background-color: #F6F6F6;
+}
+form .wrap-input {
+    position: relative;
+    z-index: 11;
+}
+form .international-phone.border {
+    border-color: #000;
+    position: relative;
+}
+form .react-tel-input .flag-dropdown {
+    background: #F2F2F2;
+    width: inherit;
+}
+form .international-phone .react-tel-input input {
+    padding-right: 0;
+    pointer-events: none;
+    width:inherit;
+    background: #F2F2F2;
+    border-radius: inherit;
+    z-index: 111;
+    background: transparent;
+}
+form .international-phone .selected-flag {
+    width: 100%;
+}
+form .react-tel-input{ 
+    width: inherit;
+    background-color: #F6F6F6;
+    border-radius: 8px 0 0 8px;
+}
+form .international-phone:focus {
+    border: 2px solid #ccc;
+}
+
+form .react-tel-input .flag-dropdown.open .selected-flag,
+form .react-tel-input .flag-dropdown.open,
+form .react-tel-input .selected-flag:hover,
+form .react-tel-input .selected-flag:focus {
+    background: transparent;
+    border-radius: 8px 0 0 8px; 
+}
+
+/* form .international-phone div {
+    background-color: #F6F6F6 !important;
+} */
+form .react-tel-input .country-list .country {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+    color: #686868;
+    font-weight: 500;
+    font-size: 13px !important;
+    font-family: var(--fontMedium) !important;
+}
+form .react-tel-input .country-list {
+    margin: 0;
+}

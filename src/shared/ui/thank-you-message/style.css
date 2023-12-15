@@ -1,0 +1,17 @@
+.thank-you-message h1 {
+    text-align: center;
+    font-size: 42px;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+}
+.thank-you-message .wrap-text {
+    text-align: center;
+}
+.thank-you-message .wrap-text p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.thank-you-message button {
+    padding: 15px 40px;
+    margin: 40px auto 20px auto;
+}

@@ -147,47 +147,6 @@
     font-weight: 500;
     font-family: var(--fontMedium);
 }
-
-.step-3 form .item-form .international-phone input {
-    padding-left: 41px;
-    border: none;
-}
-
-
-.step-3 .react-tel-input .flag-dropdown {
-    border: none;
-    border-radius: 6px 0 0 6px !important; 
-}
-.step-3 form .item-form #phone {
-    display: flex;
-    padding-left: 8px;
-    position: absolute;
-    left: 0;
-    outline: navajowhite;
-
-}
-.step-3 form .international-phone {
-    display: flex;
-    border: 2px solid #F6F6F6;
-    border-radius: 8px;
-    position: relative;
-}
-.step-3  .react-tel-input .selected-flag:hover,
-.step-3  .react-tel-input .selected-flag:focus{
-    background-color: #F6F6F6;
-}
-.step-3 form .wrap-input {
-    position: relative;
-    z-index: 11;
-}
-.step-3 form .international-phone.border {
-    border-color: #000;
-    overflow: hidden;
-}
-.step-3 form .react-tel-input .flag-dropdown {
-    background: #F2F2F2;
-    width: inherit;
-}
 .step-3 form .international-phone .react-tel-input input {
     padding-right: 0;
     pointer-events: none;
@@ -197,31 +156,168 @@
     z-index: 111;
     background: transparent;
 }
-.step-3 .selected-flag {
-    width: 100%;
-}
-.step-3 form .react-tel-input{ 
-    width: inherit;
-    background-color: #F6F6F6;
-    border-radius: 8px 0 0 8px;
-}
-.step-3 form .international-phone:focus {
-    border: 2px solid #ccc;
-}
-
-.step-3 .react-tel-input .flag-dropdown.open .selected-flag,
-.step-3 .react-tel-input .flag-dropdown.open,
-.step-3 .react-tel-input .selected-flag:hover,
-.step-3 .react-tel-input .selected-flag:focus {
-    background: transparent;
-    border-radius: 8px 0 0 8px; 
-}
-
-.step-3 form .international-phone div {
-    background-color: #F6F6F6 !important    ;
+.step-3 form .item-form .international-phone input {
+    padding-left: 41px;
+    border: none;
 }
 .step-3 .btns-wrap button {
     width: 100%;
     justify-content: center;
     text-align: center;
+}
+
+.step-3 .subtitle-text {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #686868;
+}
+.step-3 .close-button {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    z-index: 2;
+    cursor: pointer;
+    margin-left: auto;
+}
+.step-3 .title {
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 30px;
+}
+.step-3 .subtitle-text.subtitle-text-mobile {
+    margin-bottom: 8px;
+    display: none;
+}
+.step-3 .title-text {
+    font-size: 32px;
+    max-width: 210px;
+}
+.step-3 .title-text {
+    font-family: var(--fontBold);
+    font-weight: 700;
+    font-size: 24px;
+    color: #000;
+    margin: 0;
+}
+.step-3 .guide {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+.step-3 .photo-wrap {
+    width: 90px;
+    height: 90px;
+}
+.step-3 .photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.step-3 .guide-name {
+    font-size: 20px;
+    font-family: var(--fontBold);
+    font-weight: 700;
+    color: #000;
+}
+.step-3 .guide-rate {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+.step-3 .icon-wrap {
+    width: 20px;
+    height: 20px;
+}
+.step-3 .guide-rate span {
+    font-size: 14px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #000;
+    margin-left: 2px;
+}
+.step-3 .guide-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.step-3 .flex-change {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: var(--bg_color);
+    border: 2px solid var(--bg_color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 15px;
+}
+.step-3 .flex-change .flex-box {
+    display: flex;
+    align-items: center;
+}
+.step-3 .item-data {
+    display: flex;
+}
+.step-3 .choosen-date {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #000;
+    text-align: left;
+    margin-top: 0;
+    margin-right: 5px;
+}
+.step-3 span {
+    margin-right: 3px;
+}
+.step-3 .time-current-modal {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #000;
+}
+.item.step-3 .flex-change .tour-item {
+    width: auto ;
+    padding: 0 ;
+    margin: 0 ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg_color);
+    border: 2px solid var(--bg_color);
+    border-radius: 8px;
+    pointer-events: none;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.step-3 .tour-item .tour-item__time {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.step-3 .duration {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin-left: 5px;
+    font-weight: 500;
+    font-family: var(--fontMedium);
+    color: #000;
+}
+.step-3 .people {
+    display: flex;
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #000;
+}
+.step-3 .country-box-select {
+    display: flex;
+    margin-left: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
 }
