@@ -10,7 +10,7 @@ export default function Reviews({rating , count_reviews , text_review="true" , n
   const settings = {
     size: 20,
     count: 5,
-    value: rating,
+    value: Number(rating),
     a11y: true,
     isHalf: true,
     edit: false,
@@ -19,25 +19,26 @@ export default function Reviews({rating , count_reviews , text_review="true" , n
     filledIcon: <Image src={StarFull} alt='filledIcon' />,
   };
 
-  return ( 
-          <div className="reviews"> 
+
+  return (
+          <div className="reviews">
                 <div className="rate_box">
-                    {count_reviews > 99 && text_review ? 
+                    {count_reviews > 99 && text_review ?
                         <div className="count_rate">{count_reviews} Reviews</div>
-                        : 
+                        :
                         null
                     }
-                    <ReactStars {...settings} />
-                    {number_review ? 
+                    <ReactStars {...settings}/>
+                    {number_review ?
                       <div className="rate_number">
                           {rating}
                       </div>
-                      : null   
+                      : null
                     }
                 </div>
-    
+
           </div>
-      
+
   );
 }
 

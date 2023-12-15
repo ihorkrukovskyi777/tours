@@ -8,108 +8,143 @@ import TourItem from "@/shared/ui/tour-item";
 import Step1 from "@/shared/ui/modal-booking/step-1";
 import Step2 from "@/shared/ui/modal-booking/step-2";
 import Step3 from "@/shared/ui/modal-booking/step-3";
-import { useState , useEffect } from "react"; 
-import { getCountryPhone } from '@/entities/api/getCountryPhone';
-import { getTours } from "@/entities/api/getTours";
+import {useState, useEffect} from "react";
+import {getCountryPhone} from '@/entities/api/getCountryPhone';
+import {getTours} from "@/entities/api/getTours";
 import CalendarLogo from "@/assets/images/svg/calendar-logo";
-import Loader from "@/shared/ui/loader";
+import Loader from "src/shared/ui/loaders/default-loader";
 import Faqs from "../faqs/faqs";
+import LanguageLoader from "@/shared/ui/loaders/language-loader";
+import TourLogic from "@/entities/calendar/service/tour-logic";
 
 import './style.css';
-
+const STEP_MODAL = {
+    1: Step1,
+    2: Step2,
+    3: Step3,
+}
 export default function TourCalendar() {
 
-const [showmodal , setShowmodal] = useState(false);
-const [stepModal , setStepModal] = useState(1);
-const [changeData , setChangeData] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [stepModal, setStepModal] = useState(1);
+    const [changeData, setChangeData] = useState(false);
 
 
-function isOpened(event) {
-   showmodal ? setShowmodal(false)  : setShowmodal(true);
-   showmodal && setStepModal(1);
-   event?.stepOpen && setStepModal(event.stepOpen);
-   setChangeData(false);
-}
+    const [TourLogic, setTourLogic] = useState(null)
 
-function nextStep(event) {
-    event?.stepOpen ? setStepModal(event?.stepOpen) : setStepModal(stepModal + 1);
-    setChangeData(false);
-    
-}
-function prevStep() {
-    setStepModal(stepModal - 1);
-    setChangeData(false);
-}
-function changeTime() {
-    setChangeData(true);  
-}
+    useEffect(() => {
+        new TourLogic.getData().then((data) => {
+            setTourLogic(data);
+        })
+    }, [])
+    function isOpened(event) {
+        showModal ? setShowModal(false) : setShowModal(true);
+        showModal && setStepModal(1);
+        event?.stepOpen && setStepModal(event.stepOpen);
+        setChangeData(false);
+    }
 
-const [phoneNumbers , setPhoneNumbers] = useState(null);
-const [tours , setTours] = useState(null);
+    function nextStep(event) {
+        event?.stepOpen ? setStepModal(event?.stepOpen) : setStepModal(stepModal + 1);
+        setChangeData(false);
 
-useEffect(() => {
-   getCountryPhone().then( (data) => setPhoneNumbers(data));
-   getTours().then( (data) => setTours(data));
-},[])
+    }
+
+    function prevStep() {
+        setStepModal(stepModal - 1);
+        setChangeData(false);
+    }
+
+    function changeTime() {
+        setChangeData(true);
+    }
+
+    const [phoneNumbers, setPhoneNumbers] = useState(null);
+    const [tours, setTours] = useState(null);
+
+    useEffect(() => {
+        getCountryPhone().then((data) => setPhoneNumbers(data));
+        getTours().then((data) => setTours(data));
+    }, [])
 
 
-console.log(tours , 'tours');
+    const getPropsStepModal = (step) => {
+        const modalDefaultStepProps = {
+            size: "default",
+            title: "London Tour Calendar",
+            nextStep,
+            prevStep,
+            isOpened,
+        }
 
-  return (
-    <section id="tour_calendar_section" className="tour_calendar">
-        <div className="container">
-            <div className="wrapper">
-                <div className="calendar_wrap">
-                    <h2 className="title">Tour Calendar</h2>
-                    <div className="wrap-box">
-                        <div className="wrap-button">
-                            {phoneNumbers === <Loader/> ? 'loader' : 
-                                <Button onClick={isOpened}>
-                                    <div className="calendar_icon"><CalendarSvg/></div>
-                                    <span>Pick a Date</span>
-                                </Button>
-                            }
-                        </div>
-                        {tours === null ? <TabsLanguages loading={true} /> : 
-                            <TabsLanguages />
-                        }
-                        
-                        <div className="how_many">
-                            <div className="block_title">How many people are coming?</div>
-                            <CounterNumbers startNumber={1}/>
-                        </div>
-                        <div className="logo-calendar"><CalendarLogo/></div>
+        const propsModalStep = {
+            1: {},
+            2: {size: 'small'},
+            3: {size: 'large', allPhoneNumbers: phoneNumbers}
+        }
+        return {...modalDefaultStepProps, ...propsModalStep[step]}
+    }
 
-                        <div className="days_wrap active">
-                        
-                        {tours === null ? 
-                            <div className="loader1" id="showing_loader">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
+    const Step = STEP_MODAL[stepModal];
+
+
+    return (
+        <section id="tour_calendar_section" className="tour_calendar">
+            <div className="container">
+                <div className="wrapper">
+                    <button onClick={() => tourLogic.next()}>next departure</button>
+                    <div className="calendar_wrap">
+                        <h2 className="title">Tour Calendar</h2>
+                        <div className="wrap-box">
+                            <div className="wrap-button">
+                                {phoneNumbers === <Loader/> ? 'loader' :
+                                    <Button onClick={isOpened}>
+                                        <div className="calendar_icon"><CalendarSvg/></div>
+                                        <span>Pick a Date</span>
+                                    </Button>
+                                }
                             </div>
-                        : 
-                           <>
-                            <div className="day_name">Tomorrow, 01 December</div>
-                            <TourItem isOpened={isOpened} />
-                            <TourItem isOpened={isOpened} />
-                           </>    
-                        }
+                            {tours === null ? <TabsLanguages loading={true}/> : <TabsLanguages/> }
+                            <div className="how_many">
+                                <div className="block_title">
+                                    How many people are coming?
+                                </div>
+                                <CounterNumbers startNumber={1}/>
+                            </div>
+                            <div className="logo-calendar">
+                                <CalendarLogo/>
+                            </div>
+
+                            <div className="days_wrap active">
+                                {tours === null ?
+                                    <LanguageLoader/>
+                                    :
+                                    <>
+                                        <div className="day_name">Tomorrow, 01 December</div>
+                                        <TourItem isOpened={isOpened}/>
+                                        <TourItem isOpened={isOpened}/>
+                                    </>
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>  
-                <Faqs />
-            </div>                        
-        </div>
-        <ModalBooking ModalShow={showmodal} isOpened={isOpened} nextStep={nextStep} prevStep={prevStep} changeTime={changeTime} changeData={changeData} allPhoneNumbers={phoneNumbers} tours={tours} >
-            {stepModal === 1 || changeData ? <Step1 size="default" title="London Tour Calendar" nextStep={nextStep} prevStep={prevStep} isOpened={isOpened} /> : null}
-            {stepModal === 2 && <Step2 size="small" title="London Tour Calendar" nextStep={nextStep} prevStep={prevStep} isOpened={isOpened} />}
-            {stepModal === 3 && <Step3 size="large" title="London Tour Calendar" prevStep={prevStep} changeTime={changeTime} isOpened={isOpened} allPhoneNumbers={phoneNumbers}  />}
-        </ModalBooking>
+                    <Faqs/>
+                </div>
+            </div>
+            <ModalBooking
+                ModalShow={showModal}
+                isOpened={isOpened}
+                nextStep={nextStep}
+                prevStep={prevStep}
+                changeTime={changeTime}
+                changeData={changeData}
+                allPhoneNumbers={phoneNumbers}
+                tours={tours}
+            >
+                {<Step {...getPropsStepModal(stepModal)}></Step>}
+            </ModalBooking>
 
-    </section>
-    
-  )
+        </section>
+
+    )
 }

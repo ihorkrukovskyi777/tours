@@ -4,11 +4,11 @@ import InternationalInput from '../../international-input';
 
 
 export default function FormCalendar({allPhoneNumbers}) {
-  
+
     //validation
     const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
     const validateForm = errors => {
-        let valid = true;  
+        let valid = true;
         for (let value of Object.keys(errors)) {
             if(errors[value].length > 0) {
                 valid = false
@@ -32,7 +32,7 @@ export default function FormCalendar({allPhoneNumbers}) {
             email: '',
             phone: '',
             accept: '',
-           
+
         }
     }
     const [state , setState] = useState(stateAll);
@@ -43,21 +43,21 @@ export default function FormCalendar({allPhoneNumbers}) {
         let checked = document.querySelector(`#booking input[name=${name}]`).checked;
         switch (name) {
             case 'firstName':
-              if(value.length < 1 ) errorMsg = 'This field is requared' 
+              if(value.length < 1 ) errorMsg = 'This field is requared'
               if(value.length > 50) errorMsg = '"First name" max length is 50 symbols';
               if(hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
-              errors.firstName = errorMsg      
+              errors.firstName = errorMsg
               break;
-  
-            case 'lastName': 
+
+            case 'lastName':
               if(value.length < 1 ) errorMsg = 'This field is requared';
-              if(value.length > 50) errorMsg = '"First name" max length is 50 symbols'; 
+              if(value.length > 50) errorMsg = '"First name" max length is 50 symbols';
               if(hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
               errors.lastName = errorMsg
               break;
-  
-            case 'email': 
-              errors.email = 
+
+            case 'email':
+              errors.email =
                 validEmailRegex.test(value)
                   ? ''
                   : 'Email is not valid!';
@@ -67,12 +67,12 @@ export default function FormCalendar({allPhoneNumbers}) {
               const validateArray = document.querySelector(`#booking input[name=${name}]`).getAttribute('validation-number').split(',').map(i=>Number(i));
               if(!validateArray.includes(valuePhone)) {
                   errorMsg = '"Phone number" has an invalid format';
-              }         
+              }
               errors.phone = errorMsg
               break;
             case 'accept':
               if(checked === false ) errorMsg = 'This field is requared';
-              errors.accept = errorMsg  
+              errors.accept = errorMsg
               break;
             default:
               break;
@@ -83,12 +83,12 @@ export default function FormCalendar({allPhoneNumbers}) {
         //event.preventDefault();
         const { name  } = event.target;
         let errors = state.errors;
-        validateSwitch(name);   
+        validateSwitch(name);
         setState({errors, [name]: value});
         if(name === 'phone') {
             setValueMask(value);
         }
-        !loadvalidate && setLoadvalidate(true); 
+        !loadvalidate && setLoadvalidate(true);
 
     }
 
@@ -103,10 +103,10 @@ export default function FormCalendar({allPhoneNumbers}) {
             document.querySelectorAll('#booking input').forEach((item) => {
                 if(item.hasAttribute('name')) {
                     validateSwitch(item.getAttribute('name'));
-                    setState({errors, [name]: value}); 
+                    setState({errors, [name]: value});
                 }
             });
-            !loadvalidate && setLoadvalidate(true); 
+            !loadvalidate && setLoadvalidate(true);
         }
 
         if(validateForm(state.errors) && loadvalidate === true) {
@@ -120,42 +120,40 @@ export default function FormCalendar({allPhoneNumbers}) {
             phone_country:  document.querySelector("#booking .react-tel-input input").value,
             phone: document.querySelector("#booking input[name='phone']").value,
             accept:document.querySelector("#booking input[name='accept']").value ,
-          }  
-          console.log(formData , 'formData');
+          }
         }else{
           console.error('Invalid Form')
-          console.log(stateAll)
           setValidate(false);
         }
     }
 
     const {errors} = state;
-    
+
     const [value , setValue] = useState(null);
 
     // end validation
-    
-  
-    return ( 
+
+
+    return (
         <form onSubmit={handleSubmit} id='booking'>
             <div className="form-wrap">
-                <div className="item-form"> 
-                    <label htmlFor=""> 
+                <div className="item-form">
+                    <label htmlFor="">
                         <span>First Name<span className="red">*</span></span>
                         <input type='text' name='firstName' onChange={handleChange} />
                         {errors.firstName.length > 0 ? <span className='error-message'>{errors.firstName}</span> : null}
-                        
+
                     </label>
                 </div>
                 <div className="item-form">
-                    <label htmlFor=""> 
+                    <label htmlFor="">
                         <span>Last Name<span className="red">*</span></span>
                         <input type='text' name='lastName' onChange={handleChange}  />
                         {errors.lastName.length > 0 ? <span className='error-message'>{errors.lastName}</span> : null}
                     </label>
                 </div>
                 <div className="item-form">
-                    <label htmlFor=""> 
+                    <label htmlFor="">
                         <span>Email<span className="red">*</span></span>
                         <input type='email' name='email' onChange={handleChange} />
                         {errors.email.length > 0 ? <span className='error-message'>{errors.email}</span> : null}
@@ -163,24 +161,24 @@ export default function FormCalendar({allPhoneNumbers}) {
                     </label>
                 </div>
                 <div className="item-form">
-                    <label htmlFor=""> 
+                    <label htmlFor="">
                         <span>Phone Number<span className="red">*</span></span>
                         <InternationalInput language='es' allPhoneNumbers={allPhoneNumbers} handleChange={handleChange} valueMask={valueMask}  />
                         {errors.phone.length > 0 ? <span className='error-message'>{errors.phone}</span> : null}
                     </label>
-                    
+
                 </div>
                 <div className="item-form full-width checkbox-item">
                     <div className="form-group">
                         <input type='checkbox' id="accept" name='accept' onChange={handleChange} />
-                        <label htmlFor="accept">I accept all</label> 
+                        <label htmlFor="accept">I accept all</label>
                         <a href="/terms-and-conditions/" className="terms-and-conditions">Terms and Conditions</a> <span className="red">*</span>
                     </div>
                     {errors.accept.length > 0 ? <span className='error-message'>{errors.accept}</span> : null}
                 </div>
-            </div> 
+            </div>
 
-            <div className="btns-wrap"> 
+            <div className="btns-wrap">
                 <button className='button_custom'>Book Now</button>
                 <div className="calendar_choose_date_loader hidden" id="calendar_choose_date_loader">
                     <div className="lds-dual-ring"></div>

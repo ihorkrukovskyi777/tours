@@ -1,11 +1,12 @@
 'use client';
+import { Fragment } from "react";
 import EnSvg from '@/assets/images/languages/en-svg';
 import { useState } from 'react';
 import './style.css';
-import Loader from '../loader';
+import Loader from '../loaders/default-loader';
 
 const tabsBack = [
-    {   
+    {
         id: 1,
         title: "English",
         icon: '../../../assets/images/languages/en-svg',
@@ -52,13 +53,13 @@ export default function TabsLanguages({loading}) {
 const [active, setActive] = useState(1);
 return (
     <ul className={`tabs ${SettingsTab}`}>
-        {tabsBack.map((item) => {
+        {tabsBack.map((item, index) => {
             return (
-                <>
+                <Fragment key={index}>
                     {loading === true ?
                         <li className="tab_item">
                              <Loader />
-                        </li>  
+                        </li>
                         :
                         <li onClick={() => setActive(item.id)} className={active === item.id ? "tab_item active" : "tab_item"} key={item.id} >
                             <div className="icon_wrap">
@@ -70,10 +71,10 @@ return (
                             </div>
                         </li>
                     }
-                 </>
+                 </Fragment>
             )
         })}
-       
+
     </ul>
   );
 }

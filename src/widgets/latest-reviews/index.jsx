@@ -12,7 +12,7 @@ export default function LatestReviews({title="Latest Reviews"}) {
             <div className="wrapper">
                 {data.map((item , index) => {
                     return (
-                      <ReviewCard key={index} title={item} time='01/11/23'  author="Ryan" rating="2"  count_reviews="1" >
+                      <ReviewCard key={index} title={item} time='01/11/23'  author="Ryan" rating={2}  count_reviews="1" >
                         It was a great tour. We could understand everything very well and got good and interesting information. We learned a lot and have beautiful photos as memories of the great street art in Bogotá. Great thanks to our guide from Venezuela!
                       </ReviewCard>
                     )

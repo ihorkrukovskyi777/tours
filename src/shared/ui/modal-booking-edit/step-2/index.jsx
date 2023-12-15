@@ -14,7 +14,7 @@ export default function Step2({title , prevStep , modalOpen , size , isOpened}) 
 
     const [saveTour , setSaveTour] = useState(false);
     const [active, setActive] = useState(0);
-    
+
 
     function nextStep(id) {
         setSaveTour(true);
@@ -40,7 +40,6 @@ export default function Step2({title , prevStep , modalOpen , size , isOpened}) 
     ];
 
     function saveData() {
-        console.log('save data');
         modalOpen();
         isOpened();
         setActive(0);
@@ -55,9 +54,9 @@ export default function Step2({title , prevStep , modalOpen , size , isOpened}) 
                 </div>
                 <div className="close-button" onClick={modalOpen}><CloseSvg /></div>
             </div>
-            <div className="choosen-date">Tomorrow, 01 December</div>  
+            <div className="choosen-date">Tomorrow, 01 December</div>
             <div className="available-tours">5 Departure(s) Available</div>
-      
+
             {tabItems.map(({ id, title }) =><ModalTourItem
                 key={title}
                 title={title}

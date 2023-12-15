@@ -4,8 +4,6 @@ import CloseSvg from '@/assets/images/svg/close-svg';
 
 import './style.css';
 
-
-
 export default function Step2({title , nextStep , prevStep , isOpened , size}) {
     return (
         <div className={`step-2 ${size}`}>
@@ -15,7 +13,7 @@ export default function Step2({title , nextStep , prevStep , isOpened , size}) {
                 </div>
                 <div className="close-button" onClick={() => isOpened()}><CloseSvg /></div>
             </div>
-            <div className="choosen-date">Tomorrow, 01 December</div>  
+            <div className="choosen-date">Tomorrow, 01 December</div>
             <div className="available-tours">5 Departure(s) Available</div>
             <ModalTourItem nextStep={nextStep} />
             <ModalTourItem nextStep={nextStep} />

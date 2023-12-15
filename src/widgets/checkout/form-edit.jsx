@@ -12,7 +12,7 @@ export default function FormEdit({isOpened , allPhoneNumbers }) {
 //validation
 const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 const validateForm = errors => {
-    let valid = true;  
+    let valid = true;
     for (let value of Object.keys(errors)) {
         if(errors[value].length > 0) {
             valid = false
@@ -44,27 +44,27 @@ function validateSwitch(name) {
     let hasNumber = /\d/;
     let errorMsg = '';
     let value = document.querySelector(`${idForm} input[name=${name}]`).value;
-    
+
     switch (name) {
         case 'firstName':
-          setFirstName(value); 
-          if(value.length < 1 ) errorMsg = 'This field is requared' 
+          setFirstName(value);
+          if(value.length < 1 ) errorMsg = 'This field is requared'
           if(value.length > 50) errorMsg = '"First name" max length is 50 symbols';
           if(hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
-          errors.firstName = errorMsg      
+          errors.firstName = errorMsg
           break;
 
-        case 'lastName': 
+        case 'lastName':
           setLastName(value);
           if(value.length < 1 ) errorMsg = 'This field is requared';
-          if(value.length > 50) errorMsg = '"First name" max length is 50 symbols'; 
+          if(value.length > 50) errorMsg = '"First name" max length is 50 symbols';
           if(hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
           errors.lastName = errorMsg
           break;
 
-        case 'email': 
+        case 'email':
           setEmail(value);
-          errors.email = 
+          errors.email =
             validEmailRegex.test(value)
               ? ''
               : 'Email is not valid!';
@@ -75,7 +75,7 @@ function validateSwitch(name) {
           const validateArray = document.querySelector(`${idForm} input[name=${name}]`).getAttribute('validation-number').split(',').map(i=>Number(i));
           if(!validateArray.includes(valuePhone)) {
               errorMsg = '"Phone number" has an invalid format';
-          }         
+          }
           errors.phone = errorMsg
           break;
         default:
@@ -87,16 +87,15 @@ function handleChange(event)  {
     event.preventDefault();
     const { name  } = event.target;
     let errors = state.errors;
-    validateSwitch(name);   
+    validateSwitch(name);
     setState({errors, [name]: value});
-    console.log(state);
 }
 
 function handleSubmit(event) {
     event.preventDefault();
     if(validateForm(state.errors)) {
       console.info('Valid Form');
-      
+
     }else{
       console.error('Invalid Form')
     }
@@ -148,7 +147,7 @@ function onPress(event) {
                 {errors.phone.length > 0 ? <span className='error-message'>{errors.phone}</span> : null}
                 <EditSvg/>
             </div>
-            
+
             <div className="item">
                 <label htmlFor="">Email</label>
                 <input type='email' name='email' onChange={handleChange} value={email}  />

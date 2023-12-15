@@ -34,28 +34,28 @@ export default function Guides({title="Your Guides in Bogota" , items=[dataSlide
                 pagination={{ clickable: true }}
 
               >
-                  {items.map((item) =>{
+                  {items.map((item, index) =>{
                       return (
-                          <div className="swiper-slide" key={item.id}>
+                          <div className="swiper-slide" key={index}>
                             <SwiperSlide>
                               <CardGuide img={DefaultImage} url={'/'} bottomView={<LanguageImages data={languagesAll} />}>
                               <div className="item_title">Wonders of London - Meraviglie di Londra</div>
                               <div className="rating_box">
                                   <FullStarSvg />
-                                  <div className="rating_number">4.88</div>  
-                              </div> 
+                                  <div className="rating_number">4.88</div>
+                              </div>
 
                               </CardGuide>
                             </SwiperSlide>
                           </div>
-                          
+
                       )
-                  })}    
-            </Swiper>                                  
-           
-        </div>   
+                  })}
+            </Swiper>
+
+        </div>
 
     </section>
-    
+
   )
 }

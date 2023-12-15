@@ -6,16 +6,16 @@ import FormCalendar from './form';
 import './style.css';
 
 export default function Step3({changeTime , isOpened , size , allPhoneNumbers}) {
-    return ( 
+    return (
         <div className={`step-3 ${size}`}>
             <div className="subtitle">
-                <div className="subtitle-text">Your booking details. You're almost there!</div>
+                <div className="subtitle-text">Your booking details. You&apos;re almost there!</div>
                 <div className="close-button" onClick={() => isOpened()}><CloseSvg /></div>
             </div>
 
             <div className="title">
                 <div className="title-intro">
-                    <div className="subtitle-text subtitle-text-mobile">Your booking details. You're almost there!</div>
+                    <div className="subtitle-text subtitle-text-mobile">Your booking details. &apos; almost there!</div>
                     <div className="title-text">Free Sherlock Holmes Tour London</div>
                 </div>
                 <div className="guide">
@@ -59,13 +59,13 @@ export default function Step3({changeTime , isOpened , size , allPhoneNumbers}) 
                 </div>
                 <div className="center-wrap">
                     <Button className="change" onClick={()=>changeTime()}>Change</Button>
-                    
+
                 </div>
             </div>
 
            <FormCalendar allPhoneNumbers={allPhoneNumbers}/>
-            
-           
+
+
 
         </div>
 )
