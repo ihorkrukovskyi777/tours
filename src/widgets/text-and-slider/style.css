@@ -24,6 +24,10 @@
     width: 100%;
     max-width: 385px;
 }
+.text_and_slider .intro button {
+    width: 100%;
+    justify-content: center;
+}
 .text_and_slider .intro ul {
     padding: 0;
     margin: 0 0 50px 0;
@@ -35,7 +39,7 @@
 }
 .text_and_slider .intro li::marker {
     font-size: 10px;
-    color: var(--btn_bg_color);
+    color: var(--main_color);
 }
 .text_and_slider .intro li span {
     font-family: var(--fontBold);
@@ -72,7 +76,7 @@
 .text_and_slider .swiper-button-next {
     width: 48px;
     height: 48px;
-    background: var(--btn_bg_color);
+    background: var(--main_color);
     border-radius: 8px;
     transition: .3s ease-in-out;
 }
@@ -82,12 +86,20 @@
 .text_and_slider .swiper-button-prev {
     left: 5px;
 }
+.text_and_slider .swiper {
+    border-radius: 8px;
+}
 .text_and_slider .swiper-button-prev:hover,
 .text_and_slider .swiper-button-next:hover {
-    background: var(--btn_hover);
+    background: var(--hover_color);
 }
 .text_and_slider .swiper-button-prev svg {
     transform: rotate(180deg);
+}
+.text_and_slider .swiper-button-prev svg,
+.text_and_slider .swiper-button-next svg {
+    width: 12px;
+    height: 20px;
 }
 .text_and_slider .swiper-button-next.swiper-button-disabled,
 .text_and_slider .swiper-button-prev.swiper-button-disabled {
@@ -100,13 +112,14 @@
     justify-content: center;
 }
 .text_and_slider .swiper-pagination-bullet.swiper-pagination-bullet-active {
-    background: var(--btn_bg_color);
+    background: var(--main_color);
 }
 .text_and_slider .swiper-pagination-bullet {
     margin: 0 6px !important;
     opacity: 1;
     background: #F2F2F2;
 }
+
 /*RESPONSIVE*/
 @media(max-width: 1199px) {
     .text_and_slider .wrapper {

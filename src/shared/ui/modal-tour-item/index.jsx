@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import './style.css';
 
 
-export default function ModalTourItem({title , hour , language , timeTour , nextStep , isActive="false"}) {
+export default function ModalTourItem({title , hour , language , timeTour , nextStep , isActive}) {
    return(
     <div className={classNames('modal-tour-item' , {'active': isActive})} onClick={nextStep}>
         <h5>Free Harry Potter Tour London</h5>

@@ -7,7 +7,7 @@ import StarFull from '@/assets/images/svg/star-full.svg';
 import './style.css';
 
 export default function Reviews({rating , count_reviews , text_review="true" , number_review='true'}) {
-  const secondExample = {
+  const settings = {
     size: 20,
     count: 5,
     value: rating,
@@ -27,7 +27,7 @@ export default function Reviews({rating , count_reviews , text_review="true" , n
                         : 
                         null
                     }
-                    <ReactStars {...secondExample} />
+                    <ReactStars {...settings} />
                     {number_review ? 
                       <div className="rate_number">
                           {rating}

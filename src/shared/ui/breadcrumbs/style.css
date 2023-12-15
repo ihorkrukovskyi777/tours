@@ -1,0 +1,26 @@
+.breadcrumbs {
+    padding: 13px 12px 13px 0;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.06;
+    font-family: var(--fontBold);
+}
+.breadcrumbs .first_link {
+    margin-left: 0;
+}
+.breadcrumbs a {
+    margin-right: 8px;
+    margin-left: 8px;
+    color: var(--main_color);
+    transition: .3s ease-in-out;
+    font-family: var(--font);
+}
+.breadcrumbs span {
+    display: flex;
+    align-items: center;
+    color: #000;
+}
+.breadcrumbs .breadcrumb_last {
+    margin-left: 8px;
+    font-family: var(--fontBold);
+}

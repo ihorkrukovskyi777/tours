@@ -8,6 +8,7 @@ import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language"
 import TextQuote from "@/widgets/text-quote"
 import MostPopularCity from "@/widgets/most-popular-city"
 import TourCalendar from "../../widgets/tour-calendar";
+import Breadcrumbs from "@/shared/ui/breadcrumbs"
 
 
 export default function Home() {
@@ -24,6 +25,20 @@ export default function Home() {
         <Guides/>
         <MostPopularCity />
         <ChangeOfLanguage />
+        <Breadcrumbs>
+          <p id="breadcrumbs">
+              <span>
+                  <span>
+                      <a className="first_link" href="http://dev.oneporttest.com">Free Tour </a> 
+                      <span className="arrow-right-b"> - </span>
+                      <span>
+                          <span className="breadcrumb_last" aria-current="page">London</span>
+                      </span>
+                  </span>
+              </span>
+          </p>
+        </Breadcrumbs>
+
     </main>
   )
 }
