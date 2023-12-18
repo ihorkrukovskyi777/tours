@@ -30,13 +30,15 @@ export default function TourCalendar() {
     const [changeData, setChangeData] = useState(false);
 
 
-    const [TourLogic, setTourLogic] = useState(null)
+    const [tourLogic, setTourLogic] = useState(null)
 
     useEffect(() => {
         new TourLogic.getData().then((data) => {
             setTourLogic(data);
         })
     }, [])
+
+    console.log(tourLogic)
     function isOpened(event) {
         showModal ? setShowModal(false) : setShowModal(true);
         showModal && setStepModal(1);
