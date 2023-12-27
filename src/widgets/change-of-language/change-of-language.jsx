@@ -3,28 +3,32 @@ import Languages from "@/shared/ui/languages-site";
 import Button from "@/shared/ui/button/button";
 import LanguageImageDefault from '@/assets/images/languages/USUKflag.jpg'
 import { useState } from "react";
-import './style.css'; 
+import './style.css';
 import LanguagesSite from "@/shared/ui/languages-site";
 
 const data = {
     languages: [
         {
             title: "English",
+            code: 'en',
             img: LanguageImageDefault,
             url: '/',
         },
         {
             title: "France",
+            code: 'fr',
             img: LanguageImageDefault,
             url: '/',
         },
         {
-            title: "Lorem",
+            title: "De",
+            code: 'de',
             img: LanguageImageDefault,
             url: '/',
         },
         {
-            title: "Lore4,",
+            title: "Es,",
+            code: 'es',
             img: LanguageImageDefault,
             url: '/',
         },
@@ -55,16 +59,16 @@ export default function ChangeOfLanguage() {
                 <ul>
                     {data.languages.map((item , index) => {
                         return(
-                            <LanguagesSite key={index} url={item.url} img={LanguageImageDefault} >{item.title}</LanguagesSite>
+                            <LanguagesSite key={index} url={item.url} img={LanguageImageDefault}  code={item.code}>{item.title}</LanguagesSite>
                         )
                     })}
                 </ul>
-                {data.languages.length > 6 ? 
-                    <div className="block-center"> 
+                {data.languages.length > 6 ?
+                    <div className="block-center">
                         <Button onClick={handleClick}>Load More</Button>
                     </div>
-                    : 
-                    null 
+                    :
+                    null
                 }
             </div>
         </section>
