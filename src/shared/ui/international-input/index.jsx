@@ -6,14 +6,17 @@ import { useState } from 'react';
 import './style.css';
 
 export default function InternationalInput({language , allPhoneNumbers , handleChange , valueMask=''}) {
-    const [languagePageSlug , setLanguagePageSlug] = useState(language.toUpperCase());
-    const [phonesArray , setPhonesArray] = useState(allPhoneNumbers);
+
+    const formatLanguage = language === 'en' ? 'GB' : language;
+    const languagePageSlug = formatLanguage.toUpperCase();
     const localizationWP = [];
-    Object.keys(phonesArray).map((elem) => {
-        localizationWP[elem] = phonesArray[elem].name;
+    Object.keys(allPhoneNumbers).map((elem) => {
+        localizationWP[elem] = allPhoneNumbers[elem].name;
     });
-    const  [validation_numbers , setValidation_numbers] = useState(phonesArray[languagePageSlug]['validation_numbers']);
-    const [placeholder , setPlaceholder] = useState(phonesArray[languagePageSlug]['mask_number']);
+
+    const  [validation_numbers , setValidation_numbers] = useState(allPhoneNumbers[languagePageSlug]['validation_numbers']);
+
+    const [placeholder , setPlaceholder] = useState(allPhoneNumbers[languagePageSlug]['mask_number']);
     const getMask = placeholder.replace(/[0-9]/g, "_");
     const [maskView , setMaskView] = useState(getMask)
     const widthInputs = {1: 68 , 2: 80 , 3: 92, 4:98 , 5:116,  6: 121};
@@ -32,22 +35,26 @@ export default function InternationalInput({language , allPhoneNumbers , handleC
     const handleBlur = (event) => {
         setBorder(false)
     };
-    return ( 
+
+    console.log(language)
+
+    return (
     <div className={classNames({'border':border} , 'international-phone')}>
         <div className="wrap-input" style={{width: inputCountryWidth}}>
             <PhoneInput
-                 country={language}
-                localization={phonesArray}
-                onChange={(value, country) => {          
-                    //errors.phone = 'This field is requared';      
+                country={'gb'}
+                localization={formatLanguage.toLowerCase()}
+                onChange={(value, country) => {
+                    //errors.phone = 'This field is requared';
                     setInputCountryWidth(widthInputs[value.length]);
                     document.getElementById("phone").value = '';
-                    document.getElementById("phone").focus();    
+                    document.getElementById("phone").focus();
                     const selectedCountryData = country.countryCode.toUpperCase();
-                    const placeholderInput = phonesArray[selectedCountryData]['mask_number'];
+
+                    const placeholderInput = allPhoneNumbers[selectedCountryData]['mask_number'];
                     const maskInput = placeholderInput.replace(/[0-9]/g, "_");
                     setPlaceholder(placeholderInput);
-                    setValidation_numbers(phonesArray[selectedCountryData]['validation_numbers'])
+                    setValidation_numbers(allPhoneNumbers[selectedCountryData]['validation_numbers'])
                     setMaskView(maskInput);
                     setBorder(true);
                 }}
@@ -59,11 +66,11 @@ export default function InternationalInput({language , allPhoneNumbers , handleC
             style={{paddingLeft: inputCountryWidth + padding }}
             onChange={handleChange}
             validation-number={validation_numbers}
-            onKeyPress={onPress} 
+            onKeyPress={onPress}
             onFocus={handleFocus}
             onBlur={handleBlur}
         />
     </div>
-      
+
   );
 }

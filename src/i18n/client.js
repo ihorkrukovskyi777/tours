@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect} from 'react';
-import i18next, {i18n} from 'i18next';
+import i18next  from 'i18next';
 import {initReactI18next, useTranslation as useTransAlias} from 'react-i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -28,7 +28,7 @@ i18next
         preload: runsOnServerSide ? locales : [],
     });
 
-export function useTranslation(lng, ns) {
+export function useTranslation(lng, ns = 'default') {
     const translator = useTransAlias(ns);
     const {i18n} = translator;
 
@@ -38,12 +38,12 @@ export function useTranslation(lng, ns) {
     } else {
         // Use our custom implementation when running on client side
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        useCustomTranslationImplem(i18n, lng);
+        useCustomTranslationImplement(i18n, lng);
     }
     return translator;
 }
 
-function useCustomTranslationImplem(i18n, lng) {
+function useCustomTranslationImplement(i18n, lng) {
     // This effect changes the language of the application when the lng prop changes.
     useEffect(() => {
         if (!lng || i18n.resolvedLanguage === lng) return;

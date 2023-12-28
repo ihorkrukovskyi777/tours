@@ -5,7 +5,7 @@ export default function FormContactGuide({isOpenedModal , isOpenedThankYouModal}
 
     const idForm = '#form_contact_guide';
     const validateForm = errors => {
-        let valid = true;  
+        let valid = true;
         for (let value of Object.keys(errors)) {
             if(errors[value].length > 0) {
                 valid = false
@@ -28,15 +28,15 @@ export default function FormContactGuide({isOpenedModal , isOpenedThankYouModal}
         let value = document.querySelector(`${idForm} textarea[name=${name}]`).value;
         switch (name) {
             case 'textArea':
-              setTextArea(value); 
+              setTextArea(value);
               if(value.length < 1 ) errorMsg = 'This field is requared';
-              errors.textArea = errorMsg      
+              errors.textArea = errorMsg
               break;
             default:
               break;
           }
     }
-    
+
     function handleChange2(event)  {
         event.preventDefault();
         const { name , value } = event.target;
@@ -44,7 +44,7 @@ export default function FormContactGuide({isOpenedModal , isOpenedThankYouModal}
         validateSwitch(name);
         setState({errors, [name]: value});
     }
-    
+
     function handleSubmit(event) {
         event.preventDefault();
         if(validateForm(state.errors)) {
@@ -54,10 +54,9 @@ export default function FormContactGuide({isOpenedModal , isOpenedThankYouModal}
           isOpenedThankYouModal();
 
         }else{
-            console.log(state.errors);
           console.error('Invalid Form')
         }
-    
+
     }
 
     return (
@@ -67,7 +66,7 @@ export default function FormContactGuide({isOpenedModal , isOpenedThankYouModal}
                 <textarea rows="5" cols="20" id="email_text" required="" name="textArea" placeholder="Write your message here..." onChange={handleChange2} value={textArea}></textarea>
                 {state.errors.textArea.length > 0 ? <span className='error-message'>{state.errors.textArea}</span> : null}
             </div>
-            <Button>Send Message</Button>  
+            <Button>Send Message</Button>
         </form>
     )
   }

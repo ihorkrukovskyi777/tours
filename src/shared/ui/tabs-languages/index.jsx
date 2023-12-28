@@ -1,81 +1,78 @@
 'use client';
-import { Fragment } from "react";
+import {Fragment, useLayoutEffect, memo} from "react";
 import EnSvg from '@/assets/images/languages/en-svg';
-import { useState } from 'react';
+import {useState} from 'react';
 import './style.css';
 import Loader from '../loaders/default-loader';
 
 const tabsBack = [
     {
-        id: 1,
         title: "English",
         icon: '../../../assets/images/languages/en-svg',
-        active: true
+        active: true,
+        code: 'en',
     },
     {
-        id: 2,
-        title: "English",
+        title: "Espanolo",
         icon: '../../../assets/images/languages/en-svg',
-        active: false
-
+        active: false,
+        code: 'es',
     },
     {
-        id: 3,
         title: "English",
         icon: '../../../assets/images/languages/en-svg',
-        active: false
+        active: false,
+        code: 'fr',
     },
     {
-        id: 4,
         title: "English",
         icon: '../../../assets/images/languages/en-svg',
-        active: false
-
+        active: false,
+        code: 'de',
     },
     {
-        id: 5,
         title: "English",
         icon: '../../../assets/images/languages/en-svg',
-        active: false
+        active: false,
+        code: 'it',
     },
     {
-        id: 6,
         title: "English",
         icon: '../../../assets/images/languages/en-svg',
-        active: false
-
+        active: false,
+        code: 'cat',
     },
 ]
 const SettingsTab = tabsBack.length < 6 ? 'not_full' : '';
 
-export default function TabsLanguages({loading}) {
+export default memo(function TabsLanguages({loading, onChange = code => {}, selectedCode = 'en'}) {
 
-const [active, setActive] = useState(1);
-return (
-    <ul className={`tabs ${SettingsTab}`}>
-        {tabsBack.map((item, index) => {
-            return (
-                <Fragment key={index}>
-                    {loading === true ?
-                        <li className="tab_item">
-                             <Loader />
-                        </li>
-                        :
-                        <li onClick={() => setActive(item.id)} className={active === item.id ? "tab_item active" : "tab_item"} key={item.id} >
-                            <div className="icon_wrap">
-                                <EnSvg/>
-                            </div>
-                            <span>{item.title}</span>
-                            <div className="box_loader">
-                                <div className="loader_01"></div>
-                            </div>
-                        </li>
-                    }
-                 </Fragment>
-            )
-        })}
+    return (
+        <ul className={`tabs ${SettingsTab}`}>
+            {tabsBack.map((item, index) => {
+                return (
+                    <Fragment key={index}>
+                        {loading === true ?
+                            <li className="tab_item">
+                                <Loader/>
+                            </li>
+                            :
+                            <li onClick={() => onChange(item.code)}
+                                className={selectedCode === item.code ? "tab_item active" : "tab_item"} key={item.code}>
+                                <div className="icon_wrap">
+                                    <EnSvg/>
+                                </div>
+                                <span>{item.title}</span>
+                                <div className="box_loader">
+                                    <div className="loader_01"></div>
+                                </div>
+                            </li>
+                        }
+                    </Fragment>
+                )
+            })}
 
-    </ul>
-  );
-}
+        </ul>
+    );
+})
 

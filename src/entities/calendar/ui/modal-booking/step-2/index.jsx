@@ -1,5 +1,5 @@
-import ModalTourItem from '../../modal-tour-item';
-import Button from '../../button/button';
+import ModalTourItem from '../../../../../shared/ui/modal-tour-item';
+import Button from '../../../../../shared/ui/button/button';
 import CloseSvg from '@/assets/images/svg/close-svg';
 
 import './style.css';

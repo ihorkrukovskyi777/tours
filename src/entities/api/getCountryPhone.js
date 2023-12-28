@@ -1,8 +1,8 @@
 // get api results
-  export const getCountryPhone = (async (context) => {
+  export const getCountryPhone = async (locale) => {
     try {
         const res = await fetch(
-            `http://dev.oneporttest.com/wp-json/oneport/v1/phone-code/en`,
+            `http://dev.oneporttest.com/wp-json/oneport/v1/phone-code/${locale}`,
             {
                 method: 'GET',
             }
@@ -12,5 +12,5 @@
     } catch (err) {
         console.log(err);
     }
-    
-  })
+
+  }

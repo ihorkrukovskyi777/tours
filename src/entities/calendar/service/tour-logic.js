@@ -1,3 +1,4 @@
+import mergeDeep from "@/shared/util/merge-deep";
 const getTimePeriod = (day, elem) => {
     return day.subVendorId === elem?.subVendorId ? 15 : 30;
 }
@@ -56,12 +57,12 @@ function addTourDay(day, toursDays) {
 }
 
 export default class TourLogic {
-    constructor(pageName, currentLang = 'en', lang = 'en',type = 'city') {
+    constructor(pageName, currentLang = 'en', pageLang = 'en', type = 'city') {
 
         this.currentLang = currentLang;
         this.data = {};
-        this.TOURS_CALENDAR_URL = `http://dev.oneporttest.com/wp-json/tour/v1/${lang}/${type}/${currentLang}/${pageName}`
-        this.TOURS_CIVITATIS_CALENDAR_URL = `"http://dev.oneporttest.com/wp-json/tour/civitatis/v1/city/departures/${currentLang}/${lang}/${pageName}`
+        this.TOURS_CALENDAR_URL = `http://dev.oneporttest.com/wp-json/tour/v1/${pageLang}/${type}/{lang}/${pageName}`
+        this.TOURS_CIVITATIS_CALENDAR_URL = `http://dev.oneporttest.com/wp-json/tour/civitatis/v1/city/departures/${pageLang}/{lang}/${pageName}`
         this.peopleNubmer = 1;
         this.date = {
             year: new Date().getFullYear(),
@@ -87,7 +88,11 @@ export default class TourLogic {
     }
 
     get getDaysName() {
-        return this.data[this.currentLang].days
+        return this.data[this.currentLang]?.days ?? {}
+    }
+
+    getDaysNameByLocale(lang) {
+        return this.data[lang]?.days ?? {}
     }
 
     getFormatDay(day) {
@@ -126,7 +131,7 @@ export default class TourLogic {
     getAllDaysMonth(month, year) {
 
         const date = new Date(year, month, 1);
-        var days = [];
+        const days = [];
         while (date.getMonth() === month) {
             days.push(new Date(date));
             date.setDate(date.getDate() + 1);

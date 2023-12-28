@@ -1,6 +1,5 @@
 import BannerTour from "@/widgets/banner-tour"
 import TextAndSlider from "@/widgets/text-and-slider"
-import TourCalendar from "@/widgets/tour-calendar"
 import TextBlocks from "@/widgets/text-blocks"
 import Guides from "@/widgets/guides"
 import OtherTours from "@/widgets/other-tours"
@@ -13,7 +12,6 @@ export default function Home() {
     <main>
         <BannerTour title="Free London by the Thames Tour" size="tour_banner"/>
         <TextAndSlider/>
-        <TourCalendar />
         <TextBlocks/>
         <Guides/>
         <OtherTours/>
@@ -22,7 +20,7 @@ export default function Home() {
           <p id="breadcrumbs">
               <span>
                   <span>
-                      <a className="first_link" href="http://dev.oneporttest.com">Free Tour </a> 
+                      <a className="first_link" href="http://dev.oneporttest.com">Free Tour </a>
                       <span className="arrow-right-b"> - </span>
                       <span>
                           <span className="breadcrumb_last" aria-current="page">London</span>
@@ -31,7 +29,7 @@ export default function Home() {
               </span>
           </p>
         </Breadcrumbs>
-        
+
     </main>
   )
 }

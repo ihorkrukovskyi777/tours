@@ -11,7 +11,7 @@ import Highlights from '@/widgets/highlights';
 import TextBlocks from '@/widgets/text-blocks';
 import Guides from '@/widgets/guides';
 
-export default function Home() {
+export default function Home({ params: { locale }}) {
   return (
     <main>
       <BannerHome title="Free Walking Tours Worldwide" size="home_banner"/>

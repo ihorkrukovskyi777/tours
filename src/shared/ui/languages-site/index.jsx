@@ -19,7 +19,6 @@ export default function LanguagesSite({children , url , img, code}) {
         router.push(`/${newLocale}/${newPath.join('/')}`);
     };
 
-    console.log(url)
   return (
           <li className="language">
             <Link href={url+code} onClick={(event) => {

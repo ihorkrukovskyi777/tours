@@ -1,9 +1,9 @@
 'use client'
 import { useState } from 'react';
-import InternationalInput from '../../international-input';
+import InternationalInput from '../../../../../shared/ui/international-input';
 
 
-export default function FormCalendar({allPhoneNumbers}) {
+export default function FormCalendar({allPhoneNumbers, language}) {
 
     //validation
     const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -17,7 +17,7 @@ export default function FormCalendar({allPhoneNumbers}) {
         }
         return valid;
     };
-    const [loadvalidate , setLoadvalidate] = useState(false);
+    const [loadValidate , setLoadValidate] = useState(false);
     const [validate , setValidate] = useState(null);
     const [valueMask , setValueMask] = useState('');
     const stateAll = {
@@ -88,7 +88,7 @@ export default function FormCalendar({allPhoneNumbers}) {
         if(name === 'phone') {
             setValueMask(value);
         }
-        !loadvalidate && setLoadvalidate(true);
+        !loadValidate && setLoadValidate(true);
 
     }
 
@@ -106,10 +106,10 @@ export default function FormCalendar({allPhoneNumbers}) {
                     setState({errors, [name]: value});
                 }
             });
-            !loadvalidate && setLoadvalidate(true);
+            !loadValidate && setLoadValidate(true);
         }
 
-        if(validateForm(state.errors) && loadvalidate === true) {
+        if(validateForm(state.errors) && loadValidate === true) {
           console.info('Valid Form');
           setValidate(true);
           //REDIRECT TO CHECKOUT PAGE
@@ -163,7 +163,7 @@ export default function FormCalendar({allPhoneNumbers}) {
                 <div className="item-form">
                     <label htmlFor="">
                         <span>Phone Number<span className="red">*</span></span>
-                        <InternationalInput language='es' allPhoneNumbers={allPhoneNumbers} handleChange={handleChange} valueMask={valueMask}  />
+                        <InternationalInput language={language} allPhoneNumbers={allPhoneNumbers} handleChange={handleChange} valueMask={valueMask}  />
                         {errors.phone.length > 0 ? <span className='error-message'>{errors.phone}</span> : null}
                     </label>
 
