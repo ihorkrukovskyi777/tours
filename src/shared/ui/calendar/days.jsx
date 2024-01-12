@@ -1,12 +1,12 @@
 import classNames from "classnames";
 
-export default function Days({lists, nextStep}) {
+export default function Days({lists, onChange}) {
     return (
         lists?.map((item) => (
             <div
-                className={classNames({'disable': item.previusMonth || item.disabled})}
+                className={classNames({'disable': item.disabled})}
                 key={item.fullDate}
-                onClick={() => nextStep({stepOpen: 2, payload: item.payload})}
+                onClick={() => onChange(item)}
             >
                 {item.day}
             </div>

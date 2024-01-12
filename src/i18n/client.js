@@ -28,7 +28,7 @@ i18next
         preload: runsOnServerSide ? locales : [],
     });
 
-export function useTranslation(lng, ns = 'default') {
+export function useTranslation(ns = 'default',lng = '') {
     const translator = useTransAlias(ns);
     const {i18n} = translator;
 

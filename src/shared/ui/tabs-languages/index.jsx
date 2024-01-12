@@ -1,55 +1,19 @@
 'use client';
-import {Fragment, useLayoutEffect, memo} from "react";
-import EnSvg from '@/assets/images/languages/en-svg';
-import {useState} from 'react';
-import './style.css';
+import {Fragment, memo} from "react";
 import Loader from '../loaders/default-loader';
+import {useTranslation} from "@/i18n/client";
+import FlagsComponents from "@/shared/ui/flags";
+import './style.css';
 
-const tabsBack = [
-    {
-        title: "English",
-        icon: '../../../assets/images/languages/en-svg',
-        active: true,
-        code: 'en',
-    },
-    {
-        title: "Espanolo",
-        icon: '../../../assets/images/languages/en-svg',
-        active: false,
-        code: 'es',
-    },
-    {
-        title: "English",
-        icon: '../../../assets/images/languages/en-svg',
-        active: false,
-        code: 'fr',
-    },
-    {
-        title: "English",
-        icon: '../../../assets/images/languages/en-svg',
-        active: false,
-        code: 'de',
-    },
-    {
-        title: "English",
-        icon: '../../../assets/images/languages/en-svg',
-        active: false,
-        code: 'it',
-    },
-    {
-        title: "English",
-        icon: '../../../assets/images/languages/en-svg',
-        active: false,
-        code: 'cat',
-    },
-]
-const SettingsTab = tabsBack.length < 6 ? 'not_full' : '';
 
-export default memo(function TabsLanguages({loading, onChange = code => {}, selectedCode = 'en'}) {
+export default memo(function TabsLanguages({loading, onChange = () => {}, selectedCode = 'en', activeLanguage = []}) {
+    const { t } = useTranslation('country');
+    const settingsTab = activeLanguage?.length > 6 ?  '' : 'not_full';
+
 
     return (
-        <ul className={`tabs ${SettingsTab}`}>
-            {tabsBack.map((item, index) => {
+        <ul className={`tabs ${settingsTab}`}>
+            {activeLanguage?.map((item, index) => {
                 return (
                     <Fragment key={index}>
                         {loading === true ?
@@ -60,9 +24,9 @@ export default memo(function TabsLanguages({loading, onChange = code => {}, sele
                             <li onClick={() => onChange(item.code)}
                                 className={selectedCode === item.code ? "tab_item active" : "tab_item"} key={item.code}>
                                 <div className="icon_wrap">
-                                    <EnSvg/>
+                                    <FlagsComponents locale={item.code} alt={item.title} width={30} height={30} />
                                 </div>
-                                <span>{item.title}</span>
+                                <span>{t(`fullName.${item.code}`)}</span>
                                 <div className="box_loader">
                                     <div className="loader_01"></div>
                                 </div>

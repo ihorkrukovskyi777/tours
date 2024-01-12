@@ -21,7 +21,7 @@ const initI18next = async (lang, ns) => {
 };
 
 // It will accept the locale and namespace for i18next to know what file to load
-export async function createTranslation(lang, ns = 'default') {
+export async function createTranslation(lang = '', ns = 'default') {
     const i18nextInstance = await initI18next(lang, ns);
 
     return {

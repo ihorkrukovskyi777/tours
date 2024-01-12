@@ -1,14 +1,17 @@
-import mergeDeep from "@/shared/util/merge-deep";
+import {fetchDepartures} from "@/shared/api/fetchDepartures";
+
 const getTimePeriod = (day, elem) => {
     return day.subVendorId === elem?.subVendorId ? 15 : 30;
 }
+const ORDER_SORT = ['en', 'es', 'pt-pt', 'fr', 'de', 'it', 'cat', 'ru', 'pl', 'nl', 'ar'];
 
 const isAddTourFirstElem = (day, elemTime, period) => elemTime.time - day.time >= period
 const isAddTourLastElem = (day, elemTime, period) => day.time - elemTime.time >= period
 
 const isAddTourPrevELemAndNext = (day, prevElem, nextElem, periodPrev, periodNext) => {
-    return day.time - prevElem.time >= periodPrev && nextElem.time - day.time  >= periodNext;
+    return day.time - prevElem.time >= periodPrev && nextElem.time - day.time >= periodNext;
 }
+
 function addTourDay(day, toursDays) {
 
 
@@ -19,24 +22,24 @@ function addTourDay(day, toursDays) {
     const length = toursDays.length;
     for (let i = 0; i < length; i++) {
 
-        const isLastElement = i === length -1;
-        if(isAddTourFirstElem(day, toursDays[0], getTimePeriod(day, toursDays[0]))) {
+        const isLastElement = i === length - 1;
+        if (isAddTourFirstElem(day, toursDays[0], getTimePeriod(day, toursDays[0]))) {
             toursDays.push(day);
             break;
         } else if (isLastElement) {
-            const lastTour = toursDays[length-1];
+            const lastTour = toursDays[length - 1];
             const isAddTour = isAddTourLastElem(
                 day,
-                toursDays[length-1],
+                toursDays[length - 1],
                 getTimePeriod(day, lastTour)
             );
-            if(isAddTour) {
+            if (isAddTour) {
                 toursDays.push(day);
                 break;
             }
-        }else if (!isLastElement) {
+        } else if (!isLastElement) {
             const prevTour = toursDays[i];
-            const nextTour = toursDays[i+1];
+            const nextTour = toursDays[i + 1];
             const isAddTour = isAddTourPrevELemAndNext(
                 day,
                 prevTour,
@@ -44,7 +47,7 @@ function addTourDay(day, toursDays) {
                 getTimePeriod(day, prevTour),
                 getTimePeriod(day, nextTour),
             );
-            if(isAddTour) {
+            if (isAddTour) {
 
                 toursDays.push(day);
                 break;
@@ -57,19 +60,20 @@ function addTourDay(day, toursDays) {
 }
 
 export default class TourLogic {
-    constructor(pageName, currentLang = 'en', pageLang = 'en', type = 'city') {
-
-        this.currentLang = currentLang;
+    constructor(id, locale, translate, type) {
+        this.type = type;
+        this.id = id;
+        this.cache = {};
+        this.currentLang = locale;
         this.data = {};
-        this.TOURS_CALENDAR_URL = `http://dev.oneporttest.com/wp-json/tour/v1/${pageLang}/${type}/{lang}/${pageName}`
-        this.TOURS_CIVITATIS_CALENDAR_URL = `http://dev.oneporttest.com/wp-json/tour/civitatis/v1/city/departures/${pageLang}/{lang}/${pageName}`
         this.peopleNubmer = 1;
         this.date = {
             year: new Date().getFullYear(),
             month: null,
         }
-        this.dataFilter = {};
+
     }
+
 
     updatePeopleNumber(number = 1) {
         this.peopleNubmer = number;
@@ -88,11 +92,7 @@ export default class TourLogic {
     }
 
     get getDaysName() {
-        return this.data[this.currentLang]?.days ?? {}
-    }
-
-    getDaysNameByLocale(lang) {
-        return this.data[lang]?.days ?? {}
+        return this.data[this.currentLang].days
     }
 
     getFormatDay(day) {
@@ -108,7 +108,8 @@ export default class TourLogic {
     }
 
     getToursByDay(day) {
-        return this.filterDays({...this.data[this.currentLang].deps}, [day]);
+
+        return this.filterDays({...this.data[this.currentLang]?.deps || {}}, [day]);
     }
 
     filterUserRating(usersRating) {
@@ -121,6 +122,7 @@ export default class TourLogic {
         }).reverse().filter(item => {
             return item.maxPerBooking >= this.peopleNubmer;
         })
+
         const toursDays = [];
         lists.forEach(item => addTourDay(item, toursDays));
         return toursDays;
@@ -131,7 +133,7 @@ export default class TourLogic {
     getAllDaysMonth(month, year) {
 
         const date = new Date(year, month, 1);
-        const days = [];
+        var days = [];
         while (date.getMonth() === month) {
             days.push(new Date(date));
             date.setDate(date.getDate() + 1);
@@ -143,24 +145,48 @@ export default class TourLogic {
 
     updateCurrentLang(lang) {
         this.currentLang = lang;
+
+    }
+        getDaysNameByLocale(lang) {
+        return this.data[lang]?.days ?? {}
+    }
+    getDaysNameByLocaleAndDate(lang, day) {
+        return this.data[lang]?.days[day] ?? ''
     }
 
-    async getData() {
-        if (this.data[this.currentLang] === undefined) {
-            this.data[this.currentLang] = await this.fetchData();
+    async getData(callback) {
+        if (this._fetch) return this._fetch;
+        this._fetch = new Promise(async (res) => {
+
+            const { timezone, deps } = await fetchDepartures(this.id, this.currentLang);
+            this.data[this.currentLang] = deps;
+
+            res(timezone);
+            this._fetch = null;
+
+        });
+        return this._fetch;
+    }
+
+    getTourByMonthAndYear(month, year) {
+
+        if (!this.data[this.currentLang]) {
+            return []
         }
-
-        return this;
-
-    }
-
-    getTourByMonth(month, year) {
+        const key = `${this.peopleNubmer}-${month}-${year}`;
+        if (this[key]) {
+            return this[key]
+        }
         const days = this.getAllDaysMonth(month - 1, year);
-        return this.filterDays({...this.data[this.currentLang].deps}, days);
+        const data = this.filterDays({...this.data[this.currentLang].deps}, days);
+
+        this.cache[key] = data;
+        return data
     }
 
     filterDays(deps, days) {
         const list = {};
+
         for (let i = 0; i < days.length; i++) {
             if (deps[days[i]]) {
                 list[days[i]] = [];
@@ -175,9 +201,9 @@ export default class TourLogic {
                 const depsList = list[days[i]];
                 let prevItem = null;
                 let nextItem = null;
-                for(let i = 0; i < depsList.length; i++) {
+                for (let i = 0; i < depsList.length; i++) {
                     const item = depsList[i];
-                    if(!item.is_civitatis) {
+                    if (!item.is_civitatis) {
                         newDepFilter.push(item);
                         continue;
                     }
@@ -192,7 +218,7 @@ export default class TourLogic {
                     const isFirstFlag = (prevItem === undefined || prevItem?.tourId !== item.tourId) || (item.time - prevTime) > timePeriod;
                     const isSecondFlag = (nextTime === undefined || nextTime?.tourId !== item.tourId) || (nextTime - item.time) > timePeriod;
 
-                    if(isFirstFlag && isSecondFlag) {
+                    if (isFirstFlag && isSecondFlag) {
                         newDepFilter.push(item);
                     }
                 }
@@ -218,57 +244,15 @@ export default class TourLogic {
             if (Object.keys(deps).length === 0) return false;
             const days = this.getAllDaysMonth(month, year);
             const list = this.filterDays(deps, days);
+
             month++;
             if (month === 12) {
                 month = 0;
                 year++;
             }
+
             yield list;
         }
 
-    }
-
-    get urlData() {
-        return this.TOURS_CALENDAR_URL.replace('{lang}', this.currentLang);
-    }
-
-    get civitatisUrlData() {
-        if(typeof this.TOURS_CIVITATIS_CALENDAR_URL !== 'undefined') {
-            return this.TOURS_CIVITATIS_CALENDAR_URL.replace('{lang}', this.currentLang)
-        }
-    }
-
-    async fetchData() {
-        if(typeof TOURS_CIVITATIS_CALENDAR_URL !== undefined) {
-            const controller = new AbortController()
-            const timeoutId = setTimeout(() => controller.abort(), 5000)
-            let data = await Promise.allSettled([fetch(this.urlData), fetch(this.civitatisUrlData, { signal: controller.signal })]);
-            clearTimeout(timeoutId);
-            data = data.filter(item => !!item?.value).map(item => item.value);
-
-            let [tours, civitatisTours]  = await Promise.allSettled(data.map(r => r.json())).catch((err) => {
-                console.log(err)
-            });
-            tours = tours?.status === "fulfilled" ? tours.value : {};
-            civitatisTours = civitatisTours?.status === "fulfilled" ? civitatisTours.value : {};
-            tours.days = Object.assign(tours.days, civitatisTours.days);
-            tours.subVendor = Object.assign(tours.subVendor, civitatisTours.subVendor);
-            tours.tours = Object.assign(tours.tours, civitatisTours.tours);
-
-
-            for (let key in civitatisTours.deps) {
-                if(tours.deps[key]) {
-
-                    tours.deps[key] = mergeDeep(tours.deps[key], civitatisTours.deps[key]);
-                } else {
-                    tours.deps[key] = civitatisTours.deps[key];
-                }
-            }
-            return tours
-        }
-        else {
-            const data = await fetch(this.urlData)
-            return await data.json();
-        }
     }
 }

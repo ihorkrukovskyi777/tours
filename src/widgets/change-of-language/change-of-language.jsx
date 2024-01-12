@@ -59,7 +59,7 @@ export default function ChangeOfLanguage() {
                 <ul>
                     {data.languages.map((item , index) => {
                         return(
-                            <LanguagesSite key={index} url={item.url} img={LanguageImageDefault}  code={item.code}>{item.title}</LanguagesSite>
+                            <LanguagesSite key={index} url={item.url}  code={item.code}>{item.title}</LanguagesSite>
                         )
                     })}
                 </ul>

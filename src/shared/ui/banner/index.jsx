@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import DefaultImage from '@/assets/images/default-image.jpeg';
-
 import styles from './style.module.css';
 
 export default function Banner({image = DefaultImage , title , children ,  bottomView = null , size}) {
@@ -9,7 +8,14 @@ export default function Banner({image = DefaultImage , title , children ,  botto
   return (
     <section className={styles.banner}>
       <div className={size}>
-          <Image className={styles.banner_bg} quality={50} width={1200} height={1200} src={url} alt="Picture of the author" />
+          <Image
+              className={styles.banner_bg}
+              quality={50}
+              width={1200}
+              height={1200}
+              src={url}
+              alt="Picture of the author"
+          />
           <div className="container">
             <div className="intro">
                 <h1 className={styles.title}>{title}</h1>

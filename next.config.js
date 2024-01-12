@@ -1,9 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: false,
-    experimental: { optimizeCss: true },
+    compiler: {
+        removeConsole: false,
+    },
     images: {
-        domains: ['imagedelivery.net'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'imagedelivery.net',
+            },
+        ],
     }
 }
 

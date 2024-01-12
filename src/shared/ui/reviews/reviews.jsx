@@ -28,7 +28,7 @@ export default function Reviews({rating , count_reviews , text_review="true" , n
                         :
                         null
                     }
-                    <ReactStars {...settings}/>
+                    {/*<ReactStars {...settings}/>*/}
                     {number_review ?
                       <div className="rate_number">
                           {rating}

@@ -7,7 +7,7 @@ import Button from '@/shared/ui/button/button';
 import FormContactGuide from './form-contact-guide';
 import { useState , useEffect  } from 'react';
 import FormEdit from './form-edit';
-import { getCountryPhone } from '@/entities/api/getCountryPhone';
+import { getCountryPhone } from '@/shared/api/getCountryPhone';
 import ModalBookingEdit from '@/shared/ui/modal-booking-edit';
 import Step1 from '@/shared/ui/modal-booking-edit/step-1';
 import Step2 from '@/shared/ui/modal-booking-edit/step-2';
@@ -48,14 +48,14 @@ function modalOpen(event) {
 function nextStep(event) {
     event?.stepOpen ? setStepModal(event?.stepOpen) : setStepModal(stepModal + 1);
     setChangeData(false);
-    
+
 }
 function prevStep() {
     setStepModal(stepModal - 1);
     setChangeData(false);
 }
 function changeTime() {
-    setChangeData(true);  
+    setChangeData(true);
 }
 
 
@@ -83,17 +83,17 @@ function closeCalendar() {}
                         </svg>
                         <strong>Number of people:</strong><div>1</div>
                     </div>
-                    {phoneNumbers === null ? 'laoder' : 
+                    {phoneNumbers === null ? 'laoder' :
                         <FormEdit isOpened={isOpened} allPhoneNumbers={phoneNumbers} />
                     }
                 </div>
             </EditModalTour>
-            
+
             <ModalBookingEdit ModalShow={openCalendar} nextStep={nextStep} prevStep={prevStep} changeTime={changeTime} changeData={changeData} modalOpen={modalOpen} isOpened={isOpened} >
                 {stepModal === 1 || changeData ? <Step1 size="default" title="London Tour Calendar" nextStep={nextStep} prevStep={prevStep} modalOpen={modalOpen} /> : null}
                 {stepModal === 2 && <Step2 size="small" title="London Tour Calendar" prevStep={prevStep} modalOpen={modalOpen} isOpened={isOpened}  />}
             </ModalBookingEdit>
-            
+
             <DefaultModal modalShow={contactGuide} isOpenedModal={isOpenedModal} size="default" >
                 <FormContactGuide isOpenedModal={isOpenedModal} isOpenedThankYouModal={isOpenedThankYouModal} />
             </DefaultModal>
@@ -103,6 +103,6 @@ function closeCalendar() {}
             </DefaultModal>
 
         </section>
-      
+
   )
 }

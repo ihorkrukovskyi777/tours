@@ -6,16 +6,15 @@ import DaysHeader from './days-header';
 import HeaderCalendar from './header-calendar';
 import Days from './days';
 import './style.css';
-import {log} from "next/dist/server/typescript/utils";
 
 
 export default function Calendar({
                                      title = "Bogota Tour Calendar",
                                      children,
                                      size = 'large',
-                                     opened = false,
-                                     nextStep,
-                                     serviceTour
+                                     onChange,
+                                     departures = {},
+                                     changeDate
                                  }) {
 
     const CalendarJS = useRef(new CalendarModel());
@@ -32,10 +31,14 @@ export default function Calendar({
         })
     }
 
-    const [departures, setDepartures] = useState({});
+
     useEffect(() => {
-        setDepartures(serviceTour?.getTourByMonth(CalendarJS.current.month + 1, CalendarJS.current.year))
+        if (calendarData) {
+            changeDate(calendarData);
+        }
     }, [calendarData])
+
+
     const [currentMonth, setCurrentMonth] = useState(CalendarJS.current.month);
     const [currentYear, setCurrentYear] = useState('2023');
     const [disableClass, setdisableClass] = useState(false);
@@ -60,14 +63,24 @@ export default function Calendar({
         setCalenndarData(nextMonth);
     }
 
+
+    const listDays = calendarData?.days?.map(day => {
+        return {...day, disabled: !departures[day.fullDate]?.length}
+    })
     return (
         <div className="calendar">
-            <HeaderCalendar month={currentMonth} year={currentYear} prevMonth={prevMonth} nextMonth={nextMonth}
-                            disableArrow={disableClass}/>
+            <HeaderCalendar
+                month={currentMonth}
+                year={currentYear}
+                prevMonth={prevMonth}
+                nextMonth={nextMonth}
+                disableArrow={disableClass}
+            />
             <DaysHeader/>
             <div id="days">
-                <Days lists={calendarData?.days.map(item => ({...item, disabled: !departures[item.fullDate], payload: departures[item.fullDate]}))} nextStep={nextStep}/>
+                <Days lists={listDays} onChange={onChange}/>
             </div>
+            {children}
         </div>
     );
 }

@@ -2,9 +2,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import {useParams, usePathname, useRouter, useSelectedLayoutSegments} from "next/navigation";
+import FlagsComponents from "@/shared/ui/flags";
 import {locales} from "@/i18n/settings";
 
-export default function LanguagesSite({children , url , img, code}) {
+export default function LanguagesSite({children , url , code}) {
     const router = useRouter();
     const params = useParams();
     const urlSegments = useSelectedLayoutSegments();
@@ -26,7 +27,7 @@ export default function LanguagesSite({children , url , img, code}) {
                 handleLocaleChange(code)
             }}>
               <span className="wrap-txt">{children}</span>
-              <Image src={img} alt="icon" />
+                <FlagsComponents locale={code}/>
             </Link>
           </li>
 

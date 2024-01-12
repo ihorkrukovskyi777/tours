@@ -11,3 +11,19 @@ export const isTomorrowOrToday = (value, numbDate = 0) => {
     const tomorrowEnd = tomorrow.valueOf();
     return date.valueOf() >= tomorrowStart && date.valueOf() <= tomorrowEnd;
 };
+
+
+export function toHoursAndMinutes(totalMinutes) {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return {hours, minutes};
+}
+
+export function pad2(number) {
+    return (number < 10 ? '0' : '') + number
+}
+
+export const setFormatDDMMYYYYtoMMDDYYYY = (date, separator = '/') => {
+    const [day, month, year] = date.split('/');
+    return month + separator + day + separator + year;
+};

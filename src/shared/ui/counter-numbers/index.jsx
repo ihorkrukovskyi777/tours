@@ -1,6 +1,5 @@
 'use client'
 import styles from './style.module.css';
-import {useEffect, useState} from 'react';
 
 export default function CounterNumbers({startNumber= 1, onChange = () => {}}) {
  function update(event) {

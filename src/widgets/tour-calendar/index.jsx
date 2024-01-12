@@ -10,7 +10,7 @@ import Step1 from "src/entities/calendar/ui/modal-booking/step-1";
 import Step2 from "src/entities/calendar/ui/modal-booking/step-2";
 import Step3 from "src/entities/calendar/ui/modal-booking/step-3";
 import {useState, useEffect} from "react";
-import {getCountryPhone} from '@/entities/api/getCountryPhone';
+import {getCountryPhone} from '@/shared/api/getCountryPhone';
 import CalendarLogo from "@/assets/images/svg/calendar-logo";
 import Loader from "src/shared/ui/loaders/default-loader";
 import Faqs from "../faqs/faqs";

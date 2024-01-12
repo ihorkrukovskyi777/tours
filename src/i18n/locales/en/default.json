@@ -1,4 +1,5 @@
 {
   "greeting": "Hello world!",
-  "Change": "change"
+  "Change": "change",
+  "modalBookingTitle" : "Your booking details. You&apos;re almost there!"
 }

@@ -1,75 +1,60 @@
 'use client';
+import {observer} from "mobx-react-lite";
 import ModalTourItem from '../../modal-tour-item';
 import Button from '../../button/button';
 import CloseSvg from '@/assets/images/svg/close-svg';
 import classNames from 'classnames';
-import { useState } from 'react';
+import useEscHooks from "@/shared/hooks/use-esc-event";
+import {useState} from 'react';
 import './style.css';
 
 
+export default observer(function Step2({title, onBack, close, size, isOpened, departures, saveButton = false, setDeparture}) {
+
+    const [selectedDep, setSelectedDep] = useState(null);
+    useEscHooks(close, isOpened)
 
 
-
-export default function Step2({title , prevStep , modalOpen , size , isOpened}) {
-
-    const [saveTour , setSaveTour] = useState(false);
-    const [active, setActive] = useState(0);
-
-
-    function nextStep(id) {
-        setSaveTour(true);
-        setActive(id)
+    const selectedDeparture = (dep) => {
+        setDeparture(dep);
+        setSelectedDep(null);
     }
-    const tabItems = [
-        {
-            id: 1,
-            title: 'STEP 1',
-          },
-          {
-            id: 2,
-            title: 'STEP 2',
-          },
-          {
-            id: 3,
-            title: 'STEP 3',
-          },
-          {
-            id: 4,
-            title: 'STEP 4',
-          },
-    ];
-
-    function saveData() {
-        modalOpen();
-        isOpened();
-        setActive(0);
-    }
-
-
     return (
         <div className={`step-2 ${size}`}>
             <div className="title">
                 <div className="title_text">
                     {title}
                 </div>
-                <div className="close-button" onClick={modalOpen}><CloseSvg /></div>
+                <div className="close-button" onClick={close}><CloseSvg/></div>
             </div>
             <div className="choosen-date">Tomorrow, 01 December</div>
-            <div className="available-tours">5 Departure(s) Available</div>
+            <div className="available-tours">{departures.length} Departure(s) Available</div>
 
-            {tabItems.map(({ id, title }) =><ModalTourItem
-                key={title}
-                title={title}
-                nextStep={()=>nextStep(id)}
-                isActive={active === id}
+            {departures.map((dep) =>
+                <ModalTourItem
+                    key={`${dep.depId}:${dep.time}`}
+                    dep={dep}
+                    onSelected={() => {
+                        setSelectedDep(dep === selectedDep ? null : dep)
+                        if (!saveButton && dep !== selectedDep) {
+                            selectedDeparture(dep)
+                        }
+                    }}
+                    isActive={selectedDep === dep}
                 />
             )}
 
-
-            <div className={classNames({'disable': !saveTour})} >
-                <Button customClass='gray' onClick={saveData}>Save changes</Button>
+            <div className={classNames({'disable': !!selectedDep})}>
+                {saveButton ?
+                    <Button
+                        customClass='gray'
+                        onClick={() => selectedDeparture(selectedDep)}
+                    >
+                        Save changes
+                    </Button>
+                    : null}
             </div>
-            <Button customClass="gray" onClick={() => prevStep()}>Back</Button>
+            <Button customClass="gray" onClick={onBack}>Back</Button>
         </div>
-  )
-}
+    )
+})

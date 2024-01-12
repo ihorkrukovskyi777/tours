@@ -1,65 +1,53 @@
-import {Fragment, memo} from "react";
+import {Fragment, useContext, useMemo} from "react";
+import {observer} from "mobx-react-lite";
 import LanguageLoader from "@/shared/ui/loaders/language-loader";
 import TourItem from "@/shared/ui/tour-item";
-import {useAtomValue, useSetAtom} from "jotai";
-import {
-    atomDaysName,
-    atomDepartures, atomDepsDetails, atomDepLocale, atomEmptyDepartures,
-    atomEndPagination,
-    atomLoading,
-    atomNextPage, atomSetSelected
-} from "@/entities/calendar/atom/departures";
-import {useAtom} from "jotai/index";
-import {atomModalBooking} from "@/entities/calendar/atom/modal";
+import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
+import { ServiceDate } from "@/shared/service/service-date";
+import { setFormatDDMMYYYYtoMMDDYYYY } from "@/shared/hepers/date";
+import {useTranslation} from "@/i18n/client";
 
-export default memo(function DeparturesList() {
-    const departures = useAtomValue(atomDepartures)
-    const depLocale = useAtomValue(atomDepLocale)
-    const daysName = useAtomValue(atomDaysName)
-    const loading = useAtomValue(atomLoading)
-    const endPagination = useAtomValue(atomEndPagination)
-    const isEmpty = useAtomValue(atomEmptyDepartures)
-    const depsDetails = useAtomValue(atomDepsDetails)
-
-    const nextPage = useSetAtom(atomNextPage)
-    const setSelected = useSetAtom(atomSetSelected)
-    const setOpenModalBooking = useSetAtom(atomModalBooking);
-
-
-    const onSelected =  id => {
-        setSelected(id);
-        setOpenModalBooking(id);
-    }
+export default observer(function DeparturesList() {
+    const { t} = useTranslation();
+    const {
+        storeCalendar: {
+            loading, departures, selectedBooking,
+            storeDepLogic: { isNextPage, nextPage, locale }
+        }
+    } = useContext(StoreCalendarContext);
 
     const showNewDay = {};
+
+    const showMeMore = useMemo(() => isNextPage && !loading.isLoad, [isNextPage, loading.isLoad])
+    const showEmpty = useMemo(() => !departures.length && !loading.isLoad, [departures.length, loading.isLoad])
+
     return (
-        <div className="days_wrap active">
-            {loading ?
+        <div className="days_wrap">
+            {loading.isLoad ?
                 <LanguageLoader/>
                 :
                 <>
-                    {departures.map(departure => {
+                    {departures.map((departure, index) => {
                         const date = departure.date;
                         const showDate = !showNewDay[date];
+                        const service = new ServiceDate(setFormatDDMMYYYYtoMMDDYYYY(date))
                         showNewDay[date] = true;
+
                         return (
-                            <Fragment key={departure.depId}>
-                                {showDate ? <div className="day_name">{daysName[date]}</div> : null}
+                            <Fragment key={index}>
+                                {showDate ? <div className="day_name">{t(service.day)}, {service.dayNum} {t(service.month)}</div> : null}
                                 <TourItem
-                                    onClick={onSelected}
-                                    id={departure.depId}
-                                    title={depsDetails.tours[departure.tourId]}
-                                    duration={departure.duration}
-                                    time={departure.time}
-                                    language={depLocale}
+                                    locale={locale}
+                                    dep={departure}
+                                    onClick={selectedBooking}
                                 />
                             </Fragment>
                         )
                     })}
                 </>
             }
-            {isEmpty ? 'Empty' : null}
-            {!endPagination && departures.length ? <button onClick={nextPage}>Show Me More</button> : null}
+            {showEmpty ? 'Empty' : null}
+            {showMeMore ? <button onClick={nextPage}>Show Me More</button> : null}
         </div>
     )
 })
