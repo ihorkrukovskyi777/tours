@@ -7,7 +7,6 @@ import CalendarImage from '/public/images/svg/calendar.svg'
 import {picketCityPosts} from "@/entities/api";
 import './style.css';
 import {ServiceDate} from "@/shared/service/service-date";
-import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/hepers/date";
 
 export default async function MostPopularTours({id, locale}) {
 

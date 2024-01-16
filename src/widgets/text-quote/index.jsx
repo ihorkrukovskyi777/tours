@@ -1,3 +1,4 @@
+
 import './style.css';
 export default function TextQuote() {
   return (
@@ -7,11 +8,11 @@ export default function TextQuote() {
                 <h2>Free Tour – What Does it Mean?</h2>
                 <div className="description">
                     The tours are solely tips based so you can decide to contribute as much or as little as you feel the experience was worth.
-                </div>                                     
+                </div>
             </div>
-        </div>   
+        </div>
 
     </section>
-    
+
   )
 }

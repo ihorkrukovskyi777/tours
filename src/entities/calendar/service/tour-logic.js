@@ -1,4 +1,4 @@
-import {fetchDepartures} from "@/shared/api/fetchDepartures";
+import {fetchDepartures} from "@/entities/calendar/api";
 
 const getTimePeriod = (day, elem) => {
     return day.subVendorId === elem?.subVendorId ? 15 : 30;

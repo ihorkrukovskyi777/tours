@@ -22,11 +22,24 @@ export async function getPickCities(id, locale = 'en') {
     return data.json();
 }
 
-export async function picketCityPosts(id, locale ='en') {
+export async function picketCityPosts(id, locale = 'en') {
 
-        const data = await fetch(
-            `http://localhost:9000/api/v1/city/section/tours-box/${id}?locale=${locale}`,
-            {next: {revalidate: 0}}
-        )
+    const data = await fetch(
+        `http://localhost:9000/api/v1/city/section/tours-box/${id}?locale=${locale}`,
+        {next: {revalidate: 0}}
+    )
     return data.json();
+}
+
+export const getActiveLang = async (id, type = 'city') => {
+    try {
+        const res = await fetch(
+            `http://localhost:9000/api/v1/${type}/active-language/${id}`,
+            {next: {revalidate: 0}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+
 }
