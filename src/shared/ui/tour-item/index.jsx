@@ -1,5 +1,6 @@
 import {memo} from "react"
-import ClockSvg from '@/assets/images/svg/clock-svg';
+import Image from "next/image";
+import ClockSilver from "../../../../public/images/svg/clock-silver.svg"
 import {pad2, toHoursAndMinutes} from "@/shared/hepers/date";
 import {useTranslation} from "@/i18n/client";
 import FlagsComponents from "@/shared/ui/flags";
@@ -19,7 +20,7 @@ export default memo(function TourItem({dep, locale, onClick}) {
                 <div className="bottom_part">
                     <div className="tour_duration">
                         <div className="clock_wrap">
-                            <ClockSvg/>
+                            <Image src={ClockSilver} alt="clock" width={12} height={13}></Image>
                         </div>
                         <span>{durationHours}:{pad2(durationMinutes)} {t('Hours')}</span>
                     </div>

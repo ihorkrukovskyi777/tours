@@ -8,6 +8,7 @@ export class StoreTourLogic {
         this._allDepartures = [];
         this.departureIterable = null;
         this.offset = 0;
+        this.done = false;
         this.people = 1;
         this.isEmpty = true;
         this.activeLanguage = [];
@@ -19,7 +20,7 @@ export class StoreTourLogic {
     }
 
     get isNextPage() {
-        return !!this._allDepartures?.length;
+        return this._allDepartures.length > this.departures.length
     }
 
     getToursByDay(date) {
@@ -35,7 +36,7 @@ export class StoreTourLogic {
                     tourTitle: this.getTourTitle(dep.tourId),
                     avatar: subVendor.avatar,
                     subVendorName: subVendor.name,
-                    ranking: dep.is_civitatis ? dep.score : subVendor.ranking,
+                    ranking: subVendor.ranking,
                 }
             })
         }
@@ -68,10 +69,12 @@ export class StoreTourLogic {
     }
 
     initPagination() {
+        this.done = false;
         this.offset = 0;
         this._allDepartures = [];
         this.departureIterable = this.service.getDataMonth();
         this.nextPage();
+
     }
 
     setPeople(people) {
@@ -109,16 +112,18 @@ export class StoreTourLogic {
     }
 
     getTourTitle(id) {
-        return this.service?.data[this.locale]?.tours[id] ?? {};
+        return this.service?.data[this.locale]?.tours[id] ?? '';
     }
 
     nextPage() {
-        if (this.offset - 20 < this._allDepartures.length && this.offset > 0) {
+        if (this.offset + 20 < this._allDepartures.length && this.offset > 0 || this.done) {
             this.offset = this.offset + 10;
         } else {
             const results = [];
             while (true) {
                 const data = this.departureIterable.next()
+                this.done = data.done;
+
                 results.push(...Object.values(data.value).flat())
                 if (data.done || results.length > 30) {
                     break;

@@ -83,10 +83,6 @@
     padding: 10px 15px
 }
 
-#change-of-language ul li:nth-child(n+7) {
-    display: none
-}
-
 #change-of-language.loaded ul li {
     display: block
 }

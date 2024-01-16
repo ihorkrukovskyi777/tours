@@ -7,14 +7,9 @@ import TabsLanguages from "@/shared/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import Step3 from '@/entities/calendar/ui/modal-booking/step-3/index'
 import CounterNumbers from "@/shared/ui/counter-numbers";
-
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
-import {ServiceDate} from "@/shared/service/service-date";
-
-
 
 export default observer(function Main({ siteLocale }) {
-
     const {
         storePhone: {
             phones,
@@ -49,10 +44,8 @@ export default observer(function Main({ siteLocale }) {
         }
     }
 
-
-
     return (
-        <div className="calendar_wrap">
+        <div className="calendar_wrap" style={{minHeight:'300px'}}>
             <h2 className="title">Tour Calendar</h2>
             <div className="wrap-box">
                 <div className="wrap-button">
@@ -60,13 +53,12 @@ export default observer(function Main({ siteLocale }) {
                         null :
                         <OpenModalButton storeModalCalendar={storeModalCalendar}/>}
                 </div>
-                {!isEmpty ?
                 <TabsLanguages
                     selectedCode={locale}
                     activeLanguage={activeLanguage}
                     loading={loading.isLoad}
                     onChange={changeLanguage}
-                /> : null }
+                />
                 <div className="how_many">
                     {!isEmpty ?
                         <>
@@ -81,6 +73,7 @@ export default observer(function Main({ siteLocale }) {
             </div>
             <ModalBooking show={isOpened}>
                 <Step3
+                    langSelected={locale}
                     people={people}
                     locale={siteLocale}
                     onChange={changeModalBooking}

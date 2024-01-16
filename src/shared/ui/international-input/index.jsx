@@ -10,14 +10,13 @@ import './style.css';
 export default function InternationalInput({locale , allPhoneNumbers , handleChange , valueMask=''}) {
     let formatLanguage = localeFormat(locale);
     formatLanguage = formatLanguage === 'en' ? 'GB' : formatLanguage;
+    formatLanguage = formatLanguage === 'pt-pt' ? 'pt' : formatLanguage;
     const languagePageSlug = formatLanguage.toUpperCase();
     const localizationWP = {};
     allPhoneNumbers.map((elem) => {
         localizationWP[elem.code] = elem;
     });
-
     const  [validation_numbers , setValidation_numbers] = useState(localizationWP[languagePageSlug]['validation_numbers']);
-    console.log(localizationWP)
     const [placeholder , setPlaceholder] = useState(localizationWP[languagePageSlug]['mask_number']);
     const getMask = placeholder.replace(/[0-9]/g, "_");
     const [maskView , setMaskView] = useState(getMask)

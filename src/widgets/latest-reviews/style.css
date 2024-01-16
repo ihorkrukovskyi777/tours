@@ -12,6 +12,9 @@
     margin: 0;
     text-transform: capitalize;
 }
+.latest_reviews button {
+    margin: 20px auto auto auto;
+}
 /* Responsive */
 @media(max-width:767px){
     .latest_reviews{

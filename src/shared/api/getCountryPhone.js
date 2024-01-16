@@ -1,14 +1,13 @@
 // get api results
-  export const getCountryPhone = async (locale = 'en') => {
+export const getCountryPhone = async (locale = 'en') => {
     try {
         const res = await fetch(
             `http://localhost:9000/api/v1/phone?locale=${locale}`,
-
+            {next: {revalidate: 60 * 60}}
         );
-        const data = await res.json();
-        return data
+        return await res.json()
     } catch (err) {
         console.log(err);
     }
 
-  }
+}

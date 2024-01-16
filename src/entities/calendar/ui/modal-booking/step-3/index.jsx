@@ -16,7 +16,7 @@ import {ServiceDate} from "@/shared/service/service-date"
 
 import './style.css';
 
-export default observer(function Step3({onChange, people, locale,  close, size, allPhoneNumbers, departure,isOpened}) {
+export default observer(function Step3({onChange, people, locale,  close, size, allPhoneNumbers, departure,isOpened ,langSelected}) {
 
     useEscHooks(close, isOpened);
 
@@ -77,7 +77,7 @@ export default observer(function Step3({onChange, people, locale,  close, size, 
                                     <span className="comma">,</span>
                                     <span className="people-count">{people}</span>{t('People')}
                                 </div>
-                                <FlagsComponents locale={locale} alt={`flag ${locale}`}  className='country-box-select'/>
+                                <FlagsComponents locale={langSelected} alt={`flag ${locale}`}  className='country-box-select'/>
                             </div>
                         </div>
                     </div>

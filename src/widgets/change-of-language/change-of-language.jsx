@@ -1,76 +1,36 @@
 'use client';
-import Languages from "@/shared/ui/languages-site";
+import {useState} from "react";
 import Button from "@/shared/ui/button/button";
-import LanguageImageDefault from '@/assets/images/languages/USUKflag.jpg'
-import { useState } from "react";
-import './style.css';
 import LanguagesSite from "@/shared/ui/languages-site";
+import './style.css';
 
-const data = {
-    languages: [
-        {
-            title: "English",
-            code: 'en',
-            img: LanguageImageDefault,
-            url: '/',
-        },
-        {
-            title: "France",
-            code: 'fr',
-            img: LanguageImageDefault,
-            url: '/',
-        },
-        {
-            title: "De",
-            code: 'de',
-            img: LanguageImageDefault,
-            url: '/',
-        },
-        {
-            title: "Es,",
-            code: 'es',
-            img: LanguageImageDefault,
-            url: '/',
-        },
-        {
-            title: "Lorem",
-            img: LanguageImageDefault,
-            url: '/',
-        },
-        {
-            title: "Lore4,",
-            img: LanguageImageDefault,
-            url: '/',
-        },
-        {
-            title: "Lore4,",
-            img: LanguageImageDefault,
-            url: '/',
-        },
-    ],
-};
-export default function ChangeOfLanguage() {
-    const [test, setTest] = useState('');
-    const handleClick = () =>  setTest('loaded');
+export default function ChangeOfLanguage({languages, title}) {
+    const [showLanguage, setShowLanguage] = useState(6);
     return (
-        <section id="change-of-language" className={test}>
+        <section id="change-of-language">
             <div className="container">
                 <h2>Free Tours in Your Language</h2>
                 <ul>
-                    {data.languages.map((item , index) => {
-                        return(
-                            <LanguagesSite key={index} url={item.url}  code={item.code}>{item.title}</LanguagesSite>
+                    {languages?.slice(0, showLanguage).map((item) => {
+                        return (
+                            <LanguagesSite
+                                key={item.locale}
+                                slug={item.slug}
+                                code={item.locale}
+                            >
+                                Free Tours {title?.replace('<br>', '')} {item.name}
+                            </LanguagesSite>
                         )
                     })}
                 </ul>
-                {data.languages.length > 6 ?
+                {showLanguage < languages?.length ?
                     <div className="block-center">
-                        <Button onClick={handleClick}>Load More</Button>
+                        <Button onClick={() => setShowLanguage(value => value + 3)}>Load More</Button>
                     </div>
                     :
                     null
                 }
             </div>
         </section>
-  )
+    )
 }

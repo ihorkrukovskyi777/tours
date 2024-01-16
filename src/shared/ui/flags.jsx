@@ -8,6 +8,7 @@ import pt from '@/assets/images/languages/pt.svg'
 import it from '@/assets/images/languages/it.svg'
 import cat from '@/assets/images/languages/cat.png'
 import nl from '@/assets/images/languages/nl.svg'
+import ru from '@/assets/images/languages/ru.svg'
 
 const Flags = {
     en,
@@ -18,6 +19,7 @@ const Flags = {
     it,
     cat,
     nl,
+    ru,
     ['pt-pt']: pt,
 }
 export default function FlagsComponents({ locale, alt, className = '',  ...props}) {

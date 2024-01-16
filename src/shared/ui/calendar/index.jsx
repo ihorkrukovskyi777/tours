@@ -40,7 +40,7 @@ export default function Calendar({
 
 
     const [currentMonth, setCurrentMonth] = useState(CalendarJS.current.month);
-    const [currentYear, setCurrentYear] = useState('2023');
+    const [currentYear, setCurrentYear] = useState(CalendarJS.current.year);
     const [disableClass, setdisableClass] = useState(false);
     const [count, setCount] = useState(0);
 

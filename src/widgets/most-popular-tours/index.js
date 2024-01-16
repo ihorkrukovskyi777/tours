@@ -1,48 +1,60 @@
+import Image from "next/image";
 import Card from "@/shared/ui/card/card"
 import Reviews from "@/shared/ui/reviews/reviews";
 import LanguageImages from "@/shared/ui/language-images";
-import ClockSvg from '@/assets/images/svg/clock-svg'
-import CakendarSvg from '@/assets/images/svg/calendar-svg'
-import DefaultFlag from '@/assets/images/languages/USUKflag.jpg'
+import ClockImage from '/public/images/svg/clock.svg'
+import CalendarImage from '/public/images/svg/calendar.svg'
+import {picketCityPosts} from "@/entities/api";
 import './style.css';
+import {ServiceDate} from "@/shared/service/service-date";
+import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/hepers/date";
 
-const dataSlider = [ 
-    {id: 121212, title:'Free Witchcraft Tour London'},
-    {id: 533, title:'Free Witchcraft Tour Lviv'},
-    {id: 1324, title:'Free Witchcraft Tour Madrid'},
-]
+export default async function MostPopularTours({id, locale}) {
 
-const languagesAll = [DefaultFlag , DefaultFlag , DefaultFlag];
-export default function MostPopularTours({title='Most Popular Tours' , items=[dataSlider]}) {
-  return (
-    <section className="most_popular_tour">
-        <div className="container">
-            <div className="wrapper">
-                <h2 className="title">{title}</h2>
-                <div className="items">
-                    {items.map((item) => {
-                        return (
-                            <Card key={item.id} url={item} title={item.title} topElement={<LanguageImages data={languagesAll} />} bottomElement={<Reviews rating={2} count_reviews={1111} />} >
-                                <div className="item_bottom">
-                                    <div className="elem">
-                                        <ClockSvg/>
-                                        <span className="second">Duration:</span>  
-                                        <span>2-2.5 Hours</span> 
+    const tours = await picketCityPosts(id, locale)
+    return (
+        <section className="most_popular_tour">
+            <div className="container">
+                <div className="wrapper">
+                    <h2 className="title">Most Popular Tours</h2>
+                    <div className="items">
+                        {tours?.map((item) => {
+                            const serviceDate = new ServiceDate(item.nextDeparture);
+
+                            const showTime = serviceDate.differenceInDays > 7 ?
+                                `${serviceDate.day}, ${serviceDate.dayNum} ${serviceDate.month}` :
+                                `${serviceDate.day}, ${serviceDate.time}`
+                            return (
+                                <Card
+                                    key={item.id}
+                                    url={item}
+                                    size={'390x250'}
+                                    attachment={item.attachment}
+                                    title={item.title}
+                                    topElement={<LanguageImages locales={item.locales}/>}
+                                    bottomElement={<Reviews rating={item.ratings?.rating || 0} count_reviews={item.ratings?.reviews || 0}/>}
+                                >
+                                    <div className="item_bottom">
+                                        <div className="elem">
+                                            <Image src={ClockImage} alt="clock" width={18} height={20} style={{fill: 'red'}} />
+                                            <span className="second">Duration:</span>
+                                            {item.durations?.length ? <span>{[...new Set(item.durations)].join('-')} Hours</span> : null }
+                                        </div>
+                                        <div className="elem">
+                                            <Image src={CalendarImage} alt="clock" width={18} />
+                                            <span className="second">
+                                                Next Tour: {showTime}
+                                            </span>
+                                            <span>{item.lastDeparture}</span>
+                                        </div>
+
                                     </div>
-                                    <div className="elem">
-                                        <CakendarSvg/>
-                                        <span className="second">Next Tour:</span>  
-                                        <span>Saturday, 18:20:</span> 
-                                    </div>
-                                       
-                                </div> 
-                            </Card>
-                        ) 
-                    })}
-                </div>    
+                                </Card>
+                            )
+                        })}
+                    </div>
+                </div>
             </div>
-        </div>   
-    </section>
-    
-  )
+        </section>
+    )
 }

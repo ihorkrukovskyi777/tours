@@ -19,10 +19,19 @@ const Main = dynamic(
 export const StoreCalendarContext = createContext(null)
 
 export default memo(async function CalendarProvider({locale, type, id, activeLanguage}) {
+
+
+    let findLocale = activeLanguage.find(item => item.code === locale);
+    if(!findLocale) {
+        [findLocale] = activeLanguage
+    }
+    if(!findLocale) {
+        return null
+    }
     return (
         <StoreCalendarContext.Provider value={{
-            storeCalendar: new StoreCalendar(locale, type, id, activeLanguage),
-            storePhone: new StorePhone(locale)
+            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage),
+            storePhone: new StorePhone(findLocale.code)
         }}>
             <section id="tour_calendar_section" className="tour_calendar">
                 <div className="container">
