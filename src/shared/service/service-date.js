@@ -71,4 +71,16 @@ export class ServiceDate {
         const diffTime = Math.abs(date2 - date1);
         return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
     }
+
+    get monthNum() {
+        return this.date.getMonth();
+    }
+
+    get yearNum() {
+        return this.date.getFullYear();
+    }
+
+
+
+
 }

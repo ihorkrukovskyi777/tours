@@ -11,8 +11,8 @@ export default function BannerButtons() {
     return (
        <>
            <Button onClick={scrollToCalendar}>Today</Button>
-           <Button onClick={scrollToCalendar}>Tomorrrow</Button>
-           <Button onClick={scrollToCalendar} icon={CalendarSvg}></Button>
+           <Button onClick={scrollToCalendar}>Tomorrow</Button>
+           <Button customClass="calendar-btn" onClick={scrollToCalendar} icon={CalendarSvg}></Button>
        </>
     )
 }

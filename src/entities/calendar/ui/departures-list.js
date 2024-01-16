@@ -1,5 +1,7 @@
 import {Fragment, useContext, useMemo} from "react";
 import {observer} from "mobx-react-lite";
+import Image from "next/image";
+import LogoOneport from '../../../../public/images/svg/logo-oneport.svg';
 import LanguageLoader from "@/shared/ui/loaders/language-loader";
 import TourItem from "@/shared/ui/tour-item";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
@@ -23,6 +25,9 @@ export default observer(function DeparturesList() {
 
     return (
         <div className="days_wrap">
+            <div className="logo-calendar">
+                <Image src={LogoOneport} alt="logo-oneport"></Image>
+            </div>
             {loading.isLoad ?
                 <LanguageLoader/>
                 :
@@ -46,8 +51,8 @@ export default observer(function DeparturesList() {
                     })}
                 </>
             }
-            {showEmpty ? 'Empty' : null}
-            {showMeMore ? <button onClick={nextPage}>Show Me More</button> : null}
+            {showEmpty ? <div className="error-block block">Departures not found</div> : null}
+            {showMeMore ? <button className="show-more" onClick={nextPage}>Show Me More</button> : null}
         </div>
     )
 })

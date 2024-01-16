@@ -4,7 +4,7 @@
 .city_banner .flex-row {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     margin-bottom: 65px;
 }
 .city_banner .pick_text {
