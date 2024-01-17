@@ -4,16 +4,11 @@ import {notFound} from "next/navigation";
 
 const CityPage = dynamic(
     () => import("@/entities/city/page/city-page"),
-    {
-        ssr: true,
-        loading: () => {
-            return (
-                <div className="calendar_wrap" style={{position: 'relative', minHeight: '300px'}}>
-                    <Loader style={{backgroundColor: 'inherit'}}/>
-                </div>
-            )
-        }
-    }
+    { ssr: true}
+)
+const FlexibleContent = dynamic(
+    () => import("@/widgets/flexible-content/flexible-content"),
+    { ssr: true}
 )
 export default async function Home({params: {locale, slug}}) {
     const pageType = await fetch(
@@ -24,7 +19,6 @@ export default async function Home({params: {locale, slug}}) {
     if (data.statusCode === 404 || typeof data.id !== 'number') {
         notFound();
     }
-
     return (
         <main>
             {data.type === 'city' ? <CityPage
@@ -34,7 +28,7 @@ export default async function Home({params: {locale, slug}}) {
                     languages={data.languages}
                     title={data.title}/>
                 : null}
-            {data.type === 'default' ? 'default page' : null}
+            {data.type === 'default' ? <FlexibleContent flexibleContent={data.flexibleContent} locale={locale} id={data.id} slug={slug} languages={data.languages} title={data.title} /> : null}
         </main>
     )
 }
