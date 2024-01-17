@@ -1,3 +1,5 @@
+import Highlights from "@/widgets/highlights";
+
 export async function getBannerData(id, locale) {
     const data = await fetch(
         `http://localhost:9000/api/v1/city/section/banner/${id}?locale=${locale}`,
@@ -35,6 +37,58 @@ export const getActiveLang = async (id, type = 'city') => {
     try {
         const res = await fetch(
             `http://localhost:9000/api/v1/${type}/active-language/${id}`,
+            {next: {revalidate: 0}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+export const getTextQuote  = async (id, locale = 'en') => {
+    try {
+        const res = await fetch(
+            `http://localhost:9000/api/v1/city/section/text-quote/${id}?locale=${locale}`,
+            {next: {revalidate: 0}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+export const getHighlightsImages  = async (id) => {
+    try {
+        const res = await fetch(
+            `http://localhost:9000/api/v1/city/section/gallery-section/${id}`,
+            {next: {revalidate: 0}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+export const getTextsBlocks  = async (id, locale ='en') => {
+    try {
+        const res = await fetch(
+            `http://localhost:9000/api/v1/city/section/text-blocks/${id}?locale=${locale}`,
+            {next: {revalidate: 0}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+export const getFaqBlock  = async (id, locale = 'en') => {
+    try {
+        const res = await fetch(
+            `http://localhost:9000/api/v1/city/section/faq/${id}?locale=${locale}`,
             {next: {revalidate: 0}}
         );
         return res.json()

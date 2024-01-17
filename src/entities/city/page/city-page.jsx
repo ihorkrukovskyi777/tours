@@ -25,10 +25,10 @@ export default async function CityPage({locale, title, id, languages}) {
             />
             <SsrCalendar locale={locale} type="city" id={id}/>
             <MostPopularTours id={id} locale={locale}/>
-            <TextQuote/>
-            <LatestReviews locale={locale} id={id}/>
-            <Highlights/>
-            <TextBlocks/>
+            <TextQuote id={id} locale={locale}/>
+            <LatestReviews id={id} locale={locale}/>
+            <Highlights id={id}/>
+            <TextBlocks id={id} locale={locale}/>
             <Guides/>
             <MostPopularCity locale={locale} id={id}/>
             <ChangeOfLanguage languages={languages} title={title}/>

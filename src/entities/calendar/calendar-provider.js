@@ -18,7 +18,7 @@ const Main = dynamic(
 
 export const StoreCalendarContext = createContext(null)
 
-export default memo(async function CalendarProvider({locale, type, id, activeLanguage}) {
+export default memo(async function CalendarProvider({locale, type, id, activeLanguage, questions}) {
 
 
     let findLocale = activeLanguage.find(item => item.code === locale);
@@ -37,7 +37,7 @@ export default memo(async function CalendarProvider({locale, type, id, activeLan
                 <div className="container">
                     <div className="wrapper">
                         <Main siteLocale={locale}/>
-                        <Faqs/>
+                        <Faqs questions={questions}/>
                     </div>
                 </div>
             </section>

@@ -1,13 +1,15 @@
-
+import { getTextQuote } from "@/entities/api";
 import './style.css';
-export default function TextQuote() {
+export default async function TextQuote({ id, locale}) {
+
+  const data = await getTextQuote(id, locale)
   return (
     <section className="text_quote">
         <div className="container">
             <div className="top_wrapper">
-                <h2>Free Tour – What Does it Mean?</h2>
+                <h2>{data.title ?? ''}</h2>
                 <div className="description">
-                    The tours are solely tips based so you can decide to contribute as much or as little as you feel the experience was worth.
+                    {data.description ?? ''}
                 </div>
             </div>
         </div>

@@ -24,7 +24,6 @@ export default async function Home({params: {locale, slug}}) {
     if (data.statusCode === 404 || typeof data.id !== 'number') {
         notFound();
     }
-    console.log(data, 'dsadsa')
 
     return (
         <main>
