@@ -3,7 +3,7 @@ import Loader from "@/shared/ui/loaders/default-loader";
 import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language";
 
 const AllCities = dynamic(
-    () => import("@/widgets/flexible-content/sections/all-cities"),
+    () => import("@/widgets/flexible-content/sections/all-cities/all-cities"),
     {ssr: true}
 )
 
