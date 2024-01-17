@@ -1,6 +1,6 @@
-import { makeAutoObservable, onBecomeObserved } from "mobx"
+import { makeAutoObservable } from "mobx"
 import { fromPromise } from 'mobx-utils'
-import {getCountryPhone} from "@/shared/api/getCountryPhone";
+import {getCountryPhone} from "@/entities/api";
 
 
 export class StorePhone {

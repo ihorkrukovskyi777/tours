@@ -1,4 +1,5 @@
 import Highlights from "@/widgets/highlights";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export async function getBannerData(id, locale) {
     const data = await fetch(
@@ -88,10 +89,24 @@ export const getTextsBlocks  = async (id, locale ='en') => {
 export const getFaqBlock  = async (id, locale = 'en') => {
     try {
         const res = await fetch(
-            `http://localhost:9000/api/v1/city/section/faq/${id}?locale=${locale}`,
+            `${process.env.NEST_API}/api/v1/city/section/faq/${id}?locale=${locale}`,
             {next: {revalidate: 0}}
         );
         return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+
+export const getCountryPhone = async (locale = 'en') => {
+    try {
+        const res = await fetch(
+            `${process.env.NEST_API}/api/v1/phone?locale=${locale}`,
+            {next: {revalidate: 60 * 60}}
+        );
+        return await res.json()
     } catch (err) {
         console.log(err);
     }

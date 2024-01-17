@@ -7,7 +7,7 @@ import Button from '@/shared/ui/button/button';
 import FormContactGuide from './form-contact-guide';
 import { useState , useEffect  } from 'react';
 import FormEdit from './form-edit';
-import { getCountryPhone } from '@/shared/api/getCountryPhone';
+import { getCountryPhone } from '@/entities/api';
 import ModalBookingEdit from '@/shared/ui/modal-booking-edit';
 import Step1 from '@/shared/ui/modal-booking-edit/step-1';
 import Step2 from '@/shared/ui/modal-booking-edit/step-2';
