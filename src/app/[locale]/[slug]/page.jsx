@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import Loader from "@/shared/ui/loaders/default-loader";
 import {notFound} from "next/navigation";
 
 const CityPage = dynamic(
@@ -28,7 +27,16 @@ export default async function Home({params: {locale, slug}}) {
                     languages={data.languages}
                     title={data.title}/>
                 : null}
-            {data.type === 'default' ? <FlexibleContent flexibleContent={data.flexibleContent} locale={locale} id={data.id} slug={slug} languages={data.languages} title={data.title} /> : null}
+            {data.type === 'default' ?
+                <FlexibleContent
+                    flexibleContent={data.flexibleContent}
+                    locale={locale}
+                    id={data.id}
+                    slug={slug}
+                    languages={data.languages}
+                    title={data.title}
+                />
+                : null}
         </main>
     )
 }
