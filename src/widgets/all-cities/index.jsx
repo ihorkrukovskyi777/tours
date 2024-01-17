@@ -1,10 +1,9 @@
 import './style.css';
 
 
-
-export default function siteMap() {
+export default function AllCities() {
   return (
-    <section className="sitemap_section">
+    <section className="all_cities">
         <div className="container">
             <h1>See All Cities &amp; Countries</h1>
             <div className='items'>
