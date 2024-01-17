@@ -11,6 +11,10 @@
     outline: none;
     font-size: 20px;
     transition: .3s ease-in-out;
+    line-height: inherit;
+}
+.button_custom.calendar-btn {
+    padding: 11px 15px;
 }
 .button_custom.gray {
     color: #686868;

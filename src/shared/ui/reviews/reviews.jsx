@@ -5,7 +5,7 @@ import StarFull from '@/assets/images/svg/star-full.svg';
 import './style.css';
 
 const STAR_WIDTH = 17;
-export default function Reviews({rating, count_reviews, text_review = true, title}) {
+export default function Reviews({rating, count_reviews, text_review = true, number_review = true }) {
 
     const stars = Array.from(new Array(5)).map((_, index) => index)
 
@@ -27,7 +27,7 @@ export default function Reviews({rating, count_reviews, text_review = true, titl
                             return <Image key={value} src={StarEmpty} width={STAR_WIDTH} alt={'star empty'} />;
                     })}
                 </div>
-                {rating > 0 ?
+                {rating > 0 && number_review ?
                     <div className="rate_number">
                         {rating}
                     </div>
