@@ -5,22 +5,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import FullStarSvg from '@/assets/images/svg/full-star';
 import LanguageImages from '@/shared/ui/language-images';
 import DefaultImage from '@/assets/images/languages/USUKflag.jpg';
-const languagesAll = [DefaultImage , DefaultImage , DefaultImage];
+import FlagsComponents from "@/shared/ui/flags";
 import './style.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-const dataSlider = [
-  { id:423, title: 'Your Guides in Bogota'},
-  { id:242, title: 'Your Guides in London'},
-  { id:2342, title: 'Your Guides in London123'},
-  { id:467, title: 'Your Guides in London11'},
-  { id:765, title: 'Your Guides in London11121'},
-  { id:756, title: 'Your Guides in London1212'},
-]
 
-export default function Guides({title="Your Guides in Bogota" , items=[dataSlider]}) {
+export default function Guides({title="Your Guides in Bogota" }) {
+    const items = [];
   return (
     <section className="guides_section">
         <div className="container">
