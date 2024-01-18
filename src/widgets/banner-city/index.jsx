@@ -1,8 +1,9 @@
 import Banner from '@/shared/ui/banner';
 import BannerButtons from "@/entities/city/ui/banner-buttons/banner-buttons";
 import Reviews from '@/shared/ui/reviews/reviews';
-import './style.css';
 import {getBannerData} from "@/entities/api";
+import './style.css';
+
 
 export default async function BannerCity({ id, locale, size}) {
     const {attachment, title, rating, reviews} = await getBannerData(id, locale)

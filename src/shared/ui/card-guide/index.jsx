@@ -1,5 +1,4 @@
 import styles from './style.module.css'
-// import Image from 'next/image'
 import IcloudImage from '../icloud-image';
 import FlagsComponents from "@/shared/ui/flags";
 
@@ -12,7 +11,7 @@ export default function CardGuide({children , avatar , url , bottomView = []}) {
             </div>
             {children}
                 <div className='flags_wrap'>
-                    {bottomView.map((item , index) => <div key={index} className='flag'><FlagsComponents locale={item} alt={`flag ${item}`}  className='country-box-select'/></div> )}
+                    {bottomView.map((item , index) => <div key={index} className='flag'><FlagsComponents locale={item} alt={`flag`}  className='country-box-select'/></div> )}
                 </div> 
             </div>
         </a>  

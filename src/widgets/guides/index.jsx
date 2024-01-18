@@ -18,8 +18,8 @@ export default async function Guides({title="Your Guides in Bogota" , id }) {
   return (
     <section className="guides_section">
         <div className="container">
-            <h2>{title}</h2>
-           <SwiperGuides guides={items} />
+            <h2>Your Guides in {title}</h2>
+            <SwiperGuides guides={items} />
         </div>
 
     </section>
