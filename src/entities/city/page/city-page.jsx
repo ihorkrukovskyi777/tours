@@ -45,7 +45,7 @@ export default async function CityPage({locale, title, id, languages}) {
                 <p id="breadcrumbs">
               <span>
                   <span>
-                      <Link className="first_link" href="/">{t('Free Tour')}</Link>
+                      <Link prefetch={false} className="first_link" href="/">{t('Free Tour')}</Link>
                       <span className="arrow-right-b"> - </span>
                       <span>
                           <span className="breadcrumb_last" aria-current="page">{title}</span>

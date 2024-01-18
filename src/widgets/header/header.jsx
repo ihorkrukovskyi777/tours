@@ -7,7 +7,7 @@ export default function Header() {
     <header className={styles.header}>
         <div className="container">
             <div className={styles.flex}>
-                <Link href="/"><Logo /></Link>
+                <Link prefetch={false} href="/"><Logo /></Link>
             </div>
         </div>
     </header>
