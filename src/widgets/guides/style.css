@@ -108,6 +108,7 @@
     height: 100%;
     border-radius: 50%;
     position: static;
+    object-fit: cover;
 }
 .guides_section .swiper {
     position: relative;
