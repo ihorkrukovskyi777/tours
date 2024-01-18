@@ -5,11 +5,17 @@ const CityPage = dynamic(
     () => import("@/entities/city/page/city-page"),
     { ssr: true}
 )
+const PostPage = dynamic(
+    () => import("@/entities/post/page/post-page"),
+    { ssr: true}
+)
 const FlexibleContent = dynamic(
     () => import("@/widgets/flexible-content/flexible-content"),
     { ssr: true}
 )
+
 export default async function Page({params: {locale, slug}}) {
+
     const pageType = await fetch(
         `http://localhost:9000/api/v1/page/${slug}?locale=${locale}`,
         {next: {revalidate: 0}}
@@ -32,6 +38,16 @@ export default async function Page({params: {locale, slug}}) {
                     flexibleContent={data.flexibleContent}
                     locale={locale}
                     id={data.id}
+                    slug={slug}
+                    languages={data.languages}
+                    title={data.title}
+                />
+                : null}
+
+            {data.type === 'post' ?
+                <PostPage
+                    locale={locale}
+                    id={data.translateId}
                     slug={slug}
                     languages={data.languages}
                     title={data.title}
