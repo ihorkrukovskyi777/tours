@@ -9,7 +9,7 @@ const FlexibleContent = dynamic(
     () => import("@/widgets/flexible-content/flexible-content"),
     { ssr: true}
 )
-export default async function Home({params: {locale, slug}}) {
+export default async function Page({params: {locale, slug}}) {
     const pageType = await fetch(
         `http://localhost:9000/api/v1/page/${slug}?locale=${locale}`,
         {next: {revalidate: 0}}

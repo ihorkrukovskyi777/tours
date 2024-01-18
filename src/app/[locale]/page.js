@@ -11,22 +11,11 @@ import Highlights from '@/widgets/highlights';
 import TextBlocks from '@/widgets/text-blocks';
 import Guides from '@/widgets/guides';
 
-export default function Home({ params: { locale }}) {
+export default function Home({ params: { locale, slug = 'front' }}) {
+    console.log(locale, slug)
   return (
     <main>
-      <BannerHome title="Free Walking Tours Worldwide" size="home_banner"/>
-      <BannerCity title="Free Walking Tour Bogota" size="city_banner"/>
-      <BannerTour title="Free Jack the Ripper Tour London" size="tour_banner"/>
-      <BannerGuide title="banner Guide" size="guide_banner"/>
-      <MostPopularCity/>
-      <MostPopularTours/>
-      <Faqs />
-      <LatestReviews />
-      <Highlights />
-      <TextBlocks />
-      <Guides />
 
-      <ChangeOfLanguage />
     </main>
   )
 }

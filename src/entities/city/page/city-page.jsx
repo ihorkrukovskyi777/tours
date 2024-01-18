@@ -29,7 +29,7 @@ export default async function CityPage({locale, title, id, languages}) {
             <LatestReviews id={id} locale={locale}/>
             <Highlights id={id}/>
             <TextBlocks id={id} locale={locale}/>
-            <Guides/>
+            <Guides id={id} locale={locale}/>
             <MostPopularCity locale={locale} id={id}/>
             <ChangeOfLanguage languages={languages} title={title}/>
             <Breadcrumbs>
