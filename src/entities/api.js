@@ -107,5 +107,30 @@ export const getCountryPhone = async (locale = 'en') => {
     } catch (err) {
         console.log(err);
     }
-
 }
+
+export const allCitiesData  = async (locale = 'en') => {
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/all?locale=${locale}`,
+            {next: {revalidate: 0}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export const allGuides = async (id, locale = 'en') => {
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/sub-vendors/${id}`,
+            {next: {revalidate: 0}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+

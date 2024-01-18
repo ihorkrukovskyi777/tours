@@ -1,51 +1,25 @@
-'use client';
-import CardGuide from '@/shared/ui/card-guide';
-import { Navigation, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import FullStarSvg from '@/assets/images/svg/full-star';
-import LanguageImages from '@/shared/ui/language-images';
-import DefaultImage from '@/assets/images/languages/USUKflag.jpg';
-import FlagsComponents from "@/shared/ui/flags";
+import { allGuides } from '@/entities/api';
+import dynamic from "next/dynamic";
+
 import './style.css';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
+const SwiperGuides = dynamic(
+  () => import("@/entities/guide/ui/swiper/swiper"),
+  { ssr: true}
+)
 
-export default function Guides({title="Your Guides in Bogota" }) {
-    const items = [];
+export default async function Guides({title="Your Guides in Bogota" , id }) {
+  const items = await allGuides(id);
+  
+  if(!items?.length) {
+    return null
+  }
+
   return (
     <section className="guides_section">
         <div className="container">
             <h2>{title}</h2>
-            <Swiper
-                // install Swiper modules
-                modules={[Navigation, Pagination]}
-                spaceBetween={25}
-                navigation
-                slidesPerView={4}
-                pagination={{ clickable: true }}
-
-              >
-                  {items.map((item, index) =>{
-                      return (
-                          <div className="swiper-slide" key={index}>
-                            <SwiperSlide>
-                              <CardGuide img={DefaultImage} url={'/'} bottomView={<LanguageImages data={languagesAll} />}>
-                              <div className="item_title">Wonders of London - Meraviglie di Londra</div>
-                              <div className="rating_box">
-                                  <FullStarSvg />
-                                  <div className="rating_number">4.88</div>
-                              </div>
-
-                              </CardGuide>
-                            </SwiperSlide>
-                          </div>
-
-                      )
-                  })}
-            </Swiper>
-
+           <SwiperGuides guides={items} />
         </div>
 
     </section>
