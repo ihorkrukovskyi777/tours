@@ -1,6 +1,6 @@
 import {allCitiesData} from "@/entities/api";
 import './style.css';
-export default async function AllCities({ locale, title, id }) {
+export default async function AllCities({ locale, title }) {
     const citiesAll = await allCitiesData(locale);
     return (
         <section className="all_cities">
