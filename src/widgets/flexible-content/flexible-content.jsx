@@ -17,6 +17,7 @@ const FLEXIBLE_CONTENT = {
     contact_us_section: ContactUs
 }
 export default async function CityPage({flexibleContent = [], locale, title, id, languages}) {
+
     return (
         <>
             {flexibleContent.map(flexible => {

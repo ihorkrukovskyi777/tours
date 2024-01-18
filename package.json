@@ -32,6 +32,7 @@
     "react-international-phone": "^4.0.4",
     "react-phone-input-2": "^2.15.1",
     "react-rating-stars-component": "^2.2.0",
+    "sharp": "^0.33.2",
     "swiper": "^11.0.5"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import {Suspense} from "react";
 import {notFound} from "next/navigation";
 
 const CityPage = dynamic(
@@ -15,10 +16,9 @@ const FlexibleContent = dynamic(
 )
 
 export default async function Page({params: {locale, slug}}) {
-
     const pageType = await fetch(
-        `http://localhost:9000/api/v1/page/${slug}?locale=${locale}`,
-        {next: {revalidate: 0}}
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/${slug}?locale=${locale}`,
+        {next: {revalidate: 60}}
     )
     const data = await pageType.json();
     if (data.statusCode === 404 || typeof data.id !== 'number') {
@@ -26,7 +26,8 @@ export default async function Page({params: {locale, slug}}) {
     }
     return (
         <main>
-            {data.type === 'city' ? <CityPage
+            {data.type === 'city' ?
+                <CityPage
                     locale={locale}
                     slug={slug}
                     id={data.id}

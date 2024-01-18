@@ -1,21 +1,21 @@
-import MostPopularCity from '@/widgets/most-popular-city'
-import MostPopularTours from '@/widgets/most-popular-tours';
-import Faqs from '@/widgets/faqs/faqs'
-import ChangeOfLanguage from '@/widgets/change-of-language/change-of-language'
-import BannerHome from '@/widgets/banner-home/banner-home';
-import BannerCity from '@/widgets/banner-city';
-import BannerTour from '@/widgets/banner-tour';
-import BannerGuide from '@/widgets/banner-guide';
-import LatestReviews from '@/widgets/latest-reviews';
-import Highlights from '@/widgets/highlights';
-import TextBlocks from '@/widgets/text-blocks';
-import Guides from '@/widgets/guides';
+import {notFound} from "next/navigation";
 
-export default function Home({ params: { locale, slug = 'front' }}) {
-    console.log(locale, slug)
-  return (
-    <main>
+import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language";
 
-    </main>
-  )
+export default async function Home({params: {locale}}) {
+    const pageType = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/home?locale=${locale}`,
+        {next: {revalidate: 60}}
+    )
+    const data = await pageType.json();
+    if (data.statusCode === 404 || typeof data.id !== 'number') {
+        notFound();
+    }
+    const {languages, title} = data;
+
+    return (
+        <>
+            <ChangeOfLanguage languages={languages.map(lang => ({...lang, slug: ''}))} title={title}/>
+        </>
+    )
 }

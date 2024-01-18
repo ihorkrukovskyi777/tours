@@ -3,9 +3,11 @@ import {useState} from "react";
 import {useParams} from "next/navigation";
 import Button from "@/shared/ui/button/button";
 import LanguagesSite from "@/shared/ui/languages-site";
+import {useTranslation} from "@/i18n/client";
 import './style.css';
 
 export default function ChangeOfLanguage({languages, title}) {
+    const { t } = useTranslation('country');
     const [showLanguage, setShowLanguage] = useState(6);
     const params = useParams();
     const languagesFilter = languages.filter(item => item.locale !== params?.locale)
@@ -21,7 +23,7 @@ export default function ChangeOfLanguage({languages, title}) {
                                 slug={item.slug}
                                 code={item.locale}
                             >
-                                Free Tours {title?.replace('<br>', '')} {item.name}
+                                Free Tours {title?.replace('<br>', '')} {t(`fullName.${item.locale}`)}
                             </LanguagesSite>
                         )
                     })}
