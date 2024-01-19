@@ -1,4 +1,4 @@
-import Button from "@/shared/ui/button/button";
+import Button from "@/shared/ui/selectors/button/button";
 import { useState } from "react";
 
 export default function FormContactGuide({isOpenedModal , isOpenedThankYouModal}) {

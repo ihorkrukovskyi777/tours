@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import Footer from "@/widgets/footer/footer";
+import Footer from "@/shared/ui/layouts/footer/footer";
 import {notFound} from "next/navigation";
 
 const CityPage = dynamic(
@@ -11,7 +11,7 @@ const PostPage = dynamic(
     {ssr: true}
 )
 const FlexibleContent = dynamic(
-    () => import("@/widgets/flexible-content/flexible-content"),
+    () => import("@/shared/ui/flexible-content/flexible-content"),
     {ssr: true}
 )
 

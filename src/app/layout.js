@@ -1,4 +1,4 @@
-import Header from '@/widgets/header/header'
+import Header from '@/shared/ui/layouts/header/header'
 
 import './globals.css'
 

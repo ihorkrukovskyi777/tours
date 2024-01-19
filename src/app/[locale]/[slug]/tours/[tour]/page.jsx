@@ -3,7 +3,7 @@ import TextAndSlider from "@/widgets/text-and-slider"
 import TextBlocks from "@/widgets/text-blocks"
 import Guides from "src/entities/guide/ui/guides"
 import OtherTours from "@/widgets/other-tours"
-import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language"
+import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language"
 import Breadcrumbs from "@/shared/ui/breadcrumbs"
 
 

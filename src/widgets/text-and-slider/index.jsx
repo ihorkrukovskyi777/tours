@@ -1,6 +1,6 @@
 
 'use client';
-import Button from '@/shared/ui/button/button';
+import Button from '@/shared/ui/selectors/button/button';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
@@ -35,21 +35,21 @@ export default function TextAndSlider() {
                     <div className="intro">
                         <ul>
                             <li>
-                                Embark on a journey through time and culture as you walk along the iconic River Thames’ 
+                                Embark on a journey through time and culture as you walk along the iconic River Thames’
                                 <span>North and South Banks</span>
                             </li>
                             <li>
-                                Embark on a journey through time and culture as you walk along the iconic River Thames’ 
+                                Embark on a journey through time and culture as you walk along the iconic River Thames’
                                 <span>North and South Banks</span>
                             </li>
                             <li>
-                                Embark on a journey through time and culture as you walk along the iconic River Thames’ 
+                                Embark on a journey through time and culture as you walk along the iconic River Thames’
                                 <span>North and South Banks</span>
                             </li>
                         </ul>
                         <Button onClick={scrollToCalendar}>Book Now</Button>
-                      
-                    </div>  
+
+                    </div>
                 </div>
                 <div className="right_box">
                     <div className="right_box-intro">
@@ -69,39 +69,39 @@ export default function TextAndSlider() {
                             pagination={{ clickable: true }}
                             >
                             <SwiperSlide>
-                                 <div className='img_box'>       
+                                 <div className='img_box'>
                                     <Image src={DefaultImage} alt='0' />
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
-                                 <div className='img_box'>       
+                                 <div className='img_box'>
                                     <Image src={DefaultImage} alt='1' />
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
-                                 <div className='img_box'>       
+                                 <div className='img_box'>
                                     <Image src={DefaultImage} alt='1' />
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
-                                 <div className='img_box'>       
+                                 <div className='img_box'>
                                     <Image src={DefaultImage} alt='1' />
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide>
-                                 <div className='img_box'>       
+                                 <div className='img_box'>
                                     <Image src={DefaultImage} alt='1' />
                                 </div>
-                            </SwiperSlide>            
+                            </SwiperSlide>
                         </Swiper>
                         <div className='swiper-button-prev' ref={navigationPrevRef} onClick={() => swiperRef.current?.slidePrev()}><ArrowSwiper /></div>
                         <div className='swiper-button-next' ref={navigationNextRef} onClick={() => swiperRef.current?.slideNext()} ><ArrowSwiper /></div>
                     </div>
-                </div>                              
+                </div>
             </div>
-        </div>   
+        </div>
 
     </section>
-    
+
   )
 }

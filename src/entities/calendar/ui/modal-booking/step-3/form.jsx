@@ -1,6 +1,6 @@
 'use client'
 import {useState} from 'react';
-import InternationalInput from '../../../../../shared/ui/international-input';
+import InternationalInput from '../../../../../shared/ui/selectors/international-input';
 
 
 export default function FormCalendar({allPhoneNumbers, locale}) {

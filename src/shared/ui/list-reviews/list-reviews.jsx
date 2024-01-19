@@ -2,7 +2,7 @@
 import {useState} from "react";
 import {useParams} from "next/navigation";
 import ReviewCard from "src/widgets/latest-reviews/reviews-card";
-import Button from "@/shared/ui/button/button";
+import Button from "@/shared/ui/selectors/button/button";
 import {useTranslation} from "@/i18n/client";
 import {getReviews} from "@/entities/api";
 export default function ListReviews({reviews, total, limit, id}) {

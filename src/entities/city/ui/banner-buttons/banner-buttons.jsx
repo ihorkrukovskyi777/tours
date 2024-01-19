@@ -1,6 +1,6 @@
 'use client'
 
-import Button from "@/shared/ui/button/button";
+import Button from "@/shared/ui/selectors/button/button";
 import CalendarSvg from "@/assets/images/svg/calendar_white.svg";
 
 export default function BannerButtons() {

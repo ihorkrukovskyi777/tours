@@ -3,10 +3,10 @@ import {useContext, useEffect} from "react";
 import {observer} from "mobx-react-lite";
 import OpenModalButton from "@/entities/calendar/ui/open-modal-button";
 import DeparturesList from "@/entities/calendar/ui/departures-list";
-import TabsLanguages from "@/shared/ui/tabs-languages";
+import TabsLanguages from "src/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import Step3 from '@/entities/calendar/ui/modal-booking/step-3/index'
-import CounterNumbers from "@/shared/ui/counter-numbers";
+import CounterNumbers from "src/shared/ui/selectors/counter-numbers";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
 
 export default observer(function Main({ siteLocale }) {
