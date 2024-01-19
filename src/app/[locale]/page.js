@@ -11,11 +11,14 @@ import Highlights from '@/widgets/highlights';
 import TextBlocks from '@/widgets/text-blocks';
 import Guides from '@/widgets/guides';
 
+
+
+
 export default function Home({ params: { locale, slug = 'front' }}) {
     console.log(locale, slug)
   return (
     <main>
-
+        <BannerHome title="Free Walking Tours Worldwide"/>
     </main>
   )
 }

@@ -9,7 +9,7 @@ export default async function PostPage({ languages, title, id , locale}) {
 
     const data = await singlePost(id);
     const {attachment , content} = data;
-  
+    
     return (
         <div className="content">
             <BannerBlog title={title} image={attachment} />

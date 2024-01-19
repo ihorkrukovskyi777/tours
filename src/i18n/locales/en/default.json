@@ -1,5 +1,7 @@
 {
   "greeting": "Hello world!",
   "Change": "change",
-  "modalBookingTitle" : "Your booking details. You&apos;re almost there!"
+  "modalBookingTitle" : "Your booking details. You&apos;re almost there!",
+  "blogTitle" : "Blog Page",
+  "frontPageTitle": "Free Walking Tours Worldwide" 
 }
