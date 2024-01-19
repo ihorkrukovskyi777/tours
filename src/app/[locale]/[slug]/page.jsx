@@ -1,18 +1,18 @@
 import dynamic from "next/dynamic";
-import {Suspense} from "react";
+import Footer from "@/widgets/footer/footer";
 import {notFound} from "next/navigation";
 
 const CityPage = dynamic(
     () => import("@/entities/city/page/city-page"),
-    { ssr: true}
+    {ssr: true}
 )
 const PostPage = dynamic(
     () => import("@/entities/post/page/post-page"),
-    { ssr: true}
+    {ssr: true}
 )
 const FlexibleContent = dynamic(
     () => import("@/widgets/flexible-content/flexible-content"),
-    { ssr: true}
+    {ssr: true}
 )
 
 export default async function Page({params: {locale, slug}}) {
@@ -40,6 +40,7 @@ export default async function Page({params: {locale, slug}}) {
                     locale={locale}
                     id={data.id}
                     slug={slug}
+                    content={data.content}
                     languages={data.languages}
                     title={data.title}
                 />
@@ -54,6 +55,8 @@ export default async function Page({params: {locale, slug}}) {
                     title={data.title}
                 />
                 : null}
+
+            <Footer locale={locale}/>
         </main>
     )
 }

@@ -1,4 +1,4 @@
-import CheckoutSection from "@/widgets/checkout"
+import CheckoutSection from "@/entities/checkout/ui"
 import OtherTours from "@/widgets/other-tours"
 import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language"
 

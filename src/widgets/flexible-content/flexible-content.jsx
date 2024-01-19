@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language";
-
+import BannerHome from "@/widgets/flexible-content/sections/flexible-content/banner-home/banner-home";
 
 const AllCities = dynamic(
     () => import("@/widgets/flexible-content/sections/all-cities/all-cities"),
@@ -14,19 +14,21 @@ const ContactUs = dynamic(
 
 const FLEXIBLE_CONTENT = {
     sitemap_section: AllCities,
-    contact_us_section: ContactUs
+    contact_us_section: ContactUs,
+    banner: BannerHome,
 }
-export default async function CityPage({flexibleContent = [], locale, title, id, languages}) {
-
+export default async function FlexibleContent({flexibleContent = [], locale, title, id, languages, content}) {
+    console.log(flexibleContent, 'flexibleContent')
     return (
         <>
-            {flexibleContent.map(flexible => {
+            {content ? <div dangerouslySetInnerHTML={{__html:content}}></div> : null}
+            {flexibleContent.map((flexible, index) => {
                 const Component = FLEXIBLE_CONTENT[flexible];
 
                 if(Component === undefined) {
                     return null
                 }
-                return <Component key={flexible} locale={locale} title={title} id={id}/>
+                return <Component key={flexible} locale={locale} title={title} id={id} index={index}/>
             }) }
             <ChangeOfLanguage languages={languages} title={title}/>
         </>

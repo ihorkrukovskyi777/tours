@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Card from "@/shared/ui/card/card"
-import Reviews from "@/shared/ui/reviews/reviews";
+import Reviews from "@/widgets/latest-reviews/item/reviews";
 import LanguageImages from "@/shared/ui/language-images";
 import ClockImage from '/public/images/svg/clock.svg'
 import CalendarImage from '/public/images/svg/calendar.svg'

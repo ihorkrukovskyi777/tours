@@ -1,5 +1,5 @@
 import Banner from '@/shared/ui/banner';
-import Reviews from '@/shared/ui/reviews/reviews';
+import Reviews from '@/widgets/latest-reviews/item/reviews';
 import LanguageImages from '@/shared/ui/language-images';
 import Hours from '@/shared/ui/hours';
 import DefaultImage from '@/assets/images/languages/USUKflag.jpg';
