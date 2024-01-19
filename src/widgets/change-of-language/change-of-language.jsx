@@ -4,9 +4,9 @@ import {useParams} from "next/navigation";
 import Button from "@/shared/ui/button/button";
 import {fallbackLng} from "@/i18n/settings";
 import {useTranslation} from "@/i18n/client";
-import './style.css';
 import Link from "next/link";
 import FlagsComponents from "@/shared/ui/flags";
+import './style.css';
 
 export default function ChangeOfLanguage({languages, title}) {
     const {t} = useTranslation('country');
