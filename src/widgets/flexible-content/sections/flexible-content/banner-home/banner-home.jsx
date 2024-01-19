@@ -4,15 +4,16 @@ import LocationSvg from '@/assets/images/svg/location-svg';
 
 import './style.css';
 
-export default function BannerHome({title , size}) {
+export default function BannerHome({title , size, index}) {
+    console.log(title , size, index, 'title , size, index')
   return (
     <Banner title={title} size={size} nameBanner="home_banner">
          <DropdownSearch />
-         <p className="link"> 
+         <p className="link">
             <LocationSvg />
             <a target="_self" href="/all-cities"> See all Cities </a>
           </p>
     </Banner>
-   
+
   )
 }

@@ -1,22 +1,24 @@
 import {notFound} from "next/navigation";
-
-import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language";
 import Footer from "@/widgets/footer/footer";
-
-export default async function Home({params: {locale}}) {
+import dynamic from "next/dynamic";
+const FlexibleContent = dynamic(
+    () => import("@/widgets/flexible-content/flexible-content"),
+    {ssr: true}
+)
+export default async function Home({params: {locale}, ...props}) {
     const pageType = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/home?locale=${locale}`,
-        {next: {revalidate: 60}}
+        {next: {revalidate: 0}}
     )
     const data = await pageType.json();
     if (data.statusCode === 404 || typeof data.id !== 'number') {
         notFound();
     }
-    const {languages, title} = data;
+    const {languages} = data;
 
     return (
         <>
-            <ChangeOfLanguage languages={languages.map(lang => ({...lang, slug: ''}))} title={title}/>
+            <FlexibleContent {...data} locale={locale} {...props} languages={languages.map(lang => ({...lang, slug: ''}))}/>
             <Footer locale={locale}/>
         </>
     )

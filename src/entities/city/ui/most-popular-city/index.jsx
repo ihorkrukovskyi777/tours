@@ -1,7 +1,6 @@
 import Card from "@/shared/ui/card/card"
-import Reviews from "@/shared/ui/reviews/reviews";
+import Reviews from "@/widgets/latest-reviews/item/reviews";
 import {getPickCities} from "@/entities/api";
-import { createTranslation} from "@/i18n/server";
 import {fallbackLng} from "@/i18n/settings";
 
 import './style.css';

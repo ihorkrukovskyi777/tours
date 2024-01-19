@@ -1,4 +1,4 @@
-import Reviews from '../reviews/reviews';
+import Reviews from '../item/reviews';
 import { HelperDateHtml } from '@/shared/hepers/helperDateHtml';
 import styles from './style.module.css';
 

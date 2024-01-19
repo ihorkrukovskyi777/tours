@@ -2,15 +2,20 @@
 import {useState} from "react";
 import {useParams} from "next/navigation";
 import Button from "@/shared/ui/button/button";
-import LanguagesSite from "@/shared/ui/languages-site";
+import {fallbackLng} from "@/i18n/settings";
 import {useTranslation} from "@/i18n/client";
 import './style.css';
+import Link from "next/link";
+import FlagsComponents from "@/shared/ui/flags";
 
 export default function ChangeOfLanguage({languages, title}) {
-    const { t } = useTranslation('country');
+    const {t} = useTranslation('country');
     const [showLanguage, setShowLanguage] = useState(6);
     const params = useParams();
     const languagesFilter = languages.filter(item => item.locale !== params?.locale)
+
+    const getHref = (locale) => locale === fallbackLng ? '' : `/${locale}`
+
     return (
         <section id="change-of-language">
             <div className="container">
@@ -18,13 +23,16 @@ export default function ChangeOfLanguage({languages, title}) {
                 <ul>
                     {languagesFilter?.slice(0, showLanguage).map((item) => {
                         return (
-                            <LanguagesSite
-                                key={item.locale}
-                                slug={item.slug}
-                                code={item.locale}
-                            >
-                                Free Tours {title?.replace('<br>', '')} {t(`fullName.${item.locale}`)}
-                            </LanguagesSite>
+                            <li className="language" key={item.id}>
+                                <Link
+                                    href={`${getHref(item.locale)}/${item.slug}`}
+                                    prefetch={false}
+                                >
+                                    <span
+                                        className="wrap-txt">Free Tours {title?.replace('<br>', '')} {t(`fullName.${item.locale}`)}</span>
+                                    <FlagsComponents locale={item.locale}/>
+                                </Link>
+                            </li>
                         )
                     })}
                 </ul>

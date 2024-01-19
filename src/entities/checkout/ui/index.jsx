@@ -11,7 +11,7 @@ import { getCountryPhone } from '@/entities/api';
 import ModalBookingEdit from '@/shared/ui/modal-booking-edit';
 import Step1 from '@/shared/ui/modal-booking-edit/step-1';
 import Step2 from '@/shared/ui/modal-booking-edit/step-2';
-import DefaultModal from '../default-modal';
+import DefaultModal from '../../../widgets/default-modal';
 import ThankYouMessage from '@/shared/ui/thank-you-message';
 import './style.css';
 

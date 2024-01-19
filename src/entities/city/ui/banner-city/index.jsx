@@ -1,6 +1,6 @@
 import Banner from '@/shared/ui/banner';
 import BannerButtons from "@/entities/city/ui/banner-buttons/banner-buttons";
-import Reviews from '@/shared/ui/reviews/reviews';
+import Reviews from '@/widgets/latest-reviews/item/reviews';
 import {getBannerData} from "@/entities/api";
 import './style.css';
 
