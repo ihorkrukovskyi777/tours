@@ -20,7 +20,7 @@ export default function Banner({attachment = null, title, children, bottomView =
                     <Image src={DefaultImage} width={1920} height={560} alt='banner' className='banner_bg' />}
                 <div className="container">
                     <div className="intro">
-                        <h1 className="title" dangerouslySetInnerHTML={{__html: title}}></h1>
+                        <h1 className="title" dangerouslySetInnerHTML={{__html: title || ''}}></h1>
                         <div className="wrapper">
                             {children}
                         </div>

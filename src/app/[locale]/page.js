@@ -1,8 +1,8 @@
 import {notFound} from "next/navigation";
-import Footer from "@/widgets/footer/footer";
+import Footer from "@/shared/ui/layouts/footer/footer";
 import dynamic from "next/dynamic";
 const FlexibleContent = dynamic(
-    () => import("@/widgets/flexible-content/flexible-content"),
+    () => import("@/shared/ui/flexible-content/flexible-content"),
     {ssr: true}
 )
 export default async function Home({params: {locale}, ...props}) {

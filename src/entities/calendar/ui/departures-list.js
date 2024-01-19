@@ -3,7 +3,7 @@ import {observer} from "mobx-react-lite";
 import Image from "next/image";
 import LogoOneport from '../../../../public/images/svg/logo-oneport.svg';
 import LanguageLoader from "@/shared/ui/loaders/language-loader";
-import TourItem from "@/shared/ui/tour-item";
+import TourItem from "src/entities/calendar/ui/tour-item";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
 import { ServiceDate } from "@/shared/service/service-date";
 import { setFormatDDMMYYYYtoMMDDYYYY } from "@/shared/hepers/date";

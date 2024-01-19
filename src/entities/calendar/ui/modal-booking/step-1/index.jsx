@@ -1,8 +1,8 @@
 
 import {observer} from "mobx-react-lite";
-import TabsLanguages from '@/shared/ui/tabs-languages';
-import CounterNumbers from '@/shared/ui/counter-numbers';
-import Calendar from '@/shared/ui/calendar';
+import TabsLanguages from 'src/entities/calendar/ui/tabs-languages';
+import CounterNumbers from 'src/shared/ui/selectors/counter-numbers';
+import Calendar from 'src/entities/calendar/ui/items';
 import CloseSvg from '@/assets/images/svg/close-svg';
 import Loader from "@/shared/ui/loaders/default-loader";
 import useEscHooks from "@/shared/hooks/use-esc-event";

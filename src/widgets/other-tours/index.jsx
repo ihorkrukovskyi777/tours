@@ -1,7 +1,6 @@
-import Card from "@/shared/ui/card/card"
 import './style.css';
 
-const dataSlider = [ 
+const dataSlider = [
     {id: 121212, title:'Free Witchcraft Tour London'},
     {id: 533, title:'Free Witchcraft Tour Lviv'},
     {id: 1324, title:'Free Witchcraft Tour Madrid'},
@@ -23,11 +22,11 @@ export default function OtherTours({title='Other Tours in London' , items=dataSl
                                 </div>
                             </div>
                         </a>
-                    ) 
+                    )
                 })}
-            </div> 
-        </div>   
+            </div>
+        </div>
     </section>
-    
+
   )
 }

@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import Button from '../../../../../shared/ui/button/button';
+import Button from '@/shared/ui/selectors/button/button';
 import CloseSvg from '@/assets/images/svg/close-svg';
 import FullStarSvg from '@/assets/images/svg/full-star';
 import FormCalendar from './form';

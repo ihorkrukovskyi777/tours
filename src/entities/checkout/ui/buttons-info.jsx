@@ -1,6 +1,6 @@
 
 'use client';
-import Button from "@/shared/ui/button/button"
+import Button from "@/shared/ui/selectors/button/button"
 
 
 export default function ButtonsInfo({isOpened , isOpenedModal}) {

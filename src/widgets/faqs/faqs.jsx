@@ -1,5 +1,5 @@
 'use client';
-import Dropdown from '@/shared/ui/dropdown/dropdown';
+import Dropdown from '@/shared/ui/selectors/dropdown/dropdown';
 import styles from './style.css';
 
 export default function Faqs( { questions = [] }) {

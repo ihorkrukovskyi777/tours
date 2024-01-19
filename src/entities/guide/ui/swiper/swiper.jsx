@@ -1,5 +1,5 @@
 'use client';
-import CardGuide from '@/shared/ui/card-guide';
+import CardGuide from 'src/entities/guide/ui/card-guide';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import FullStarSvg from '@/assets/images/svg/full-star';
@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 export default function SwiperGuides({guides}) {
-    
+
     return (
         <Swiper
             // install Swiper modules
@@ -40,13 +40,13 @@ export default function SwiperGuides({guides}) {
                                 <FullStarSvg />
                                 <div className="rating_number">{rating}</div>
                             </div>
-                            : null 
+                            : null
                         }
                         </CardGuide>
                     </SwiperSlide>
                 )
             })}
         </Swiper>
-       
+
     )
 }

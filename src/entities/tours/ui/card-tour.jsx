@@ -1,4 +1,4 @@
-import Card from "@/shared/ui/card/card"
+import Card from "@/shared/ui/card-components/card/card"
 import Reviews from "@/widgets/latest-reviews/item/reviews"
 
 export default function CardTour({title, children}) {

@@ -1,4 +1,4 @@
-import Banner from '@/shared/ui/banner';
+import Banner from 'src/shared/ui/banner';
 import BannerButtons from "@/entities/city/ui/banner-buttons/banner-buttons";
 import Reviews from '@/widgets/latest-reviews/item/reviews';
 import {getBannerData} from "@/entities/api";

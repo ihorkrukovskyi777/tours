@@ -1,9 +1,9 @@
 import {observer} from "mobx-react-lite";
-import Button from "@/shared/ui/button/button";
+import Button from "@/shared/ui/selectors/button/button";
 import CalendarSvg from "@/assets/images/svg/calendar-svg";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import Step1 from "@/entities/calendar/ui/modal-booking/step-1";
-import Step2 from "@/shared/ui/modal-booking-edit/step-2";
+import Step2 from "src/entities/calendar/ui/modal-booking/step-2";
 export default observer(function OpenModalButton({ storeModalCalendar }) {
 
     const {

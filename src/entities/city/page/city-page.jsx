@@ -8,7 +8,7 @@ import Highlights from "@/widgets/highlights";
 import TextBlocks from "@/widgets/text-blocks";
 import Guides from "src/entities/guide/ui/guides";
 import MostPopularCity from "src/entities/city/ui/most-popular-city";
-import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language";
+import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Link from "next/link";
 import {createTranslation} from "@/i18n/server";

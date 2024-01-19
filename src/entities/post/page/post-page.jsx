@@ -1,7 +1,7 @@
 import BannerBlog from "@/entities/post/ui/banner-blog/banner-blog";
-import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language";
+import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 import { singlePost } from "@/entities/api";
-import PostContent from "@/widgets/post-content/post-content";
+import PostContent from "@/entities/post/ui/post-content/post-content";
 
 
 

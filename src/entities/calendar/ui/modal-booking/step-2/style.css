@@ -7,3 +7,6 @@
 .step-2 .available-tours {
     margin: 30px 0 15px 0;
 }
+.step-2 .disable {
+    pointer-events: none;
+}
