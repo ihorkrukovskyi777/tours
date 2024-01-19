@@ -10,7 +10,7 @@ import {ServiceDate} from "@/shared/service/service-date";
 
 export default async function MostPopularTours({id, locale}) {
 
-    const tours = await picketCityPosts(id, locale)
+    const tours = await picketCityPosts(id, locale);
     return (
         <section className="most_popular_tour">
             <div className="container">

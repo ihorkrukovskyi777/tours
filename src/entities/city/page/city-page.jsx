@@ -1,3 +1,4 @@
+import {Suspense} from "react";
 import BannerCity from "@/widgets/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import MostPopularTours from "@/widgets/most-popular-tours";
@@ -10,6 +11,7 @@ import MostPopularCity from "@/widgets/most-popular-city";
 import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Link from "next/link";
+import Loader from "@/shared/ui/loaders/default-loader";
 import {createTranslation} from "@/i18n/server";
 
 
@@ -23,20 +25,27 @@ export default async function CityPage({locale, title, id, languages}) {
                 locale={locale}
                 id={id}
             />
+
             <SsrCalendar locale={locale} type="city" id={id}/>
-            <MostPopularTours id={id} locale={locale}/>
+            <Suspense fallback={''}>
+                <MostPopularTours id={id} locale={locale}/>
+            </Suspense>
             <TextQuote id={id} locale={locale}/>
             <LatestReviews id={id} locale={locale}/>
             <Highlights id={id}/>
             <TextBlocks id={id} locale={locale}/>
-            <Guides id={id} locale={locale} title={title}/>
-            <MostPopularCity locale={locale} id={id}/>
+            <Suspense fallback={''}>
+                <Guides id={id} locale={locale}/>
+            </Suspense>
+            <Suspense fallback={''}>
+                <MostPopularCity locale={locale} id={id}/>
+            </Suspense>
             <ChangeOfLanguage languages={languages} title={title}/>
             <Breadcrumbs>
                 <p id="breadcrumbs">
               <span>
                   <span>
-                      <Link className="first_link" href="/">{t('Free Tour')}</Link>
+                      <Link prefetch={false} className="first_link" href="/">{t('Free Tour')}</Link>
                       <span className="arrow-right-b"> - </span>
                       <span>
                           <span className="breadcrumb_last" aria-current="page">{title}</span>

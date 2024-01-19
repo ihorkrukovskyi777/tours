@@ -8,7 +8,6 @@ export default function LanguagesSite({children, slug, code}) {
 
     const handleLocaleChange = (newLocale, slug) => router.push(`/${newLocale}/${slug}`);
 
-
     return (
         <li className="language">
             <Link

@@ -13,7 +13,6 @@ export default function ListReviews({reviews, total, limit, id}) {
         offset: limit,
         value: [],
     })
-
     const loadReviews = async () => {
         const results = await getReviews(id, params.locale, limit, moreReviews.offset)
         setMoreReviews({
