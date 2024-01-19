@@ -3,6 +3,8 @@ import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language";
 import { singlePost } from "@/entities/api";
 import PostContent from "@/widgets/post-content/post-content";
 
+
+
 export default async function PostPage({ languages, title, id , locale}) {
 
     const data = await singlePost(id);

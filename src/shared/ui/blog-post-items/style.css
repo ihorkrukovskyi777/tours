@@ -51,3 +51,7 @@
 .single-post-text p:first-child {
     margin: 0
 }
+.single-post-text ul,
+.single-post-text ol {
+    list-style-position: inside;
+}

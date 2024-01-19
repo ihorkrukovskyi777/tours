@@ -1,7 +1,7 @@
 import Post from "./post";
 import './style.css';
 
-export default function BlogPostItem({posts}) {
+export default function BlogPostItems({posts}) {
 
     return (
         <div className="container">

@@ -1,5 +1,4 @@
 import IcloudImage from '../icloud-image';
-import parse from 'html-react-parser';
 import './style.css';
 
 export default function Post({data}) {

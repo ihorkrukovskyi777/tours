@@ -20,3 +20,18 @@
 .post_content .wrapper div {
     max-width: 100%;
 }
+.post_content ul {
+    margin: 30px 0 0;
+    padding: 0;
+}
+.post_content ul,
+.post_content ol {
+    list-style-position: inside;
+}
+.post_content strong {
+    font-size: 20px;
+    color: #000;
+    line-height: 1.22;
+    margin: 25px 0 25px 0;
+    display: block;
+}
