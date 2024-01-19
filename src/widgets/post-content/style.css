@@ -1,0 +1,37 @@
+/* Post Content */
+.post_content{
+    margin: 65px 0 60px;
+}
+.post_content .wrapper{
+    max-width: 66.7%;
+}
+.post_content h3{
+    margin: 80px 0 30px;
+}
+.post_content h3:first-child{
+    margin: 0 0 30px;
+}
+.post_content p{
+    font-size: 20px;
+    color: #000;
+    line-height: 1.22;
+    margin: 25px 0 0;
+}
+.post_content .wrapper div {
+    max-width: 100%;
+}
+.post_content ul {
+    margin: 30px 0 0;
+    padding: 0;
+}
+.post_content ul,
+.post_content ol {
+    list-style-position: inside;
+}
+.post_content strong {
+    font-size: 20px;
+    color: #000;
+    line-height: 1.22;
+    margin: 25px 0 25px 0;
+    display: block;
+}

@@ -11,7 +11,6 @@ import MostPopularCity from "@/widgets/most-popular-city";
 import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Link from "next/link";
-import Loader from "@/shared/ui/loaders/default-loader";
 import {createTranslation} from "@/i18n/server";
 
 

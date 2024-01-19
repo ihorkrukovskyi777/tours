@@ -1,0 +1,35 @@
+.top-banner-blog {
+    position: relative;
+    padding: 170px 0
+}
+
+.top-banner-blog:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.6) 100%);
+    z-index: 1
+}
+
+.top-banner-blog img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.top-banner-blog h1 {
+    color: #fff;
+    line-height: 1.1;
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    text-transform: capitalize;
+    z-index: 1
+}
