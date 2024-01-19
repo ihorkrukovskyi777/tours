@@ -16,10 +16,11 @@ const FLEXIBLE_CONTENT = {
     sitemap_section: AllCities,
     contact_us_section: ContactUs
 }
-export default async function CityPage({flexibleContent = [], locale, title, id, languages}) {
+export default async function CityPage({flexibleContent = [], locale, title, id, languages, content}) {
 
     return (
         <>
+            {content ? <div dangerouslySetInnerHTML={{__html:content}}></div> : null}
             {flexibleContent.map(flexible => {
                 const Component = FLEXIBLE_CONTENT[flexible];
 

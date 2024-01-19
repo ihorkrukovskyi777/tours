@@ -1,6 +1,7 @@
 import {notFound} from "next/navigation";
 
 import ChangeOfLanguage from "@/widgets/change-of-language/change-of-language";
+import Footer from "@/widgets/footer/footer";
 
 export default async function Home({params: {locale}}) {
     const pageType = await fetch(
@@ -16,6 +17,7 @@ export default async function Home({params: {locale}}) {
     return (
         <>
             <ChangeOfLanguage languages={languages.map(lang => ({...lang, slug: ''}))} title={title}/>
+            <Footer locale={locale}/>
         </>
     )
 }

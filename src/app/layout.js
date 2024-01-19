@@ -1,6 +1,4 @@
 import Header from '@/widgets/header/header'
-import Footer from '@/widgets/footer/footer'
-import Head from 'next/head'
 
 import './globals.css'
 
@@ -18,7 +16,6 @@ export default function RootLayout({ children }) {
         <main className={'main_flex_container'}>
             <Header/>
             {children}
-            <Footer />
         </main>
         </body>
         </html>
