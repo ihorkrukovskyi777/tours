@@ -25,17 +25,18 @@ const FLEXIBLE_CONTENT = {
 export default async function FlexibleContent({flexibleContent = [], locale, title, id, languages, content = ''}) {
     console.log(flexibleContent, 'flexibleContent', content)
     return (
-        <>
-            {!!content && typeof content === 'string' ? <div dangerouslySetInnerHTML={{__html: content || ''}}></div> : null}
+        <main>
+            {!!content && typeof content === 'string' ? <div className="container"><div className="wpContent"  dangerouslySetInnerHTML={{__html: content || ''}}></div></div> : null}
             {flexibleContent.map((flexible, index) => {
                 const Component = FLEXIBLE_CONTENT[flexible];
 
                 if(Component === undefined) {
                     return null
                 }
+                <div></div>
                 return <Component key={flexible} locale={locale} title={title} id={id} index={index} flexibleKey={flexible}/>
             }) }
             <ChangeOfLanguage languages={languages} title={title}/>
-        </>
+        </main>
     )
 }
