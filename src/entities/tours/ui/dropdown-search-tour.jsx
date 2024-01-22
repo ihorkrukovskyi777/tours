@@ -1,39 +1,22 @@
 "use client";
-import React, { useState , useEffect } from 'react';
-import { useDebounce } from 'use-debounce';
-import { blogPosts } from '@/entities/api';
-
-const cities = blogPosts();
-
-export default function DropdownSearch() {
-    const [text, setText] = useState('');
-    const [debouncedText] = useDebounce(text, 700, { maxWait: 2000 });
-
-    useEffect(() => {
-        cities.then((result) => {
-            console.log('Promise result:', result);
-        }).catch((error) => {
-            console.error('Promise error:', error);
-        });
-    },[debouncedText]);
-
-    
+import React, { useState } from 'react';
+import {observer} from "mobx-react-lite";
+import {StoreSearchCity} from "@/shared/ui/flexible-content/banner-home/store/search-city";
+export default observer(function DropdownSearch() {
+    const [store] = useState(new StoreSearchCity())
     return (
         <form autoComplete="off">
             <label>
-                <input 
+                <input
                     name="q"
                     id="q"
                     type="text"
                     placeholder="Where Are You Going?"
-                    defaultValue={''}
-                    onChange={(e) => {
-                        setText(e.target.value);
-                    }}/> 
+                    defaultValue={''}/>
             </label>
             <div id="result"></div>
         </form>
     )
-}
+})
 
 
