@@ -22,7 +22,7 @@ export async function getPickCities(id, locale = 'en') {
     return data.json();
 }
 
-export async function picketCityPosts(id, locale = 'en') {
+export async function picketToursBox(id, locale = 'en') {
 
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/tours-box/${id}?locale=${locale}`,
@@ -138,7 +138,7 @@ export const blogPosts = async (locale = 'en') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/blog/last-posts`,
-            {next: {revalidate: 0}}
+            {next: {revalidate: 60}}
         );
         return res.json()
     } catch (err) {
@@ -150,7 +150,7 @@ export const singlePost = async (id, locale = 'en') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/blog/post/${id}`,
-            {next: {revalidate: 0}}
+            {next: {revalidate: 60}}
         );
         return res.json()
     } catch (err) {

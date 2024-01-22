@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import Footer from "@/shared/ui/layouts/footer/footer";
 import {notFound} from "next/navigation";
 
 const CityPage = dynamic(
@@ -11,7 +10,7 @@ const PostPage = dynamic(
     {ssr: true}
 )
 const FlexibleContent = dynamic(
-    () => import("@/shared/ui/flexible-content/flexible-content"),
+    () => import("@/widgets/flexible-content"),
     {ssr: true}
 )
 
@@ -25,39 +24,37 @@ export default async function Page({params: {locale, slug}}) {
         notFound();
     }
     return (
-        <>  
-            <main>
-                {data.type === 'city' ?
-                    <CityPage
-                        locale={locale}
-                        slug={slug}
-                        id={data.id}
-                        languages={data.languages}
-                        title={data.title}/>
-                    : null}
-                {data.type === 'default' ?
-                    <FlexibleContent
-                        flexibleContent={data.flexibleContent}
-                        locale={locale}
-                        id={data.id}
-                        slug={slug}
-                        content={data.content}
-                        languages={data.languages}
-                        title={data.title}
-                    />
-                    : null}
+        <main>
+            {data.type === 'city' ?
+                <CityPage
+                    locale={locale}
+                    slug={slug}
+                    id={data.id}
+                    languages={data.languages}
+                    title={data.title}/>
+                : null}
+            {data.type === 'default' ?
+                <FlexibleContent
+                    flexibleContent={data.flexibleContent}
+                    locale={locale}
+                    id={data.translateId}
+                    slug={slug}
+                    content={data.content}
+                    languages={data.languages}
+                    title={data.title}
+                />
+                : null}
 
-                {data.type === 'post' ?
-                    <PostPage
-                        locale={locale}
-                        id={data.translateId}
-                        slug={slug}
-                        languages={data.languages}
-                        title={data.title}
-                    />
-                    : null}
-            </main>
-            <Footer locale={locale}/>
-        </>
+            {data.type === 'post' ?
+                <PostPage
+                    locale={locale}
+                    id={data.translateId}
+                    slug={slug}
+                    languages={data.languages}
+                    title={data.title}
+                />
+                : null}
+
+        </main>
     )
 }

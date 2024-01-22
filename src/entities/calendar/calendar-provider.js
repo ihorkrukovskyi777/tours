@@ -2,7 +2,7 @@
 import {createContext, memo} from "react";
 import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
-import Faqs from "@/widgets/faqs/faqs";
+import Faqs from "@/shared/ui/faqs/faqs";
 import dynamic from "next/dynamic";
 import Loader from "@/shared/ui/loaders/default-loader";
 
@@ -21,7 +21,7 @@ export const StoreCalendarContext = createContext(null)
 export default memo(async function CalendarProvider({locale, type, id, activeLanguage, questions}) {
 
 
-    let findLocale = activeLanguage.find(item => item.code === locale);
+    let findLocale = activeLanguage?.find(item => item.code === locale);
     if(!findLocale) {
         [findLocale] = activeLanguage
     }

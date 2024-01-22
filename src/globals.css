@@ -1,5 +1,5 @@
 /* FONTS */
-@import '../assets/fonts/fonts.css';
+@import 'assets/fonts/fonts.css';
 
 
 
@@ -119,7 +119,7 @@ a {
   position: absolute;
   justify-content: center;
   align-items: center;
-  background: url('../assets/images/svg/arrow-swiper.svg');
+  background: url('assets/images/svg/arrow-swiper.svg');
   background-repeat: no-repeat;
   background-position: center;
   width: 20px;

@@ -1,10 +1,7 @@
 'use client';
 import Dropdown from '@/shared/ui/selectors/dropdown/dropdown';
-import styles from './style.css';
-
+import './style.css'
 export default function Faqs( { questions = [] }) {
-
-
     return (
         <section className="faq">
             <div className="container">

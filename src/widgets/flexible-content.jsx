@@ -1,18 +1,26 @@
 import dynamic from "next/dynamic";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
-import BannerHome from "@/shared/ui/flexible-content/sections/banner-home/banner-home";
+import BannerHome from "@/shared/ui/flexible-content/banner-home/banner-home";
 
 const AllCities = dynamic(
-    () => import("@/shared/ui/flexible-content/sections/all-cities/all-cities"),
+    () => import("@/shared/ui/flexible-content/all-cities/all-cities"),
     {ssr: true}
 )
 
 const ContactUs = dynamic(
-    () => import("@/shared/ui/flexible-content/sections/contact-us/contact-us"),
+    () => import("@/shared/ui/flexible-content/contact-us/contact-us"),
     {ssr: true}
 )
 const MostPopular = dynamic(
-    () => import("@/shared/ui/flexible-content/sections/most-popular/most-popular"),
+    () => import("@/shared/ui/flexible-content/most-popular/most-popular"),
+    {ssr: true}
+)
+const PopularTours = dynamic(
+    () => import("@/shared/ui/flexible-content/popular-tours/popular-tours"),
+    {ssr: true}
+)
+const FaqSections = dynamic(
+    () => import("@/shared/ui/flexible-content/faq-section/faq-section"),
     {ssr: true}
 )
 
@@ -21,9 +29,10 @@ const FLEXIBLE_CONTENT = {
     contact_us_section: ContactUs,
     banner: BannerHome,
     most_popular: MostPopular,
+    popular_tours: PopularTours,
+    faq_section: FaqSections,
 }
 export default async function FlexibleContent({flexibleContent = [], locale, title, id, languages, content = ''}) {
-    console.log(flexibleContent, 'flexibleContent', content)
     return (
         <main>
             {!!content && typeof content === 'string' ? <div className="container"><div className="wpContent"  dangerouslySetInnerHTML={{__html: content || ''}}></div></div> : null}
