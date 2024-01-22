@@ -18,7 +18,7 @@ const Main = dynamic(
 
 export const StoreCalendarContext = createContext(null)
 
-export default memo(async function CalendarProvider({locale, type, id, activeLanguage, questions}) {
+export default memo(function CalendarProvider({locale, type, id, activeLanguage, questions}) {
 
 
     let findLocale = activeLanguage?.find(item => item.code === locale);

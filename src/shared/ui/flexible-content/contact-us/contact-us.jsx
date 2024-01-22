@@ -96,10 +96,10 @@ export default function ContactUs({ locale, title, id }) {
              setValidate(true);
              //REDIRECT TO CHECKOUT PAGE
              const formData = {
-                 firstName: document.querySelector("#contact_form input[name='firstName']").value,
-                 email: document.querySelector("#contact_form input[name='email']").value,
-                 yoursubject: document.querySelector("#contact_form input[name='yoursubject']").value,
-                 yourmessage: document.querySelector("#contact_form textarea[name='yourmessage']").value,
+                 firstName: document.querySelector("#contact_form input[[name]='firstName']").value,
+                 email: document.querySelector("#contact_form input[[name]='email']").value,
+                 yoursubject: document.querySelector("#contact_form input[[name]='yoursubject']").value,
+                 yourmessage: document.querySelector("#contact_form textarea[[name]='yourmessage']").value,
              }
          } else {
              console.error('Invalid Form')

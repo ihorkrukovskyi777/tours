@@ -1,19 +1,19 @@
 import Image from 'next/image';
 import DefaultImage from '@/assets/images/default-image.jpeg';
-
+import IcloudImage from "@/shared/ui/icloud-image";
 import styles from './style.module.css';
 
-export default function BannerSubVendor({image = DefaultImage , title , children }) {
+export default function BannerSubVendor({image = DefaultImage , name , children, avatar }) {
   return (
     <section className="banner_subvendor">
       <Image className={styles.banner_bg} src={DefaultImage} alt="Picture of the author" />
       <div className="container">
           <div className={styles.wrapper}>
             <div className={styles.img_box}>
-              <Image className={styles.img_subvendor} src={image} alt="Picture of the author" />
+                <IcloudImage src={avatar} width={240} height={240}></IcloudImage>
             </div>
-            <div className={styles.text_box}>
-                <h1 className={styles.title}>{title}</h1>
+            <div>
+                <h1 className={styles.title}>{name}</h1>
                 {children}
             </div>
           </div>

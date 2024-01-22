@@ -158,7 +158,7 @@ export default class TourLogic {
         if (this._fetch) return this._fetch;
         this._fetch = new Promise(async (res) => {
 
-            const { timezone, deps } = await fetchDepartures(this.id, this.currentLang);
+            const { timezone, deps } = await fetchDepartures(this.id, this.type, this.currentLang);
             this.data[this.currentLang] = deps;
 
             res(timezone);

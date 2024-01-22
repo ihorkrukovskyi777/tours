@@ -1,7 +1,7 @@
-export async function getBannerData(id, locale) {
+export async function getBannerData(id, locale, type = 'city', revalidate = 0, ) {
     const data = await fetch(
-        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/banner/${id}?locale=${locale}`,
-        {next: {revalidate: 10}}
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/banner/${id}?locale=${locale}`,
+        {next: {revalidate: revalidate}}
     )
     return data.json();
 }
@@ -121,10 +121,10 @@ export const allCitiesData  = async (locale = 'en') => {
     }
 }
 
-export const allGuides = async (id, locale = 'en') => {
+export const allGuides = async (id, type ='city') => {
     try {
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/sub-vendors/${id}`,
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/sub-vendors/${id}`,
             {next: {revalidate: 0}}
         );
         return res.json()

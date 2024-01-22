@@ -1,36 +1,23 @@
-import BannerTour from "src/entities/tours/ui/banner-tour"
-import TextAndSlider from "@/widgets/text-and-slider"
-import TextBlocks from "@/widgets/text-blocks"
-import Guides from "src/entities/guide/ui/guides"
-import OtherTours from "@/widgets/other-tours"
-import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language"
-import Breadcrumbs from "@/shared/ui/breadcrumbs"
+import BannerTour from "@/entities/tour/ui/banner-tour";
+import {notFound} from "next/navigation";
+import SsrCalendar from "@/entities/calendar/ssr-calendar";
+import Guides from "src/shared/ui/guides";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
-
-export default function Home() {
-  return (
-    <main>
-        heelo
-        {/*<BannerTour title="Free London by the Thames Tour" size="tour_banner"/>*/}
-        {/*<TextAndSlider/>*/}
-        {/*<TextBlocks/>*/}
-        {/*<Guides/>*/}
-        {/*<OtherTours/>*/}
-        {/*<ChangeOfLanguage/>*/}
-        {/*<Breadcrumbs>*/}
-        {/*  <p id="breadcrumbs">*/}
-        {/*      <span>*/}
-        {/*          <span>*/}
-        {/*              <a className="first_link" href="http://dev.oneporttest.com">Free Tour </a>*/}
-        {/*              <span className="arrow-right-b"> - </span>*/}
-        {/*              <span>*/}
-        {/*                  <span className="breadcrumb_last" aria-current="page">London</span>*/}
-        {/*              </span>*/}
-        {/*          </span>*/}
-        {/*      </span>*/}
-        {/*  </p>*/}
-        {/*</Breadcrumbs>*/}
-
-    </main>
-  )
+export default async function Page({params: {locale, slug, tour}}) {
+    const data = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/${slug}/tours/${tour}?locale=${locale}`,
+        {next: {revalidate: 60}}
+    )
+    const page = await data.json();
+    if (page.statusCode === 404) {
+        notFound();
+    }
+    return (
+        <main>
+            <BannerTour locale={page.locale} id={page.id}/>
+            <SsrCalendar locale={page.locale} type="tour" id={page.id}/>
+            <Guides title={page.title} id={page.id} locale={page.locale} type="tour"/>
+        </main>
+    )
 }

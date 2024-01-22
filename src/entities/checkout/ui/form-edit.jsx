@@ -49,16 +49,16 @@ function validateSwitch(name) {
         case 'firstName':
           setFirstName(value);
           if(value.length < 1 ) errorMsg = 'This field is requared'
-          if(value.length > 50) errorMsg = '"First name" max length is 50 symbols';
-          if(hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
+          if(value.length > 50) errorMsg = '"First [name]" max length is 50 symbols';
+          if(hasNumber.test(value)) errorMsg = '"First [name]" should be without numbers';
           errors.firstName = errorMsg
           break;
 
         case 'lastName':
           setLastName(value);
           if(value.length < 1 ) errorMsg = 'This field is requared';
-          if(value.length > 50) errorMsg = '"First name" max length is 50 symbols';
-          if(hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
+          if(value.length > 50) errorMsg = '"First [name]" max length is 50 symbols';
+          if(hasNumber.test(value)) errorMsg = '"First [name]" should be without numbers';
           errors.lastName = errorMsg
           break;
 

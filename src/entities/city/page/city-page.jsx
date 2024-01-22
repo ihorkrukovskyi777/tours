@@ -6,7 +6,7 @@ import TextQuote from "@/widgets/text-quote";
 import LatestReviews from "@/widgets/latest-reviews";
 import Highlights from "@/widgets/highlights";
 import TextBlocks from "@/widgets/text-blocks";
-import Guides from "src/entities/guide/ui/guides";
+import Guides from "src/shared/ui/guides";
 import MostPopularCity from "src/entities/city/ui/most-popular-city";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
