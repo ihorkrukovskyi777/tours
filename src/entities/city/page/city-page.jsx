@@ -16,7 +16,6 @@ import {createTranslation} from "@/i18n/server";
 
 export default async function CityPage({locale, title, id, languages, slug}) {
     const {t} = await createTranslation(locale);
-
     return (
         <>
             <BannerCity

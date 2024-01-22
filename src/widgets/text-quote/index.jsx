@@ -2,7 +2,8 @@ import { getTextQuote } from "@/entities/api";
 import './style.css';
 export default async function TextQuote({ id, locale}) {
 
-  const data = await getTextQuote(id, locale)
+  const data = await getTextQuote(id, locale);
+
   return (
     <section className="text_quote">
         <div className="container">
