@@ -4,7 +4,7 @@ import { useState } from 'react';
 import './style.css';
 
 export default function ContactUs({ locale, title, id }) {
-   
+
      //validation
      const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
      const validateForm = errors => {
@@ -29,11 +29,11 @@ export default function ContactUs({ locale, title, id }) {
              email: '',
              yoursubject: '',
              yourmessage: '',
- 
+
          }
      }
      const [state, setState] = useState(stateAll);
- 
+
      function validateSwitch(name) {
          let hasNumber = /\d/;
          let errorMsg = '';
@@ -43,12 +43,12 @@ export default function ContactUs({ locale, title, id }) {
                  if (value.length < 1) errorMsg = 'This field is requared'
                  errors.firstName = errorMsg
                  break;
- 
+
              case 'yoursubject':
                  if (value.length < 1) errorMsg = 'This field is requared';
                  errors.yoursubject = errorMsg
                  break;
- 
+
              case 'email':
                  errors.email =
                      validEmailRegex.test(value)
@@ -63,7 +63,7 @@ export default function ContactUs({ locale, title, id }) {
                  break;
          }
      }
- 
+
      function handleChange(event) {
          //event.preventDefault();
          const {name} = event.target;
@@ -71,10 +71,10 @@ export default function ContactUs({ locale, title, id }) {
          validateSwitch(name);
          setState({errors, [name]: value});
          !loadValidate && setLoadValidate(true);
- 
+
      }
 
- 
+
      function handleSubmit(event) {
          event.preventDefault();
          if (validate === null) {
@@ -90,7 +90,7 @@ export default function ContactUs({ locale, title, id }) {
              });
              !loadValidate && setLoadValidate(true);
          }
- 
+
          if (validateForm(state.errors) && loadValidate === true) {
              console.info('Valid Form');
              setValidate(true);
@@ -101,15 +101,14 @@ export default function ContactUs({ locale, title, id }) {
                  yoursubject: document.querySelector("#contact_form input[name='yoursubject']").value,
                  yourmessage: document.querySelector("#contact_form textarea[name='yourmessage']").value,
              }
-             console.log(formData);
          } else {
              console.error('Invalid Form')
              setValidate(false);
          }
      }
- 
+
      const {errors} = state;
- 
+
      const [value, setValue] = useState(null);
 
 
@@ -154,12 +153,12 @@ export default function ContactUs({ locale, title, id }) {
                                 <button onSubmit={handleSubmit}>Send Message</button>
                             </div>
                         </div>
-                          
-                    </form>    
-                
-                </div> 
 
-            </div>   
+                    </form>
+
+                </div>
+
+            </div>
         </section>
     )
 }

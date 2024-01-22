@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import Footer from "@/shared/ui/layouts/footer/footer";
 import {notFound} from "next/navigation";
 
 const CityPage = dynamic(
@@ -11,7 +10,7 @@ const PostPage = dynamic(
     {ssr: true}
 )
 const FlexibleContent = dynamic(
-    () => import("@/shared/ui/flexible-content/flexible-content"),
+    () => import("@/widgets/flexible-content"),
     {ssr: true}
 )
 
@@ -38,7 +37,7 @@ export default async function Page({params: {locale, slug}}) {
                 <FlexibleContent
                     flexibleContent={data.flexibleContent}
                     locale={locale}
-                    id={data.id}
+                    id={data.translateId}
                     slug={slug}
                     content={data.content}
                     languages={data.languages}
@@ -56,7 +55,6 @@ export default async function Page({params: {locale, slug}}) {
                 />
                 : null}
 
-            <Footer locale={locale}/>
         </main>
     )
 }

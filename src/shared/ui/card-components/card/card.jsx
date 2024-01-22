@@ -1,6 +1,8 @@
 import IcloudImage from "@/shared/ui/icloud-image";
 import Link from "next/link";
-export default function Card({attachment = '', url , title, children, size = 'public', topElement, bottomElement}) {
+
+export default function Card({attachment = '', url, title, children, size = 'public', topElement, bottomElement}) {
+
     return (
         <div className='item_wrap'>
             <div className="item">
@@ -13,7 +15,7 @@ export default function Card({attachment = '', url , title, children, size = 'pu
                     size={size}
                 />
                 <div className="intro">
-                    <Link  href={url} prefetch={false}>{title}</Link>
+                    <Link href={url} prefetch={false}>{title}</Link>
                 </div>
                 {topElement}
                 {bottomElement}

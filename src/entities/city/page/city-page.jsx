@@ -1,7 +1,7 @@
 import {Suspense} from "react";
 import BannerCity from "src/entities/city/ui/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
-import MostPopularTours from "src/entities/tours/ui/most-popular-tours";
+import MostPopularTours from "src/entities/city/ui/most-popular-tours";
 import TextQuote from "@/widgets/text-quote";
 import LatestReviews from "@/widgets/latest-reviews";
 import Highlights from "@/widgets/highlights";
@@ -14,7 +14,7 @@ import Link from "next/link";
 import {createTranslation} from "@/i18n/server";
 
 
-export default async function CityPage({locale, title, id, languages}) {
+export default async function CityPage({locale, title, id, languages, slug}) {
     const {t} = await createTranslation(locale);
 
     return (
@@ -27,7 +27,7 @@ export default async function CityPage({locale, title, id, languages}) {
 
             <SsrCalendar locale={locale} type="city" id={id}/>
             <Suspense fallback={''}>
-                <MostPopularTours id={id} locale={locale}/>
+                <MostPopularTours id={id} locale={locale} slug={slug}/>
             </Suspense>
             <TextQuote id={id} locale={locale}/>
             <LatestReviews id={id} locale={locale}/>
@@ -37,7 +37,7 @@ export default async function CityPage({locale, title, id, languages}) {
                 <Guides id={id} locale={locale}/>
             </Suspense>
             <Suspense fallback={''}>
-                <MostPopularCity locale={locale} id={id}/>
+                <MostPopularCity locale={locale} id={id} slug={slug}/>
             </Suspense>
             <ChangeOfLanguage languages={languages} title={title}/>
             <Breadcrumbs>
