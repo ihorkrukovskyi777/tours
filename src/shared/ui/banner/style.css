@@ -82,3 +82,28 @@
     font-weight: 500;
     font-family: var(--fontMedium);
 }
+.banner .wrapper form {
+    position: relative;
+}
+.banner .result {
+    /* border: 1px dotted #ccc; */
+    background: #fff;
+    /* padding: 5px; */
+    margin-bottom: 5px;
+}
+.banner .result ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: 40vh;
+    overflow: auto;
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 10px 36px rgba(0,0,0,.24);
+}
+.banner .result ul li {
+    padding: 8px;
+    cursor: pointer;
+}

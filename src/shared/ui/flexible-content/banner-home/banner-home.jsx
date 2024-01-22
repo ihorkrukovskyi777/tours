@@ -12,7 +12,7 @@ export default async function BannerHome({locale, id, index, flexibleKey}) {
     }
     return (
         <Banner nameBanner="home_banner" title={data.title ?? ''} attachment={data?.image?.image}>
-            <DropdownSearch/>
+            <DropdownSearch locale={locale}/>
             <p className="link">
 
                 {data.button ?
