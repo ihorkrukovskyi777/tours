@@ -18,13 +18,14 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
     const {t} = await createTranslation(locale);
     return (
         <>
-            <BannerCity
-                isMobile={isMobile}
-                size="city_banner"
-                locale={locale}
-                id={id}
-            />
             <Suspense fallback="">
+                <BannerCity
+                    isMobile={isMobile}
+                    size="city_banner"
+                    locale={locale}
+                    id={id}
+                />
+
                 <SsrCalendar locale={locale} type="city" id={id}/>
             </Suspense>
             <Suspense fallback="">
