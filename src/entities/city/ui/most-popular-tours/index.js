@@ -1,5 +1,6 @@
 import {picketToursBox} from "@/entities/api";
 import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
+
 export default async function MostPopularTours({id, locale, slug}) {
 
     let tours = await picketToursBox(id, locale);

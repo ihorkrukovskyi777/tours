@@ -18,7 +18,7 @@ export default function Banner({attachment = null, title, children, bottomView =
                     src={attachment.src}
                     alt={attachment.alt}
                 /> : null }
-                <img src={BASE_64} priority={true} alt={'banner'} className="banner_bg"/>
+                <img src={BASE_64} alt={'banner'} className="banner_bg"/>
                 <div className="container">
                     <div className="intro">
                         <h1 className="title" dangerouslySetInnerHTML={{__html: title || ''}}></h1>

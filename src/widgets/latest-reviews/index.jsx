@@ -5,7 +5,6 @@ import './style.css';
 
 
 export default async function LatestReviews({id, locale, type='city'}) {
-
     const {t} = await createTranslation()
     const limit = 9
     const reviews = await getReviews(id, locale, limit)
