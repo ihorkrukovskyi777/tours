@@ -18,40 +18,26 @@ export default async function CityPage({locale, title, id, languages, slug}) {
     const {t} = await createTranslation(locale);
     return (
         <>
-            <Suspense fallback={''}>
-                <BannerCity
-                    size="city_banner"
-                    locale={locale}
-                    id={id}
-                />
-            </Suspense>
-            <Suspense fallback={''}>
-                <SsrCalendar locale={locale} type="city" id={id}/>
-            </Suspense>
-            <Suspense fallback={''}>
-                <MostPopularTours id={id} locale={locale} slug={slug}/>
-            </Suspense>
-            <Suspense fallback={''}>
-                <TextQuote id={id} locale={locale}/>
-            </Suspense>
-            <Suspense fallback={''}>
-                <LatestReviews id={id} locale={locale}/>
-            </Suspense>
-            <Suspense fallback={''}>
-                <Highlights id={id}/>
-            </Suspense>
-            <Suspense fallback={''}>
-                <TextBlocks id={id} locale={locale}/>
-            </Suspense>
-            <Suspense fallback={''}>
-                <Guides id={id} locale={locale}/>
-            </Suspense>
-            <Suspense fallback={''}>
-                <MostPopularCity locale={locale} id={id} slug={slug}/>
-            </Suspense>
-            <Suspense fallback={''}>
-                <ChangeOfLanguage languages={languages} title={title}/>
-            </Suspense>
+            <BannerCity
+                size="city_banner"
+                locale={locale}
+                id={id}
+            />
+            {/*<SsrCalendar locale={locale} type="city" id={id}/>*/}
+            {/*<Suspense fallback={''}>*/}
+            {/*    <MostPopularTours id={id} locale={locale} slug={slug}/>*/}
+            {/*</Suspense>*/}
+            {/*<TextQuote id={id} locale={locale}/>*/}
+            {/*<LatestReviews id={id} locale={locale}/>*/}
+            {/*<Highlights id={id}/>*/}
+            {/*<TextBlocks id={id} locale={locale}/>*/}
+            {/*<Suspense fallback={''}>*/}
+            {/*    <Guides id={id} locale={locale}/>*/}
+            {/*</Suspense>*/}
+            {/*<Suspense fallback={''}>*/}
+            {/*    <MostPopularCity locale={locale} id={id} slug={slug}/>*/}
+            {/*</Suspense>*/}
+            {/*<ChangeOfLanguage languages={languages} title={title}/>*/}
             <Breadcrumbs>
                 <p id="breadcrumbs">
               <span>
