@@ -14,7 +14,7 @@ export class StoreTourLogic {
         this.activeLanguage = [];
         this.timezone = 'UTC';
         this.locale = locale;
-        this.service = new TourLogic(id, locale, locale, type, hydration);
+        this.service = new TourLogic(id, locale, locale, type);
         makeAutoObservable(this, {}, {autoBind: true, deep: false});
 
     }
