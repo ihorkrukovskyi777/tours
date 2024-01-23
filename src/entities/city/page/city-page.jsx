@@ -35,24 +35,12 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
                 <TextQuote id={id} locale={locale}/>
             </Suspense>
-            <Suspense fallback="">
-                <LatestReviews id={id} locale={locale}/>
-            </Suspense>
-            <Suspense fallback="">
-                <Highlights id={id}/>
-            </Suspense>
-            <Suspense fallback="">
-                <TextBlocks id={id} locale={locale}/>
-            </Suspense>
-            <Suspense fallback="">
-                <Guides id={id} locale={locale}/>
-            </Suspense>
-            <Suspense fallback="">
-                <MostPopularCity locale={locale} id={id} slug={slug}/>
-            </Suspense>
-            <Suspense fallback="">
-                <ChangeOfLanguage languages={languages} title={title}/>
-            </Suspense>
+            <LatestReviews id={id} locale={locale}/>
+            <Highlights id={id}/>
+            <TextBlocks id={id} locale={locale}/>
+            <Guides id={id} locale={locale}/>
+            <MostPopularCity locale={locale} id={id} slug={slug}/>
+            <ChangeOfLanguage languages={languages} title={title}/>
             <Breadcrumbs>
                 <p id="breadcrumbs">
               <span>
