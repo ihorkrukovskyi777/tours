@@ -68,7 +68,7 @@ export default observer(function Main({siteLocale}) {
     }
 
     return (
-        <div className="calendar_wrap" style={{minHeight: '300px'}}>
+        <div className="calendar_wrap" style={{minHeight: '900px'}}>
             <h2 className="title">Tour Calendar</h2>
             <div className="wrap-box">
                 <div className="wrap-button">

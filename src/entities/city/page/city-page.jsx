@@ -13,6 +13,7 @@ import Link from "next/link";
 import {createTranslation} from "@/i18n/server";
 import dynamic from "next/dynamic";
 
+
 const ChangeOfLanguage = dynamic(
     () => import("@/shared/ui/languages/change-of-language/change-of-language"),
     {ssr: false}
