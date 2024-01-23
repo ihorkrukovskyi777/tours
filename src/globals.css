@@ -10,7 +10,7 @@
   --title_color: #000;
   --bg_color: #f7f7f7;
   --font-ciliric: 'Carlito';
-  --font: 'BrandonGrotesque-Regular' , var(--font-ciliric);
+  --font: var(--font-brand-regular) , var(--font-ciliric);
   --fontMedium: var(--font-brand-medium) , var(--font-ciliric);
   --fontBold: var(--font-brand-bold) , var(--font-ciliric);
   --font_300: 'Geomanist300' , var(--font-ciliric);
