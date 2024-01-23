@@ -2,7 +2,6 @@
 import {useContext, useEffect} from "react";
 import {observer} from "mobx-react-lite";
 import dynamic from "next/dynamic";
-import OpenModalButton from "@/entities/calendar/ui/open-modal-button";
 import DeparturesList from "@/entities/calendar/ui/departures-list";
 import TabsLanguages from "src/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
@@ -11,6 +10,12 @@ import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
 
 const Step3 = dynamic(
     () => import("@/entities/calendar/ui/modal-booking/step-3/index"),
+    {
+        ssr: false,
+    }
+)
+const OpenModalButton = dynamic(
+    () => import("@/entities/calendar/ui/open-modal-button"),
     {
         ssr: false,
     }
