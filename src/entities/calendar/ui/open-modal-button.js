@@ -2,8 +2,21 @@ import {observer} from "mobx-react-lite";
 import Button from "@/shared/ui/selectors/button/button";
 import CalendarSvg from "@/assets/images/svg/calendar-svg";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
-import Step1 from "@/entities/calendar/ui/modal-booking/step-1";
-import Step2 from "src/entities/calendar/ui/modal-booking/step-2";
+import dynamic from "next/dynamic";
+
+const Step1 = dynamic(
+    () => import("@/entities/calendar/ui/modal-booking/step-1"),
+    {
+        ssr: false,
+    }
+)
+const Step2 = dynamic(
+    () => import("src/entities/calendar/ui/modal-booking/step-2"),
+    {
+        ssr: false,
+    }
+)
+
 export default observer(function OpenModalButton({ storeModalCalendar }) {
 
     const {
@@ -39,21 +52,21 @@ export default observer(function OpenModalButton({ storeModalCalendar }) {
 
         </Button>
             <ModalBooking show={isOpened}>
-                <Step1
+                {isOpened ? <Step1
                     storeModalCalendar={storeModalCalendar}
                     isEsc={isOpened && isOpenedListDeparture === false}
                     onChange={onChange}
-                />
+                /> : null }
             </ModalBooking>
             <ModalBooking show={isOpenedListDeparture}>
-                <Step2
+                { isOpenedListDeparture ? <Step2
                     setDeparture={selectedDeparture}
                     departures={Object.values(departuresByDate).flat()}
                     storeModalCalendar={storeModalCalendar}
                     onBack={closeListModal}
                     isOpened={openListModal && isOpenedBookingModal === false}
                     close={closeListModal}
-                />
+                /> : null }
             </ModalBooking>
             </>
     )
