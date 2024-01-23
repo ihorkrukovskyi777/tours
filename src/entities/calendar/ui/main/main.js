@@ -35,7 +35,7 @@ export default observer(function Main({siteLocale}) {
     useEffect(() => {
         setTimeout(() => {
             setIsBrowser(true)
-        }, 300)
+        }, 1300)
     }, [])
 
     const {
