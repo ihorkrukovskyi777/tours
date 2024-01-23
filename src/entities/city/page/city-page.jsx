@@ -8,10 +8,14 @@ import Highlights from "@/widgets/highlights";
 import TextBlocks from "@/widgets/text-blocks";
 import Guides from "src/shared/ui/guides";
 import MostPopularCity from "src/entities/city/ui/most-popular-city";
-import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Link from "next/link";
 import {createTranslation} from "@/i18n/server";
+import dynamic from "next/dynamic";
+const ChangeOfLanguage = dynamic(
+    () => import("@/shared/ui/languages/change-of-language/change-of-language"),
+    { ssr: false }
+)
 
 
 export default async function CityPage({locale, title, id, languages, slug}) {
