@@ -40,7 +40,7 @@ export default function SliderTours() {
                                 <div className='item_top'>
                                     <div className="img_wrap">
                                         <div className="item_name">Burlington Arcade</div>
-                                        <Image alt="Burlington Arcade" alt="123" width={400} height={300} src="https://imagedelivery.net/xtVVrgn04XP6bhrBt0jaJQ/46439860-c016-4960-fb81-79e348e40000/625x350" />
+                                        <Image alt="Burlington Arcade" width={400} height={300} src="https://imagedelivery.net/xtVVrgn04XP6bhrBt0jaJQ/46439860-c016-4960-fb81-79e348e40000/625x350" />
                                     </div>
                                     <div className="text_wrap">
                                         <div className="list">
