@@ -5,7 +5,7 @@ import './style.css';
 
 const SwiperGuides = dynamic(
   () => import("@/shared/ui/guides/swiper/swiper"),
-  { ssr: true }
+  { ssr: false }
 )
 
 export default async function Guides({title, id, type}) {
