@@ -4,7 +4,7 @@ import {isTomorrowOrToday} from "@/shared/hepers/date";
 
 
 export class StoreTourLogic {
-    constructor(locale, type, id) {
+    constructor(locale, type, id, hydration) {
         this._allDepartures = [];
         this.departureIterable = null;
         this.offset = 0;
@@ -14,7 +14,7 @@ export class StoreTourLogic {
         this.activeLanguage = [];
         this.timezone = 'UTC';
         this.locale = locale;
-        this.service = new TourLogic(id, locale, locale, type);
+        this.service = new TourLogic(id, locale, locale, type, hydration);
         makeAutoObservable(this, {}, {autoBind: true, deep: false});
 
     }

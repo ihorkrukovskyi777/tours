@@ -60,12 +60,14 @@ function addTourDay(day, toursDays) {
 }
 
 export default class TourLogic {
-    constructor(id, locale, translate, type) {
+    constructor(id, locale, translate, type, hydration) {
         this.type = type;
         this.id = id;
         this.cache = {};
         this.currentLang = locale;
-        this.data = {};
+        this.data = {
+            [locale]: hydration?.deps,
+        };
         this.peopleNubmer = 1;
         this.date = {
             year: new Date().getFullYear(),
@@ -239,6 +241,7 @@ export default class TourLogic {
     }
 
     * getDataMonth() {
+        return [];
         let month = new Date().getMonth();
         let year = new Date().getFullYear().toString().substr(-2);
         const deps = {...this.data[this.currentLang].deps};

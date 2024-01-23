@@ -1,10 +1,11 @@
 'use client';
-import {useContext, useEffect, useState} from "react";
+import {useContext, useEffect,} from "react";
 import {observer} from "mobx-react-lite";
 import dynamic from "next/dynamic";
 import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
+
 const CounterNumbers = dynamic(
     () => import("@/shared/ui/selectors/counter-numbers"),
     {
@@ -30,13 +31,6 @@ const OpenModalButton = dynamic(
     }
 )
 export default observer(function Main({siteLocale}) {
-    const [isBrowser, setIsBrowser] = useState(false);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsBrowser(true);
-        }, 300)
-    }, [])
 
     const {
         storePhone: {
@@ -61,11 +55,8 @@ export default observer(function Main({siteLocale}) {
     } = useContext(StoreCalendarContext);
 
     useEffect(() => {
-        if(isBrowser) {
-            fetchDepartures();
-            fetchPhones();
-        }
-
+        fetchDepartures();
+        fetchPhones();
     }, [])
 
 
@@ -101,7 +92,7 @@ export default observer(function Main({siteLocale}) {
                         : null
                     }
                 </div>
-                {departures?.length && isBrowser ? <DeparturesList/> : null }
+                {departures?.length ? <DeparturesList/> : null}
             </div>
             <ModalBooking show={isOpened}>
                 {isOpened ? <Step3
