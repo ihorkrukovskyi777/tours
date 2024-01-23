@@ -1,19 +1,20 @@
 import BannerSubVendor from 'src/entities/guide/ui/banner-subvendor';
 import LanguageImages from 'src/shared/ui/languages/language-images';
-import DefaultImage from '@/assets/images/languages/USUKflag.jpg';
 import FullStarSvg from '@/assets/images/svg/full-star';
+import {fetchBannerSubVendor} from "@/entities/guide/api";
 import './style.css';
 
-const languagesAll = [DefaultImage , DefaultImage]
-export default function BannerGuide({title}) {
+export default async function BannerGuide({id}) {
 
-  return (
-    <BannerSubVendor title={title} >
-          <div className="rate_box">
-              <FullStarSvg />
-              <span>4.91 (65)</span>
-         </div>
-         <LanguageImages data={languagesAll} />
-    </BannerSubVendor>
-  )
+    const { profile, rating, locales} = await fetchBannerSubVendor(id)
+
+    return (
+        <BannerSubVendor name={profile?.name} avatar={profile.avatar}>
+            <div className="rate_box">
+                <FullStarSvg/>
+                {rating.reviews ? <span>{rating.rating} ({rating.reviews})</span> : null}
+            </div>
+            <LanguageImages locales={locales}/>
+        </BannerSubVendor>
+    )
 }

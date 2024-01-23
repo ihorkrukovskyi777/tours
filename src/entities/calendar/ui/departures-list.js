@@ -1,4 +1,4 @@
-import {Fragment, useContext, useMemo} from "react";
+import {Fragment, useContext, useMemo, memo} from "react";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
 import LogoOneport from '../../../../public/images/svg/logo-oneport.svg';

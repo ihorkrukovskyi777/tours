@@ -45,15 +45,15 @@ export default function FormCalendar({allPhoneNumbers, locale}) {
         switch (name) {
             case 'firstName':
                 if (value.length < 1) errorMsg = 'This field is requared'
-                if (value.length > 50) errorMsg = '"First name" max length is 50 symbols';
-                if (hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
+                if (value.length > 50) errorMsg = '"First [name]" max length is 50 symbols';
+                if (hasNumber.test(value)) errorMsg = '"First [name]" should be without numbers';
                 errors.firstName = errorMsg
                 break;
 
             case 'lastName':
                 if (value.length < 1) errorMsg = 'This field is requared';
-                if (value.length > 50) errorMsg = '"First name" max length is 50 symbols';
-                if (hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
+                if (value.length > 50) errorMsg = '"First [name]" max length is 50 symbols';
+                if (hasNumber.test(value)) errorMsg = '"First [name]" should be without numbers';
                 errors.lastName = errorMsg
                 break;
 
@@ -115,12 +115,12 @@ export default function FormCalendar({allPhoneNumbers, locale}) {
             setValidate(true);
             //REDIRECT TO CHECKOUT PAGE
             const formData = {
-                firstName: document.querySelector("#booking input[name='firstName']").value,
-                lastName: document.querySelector("#booking input[name='lastName']").value,
-                email: document.querySelector("#booking input[name='email']").value,
+                firstName: document.querySelector("#booking input[[name]='firstName']").value,
+                lastName: document.querySelector("#booking input[[name]='lastName']").value,
+                email: document.querySelector("#booking input[[name]='email']").value,
                 phone_country: document.querySelector("#booking .react-tel-input input").value,
-                phone: document.querySelector("#booking input[name='phone']").value,
-                accept: document.querySelector("#booking input[name='accept']").value,
+                phone: document.querySelector("#booking input[[name]='phone']").value,
+                accept: document.querySelector("#booking input[[name]='accept']").value,
             }
         } else {
             console.error('Invalid Form')

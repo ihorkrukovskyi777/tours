@@ -4,7 +4,6 @@ import {fetchFlexibleContent} from "@/shared/api/flexible-content";
 export default async function PopularTours({locale, id, index, flexibleKey}) {
 
     const data = await fetchFlexibleContent(id, locale, flexibleKey, index)
-    console.log(data, 'data')
     if(!data?.tours) {
         return null;
     }

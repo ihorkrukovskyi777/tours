@@ -1,13 +1,16 @@
 'use client';
-import CardGuide from 'src/entities/guide/ui/card-guide';
+import {useParams} from "next/navigation";
+import {hrefSubVendor} from "@/shared/hepers/url";
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import CardGuide from '@/shared/ui/card-components/card-guide';
 import FullStarSvg from '@/assets/images/svg/full-star';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 export default function SwiperGuides({guides}) {
-
+    const params = useParams();
+    const locale = params.locale;
     return (
         <Swiper
             // install Swiper modules
@@ -30,10 +33,10 @@ export default function SwiperGuides({guides}) {
         >
             {guides?.map((item) =>{
                 const rating = item.rating.rating.toFixed(2);
-
+                console.log(item)
                 return (
                     <SwiperSlide key={item.id}>
-                        <CardGuide avatar={item?.avatar} url={'/'} bottomView={item?.locales}>
+                        <CardGuide avatar={item?.avatar} url={hrefSubVendor(locale, item.brandName)} bottomView={item?.locales}>
                         <div className="item_title">{item?.brandName}</div>
                         {rating > 0 ?
                             <div className="rating_box">

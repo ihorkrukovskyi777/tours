@@ -1,4 +1,4 @@
-import {makeAutoObservable, onBecomeObserved} from "mobx"
+import {makeAutoObservable} from "mobx"
 import TourLogic from "@/entities/calendar/service/tour-logic";
 import {isTomorrowOrToday} from "@/shared/hepers/date";
 

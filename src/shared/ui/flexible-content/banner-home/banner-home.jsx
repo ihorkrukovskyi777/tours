@@ -1,4 +1,4 @@
-import DropdownSearch from '@/entities/tours/ui/dropdown-search-tour';
+import DropdownSearch from '@/entities/tour/ui/dropdown-search-tour';
 import Banner from '@/shared/ui/banner';
 import LocationSvg from '@/assets/images/svg/location-svg';
 import {fetchFlexibleContent} from "@/shared/api/flexible-content";

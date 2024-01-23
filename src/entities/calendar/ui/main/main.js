@@ -1,15 +1,35 @@
 'use client';
 import {useContext, useEffect} from "react";
 import {observer} from "mobx-react-lite";
-import OpenModalButton from "@/entities/calendar/ui/open-modal-button";
-import DeparturesList from "@/entities/calendar/ui/departures-list";
+import dynamic from "next/dynamic";
 import TabsLanguages from "src/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
-import Step3 from '@/entities/calendar/ui/modal-booking/step-3/index'
-import CounterNumbers from "src/shared/ui/selectors/counter-numbers";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
-
-export default observer(function Main({ siteLocale }) {
+const CounterNumbers = dynamic(
+    () => import("src/shared/ui/selectors/counter-numbers"),
+    {
+        ssr: false,
+    }
+)
+const DeparturesList = dynamic(
+    () => import("@/entities/calendar/ui/departures-list"),
+    {
+        ssr: false,
+    }
+)
+const Step3 = dynamic(
+    () => import("@/entities/calendar/ui/modal-booking/step-3/index"),
+    {
+        ssr: false,
+    }
+)
+const OpenModalButton = dynamic(
+    () => import("@/entities/calendar/ui/open-modal-button"),
+    {
+        ssr: false,
+    }
+)
+export default observer(function Main({siteLocale}) {
     const {
         storePhone: {
             phones,
@@ -18,6 +38,7 @@ export default observer(function Main({ siteLocale }) {
         storeCalendar: {
             activeLanguage,
             locale, loading, changeLanguage,
+            departures,
             storeDepLogic: {
                 people, changePeople, isEmpty,
             },
@@ -39,13 +60,13 @@ export default observer(function Main({ siteLocale }) {
 
     const changeModalBooking = () => {
         close()
-        if(!storeModalCalendar.isOpened) {
+        if (!storeModalCalendar.isOpened) {
             storeModalCalendar.open();
         }
     }
 
     return (
-        <div className="calendar_wrap" style={{minHeight:'300px'}}>
+        <div className="calendar_wrap" style={{minHeight: '300px'}}>
             <h2 className="title">Tour Calendar</h2>
             <div className="wrap-box">
                 <div className="wrap-button">
@@ -69,10 +90,10 @@ export default observer(function Main({ siteLocale }) {
                         : null
                     }
                 </div>
-                <DeparturesList />
+                {departures?.length ? <DeparturesList/> : null }
             </div>
             <ModalBooking show={isOpened}>
-                <Step3
+                {isOpened ? <Step3
                     langSelected={locale}
                     people={people}
                     locale={siteLocale}
@@ -82,7 +103,7 @@ export default observer(function Main({ siteLocale }) {
                     departure={departure}
                     language={locale}
                     close={close}
-                />
+                /> : null}
             </ModalBooking>
         </div>
 

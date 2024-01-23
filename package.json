@@ -5,21 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 9001",
     "lint": "next lint"
   },
   "dependencies": {
     "@react-input/mask": "^1.0.20",
-    "@smastrom/react-rating": "^1.4.0",
     "classnames": "^2.3.2",
-    "html-react-parser": "^5.1.1",
     "i18next": "^23.7.11",
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-resources-to-backend": "^1.2.0",
     "intl-tel-input": "^18.2.1",
-    "jotai": "^2.6.0",
-    "lodash.debounce": "^4.0.8",
-    "mask-input": "^1.0.3",
     "mobx": "^6.12.0",
     "mobx-react-lite": "^4.0.5",
     "mobx-utils": "^6.0.8",
@@ -28,14 +23,11 @@
     "react": "^18",
     "react-animate-height": "^3.2.3",
     "react-dom": "^18",
-    "react-faq-component": "^1.3.4",
     "react-i18next": "^14.0.0",
     "react-input-mask": "^3.0.0-alpha.2",
-    "react-international-phone": "^4.0.4",
     "react-phone-input-2": "^2.15.1",
-    "react-rating-stars-component": "^2.2.0",
-    "sharp": "^0.33.2",
-    "swiper": "^11.0.5"
+    "swiper": "^11.0.5",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "eslint": "^8",

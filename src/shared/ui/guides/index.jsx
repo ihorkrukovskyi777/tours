@@ -4,13 +4,12 @@ import dynamic from "next/dynamic";
 import './style.css';
 
 const SwiperGuides = dynamic(
-  () => import("@/entities/guide/ui/swiper/swiper"),
-  { ssr: true}
+  () => import("@/shared/ui/guides/swiper/swiper"),
+  { ssr: false }
 )
 
-export default async function Guides({title="Your Guides in Bogota" , id }) {
-  const items = await allGuides(id);
-  
+export default async function Guides({title, id, type}) {
+  const items = await allGuides(id, type);
   if(!items?.length) {
     return null
   }
@@ -18,10 +17,9 @@ export default async function Guides({title="Your Guides in Bogota" , id }) {
   return (
     <section className="guides_section">
         <div className="container">
-            <h2>Your Guides in {title}</h2>
+            <h2>Your Guides in Bogota {title}</h2>
             <SwiperGuides guides={items} />
         </div>
-
     </section>
 
   )

@@ -7,7 +7,7 @@ const FlexibleContent = dynamic(
 export default async function Home({params: {locale}, ...props}) {
     const pageType = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/home?locale=${locale}`,
-        {next: {revalidate: 0}}
+        {next: {revalidate: 60}}
     )
     const data = await pageType.json();
     if (data.statusCode === 404 || typeof data.id !== 'number') {
