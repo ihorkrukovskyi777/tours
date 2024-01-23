@@ -1,4 +1,22 @@
-
+import localFont from 'next/font/local'
+import classNames from "classnames";
+const brandBold = localFont({
+    src: '../assets/fonts/brandon-grotesque/BrandonGrotesque-Bold.woff2',
+    variable: '--font-brand-bold',
+    display: 'swap'
+})
+const brandMedium = localFont({
+    src: '../assets/fonts/brandon-grotesque/BrandonGrotesque-Medium.woff2',
+    variable: '--font-brand-medium',
+    style: 'normal',
+    display: 'swap'
+})
+const brandRegular = localFont({
+    src: '../assets/fonts/brandon-grotesque/BrandonGrotesque-Regular.woff2',
+    variable: '--font-brand-regular',
+    style: 'normal',
+    display: 'swap'
+})
 export const metadata = {
     robots: { index: false, follow: false},
     prefetch: { href: 'google.com'},
@@ -8,7 +26,7 @@ export const metadata = {
 
 export default function RootLayout({ children, params }) {
     return (
-        <html lang={params.locale}>
+        <html lang={params.locale} className={classNames(brandBold.variable, brandMedium.variable, brandRegular.variable)}>
         <body>
 
             {children}
