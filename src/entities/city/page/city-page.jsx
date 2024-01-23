@@ -18,11 +18,11 @@ export default async function CityPage({locale, title, id, languages, slug}) {
     const {t} = await createTranslation(locale);
     return (
         <>
-            <BannerCity
-                size="city_banner"
-                locale={locale}
-                id={id}
-            />
+            {/*<BannerCity*/}
+            {/*    size="city_banner"*/}
+            {/*    locale={locale}*/}
+            {/*    id={id}*/}
+            {/*/>*/}
             {/*<SsrCalendar locale={locale} type="city" id={id}/>*/}
             {/*<Suspense fallback={''}>*/}
             {/*    <MostPopularTours id={id} locale={locale} slug={slug}/>*/}
@@ -38,19 +38,19 @@ export default async function CityPage({locale, title, id, languages, slug}) {
             {/*    <MostPopularCity locale={locale} id={id} slug={slug}/>*/}
             {/*</Suspense>*/}
             {/*<ChangeOfLanguage languages={languages} title={title}/>*/}
-            <Breadcrumbs>
-                <p id="breadcrumbs">
-              <span>
-                  <span>
-                      <Link prefetch={false} className="first_link" href="/">{t('Free Tour')}</Link>
-                      <span className="arrow-right-b"> - </span>
-                      <span>
-                          <span className="breadcrumb_last" aria-current="page">{title}</span>
-                      </span>
-                  </span>
-              </span>
-                </p>
-            </Breadcrumbs>
+            {/*<Breadcrumbs>*/}
+            {/*    <p id="breadcrumbs">*/}
+            {/*  <span>*/}
+            {/*      <span>*/}
+            {/*          <Link prefetch={false} className="first_link" href="/">{t('Free Tour')}</Link>*/}
+            {/*          <span className="arrow-right-b"> - </span>*/}
+            {/*          <span>*/}
+            {/*              <span className="breadcrumb_last" aria-current="page">{title}</span>*/}
+            {/*          </span>*/}
+            {/*      </span>*/}
+            {/*  </span>*/}
+            {/*    </p>*/}
+            {/*</Breadcrumbs>*/}
         </>
     )
 }
