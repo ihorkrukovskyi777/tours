@@ -396,12 +396,12 @@
 }
 
 /* Responsive */
-@media(max-width: 1199px) {
+/* @media(max-width: 1199px) {
     .tour_calendar .tab_item {
         width: calc(33% - 8px);
     }
-}
-@media(max-width: 991px) {
+} */
+/* @media(max-width: 991px) {
     .tour_calendar .tab_item {
         font-size: 14px;
         padding: 10px;
@@ -414,9 +414,9 @@
     .tour_calendar .tab_item span {
         margin-left: 4px;
     }
-}
+} */
 @media(max-width:767px){
-    .tour_calendar .tab_item {
+    /* .tour_calendar .tab_item {
         font-size: 18px;
         padding: 12px;
     }
@@ -426,10 +426,24 @@
     }
     .tour_calendar .tab_item {
         width: calc(25% - 8px);
+    } */
+    .tour_calendar .wrapper {
+        grid-template-columns: 100%;
+        grid-gap: 50px;
+    }
+    .tour_calendar {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .tour_calendar .container .container {
+        padding: 0;
     }
     .tour_calendar .faq_wrap {
         max-width: 100%;
         margin-left: 0;
+    }
+    .tour_calendar .faq {
+        max-width: 100%;
     }
 }
 @media(max-width: 500px) {

@@ -21,7 +21,6 @@
     margin: 0 4px;
     cursor: pointer;
     order: 9999;
-    height: 54px;
 }
 .tabs .see-all {
     width: calc(25% - 8px);
@@ -109,4 +108,102 @@
 .tabs .hide_loader .box_loader,
 .tabs .hide_loader .box_loader{
     display: none !important;
+}
+
+/* Responsive */
+@media(max-width: 1199px) {
+    .tabs .tab_item {
+        width: calc(33% - 8px);
+    }
+}
+@media(max-width: 991px) {
+    .tabs .tab_item {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .tabs .icon_wrap {
+        width: 18px;
+        height: 18px;
+        padding: 1px;
+    }
+    .tabs .tab_item span {
+        margin-left: 4px;
+    }
+}
+@media(max-width:767px){
+    .tabs .tab_item {
+        font-size: 18px;
+        padding: 12px;
+    }
+    .tabs .wrapper {
+        grid-template-columns: 100%;
+        grid-gap: 50px;
+    }
+    .tabs .tab_item {
+        width: calc(25% - 8px);
+    }
+}
+@media(max-width: 500px) {
+    .tabs .tab_item ,
+    .tabs .see-all {
+        width:calc(33.3335% - 8px);
+        margin-top: 4px;
+        margin-bottom: 4px;
+        padding: 14px 10px;
+    }
+    .tabs .tabs_wrap {
+        position: relative;
+        padding: 0;
+        max-height: 110px;
+        overflow: hidden;
+    }
+    .tabs .icon_wrap {
+        width: 18px;
+        height: 18px;
+    }
+    .tabs .see-all {
+        display: flex;
+        font-size: 16px;
+        text-align: center;
+        color: #FFFFFF;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+    }
+}
+@media(max-width: 370px) {
+    .tabs .see-all {
+        max-height: 42px;
+    }
+    .tabs .tabs_wrap {
+        max-height: 100px;
+    }
+    .tabs .tab_item {
+        padding: 12px 8px;
+        font-size: 15px;
+    }
+    .tabs .icon_wrap {
+        width: 18px;
+        height: 18px;
+    }
+    .tabs .tab_item span {
+        margin-left: 4px;
+    }
+}
+@media(max-width: 319px) {
+    .tabs .tab_item {
+        font-size: 10px;
+    }
+    .tabs .icon_wrap {
+        width: 12px;
+        height: 12px;
+    }
+    .tabs .see-all {
+        font-size: 12px;
+        max-height: 36px;
+    }
+    .tabs .tabs_wrap {
+        max-height: 88px;
+    }
 }
