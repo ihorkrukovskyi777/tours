@@ -6,9 +6,8 @@ import ClockImage from '/public/images/svg/clock.svg'
 import CalendarImage from '/public/images/svg/calendar.svg'
 import {ServiceDate} from "@/shared/service/service-date";
 import {PATH_TOURS} from "@/shared/constants/route";
-import './style.css';
 import {getHrefLocale} from "@/i18n/get-href-locale";
-
+import './style.css';
 export default function RowTours({tours, title = ''}) {
     return (
         <section className="most_popular_tour">
