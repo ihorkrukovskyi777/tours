@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: false,
-    compress: true,
+    reactStrictMode: true,
+    experimental: { optimizeCss: true },
+    swcMinify: true,
     compiler: {
-        removeConsole: false,
+        removeConsole: {
+            exclude: ['error'],
+        },
     },
     images: {
         remotePatterns: [

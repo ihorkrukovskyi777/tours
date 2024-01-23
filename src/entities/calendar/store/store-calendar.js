@@ -13,7 +13,6 @@ export class StoreCalendar {
         this.loading = new StoreLoading(true);
         this.storeModalCalendar = new StoreModalCalendar(this.loading, this.storeDepLogic, this.storeModalBooking, this.activeLanguage)
         makeAutoObservable(this, {}, {autoBind: true, deep: false});
-
     }
 
     get locale() {

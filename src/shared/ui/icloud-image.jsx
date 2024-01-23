@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export default function IcloudImage( { src , size = 'public', alt = '', ...props}) {
-    if(typeof src !== 'string' && !!src === false) {
+    if(typeof src !== 'string' || !!src === false) {
         return null;
     }
 

@@ -1,6 +1,6 @@
 import {memo} from "react"
 import Image from "next/image";
-import ClockSilver from "../../../../../public/images/svg/clock-silver.svg"
+import ClockSilver from "/public/images/svg/clock-silver.svg"
 import {pad2, toHoursAndMinutes} from "@/shared/hepers/date";
 import {useTranslation} from "@/i18n/client";
 import FlagsComponents from "@/shared/ui/flags";

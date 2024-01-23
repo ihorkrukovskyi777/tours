@@ -10,10 +10,10 @@ const SwiperGuides = dynamic(
 
 export default async function Guides({title, id, type}) {
   const items = await allGuides(id, type);
+
   if(!items?.length) {
     return null
   }
-
   return (
     <section className="guides_section">
         <div className="container">
