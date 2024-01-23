@@ -46,9 +46,9 @@ export default async function CityPage({locale, title, id, languages, slug}) {
             <Suspense fallback="">
                 <TextBlocks id={id} locale={locale}/>
             </Suspense>
-            {/*<Suspense fallback="">*/}
-            {/*    <Guides id={id} locale={locale}/>*/}
-            {/*</Suspense>*/}
+            <Suspense fallback="">
+                <Guides id={id} locale={locale}/>
+            </Suspense>
             <Suspense fallback="">
                 <MostPopularCity locale={locale} id={id} slug={slug}/>
             </Suspense>
