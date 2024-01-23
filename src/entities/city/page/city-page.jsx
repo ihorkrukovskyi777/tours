@@ -24,20 +24,20 @@ export default async function CityPage({locale, title, id, languages, slug}) {
                 id={id}
             />
             {/*<SsrCalendar locale={locale} type="city" id={id}/>*/}
-            {/*<Suspense fallback={''}>*/}
-            {/*    <MostPopularTours id={id} locale={locale} slug={slug}/>*/}
-            {/*</Suspense>*/}
+            <Suspense fallback={''}>
+                <MostPopularTours id={id} locale={locale} slug={slug}/>
+            </Suspense>
             <TextQuote id={id} locale={locale}/>
-            {/*<LatestReviews id={id} locale={locale}/>*/}
+            <LatestReviews id={id} locale={locale}/>
             <Highlights id={id}/>
             <TextBlocks id={id} locale={locale}/>
-            {/*<Suspense fallback={''}>*/}
-            {/*    <Guides id={id} locale={locale}/>*/}
-            {/*</Suspense>*/}
-            {/*<Suspense fallback={''}>*/}
-            {/*    <MostPopularCity locale={locale} id={id} slug={slug}/>*/}
-            {/*</Suspense>*/}
-            {/*<ChangeOfLanguage languages={languages} title={title}/>*/}
+            <Suspense fallback={''}>
+                <Guides id={id} locale={locale}/>
+            </Suspense>
+            <Suspense fallback={''}>
+                <MostPopularCity locale={locale} id={id} slug={slug}/>
+            </Suspense>
+            <ChangeOfLanguage languages={languages} title={title}/>
             <Breadcrumbs>
                 <p id="breadcrumbs">
               <span>
