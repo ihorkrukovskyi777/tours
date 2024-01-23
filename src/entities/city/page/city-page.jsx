@@ -31,9 +31,9 @@ export default async function CityPage({locale, title, id, languages, slug}) {
             {/*<LatestReviews id={id} locale={locale}/>*/}
             <Highlights id={id}/>
             <TextBlocks id={id} locale={locale}/>
-            {/*<Suspense fallback={''}>*/}
-            {/*    <Guides id={id} locale={locale}/>*/}
-            {/*</Suspense>*/}
+            <Suspense fallback={''}>
+                <Guides id={id} locale={locale}/>
+            </Suspense>
             <Suspense fallback={''}>
                 <MostPopularCity locale={locale} id={id} slug={slug}/>
             </Suspense>
