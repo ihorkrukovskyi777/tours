@@ -1,4 +1,4 @@
-import {Fragment, useContext, useMemo} from "react";
+import {Fragment, useContext, useMemo, memo} from "react";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
 import LogoOneport from '../../../../public/images/svg/logo-oneport.svg';
@@ -22,6 +22,7 @@ export default observer(function DeparturesList() {
 
     const showMeMore = useMemo(() => isNextPage && !loading.isLoad, [isNextPage, loading.isLoad])
     const showEmpty = useMemo(() => !departures.length && !loading.isLoad, [departures.length, loading.isLoad])
+    console.log('departures', departures)
 
     return (
         <div className="days_wrap">

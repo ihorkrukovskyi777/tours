@@ -11,7 +11,7 @@ import '@/entities/calendar/ui/main/style.css';
 const Main = dynamic(
     () => import("@/entities/calendar/ui/main/main"),
     {
-        ssr: false,
+        ssr: true,
         loading: () => <div className="calendar_wrap" style={{position: 'relative', minHeight: '300px'}}><Loader style={{backgroundColor: 'inherit'}}/></div>
     }
 )
