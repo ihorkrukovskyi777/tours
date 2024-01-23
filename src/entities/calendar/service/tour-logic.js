@@ -133,7 +133,7 @@ export default class TourLogic {
     getAllDaysMonth(month, year) {
 
         const date = new Date(year, month, 1);
-        var days = [];
+        const days = [];
         while (date.getMonth() === month) {
             days.push(new Date(date));
             date.setDate(date.getDate() + 1);
@@ -185,6 +185,7 @@ export default class TourLogic {
     }
 
     filterDays(deps, days) {
+        const start =new Date().getTime();
         const list = {};
 
         for (let i = 0; i < days.length; i++) {
@@ -227,6 +228,8 @@ export default class TourLogic {
             delete deps[days[i]]
         }
         this.sortTimeTours(list)
+
+        console.log(new Date().getTime() - start, 'tour logic filter')
         return list;
     }
 

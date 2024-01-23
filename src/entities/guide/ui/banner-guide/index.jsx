@@ -12,7 +12,7 @@ export default async function BannerGuide({id}) {
         <BannerSubVendor name={profile?.name} avatar={profile.avatar}>
             <div className="rate_box">
                 <FullStarSvg/>
-                {rating.reviews ? <span>{rating.rating} ({rating.reviews})</span> : null}
+                {rating?.reviews ? <span>{rating.rating} ({rating.reviews})</span> : null}
             </div>
             <LanguageImages locales={locales}/>
         </BannerSubVendor>
