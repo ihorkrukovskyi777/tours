@@ -30,9 +30,9 @@ export default async function CityPage({locale, title, id, languages, slug}) {
                     id={id}
                 />
             </Suspense>
-            <Suspense fallback="">
-                <SsrCalendar locale={locale} type="city" id={id}/>
-            </Suspense>
+            {/*<Suspense fallback="">*/}
+            {/*    <SsrCalendar locale={locale} type="city" id={id}/>*/}
+            {/*</Suspense>*/}
             <Suspense fallback="">
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
             </Suspense>
