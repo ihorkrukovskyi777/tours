@@ -12,12 +12,9 @@ import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Link from "next/link";
 import {createTranslation} from "@/i18n/server";
 import dynamic from "next/dynamic";
+import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 
 
-const ChangeOfLanguage = dynamic(
-    () => import("@/shared/ui/languages/change-of-language/change-of-language"),
-    {ssr: false}
-)
 
 
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
@@ -34,15 +31,14 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <SsrCalendar locale={locale} type="city" id={id}/>
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
                 <TextQuote id={id} locale={locale}/>
-            </Suspense>
-            <LatestReviews id={id} locale={locale}/>
-            <Highlights id={id}/>
-            <TextBlocks id={id} locale={locale}/>
-            <Guides id={id} locale={locale}/>
-            <MostPopularCity locale={locale} id={id} slug={slug}/>
-            <ChangeOfLanguage languages={languages} title={title}/>
-            <Breadcrumbs>
-                <p id="breadcrumbs">
+                <LatestReviews id={id} locale={locale}/>
+                <Highlights id={id}/>
+                <TextBlocks id={id} locale={locale}/>
+                <Guides id={id} locale={locale}/>
+                <MostPopularCity locale={locale} id={id} slug={slug}/>
+                <ChangeOfLanguage languages={languages} title={title}/>
+                <Breadcrumbs>
+                    <p id="breadcrumbs">
               <span>
                   <span>
                       <Link prefetch={false} className="first_link" href="/">{t('Free Tour')}</Link>
@@ -52,9 +48,9 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                       </span>
                   </span>
               </span>
-                </p>
-            </Breadcrumbs>
-
+                    </p>
+                </Breadcrumbs>
+            </Suspense>
         </>
     )
 }
