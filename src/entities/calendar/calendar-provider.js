@@ -12,7 +12,7 @@ const Main = dynamic(
     () => import("@/entities/calendar/ui/main/main"),
     {
         ssr: false,
-        loading: () => <div className="calendar_wrap" style={{position: 'relative', minHeight: '300px'}}><Loader style={{backgroundColor: 'inherit'}}/></div>
+        loading: () => <div className="calendar_wrap" style={{position: 'relative', minHeight: '900px'}}><Loader style={{backgroundColor: 'inherit'}}/></div>
     }
 )
 
