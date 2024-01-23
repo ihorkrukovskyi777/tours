@@ -1,70 +1,70 @@
-@font-face {
-    font-family: 'BrandonGrotesque-Bold';
-    src: url('./brandon-grotesque/BrandonGrotesque-Bold.woff2') format('woff2'),
-    url('./brandon-grotesque/BrandonGrotesque-Bold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'BrandonGrotesque-Medium';
-    src: url('./brandon-grotesque/BrandonGrotesque-Medium.woff2') format('woff2'),
-    url('./brandon-grotesque/BrandonGrotesque-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'BrandonGrotesque-Regular';
-    src: url('./brandon-grotesque/BrandonGrotesque-Regular.woff2') format('woff2'),
-    url('./brandon-grotesque/BrandonGrotesque-Regular.woff2') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Carlito';
-    src: url('./carlito/Carlito-Regular.woff2') format('woff2');
-    font-style: normal;
-    font-display: swap;
-    font-weight: 400;
-}
-@font-face {
-    font-family: 'Carlito';
-    src: url('./carlito/Carlito-Bold.woff2') format('woff2');
-    font-style: normal;
-    font-display: swap;
-    font-weight: 700;
-}
-@font-face {
-    font-family: 'Geomanist300';
-    src: url('./geomanist/Geomanist-Light.woff2') format('woff2'),
-    url('./geomanist/Geomanist-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Geomanist400';
-    src: url('./geomanist/Geomanist-Regular.woff2') format('woff2'),
-    url('./geomanist/Geomanist-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Geomanist500';
-    src: url('./geomanist/Geomanist-Medium.woff2') format('woff2'),
-    url('./geomanist/Geomanist-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Geomanist700';
-    src: url('./geomanist/Geomanist-Bold.woff2') format('woff2'),
-    url('./geomanist/Geomanist-Bold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
+/*@font-face {*/
+/*    font-family: 'BrandonGrotesque-Bold';*/
+/*    src: url('./brandon-grotesque/BrandonGrotesque-Bold.woff2') format('woff2'),*/
+/*    url('./brandon-grotesque/BrandonGrotesque-Bold.woff') format('woff');*/
+/*    font-weight: 700;*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'BrandonGrotesque-Medium';*/
+/*    src: url('./brandon-grotesque/BrandonGrotesque-Medium.woff2') format('woff2'),*/
+/*    url('./brandon-grotesque/BrandonGrotesque-Medium.woff') format('woff');*/
+/*    font-weight: 500;*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'BrandonGrotesque-Regular';*/
+/*    src: url('./brandon-grotesque/BrandonGrotesque-Regular.woff2') format('woff2'),*/
+/*    url('./brandon-grotesque/BrandonGrotesque-Regular.woff2') format('woff');*/
+/*    font-weight: 400;*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Carlito';*/
+/*    src: url('./carlito/Carlito-Regular.woff2') format('woff2');*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*    font-weight: 400;*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Carlito';*/
+/*    src: url('./carlito/Carlito-Bold.woff2') format('woff2');*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*    font-weight: 700;*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Geomanist300';*/
+/*    src: url('./geomanist/Geomanist-Light.woff2') format('woff2'),*/
+/*    url('./geomanist/Geomanist-Light.woff') format('woff');*/
+/*    font-weight: 300;*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Geomanist400';*/
+/*    src: url('./geomanist/Geomanist-Regular.woff2') format('woff2'),*/
+/*    url('./geomanist/Geomanist-Regular.woff') format('woff');*/
+/*    font-weight: 400;*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Geomanist500';*/
+/*    src: url('./geomanist/Geomanist-Medium.woff2') format('woff2'),*/
+/*    url('./geomanist/Geomanist-Medium.woff') format('woff');*/
+/*    font-weight: 500;*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*}*/
+/*@font-face {*/
+/*    font-family: 'Geomanist700';*/
+/*    src: url('./geomanist/Geomanist-Bold.woff2') format('woff2'),*/
+/*    url('./geomanist/Geomanist-Bold.woff') format('woff');*/
+/*    font-weight: 700;*/
+/*    font-style: normal;*/
+/*    font-display: swap;*/
+/*}*/
