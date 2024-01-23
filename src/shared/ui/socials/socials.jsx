@@ -4,7 +4,6 @@ import InstagramIcon  from '@/assets/images/svg/instagram.svg'
 import FacebookIcon  from '@/assets/images/svg/facebook.svg'
 
 export default function Socials() {
-    console.log(321321)
   return (
     <ul className={styles.social}>
         <a className={styles.url} href="#">
