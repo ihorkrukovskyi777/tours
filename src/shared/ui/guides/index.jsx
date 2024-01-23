@@ -1,10 +1,6 @@
 import { allGuides } from '@/entities/api';
-const LazyGuidesRow = dynamic(
-    () => import("@/shared/ui/guides/lazy-guides-row"),
-    { ssr: false }
-)
+import SwiperGuides from "@/shared/ui/guides/swiper/swiper";
 import './style.css';
-import dynamic from "next/dynamic";
 
 export default async function Guides({title, id, type}) {
   const items = await allGuides(id, type);
@@ -13,6 +9,11 @@ export default async function Guides({title, id, type}) {
     return null
   }
   return (
-      <LazyGuidesRow guides={items} title={title} />
-  )
+      <section className="guides_section" >
+        <div className="container">
+          <h2>Your Guides in Bogota {title}</h2>
+          <SwiperGuides guides={items} title={title}/>
+        </div>
+      </section>
+)
 }
