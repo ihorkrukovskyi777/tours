@@ -2,11 +2,11 @@
 import {useContext, useEffect} from "react";
 import {observer} from "mobx-react-lite";
 import dynamic from "next/dynamic";
-import TabsLanguages from "src/entities/calendar/ui/tabs-languages";
+import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
 const CounterNumbers = dynamic(
-    () => import("src/shared/ui/selectors/counter-numbers"),
+    () => import("@/shared/ui/selectors/counter-numbers"),
     {
         ssr: false,
     }

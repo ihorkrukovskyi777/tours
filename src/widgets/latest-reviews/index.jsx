@@ -1,12 +1,7 @@
 import {getReviews} from "@/entities/api";
 import {createTranslation} from "@/i18n/server";
-const ListReviews = dynamic(
-    () => import("@/shared/ui/list-reviews/list-reviews"),
-    { ssr: false }
-)
-
+import ListReviews from "@/shared/ui/list-reviews/list-reviews";
 import './style.css';
-import dynamic from "next/dynamic";
 
 
 export default async function LatestReviews({id, locale, type='city'}) {

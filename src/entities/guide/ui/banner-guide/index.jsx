@@ -1,5 +1,5 @@
-import BannerSubVendor from 'src/entities/guide/ui/banner-subvendor';
-import LanguageImages from 'src/shared/ui/languages/language-images';
+import BannerSubVendor from '@/entities/guide/ui/banner-subvendor';
+import LanguageImages from "@/shared/ui/languages/language-images";
 import FullStarSvg from '@/assets/images/svg/full-star';
 import {fetchBannerSubVendor} from "@/entities/guide/api";
 import './style.css';

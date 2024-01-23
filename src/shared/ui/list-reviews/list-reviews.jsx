@@ -1,7 +1,7 @@
 'use client'
 import {useState} from "react";
 import {useParams} from "next/navigation";
-import ReviewCard from "src/widgets/latest-reviews/reviews-card";
+import ReviewCard from "@/widgets/latest-reviews/reviews-card";
 import Button from "@/shared/ui/selectors/button/button";
 import {useTranslation} from "@/i18n/client";
 import {getReviews} from "@/entities/api";

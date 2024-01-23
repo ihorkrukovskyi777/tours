@@ -11,7 +11,7 @@ const Step1 = dynamic(
     }
 )
 const Step2 = dynamic(
-    () => import("src/entities/calendar/ui/modal-booking/step-2"),
+    () => import("@/entities/calendar/ui/modal-booking/step-2"),
     {
         ssr: false,
     }

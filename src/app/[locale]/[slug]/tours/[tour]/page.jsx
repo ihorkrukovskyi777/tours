@@ -1,7 +1,7 @@
 import BannerTour from "@/entities/tour/ui/banner-tour";
 import {notFound} from "next/navigation";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
-import Guides from "src/shared/ui/guides";
+import Guides from "@/shared/ui/guides";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 export default async function Page({params: {locale, slug, tour}}) {

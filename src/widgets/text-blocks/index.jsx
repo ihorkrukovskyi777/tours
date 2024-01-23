@@ -1,4 +1,4 @@
-import CardText from 'src/shared/ui/card-components/card-text';
+import CardText from '@/shared/ui/card-components/card-text';
 import {getTextsBlocks} from "@/entities/api";
 import './style.css';
 

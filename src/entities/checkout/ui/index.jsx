@@ -2,15 +2,15 @@
 import PersonInfo from './person-info';
 import MainInfo from './main-info';
 import ButtonsInfo from './buttons-info';
-import EditModalTour from 'src/entities/checkout/ui/edit-tour-modal';
+import EditModalTour from '@/entities/checkout/ui/edit-tour-modal';
 import Button from '@/shared/ui/selectors/button/button';
 import FormContactGuide from './form-contact-guide';
 import { useState , useEffect  } from 'react';
 import FormEdit from './form-edit';
 import { getCountryPhone } from '@/entities/api';
-import ModalBookingEdit from 'src/entities/calendar/ui/modal-booking-edit';
+import ModalBookingEdit from '@/entities/calendar/ui/modal-booking-edit';
 import Step1 from '@/entities/calendar/ui/modal-booking-edit/index';
-import Step2 from 'src/entities/calendar/ui/modal-booking/step-2';
+import Step2 from '@/entities/calendar/ui/modal-booking/step-2';
 import DefaultModal from '../../../shared/ui/modals/default-modal';
 import ThankYouMessage from '@/shared/ui/thank-you-message';
 import './style.css';
