@@ -6,7 +6,6 @@ import TextQuote from "@/widgets/text-quote";
 import LatestReviews from "@/widgets/latest-reviews";
 import Highlights from "@/widgets/highlights";
 import TextBlocks from "@/widgets/text-blocks";
-import Guides from "@/shared/ui/guides";
 import MostPopularCity from "@/entities/city/ui/most-popular-city";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Link from "next/link";
@@ -16,6 +15,12 @@ import dynamic from "next/dynamic";
 const ChangeOfLanguage = dynamic(
     () => import("@/shared/ui/languages/change-of-language/change-of-language"),
     {ssr: true}
+)
+
+
+const Guides = dynamic(
+    () => import("@/shared/ui/guides"),
+    {ssr: false}
 )
 
 
