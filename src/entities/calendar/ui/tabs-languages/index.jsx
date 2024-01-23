@@ -5,11 +5,14 @@ import {useTranslation} from "@/i18n/client";
 import FlagsComponents from "@/shared/ui/flags";
 import './style.css';
 
-
 export default memo(function TabsLanguages({loading, onChange = () => {}, selectedCode = 'en', activeLanguage = []}) {
     const { t } = useTranslation('country');
     const settingsTab = activeLanguage?.length > 6 ?  '' : 'not_full';
 
+    console.log('TabsLanguages')
+    if(loading.isLoad) {
+        return null;
+    }
 
     return (
         <ul className={`tabs ${settingsTab}`}>

@@ -1,4 +1,5 @@
 import {fetchDepartures} from "@/entities/calendar/api";
+import {log} from "next/dist/server/typescript/utils";
 
 const getTimePeriod = (day, elem) => {
     return day.subVendorId === elem?.subVendorId ? 15 : 30;
@@ -60,12 +61,15 @@ function addTourDay(day, toursDays) {
 }
 
 export default class TourLogic {
-    constructor(id, locale, translate, type) {
+    constructor(id, locale, translate, type, hydration) {
         this.type = type;
         this.id = id;
         this.cache = {};
+        this.hydrationData = hydration;
         this.currentLang = locale;
-        this.data = {};
+        this.data = {
+            [locale] : hydration.deps
+        };
         this.peopleNubmer = 1;
         this.date = {
             year: new Date().getFullYear(),
@@ -154,7 +158,17 @@ export default class TourLogic {
         return this.data[lang]?.days[day] ?? ''
     }
 
+    hydration(data) {
+        this.hydrationData = data;
+    }
     async getData(callback) {
+        if(this.data[this.currentLang]) {
+            const { timezone, deps } = this.hydrationData;
+            this.data[this.currentLang] = deps;
+            callback(timezone);
+            this._fetch = null;
+            return
+        }
         if (this._fetch) return this._fetch;
         this._fetch = new Promise(async (res) => {
 
@@ -185,6 +199,8 @@ export default class TourLogic {
     }
 
     filterDays(deps, days) {
+
+        console.log('filterDays')
         const start =new Date().getTime();
         const list = {};
 
@@ -229,7 +245,6 @@ export default class TourLogic {
         }
         this.sortTimeTours(list)
 
-        console.log(new Date().getTime() - start, 'tour logic filter')
         return list;
     }
 

@@ -3,24 +3,12 @@ import {createContext, memo} from "react";
 import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
 import Faqs from "@/shared/ui/faqs/faqs";
-import dynamic from "next/dynamic";
-import Loader from "@/shared/ui/loaders/default-loader";
-
+import Main from "@/entities/calendar/ui/main/main";
 import '@/entities/calendar/ui/main/style.css';
-
-const Main = dynamic(
-    () => import("@/entities/calendar/ui/main/main"),
-    {
-        ssr: false,
-        loading: () => <div className="calendar_wrap" style={{position: 'relative', minHeight: '300px'}}><Loader style={{backgroundColor: 'inherit'}}/></div>
-    }
-)
-
 export const StoreCalendarContext = createContext(null)
 
-export default memo(function CalendarProvider({locale, type, id, activeLanguage, questions}) {
-
-
+export default async function CalendarProvider({locale, type, id, activeLanguage, questions, hydration, phones}) {
+    console.log('CalendarProvider')
     let findLocale = activeLanguage?.find(item => item.code === locale);
     if(!findLocale) {
         [findLocale] = activeLanguage
@@ -28,10 +16,11 @@ export default memo(function CalendarProvider({locale, type, id, activeLanguage,
     if(!findLocale) {
         return null
     }
+
     return (
         <StoreCalendarContext.Provider value={{
-            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage),
-            storePhone: new StorePhone(findLocale.code)
+            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage, hydration),
+            storePhone: new StorePhone(findLocale.code, phones)
         }}>
             <section id="tour_calendar_section" className="tour_calendar">
                 <div className="container">
@@ -43,4 +32,4 @@ export default memo(function CalendarProvider({locale, type, id, activeLanguage,
             </section>
         </StoreCalendarContext.Provider>
     )
-})
+}

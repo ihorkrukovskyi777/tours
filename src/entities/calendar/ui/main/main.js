@@ -1,39 +1,24 @@
 'use client';
-import {useContext, useEffect} from "react";
+import {useContext, useEffect, memo} from "react";
 import {observer} from "mobx-react-lite";
 import dynamic from "next/dynamic";
 import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
-const CounterNumbers = dynamic(
-    () => import("@/shared/ui/selectors/counter-numbers"),
-    {
-        ssr: false,
-    }
-)
-const DeparturesList = dynamic(
-    () => import("@/entities/calendar/ui/departures-list"),
-    {
-        ssr: false,
-    }
-)
+import CounterNumbers from "@/shared/ui/selectors/counter-numbers";
+import DeparturesList from "@/entities/calendar/ui/departures-list";
+import OpenModalButton from "@/entities/calendar/ui/open-modal-button";
 const Step3 = dynamic(
     () => import("@/entities/calendar/ui/modal-booking/step-3/index"),
     {
         ssr: false,
     }
 )
-const OpenModalButton = dynamic(
-    () => import("@/entities/calendar/ui/open-modal-button"),
-    {
-        ssr: false,
-    }
-)
+
 export default observer(function Main({siteLocale}) {
     const {
         storePhone: {
             phones,
-            fetchPhones
         },
         storeCalendar: {
             activeLanguage,
@@ -48,14 +33,9 @@ export default observer(function Main({siteLocale}) {
                 departure,
             },
             storeModalCalendar,
-            fetchDepartures
         },
     } = useContext(StoreCalendarContext);
 
-    useEffect(() => {
-        fetchDepartures();
-        fetchPhones();
-    }, [])
 
 
     const changeModalBooking = () => {
@@ -65,14 +45,13 @@ export default observer(function Main({siteLocale}) {
         }
     }
 
+
     return (
         <div className="calendar_wrap" style={{minHeight: '300px'}}>
             <h2 className="title">Tour Calendar</h2>
             <div className="wrap-box">
                 <div className="wrap-button">
-                    {phones.state !== 'fulfilled' ?
-                        null :
-                        <OpenModalButton storeModalCalendar={storeModalCalendar}/>}
+                        <OpenModalButton storeModalCalendar={storeModalCalendar}/>
                 </div>
                 <TabsLanguages
                     selectedCode={locale}

@@ -22,7 +22,6 @@ export default observer(function DeparturesList() {
 
     const showMeMore = useMemo(() => isNextPage && !loading.isLoad, [isNextPage, loading.isLoad])
     const showEmpty = useMemo(() => !departures.length && !loading.isLoad, [departures.length, loading.isLoad])
-    console.log('DeparturesList DeparturesList')
     return (
         <div className="days_wrap">
             <div className="logo-calendar">
@@ -32,14 +31,13 @@ export default observer(function DeparturesList() {
                 <LanguageLoader/>
                 :
                 <>
-                    {departures.map((departure, index) => {
+                    {departures.map((departure) => {
                         const date = departure.date;
                         const showDate = !showNewDay[date];
                         const service = new ServiceDate(setFormatDDMMYYYYtoMMDDYYYY(date))
                         showNewDay[date] = true;
-
                         return (
-                            <Fragment key={index}>
+                            <Fragment key={`${departure.depId}${departure.date}${departure.time}`}>
                                 {showDate ? <div className="day_name">{t(service.day)}, {service.dayNum} {t(service.month)}</div> : null}
                                 <TourItem
                                     locale={locale}

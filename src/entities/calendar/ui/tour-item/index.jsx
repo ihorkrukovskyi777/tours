@@ -10,6 +10,7 @@ export default memo(function TourItem({dep, locale, onClick}) {
     const {t} = useTranslation();
     const {hours, minutes} = toHoursAndMinutes(dep.time);
     const {hours: durationHours, minutes: durationMinutes} = toHoursAndMinutes(dep.duration * 60);
+
     return (
         <div className="tours_wrap" onClick={() => onClick(dep)}>
             <div className="tour_block">

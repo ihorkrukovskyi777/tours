@@ -12,11 +12,11 @@ import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Link from "next/link";
 import {createTranslation} from "@/i18n/server";
 import dynamic from "next/dynamic";
+
 const ChangeOfLanguage = dynamic(
     () => import("@/shared/ui/languages/change-of-language/change-of-language"),
-    { ssr: false }
+    {ssr: true}
 )
-
 
 
 export default async function CityPage({locale, title, id, languages, slug}) {
@@ -28,7 +28,9 @@ export default async function CityPage({locale, title, id, languages, slug}) {
                 locale={locale}
                 id={id}
             />
-            <SsrCalendar locale={locale} type="city" id={id}/>
+            <Suspense fallback={''}>
+                <SsrCalendar locale={locale} type="city" id={id}/>
+            </Suspense>
             <Suspense fallback={''}>
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
             </Suspense>
