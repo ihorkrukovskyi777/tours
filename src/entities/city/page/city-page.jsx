@@ -23,22 +23,14 @@ export default async function CityPage({locale, title, id, languages, slug}) {
                 locale={locale}
                 id={id}
             />
-            {/*<Suspense fallback={''}>*/}
-            {/*    <SsrCalendar locale={locale} type="city" id={id}/>*/}
-            {/*</Suspense>*/}
-            <Suspense fallback={''}>
-                <MostPopularTours id={id} locale={locale} slug={slug}/>
-            </Suspense>
+            <SsrCalendar locale={locale} type="city" id={id}/>
+            <MostPopularTours id={id} locale={locale} slug={slug}/>
             <TextQuote id={id} locale={locale}/>
             <LatestReviews id={id} locale={locale}/>
             <Highlights id={id}/>
             <TextBlocks id={id} locale={locale}/>
-            <Suspense fallback={''}>
-                <Guides id={id} locale={locale}/>
-            </Suspense>
-            <Suspense fallback={''}>
-                <MostPopularCity locale={locale} id={id} slug={slug}/>
-            </Suspense>
+            <Guides id={id} locale={locale}/>
+            <MostPopularCity locale={locale} id={id} slug={slug}/>
             <ChangeOfLanguage languages={languages} title={title}/>
             <Breadcrumbs>
                 <p id="breadcrumbs">
