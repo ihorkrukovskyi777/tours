@@ -1,4 +1,5 @@
 import {Suspense} from "react";
+import Link from "next/link";
 import BannerCity from "@/entities/city/ui/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import MostPopularTours from "@/entities/city/ui/most-popular-tours";
@@ -9,10 +10,14 @@ import TextBlocks from "@/widgets/text-blocks";
 import Guides from "@/shared/ui/guides";
 import MostPopularCity from "@/entities/city/ui/most-popular-city";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
-import Link from "next/link";
 import {createTranslation} from "@/i18n/server";
 import Footer from "@/shared/ui/layouts/footer/footer";
-import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
+import dynamic from "next/dynamic";
+const ChangeOfLanguage = dynamic(
+    () => import("@/shared/ui/languages/change-of-language/change-of-language"),
+    {ssr: false}
+)
+
 
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     const {t} = await createTranslation(locale);
@@ -25,7 +30,8 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                     locale={locale}
                     id={id}
                 />
-
+            </Suspense>
+            <Suspense fallback="">
                 <SsrCalendar locale={locale} type="city" id={id}/>
             </Suspense>
             <Suspense fallback="">
