@@ -3,6 +3,7 @@ import BannerButtons from "@/entities/city/ui/banner-buttons/banner-buttons";
 import Reviews from '@/widgets/latest-reviews/item/reviews';
 import {getBannerData} from "@/entities/api";
 import './style.css';
+import {set} from "mobx";
 
 
 export default async function BannerCity({ id, locale, size}) {
