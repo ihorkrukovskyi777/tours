@@ -1,7 +1,7 @@
 import {Fragment, useContext, useMemo, memo} from "react";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
-import LogoOneport from '../../../../public/images/svg/logo-oneport.svg';
+import LogoOneport from '/public/images/svg/logo-oneport.svg';
 import LanguageLoader from "@/shared/ui/loaders/language-loader";
 import TourItem from "@/entities/calendar/ui/tour-item";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
@@ -22,7 +22,7 @@ export default observer(function DeparturesList() {
 
     const showMeMore = useMemo(() => isNextPage && !loading.isLoad, [isNextPage, loading.isLoad])
     const showEmpty = useMemo(() => !departures.length && !loading.isLoad, [departures.length, loading.isLoad])
-
+    console.log('DeparturesList DeparturesList')
     return (
         <div className="days_wrap">
             <div className="logo-calendar">

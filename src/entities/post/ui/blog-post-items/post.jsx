@@ -1,4 +1,4 @@
-import IcloudImage from '../../../../shared/ui/icloud-image';
+import IcloudImage from '@/shared/ui/icloud-image';
 import './style.css';
 
 export default function Post({data}) {
