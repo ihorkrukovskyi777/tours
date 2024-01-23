@@ -13,6 +13,6 @@ export default function Button({children}) {
  
 
     return (
-      <button ref={ref}>{children}{widthButtom}<span class="status"></span></button>    
+      <button ref={ref}>{children}{widthButtom}<span className="status"></span></button>    
     )
 }

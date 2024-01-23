@@ -38,12 +38,12 @@ export default function SliderTours() {
                         <SwiperSlide key={item}>
                             <div className='item'>
                                 <div className='item_top'>
-                                    <div class="img_wrap">
-                                        <div class="item_name">Burlington Arcade</div>
-                                        <Image alt="Burlington Arcade" width={400} height={300} src="https://imagedelivery.net/xtVVrgn04XP6bhrBt0jaJQ/46439860-c016-4960-fb81-79e348e40000/625x350" />
+                                    <div className="img_wrap">
+                                        <div className="item_name">Burlington Arcade</div>
+                                        <Image alt="Burlington Arcade" alt="123" width={400} height={300} src="https://imagedelivery.net/xtVVrgn04XP6bhrBt0jaJQ/46439860-c016-4960-fb81-79e348e40000/625x350" />
                                     </div>
-                                    <div class="text_wrap">
-                                        <div class="list">
+                                    <div className="text_wrap">
+                                        <div className="list">
                                             <div>
                                                 <Image src={tourSVG} width={20} height={20} alt="icon" />
                                             </div>

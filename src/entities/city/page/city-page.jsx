@@ -7,6 +7,7 @@ import LatestReviews from "@/widgets/latest-reviews";
 import Highlights from "@/widgets/highlights";
 import TextBlocks from "@/widgets/text-blocks";
 import Guides from "@/shared/ui/guides";
+import MapAndSlider from "@/widgets/map-and-slider/map-and-slider";
 import MostPopularCity from "@/entities/city/ui/most-popular-city";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Link from "next/link";
@@ -38,9 +39,10 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
             <Suspense fallback="">
                 <TextQuote id={id} locale={locale}/>
             </Suspense>
+            <MapAndSlider />
             <Suspense fallback="">
                 <LatestReviews id={id} locale={locale}/>
-            </Suspense>
+            </Suspense>    
             <Suspense fallback="">
                 <Highlights id={id}/>
             </Suspense>
