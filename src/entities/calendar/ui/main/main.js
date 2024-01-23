@@ -1,5 +1,5 @@
 'use client';
-import {useContext, useEffect} from "react";
+import {useContext, useEffect, useState} from "react";
 import {observer} from "mobx-react-lite";
 import dynamic from "next/dynamic";
 import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
@@ -30,6 +30,14 @@ const OpenModalButton = dynamic(
     }
 )
 export default observer(function Main({siteLocale}) {
+    const [isBrowser, setIsBrowser] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsBrowser(true)
+        }, 300)
+    }, [])
+
     const {
         storePhone: {
             phones,
@@ -90,7 +98,7 @@ export default observer(function Main({siteLocale}) {
                         : null
                     }
                 </div>
-                {departures?.length ? <DeparturesList/> : null }
+                {departures?.length && isBrowser ? <DeparturesList/> : null }
             </div>
             <ModalBooking show={isOpened}>
                 {isOpened ? <Step3

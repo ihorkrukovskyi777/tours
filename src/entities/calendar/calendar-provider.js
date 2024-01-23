@@ -20,8 +20,8 @@ export const StoreCalendarContext = createContext(null)
 
 export default memo(function CalendarProvider({locale, type, id, activeLanguage, questions}) {
 
-
     let findLocale = activeLanguage?.find(item => item.code === locale);
+
     if(!findLocale) {
         [findLocale] = activeLanguage
     }
