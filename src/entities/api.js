@@ -159,3 +159,14 @@ export const singlePost = async (id, locale = 'en') => {
 }
 
 
+export const searchCities = async (locale = 'en' , search) => {
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/search-city?locale=${locale}&q=${search}`,
+            {next: {revalidate: 60}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+}

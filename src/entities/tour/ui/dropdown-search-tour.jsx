@@ -12,7 +12,7 @@ export default observer(function DropdownSearch({locale}) {
         debounce(() => {store.getFetchCities()}, 100)
         , []);
 
-    const featchData = ({target}) => {
+    const fetchData = ({target}) => {
         let valueSearch = target.value.length > 0 ? target.value : null;
         store.setSearch(valueSearch);
         debouncedChangeHandler();
@@ -26,7 +26,7 @@ export default observer(function DropdownSearch({locale}) {
                     type="text"
                     placeholder="Where Are You Going?"
                     value={store.value}
-                    onChange={featchData}
+                    onChange={fetchData}
                 />
 
             </label>
