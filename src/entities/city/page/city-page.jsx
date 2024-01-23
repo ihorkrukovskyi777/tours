@@ -11,28 +11,19 @@ import MostPopularCity from "@/entities/city/ui/most-popular-city";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Link from "next/link";
 import {createTranslation} from "@/i18n/server";
-import dynamic from "next/dynamic";
 import Footer from "@/shared/ui/layouts/footer/footer";
-
-
-const ChangeOfLanguage = dynamic(
-    () => import("@/shared/ui/languages/change-of-language/change-of-language"),
-    {ssr: false}
-)
-
+import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     const {t} = await createTranslation(locale);
     return (
         <>
-            <Suspense fallback={''}>
-                <BannerCity
-                    isMobile={isMobile}
-                    size="city_banner"
-                    locale={locale}
-                    id={id}
-                />
-            </Suspense>
+            <BannerCity
+                isMobile={isMobile}
+                size="city_banner"
+                locale={locale}
+                id={id}
+            />
             <Suspense fallback="">
                 <SsrCalendar locale={locale} type="city" id={id}/>
             </Suspense>

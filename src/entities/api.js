@@ -1,7 +1,7 @@
 export async function getBannerData(id, locale, type = 'city', revalidate = 0, ) {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/banner/${id}?locale=${locale}`,
-        {next: {revalidate: revalidate}}
+        {next: {revalidate: 0}}
     )
     return data.json();
 }
