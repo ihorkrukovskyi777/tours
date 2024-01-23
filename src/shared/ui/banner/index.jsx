@@ -8,7 +8,7 @@ export default function Banner({attachment = null, title, children, bottomView =
             <div className={size}>
                 {attachment ? <IcloudImage
                     className="banner_bg"
-                    quality={50}
+                    quality={10}
                     width={width}
                     height={height}
                     src={attachment.src}
