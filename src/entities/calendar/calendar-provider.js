@@ -8,16 +8,8 @@ import './style.css'
 import '@/entities/calendar/ui/main/style.css';
 export const StoreCalendarContext = createContext(null)
 
-export default function CalendarProvider({locale, type, id, activeLanguage, questions, hydration, phones}) {
+export default function CalendarProvider({locale, type, id, activeLanguage, findLocale, questions, hydration, phones}) {
 
-    let findLocale = activeLanguage?.find(item => item.code === locale);
-
-    if(!findLocale) {
-        [findLocale] = activeLanguage
-    }
-    if(!findLocale) {
-        return null
-    }
     return (
         <StoreCalendarContext.Provider value={{
             storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage, hydration),
