@@ -5,9 +5,9 @@ import '../../globals.css'
 export default function LocaleLayout({children, params}) {
     return (
         <main className={'main_flex_container'}>
-            <Header locale={params.locale}/>
+            {/*<Header locale={params.locale}/>*/}
             {children}
-            {/*<Footer locale={params.locale}/>*/}
+            <Footer locale={params.locale}/>
         </main>
     )
 }
