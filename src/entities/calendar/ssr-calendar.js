@@ -5,7 +5,7 @@ import {getCountryPhone} from "@/entities/api";
 export default async function SsrCalendar({locale, type, id}) {
 
 
-    const [questions, activeLanguage, hydration, phones] = await Promise.all([
+    const [questions, activeLanguage, phones] = await Promise.all([
         getFaqBlock(id, locale),
         getActiveLang(id, type),
         getCountryPhone(locale),
@@ -14,6 +14,6 @@ export default async function SsrCalendar({locale, type, id}) {
     if(!findLocale) {
         [findLocale] = activeLanguage
     }
-    const  departures =   await fetchDepartures(id, type, locale);
+    const  hydration =   await fetchDepartures(id, type, locale);
     return <CalendarProvider locale={locale} type={type} id={id} activeLanguage={activeLanguage} findLocale={findLocale} questions={questions} hydration={hydration} phones={phones}/>
 }
