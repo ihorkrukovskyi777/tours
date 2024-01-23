@@ -5,31 +5,16 @@ import dynamic from "next/dynamic";
 import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
-
-const CounterNumbers = dynamic(
-    () => import("@/shared/ui/selectors/counter-numbers"),
-    {
-        ssr: false,
-    }
-)
-const DeparturesList = dynamic(
-    () => import("@/entities/calendar/ui/departures-list"),
-    {
-        ssr: false,
-    }
-)
+import DeparturesList from "@/entities/calendar/ui/departures-list";
+import CounterNumbers from "@/shared/ui/selectors/counter-numbers";
+import OpenModalButton from "@/entities/calendar/ui/open-modal-button";
 const Step3 = dynamic(
     () => import("@/entities/calendar/ui/modal-booking/step-3/index"),
     {
         ssr: false,
     }
 )
-const OpenModalButton = dynamic(
-    () => import("@/entities/calendar/ui/open-modal-button"),
-    {
-        ssr: false,
-    }
-)
+
 export default observer(function Main({siteLocale}) {
 
     const {
@@ -42,7 +27,7 @@ export default observer(function Main({siteLocale}) {
             locale, loading, changeLanguage,
             departures,
             storeDepLogic: {
-                people, changePeople, isEmpty,
+                people, changePeople, isEmpty, fetchDepartures,
             },
             storeModalBooking: {
                 isOpened,
@@ -50,15 +35,8 @@ export default observer(function Main({siteLocale}) {
                 departure,
             },
             storeModalCalendar,
-            fetchDepartures
         },
     } = useContext(StoreCalendarContext);
-
-    useEffect(() => {
-        fetchDepartures();
-        fetchPhones();
-    }, [])
-
 
     const changeModalBooking = () => {
         close()
@@ -72,9 +50,7 @@ export default observer(function Main({siteLocale}) {
             <h2 className="title">Tour Calendar</h2>
             <div className="wrap-box">
                 <div className="wrap-button">
-                    {phones.state !== 'fulfilled' ?
-                        null :
-                        <OpenModalButton storeModalCalendar={storeModalCalendar}/>}
+                    <OpenModalButton storeModalCalendar={storeModalCalendar}/>
                 </div>
                 <TabsLanguages
                     selectedCode={locale}

@@ -10,9 +10,10 @@ export class StoreCalendar {
         this.activeLanguage = activeLanguage;
         this.storeModalBooking = new StoreModalBooking()
         this.storeDepLogic = new StoreTourLogic(locale, type, id, hydration)
-        this.loading = new StoreLoading(true);
+        this.loading = new StoreLoading();
         this.storeModalCalendar = new StoreModalCalendar(this.loading, this.storeDepLogic, this.storeModalBooking, this.activeLanguage)
         makeAutoObservable(this, {}, {autoBind: true, deep: false});
+        this.storeDepLogic. initPagination();
     }
 
     get locale() {

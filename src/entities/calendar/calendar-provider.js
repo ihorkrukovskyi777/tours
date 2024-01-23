@@ -1,24 +1,14 @@
 'use client'
-import {createContext, memo} from "react";
+import {createContext} from "react";
 import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
 import Faqs from "@/shared/ui/faqs/faqs";
-import dynamic from "next/dynamic";
-import Loader from "@/shared/ui/loaders/default-loader";
-
+import Main from "@/entities/calendar/ui/main/main";
+import './style.css'
 import '@/entities/calendar/ui/main/style.css';
-
-const Main = dynamic(
-    () => import("@/entities/calendar/ui/main/main"),
-    {
-        ssr: false,
-        loading: () => <div className="calendar_wrap" style={{position: 'relative', minHeight: '900px'}}><Loader style={{backgroundColor: 'inherit'}}/></div>
-    }
-)
-
 export const StoreCalendarContext = createContext(null)
 
-export default function CalendarProvider({locale, type, id, activeLanguage, questions, hydration}) {
+export default function CalendarProvider({locale, type, id, activeLanguage, questions, hydration, phones}) {
 
     let findLocale = activeLanguage?.find(item => item.code === locale);
 
@@ -31,7 +21,7 @@ export default function CalendarProvider({locale, type, id, activeLanguage, ques
     return (
         <StoreCalendarContext.Provider value={{
             storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage, hydration),
-            storePhone: new StorePhone(findLocale.code)
+            storePhone: new StorePhone(findLocale.code, phones)
         }}>
             <section id="tour_calendar_section" className="tour_calendar">
                 <div className="container">

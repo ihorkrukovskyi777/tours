@@ -38,7 +38,7 @@ export default observer(function DeparturesList() {
                         showNewDay[date] = true;
 
                         return (
-                            <Fragment key={index}>
+                            <Fragment key={`${departure.depId}${departure.date}${departure.time}`}>
                                 {showDate ? <div className="day_name">{t(service.day)}, {service.dayNum} {t(service.month)}</div> : null}
                                 <TourItem
                                     locale={locale}

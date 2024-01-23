@@ -22,7 +22,9 @@
   --font_500: var(--geomanist_medium) , var(--font-ciliric);
   --font_700: var(--geomanist_bold) , var(--font-ciliric);
 }
-
+li {
+  list-style:none;
+}
 html, body {
   width: 100%;
   height: 100%;

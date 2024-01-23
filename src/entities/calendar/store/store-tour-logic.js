@@ -10,11 +10,11 @@ export class StoreTourLogic {
         this.offset = 0;
         this.done = false;
         this.people = 1;
-        this.isEmpty = true;
+        this.isEmpty = false;
         this.activeLanguage = [];
         this.timezone = 'UTC';
         this.locale = locale;
-        this.service = new TourLogic(id, locale, locale, type);
+        this.service = new TourLogic(id, locale, locale, type, hydration);
         makeAutoObservable(this, {}, {autoBind: true, deep: false});
 
     }

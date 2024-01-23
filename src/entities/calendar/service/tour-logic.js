@@ -60,12 +60,12 @@ function addTourDay(day, toursDays) {
 }
 
 export default class TourLogic {
-    constructor(id, locale, translate, type) {
+    constructor(id, locale, translate, type, hydration) {
         this.type = type;
         this.id = id;
         this.cache = {};
         this.currentLang = locale;
-        this.data = {};
+        this.data = {[locale]: hydration?.deps};
         this.peopleNubmer = 1;
         this.date = {
             year: new Date().getFullYear(),
@@ -155,6 +155,10 @@ export default class TourLogic {
     }
 
     async getData(callback) {
+
+        if(this.data[this.currentLang]) {
+            callback('UTC')
+        }
         if (this._fetch) return this._fetch;
         this._fetch = new Promise(async (res) => {
 

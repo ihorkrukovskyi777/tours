@@ -4,9 +4,12 @@ import {getCountryPhone} from "@/entities/api";
 
 
 export class StorePhone {
-    constructor(locale) {
+    constructor(locale, phones) {
         this.locale = locale;
-        this.phones = [];
+        this.phones = {
+            state: 'success',
+            value: phones,
+        };
         makeAutoObservable(this, {}, { autoBind: true });
     }
      fetchPhones(){
