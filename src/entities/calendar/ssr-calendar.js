@@ -14,6 +14,7 @@ export default async function SsrCalendar({locale, type, id}) {
     if(!findLocale) {
         [findLocale] = activeLanguage
     }
-    const  hydration =   await fetchDepartures(id, type, locale);
+    const  hydration =   await fetchDepartures(id, type, findLocale.locale);
+
     return <CalendarProvider locale={locale} type={type} id={id} activeLanguage={activeLanguage} findLocale={findLocale} questions={questions} hydration={hydration} phones={phones}/>
 }

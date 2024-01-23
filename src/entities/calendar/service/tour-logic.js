@@ -61,6 +61,7 @@ function addTourDay(day, toursDays) {
 
 export default class TourLogic {
     constructor(id, locale, translate, type, hydration) {
+
         this.type = type;
         this.id = id;
         this.cache = {};
