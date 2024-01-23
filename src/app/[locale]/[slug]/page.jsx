@@ -33,27 +33,27 @@ export default async function Page({params: {locale, slug}}) {
                     languages={data.languages}
                     title={data.title}/>
                 : null}
-            {data.type === 'default' ?
-                <FlexibleContent
-                    flexibleContent={data.flexibleContent}
-                    locale={locale}
-                    id={data.translateId}
-                    slug={slug}
-                    content={data.content}
-                    languages={data.languages}
-                    title={data.title}
-                />
-                : null}
+            {/*{data.type === 'default' ?*/}
+            {/*    <FlexibleContent*/}
+            {/*        flexibleContent={data.flexibleContent}*/}
+            {/*        locale={locale}*/}
+            {/*        id={data.translateId}*/}
+            {/*        slug={slug}*/}
+            {/*        content={data.content}*/}
+            {/*        languages={data.languages}*/}
+            {/*        title={data.title}*/}
+            {/*    />*/}
+            {/*    : null}*/}
 
-            {data.type === 'post' ?
-                <PostPage
-                    locale={locale}
-                    id={data.translateId}
-                    slug={slug}
-                    languages={data.languages}
-                    title={data.title}
-                />
-                : null}
+            {/*{data.type === 'post' ?*/}
+            {/*    <PostPage*/}
+            {/*        locale={locale}*/}
+            {/*        id={data.translateId}*/}
+            {/*        slug={slug}*/}
+            {/*        languages={data.languages}*/}
+            {/*        title={data.title}*/}
+            {/*    />*/}
+            {/*    : null}*/}
 
         </main>
     )
