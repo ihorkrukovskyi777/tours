@@ -19,11 +19,12 @@ const ChangeOfLanguage = dynamic(
 )
 
 
-export default async function CityPage({locale, title, id, languages, slug}) {
+export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     const {t} = await createTranslation(locale);
     return (
         <>
             <BannerCity
+                isMobile={isMobile}
                 size="city_banner"
                 locale={locale}
                 id={id}

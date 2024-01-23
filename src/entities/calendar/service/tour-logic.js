@@ -229,7 +229,6 @@ export default class TourLogic {
         }
         this.sortTimeTours(list)
 
-        console.log(new Date().getTime() - start, 'tour logic filter')
         return list;
     }
 
