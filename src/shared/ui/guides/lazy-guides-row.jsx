@@ -9,7 +9,7 @@ const SwiperGuides = dynamic(
 
 export default function LazyGuidesRow({guides, title}) {
     const ref= useRef(null)
-    const isVisible = useOnScreen(ref)
+    const isVisible = useOnScreen(ref, (ref) => ref?.previousElementSibling ?? ref)
 
     return (
         <section className="guides_section" ref={ref}>

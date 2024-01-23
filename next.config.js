@@ -3,11 +3,11 @@ const nextConfig = {
     reactStrictMode: true,
     experimental: { optimizeCss: true },
     swcMinify: true,
-    compiler: {
-        removeConsole: {
-            exclude: ['error'],
-        },
-    },
+    // compiler: {
+    //     removeConsole: {
+    //         exclude: ['error'],
+    //     },
+    // },
     images: {
         remotePatterns: [
             {
