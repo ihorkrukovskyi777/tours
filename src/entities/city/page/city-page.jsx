@@ -3,6 +3,7 @@ import BannerCity from "src/entities/city/ui/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import MostPopularTours from "src/entities/city/ui/most-popular-tours";
 import TextQuote from "@/widgets/text-quote";
+import MapAndSlider from "@/widgets/map-and-slider/map-and-slider";
 import LatestReviews from "@/widgets/latest-reviews";
 import Highlights from "@/widgets/highlights";
 import TextBlocks from "@/widgets/text-blocks";
@@ -30,6 +31,7 @@ export default async function CityPage({locale, title, id, languages, slug}) {
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
             </Suspense>
             <TextQuote id={id} locale={locale}/>
+            <MapAndSlider />
             <LatestReviews id={id} locale={locale}/>
             <Highlights id={id}/>
             <TextBlocks id={id} locale={locale}/>

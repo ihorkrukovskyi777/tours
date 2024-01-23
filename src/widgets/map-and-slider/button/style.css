@@ -1,0 +1,57 @@
+.buttons-map {
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.buttons-map button {
+    padding: 20px 52px 20px 22px;
+    font-size: 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    min-height: 60px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    font-family: var(--fontMedium);
+    transition: .3s;
+    text-align: left;
+    flex-shrink: 0;
+    background-color: #F6F6F6;
+    color: #000000;
+    position: relative;
+}
+.buttons-map button.active {
+    background-color: #D9D9D9;
+    pointer-events: none;
+}
+.buttons-map .place_select_post_clear {
+    padding: 15px 52px 15px 22px;
+    margin-left: auto;
+    background-color: var(--main_color);
+    color: #fff;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+.buttons-map .place_select_post_clear svg {
+    margin-right: 9px;
+    flex-shrink: 0;
+}
+.buttons-map .place_select_post_clear:hover {
+    opacity: .7;
+}
+
+.buttons-map button .status {
+    margin-left: 15px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 50px;
+    background: #00E15A;
+    position: absolute;
+    right: 19px;
+}
