@@ -34,8 +34,8 @@ export default observer(function Main({siteLocale}) {
 
     useEffect(() => {
         setTimeout(() => {
-            setIsBrowser(true)
-        }, 1300)
+            setIsBrowser(true);
+        }, 300)
     }, [])
 
     const {
@@ -61,8 +61,11 @@ export default observer(function Main({siteLocale}) {
     } = useContext(StoreCalendarContext);
 
     useEffect(() => {
-        fetchDepartures();
-        fetchPhones();
+        if(isBrowser) {
+            fetchDepartures();
+            fetchPhones();
+        }
+
     }, [])
 
 
