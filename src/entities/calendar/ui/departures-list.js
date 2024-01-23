@@ -22,7 +22,6 @@ export default observer(function DeparturesList() {
 
     const showMeMore = useMemo(() => isNextPage && !loading.isLoad, [isNextPage, loading.isLoad])
     const showEmpty = useMemo(() => !departures.length && !loading.isLoad, [departures.length, loading.isLoad])
-    console.log('departures', departures)
 
     return (
         <div className="days_wrap">

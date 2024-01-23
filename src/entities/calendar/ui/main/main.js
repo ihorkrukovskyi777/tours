@@ -2,12 +2,21 @@
 import {useContext, useEffect} from "react";
 import {observer} from "mobx-react-lite";
 import dynamic from "next/dynamic";
-import DeparturesList from "@/entities/calendar/ui/departures-list";
 import TabsLanguages from "src/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
-import CounterNumbers from "src/shared/ui/selectors/counter-numbers";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
-
+const CounterNumbers = dynamic(
+    () => import("src/shared/ui/selectors/counter-numbers"),
+    {
+        ssr: false,
+    }
+)
+const DeparturesList = dynamic(
+    () => import("@/entities/calendar/ui/departures-list"),
+    {
+        ssr: false,
+    }
+)
 const Step3 = dynamic(
     () => import("@/entities/calendar/ui/modal-booking/step-3/index"),
     {
@@ -29,6 +38,7 @@ export default observer(function Main({siteLocale}) {
         storeCalendar: {
             activeLanguage,
             locale, loading, changeLanguage,
+            departures,
             storeDepLogic: {
                 people, changePeople, isEmpty,
             },
@@ -80,7 +90,7 @@ export default observer(function Main({siteLocale}) {
                         : null
                     }
                 </div>
-                <DeparturesList/>
+                {departures?.length ? <DeparturesList/> : null }
             </div>
             <ModalBooking show={isOpened}>
                 {isOpened ? <Step3

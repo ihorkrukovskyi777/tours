@@ -28,7 +28,7 @@ export default async function CityPage({locale, title, id, languages, slug}) {
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
             </Suspense>
             <TextQuote id={id} locale={locale}/>
-            {/*<LatestReviews id={id} locale={locale}/>*/}
+            <LatestReviews id={id} locale={locale}/>
             <Highlights id={id}/>
             <TextBlocks id={id} locale={locale}/>
             <Suspense fallback={''}>
