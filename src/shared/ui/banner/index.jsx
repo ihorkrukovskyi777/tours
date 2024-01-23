@@ -1,6 +1,4 @@
 import IcloudImage from "@/shared/ui/icloud-image";
-import BannerImage from "/public/images/background-image-banner.jpeg"
-import Image from "next/image";
 import './style.css';
 
 export default function Banner({attachment = null, title, children, bottomView = null, size , nameBanner=''}, isMobile = false) {

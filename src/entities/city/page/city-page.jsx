@@ -25,12 +25,14 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
     const {t} = await createTranslation(locale);
     return (
         <>
-            <BannerCity
-                isMobile={isMobile}
-                size="city_banner"
-                locale={locale}
-                id={id}
-            />
+            <Suspense fallback={''}>
+                <BannerCity
+                    isMobile={isMobile}
+                    size="city_banner"
+                    locale={locale}
+                    id={id}
+                />
+            </Suspense>
             <Suspense fallback="">
                 <SsrCalendar locale={locale} type="city" id={id}/>
             </Suspense>
@@ -43,8 +45,8 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <Guides id={id} locale={locale}/>
                 <MostPopularCity locale={locale} id={id} slug={slug}/>
                 <ChangeOfLanguage languages={languages} title={title}/>
-            <Breadcrumbs>
-                <p id="breadcrumbs">
+                <Breadcrumbs>
+                    <p id="breadcrumbs">
               <span>
                   <span>
                       <Link prefetch={false} className="first_link" href="/">{t('Free Tour')}</Link>
@@ -54,9 +56,9 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                       </span>
                   </span>
               </span>
-                </p>
-            </Breadcrumbs>
-            <Footer locale={locale}/>
+                    </p>
+                </Breadcrumbs>
+                <Footer locale={locale}/>
             </Suspense>
 
         </>
