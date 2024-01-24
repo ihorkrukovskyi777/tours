@@ -9,6 +9,7 @@ import './style.css';
 
 export default function InternationalInput({locale , allPhoneNumbers , handleChange , valueMask=''}) {
     let formatLanguage = localeFormat(locale);
+    
     formatLanguage = formatLanguage === 'en' ? 'GB' : formatLanguage;
     formatLanguage = formatLanguage === 'pt-pt' ? 'pt' : formatLanguage;
     const languagePageSlug = formatLanguage.toUpperCase();
@@ -41,7 +42,7 @@ export default function InternationalInput({locale , allPhoneNumbers , handleCha
     <div className={classNames({'border':border} , 'international-phone')}>
         <div className="wrap-input" style={{width: inputCountryWidth}}>
             <PhoneInput
-                country={formatLanguage}
+                country={formatLanguage.toLowerCase()}
                 localization={formatLanguage.toLowerCase()}
                 onChange={(value, country) => {
                     //errors.phone = 'This field is requared';

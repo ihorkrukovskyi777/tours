@@ -115,18 +115,21 @@ export default function FormCalendar({allPhoneNumbers, locale}) {
             setValidate(true);
             //REDIRECT TO CHECKOUT PAGE
             const formData = {
-                firstName: document.querySelector("#booking input[[name]='firstName']").value,
-                lastName: document.querySelector("#booking input[[name]='lastName']").value,
-                email: document.querySelector("#booking input[[name]='email']").value,
+                firstName: document.querySelector("#booking input[name=firstName]").value,
+                lastName: document.querySelector("#booking input[name=lastName]").value,
+                email: document.querySelector("#booking input[name=email]").value,
                 phone_country: document.querySelector("#booking .react-tel-input input").value,
-                phone: document.querySelector("#booking input[[name]='phone']").value,
-                accept: document.querySelector("#booking input[[name]='accept']").value,
+                phone: document.querySelector("#booking input[name=phone]").value,
+                accept: document.querySelector("#booking input[name=accept]").value,
             }
+            console.log(formData , 'formData')
         } else {
             console.error('Invalid Form')
             setValidate(false);
         }
     }
+
+
 
     const {errors} = state;
 

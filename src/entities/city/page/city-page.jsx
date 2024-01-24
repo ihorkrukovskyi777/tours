@@ -18,6 +18,12 @@ const ChangeOfLanguage = dynamic(
     {ssr: false}
 )
 
+const MapAndSlider = dynamic(
+    () => import("@/widgets/map-and-slider/map-and-slider"),
+    {ssr: false}
+)
+
+
 
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     const {t} = await createTranslation(locale);
@@ -37,6 +43,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
             <Suspense fallback="">
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
                 <TextQuote id={id} locale={locale}/>
+                <MapAndSlider />
                 <LatestReviews id={id} locale={locale}/>
                 <Highlights id={id}/>
                 <TextBlocks id={id} locale={locale}/>

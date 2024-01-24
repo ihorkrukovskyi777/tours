@@ -1,7 +1,7 @@
 'use client';
 import Button from './button/button';
 import SliderTours from './slider-tours/slider-tours';
-
+import Map from './map/map';
 
 import './style.css';
 
@@ -20,8 +20,7 @@ export default function MapAndSlider() {
                     <div className="buttons-map" >
                         {buttons.map((item , index) => <Button key={index}>{item}</Button>)}
                     </div>
-                    <div>map</div>
-
+                    <Map />
                     <SliderTours />
                 </div>
             </div>
