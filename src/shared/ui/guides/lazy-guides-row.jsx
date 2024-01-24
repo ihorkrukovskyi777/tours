@@ -1,5 +1,5 @@
 'use client'
-import { useRef } from "react";
+import {useEffect, useRef} from "react";
 import useOnScreen from "@/shared/hooks/useOnScreen";
 import dynamic from "next/dynamic";
 const SwiperGuides = dynamic(
@@ -7,17 +7,18 @@ const SwiperGuides = dynamic(
     { ssr: false }
 )
 
-export default function LazyGuidesRow({guides, title}) {
+export default function LazyGuidesRow({guides}) {
     const ref= useRef(null)
-    const isVisible = useOnScreen(ref, (ref) => ref?.previousElementSibling ?? ref)
-
+    const isVisible = useOnScreen(ref, (ref) => ref?.closest('section').previousElementSibling ?? ref)
+    useEffect(() => {
+        console.log(isVisible, 'isVisible')
+        if(isVisible) {
+            document.getElementById('hidden_mirage_guide')?.remove()
+        }
+    }, [isVisible])
     return (
-        <section className="guides_section" ref={ref}>
-            <div className="container">
-                <h2>Your Guides in Bogota {title}</h2>
-                { isVisible ? <SwiperGuides guides={guides} /> : null }
-            </div>
-        </section>
-
+        <div ref={ref}>
+            {isVisible ? <SwiperGuides guides={guides}/> : null}
+        </div>
     )
 }

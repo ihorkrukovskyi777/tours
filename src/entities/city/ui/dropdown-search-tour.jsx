@@ -1,7 +1,7 @@
 "use client";
 import {useCallback , useState } from 'react';
 import {observer} from "mobx-react-lite";
-import {StoreSearchCity} from "@/shared/ui/flexible-content/banner-home/store/search-city";
+import {StoreSearchCity} from "@/entities/city/store/search-city";
 import debounce from 'lodash.debounce';
 import { getHrefLocale } from '@/i18n/get-href-locale';
 import Link from 'next/link';
@@ -9,8 +9,9 @@ import Link from 'next/link';
 export default observer(function DropdownSearch({locale}) {
     const [store] = useState(new StoreSearchCity(locale));
     const debouncedChangeHandler = useCallback(
-        debounce(() => {store.getFetchCities()}, 100)
-        , []);
+        debounce(() => {store.getFetchCities()}, 300)
+        ,
+        []);
 
     const fetchData = ({target}) => {
         let valueSearch = target.value.length > 0 ? target.value : null;
