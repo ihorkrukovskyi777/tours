@@ -1,8 +1,7 @@
 'use client'
-import {createContext, memo} from "react";
+import {createContext} from "react";
 import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
-import Faqs from "@/shared/ui/faqs/faqs";
 import dynamic from "next/dynamic";
 import Loader from "@/shared/ui/loaders/default-loader";
 
@@ -12,13 +11,17 @@ const Main = dynamic(
     () => import("@/entities/calendar/ui/main/main"),
     {
         ssr: false,
-        loading: () => <div className="calendar_wrap" style={{position: 'relative', minHeight: '900px'}}><Loader style={{backgroundColor: 'inherit'}}/></div>
+        loading: () => <div className="calendar_wrap" style={{position: 'relative', minHeight: '300px'}}><Loader style={{backgroundColor: 'inherit'}}/></div>
     }
+)
+const Faqs = dynamic(
+    () => import("@/shared/ui/faqs/faqs"),
+    { ssr: true }
 )
 
 export const StoreCalendarContext = createContext(null)
 
-export default function CalendarProvider({locale, type, id, activeLanguage, questions, hydration}) {
+export default function CalendarProvider({locale, type, id, activeLanguage, questions, showFaq = true}) {
 
     let findLocale = activeLanguage?.find(item => item.code === locale);
 
@@ -30,14 +33,14 @@ export default function CalendarProvider({locale, type, id, activeLanguage, ques
     }
     return (
         <StoreCalendarContext.Provider value={{
-            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage, hydration),
+            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage),
             storePhone: new StorePhone(findLocale.code)
         }}>
             <section id="tour_calendar_section" className="tour_calendar">
                 <div className="container">
                     <div className="wrapper">
                         <Main siteLocale={locale}/>
-                        <Faqs questions={questions}/>
+                        { showFaq ? <Faqs questions={questions}/> : null}
                     </div>
                 </div>
             </section>

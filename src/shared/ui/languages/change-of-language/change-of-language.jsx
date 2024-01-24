@@ -19,7 +19,7 @@ export default function ChangeOfLanguage({languages, title}) {
     return (
         <section id="change-of-language">
             <div className="container">
-                <h2>Free Tours in Your Language</h2>
+                <h2>{t('Free Tours in Your Language')}</h2>
                 <ul>
                     {languagesFilter?.slice(0, showLanguage).map((item) => {
                         return (
@@ -29,7 +29,7 @@ export default function ChangeOfLanguage({languages, title}) {
                                     prefetch={false}
                                 >
                                     <span
-                                        className="wrap-txt">Free Tours {title?.replace('<br>', '')} {t(`fullName.${item.locale}`)}</span>
+                                        className="wrap-txt">{t('Free Tours')} {title?.replace('<br>', '')} {t(`fullName.${item.locale}`)}</span>
                                     <FlagsComponents locale={item.locale}/>
                                 </Link>
                             </li>
@@ -38,7 +38,7 @@ export default function ChangeOfLanguage({languages, title}) {
                 </ul>
                 {showLanguage < languagesFilter?.length ?
                     <div className="block-center">
-                        <Button onClick={() => setShowLanguage(value => value + 3)}>Load More</Button>
+                        <Button onClick={() => setShowLanguage(value => value + 3)}>{t('Load More')}</Button>
                     </div>
                     :
                     null

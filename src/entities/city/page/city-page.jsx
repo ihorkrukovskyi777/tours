@@ -13,6 +13,7 @@ import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import {createTranslation} from "@/i18n/server";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import dynamic from "next/dynamic";
+
 const ChangeOfLanguage = dynamic(
     () => import("@/shared/ui/languages/change-of-language/change-of-language"),
     {ssr: false}
@@ -40,22 +41,11 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <LatestReviews id={id} locale={locale}/>
                 <Highlights id={id}/>
                 <TextBlocks id={id} locale={locale}/>
-                <Guides id={id} locale={locale}/>
+                <Guides id={id} locale={locale} title={title} type="city"/>
                 <MostPopularCity locale={locale} id={id} slug={slug}/>
                 <ChangeOfLanguage languages={languages} title={title}/>
-                <Breadcrumbs>
-                    <p id="breadcrumbs">
-              <span>
-                  <span>
-                      <Link prefetch={false} className="first_link" href="/">{t('Free Tour')}</Link>
-                      <span className="arrow-right-b"> - </span>
-                      <span>
-                          <span className="breadcrumb_last" aria-current="page">{title}</span>
-                      </span>
-                  </span>
-              </span>
-                    </p>
-                </Breadcrumbs>
+                <Breadcrumbs title={title} locale={locale} />
+
                 <Footer locale={locale}/>
             </Suspense>
 

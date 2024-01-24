@@ -1,107 +1,84 @@
-
 'use client';
+import {useRef} from 'react';
+import {useTranslation} from "@/i18n/client";
 import Button from '@/shared/ui/selectors/button/button';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import Image from 'next/image';
+import {Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import IcloudImage from "@/shared/ui/icloud-image";
 import ArrowSwiper from '@/assets/images/svg/arrowSwiper-svg';
-import DefaultImage from '@/assets/images/default-image.jpeg';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './style.css';
-import { useRef } from 'react';
 
 
+export default function TextAndSlider({title, listText = [], attachments = [], isMobile = false}) {
+    const {t} = useTranslation();
+    const navigationNextRef = useRef(null);
+    const navigationPrevRef = useRef(null);
+    const swiperRef = useRef();
 
-export default function TextAndSlider() {
-  const navigationNextRef = useRef(null);
-  const navigationPrevRef = useRef(null);
-  const swiperRef = useRef();
+    const [width, height] = isMobile ? [340, 220] : [625, 350]
+    function scrollToCalendar() {
+        const section = document.querySelector('#tour_calendar_section');
+        if (section) section.scrollIntoView({behavior: 'smooth', block: 'start'});
+    };
 
-  function scrollToCalendar() {
-    const section = document.querySelector( '#tour_calendar_section');
-    if(section) section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
-  };
+    return (
+        <section className="text_and_slider">
+            <div className="container">
+                <div className="wrapper">
+                    <div className="left_box">
+                        <h2>{title}</h2>
+                        <div className="intro">
+                            <ul>
+                                {listText.map((text, index) => <li key={index} dangerouslySetInnerHTML={{__html: text ?? ''}}></li>)}
+                            </ul>
+                            <Button onClick={scrollToCalendar}>{t('Book Now')}</Button>
 
-  return (
-    <section className="text_and_slider">
-        <div className="container">
-            <div className="wrapper">
-                <div className="left_box">
-                    <h2>Free London by the Thames Tour</h2>
-                    <div className="intro">
-                        <ul>
-                            <li>
-                                Embark on a journey through time and culture as you walk along the iconic River Thames’
-                                <span>North and South Banks</span>
-                            </li>
-                            <li>
-                                Embark on a journey through time and culture as you walk along the iconic River Thames’
-                                <span>North and South Banks</span>
-                            </li>
-                            <li>
-                                Embark on a journey through time and culture as you walk along the iconic River Thames’
-                                <span>North and South Banks</span>
-                            </li>
-                        </ul>
-                        <Button onClick={scrollToCalendar}>Book Now</Button>
-
+                        </div>
                     </div>
-                </div>
-                <div className="right_box">
-                    <div className="right_box-intro">
-                        <Swiper
-                            modules={[Navigation, Pagination, Scrollbar, A11y]}
-                            slidesPerView={1}
-                            onBeforeInit={(swiper) => {
-                                swiperRef.current = swiper;
-                                swiper.navigation.nextEl = navigationNextRef.current;
-                                swiper.navigation.prevEl = navigationPrevRef.current;
-                              }}
+                    <div className="right_box">
+                        <div className="right_box-intro">
+                            <Swiper
+                                modules={[Navigation, Pagination, Scrollbar, A11y]}
+                                slidesPerView={1}
+                                onBeforeInit={(swiper) => {
+                                    swiperRef.current = swiper;
+                                    swiper.navigation.nextEl = navigationNextRef.current;
+                                    swiper.navigation.prevEl = navigationPrevRef.current;
+                                }}
 
-                              navigation={{
-                                prevEl: navigationPrevRef.current,
-                                nextEl: navigationNextRef.current,
-                              }}
-                            pagination={{ clickable: true }}
+                                navigation={{
+                                    prevEl: navigationPrevRef.current,
+                                    nextEl: navigationNextRef.current,
+                                }}
+                                pagination={{clickable: true}}
                             >
-                            <SwiperSlide>
-                                 <div className='img_box'>
-                                    <Image src={DefaultImage} alt='0' />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                 <div className='img_box'>
-                                    <Image src={DefaultImage} alt='1' />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                 <div className='img_box'>
-                                    <Image src={DefaultImage} alt='1' />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                 <div className='img_box'>
-                                    <Image src={DefaultImage} alt='1' />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                 <div className='img_box'>
-                                    <Image src={DefaultImage} alt='1' />
-                                </div>
-                            </SwiperSlide>
-                        </Swiper>
-                        <div className='swiper-button-prev' ref={navigationPrevRef} onClick={() => swiperRef.current?.slidePrev()}><ArrowSwiper /></div>
-                        <div className='swiper-button-next' ref={navigationNextRef} onClick={() => swiperRef.current?.slideNext()} ><ArrowSwiper /></div>
+
+                                {attachments.map((image, index) => {
+                                    return (
+                                        <SwiperSlide key={index}>
+                                            <div className='img_box'>
+                                                <IcloudImage src={image.src} alt={image?.alt ?? ''} width={width} height={height}/>
+                                            </div>
+                                        </SwiperSlide>
+                                    )
+                                })}
+
+
+                            </Swiper>
+                            <div className='swiper-button-prev' ref={navigationPrevRef}
+                                 onClick={() => swiperRef.current?.slidePrev()}><ArrowSwiper/></div>
+                            <div className='swiper-button-next' ref={navigationNextRef}
+                                 onClick={() => swiperRef.current?.slideNext()}><ArrowSwiper/></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </section>
+        </section>
 
-  )
+    )
 }

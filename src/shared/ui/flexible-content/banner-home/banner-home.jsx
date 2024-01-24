@@ -1,4 +1,4 @@
-import DropdownSearch from '@/entities/tour/ui/dropdown-search-tour';
+import DropdownSearch from '@/entities/city/ui/dropdown-search-tour';
 import Banner from '@/shared/ui/banner';
 import LocationSvg from '@/assets/images/svg/location-svg';
 import {fetchFlexibleContent} from "@/shared/api/flexible-content";
@@ -12,7 +12,7 @@ export default async function BannerHome({locale, id, index, flexibleKey}) {
     }
     return (
         <Banner nameBanner="home_banner" title={data.title ?? ''} attachment={data?.image?.image}>
-            <DropdownSearch/>
+            <DropdownSearch locale={locale}/>
             <p className="link">
 
                 {data.button ?

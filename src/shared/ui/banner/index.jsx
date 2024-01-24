@@ -1,7 +1,7 @@
 import IcloudImage from "@/shared/ui/icloud-image";
 import './style.css';
 
-export default function Banner({attachment = null, title, children, bottomView = null, size , nameBanner=''}, isMobile = false) {
+export default function Banner({attachment = null, title, children, bottomView = null, size , nameBanner='', isMobile = false}) {
     const [width, height ] = isMobile ? [430, 430] : [1200, 1200]
     return (
         <section className={`banner ${nameBanner}`}>
