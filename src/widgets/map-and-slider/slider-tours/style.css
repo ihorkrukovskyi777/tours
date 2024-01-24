@@ -1,5 +1,6 @@
 .slider_block {
     position: relative;
+    margin-top: 30px;
 }
 .slider_block .item {
     border-radius: 8px;
@@ -101,6 +102,38 @@
 }
 .slider_block .prev {
     left: -110px;
+}
+
+.map_and_slider .circle_items {
+    margin: 5px 0 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.map_and_slider .circle_item {
+    margin-right: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+}
+.map_and_slider .circle_brackets {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    color: #d80027;
+}
+.map_and_slider .circle_number {
+    margin-right: 10px;
+    width: 40px;
+    height: 50px;
+    color: #D80027;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-family: "Black";
 }
 @media(min-width: 1200px) {
     .slider_block .next:hover,

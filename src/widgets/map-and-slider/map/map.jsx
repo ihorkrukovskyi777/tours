@@ -10,9 +10,12 @@ import './style.css';
 
 
 
-export default function Map() {
+
+export default async function Map() {
     const position = [51.505, -0.09]; 
-    const position2 = [51.525, -0.09]; 
+    const position2 = [51.525, -0.09];
+    
+
 
 
     return (

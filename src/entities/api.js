@@ -169,3 +169,15 @@ export const searchCities = async (locale = 'en' , search) => {
         console.log(err);
     }
 }
+
+export const placesMarkers = async (locale = 'en' , search) => {
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/places/3195?locale=es`,
+            {next: {revalidate: 60}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+}

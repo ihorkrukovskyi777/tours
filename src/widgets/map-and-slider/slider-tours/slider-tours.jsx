@@ -4,17 +4,32 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 import prevSVG from '../../../../public/images/svg/arrow-prev.svg';
 import nextSVG from '../../../../public/images/svg/arrow-next.svg';
-import tourSVG from '../../../../public/images/svg/tour.svg'
+import tourSVG from '../../../../public/images/svg/tour.svg';
+import IcloudImage from '@/shared/ui/icloud-image';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './style.css';
 
-export default function SliderTours() {
-    const tours = [1,3,32,31,133,213,3123];
+export default function SliderTours({data}) {
+  
     return (
-      <div className="slider_block">
-             <Swiper
+     <> 
+
+        <div class="circle_items">
+            <div class="circle_item"></div>
+            <div class="circle_item"></div>
+            <div class="circle_item"></div>
+            <div class="circle_item circle_item-big"></div>
+            <div class="circle_item-number circle_number">1</div>
+            <div class="circle_item circle_item-big"></div>
+            <div class="circle_item"></div>
+            <div class="circle_item"></div>
+            <div class="circle_brackets">({Object.keys(data).length})</div>
+        </div>
+
+        <div className="slider_block">
+            <Swiper
                 // install Swiper modules
                 modules={[Navigation, Pagination]}
                 spaceBetween={25}
@@ -33,26 +48,28 @@ export default function SliderTours() {
                     },
                 }}
             >
-                {tours?.map((item) =>{
+                {data?.map((slider) =>{
+
                     return (
-                        <SwiperSlide key={item}>
+                        <SwiperSlide key={slider.id}>
                             <div className='item'>
                                 <div className='item_top'>
                                     <div className="img_wrap">
-                                        <div className="item_name">Burlington Arcade</div>
-                                        <Image alt="Burlington Arcade" width={400} height={300} src="https://imagedelivery.net/xtVVrgn04XP6bhrBt0jaJQ/46439860-c016-4960-fb81-79e348e40000/625x350" />
+                                        <div className="item_name">{slider.title}</div>
+                                        <IcloudImage src={slider.attachment.src} alt='123' width={400} height={300} />
                                     </div>
                                     <div className="text_wrap">
-                                        <div className="list">
-                                            <div>
-                                                <Image src={tourSVG} width={20} height={20} alt="icon" />
+                                        {Object.values(slider.tours).map((val) => (
+                                            <div className="list" key={val}>
+                                                <div>
+                                                    <Image src={tourSVG} width={20} height={20} alt="icon" />
+                                                </div>
+                                                <div>{val}</div>
                                             </div>
-                                            <div>Tour: Harry Potter London</div>
-                                        </div>
-                                        
+                                        ))}     
                                     </div>
                                 </div>
-                               
+                                
                             </div>       
                         </SwiperSlide>
                     )
@@ -64,7 +81,7 @@ export default function SliderTours() {
             <div className="next">
                 <Image src={nextSVG} alt='prev' width={12} height={20}></Image>
             </div>
-
-      </div>  
+        </div>  
+      </>  
     )
 }
