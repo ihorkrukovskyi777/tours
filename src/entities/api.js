@@ -1,7 +1,7 @@
 export async function getBannerData(id, locale, type = 'city', revalidate = 0, ) {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/banner/${id}?locale=${locale}`,
-        {next: {revalidate: revalidate}}
+        {next: {revalidate: 0}}
     )
     return data.json();
 }
@@ -172,3 +172,14 @@ export const searchCities = async (locale = 'en' , search) => {
 
 
 
+export const searchCities = async (locale = 'en' , search) => {
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/search-city?locale=${locale}&q=${search}`,
+            {next: {revalidate: 60}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+}

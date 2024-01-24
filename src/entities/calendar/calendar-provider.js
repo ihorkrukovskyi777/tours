@@ -12,16 +12,16 @@ const Main = dynamic(
     () => import("@/entities/calendar/ui/main/main"),
     {
         ssr: false,
-        loading: () => <div className="calendar_wrap" style={{position: 'relative', minHeight: '300px'}}><Loader style={{backgroundColor: 'inherit'}}/></div>
+        loading: () => <div className="calendar_wrap" style={{position: 'relative', minHeight: '900px'}}><Loader style={{backgroundColor: 'inherit'}}/></div>
     }
 )
 
 export const StoreCalendarContext = createContext(null)
 
-export default memo(function CalendarProvider({locale, type, id, activeLanguage, questions}) {
-
+export default function CalendarProvider({locale, type, id, activeLanguage, questions, hydration}) {
 
     let findLocale = activeLanguage?.find(item => item.code === locale);
+
     if(!findLocale) {
         [findLocale] = activeLanguage
     }
@@ -30,7 +30,7 @@ export default memo(function CalendarProvider({locale, type, id, activeLanguage,
     }
     return (
         <StoreCalendarContext.Provider value={{
-            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage),
+            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage, hydration),
             storePhone: new StorePhone(findLocale.code)
         }}>
             <section id="tour_calendar_section" className="tour_calendar">
@@ -43,4 +43,4 @@ export default memo(function CalendarProvider({locale, type, id, activeLanguage,
             </section>
         </StoreCalendarContext.Provider>
     )
-})
+}

@@ -1,10 +1,11 @@
 'use client';
-import {useContext, useEffect} from "react";
+import {useContext, useEffect,} from "react";
 import {observer} from "mobx-react-lite";
 import dynamic from "next/dynamic";
 import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
+
 const CounterNumbers = dynamic(
     () => import("@/shared/ui/selectors/counter-numbers"),
     {
@@ -30,6 +31,7 @@ const OpenModalButton = dynamic(
     }
 )
 export default observer(function Main({siteLocale}) {
+
     const {
         storePhone: {
             phones,
@@ -66,7 +68,7 @@ export default observer(function Main({siteLocale}) {
     }
 
     return (
-        <div className="calendar_wrap" style={{minHeight: '300px'}}>
+        <div className="calendar_wrap" style={{minHeight: '900px'}}>
             <h2 className="title">Tour Calendar</h2>
             <div className="wrap-box">
                 <div className="wrap-button">
@@ -90,7 +92,7 @@ export default observer(function Main({siteLocale}) {
                         : null
                     }
                 </div>
-                {departures?.length ? <DeparturesList/> : null }
+                {departures?.length ? <DeparturesList/> : null}
             </div>
             <ModalBooking show={isOpened}>
                 {isOpened ? <Step3

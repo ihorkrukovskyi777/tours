@@ -9,15 +9,15 @@ import Link from 'next/link';
 export default observer(function DropdownSearch({locale}) {
     const [store] = useState(new StoreSearchCity(locale));
     const debouncedChangeHandler = useCallback(
-      debounce(() => {store.getFetchCities()}, 100)
-    , []);
+        debounce(() => {store.getFetchCities()}, 100)
+        , []);
 
-    const featchData = ({target}) => {
+    const fetchData = ({target}) => {
         let valueSearch = target.value.length > 0 ? target.value : null;
         store.setSearch(valueSearch);
         debouncedChangeHandler();
     }
- 
+
     return (
         <form autoComplete="off">
             <label>
@@ -26,9 +26,9 @@ export default observer(function DropdownSearch({locale}) {
                     type="text"
                     placeholder="Where Are You Going?"
                     value={store.value}
-                    onChange={featchData}    
+                    onChange={fetchData}
                 />
-                  
+
             </label>
             <div className="result">
                 <ul>
@@ -38,5 +38,3 @@ export default observer(function DropdownSearch({locale}) {
         </form>
     )
 })
-
-

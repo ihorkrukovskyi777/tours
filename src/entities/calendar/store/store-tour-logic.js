@@ -4,7 +4,7 @@ import {isTomorrowOrToday} from "@/shared/hepers/date";
 
 
 export class StoreTourLogic {
-    constructor(locale, type, id) {
+    constructor(locale, type, id, hydration) {
         this._allDepartures = [];
         this.departureIterable = null;
         this.offset = 0;
