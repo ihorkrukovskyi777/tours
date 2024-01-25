@@ -43,7 +43,6 @@ export default async function FlexibleContent({flexibleContent = [], locale, tit
                 if(Component === undefined) {
                     return null
                 }
-                <div></div>
                 return <Component key={flexible} locale={locale} title={title} id={id} index={index} flexibleKey={flexible}/>
             }) }
             <ChangeOfLanguage languages={languages} title={title}/>

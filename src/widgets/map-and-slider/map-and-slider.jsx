@@ -29,7 +29,7 @@ export default  function MapAndSlider({id , locale , buttonsShow = false}) {
                     <StoreMapContext.Provider value={{
                         map: new StoreMap(id , locale)
                     }}>
-                        <Map />
+                        <Map id={id} locale={locale} />
                         <SliderTours />
                     </StoreMapContext.Provider>
 

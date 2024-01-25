@@ -3,6 +3,6 @@ import LogoSvg from '@/assets/images/svg/logo.svg';
 
 export default function Logo() {
     return (
-        <Image src={LogoSvg} alt="logo"/>  
+        <Image src={LogoSvg} priority={true} alt="logo"/>
     );
 }

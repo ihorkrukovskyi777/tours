@@ -13,7 +13,7 @@ export default function ChangeOfLanguage({languages, title}) {
     const {t} = useTranslation('country');
     const [showLanguage, setShowLanguage] = useState(6);
     const params = useParams();
-    const languagesFilter = languages.filter(item => item.locale !== params?.locale)
+    const languagesFilter = languages?.filter(item => item.locale !== params?.locale)
 
     const getHref = (locale) => locale === fallbackLng ? '' : `/${locale}`
     return (

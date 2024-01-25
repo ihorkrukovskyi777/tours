@@ -10,7 +10,6 @@ export default memo(function TabsLanguages({loading, onChange = () => {}, select
     const { t } = useTranslation('country');
     const settingsTab = activeLanguage?.length < 4 ?  'not_full' : '';
 
-    console.log(activeLanguage);
     return (
         <ul className={`tabs ${settingsTab}`}>
             {activeLanguage?.map((item, index) => {

@@ -17,7 +17,7 @@ import './style.css';
 
 
 
-export default function CheckoutSection({title = "Free Harry Potter Tour London"}) {
+export default function CheckoutSection({title = "Free Harry Potter Tour London", locale}) {
 const [showmodal , setShowmodal] = useState(false);
 const [contactGuide , setContactGuide] = useState(false);
 const [stepModal , setStepModal] = useState(1);

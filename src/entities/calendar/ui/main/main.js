@@ -1,5 +1,5 @@
 'use client';
-import {useContext, useEffect,} from "react";
+import {useContext, useEffect, memo} from "react";
 import Loader from "@/shared/ui/loaders/default-loader";
 import {observer} from "mobx-react-lite";
 import dynamic from "next/dynamic";
@@ -33,7 +33,6 @@ const OpenModalButton = dynamic(
     }
 )
 export default observer(function Main({siteLocale}) {
-
     const {
         storePhone: {
             phones,
@@ -61,7 +60,6 @@ export default observer(function Main({siteLocale}) {
         fetchPhones();
     }, [])
 
-    console.log(isOpened, 'isOpened')
     const changeModalBooking = () => {
         close()
         if (!storeModalCalendar.isOpened) {

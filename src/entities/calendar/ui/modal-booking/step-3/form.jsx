@@ -122,8 +122,7 @@ export default function FormCalendar({allPhoneNumbers, locale}) {
                 phone: document.querySelector("#booking input[name=phone]").value,
                 accept: document.querySelector("#booking input[name=accept]").value,
             }
-            console.log(formData , 'formData')
-        } else {
+x        } else {
             console.error('Invalid Form')
             setValidate(false);
         }

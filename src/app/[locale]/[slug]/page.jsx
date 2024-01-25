@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import {isMobileCheck} from "@/shared/hepers";
 import {notFound} from "next/navigation";
 import {headers} from "next/headers";
+import {createTranslation} from "@/i18n/server";
 
 const CityPage = dynamic(
     () => import("@/entities/city/page/city-page"),
@@ -17,12 +18,11 @@ const FlexibleContent = dynamic(
 )
 
 export default async function Page({params: {locale, slug }}) {
-    console.log()
 
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
 
-
+    const { t } = await createTranslation()
     const pageType = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/${slug}?locale=${locale}`,
         {next: {revalidate: 60}}
@@ -51,7 +51,7 @@ export default async function Page({params: {locale, slug }}) {
                     slug={slug}
                     content={data.content}
                     languages={data.languages}
-                    title={data.title}
+                    title={t('Free Tours')}
                 />
                 : null}
 
