@@ -43,7 +43,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
             <Suspense fallback="">
                 <MostPopularTours id={id} locale={locale} slug={slug} title={title}/>
                 <TextQuote id={id} locale={locale}/>
-                <MapAndSlider />
+                <MapAndSlider  locale={locale} id={id} buttonsShow={true}  />
                 <LatestReviews id={id} locale={locale}/>
                 <Highlights id={id}/>
                 <TextBlocks id={id} locale={locale}/>

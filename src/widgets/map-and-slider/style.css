@@ -3,3 +3,6 @@
     position: relative;
     overflow: hidden;
 }
+.map_and_slider h2 {
+    margin-bottom: 32px;    
+}

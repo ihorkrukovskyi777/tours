@@ -23,6 +23,12 @@
     font-display: swap;
 }
 @font-face {
+    font-family: 'Black';
+    src: url('./brandon-grotesque/brandon-grotesque-black.woff2') format('woff2'),
+    url('./brandon-grotesque/brandon-grotesque-black.woff') format('woff');
+    font-display: swap;
+}
+@font-face {
     font-family: 'Carlito';
     src: url('./carlito/Carlito-Regular.woff2') format('woff2');
     font-style: normal;

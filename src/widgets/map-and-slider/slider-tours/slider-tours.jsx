@@ -51,7 +51,7 @@ export default function SliderTours({data}) {
                 {data?.map((slider) =>{
 
                     return (
-                        <SwiperSlide key={slider.id}>
+                        <SwiperSlide key={slider.id} >
                             <div className='item'>
                                 <div className='item_top'>
                                     <div className="img_wrap">

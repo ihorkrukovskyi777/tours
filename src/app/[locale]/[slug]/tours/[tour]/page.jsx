@@ -22,6 +22,12 @@ const ChangeOfLanguage = dynamic(
     () => import("@/shared/ui/languages/change-of-language/change-of-language"),
     {ssr: false}
 )
+
+const MapAndSlider = dynamic(
+    () => import("@/widgets/map-and-slider/map-and-slider"),
+    {ssr: false}
+)
+
 export default async function Page({params: {locale, slug, tour}}) {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/${slug}/tours/${tour}?locale=${locale}`,
@@ -55,6 +61,7 @@ export default async function Page({params: {locale, slug, tour}}) {
             </Suspense>
             <Suspense fallback={''}>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
+                <MapAndSlider locale={page.locale} id={page.id} />
                 <LatestReviews id={page.id} locale={locale} type="tour"/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={t('this Tour')} id={page.id} locale={page.locale} type="tour"/>

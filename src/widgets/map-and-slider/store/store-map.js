@@ -27,6 +27,8 @@ export class StoreMap {
         return this.places.filter(item => ((item.coordinates.latitude !== null && item.coordinates.longitude !== null)));
     }
 
+ 
+
 }
 
 
