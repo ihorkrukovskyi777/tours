@@ -1,14 +1,4 @@
 import FullStarSvg from "@/assets/images/svg/full-star";
-const person_info = {
-  name: "Ihor Krukovskyi",
-  email: "test@gmail.com",
-  phone: "+44 1 1111 111 111",
-  BookingID: "12892",
-  image: "url",
-  subvendor:
-    "Sub & Vendor!Mi praesent pulvinar fringilla augue commodo praesent!",
-  rate: "4.4",
-};
 
 export default function PersonInfo({ data }) {
   const {

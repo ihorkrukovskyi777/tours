@@ -1,17 +1,3 @@
-// import CheckoutSection from "@/entities/checkout/ui";
-// import OtherTours from "@/widgets/other-tours";
-// import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
-
-// export default function Checkout() {
-//   return (
-//     <main>
-//       <CheckoutSection />
-//       <OtherTours />
-//       <ChangeOfLanguage />
-//     </main>
-//   );
-// }
-
 "use client";
 import React, { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
@@ -45,7 +31,6 @@ const CheckoutContent = observer(() => {
   );
 });
 
-// Wrap the CheckoutContent with CheckoutStoreProvider
 export default function Checkout() {
   return (
     <CheckoutStoreProvider>
