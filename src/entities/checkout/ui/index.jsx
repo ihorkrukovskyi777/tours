@@ -18,9 +18,9 @@ import "./style.css";
 export default function CheckoutSection({ checkoutDetails }) {
   console.log(checkoutDetails.address);
 
-  const { book_id, tour_name } = checkoutDetails;
+  const { tour_name, activity_date, start_time, number_people } =
+    checkoutDetails;
 
-  const title = "Free Harry Potter Tour London";
   const [showmodal, setShowmodal] = useState(false);
   const [contactGuide, setContactGuide] = useState(false);
   const [stepModal, setStepModal] = useState(1);
@@ -80,7 +80,9 @@ export default function CheckoutSection({ checkoutDetails }) {
           Change Date/Time/Number of people
         </Button>
         <div className="item item--row">
-          <div className="choosen-date">Tuesday, 12 December, 00:00</div>
+          <div className="choosen-date">
+            {activity_date}, {start_time}
+          </div>
           <div className="item item--row item item--people">
             <svg
               width="20"
@@ -96,7 +98,7 @@ export default function CheckoutSection({ checkoutDetails }) {
               ></path>
             </svg>
             <strong>Number of people:</strong>
-            <div>1</div>
+            <div>{number_people}</div>
           </div>
           {phoneNumbers === null ? (
             "laoder"

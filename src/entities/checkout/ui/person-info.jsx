@@ -11,8 +11,16 @@ const person_info = {
 };
 
 export default function PersonInfo({ data }) {
-  const { name, last_name, email, phone, book_id, brand_name, brand_logo_url } =
-    data;
+  const {
+    name,
+    last_name,
+    email,
+    phone,
+    book_id,
+    brand_name,
+    brand_logo_url,
+    averge_rating,
+  } = data;
   return (
     <div className="person_info">
       <div className="left_box">
@@ -41,10 +49,12 @@ export default function PersonInfo({ data }) {
       </div>
       <div className="text_box">
         <div className="name">{brand_name}</div>
-        <div className="rate_box">
-          <FullStarSvg width={20} height={20} />
-          <span>{person_info.rate}</span>
-        </div>
+        {averge_rating.cnt_reviews && (
+          <div className="rate_box">
+            <FullStarSvg width={20} height={20} />
+            <span>{averge_rating.averge_rating}</span>
+          </div>
+        )}
       </div>
     </div>
   );

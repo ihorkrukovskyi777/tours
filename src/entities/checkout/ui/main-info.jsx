@@ -61,7 +61,8 @@ export default function MainInfo({ data }) {
                 fill="#E10600"
               ></path>
             </svg>
-            <strong>Date:</strong>Saturday, 2 December{" "}
+            <strong>Date:</strong>
+            {activity_date}
           </li>
           <li>
             <svg
@@ -147,10 +148,7 @@ export default function MainInfo({ data }) {
             ></path>
           </svg>
           <div>
-            Starting point:{" "}
-            <span>
-              {`${address}, ${gps_coordinates.state}, ${gps_coordinates.city}, ${gps_coordinates.post_code}, ${gps_coordinates.country}`}
-            </span>
+            Starting point: <span>{address}</span>
           </div>
         </div>
 
@@ -182,9 +180,13 @@ export default function MainInfo({ data }) {
               src={`https://maps.google.com/maps?q=${gps_coordinates.lat},${gps_coordinates.lng}&hl=en&z=${gps_coordinates.zoom}&output=embed`}
             ></iframe>
           </div>
-          <div className="images_wrap">
-            <div className="img_first">image</div>
-          </div>
+          {mpv_image && (
+            <div className="images_wrap">
+              <div className="img_first">
+                <img src={mpv_image.url} alt="Meeting point image" />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
