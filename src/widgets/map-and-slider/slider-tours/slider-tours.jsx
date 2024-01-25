@@ -1,31 +1,48 @@
 'use client';
+import {useEffect, useRef} from "react";
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
+import {observer} from "mobx-react-lite";
 import prevSVG from '../../../../public/images/svg/arrow-prev.svg';
 import nextSVG from '../../../../public/images/svg/arrow-next.svg';
 import tourSVG from '../../../../public/images/svg/tour.svg';
 import IcloudImage from '@/shared/ui/icloud-image';
+import {StoreMapContext} from "@/widgets/map-and-slider/map-and-slider";
+import {useContext} from "react";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './style.css';
 
-export default function SliderTours({data}) {
-  
+
+export default observer(function SliderTours({data}) {
+    const swiperRef = useRef(null);
+    const {map: { sliders, places, selectedPlaceId, currentIndexPlace }} = useContext(StoreMapContext);
+
+    useEffect(() => {
+        if(swiperRef.current) {
+            const place = document.querySelector(`[data-place-id="${selectedPlaceId}"]`)?.parentNode;
+            if(place?.dataset?.swiperSlideIndex) {
+                swiperRef.current.slideTo(place?.dataset?.swiperSlideIndex)
+            }
+
+
+        }
+    }, [swiperRef, selectedPlaceId])
     return (
-     <> 
+     <>
 
         <div className="circle_items">
             <div className="circle_item"></div>
             <div className="circle_item"></div>
             <div className="circle_item"></div>
             <div className="circle_item circle_item-big"></div>
-            <div className="circle_item-number circle_number">1</div>
+            <div className="circle_item-number circle_number">{currentIndexPlace + 1}</div>
             <div className="circle_item circle_item-big"></div>
             <div className="circle_item"></div>
             <div className="circle_item"></div>
-            <div className="circle_brackets">({Object.keys(data).length})</div>
+            <div className="circle_brackets">({places.length})</div>
         </div>
 
         <div className="slider_block">
@@ -38,6 +55,9 @@ export default function SliderTours({data}) {
                     prevEl: '.prev',
                     nextEl: '.next',
                 }}
+                onInit={(swiper) => {
+                    swiperRef.current = swiper
+                }}
                 loop={true}
                 breakpoints={{
                     220: {
@@ -48,11 +68,11 @@ export default function SliderTours({data}) {
                     },
                 }}
             >
-                {data?.map((slider) =>{
+                {sliders.map((slider) =>{
 
                     return (
                         <SwiperSlide key={slider.id} >
-                            <div className='item'>
+                            <div className='item' data-place-id={`${slider.id}`}>
                                 <div className='item_top'>
                                     <div className="img_wrap">
                                         <div className="item_name">{slider.title}</div>
@@ -66,11 +86,11 @@ export default function SliderTours({data}) {
                                                 </div>
                                                 <div>{val}</div>
                                             </div>
-                                        ))}     
+                                        ))}
                                     </div>
                                 </div>
-                                
-                            </div>       
+
+                            </div>
                         </SwiperSlide>
                     )
                 })}
@@ -81,7 +101,7 @@ export default function SliderTours({data}) {
             <div className="next">
                 <Image src={nextSVG} alt='prev' width={12} height={20}></Image>
             </div>
-        </div>  
-      </>  
+        </div>
+      </>
     )
-}
+})

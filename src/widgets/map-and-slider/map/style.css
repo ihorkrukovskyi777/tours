@@ -1,7 +1,6 @@
 .leaflet-zoom-animated.leaflet-interactive .icon {
     background: #e10600;
     display: inline-block;
-    border-bottom-right-radius: 0;
     position: relative;
     transform: rotate(45deg);
     border: 1px solid #e10600;
@@ -93,6 +92,6 @@
 }
 .map_block .icon img {
 	width: 70px;
-	height: 70px; 
+	height: 70px;
 	border-radius: 100%;
 }
