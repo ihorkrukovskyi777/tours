@@ -1,16 +1,17 @@
+import {createTranslation} from "@/i18n/server";
 import './style.css';
-export default function Reviews({rating, count_reviews, text_review = true, number_review = true }) {
-
+export default async function Reviews({rating, count_reviews, text_review = true, number_review = true }) {
+    const { t } = await createTranslation();
     const stars = Array.from(new Array(5)).map((_, index) => index)
+
+    if(count_reviews < 99 || !count_reviews) {
+        return null
+    }
 
     return (
         <div className="reviews">
             <div className="rate_box">
-                {count_reviews > 99 && text_review ?
-                    <div className="count_rate">{count_reviews} Reviews</div>
-                    :
-                    null
-                }
+                <div className="count_rate">{count_reviews} {t('Reviews')}</div>
                 <div>
                     {!!rating && stars.map(value => {
                         if((rating - value) >= 1)

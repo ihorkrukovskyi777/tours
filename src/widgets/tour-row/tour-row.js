@@ -8,6 +8,7 @@ export default async function TourRow({id, locale = 'en', title}) {
     if (!Array.isArray(results)) {
         return null;
     }
+
     const tours = results.map(item => ({ ...item, slug: `${item.city.slug}/${PATH_TOURS}/${item.slug}` }));
     return <RowCities cities={tours} title={title}/>
 }

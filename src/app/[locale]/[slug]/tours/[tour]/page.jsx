@@ -17,6 +17,7 @@ import TextQuote from "@/widgets/text-quote";
 import CityRow from "@/widgets/city-row/city-row";
 import TourRow from "@/widgets/tour-row/tour-row";
 import TextBlocks from "@/widgets/text-blocks";
+
 const ChangeOfLanguage = dynamic(
     () => import("@/shared/ui/languages/change-of-language/change-of-language"),
     {ssr: false}
@@ -29,18 +30,20 @@ export default async function Page({params: {locale, slug, tour}}) {
     const page = await data.json();
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
-    const { t } = await createTranslation()
+    const {t} = await createTranslation()
     if (page.statusCode === 404) {
         notFound();
     }
 
     const languages = page.languages?.map(item => {
-        const city  = page.cityLanguages.find(city => city.locale === item.locale)
+        const city = page.cityLanguages.find(city => city.locale === item.locale)
+        if (!city?.slug)
+            return null
         return ({...item, slug: `${city.slug}/${PATH_TOURS}/${item.slug}`})
-    });
+    }).filter(Boolean);
     const pagesBreadcrumbs = [
-        { slug: getHrefLocale(locale, ''), title: t('Free Walking Tour')},
-        { slug: page.city.slug, title: `${t('Free Tour')} ${page.city.title}`},
+        {slug: getHrefLocale(locale, ''), title: t('Free Walking Tour')},
+        {slug: page.city.slug, title: `${t('Free Tour')} ${page.city.title}`},
         {title: page.title}
     ]
     return (
@@ -55,13 +58,13 @@ export default async function Page({params: {locale, slug, tour}}) {
                 <LatestReviews id={page.id} locale={locale} type="tour"/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={t('this Tour')} id={page.id} locale={page.locale} type="tour"/>
-                <TourRow id={page.id} locale={page.locale} title={`${t('Other Tours in')} ${page.city.title}`} />
+                <TourRow id={page.id} locale={page.locale} title={`${t('Other Tours in')} ${page.city.title}`}/>
                 <CityRow id={page.id} locale={page.locale} title={`${t('See All Tours in')} ${page.city.title}`}/>
                 <ChangeOfLanguage
                     languages={languages}
                     title={page.title}
                 />
-                <Breadcrumbs pages={pagesBreadcrumbs} locale={locale} />
+                <Breadcrumbs pages={pagesBreadcrumbs} locale={locale}/>
                 <Footer locale={locale}/>
             </Suspense>
         </main>

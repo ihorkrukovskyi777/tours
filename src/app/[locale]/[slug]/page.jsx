@@ -17,7 +17,7 @@ const FlexibleContent = dynamic(
 )
 
 export default async function Page({params: {locale, slug }}) {
-
+    console.log()
 
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));

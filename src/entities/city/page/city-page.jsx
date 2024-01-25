@@ -35,7 +35,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <SsrCalendar locale={locale} type="city" id={id}/>
             </Suspense>
             <Suspense fallback="">
-                <MostPopularTours id={id} locale={locale} slug={slug}/>
+                <MostPopularTours id={id} locale={locale} slug={slug} title={title}/>
                 <TextQuote id={id} locale={locale}/>
                 <LatestReviews id={id} locale={locale}/>
                 <Highlights id={id}/>
