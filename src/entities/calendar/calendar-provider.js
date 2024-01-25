@@ -21,7 +21,7 @@ const Faqs = dynamic(
 
 export const StoreCalendarContext = createContext(null)
 
-export default function CalendarProvider({locale, type, id, activeLanguage, questions, showFaq = true}) {
+export default function CalendarProvider({locale, type, id, activeLanguage, questions, showFaq = true, title}) {
 
     let findLocale = activeLanguage?.find(item => item.code === locale);
 
@@ -33,7 +33,7 @@ export default function CalendarProvider({locale, type, id, activeLanguage, ques
     }
     return (
         <StoreCalendarContext.Provider value={{
-            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage),
+            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage, title),
             storePhone: new StorePhone(findLocale.code)
         }}>
             <section id="tour_calendar_section" className="tour_calendar">

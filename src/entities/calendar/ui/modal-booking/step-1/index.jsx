@@ -8,7 +8,7 @@ import Loader from "@/shared/ui/loaders/default-loader";
 import useEscHooks from "@/shared/hooks/use-esc-event";
 
 import './style.css';
-export default observer(function Step1({storeModalCalendar, title, size = 'large', onChange = () => {}, isEsc}) {
+export default observer(function Step1({storeModalCalendar, title = '',  size = 'large', onChange = () => {}, isEsc}) {
     const {
         close,
         loading,
@@ -24,6 +24,7 @@ export default observer(function Step1({storeModalCalendar, title, size = 'large
         e.stopPropagation();
         close();
     }
+
     return (
         <div className={`step-1 ${size}`}>
             <div className="title">

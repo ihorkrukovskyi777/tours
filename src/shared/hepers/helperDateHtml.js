@@ -1,9 +1,9 @@
 import { ServiceDate } from "../service/service-date";
 
 export class HelperDateHtml extends ServiceDate {
-    
+
     constructor(date){
-        super(date);    
+        super(date);
     }
 
     get ddmmyear() {
@@ -11,6 +11,14 @@ export class HelperDateHtml extends ServiceDate {
                ${this.dayNum}/
                ${this.monthNum}/
                ${this.yearNum}
+            `;
+    }
+
+    dayDeparture(t) {
+        return `
+               ${t(this.day)},
+                ${this.dayNum}
+               ${t(this.month)}
             `;
     }
 }

@@ -6,7 +6,6 @@ export default function useOnScreen(ref, callback = (ref) => ref) {
 
     const observer = useMemo(() => new IntersectionObserver(
         ([entry]) => {
-            console.log(isIntersecting, entry.isIntersecting)
             if (isIntersecting === false && entry.isIntersecting) {
                 setIntersecting(entry.isIntersecting)
                 observer.disconnect();

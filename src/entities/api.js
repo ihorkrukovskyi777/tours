@@ -21,6 +21,21 @@ export async function getPickCities(id, locale = 'en') {
     )
     return data.json();
 }
+export async function getCityBoxByTour(id, locale = 'en') {
+    const data = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/section/city/${id}?locale=${locale}`,
+        {next: {revalidate: 60}}
+    )
+    return data.json();
+}
+
+export async function getRandomTourByCity(id, locale = 'en') {
+    const data = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/section/random-tours/${id}?locale=${locale}`,
+        {next: {revalidate: 60}}
+    )
+    return data.json();
+}
 
 export async function picketToursBox(id, locale = 'en') {
 
@@ -44,10 +59,10 @@ export const getActiveLang = async (id, type = 'city') => {
 
 }
 
-export const getTextQuote  = async (id, locale = 'en') => {
+export const getTextQuote  = async (id, locale = 'en', type = 'city') => {
     try {
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/text-quote/${id}?locale=${locale}`,
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/text-quote/${id}?locale=${locale}`,
             {next: {revalidate: 60}}
         );
         return res.json()
@@ -70,10 +85,10 @@ export const getHighlightsImages  = async (id) => {
 
 }
 
-export const getTextsBlocks  = async (id, locale ='en') => {
+export const getTextsBlocks  = async (id, locale ='en', type = 'city') => {
     try {
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/text-blocks/${id}?locale=${locale}`,
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/text-blocks/${id}?locale=${locale}`,
             {next: {revalidate: 60}}
         );
         return res.json()

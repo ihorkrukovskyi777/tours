@@ -7,6 +7,7 @@ import {useTranslation} from "@/i18n/client";
 import Link from "next/link";
 import FlagsComponents from "@/shared/ui/flags";
 import './style.css';
+import {getHrefLocale} from "@/i18n/get-href-locale";
 
 export default function ChangeOfLanguage({languages, title}) {
     const {t} = useTranslation('country');
@@ -15,7 +16,6 @@ export default function ChangeOfLanguage({languages, title}) {
     const languagesFilter = languages.filter(item => item.locale !== params?.locale)
 
     const getHref = (locale) => locale === fallbackLng ? '' : `/${locale}`
-
     return (
         <section id="change-of-language">
             <div className="container">
@@ -28,8 +28,8 @@ export default function ChangeOfLanguage({languages, title}) {
                                     href={`${getHref(item.locale)}/${item.slug}`}
                                     prefetch={false}
                                 >
-                                    <span
-                                        className="wrap-txt">{t('Free Tours')} {title?.replace('<br>', '')} {t(`fullName.${item.locale}`)}</span>
+                                    <span className="wrap-txt">
+                                       {title} {t(`fullName.${item.locale}`)}</span>
                                     <FlagsComponents locale={item.locale}/>
                                 </Link>
                             </li>
