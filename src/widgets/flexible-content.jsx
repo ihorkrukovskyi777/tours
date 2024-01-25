@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 import BannerHome from "@/shared/ui/flexible-content/banner-home/banner-home";
+import Footer from "@/shared/ui/layouts/footer/footer";
 
 const AllCities = dynamic(
     () => import("@/shared/ui/flexible-content/all-cities/all-cities"),
@@ -46,6 +47,7 @@ export default async function FlexibleContent({flexibleContent = [], locale, tit
                 return <Component key={flexible} locale={locale} title={title} id={id} index={index} flexibleKey={flexible}/>
             }) }
             <ChangeOfLanguage languages={languages} title={title}/>
+            <Footer locale={locale}/>
         </main>
     )
 }

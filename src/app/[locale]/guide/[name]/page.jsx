@@ -40,7 +40,7 @@ export default async function PageGuide({params: {name, locale}}) {
             <Suspense fallback={''}>
                 <SsrCalendar locale={locale} type="sub-vendor" id={id} showFaq={false}/>
                 <ChangeOfLanguage languages={languagesFormatted} title={name.replaceAll('_' ,' ')}/>
-                <Breadcrumbs title={name.replaceAll('_' ,' ')} locale={locale} />
+                <Breadcrumbs pages={[{slug: '/', title: t('Free Tours')}, {title: name.replaceAll('_' ,' ') }]} locale={locale} />
                 <Footer locale={locale}/>
             </Suspense>
         </>

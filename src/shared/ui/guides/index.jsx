@@ -21,23 +21,21 @@ export default async function Guides({title, id, locale, type}) {
     }
     return (
         <>
-            <div id="guides-sliders">
-                <section className="guides_section">
-                    <div className="container">
-                        <h2>{t('Your Guides in')} {title}</h2>
-                        <LazyGuidesRow guides={items}/>
-                        <div style={{display: 'none'}} id="hidden_mirage_guide">
-                            {items.map(item => {
-                                return (
-                                    <div key={item.id}>
-                                        <Link href={hrefSubVendor(locale, item.brandName)}>{item?.brandName}</Link>
-                                    </div>
-                                )
-                            })}
-                        </div>
+            <section className="guides_section">
+                <div className="container">
+                    <h2>{t('Your Guides in')} {title}</h2>
+                    <LazyGuidesRow guides={items}/>
+                    <div style={{display: 'none'}} id="hidden_mirage_guide">
+                        {items.map(item => {
+                            return (
+                                <div key={item.id}>
+                                    <Link href={hrefSubVendor(locale, item.brandName)}>{item?.brandName}</Link>
+                                </div>
+                            )
+                        })}
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
         </>
     )
 }

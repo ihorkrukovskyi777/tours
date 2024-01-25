@@ -1,5 +1,6 @@
 'use client';
 import {useContext, useEffect,} from "react";
+import Loader from "@/shared/ui/loaders/default-loader";
 import {observer} from "mobx-react-lite";
 import dynamic from "next/dynamic";
 import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
@@ -22,6 +23,7 @@ const Step3 = dynamic(
     () => import("@/entities/calendar/ui/modal-booking/step-3/index"),
     {
         ssr: false,
+        loading: () => <div style={{position: 'relative'}}><Loader /></div>
     }
 )
 const OpenModalButton = dynamic(
@@ -59,7 +61,7 @@ export default observer(function Main({siteLocale}) {
         fetchPhones();
     }, [])
 
-
+    console.log(isOpened, 'isOpened')
     const changeModalBooking = () => {
         close()
         if (!storeModalCalendar.isOpened) {
@@ -95,7 +97,7 @@ export default observer(function Main({siteLocale}) {
                 {departures?.length ? <DeparturesList/> : null}
             </div>
             <ModalBooking show={isOpened}>
-                {isOpened ? <Step3
+                 <Step3
                     langSelected={locale}
                     people={people}
                     locale={siteLocale}
@@ -105,7 +107,7 @@ export default observer(function Main({siteLocale}) {
                     departure={departure}
                     language={locale}
                     close={close}
-                /> : null}
+                />
             </ModalBooking>
         </div>
 

@@ -2,10 +2,11 @@ import {makeAutoObservable} from "mobx";
 
 
 export class StoreModalCalendar {
-    constructor(storeLoading, storeDepLogic, storeModalBooking, activeLanguage) {
+    constructor(storeLoading, storeDepLogic, storeModalBooking, activeLanguage, title) {
         this.loading = storeLoading;
         this.storeDepLogic = storeDepLogic;
         this.activeLanguage = activeLanguage;
+        this.title = title;
         this.storeModalBooking = storeModalBooking;
         this.dateList = null;
         this.isOpenedListDeparture = false;

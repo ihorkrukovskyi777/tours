@@ -10,6 +10,13 @@ import TextAndSliderTourPage from "@/entities/tour/ui/text-and-slider-tour-page"
 import {isMobileCheck} from "@/shared/hepers";
 import dynamic from "next/dynamic";
 import {PATH_TOURS} from "@/shared/constants/route";
+import LatestReviews from "@/widgets/latest-reviews";
+import Footer from "@/shared/ui/layouts/footer/footer";
+import {getHrefLocale} from "@/i18n/get-href-locale";
+import TextQuote from "@/widgets/text-quote";
+import CityRow from "@/widgets/city-row/city-row";
+import TourRow from "@/widgets/tour-row/tour-row";
+import TextBlocks from "@/widgets/text-blocks";
 const ChangeOfLanguage = dynamic(
     () => import("@/shared/ui/languages/change-of-language/change-of-language"),
     {ssr: false}
@@ -26,17 +33,36 @@ export default async function Page({params: {locale, slug, tour}}) {
     if (page.statusCode === 404) {
         notFound();
     }
+
+    const languages = page.languages?.map(item => {
+        const city  = page.cityLanguages.find(city => city.locale === item.locale)
+        return ({...item, slug: `${city.slug}/${PATH_TOURS}/${item.slug}`})
+    });
+    const pagesBreadcrumbs = [
+        { slug: getHrefLocale(locale, ''), title: t('Free Walking Tour')},
+        { slug: page.city.slug, title: `${t('Free Tour')} ${page.city.title}`},
+        {title: page.title}
+    ]
     return (
         <main>
             <Suspense fallback={''}>
                 <BannerTour locale={page.locale} id={page.id} isMobile={isMobile}/>
                 <TextAndSliderTourPage id={page.id} locale={page.locale} isMobile={isMobile}/>
+                <TextQuote id={page.id} locale={locale} type="tour"/>
             </Suspense>
             <Suspense fallback={''}>
-                <SsrCalendar locale={page.locale} type="tour" id={page.id}/>
+                <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
+                <LatestReviews id={page.id} locale={locale} type="tour"/>
+                <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={t('this Tour')} id={page.id} locale={page.locale} type="tour"/>
-                <Breadcrumbs title={`${page.city.title} ${page.title}`} locale={locale} />
-                <ChangeOfLanguage languages={page.languages?.map(item => ({...item, slug: `${page.city.slug}/${PATH_TOURS}/${item.slug}`}))} title={page.title}/>
+                <TourRow id={page.id} locale={page.locale} title={`${t('Other Tours in')} ${page.city.title}`} />
+                <CityRow id={page.id} locale={page.locale} title={`${t('See All Tours in')} ${page.city.title}`}/>
+                <ChangeOfLanguage
+                    languages={languages}
+                    title={page.title}
+                />
+                <Breadcrumbs pages={pagesBreadcrumbs} locale={locale} />
+                <Footer locale={locale}/>
             </Suspense>
         </main>
     )

@@ -12,7 +12,6 @@ export class StoreSearchCity {
 
     * getFetchCities() {
         this.cities = yield searchCities(this.locale , this.search);
-        console.log(this.cities);
     }
 
 

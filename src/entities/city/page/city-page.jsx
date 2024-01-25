@@ -1,5 +1,4 @@
 import {Suspense} from "react";
-import Link from "next/link";
 import BannerCity from "@/entities/city/ui/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import MostPopularTours from "@/entities/city/ui/most-popular-tours";
@@ -43,8 +42,8 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <TextBlocks id={id} locale={locale}/>
                 <Guides id={id} locale={locale} title={title} type="city"/>
                 <MostPopularCity locale={locale} id={id} slug={slug}/>
-                <ChangeOfLanguage languages={languages} title={title}/>
-                <Breadcrumbs title={title} locale={locale} />
+                <ChangeOfLanguage languages={languages} title={`${t('Free Tours')} ${title}`}/>
+                <Breadcrumbs pages={[{slug: '/', title: t('Free Tour')}, {title: title}]} locale={locale}/>
 
                 <Footer locale={locale}/>
             </Suspense>
