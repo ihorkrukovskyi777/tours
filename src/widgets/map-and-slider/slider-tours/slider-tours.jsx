@@ -16,16 +16,16 @@ export default function SliderTours({data}) {
     return (
      <> 
 
-        <div class="circle_items">
-            <div class="circle_item"></div>
-            <div class="circle_item"></div>
-            <div class="circle_item"></div>
-            <div class="circle_item circle_item-big"></div>
-            <div class="circle_item-number circle_number">1</div>
-            <div class="circle_item circle_item-big"></div>
-            <div class="circle_item"></div>
-            <div class="circle_item"></div>
-            <div class="circle_brackets">({Object.keys(data).length})</div>
+        <div className="circle_items">
+            <div className="circle_item"></div>
+            <div className="circle_item"></div>
+            <div className="circle_item"></div>
+            <div className="circle_item circle_item-big"></div>
+            <div className="circle_item-number circle_number">1</div>
+            <div className="circle_item circle_item-big"></div>
+            <div className="circle_item"></div>
+            <div className="circle_item"></div>
+            <div className="circle_brackets">({Object.keys(data).length})</div>
         </div>
 
         <div className="slider_block">

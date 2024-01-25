@@ -10,6 +10,13 @@
     height: 44px;
     border-bottom-right-radius: 0;
 }
+
+
+.leaflet-zoom-animated.leaflet-interactive .icon.active {
+    width: 63px;
+    height: 63px;
+}
+
 .map_block .leaflet-div-icon {
 	background: transparent;
 	border: none !important;
@@ -76,7 +83,7 @@
     display: block;
     margin: auto;
 }
-.marker.medium {
+.marker.default {
 	border-radius: 35px;
     width: 35px;
     height: 35px;

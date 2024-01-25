@@ -170,10 +170,10 @@ export const searchCities = async (locale = 'en' , search) => {
     }
 }
 
-export const placesMarkers = async (locale = 'en' , search) => {
+export const placesMarkers = async (id , locale = 'en' , search) => {
     try {
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/places/3195?locale=es`,
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/places/${id}?locale=${locale}`,
             {next: {revalidate: 60}}
         );
         return res.json()
