@@ -69,7 +69,9 @@ export class StoreMap {
         }
 
     }
-
+    remove() {
+        this.places = this.places.slice(1, this.places.length)
+    }
     setOpenMarker(id) {
         this.selectedPlaceId = id;
 

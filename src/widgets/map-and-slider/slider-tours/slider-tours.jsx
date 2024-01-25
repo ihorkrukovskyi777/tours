@@ -18,7 +18,7 @@ import './style.css';
 
 export default observer(function SliderTours({data}) {
     const swiperRef = useRef(null);
-    const {map: {sliders, places, selectedPlaceId, currentIndexPlace, setSwiper, setOpenMarker}} = useContext(StoreMapContext);
+    const {map: {sliders, places, selectedPlaceId, currentIndexPlace, setSwiper, setOpenMarker, remove}} = useContext(StoreMapContext);
 
     useEffect(() => {
         if (swiperRef.current) {
@@ -74,7 +74,7 @@ export default observer(function SliderTours({data}) {
     }
     return (
         <>
-
+            <button onClick={remove}>remove</button>
             <div className="circle_items">
                 <div className="circle_item"></div>
                 <div className="circle_item"></div>
