@@ -1,7 +1,7 @@
 'use client'
 
 import Button from "@/shared/ui/selectors/button/button";
-import CalendarSvg from "@/assets/images/svg/calendar_white.svg";
+import CalendarWhite from "/public/images/svg/calendar-white.svg"
 
 export default function BannerButtons() {
     function scrollToCalendar() {
@@ -12,7 +12,7 @@ export default function BannerButtons() {
        <>
            <Button onClick={scrollToCalendar}>Today</Button>
            <Button onClick={scrollToCalendar}>Tomorrow</Button>
-           <Button customClass="calendar-btn" onClick={scrollToCalendar} icon={CalendarSvg}></Button>
+           <Button customClass="calendar-btn" onClick={scrollToCalendar} icon={CalendarWhite}></Button>
        </>
     )
 }

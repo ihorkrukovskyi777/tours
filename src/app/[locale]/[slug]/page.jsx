@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
+import {isMobileCheck} from "@/shared/hepers";
 import {notFound} from "next/navigation";
+import {headers} from "next/headers";
 
 const CityPage = dynamic(
     () => import("@/entities/city/page/city-page"),
@@ -14,7 +16,13 @@ const FlexibleContent = dynamic(
     {ssr: true}
 )
 
-export default async function Page({params: {locale, slug}}) {
+export default async function Page({params: {locale, slug }}) {
+    console.log()
+
+    const headerList = headers()
+    const isMobile = isMobileCheck(headerList.get("user-agent"));
+
+
     const pageType = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/${slug}?locale=${locale}`,
         {next: {revalidate: 60}}
@@ -23,10 +31,12 @@ export default async function Page({params: {locale, slug}}) {
     if (data.statusCode === 404 || typeof data.id !== 'number') {
         notFound();
     }
+
     return (
         <main>
             {data.type === 'city' ?
                 <CityPage
+                    isMobile={isMobile}
                     locale={locale}
                     slug={slug}
                     id={data.id}

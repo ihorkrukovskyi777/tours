@@ -1,8 +1,7 @@
 'use client'
-import {createContext, memo} from "react";
+import {createContext} from "react";
 import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
-import Faqs from "@/shared/ui/faqs/faqs";
 import dynamic from "next/dynamic";
 import Loader from "@/shared/ui/loaders/default-loader";
 
@@ -15,13 +14,17 @@ const Main = dynamic(
         loading: () => <div className="calendar_wrap" style={{position: 'relative', minHeight: '300px'}}><Loader style={{backgroundColor: 'inherit'}}/></div>
     }
 )
+const Faqs = dynamic(
+    () => import("@/shared/ui/faqs/faqs"),
+    { ssr: true }
+)
 
 export const StoreCalendarContext = createContext(null)
 
-export default memo(function CalendarProvider({locale, type, id, activeLanguage, questions}) {
-
+export default function CalendarProvider({locale, type, id, activeLanguage, questions, showFaq = true, title}) {
 
     let findLocale = activeLanguage?.find(item => item.code === locale);
+
     if(!findLocale) {
         [findLocale] = activeLanguage
     }
@@ -30,17 +33,17 @@ export default memo(function CalendarProvider({locale, type, id, activeLanguage,
     }
     return (
         <StoreCalendarContext.Provider value={{
-            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage),
+            storeCalendar: new StoreCalendar(findLocale.code, type, id, activeLanguage, title),
             storePhone: new StorePhone(findLocale.code)
         }}>
             <section id="tour_calendar_section" className="tour_calendar">
                 <div className="container">
                     <div className="wrapper">
                         <Main siteLocale={locale}/>
-                        <Faqs questions={questions}/>
+                        { showFaq ? <Faqs questions={questions}/> : null}
                     </div>
                 </div>
             </section>
         </StoreCalendarContext.Provider>
     )
-})
+}

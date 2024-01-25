@@ -1,9 +1,9 @@
-import CardText from 'src/shared/ui/card-components/card-text';
+import CardText from '@/shared/ui/card-components/card-text';
 import {getTextsBlocks} from "@/entities/api";
 import './style.css';
 
-export default async function TextBlocks({id, locale}) {
-    const texts = await getTextsBlocks(id, locale)
+export default async function TextBlocks({id, locale, type ='city'}) {
+    const texts = await getTextsBlocks(id, locale, type)
 
     if(!Array.isArray(texts))
         return null;

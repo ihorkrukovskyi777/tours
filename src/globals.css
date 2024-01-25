@@ -1,8 +1,6 @@
 /* FONTS */
 @import 'assets/fonts/fonts.css';
 
-
-
 :root {
   --main_color: #e10600;
   --second_color: #FFC107;
@@ -18,6 +16,27 @@
   --font_500: 'Geomanist500' , var(--font-ciliric);
   --font_700: 'Geomanist700' , var(--font-ciliric);
 }
+
+
+/*:root {*/
+/*  --main_color: #e10600;*/
+/*  --second_color: #FFC107;*/
+/*  --hover_color: #f14742;*/
+/*  --title_color: #000;*/
+/*  --bg_color: #f7f7f7;*/
+/*  --font-ciliric: 'Carlito';*/
+/*  --font: var(--font-brand-regular) , var(--font-ciliric);*/
+/*  --fontMedium: var(--font-brand-medium) , var(--font-ciliric);*/
+/*  --fontBold: var(--font-brand-bold) , var(--font-ciliric);*/
+/*  --geomanist_light: 'Geomanist300';*/
+/*  --geomanist_regular: 'Geomanist400';*/
+/*  --geomanist_medium: 'Geomanist500';*/
+/*  --geomanist_bold: 'Geomanist700';*/
+/*  --font_300: var(--geomanist_light) , var(--font-ciliric);*/
+/*  --font_400: var(--geomanist_regular) , var(--font-ciliric);*/
+/*  --font_500: var(--geomanist_medium) , var(--font-ciliric);*/
+/*  --font_700: var(--geomanist_bold) , var(--font-ciliric);*/
+/*}*/
 
 html, body {
   width: 100%;

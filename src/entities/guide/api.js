@@ -33,3 +33,16 @@ export const fetchGuideTours = async (id, locale = 'en') => {
         console.log(err);
     }
 }
+
+export const getPageLanguage = async () => {
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/guide`,
+            {next: {revalidate: 60}}
+        );
+        const data  = await res.json()
+        return data?.languages ?? []
+    } catch (err) {
+        console.log(err);
+    }
+}

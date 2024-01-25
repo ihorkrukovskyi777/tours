@@ -33,7 +33,6 @@ export default function SwiperGuides({guides}) {
         >
             {guides?.map((item) =>{
                 const rating = item.rating.rating.toFixed(2);
-                console.log(item)
                 return (
                     <SwiperSlide key={item.id}>
                         <CardGuide avatar={item?.avatar} url={hrefSubVendor(locale, item.brandName)} bottomView={item?.locales}>

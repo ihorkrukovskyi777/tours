@@ -2,7 +2,7 @@
 import EditSvg from "@/assets/images/svg/edit-svg"
 import { useState } from "react";
 import Button from "@/shared/ui/selectors/button/button";
-import InternationalInput from "src/shared/ui/selectors/international-input";
+import InternationalInput from "@/shared/ui/selectors/international-input";
 
 
 

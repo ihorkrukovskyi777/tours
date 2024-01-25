@@ -1,5 +1,6 @@
 .faq {
-    margin: 80px 0 155px
+    margin: 80px 0 155px;
+    display: block!important;
 }
 .faq h2 {
     margin: 0;
@@ -93,7 +94,7 @@
     font-size: 20px;
     color: #686868;
     line-height: 1.32;
-    
+
 }
 .faq .block_text .text {
     padding: 0 20px 15px 15px;

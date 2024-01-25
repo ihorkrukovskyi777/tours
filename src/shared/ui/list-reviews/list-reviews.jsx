@@ -1,11 +1,11 @@
 'use client'
 import {useState} from "react";
 import {useParams} from "next/navigation";
-import ReviewCard from "src/widgets/latest-reviews/reviews-card";
+import ReviewCard from "@/widgets/latest-reviews/reviews-card";
 import Button from "@/shared/ui/selectors/button/button";
 import {useTranslation} from "@/i18n/client";
 import {getReviews} from "@/entities/api";
-export default function ListReviews({reviews, total, limit, id}) {
+export default function ListReviews({reviews, total, limit, id, type}) {
     const {t} = useTranslation();
 
     const params = useParams();
@@ -14,12 +14,13 @@ export default function ListReviews({reviews, total, limit, id}) {
         value: [],
     })
     const loadReviews = async () => {
-        const results = await getReviews(id, params.locale, limit, moreReviews.offset)
+        const results = await getReviews(id, params.locale, limit, moreReviews.offset, type)
         setMoreReviews({
             value: [...moreReviews.value, ...results.data],
             offset: moreReviews.offset + limit,
         })
     }
+
     return (
         <>
             <div className="wrapper">

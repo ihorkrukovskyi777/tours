@@ -5,10 +5,9 @@ import './style.css';
 
 
 export default async function LatestReviews({id, locale, type='city'}) {
-
     const {t} = await createTranslation()
     const limit = 9
-    const reviews = await getReviews(id, locale, limit)
+    const reviews = await getReviews(id, locale, limit, 0, type)
     if (!reviews?.data?.length) {
         return null
     }
@@ -16,7 +15,7 @@ export default async function LatestReviews({id, locale, type='city'}) {
         <section className="latest_reviews">
             <div className="container">
                 <h2 className="title">{t('Latest Reviews')}</h2>
-                    <ListReviews id={id} reviews={reviews.data} total={reviews.total} limit={limit}/>
+                    <ListReviews id={id} reviews={reviews.data} total={reviews.total} limit={limit} type={type}/>
             </div>
         </section>
     )

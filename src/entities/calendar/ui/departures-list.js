@@ -1,9 +1,9 @@
-import {Fragment, useContext, useMemo} from "react";
+import {Fragment, useContext, useMemo, memo} from "react";
 import {observer} from "mobx-react-lite";
 import Image from "next/image";
-import LogoOneport from '../../../../public/images/svg/logo-oneport.svg';
+import LogoOneport from '/public/images/svg/logo-oneport.svg';
 import LanguageLoader from "@/shared/ui/loaders/language-loader";
-import TourItem from "src/entities/calendar/ui/tour-item";
+import TourItem from "@/entities/calendar/ui/tour-item";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
 import { ServiceDate } from "@/shared/service/service-date";
 import { setFormatDDMMYYYYtoMMDDYYYY } from "@/shared/hepers/date";
@@ -22,7 +22,6 @@ export default observer(function DeparturesList() {
 
     const showMeMore = useMemo(() => isNextPage && !loading.isLoad, [isNextPage, loading.isLoad])
     const showEmpty = useMemo(() => !departures.length && !loading.isLoad, [departures.length, loading.isLoad])
-
     return (
         <div className="days_wrap">
             <div className="logo-calendar">
