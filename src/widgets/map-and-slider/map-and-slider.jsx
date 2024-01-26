@@ -19,6 +19,9 @@ export default function MapAndSlider({id, ids, locale, toursPlaces}) {
     const ref= useRef(null)
     const isVisible = useOnScreen(ref)
 
+    if(!isVisible) {
+        return null;
+    }
     return (
         <section className='map_and_slider' ref={ref}>
             <div className="container">
@@ -34,8 +37,8 @@ export default function MapAndSlider({id, ids, locale, toursPlaces}) {
                     <StoreMapContext.Provider value={{
                         map: new StoreMap(id, locale)
                     }}>
-                        {isVisible ? <Map id={id} locale={locale}/> : null}
-                        {isVisible ? <SliderTours/> : null}
+                        <Map id={id} locale={locale}/>
+                         <SliderTours/>
                     </StoreMapContext.Provider>
 
                 </div>
