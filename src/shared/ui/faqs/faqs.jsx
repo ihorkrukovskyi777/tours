@@ -3,8 +3,8 @@ import Dropdown from "@/shared/ui/selectors/dropdown/dropdown";
 import "./style.css";
 export default function Faqs({ questions = [], style = {} }) {
   return (
-    <section className="faq" style={style}>
-      <div className="container">
+    <section className="faq">
+      <div className="container" style={style}>
         <h2>Faq</h2>
         <div className="wrapper">
           {questions?.map((item, index) => (

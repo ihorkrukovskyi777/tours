@@ -16,7 +16,6 @@ import ThankYouMessage from "@/shared/ui/thank-you-message";
 import "./style.css";
 
 export default function CheckoutSection({ checkoutDetails }) {
-
   const { tour_name, activity_date, start_time, number_people } =
     checkoutDetails;
 
