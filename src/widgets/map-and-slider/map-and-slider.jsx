@@ -14,7 +14,7 @@ export default function MapAndSlider({id, ids, locale, toursPlaces}) {
     const isVisible = useOnScreen(ref)
 
     return (
-        <section className='map_and_slider'>
+        <section className='map_and_slider' ref={ref}>
             <div className="container">
                 <h2>Tour Features</h2>
                 <div className='map_block'>
