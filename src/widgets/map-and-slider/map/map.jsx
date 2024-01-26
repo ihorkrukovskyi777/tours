@@ -46,7 +46,6 @@ export default observer(function Map({id, locale}) {
                         html: renderToString(
                             <MarkerDefault
                                 id={marker.id}
-
                                 isActive={marker.id === selectedPlaceId}
                                 status={'default'}
                                 colors={['#444, #121 , #000']}

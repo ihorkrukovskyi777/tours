@@ -26,7 +26,7 @@ export default observer(function SliderTours({data}) {
         } else if(sliders.length <= 3) {
             setSwiper({
                 on() {
-
+                    
                 },
                 slideToLoop(val) {
                     console.log(val)
@@ -39,7 +39,7 @@ export default observer(function SliderTours({data}) {
     if (sliders.length <= 3) {
         return (
             <div className="slider_block">
-                <div className="swiper-wrapper" style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px'}}>
+                <div className="swiper-wrapper swiper-less-3">
 
                     {sliders.map(slider => {
                         return (
@@ -74,7 +74,7 @@ export default observer(function SliderTours({data}) {
     }
     return (
         <>
-            <button onClick={remove}>remove</button>
+            <button className="remove" onClick={remove}>remove</button>
             <div className="circle_items">
                 <div className="circle_item"></div>
                 <div className="circle_item"></div>

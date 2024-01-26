@@ -6,7 +6,7 @@ export default observer(function MarkerDefault({icon , status , isActive, colors
     return(
         <>
             {isActive ?
-                <div className={`icon ${status}`}>
+                <div className={'icon active'}>
                     <IcloudImage src={icon} size="500x500" alt={icon} width={64} height={64} />
                     <div className="circles">
                         <span style={{background: '#ccc'}}>
