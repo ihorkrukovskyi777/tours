@@ -1,86 +1,105 @@
 .banner {
-    position: relative;
-    background-color: #ccc;
-    z-index: 3;
+  position: relative;
+  background-color: #ccc;
+  z-index: 3;
 }
 .banner:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    background: linear-gradient(180deg,rgba(0,0,0,.42) 0%,rgba(0,0,0,.6) 100%);
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
 }
 .banner .banner_bg {
-    position: absolute;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    object-fit: cover;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 .banner .title {
-    margin: auto auto 25px auto;
-    line-height: 1.1;
-    color: #fff;
-    text-align: center;
-    max-width: 610px;
+  margin: auto auto 25px auto;
+  line-height: 1.1;
+  color: #fff;
+  text-align: center;
+  max-width: 610px;
+  text-transform: capitalize;
 }
 .banner label input {
-    display: block;
-    padding: 20px 20px 20px 50px;
-    border-radius: 12px;
-    outline: none;
-    width: 100%;
-    font-size: 16px;
-    color: #686868;
-    border: none;
+  display: block;
+  padding: 20px 20px 20px 50px;
+  border-radius: 12px;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  color: #686868;
+  border: none;
 }
 .banner label:after {
-    content: '';
-    position: absolute;
-    top: calc(50% - 10px);
-    left: 20px;
-    width: 19px;
-    height: 19px;
-    background: url('../../../assets/images/svg/search-icon.svg')center no-repeat;
-    background-size: cover;
+  content: "";
+  position: absolute;
+  top: calc(50% - 10px);
+  left: 20px;
+  width: 19px;
+  height: 19px;
+  background: url("../../../assets/images/svg/search-icon.svg") center no-repeat;
+  background-size: cover;
 }
 .banner label {
-    position: relative;
-    width: 385px;
-    display: block;
-    margin-bottom: 25px;
+  position: relative;
+  width: 385px;
+  display: block;
+  margin-bottom: 25px;
 }
 .banner .link {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .banner .link img {
-    margin-right: 6px;
+  margin-right: 6px;
 }
 .banner .link a:after {
-    content: '';
-    width: 100%;
-    display: block;
-    height: 1px;
-    background: #fff;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    transition: .3s ease-in-out;
+  content: "";
+  width: 100%;
+  display: block;
+  height: 1px;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: 0.3s ease-in-out;
 }
 .banner .link a {
-    position: relative;
-    color: #fff;
-    transition: .3s ease-in-out;
-    font-size: 16px;
-    font-weight: 500;
-    font-family: var(--fontMedium);
+  position: relative;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--fontMedium);
+}
+@media (max-width: 767px) {
+  .banner .banner_bg {
+    object-fit: cover;
+  }
+  .banner .title {
+    margin-bottom: 15px;
+    text-align: center;
+    max-width: 510px;
+  }
+}
+@media (max-width: 479px) {
+  .banner label {
+    width: 100%;
+  }
 }
 .banner .wrapper form {
     position: relative;
