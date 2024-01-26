@@ -12,7 +12,6 @@ import './style.css'
 
 let zIndex = 999;
 export default observer(function Map({id, locale}) {
-        const [isShowMap, setShowMap] = useState(false);
         const refMap = useRef(null);
         const {map: {markers, setOpenMarker, selectedPlaceId, fetchMarkers, setMap}} = useContext(StoreMapContext);
 
@@ -25,6 +24,10 @@ export default observer(function Map({id, locale}) {
             setMap(refMap.current)
         }, [refMap.current])
 
+
+        if(markers.length === 0) {
+            return null;
+        }
 
         return (
             <MapContainer center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>

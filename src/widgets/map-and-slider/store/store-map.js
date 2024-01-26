@@ -75,7 +75,7 @@ export class StoreMap {
 
         const element = document.querySelector(`[data-place-id="${find.id}"]`).parentNode
 
-        this.swiper.slideToLoop((element.dataset.swiperSlideIndex * 1), 500, false)
+        this.swiper?.slideToLoop((element.dataset.swiperSlideIndex * 1), 500, false)
     }
 
     get sliders() {

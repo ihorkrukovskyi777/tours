@@ -11,22 +11,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export default observer(function Sliders({sliders, setSwiper}) {
-    const swiperRef = useRef(null);
 
-    useEffect(() => {
-        if (swiperRef.current) {
-            setSwiper(swiperRef.current)
-        } else if (sliders.length <= 3) {
-            setSwiper({
-                on() {
 
-                },
-                slideToLoop(val) {
-                    console.log(val)
-                }
-            })
-        }
-    }, [swiperRef, sliders])
     return (
         <div className="slider_block">
             <Swiper
@@ -38,7 +24,7 @@ export default observer(function Sliders({sliders, setSwiper}) {
                     nextEl: '.next',
                 }}
                 onInit={(swiper) => {
-                    swiperRef.current = swiper
+                    setSwiper(swiper)
                 }}
                 loop={sliders.length > 3}
                 breakpoints={{
