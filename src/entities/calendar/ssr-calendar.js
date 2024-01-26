@@ -8,5 +8,6 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
         getActiveLang(id, type)
     ])
 
+
     return <CalendarProvider title={title} locale={locale} type={type} id={id} activeLanguage={activeLanguage} questions={questions} showFaq={showFaq}/>
 }

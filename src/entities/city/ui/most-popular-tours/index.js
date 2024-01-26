@@ -5,12 +5,13 @@ export default async function MostPopularTours({
   id,
   locale,
   slug,
-  title = "Most Popular Tours",
+  title = ''
 }) {
-  let tours = await picketToursBox(id, locale);
-  if (!tours?.length) {
+  let data = await picketToursBox(id, locale);
+  if (!data.tours?.length) {
     return null;
   }
-  tours = tours.map((item) => ({ ...item, citySlug: slug }));
-  return <RowTours tours={tours} title={title}></RowTours>;
+
+  const tours = data.tours.map((item) => ({ ...item, citySlug: slug }));
+  return <RowTours tours={tours} title={data.title}></RowTours>;
 }

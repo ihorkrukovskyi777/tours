@@ -20,7 +20,6 @@ export default function ListReviews({reviews, total, limit, id, type}) {
             offset: moreReviews.offset + limit,
         })
     }
-
     return (
         <>
             <div className="wrapper">

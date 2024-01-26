@@ -2,6 +2,7 @@
 const nextConfig = {
     reactStrictMode: false,
     experimental: { optimizeCss: true },
+
     swcMinify: true,
     // compiler: {
     //     removeConsole: {

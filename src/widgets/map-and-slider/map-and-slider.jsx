@@ -2,20 +2,15 @@
 import { createContext } from 'react';
 import Button from './button/button';
 import SliderTours from './slider-tours/slider-tours';
-import Map from './map/map';
+ import Map from './map/map';
 import { StoreMap } from './store/store-map';
-
-
-import './style.css';
 
 
 export const StoreMapContext = createContext(null)
 
-export default  function MapAndSlider({id , locale , buttonsShow = false}) {
-
+export default function MapAndSlider({id , locale , buttonsShow = false}) {
     const buttons = [ 'Free Jack the Ripper' , 'Free ipper Tour London ' , 'Free Jack the Ripper Tour London ' , 'Free Jack the Ripper Tour London ' , 'Free Jack the Ripper Tour London ' , 'Free Jack the Ripper Tour London ' ,'Free Jack the Ripper Tour London ' , 'Free Jack the Ripper Tour London ' , 'Free Jack the Ripper Tour London ' , 'Free Jack the Ripper Tour London '];
-
-
+    console.log('23132132113')
     return (
         <section className='map_and_slider'>
             <div className="container">
@@ -29,7 +24,7 @@ export default  function MapAndSlider({id , locale , buttonsShow = false}) {
                     <StoreMapContext.Provider value={{
                         map: new StoreMap(id , locale)
                     }}>
-                        <Map id={id} locale={locale} />
+                        <Map id={id} locale={locale} key={2} />
                         <SliderTours />
                     </StoreMapContext.Provider>
 

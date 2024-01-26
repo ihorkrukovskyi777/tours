@@ -36,6 +36,7 @@ export default memo(function CalendarProvider({
   if (!findLocale) {
     return null;
   }
+
   return (
     <StoreCalendarContext.Provider
       value={{
@@ -53,10 +54,10 @@ export default memo(function CalendarProvider({
           <div className="container">
             <div className="wrapper">
               <Main siteLocale={locale} />
+              <Faqs style={{ marginTop: 0 }} questions={questions} />
             </div>
           </div>
         </section>
-        <Faqs style={{ marginTop: 0 }} questions={questions} />
       </>
     </StoreCalendarContext.Provider>
   );

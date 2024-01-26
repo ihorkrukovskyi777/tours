@@ -26,7 +26,6 @@ export class StoreMap {
             this.swiper = swiper;
             window.swiper = swiper;
             this.swiper.on('slideChange', (v, e) => {
-                console.log(eventSlide, 'this.eventSlidethis.eventSlide')
                 if (eventSlide) {
                     eventSlide = false
                     return;
@@ -34,10 +33,7 @@ export class StoreMap {
                 const place = this.places[v.slides[v.activeIndex].dataset.swiperSlideIndex]
                 if (place) {
                     this.setSlideSelectedPlace(place.id)
-                    console.log(this.map)
                     if (place.coordinates.latitude && place.coordinates.longitude && this.map) {
-
-
                         this.map.setView([place.coordinates.latitude, place.coordinates.longitude])
                     }
 
@@ -62,7 +58,6 @@ export class StoreMap {
 
     * fetchMarkers(id, locale) {
         const places = yield placesMarkers(id, locale);
-        console.log(places)
         this.places = places.sort((a, b) => a.order - b.order)
         if (places[0]) {
             this.selectedPlaceId = places[0].id
