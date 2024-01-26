@@ -48,16 +48,17 @@ export default memo(function CalendarProvider({
         storePhone: new StorePhone(findLocale.code),
       }}
     >
-      <>
-        <section id="tour_calendar_section" className="tour_calendar">
-          <div className="container">
-            <div className="wrapper">
-              <Main siteLocale={locale} />
-            </div>
+      <section id="tour_calendar_section" className="tour_calendar">
+        <div className="container">
+          <div className="wrapper">
+            <Main siteLocale={locale} />
+            <Faqs
+              style={{ paddingRight: 0, paddingLeft: 0 }}
+              questions={questions}
+            />
           </div>
-        </section>
-        <Faqs style={{ marginTop: 0 }} questions={questions} />
-      </>
+        </div>
+      </section>
     </StoreCalendarContext.Provider>
   );
 });

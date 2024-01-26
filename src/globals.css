@@ -1,23 +1,24 @@
 /* FONTS */
-@import 'assets/fonts/fonts.css';
+@import "assets/fonts/fonts.css";
 
 :root {
   --main_color: #e10600;
-  --second_color: #FFC107;
+  --second_color: #ffc107;
   --hover_color: #f14742;
   --title_color: #000;
   --bg_color: #f7f7f7;
-  --font-ciliric: 'Carlito';
-  --font: 'BrandonGrotesque-Regular' , var(--font-ciliric);
-  --fontMedium: 'BrandonGrotesque-Medium' , var(--font-ciliric);
-  --fontBold: 'BrandonGrotesque-Bold' , var(--font-ciliric);
-  --font_300: 'Geomanist300' , var(--font-ciliric);
-  --font_400: 'Geomanist400' , var(--font-ciliric);
-  --font_500: 'Geomanist500' , var(--font-ciliric);
-  --font_700: 'Geomanist700' , var(--font-ciliric);
+  --font-ciliric: "Carlito";
+  --font: "BrandonGrotesque-Regular", var(--font-ciliric);
+  --fontMedium: "BrandonGrotesque-Medium", var(--font-ciliric);
+  --fontBold: "BrandonGrotesque-Bold", var(--font-ciliric);
+  --font_300: "Geomanist300", var(--font-ciliric);
+  --font_400: "Geomanist400", var(--font-ciliric);
+  --font_500: "Geomanist500", var(--font-ciliric);
+  --font_700: "Geomanist700", var(--font-ciliric);
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
 }
@@ -36,8 +37,7 @@ html, body {
   margin: 0;
 }
 
-
-body{
+body {
   font: 400 20px/1.1 var(--font);
   color: var(--text_color);
   margin: 0;
@@ -67,18 +67,18 @@ h6 {
   font: 400 18px var(--fontBold);
   color: var(--title_color);
 }
-@media(max-width: 767px) {
+@media (max-width: 767px) {
   h1 {
-      font-size: 48px;
+    font-size: 48px;
   }
   h2 {
-      font-size: 32px;
+    font-size: 32px;
   }
   h3 {
-      font-size: 32px;
+    font-size: 32px;
   }
   body {
-      font-size: 14px;
+    font-size: 14px;
   }
 }
 .container {
@@ -86,6 +86,11 @@ h6 {
   padding: 0 20px;
   margin: 0 auto;
   max-width: 1260px;
+}
+.main_wrapper {
+  min-height: 830px;
+  width: 100%;
+  clear: both;
 }
 
 a {
@@ -108,23 +113,23 @@ a {
   height: 48px;
   background: var(--main_color);
   border-radius: 8px;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 .swiper .swiper-button-next::before,
 .swiper .swiper-button-prev::before {
   display: flex;
-  content: '';
+  content: "";
   position: absolute;
   justify-content: center;
   align-items: center;
-  background: url('assets/images/svg/arrow-swiper.svg');
+  background: url("assets/images/svg/arrow-swiper.svg");
   background-repeat: no-repeat;
   background-position: center;
   width: 20px;
   height: 20px;
   z-index: 1;
 }
-.swiper .swiper-button-prev::before{
+.swiper .swiper-button-prev::before {
   transform: rotate(180deg);
 }
 .swiper .swiper-pagination-bullet-active {
@@ -133,21 +138,21 @@ a {
 .swiper .swiper-pagination-bullet {
   margin: 0 6px !important;
   opacity: 1;
-  background: #F2F2F2;
+  background: #f2f2f2;
 }
 .swiper .swiper-pagination-bullet-active {
   background: var(--main_color);
 }
 .show_modal {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: scale(1.0) !important;
-    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1) !important;
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s !important;
 }
 .wpContent {
-    max-width: 700px;
-    font-size: 16px;
-    margin-bottom: 30px;
+  max-width: 700px;
+  font-size: 16px;
+  margin-bottom: 30px;
 }
 .wpContent h1 {
   font-size: 40px;
@@ -165,7 +170,7 @@ a {
 .wpContent p:empty {
   display: none;
 }
-.wpContent h1{
+.wpContent h1 {
   font-size: 40px;
   line-height: 1;
   margin: 65px 0 30px 0;
@@ -185,7 +190,7 @@ a {
   background: var(--bg_color);
   color: var(--btn_bg_color);
   text-align: center;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
   border-radius: 8px;
 }
 .wpContent .buttons_wrapper a:hover {
@@ -220,7 +225,7 @@ a {
   margin-bottom: 0;
 }
 .wpContent ul li a {
-    color: var(--btn_bg_color);
+  color: var(--btn_bg_color);
 }
 .wpContent figure {
   margin: 20px 0;
@@ -228,7 +233,9 @@ a {
 .wpContent table {
   width: 100%;
 }
-.wpContent table, .wpContent th, .wpContent td {
+.wpContent table,
+.wpContent th,
+.wpContent td {
   border: 1px solid black;
   border-collapse: collapse;
   padding: 10px;
