@@ -22,10 +22,10 @@ export default observer(function SliderTours({data}) {
     const swiperRef = useRef(null);
     const {map: {sliders, places, selectedPlaceId, currentIndexPlace, setSwiper, setOpenMarker, remove}} = useContext(StoreMapContext);
     
-    const tickets = [1,2,3,4];
+    const tickets = [1,2];
     const onlyWidth = useWindowWidth()
-    const countSliderSettings =  onlyWidth > 767 ? 3 : 1;  
-
+    const countSliderSettings =  onlyWidth > 767 ? 3 : 1;
+    
     useEffect(() => {
         if (swiperRef.current) {
             setSwiper(swiperRef.current)
@@ -70,9 +70,8 @@ export default observer(function SliderTours({data}) {
                                     </div>
 
                                                          
-
+                                    {tickets?.map((item) => <Ticket data={item} />)}
                                                 
-
                                 </div>
                             </div>
                         )
@@ -142,6 +141,8 @@ export default observer(function SliderTours({data}) {
                                             ))}
                                         </div>
                                     </div>
+
+                                    {tickets?.map((item) => <Ticket data={item} />)}
 
                                 </div>
                             </SwiperSlide>
