@@ -1,19 +1,22 @@
-'use client';
-import {useState} from "react";
-import {useParams} from "next/navigation";
+"use client";
+import { useState } from "react";
+import { useParams } from "next/navigation";
 import Button from "@/shared/ui/selectors/button/button";
-import {fallbackLng} from "@/i18n/settings";
-import {useTranslation} from "@/i18n/client";
+import { fallbackLng } from "@/i18n/settings";
+import { useTranslation } from "@/i18n/client";
 import Link from "next/link";
 import FlagsComponents from "@/shared/ui/flags";
+
 import './style.css';
 import {getHrefLocale} from "@/i18n/get-href-locale";
 
-export default function ChangeOfLanguage({languages, title}) {
-    const {t} = useTranslation('country');
-    const [showLanguage, setShowLanguage] = useState(6);
-    const params = useParams();
-    const languagesFilter = languages?.filter(item => item.locale !== params?.locale)
+export default function ChangeOfLanguage({ languages, title }) {
+  const { t } = useTranslation("country");
+  const [showLanguage, setShowLanguage] = useState(6);
+  const params = useParams();
+  const languagesFilter = languages?.filter(
+    (item) => item.locale !== params?.locale
+  );
 
     const getHref = (locale) => locale === fallbackLng ? '' : `/${locale}`
     return (
