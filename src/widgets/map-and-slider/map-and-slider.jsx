@@ -1,15 +1,18 @@
 'use client';
-import {createContext} from 'react';
+import {createContext, useRef} from 'react';
 import Button from './button/button';
 import SliderTours from './slider-tours/slider-tours';
 import Map from './map/map';
 import {StoreMap} from './store/store-map';
+import useOnScreen from "@/shared/hooks/useOnScreen";
 
 
 export const StoreMapContext = createContext(null)
 
 export default function MapAndSlider({id, ids, locale, toursPlaces}) {
-    console.log(toursPlaces, 'ids')
+    const ref= useRef(null)
+    const isVisible = useOnScreen(ref)
+
     return (
         <section className='map_and_slider'>
             <div className="container">
@@ -25,8 +28,8 @@ export default function MapAndSlider({id, ids, locale, toursPlaces}) {
                     <StoreMapContext.Provider value={{
                         map: new StoreMap(id, locale)
                     }}>
-                        <Map id={id} locale={locale}/>
-                        <SliderTours/>
+                        {isVisible ? <Map id={id} locale={locale}/> : null}
+                        {isVisible ? <SliderTours/> : null}
                     </StoreMapContext.Provider>
 
                 </div>
