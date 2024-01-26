@@ -70,7 +70,7 @@ export default observer(function SliderTours({data}) {
                                     </div>
 
                                                          
-                                    {tickets?.map((item) => <Ticket data={item} />)}
+                                    {tickets?.map((item , index) => <Ticket key={index} data={item} />)}
                                                 
                                 </div>
                             </div>
@@ -142,7 +142,7 @@ export default observer(function SliderTours({data}) {
                                         </div>
                                     </div>
 
-                                    {tickets?.map((item) => <Ticket data={item} />)}
+                                    {tickets?.map((item , index) => <Ticket data={item}  key={index} />)}
 
                                 </div>
                             </SwiperSlide>
