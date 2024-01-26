@@ -160,6 +160,59 @@
     font-size: 22px;
     font-family: "Black";
 }
+
+.map_and_slider .item-label {
+    padding: 34px 20px 18px 15px;
+    background-color: #F6F6F6;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 15px;
+}
+.map_and_slider .item-label p {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-family: var(--fontMedium);
+}
+.map_and_slider .item-label p:first-child {
+    font-family: var(--fontBold);
+}
+.map_and_slider .item-label p:first-child span {
+    text-decoration: underline;
+}
+.map_and_slider .item-label p span {
+    margin-left: 5px;
+    position: relative;
+}
+.map_and_slider .item-label img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    position: relative;
+    top: 2px;
+}
+.map_and_slider .item-label a {
+    padding: 17px 30px;
+    font-family: var(--fontMedium);
+    font-size: 20px;
+    background-color: var(--main_color);
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    margin: 15px auto 0 auto;
+    padding: 13px 30px;
+    display: table;
+}
+.map_and_slider .item-label a:hover {
+    opacity: .7;
+}
+
 @media(min-width: 767px) {
     .map_and_slider .swiper-less-3 .swiper-wrapper .swiper-slide {
         width: calc(33.333% - 13px);
