@@ -1,11 +1,17 @@
 'use client';
 import {createContext, useRef} from 'react';
 import Button from './button/button';
-import SliderTours from './slider-tours/slider-tours';
-import Map from './map/map';
 import {StoreMap} from './store/store-map';
 import useOnScreen from "@/shared/hooks/useOnScreen";
-
+import dynamic from "next/dynamic";
+const Map = dynamic(
+    () => import("@/widgets/map-and-slider/map/map"),
+    {ssr: false}
+)
+const SliderTours = dynamic(
+    () => import("@/widgets/map-and-slider/slider-tours/slider-tours"),
+    {ssr: false}
+)
 
 export const StoreMapContext = createContext(null)
 
