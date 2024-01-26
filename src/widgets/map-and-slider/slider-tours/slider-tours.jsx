@@ -10,6 +10,7 @@ import tourSVG from '../../../../public/images/svg/tour.svg';
 import IcloudImage from '@/shared/ui/icloud-image';
 import {StoreMapContext} from "@/widgets/map-and-slider/map-and-slider";
 import {useContext} from "react";
+import {useWindowWidth} from '@react-hook/window-size'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -19,6 +20,10 @@ import './style.css';
 export default observer(function SliderTours({data}) {
     const swiperRef = useRef(null);
     const {map: {sliders, places, selectedPlaceId, currentIndexPlace, setSwiper, setOpenMarker, remove}} = useContext(StoreMapContext);
+    
+
+    const onlyWidth = useWindowWidth()
+    const countSliderSettings =  onlyWidth > 767 ? 3 : 1;  
 
     useEffect(() => {
         if (swiperRef.current) {
@@ -36,10 +41,10 @@ export default observer(function SliderTours({data}) {
     }, [swiperRef, selectedPlaceId])
 
 
-    if (sliders.length <= 3) {
+    if (sliders.length <= countSliderSettings) {
         return (
-            <div className="slider_block">
-                <div className="swiper-wrapper swiper-less-3">
+            <div className="slider_block swiper-less-3">
+                <div className="swiper-wrapper">
 
                     {sliders.map(slider => {
                         return (
