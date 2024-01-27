@@ -2,22 +2,10 @@
 import {createContext, memo} from "react";
 import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
-import dynamic from "next/dynamic";
-import Loader from "@/shared/ui/loaders/default-loader";
-
+import Main from "@/entities/calendar/ui/main/main";
 import "@/entities/calendar/ui/main/style.css";
 
-const Main = dynamic(() => import("@/entities/calendar/ui/main/main"), {
-    ssr: false,
-    loading: () => (
-        <div
-            className="calendar_wrap"
-            style={{position: "relative", minHeight: "300px"}}
-        >
-            <Loader style={{backgroundColor: "inherit"}}/>
-        </div>
-    ),
-});
+
 
 export const StoreCalendarContext = createContext(null);
 
