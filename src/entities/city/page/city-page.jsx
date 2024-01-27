@@ -24,9 +24,9 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 locale={locale}
                 id={id}
             />
-            <SsrCalendar locale={locale} type="city" id={id}/>
-
             <Suspense fallback="">
+                <SsrCalendar locale={locale} type="city" id={id}/>
+
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
                 <LatestReviews id={id} locale={locale}/>
                 <Highlights id={id}/>
@@ -37,7 +37,6 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <Breadcrumbs pages={[{slug: '/', title: t('Free Tour')}, {title: title}]} locale={locale}/>
                 <Footer locale={locale}/>
             </Suspense>
-
         </>
     )
 }
