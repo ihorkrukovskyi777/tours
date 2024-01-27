@@ -12,7 +12,8 @@ export default function ListReviews({reviews, total, limit, id, type}) {
         offset: limit,
         value: [],
     })
-    const loadReviews = async () => {
+    const loadReviews = async (e) => {
+        e.preventDefault();
         const results = await getReviews(id, params.locale, limit, moreReviews.offset, type)
         setMoreReviews({
             value: [...moreReviews.value, ...results.data],
