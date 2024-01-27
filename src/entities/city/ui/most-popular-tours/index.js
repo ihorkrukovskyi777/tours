@@ -1,11 +1,7 @@
 import {picketToursBox} from "@/entities/api";
 import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import TextQuote from "@/widgets/text-quote";
-import dynamic from "next/dynamic";
-const MapAndSlider = dynamic(
-    () => import("@/widgets/map-and-slider/map-and-slider"),
-    {ssr: false}
-)
+import ProviderMap from "@/widgets/map-and-slider/provider";
 export default async function MostPopularTours({ id,locale,slug}) {
     let data = await picketToursBox(id, locale);
     if (!data.tours?.length) {
@@ -18,7 +14,7 @@ export default async function MostPopularTours({ id,locale,slug}) {
         <>
             <RowTours tours={tours} title={data.title}></RowTours>
             <TextQuote id={id} locale={locale}/>
-            <MapAndSlider locale={locale} id={id} toursPlaces={toursPlaces} buttonsShow={true}/>
+            <ProviderMap id={id} locale={locale} toursPlaces={toursPlaces} buttonsShow={true} />
         </>
     );
 }

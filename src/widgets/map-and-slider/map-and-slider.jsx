@@ -1,8 +1,7 @@
 'use client';
-import {createContext, useRef} from 'react';
+import {createContext} from 'react';
 import Button from './button/button';
 import {StoreMap} from './store/store-map';
-import useOnScreen from "@/shared/hooks/useOnScreen";
 import dynamic from "next/dynamic";
 
 const Map = dynamic(
@@ -17,8 +16,7 @@ const SliderTours = dynamic(
 export const StoreMapContext = createContext(null)
 
 export default function MapAndSlider({id, ids, locale, toursPlaces}) {
-    const ref = useRef(null)
-    const isVisible = useOnScreen(ref)
+
 
 
     return (

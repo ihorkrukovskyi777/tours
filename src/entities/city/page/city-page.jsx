@@ -38,6 +38,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <MostPopularCity locale={locale} id={id} slug={slug}/>
                 <ChangeOfLanguage languages={languages} title={`${t('Free Tours')} ${title}`}/>
                 <Breadcrumbs pages={[{slug: '/', title: t('Free Tour')}, {title: title}]} locale={locale}/>
+                <ChangeOfLanguage languages={languages} title={title}/>
                 <Footer locale={locale}/>
             </Suspense>
 
