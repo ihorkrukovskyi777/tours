@@ -7,7 +7,6 @@ import {useTranslation} from "@/i18n/client";
 import {getReviews} from "@/entities/api";
 export default function ListReviews({reviews, total, limit, id, type}) {
     const {t} = useTranslation();
-
     const params = useParams();
     const [moreReviews, setMoreReviews] = useState({
         offset: limit,
@@ -27,13 +26,14 @@ export default function ListReviews({reviews, total, limit, id, type}) {
                     [...reviews, ...moreReviews.value].map((item) => {
                         return (
                             <ReviewCard
+                                id={item.id}
                                 key={item.id}
                                 title={item.title}
                                 time={item.date}
                                 author={item.author}
                                 rating={item.rating}
-                                count_reviews="1">
-                                <span dangerouslySetInnerHTML={{__html: item.message ?? ''}}></span>
+                            >
+                                {item.message}
                             </ReviewCard>
                         )
                     })
