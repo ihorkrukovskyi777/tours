@@ -1,8 +1,7 @@
 "use client";
-import { createContext, memo } from "react";
-import { StoreCalendar } from "@/entities/calendar/store/store-calendar";
-import { StorePhone } from "@/entities/calendar/store/store-phone";
-import Faqs from "@/shared/ui/faqs/faqs";
+import {createContext, memo} from "react";
+import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
+import {StorePhone} from "@/entities/calendar/store/store-phone";
 import dynamic from "next/dynamic";
 import Loader from "@/shared/ui/loaders/default-loader";
 
@@ -13,9 +12,9 @@ const Main = dynamic(() => import("@/entities/calendar/ui/main/main"), {
     loading: () => (
         <div
             className="calendar_wrap"
-            style={{ position: "relative", minHeight: "300px" }}
+            style={{position: "relative", minHeight: "300px"}}
         >
-            <Loader style={{ backgroundColor: "inherit" }} />
+            <Loader style={{backgroundColor: "inherit"}}/>
         </div>
     ),
 });
@@ -27,8 +26,9 @@ export default memo(function CalendarProvider({
                                                   type,
                                                   id,
                                                   activeLanguage,
-                                                  questions,
                                               }) {
+
+
     let findLocale = activeLanguage?.find((item) => item.code === locale);
     if (!findLocale) {
         [findLocale] = activeLanguage;
@@ -48,17 +48,7 @@ export default memo(function CalendarProvider({
                 storePhone: new StorePhone(findLocale.code),
             }}
         >
-            <section id="tour_calendar_section" className="tour_calendar">
-                <div className="container">
-                    <div className="wrapper">
-                        <Main siteLocale={locale} />
-                        <Faqs
-                            style={{ paddingRight: 0, paddingLeft: 0 }}
-                            questions={questions}
-                        />
-                    </div>
-                </div>
-            </section>
+            <Main siteLocale={locale}/>
         </StoreCalendarContext.Provider>
     );
 });
