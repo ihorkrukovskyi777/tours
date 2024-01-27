@@ -4,6 +4,7 @@ import Button from './button/button';
 import {StoreMap} from './store/store-map';
 import useOnScreen from "@/shared/hooks/useOnScreen";
 import dynamic from "next/dynamic";
+
 const Map = dynamic(
     () => import("@/widgets/map-and-slider/map/map"),
     {ssr: false}
@@ -16,33 +17,33 @@ const SliderTours = dynamic(
 export const StoreMapContext = createContext(null)
 
 export default function MapAndSlider({id, ids, locale, toursPlaces}) {
-    const ref= useRef(null)
+    const ref = useRef(null)
     const isVisible = useOnScreen(ref)
 
-    if(!isVisible) {
-        return null;
-    }
+
     return (
         <section className='map_and_slider' ref={ref}>
-            <div className="container">
-                <h2>Tour Features</h2>
-                <div className='map_block'>
-                    {toursPlaces?.length &&
-                        <div className="buttons-map">
-                            {toursPlaces.map((tour, index) => {
-                                return <Button key={index} color={tour.color}>{tour.title}</Button>
-                            })}
-                        </div>
-                    }
-                    <StoreMapContext.Provider value={{
-                        map: new StoreMap(id, locale)
-                    }}>
-                        <Map id={id} locale={locale}/>
-                         <SliderTours/>
-                    </StoreMapContext.Provider>
+            {isVisible ?
+                <div className="container">
+                    <h2>Tour Features</h2>
+                    <div className='map_block'>
+                        {toursPlaces?.length &&
+                            <div className="buttons-map">
+                                {toursPlaces.map((tour, index) => {
+                                    return <Button key={index} color={tour.color}>{tour.title}</Button>
+                                })}
+                            </div>
+                        }
+                        <StoreMapContext.Provider value={{
+                            map: new StoreMap(id, locale)
+                        }}>
+                            <Map id={id} locale={locale}/>
+                            <SliderTours/>
+                        </StoreMapContext.Provider>
 
+                    </div>
                 </div>
-            </div>
+                : null}
         </section>
     )
 }
