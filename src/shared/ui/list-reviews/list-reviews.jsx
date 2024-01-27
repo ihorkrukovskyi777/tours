@@ -33,7 +33,7 @@ export default function ListReviews({reviews, total, limit, id, type}) {
                                 author={item.author}
                                 rating={item.rating}
                                 count_reviews="1">
-                                {item.message}
+                                <span dangerouslySetInnerHTML={{__html: item.message ?? ''}}></span>
                             </ReviewCard>
                         )
                     })
