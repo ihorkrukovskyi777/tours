@@ -1,7 +1,7 @@
 'use client'
+import {useRef} from "react";
 import dynamic from "next/dynamic";
 import useOnScreen from "@/shared/hooks/useOnScreen";
-import {useRef} from "react";
 
 const MapAndSlider = dynamic(
     () => import("@/widgets/map-and-slider/map-and-slider"),
