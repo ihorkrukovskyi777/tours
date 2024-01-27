@@ -92,7 +92,7 @@ export default observer(function Main({siteLocale}) {
                         : null
                     }
                 </div>
-                {/*{departures?.length ? <DeparturesList/> : null}*/}
+                {departures?.length ? <DeparturesList/> : null}
             </div>
             <ModalBooking show={isOpened}>
                 {isOpened ? <Step3
