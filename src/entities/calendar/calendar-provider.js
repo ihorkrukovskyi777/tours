@@ -9,7 +9,7 @@ import Loader from "@/shared/ui/loaders/default-loader";
 import "@/entities/calendar/ui/main/style.css";
 
 const Main = dynamic(() => import("@/entities/calendar/ui/main/main"), {
-  ssr: false,
+  ssr: true,
   loading: () => (
     <div
       className="calendar_wrap"
