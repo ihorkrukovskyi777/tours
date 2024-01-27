@@ -10,13 +10,7 @@ import MostPopularCity from "@/entities/city/ui/most-popular-city";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import {createTranslation} from "@/i18n/server";
 import Footer from "@/shared/ui/layouts/footer/footer";
-import dynamic from "next/dynamic";
-
-const ChangeOfLanguage = dynamic(
-    () => import("@/shared/ui/languages/change-of-language/change-of-language"),
-    {ssr: false}
-)
-
+import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     const {t} = await createTranslation(locale);
