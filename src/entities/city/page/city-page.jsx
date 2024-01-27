@@ -14,6 +14,8 @@ import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of
 
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     const {t} = await createTranslation(locale);
+
+
     return (
         <>
             <BannerCity
