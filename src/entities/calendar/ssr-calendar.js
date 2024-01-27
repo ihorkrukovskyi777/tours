@@ -1,18 +1,7 @@
+import CalendarProvider from "@/entities/calendar/calendar-provider";
 import {getActiveLang, getFaqBlock} from "@/entities/api";
 import Faqs from "@/shared/ui/faqs/faqs";
-import dynamic from "next/dynamic";
-import Loader from "@/shared/ui/loaders/default-loader";
-const CalendarProvider = dynamic(() => import("@/entities/calendar/calendar-provider"), {
-    ssr: false,
-    loading: () => (
-        <div
-            className="calendar_wrap"
-            style={{position: "relative", minHeight: "300px"}}
-        >
-            <Loader style={{backgroundColor: "inherit"}}/>
-        </div>
-    ),
-});
+
 export default async function SsrCalendar({locale, type, id, showFaq = true, title}) {
 
     const [questions, activeLanguage] = await Promise.all([
@@ -31,7 +20,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
                         type={type}
                         id={id}
                         activeLanguage={activeLanguage}
-                        showFaq={showFaq}
+                        questions={questions} showFaq={showFaq}
                     />
                     <Faqs
                         style={{paddingRight: 0, paddingLeft: 0}}

@@ -1,6 +1,6 @@
-import {createTranslation} from "@/i18n/server";
 import './style.css';
-export default async function Reviews({rating, count_reviews, text_review = true, number_review = true, title= 'Reviews' }) {
+export default function Reviews({rating, count_reviews, text_review = true, number_review = true, title= 'Reviews' }) {
+
     const stars = Array.from(new Array(5)).map((_, index) => index)
     if(count_reviews < 99 || !count_reviews) {
         return null

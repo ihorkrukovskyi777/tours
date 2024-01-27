@@ -12,8 +12,7 @@ export default function ListReviews({reviews, total, limit, id, type}) {
         offset: limit,
         value: [],
     })
-    const loadReviews = async (e) => {
-        e.preventDefault();
+    const loadReviews = async () => {
         const results = await getReviews(id, params.locale, limit, moreReviews.offset, type)
         setMoreReviews({
             value: [...moreReviews.value, ...results.data],
@@ -27,6 +26,7 @@ export default function ListReviews({reviews, total, limit, id, type}) {
                     [...reviews, ...moreReviews.value].map((item) => {
                         return (
                             <ReviewCard
+                                reviewsTitle={t('Reviews')}
                                 id={item.id}
                                 key={item.id}
                                 title={item.title}
@@ -40,7 +40,7 @@ export default function ListReviews({reviews, total, limit, id, type}) {
                     })
                 }
             </div>
-            {total > [...reviews, ...moreReviews.value].length ? <Button onClick={loadReviews}>{t('Show me More')}</Button> : null}
+            {total > [...reviews, ...moreReviews.value].length ? <Button onClick={loadReviews} prevent={true}>{t('Show me More')}</Button> : null}
         </>
     )
 }

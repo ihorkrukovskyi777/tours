@@ -13,7 +13,7 @@ export default function ProviderMap({locale, id, toursPlaces, buttonsShow}) {
     const isVisible = useOnScreen(ref)
     return (
         <div ref={ref}>
-            { isVisible ? <MapAndSlider ref={ref} locale={locale} id={id} toursPlaces={toursPlaces} buttonsShow={buttonsShow}/> : null }
+            { isVisible ? <MapAndSlider locale={locale} id={id} toursPlaces={toursPlaces} buttonsShow={buttonsShow}/> : null }
         </div>
     )
 }

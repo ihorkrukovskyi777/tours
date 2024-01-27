@@ -3,13 +3,17 @@ import Card from "@/shared/ui/card-components/card/card";
 import Reviews from "@/widgets/latest-reviews/item/reviews";
 import './style.css'
 export default function RowCities({ cities = [], title}) {
+
+    if(!cities?.length) {
+        return null;
+    }
     return (
         <section className="most_popular_city">
             <div className="container">
                 <div className="wrapper">
                     <h2 className="title">{title}</h2>
                     <div className="items">
-                        {cities?.map((city, index) => {
+                        {cities.map((city, index) => {
                             const localeSlug = city?.locale === fallbackLng ? '' : `/${city.locale}`
                             return (
                                 <Card
