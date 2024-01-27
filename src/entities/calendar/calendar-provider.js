@@ -1,21 +1,21 @@
 "use client";
-import {createContext, memo, useRef} from "react";
-import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
-import {StorePhone} from "@/entities/calendar/store/store-phone";
+import { createContext, memo } from "react";
+import { StoreCalendar } from "@/entities/calendar/store/store-calendar";
+import { StorePhone } from "@/entities/calendar/store/store-phone";
+import Faqs from "@/shared/ui/faqs/faqs";
 import dynamic from "next/dynamic";
 import Loader from "@/shared/ui/loaders/default-loader";
 
 import "@/entities/calendar/ui/main/style.css";
-import useOnScreen from "@/shared/hooks/useOnScreen";
 
 const Main = dynamic(() => import("@/entities/calendar/ui/main/main"), {
     ssr: false,
     loading: () => (
         <div
             className="calendar_wrap"
-            style={{position: "relative", minHeight: "300px"}}
+            style={{ position: "relative", minHeight: "300px" }}
         >
-            <Loader style={{backgroundColor: "inherit"}}/>
+            <Loader style={{ backgroundColor: "inherit" }} />
         </div>
     ),
 });
@@ -27,17 +27,12 @@ export default memo(function CalendarProvider({
                                                   type,
                                                   id,
                                                   activeLanguage,
-                                                  children,
+                                                  questions,
                                               }) {
-
-
-
-
     let findLocale = activeLanguage?.find((item) => item.code === locale);
     if (!findLocale) {
         [findLocale] = activeLanguage;
     }
-
     if (!findLocale) {
         return null;
     }
@@ -53,7 +48,17 @@ export default memo(function CalendarProvider({
                 storePhone: new StorePhone(findLocale.code),
             }}
         >
-            <Main siteLocale={locale}/>
+            <section id="tour_calendar_section" className="tour_calendar">
+                <div className="container">
+                    <div className="wrapper">
+                        <Main siteLocale={locale} />
+                        <Faqs
+                            style={{ paddingRight: 0, paddingLeft: 0 }}
+                            questions={questions}
+                        />
+                    </div>
+                </div>
+            </section>
         </StoreCalendarContext.Provider>
     );
 });
