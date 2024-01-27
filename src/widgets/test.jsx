@@ -1,4 +1,5 @@
 'use client'
+import {memo} from "react";
 import dynamic from "next/dynamic";
 import useOnScreen from "@/shared/hooks/useOnScreen";
 import {useRef} from "react";
@@ -7,7 +8,7 @@ const CalendarProvider = dynamic(() => import("@/entities/calendar/calendar-prov
     ssr: false,
 });
 
-export default function Test(props) {
+export default memo(function Test( props ) {
     const ref = useRef(null)
 
     const isVisible = useOnScreen(ref)
@@ -16,4 +17,4 @@ export default function Test(props) {
             {isVisible ? <CalendarProvider {...props} /> : null}
         </div>
     )
-}
+})
