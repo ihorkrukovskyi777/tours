@@ -1,5 +1,8 @@
 "use client";
 import Button from "@/shared/ui/selectors/button/button";
+import Link from "next/link";
+import { useSearchParams, useParams } from "next/navigation";
+import { getHrefLocale } from "@/i18n/get-href-locale";
 
 export default function ButtonsInfo({
   isOpened,
@@ -7,6 +10,9 @@ export default function ButtonsInfo({
   btnController,
 }) {
   const { showEdit, showCancel, showContact } = btnController;
+  const params = useParams();
+  const searchParams = useSearchParams();
+  const code = searchParams.get("code");
   console.log(btnController);
   return (
     <div className="btn_wrap">
@@ -19,12 +25,12 @@ export default function ButtonsInfo({
         </Button>
       )}
       {showCancel && (
-        <a
+        <Link
           className="button_custom gray"
-          href="http://dev.oneporttest.com/cancel-book/?cancelCode=d619e1e3c3ce2d355c07058d30936f07df227c2a"
+          href={getHrefLocale(params.locale, `cancel-book?cancelCode=${code}`)}
         >
           Cancel Booking
-        </a>
+        </Link>
       )}
     </div>
   );

@@ -61,7 +61,7 @@ export default function InternationalInput({locale , allPhoneNumbers , handleCha
                 }}
             />
         </div>
-        <InputMask id='phone' name='phone'
+        <InputMask id='phone'  name='phone'
             mask={maskView} replacement="_"
             placeholder={placeholder}
             style={{paddingLeft: inputCountryWidth + padding }}

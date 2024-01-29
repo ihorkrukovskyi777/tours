@@ -10,11 +10,14 @@ import {useSearchParams} from "next/navigation";
 
 const CheckoutContent = observer(({ title }) => {
     const searchParams = useSearchParams()
-    const store = useContext(CheckoutStoreContext);
     const code = searchParams.get('code');
+
+    const store = useContext(CheckoutStoreContext);
     useEffect(() => {
+
+        console.log(code, 'code')
         store.fetchCheckoutDetails(searchParams.get('code'));
-    }, [store, code]);
+    }, [code]);
 
     return (
         <main>

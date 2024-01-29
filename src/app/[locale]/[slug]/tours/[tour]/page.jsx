@@ -52,16 +52,16 @@ export default async function Page({params: {locale, slug, tour}}) {
         {slug: page.city.slug, title: `${t('Free Tour')} ${page.city.title}`},
         {title: page.title}
     ]
+
+    console.log(languages, 'languages222')
     return (
         <main>
-            <Suspense fallback={''}>
-                <BannerTour locale={page.locale} id={page.id} isMobile={isMobile}/>
-                <TextAndSliderTourPage id={page.id} locale={page.locale} isMobile={isMobile}/>
-                <TextQuote id={page.id} locale={locale} type="tour"/>
-            </Suspense>
+            <BannerTour locale={page.locale} id={page.id} isMobile={isMobile}/>
+            <TextAndSliderTourPage id={page.id} locale={page.locale} isMobile={isMobile}/>
+            <TextQuote id={page.id} locale={locale} type="tour"/>
             <Suspense fallback={''}>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
-                <MapAndSlider locale={page.locale} id={page.id} />
+                <MapAndSlider locale={page.locale} id={page.id}/>
                 <LatestReviews id={page.id} locale={locale} type="tour"/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={t('this Tour')} id={page.id} locale={page.locale} type="tour"/>
@@ -69,7 +69,6 @@ export default async function Page({params: {locale, slug, tour}}) {
                 <CityRow id={page.id} locale={page.locale} title={`${t('See All Tours in')} ${page.city.title}`}/>
                 <ChangeOfLanguage
                     languages={languages}
-                    title={page.title}
                 />
                 <Breadcrumbs pages={pagesBreadcrumbs} locale={locale}/>
                 <Footer locale={locale}/>

@@ -47,7 +47,11 @@ export class StoreMap {
 
         console.log(this.map, 'dsadsa')
         const bounds = new L.LatLngBounds(this.markers.filter(place => place.status === 'default').map(item => item.coordinates));
-        this.map.fitBounds(bounds.pad(0.5));
+
+        if(Object.keys(bounds).length) {
+            this.map.fitBounds(bounds.pad(0.5));
+
+        }
 
     }
 
