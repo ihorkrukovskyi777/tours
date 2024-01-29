@@ -128,9 +128,17 @@ export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDepar
             console.info('Valid Form');
             setValidate(true);
             //REDIRECT TO CHECKOUT PAGE
+            const formData = {
+                firstName: document.getElementsByName('firstName')[0].value,
+                lastName: document.getElementsByName('lastName')[0].value,
+                email: document.getElementsByName('email')[0].value,
+                phone_county_code: document.querySelector('.international-phone .form-control').value,
+                phone: document.getElementsByName('phone')[0].value,
+                phone_country_slug: document.getElementById('phone').getAttribute('data-slug').toLowerCase(),
+            }
             try {
 
-                const data = await fetchBookingDeparture(state)
+                const data = await fetchBookingDeparture(formData)
                 if(data.booking_id) {
                     const url = getHrefLocale(params.locale, `checkout?code=${data.booking_id}`)
                     push(url)
