@@ -14,7 +14,7 @@ export const fetchDepartures = async (id, type = 'city', locale = 'en') => {
 
 export const fetchBookingDepartures = async (body) => {
 
-    const data =  fetch(`${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/booking`, {
+    const data =  await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/booking`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",

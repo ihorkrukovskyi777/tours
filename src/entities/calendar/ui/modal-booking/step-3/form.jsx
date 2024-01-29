@@ -127,10 +127,8 @@ export default function FormCalendar({allPhoneNumbers, locale,fetchBookingDepart
             //REDIRECT TO CHECKOUT PAGE
             console.log(state, 'state')
             try {
-                push(`/checkout?code=20833234`)
-                //
-                // const data = await fetchBookingDeparture(state)
-                // push(`/checkout?code=20833234`)
+                const data = await fetchBookingDeparture(state)
+                push(`/checkout?code=${data.booking_id}`)
             } catch (err) {
                 console.log(err);
             }
