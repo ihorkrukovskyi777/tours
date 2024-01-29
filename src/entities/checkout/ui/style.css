@@ -1,276 +1,280 @@
 .checkout_section {
-    margin: 65px 0 80px 0;
+  margin: 65px 0 80px 0;
+}
+.departure_alert {
+  text-align: center;
+  color: red;
 }
 .checkout_section h2 {
-    margin: 0 0 80px 0;
+  margin: 0 0 80px 0;
 }
 .checkout_section .title {
-    font-size: 32px;
-    font-family: var(--fontMedium);
-    margin-bottom: 40px;
+  font-size: 32px;
+  font-family: var(--fontMedium);
+  margin-bottom: 40px;
 }
 .checkout_section .person_info {
-    margin-bottom: 65px;
+  margin-bottom: 65px;
 }
 .checkout_section .left_box,
 .checkout_section .left_side {
-    width: 100%;
-    max-width: 291px;
-    margin-right: 125px;
-    flex-shrink: 0;
+  width: 100%;
+  max-width: 291px;
+  margin-right: 125px;
+  flex-shrink: 0;
 }
 .checkout_section ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 .checkout_section .left_side li:not(:last-of-type),
 .checkout_section .left_box li:not(:last-of-type) {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .checkout_section li span,
 .checkout_section .point span,
 .checkout_section .direction span {
-    font-family: var(--fontBold);
+  font-family: var(--fontBold);
 }
 .checkout_section li {
-    font-size: 20px;
-    line-height: 1.05;
+  font-size: 20px;
+  line-height: 1.05;
 }
 .checkout_section .person_info li {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 .checkout_section .right_box {
-    display: flex;
+  display: flex;
 }
 .checkout_section .right_box .img_box {
-    width: 140px;
-    height: 140px;
-    border-radius: 8px;
-    margin-right: 20px;
+  width: 140px;
+  height: 140px;
+  border-radius: 8px;
+  margin-right: 20px;
 }
 .checkout_section .img_box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 .checkout_section .name {
-    font-size: 32px;
-    line-height: 1;
-    font-family: var(--fontBold);
-    margin-bottom: 15px;
+  font-size: 32px;
+  line-height: 1;
+  font-family: var(--fontBold);
+  margin-bottom: 15px;
 }
 .checkout_section .rate_box {
-    display: flex;
+  display: flex;
 }
 .checkout_section .rate_box svg {
-    margin-right: 12px;
+  margin-right: 12px;
 }
 .checkout_section .rate_box span {
-    font-size: 22px;
-    line-height: 1;
-    font-family: var(--fontMedium);
+  font-size: 22px;
+  line-height: 1;
+  font-family: var(--fontMedium);
 }
 .checkout_section .person_info,
 .checkout_section .main_info {
-    display: flex;
+  display: flex;
 }
 .checkout_section .right_side {
-    width: 100%;
+  width: 100%;
 }
 .checkout_section .direction,
 .checkout_section .point {
-    font-size: 20px;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: flex-start;
+  font-size: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: flex-start;
 }
-.checkout_section .point svg, .checkout_section .direction svg {
-    margin-right: 10px;
+.checkout_section .point svg,
+.checkout_section .direction svg {
+  margin-right: 10px;
 }
 .checkout_section .point > div,
 .checkout_section .direction > div {
-    width: 100%;
-    max-width: 305px;
+  width: 100%;
+  max-width: 305px;
 }
 .checkout_section li span,
 .checkout_section .point span,
 .checkout_section .direction span {
-    font-family: var(--fontBold);
+  font-family: var(--fontBold);
 }
 .checkout_section .direction {
-    align-items: center;
+  align-items: center;
 }
 
 .checkout_section .right_side .flex-wrap {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .checkout_section .right_side .flex-wrap > div {
-    width: calc(50% - 10px);
-    height: 220px;
+  width: calc(50% - 10px);
+  height: 220px;
 }
 .checkout_section .images_wrap {
-    display: flex;
+  display: flex;
 }
 .checkout_section .right_side iframe {
-    height: 100%;
-    max-width: 100%;
-    width: 100%;
-    border-radius: 8px;
+  height: 100%;
+  max-width: 100%;
+  width: 100%;
+  border-radius: 8px;
 }
 .checkout_section .img_first,
 .checkout_section .img_second {
-    position: relative;
-    padding-top: 27%;
-    width: 100%;
-    border-radius: 8px;
+  position: relative;
+  padding-top: 27%;
+  width: 100%;
+  border-radius: 8px;
 }
 .checkout_section .img_first img,
 .checkout_section .img_second img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .checkout_section .btn_wrap {
-    text-align: center;
-    margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    align-items: center;
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: center;
 }
 .checkout_section .button.edit {
-    background: #E7423E;
-    color: #fff;
-    cursor: pointer;
+  background: #e7423e;
+  color: #fff;
+  cursor: pointer;
 }
 .checkout_section .button {
-    display: inline-block;
-    padding: 16px;
-    font-size: 20px;
-    line-height: 1.22;
-    font-family: var(--fontMedium);
-    color: #686868;
-    background: var(--bg_color);
-    border-radius: 8px;
-    width: calc((100% / 3) - 20px);
-    text-align: center;
-    transition: .3s ease-in-out;
-    cursor: pointer;
+  display: inline-block;
+  padding: 16px;
+  font-size: 20px;
+  line-height: 1.22;
+  font-family: var(--fontMedium);
+  color: #686868;
+  background: var(--bg_color);
+  border-radius: 8px;
+  width: calc((100% / 3) - 20px);
+  text-align: center;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
 }
 .checkout_section .btn_wrap .button_custom:hover {
-    background: #dedcdc;
+  background: #dedcdc;
 }
 
 .checkout_section .btn_wrap .button_custom {
-    padding: 16px;
-    width: calc((100% / 3) - 20px);
-    text-align: center;
-    display: block;
+  padding: 16px;
+  width: calc((100% / 3) - 20px);
+  text-align: center;
+  display: block;
 }
 .checkout_section .left_side li {
-    margin-bottom: 30px;
-    display: flex;
-    align-items: flex-start;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: flex-start;
 }
 .checkout_section .left_side li svg {
-    margin-right: 7px;
-    flex-shrink: 0;
-    margin-top: 1px;
-    width: 20px;
+  margin-right: 7px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  width: 20px;
 }
 .checkout_section .react-tel-input .selected-flag {
-    border-radius: 0;
+  border-radius: 0;
 }
 .checkout_section .react-tel-input .form-control {
-    border: none;
-    border-bottom: 1px solid #ccc;
-    border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
 }
 .checkout_section form .international-phone {
-    border: none;
+  border: none;
 }
-
 
 .checkout_section .custom-modal {
-    position: fixed;
-    left: 0;
-    z-index: 999;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.1);
-    display: flex;
-    align-items: center;
+  position: fixed;
+  left: 0;
+  z-index: 999;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  display: flex;
+  align-items: center;
 }
 .checkout_section .custom-modal.show {
-    opacity: 1;
-    transform: scale(1.0);
-    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+  opacity: 1;
+  transform: scale(1);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 .checkout_section .edit-calendar-wrap {
-    width: 100%;
-    max-width: 600px;
-    background: #fff;
-    margin: auto;
-    border-radius: 16px;
-    z-index: 2;
-    margin: 0 auto;
-    padding: 30px;
-    max-height: 90vh;
-    overflow: auto;
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  margin: auto;
+  border-radius: 16px;
+  z-index: 2;
+  margin: 0 auto;
+  padding: 30px;
+  max-height: 90vh;
+  overflow: auto;
 }
 .checkout_section .edit-calendar-wrap .title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 32px;
-    font-family: var(--fontMedium);
-    margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 32px;
+  font-family: var(--fontMedium);
+  margin-bottom: 40px;
 }
 .checkout_section .edit-calendar-wrap .close-button {
-    width: 24px;
-    height: 24px;
-    padding: 4px;
-    z-index: 2;
-    cursor: pointer;
-    margin-left: auto;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  z-index: 2;
+  cursor: pointer;
+  margin-left: auto;
 }
 .checkout_section #form_contact_guide h2 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 .checkout_section #form_contact_guide textarea {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    resize: none;
-    min-height: 150px;
-    padding: 15px;
-    font-family: var(--font);
-    font-size: 24px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: none;
+  min-height: 150px;
+  padding: 15px;
+  font-family: var(--font);
+  font-size: 24px;
 }
 .checkout_section #form_contact_guide .item {
-    width: 100%;
+  width: 100%;
 }
 .checkout_section #form_contact_guide .button_custom {
-    margin: 20px auto auto;
+  margin: 20px auto auto;
 }
 
 .checkout_section #form_contact_guide .error-message {
-    font-size: 16px;
-    color: red;
-    font-weight: 500;
-    padding: 2px 3px 3px;
-    text-align: center;
-    font-family: var(--fontMedium);
+  font-size: 16px;
+  color: red;
+  font-weight: 500;
+  padding: 2px 3px 3px;
+  text-align: center;
+  font-family: var(--fontMedium);
 }
