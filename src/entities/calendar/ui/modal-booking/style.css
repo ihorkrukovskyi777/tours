@@ -134,8 +134,25 @@
     width: 800px;
 }
 
+@media(max-width: 991px) {
+    .custom_modal .small {
+        width: 385px;
+    }
+
+    .custom_modal .large,
+    .custom_modal .default {
+        width: 100%;
+    }
+}
+
 @media(max-width: 767px) {
     .item-3 .subtitle-text.subtitle-text-mobile {
         display: block;
+    }
+    .custom_modal .small {
+        width: 100%;
+    }
+    .custom_modal .modal_content {
+        width: 100%;
     }
 }

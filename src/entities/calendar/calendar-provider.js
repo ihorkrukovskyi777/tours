@@ -10,6 +10,7 @@ import "@/entities/calendar/ui/main/style.css";
 export const StoreCalendarContext = createContext(null);
 
 export default memo(function CalendarProvider({
+                                                  title,  
                                                   locale,
                                                   type,
                                                   id,
@@ -31,7 +32,8 @@ export default memo(function CalendarProvider({
                     findLocale.code,
                     type,
                     id,
-                    activeLanguage
+                    activeLanguage,
+                    title
                 ),
                 storePhone: new StorePhone(findLocale.code),
             }}

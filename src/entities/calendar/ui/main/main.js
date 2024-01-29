@@ -99,6 +99,7 @@ export default observer(function Main({siteLocale}) {
                     langSelected={locale}
                     people={people}
                     locale={siteLocale}
+                    size="large"
                     onChange={changeModalBooking}
                     allPhoneNumbers={phones.value}
                     isOpened={isOpened}

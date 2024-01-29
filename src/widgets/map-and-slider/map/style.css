@@ -9,7 +9,6 @@
     height: 44px;
 }
 
-
 .leaflet-zoom-animated.leaflet-interactive .icon.active {
     width: 63px;
     height: 63px;
@@ -28,7 +27,7 @@
     /* height: 46px; */
     /* width: 46px; */
     top: 0;
-    align-items: end;
+    align-items: flex-end;
     right: 0;
     margin: 0 5px 0 auto;
     bottom: 5px;
