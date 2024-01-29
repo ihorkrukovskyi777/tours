@@ -22,6 +22,9 @@ export default memo(function SliderMemo({ changeMarker, sliders, initialSlide, s
                     prevEl: '.prev',
                     nextEl: '.next',
                 }}
+                onTouchEnd={(e) => {
+                    setTimeout(() => changeMarker(e), 10)
+                }}
                 onNavigationNext={changeMarker}
                 onNavigationPrev={changeMarker}
                 loop={sliders.length > 3}

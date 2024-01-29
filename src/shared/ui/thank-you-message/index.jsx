@@ -1,21 +1,22 @@
 import Button from '@/shared/ui/selectors/button/button';
+import {useTranslation} from "@/i18n/client";
 import './style.css';
 
 
-
 export default function ThankYouMessage({isOpenedThankYouModal}) {
+    const {t} = useTranslation();
 
-return (
-    <div className='thank-you-message'>
-        <div className="wrap-text">
-            <h1 id="modal-content-text">Your message has been sent</h1>
-            <div id="message-body-text">
-                <p>Thank you, your guide has received your message.</p>
-                <p>All replies will be sent to the email address which you used to complete the booking.</p>
+    return (
+        <div className='thank-you-message'>
+            <div className="wrap-text">
+                <h1 id="modal-content-text">{t('Your message has been sent')}</h1>
+                <div id="message-body-text">
+                    <p>{t('Thank you, your guide has received your message.')}</p>
+                    <p>{t('All replies will be sent to the email address which you used to complete the booking.')}</p>
+                </div>
+                <Button onClick={isOpenedThankYouModal}>{t('Close')}</Button>
             </div>
-            <Button onClick={isOpenedThankYouModal}>Close</Button>
         </div>
-    </div>
-  );
+    );
 }
 

@@ -32,7 +32,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <TextBlocks id={id} locale={locale}/>
                 <Guides id={id} locale={locale} title={title} type="city"/>
                 <MostPopularCity locale={locale} id={id} slug={slug}/>
-                <ChangeOfLanguage languages={languages} title={`${t('Free Tours')} ${title}`}/>
+                <ChangeOfLanguage languages={languages} title={t('Free Tours')}/>
                 <Breadcrumbs pages={[{slug: '/', title: t('Free Tour')}, {title: title}]} locale={locale}/>
                 <Footer locale={locale}/>
             </Suspense>

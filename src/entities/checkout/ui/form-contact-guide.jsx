@@ -1,72 +1,75 @@
 import Button from "@/shared/ui/selectors/button/button";
-import { useState } from "react";
+import {useTranslation} from "@/i18n/client";
+import {useState} from "react";
+import Loader from "@/shared/ui/loaders/default-loader";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import {useSearchParams} from "next/navigation";
 
-export default function FormContactGuide({isOpenedModal , isOpenedThankYouModal}) {
+export default function FormContactGuide({isOpenedModal, isOpenedThankYouModal}) {
+    const searchParams = useSearchParams()
+    const code = searchParams.get('code');
 
-    const idForm = '#form_contact_guide';
-    const validateForm = errors => {
-        let valid = true;
-        for (let value of Object.keys(errors)) {
-            if(errors[value].length > 0) {
-                valid = false
-                break;
-            }
-        }
-        return valid;
-    };
+    const {t} = useTranslation()
     const [textArea, setTextArea] = useState('');
-    const stateAll = {
-        textArea: textArea,
-        errors: {
-            textArea: '',
-        }
-    }
-    const [state , setState] = useState(stateAll);
-    function validateSwitch(name) {
-        let errors = state.errors;
-        let errorMsg = '';
-        let value = document.querySelector(`${idForm} textarea[name=${name}]`).value;
-        switch (name) {
-            case 'textArea':
-              setTextArea(value);
-              if(value.length < 1 ) errorMsg = 'This field is requared';
-              errors.textArea = errorMsg
-              break;
-            default:
-              break;
-          }
-    }
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState();
 
-    function handleChange2(event)  {
+
+    const sendMessage = async () => {
+        await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/send-messages`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: textArea,
+                code,
+            })
+        })
+    }
+    async function handleSubmit(event) {
         event.preventDefault();
-        const { name , value } = event.target;
-        let errors = state.errors;
-        validateSwitch(name);
-        setState({errors, [name]: value});
-    }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        if(validateForm(state.errors)) {
-          console.info('Valid Form');
-          setTextArea('');
-          isOpenedModal();
-          isOpenedThankYouModal();
+        if (textArea?.length > 10) {
+            setLoading(true);
+            setError('');
+            setTextArea('');
 
-        }else{
-          console.error('Invalid Form')
+            await sendMessage();
+
+
+            isOpenedModal();
+            isOpenedThankYouModal();
+            setLoading(false);
+
+        } else {
+            setError(t('The message must contain more than 10 characters'))
         }
 
     }
 
     return (
-        <form id='form_contact_guide'  onSubmit={handleSubmit}>
-            <h2>Contact Your Guide</h2>
+        <form id='form_contact_guide' onSubmit={handleSubmit} style={{position: 'relative'}}>
+            <h2>{t('Contact Your Guide')}</h2>
             <div className="item">
-                <textarea rows="5" cols="20" id="email_text" required="" name="textArea" placeholder="Write your message here..." onChange={handleChange2} value={textArea}></textarea>
-                {state.errors.textArea.length > 0 ? <span className='error-message'>{state.errors.textArea}</span> : null}
+                <textarea
+                    rows="5"
+                    cols="20"
+                    required=""
+                    name="textArea"
+                    placeholder={t('Write your message here...')}
+                    value={textArea}
+                    onChange={({ target }) => setTextArea(target.value)}
+                >
+
+                </textarea>
+                {!!error ? <span className='error-message'>{error}</span> : null}
             </div>
-            <Button>Send Message</Button>
+            <Button>
+                {t('Send Message')}
+            </Button>
+            {loading ? <Loader style={{opacity: '0.4'}}/> : null }
         </form>
     )
-  }
+}

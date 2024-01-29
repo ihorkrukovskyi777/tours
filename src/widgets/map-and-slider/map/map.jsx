@@ -22,45 +22,43 @@ export default observer(function Map({ids, id, locale}) {
 
         useEffect(() => {
             console.log(refMap.current, 'refMap.current')
-            if(refMap.current) {
+            if (refMap.current) {
                 setMap(refMap.current)
 
             }
         }, [refMap.current, setMap])
 
-    console.log(refMap, 'refMapsss')
-
-
+        const display = markers.length === 0 ? {display: 'none'} : {};
         return (
-            <MapContainer center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>
-                <TileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                />
-                {markers.map((marker) => <Marker
-                    key={marker.id}
-                    zIndexOffset={marker.id === selectedPlaceId ? zIndex : marker.status === 'small' ? 1 : 100}
-                    position={marker.coordinates}
-                    size={'small'}
-                    status={marker.status}
-                    eventHandlers={{
-                        click: () => {
-                            setOpenMarker(marker.id);
-                        },
-                    }}
-                    icon={L.divIcon({
-                        html: renderToString(
-                            <MarkerDefault
-                                id={marker.id}
-                                isActive={marker.id === selectedPlaceId}
-                                status={marker.status}
-                                colors={marker.colors}
-                                icon={marker.src}
-                            />)
-                    })}
-                />)}
+                <MapContainer center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>
+                    <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    />
+                    {markers.map((marker) => <Marker
+                        key={marker.id}
+                        zIndexOffset={marker.id === selectedPlaceId ? zIndex : marker.status === 'small' ? 1 : 100}
+                        position={marker.coordinates}
+                        size={'small'}
+                        status={marker.status}
+                        eventHandlers={{
+                            click: () => {
+                                setOpenMarker(marker.id);
+                            },
+                        }}
+                        icon={L.divIcon({
+                            html: renderToString(
+                                <MarkerDefault
+                                    id={marker.id}
+                                    isActive={marker.id === selectedPlaceId}
+                                    status={marker.status}
+                                    colors={marker.colors}
+                                    icon={marker.src}
+                                />)
+                        })}
+                    />)}
 
-            </MapContainer>
+                </MapContainer>
         )
     }
 )
