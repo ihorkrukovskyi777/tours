@@ -2,6 +2,8 @@
 import {useContext, useMemo} from "react";
 import {StoreMapContext} from "@/widgets/map-and-slider/map-and-slider";
 import {observer} from "mobx-react-lite";
+import ClearSVG from '../../../assets/images/svg/clear.svg'
+import Image from "next/image";
 import './style.css';
 
 const columnsFormula = (column1, column2) => {
@@ -74,7 +76,6 @@ export default observer(function ButtonTours({toursPlaces}) {
                     <div className="row buttons-map" key={index}>
                         {lists.map((button) => {
                             return (
-
                                 <button className={`${selectedTourId === button.id ? 'active' : ''}` } key={button.id} onClick={() => setSelectedTourId(button.id)}>
                                     {button.title}
                                     <span className="status" style={{backgroundColor: button.color}}></span>
@@ -84,8 +85,11 @@ export default observer(function ButtonTours({toursPlaces}) {
                     </div>
                 )
             })}
-
-            <button onClick={resetSelectedTour}>reset</button>
+            {toursPlaces.length > 0 ?
+                <button className="place_select_post_clear" onClick={resetSelectedTour}>
+                    <Image src={ClearSVG} alt="clear" /> Clear
+                </button> : null
+            }
         </div>
     )
 })

@@ -123,7 +123,7 @@
   grid-gap: 30px;
 }
 .tour_calendar .calendar_wrap .title {
-  margin: 0;
+  /*margin: 0;*/
   /*text-transform: capitalize;*/
 }
 .tour_calendar .wrap-box.hidden {
