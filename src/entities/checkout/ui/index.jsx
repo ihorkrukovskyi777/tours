@@ -16,8 +16,22 @@ import ThankYouMessage from "@/shared/ui/thank-you-message";
 import "./style.css";
 
 export default function CheckoutSection({ checkoutDetails, title }) {
-  const { tour_name, activity_date, start_time, number_people } =
-    checkoutDetails;
+  const {
+    tour_name,
+    activity_date,
+    start_time,
+    number_people,
+    show_edit_button,
+    show_button,
+    is_civitatis,
+    available_to_book,
+  } = checkoutDetails;
+
+  const btnController = {
+    showEdit: show_edit_button,
+    showContact: is_civitatis,
+    showCancel: show_button,
+  };
 
   const [showmodal, setShowmodal] = useState(false);
   const [contactGuide, setContactGuide] = useState(false);
@@ -64,11 +78,18 @@ export default function CheckoutSection({ checkoutDetails, title }) {
   return (
     <section className="checkout_section">
       <div className="container">
+        {available_to_book === false && (
+          <p className="departure_alert">Departure not available</p>
+        )}
         <h2>{title}</h2>
         <div className="title">{tour_name}</div>
         <PersonInfo data={checkoutDetails} />
         <MainInfo data={checkoutDetails} />
-        <ButtonsInfo isOpened={isOpened} isOpenedModal={isOpenedModal} />
+        <ButtonsInfo
+          btnController={btnController}
+          isOpened={isOpened}
+          isOpenedModal={isOpenedModal}
+        />
       </div>
       <EditModalTour ModalShow={showmodal}>
         <div className="close-button" onClick={() => isOpened()}>
