@@ -13,6 +13,7 @@ import Step1 from "@/entities/calendar/ui/modal-booking-edit/index";
 import Step2 from "@/entities/calendar/ui/modal-booking/step-2";
 import DefaultModal from "../../../shared/ui/modals/default-modal";
 import ThankYouMessage from "@/shared/ui/thank-you-message";
+import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import "./style.css";
 
 export default function CheckoutSection({ checkoutDetails, title }) {
@@ -115,24 +116,6 @@ export default function CheckoutSection({ checkoutDetails, title }) {
         modalOpen={modalOpen}
         isOpened={isOpened}
       >
-        {stepModal === 1 || changeData ? (
-          <Step1
-            size="default"
-            title="London Tour Calendar"
-            nextStep={nextStep}
-            prevStep={prevStep}
-            modalOpen={modalOpen}
-          />
-        ) : null}
-        {stepModal === 2 && (
-          <Step2
-            size="small"
-            title="London Tour Calendar"
-            prevStep={prevStep}
-            modalOpen={modalOpen}
-            isOpened={isOpened}
-          />
-        )}
       </ModalBookingEdit>
 
       <DefaultModal

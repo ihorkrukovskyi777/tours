@@ -1,17 +1,27 @@
 import { makeAutoObservable } from "mobx";
 
 class CheckoutStore {
-  checkoutDetails = null;
-  isLoading = false;
-  error = null;
+
 
   constructor() {
+    this.checkoutDetails = null;
+    this.isLoading = false;
+    this.error = null;
     makeAutoObservable(this);
   }
 
-  fetchCheckoutDetails(staticCode) {
+  setLoading(value = true) {
+    this.isLoading = value;
+  }
+  setDetails(details) {
+    this.checkoutDetails = details;
+  }
+  setError(error) {
+    this.error = error;
+  }
+  * fetchCheckoutDetails(staticCode) {
     const url = `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/${staticCode}`;
-    this.isLoading = true;
+    this.setLoading(true)
     this.error = null;
     fetch(url)
       .then((res) => {
@@ -21,13 +31,13 @@ class CheckoutStore {
         return res.json();
       })
       .then((data) => {
-        this.checkoutDetails = data;
+        this.setDetails(data)
       })
       .catch((err) => {
-        this.error = err.message;
+        this.setError(err.message)
       })
       .finally(() => {
-        this.isLoading = false;
+        this.setLoading(false)
       });
   }
 }

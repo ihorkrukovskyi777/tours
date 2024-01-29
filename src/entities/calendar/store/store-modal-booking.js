@@ -46,7 +46,7 @@ export class StoreModalBooking {
         }
         const results =  yield fetchBookingDepartures(body);
 
-        if(results.success === 0) {
+        if(!!results.success === false) {
             this.errors = Object.values(results.errors)
         }
 
