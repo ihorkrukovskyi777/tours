@@ -9,7 +9,6 @@ const MapAndSlider = dynamic(
 )
 export default function ProviderMap({locale, id, toursPlaces, buttonsShow}) {
     const ref = useRef(null)
-
     const isVisible = useOnScreen(ref)
     return (
         <div ref={ref}>

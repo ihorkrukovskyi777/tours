@@ -1,5 +1,6 @@
 import {NextResponse} from 'next/server';
 import {fallbackLng, locales} from './i18n/settings';
+import {get} from "mobx/src/api/object-api";
 
 export function middleware(request) {
     // Check if there is any supported locale in the pathname
@@ -32,9 +33,14 @@ export function middleware(request) {
         // Rewrite so Next.js understands
 
         // e.g. incoming request is /about
-        // Tell Next.js it should pretend it's /en/about
+        const newUrlSearch = new URL(request.url);
+        let getParams = '';
+
+        if(newUrlSearch.search) {
+            getParams = newUrlSearch.search;
+        }
         return NextResponse.rewrite(
-            new URL(`/${fallbackLng}${pathname}`, request.url),
+            new URL(`/${fallbackLng}${pathname}${getParams}`, request.url),
         );
     }
 }

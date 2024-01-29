@@ -128,12 +128,11 @@ export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDepar
             console.info('Valid Form');
             setValidate(true);
             //REDIRECT TO CHECKOUT PAGE
-            console.log(state, 'state')
             try {
 
                 const data = await fetchBookingDeparture(state)
                 if(data.booking_id) {
-                    const url = getHrefLocale(params.locale, `/checkout?code=${data.booking_id}`)
+                    const url = getHrefLocale(params.locale, `checkout?code=${data.booking_id}`)
                     push(url)
                 }
 

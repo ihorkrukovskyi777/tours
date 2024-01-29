@@ -7,6 +7,7 @@ const dataSlider = [
 ]
 
 export default function OtherTours({title='Other Tours in London' , items=dataSlider }) {
+    const tours = await
   return (
     <section className="other_tours">
         <div className="container">

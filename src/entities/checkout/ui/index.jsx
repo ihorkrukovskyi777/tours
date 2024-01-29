@@ -15,7 +15,7 @@ import DefaultModal from "../../../shared/ui/modals/default-modal";
 import ThankYouMessage from "@/shared/ui/thank-you-message";
 import "./style.css";
 
-export default function CheckoutSection({ checkoutDetails }) {
+export default function CheckoutSection({ checkoutDetails, title }) {
   const { tour_name, activity_date, start_time, number_people } =
     checkoutDetails;
 
@@ -64,7 +64,7 @@ export default function CheckoutSection({ checkoutDetails }) {
   return (
     <section className="checkout_section">
       <div className="container">
-        <h2>Booking Confirmation</h2>
+        <h2>{title}</h2>
         <div className="title">{tour_name}</div>
         <PersonInfo data={checkoutDetails} />
         <MainInfo data={checkoutDetails} />
