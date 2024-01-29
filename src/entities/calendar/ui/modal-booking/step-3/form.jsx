@@ -1,11 +1,14 @@
 'use client'
 import {useState} from 'react';
+import {useParams} from "next/navigation";
 import InternationalInput from '../../../../../shared/ui/selectors/international-input';
 import {useRouter} from "next/navigation";
+import {getHrefLocale} from "@/i18n/get-href-locale";
 
 
-export default function FormCalendar({allPhoneNumbers, locale,fetchBookingDeparture}) {
+export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDeparture, errorsMessage }) {
     const { push } = useRouter();
+    const params = useParams();
     //validation
     const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
     const validateForm = errors => {
@@ -127,8 +130,11 @@ export default function FormCalendar({allPhoneNumbers, locale,fetchBookingDepart
             //REDIRECT TO CHECKOUT PAGE
             console.log(state, 'state')
             try {
+
                 const data = await fetchBookingDeparture(state)
-                push(`/checkout?code=${data.booking_id}`)
+
+                const url = getHrefLocale(params.locale, `/checkout?code=${data.booking_id}`)
+                push(url)
             } catch (err) {
                 console.log(err);
             }
@@ -197,7 +203,9 @@ export default function FormCalendar({allPhoneNumbers, locale,fetchBookingDepart
                     {errors.accept.length > 0 ? <span className='error-message'>{errors.accept}</span> : null}
                 </div>
             </div>
-
+            <ul>
+                {errorsMessage?.map((value, index) => <li key={index}>{value}</li>)}
+            </ul>
             <div className="btns-wrap">
                 <button className='button_custom'>Book Now</button>
                 <div className="calendar_choose_date_loader hidden" id="calendar_choose_date_loader">

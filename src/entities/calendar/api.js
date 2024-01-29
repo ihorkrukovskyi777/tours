@@ -14,13 +14,15 @@ export const fetchDepartures = async (id, type = 'city', locale = 'en') => {
 
 export const fetchBookingDepartures = async (body) => {
 
+    const formData = new FormData();
+
+    for ( const key in body ) {
+        formData.append(key, body[key]);
+    }
     const data =  await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/booking`, {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(body)
+        body: formData
     })
+
     return data.json();
 }
