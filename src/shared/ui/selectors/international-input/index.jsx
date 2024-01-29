@@ -19,6 +19,7 @@ export default function InternationalInput({locale , allPhoneNumbers , handleCha
     });
     const  [validation_numbers , setValidation_numbers] = useState(localizationWP[languagePageSlug]['validation_numbers']);
     const [placeholder , setPlaceholder] = useState(localizationWP[languagePageSlug]['mask_number']);
+    const [slugCountry , setSlugCountry] = useState(languagePageSlug);
     const getMask = placeholder.replace(/[0-9]/g, "_");
     const [maskView , setMaskView] = useState(getMask)
     const widthInputs = {1: 68 , 2: 80 , 3: 92, 4:98 , 5:116,  6: 121};
@@ -50,13 +51,13 @@ export default function InternationalInput({locale , allPhoneNumbers , handleCha
                     document.getElementById("phone").value = '';
                     document.getElementById("phone").focus();
                     const selectedCountryData = country.countryCode.toUpperCase();
-
                     const placeholderInput = localizationWP[selectedCountryData]['mask_number'];
                     const maskInput = placeholderInput.replace(/[0-9]/g, "_");
                     setPlaceholder(placeholderInput);
                     setValidation_numbers(localizationWP[selectedCountryData]['validation_numbers'])
                     setMaskView(maskInput);
                     setBorder(true);
+                    setSlugCountry(selectedCountryData)
                 }}
             />
         </div>
@@ -69,6 +70,7 @@ export default function InternationalInput({locale , allPhoneNumbers , handleCha
             onKeyPress={onPress}
             onFocus={handleFocus}
             onBlur={handleBlur}
+            data-slug={slugCountry}
         />
     </div>
 

@@ -43,7 +43,6 @@ export default observer(function SliderTours({data}) {
 
     return (
         <>
-            <button className="remove" onClick={remove}>remove</button>
             <div className="circle_items">
                 <div className="circle_item"></div>
                 <div className="circle_item"></div>
