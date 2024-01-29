@@ -3,6 +3,7 @@ import {createContext} from 'react';
 import Button from './button/button';
 import {StoreMap} from './store/store-map';
 import dynamic from "next/dynamic";
+import './style.css';
 
 const Map = dynamic(
     () => import("@/widgets/map-and-slider/map/map"),

@@ -10,7 +10,7 @@ import "./style.css";
 export default observer(function Step1({
   storeModalCalendar,
   title = "",
-  size = "large",
+  size = "default",
   onChange = () => {},
   isEsc,
 }) {

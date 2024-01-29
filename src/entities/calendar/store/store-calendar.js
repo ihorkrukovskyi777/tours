@@ -7,6 +7,7 @@ export class StoreCalendar {
     constructor(locale, type, id, activeLanguage, title) {
         this.type = type;
         this.id = id;
+        this.title = title;
         this.activeLanguage = activeLanguage;
         this.storeModalBooking = new StoreModalBooking()
         this.storeDepLogic = new StoreTourLogic(locale, type, id)

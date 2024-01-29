@@ -12,7 +12,7 @@ import {useTranslation} from "@/i18n/client";
 
 import './style.css';
 
-export default function Step2({title, onBack, close, size, isOpened, departures, saveButton = false, setDeparture}) {
+export default function Step2({title = "test", onBack, close, size = "small", isOpened, departures, saveButton = false, setDeparture}) {
     const { t} = useTranslation()
     const [selectedDep, setSelectedDep] = useState(null);
     useEscHooks(close, isOpened)
