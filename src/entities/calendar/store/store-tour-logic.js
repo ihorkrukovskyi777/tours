@@ -137,6 +137,7 @@ export class StoreTourLogic {
                     avatar: subVendor.avatar,
                     subVendorName: subVendor.name,
                     ranking: subVendor.rating,
+                    fullTime: item.fullTime ?? null
                 }
             })
             this._allDepartures = [...this._allDepartures, ...additionalField];

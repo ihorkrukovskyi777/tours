@@ -1,10 +1,14 @@
 'use client'
 import {useState} from 'react';
+import {useParams} from "next/navigation";
 import InternationalInput from '../../../../../shared/ui/selectors/international-input';
+import {useRouter} from "next/navigation";
+import {getHrefLocale} from "@/i18n/get-href-locale";
 
 
-export default function FormCalendar({allPhoneNumbers, locale}) {
-
+export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDeparture, errorsMessage }) {
+    const { push } = useRouter();
+    const params = useParams();
     //validation
     const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
     const validateForm = errors => {
@@ -17,6 +21,13 @@ export default function FormCalendar({allPhoneNumbers, locale}) {
         }
         return valid;
     };
+
+    const [userData, setUserData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+    })
     const [loadValidate, setLoadValidate] = useState(false);
     const [validate, setValidate] = useState(null);
     const [valueMask, setValueMask] = useState('');
@@ -84,16 +95,19 @@ export default function FormCalendar({allPhoneNumbers, locale}) {
         //event.preventDefault();
         const {name} = event.target;
         let errors = state.errors;
+
         validateSwitch(name);
-        setState({errors, [name]: value});
+        setState({errors, [name]: value, });
         if (name === 'phone') {
             setValueMask(value);
         }
+
+
         !loadValidate && setLoadValidate(true);
 
     }
 
-    function handleSubmit(event) {
+   async function handleSubmit(event) {
         event.preventDefault();
         if (validate === null) {
             errors.firstName = 'This field is requared';
@@ -114,15 +128,20 @@ export default function FormCalendar({allPhoneNumbers, locale}) {
             console.info('Valid Form');
             setValidate(true);
             //REDIRECT TO CHECKOUT PAGE
-            const formData = {
-                firstName: document.querySelector("#booking input[name=firstName]").value,
-                lastName: document.querySelector("#booking input[name=lastName]").value,
-                email: document.querySelector("#booking input[name=email]").value,
-                phone_country: document.querySelector("#booking .react-tel-input input").value,
-                phone: document.querySelector("#booking input[name=phone]").value,
-                accept: document.querySelector("#booking input[name=accept]").value,
+            console.log(state, 'state')
+            try {
+
+                const data = await fetchBookingDeparture(state)
+                if(data.booking_id) {
+                    const url = getHrefLocale(params.locale, `/checkout?code=${data.booking_id}`)
+                    push(url)
+                }
+
+            } catch (err) {
+                console.log(err);
             }
-x        } else {
+
+        } else {
             console.error('Invalid Form')
             setValidate(false);
         }
@@ -186,7 +205,9 @@ x        } else {
                     {errors.accept.length > 0 ? <span className='error-message'>{errors.accept}</span> : null}
                 </div>
             </div>
-
+            <ul>
+                {errorsMessage?.map((value, index) => <li key={index}>{value}</li>)}
+            </ul>
             <div className="btns-wrap">
                 <button className='button_custom'>Book Now</button>
                 <div className="calendar_choose_date_loader hidden" id="calendar_choose_date_loader">

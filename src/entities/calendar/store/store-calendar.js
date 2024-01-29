@@ -9,8 +9,8 @@ export class StoreCalendar {
         this.id = id;
         this.title = title;
         this.activeLanguage = activeLanguage;
-        this.storeModalBooking = new StoreModalBooking()
         this.storeDepLogic = new StoreTourLogic(locale, type, id)
+        this.storeModalBooking = new StoreModalBooking(locale,   this.storeDepLogic)
         this.loading = new StoreLoading(true);
         this.storeModalCalendar = new StoreModalCalendar(this.loading, this.storeDepLogic, this.storeModalBooking, this.activeLanguage, title)
         makeAutoObservable(this, {}, {autoBind: true, deep: false});

@@ -16,7 +16,7 @@ import {ServiceDate} from "@/shared/service/service-date"
 
 import './style.css';
 
-export default observer(function Step3({onChange, people, locale,  close, size, allPhoneNumbers, departure,isOpened ,langSelected}) {
+export default observer(function Step3({onChange, people, errors,selectedLocale, locale, fetchBookingDeparture, close, size, allPhoneNumbers, departure,isOpened ,langSelected}) {
 
     useEscHooks(close, isOpened);
 
@@ -34,7 +34,7 @@ export default observer(function Step3({onChange, people, locale,  close, size, 
         <div className={`step-3 ${size}`}>
             <div className="subtitle">
                 <div className="subtitle-text">{t('modalBookingTitle')}</div>
-                <div className="close-button" onClick={close} >
+                <div className="close-button" onClick={close}>
                     <CloseSvg/>
                 </div>
             </div>
@@ -45,7 +45,8 @@ export default observer(function Step3({onChange, people, locale,  close, size, 
                 </div>
                 <div className="guide">
                     <div className="photo-wrap">
-                        {departure.avatar ? <IcloudImage src={departure.avatar} alt="brand logo" width={81} height={90}/> : null }
+                        {departure.avatar ?
+                            <IcloudImage src={departure.avatar} alt="brand logo" width={81} height={90}/> : null}
                     </div>
                     <div className="guide-info">
                         <div className="guide-name">{departure.subVendorName}</div>
@@ -63,7 +64,8 @@ export default observer(function Step3({onChange, people, locale,  close, size, 
                 <div className="flex-box">
                     <div className="item-data">
                         <div className="choosen-date">{departure.dateLabel}</div>
-                        <div className="time-current-modal">{t(serviceDate.day)} {serviceDate.dayNum} {t(serviceDate.month)} {pad2(time.hours)}:{pad2(time.minutes)}</div>
+                        <div
+                            className="time-current-modal">{t(serviceDate.day)} {serviceDate.dayNum} {t(serviceDate.month)} {pad2(time.hours)}:{pad2(time.minutes)}</div>
                         <span>,</span>
                     </div>
                     <div className="append-wrap2">
@@ -77,16 +79,24 @@ export default observer(function Step3({onChange, people, locale,  close, size, 
                                     <span className="comma">,</span>
                                     <span className="people-count">{people}</span>{t('People')}
                                 </div>
-                                <FlagsComponents locale={langSelected} alt={`flag ${locale}`}  className='country-box-select'/>
+                                {selectedLocale}
+                                <FlagsComponents locale={selectedLocale} alt={`flag ${selectedLocale}`}
+                                                 className='country-box-select'/>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div className="center-wrap">
                     <Button className="change" onClick={onChange}>{t('Change')}</Button>
                 </div>
             </div>
-            <FormCalendar allPhoneNumbers={allPhoneNumbers} locale={locale}/>
+            <FormCalendar
+                errorsMessage={errors}
+                allPhoneNumbers={allPhoneNumbers}
+                locale={locale}
+               fetchBookingDeparture={fetchBookingDeparture}/>
+
         </div>
     )
 })

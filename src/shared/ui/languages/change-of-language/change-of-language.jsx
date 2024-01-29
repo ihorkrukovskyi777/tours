@@ -32,7 +32,7 @@ export default function ChangeOfLanguage({ languages, title }) {
                                     prefetch={false}
                                 >
                                     <span className="wrap-txt">
-                                       {title} {t(`fullName.${item.locale}`)}</span>
+                                       {item?.title ? item.title : title } {t(`fullName.${item.locale}`)}</span>
                                     <FlagsComponents locale={item.locale}/>
                                 </Link>
                             </li>

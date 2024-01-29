@@ -46,9 +46,12 @@ export default observer(function Main({siteLocale}) {
                 people, changePeople, isEmpty,
             },
             storeModalBooking: {
+                errors,
+                fetchBookingDeparture,
                 isOpened,
                 close,
                 departure,
+                selectedLocale,
             },
             storeModalCalendar,
             fetchDepartures
@@ -97,8 +100,11 @@ export default observer(function Main({siteLocale}) {
             <ModalBooking size={'step-3'} show={isOpened}>
                 {isOpened ? <Step3
                     langSelected={locale}
+                    errors={errors}
                     people={people}
                     locale={siteLocale}
+                    selectedLocale={selectedLocale}
+                    fetchBookingDeparture={fetchBookingDeparture}
                     size="large"
                     onChange={changeModalBooking}
                     allPhoneNumbers={phones.value}
