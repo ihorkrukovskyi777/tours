@@ -16,7 +16,7 @@ import {ServiceDate} from "@/shared/service/service-date"
 
 import './style.css';
 
-export default observer(function Step3({onChange, people, locale,  close, size, allPhoneNumbers, departure,isOpened ,langSelected}) {
+export default observer(function Step3({onChange, people, locale, fetchBookingDeparture, close, size, allPhoneNumbers, departure,isOpened ,langSelected}) {
 
     useEscHooks(close, isOpened);
 
@@ -86,7 +86,7 @@ export default observer(function Step3({onChange, people, locale,  close, size, 
                     <Button className="change" onClick={onChange}>{t('Change')}</Button>
                 </div>
             </div>
-            <FormCalendar allPhoneNumbers={allPhoneNumbers} locale={locale}/>
+            <FormCalendar allPhoneNumbers={allPhoneNumbers} locale={locale} fetchBookingDeparture={fetchBookingDeparture}/>
         </div>
     )
 })

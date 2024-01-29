@@ -8,13 +8,15 @@ import {
 import CheckoutSection from "@/entities/checkout/ui";
 import OtherTours from "@/widgets/other-tours";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
+import {useSearchParams} from "next/navigation";
 
 const CheckoutContent = observer(() => {
+  const searchParams = useSearchParams()
   const store = useContext(CheckoutStoreContext);
 
   useEffect(() => {
     if (!store.checkoutDetails) {
-      store.fetchCheckoutDetails();
+      store.fetchCheckoutDetails(searchParams.get('code'));
     }
   }, [store]);
 

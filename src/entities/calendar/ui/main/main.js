@@ -46,6 +46,7 @@ export default observer(function Main({siteLocale}) {
                 people, changePeople, isEmpty,
             },
             storeModalBooking: {
+                fetchBookingDeparture,
                 isOpened,
                 close,
                 departure,
@@ -99,6 +100,7 @@ export default observer(function Main({siteLocale}) {
                     langSelected={locale}
                     people={people}
                     locale={siteLocale}
+                    fetchBookingDeparture={fetchBookingDeparture}
                     size="large"
                     onChange={changeModalBooking}
                     allPhoneNumbers={phones.value}

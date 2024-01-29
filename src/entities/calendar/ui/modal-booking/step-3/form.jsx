@@ -1,10 +1,11 @@
 'use client'
 import {useState} from 'react';
 import InternationalInput from '../../../../../shared/ui/selectors/international-input';
+import {useRouter} from "next/navigation";
 
 
-export default function FormCalendar({allPhoneNumbers, locale}) {
-
+export default function FormCalendar({allPhoneNumbers, locale,fetchBookingDeparture}) {
+    const { push } = useRouter();
     //validation
     const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
     const validateForm = errors => {
@@ -17,6 +18,13 @@ export default function FormCalendar({allPhoneNumbers, locale}) {
         }
         return valid;
     };
+
+    const [userData, setUserData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+    })
     const [loadValidate, setLoadValidate] = useState(false);
     const [validate, setValidate] = useState(null);
     const [valueMask, setValueMask] = useState('');
@@ -84,16 +92,19 @@ export default function FormCalendar({allPhoneNumbers, locale}) {
         //event.preventDefault();
         const {name} = event.target;
         let errors = state.errors;
+
         validateSwitch(name);
-        setState({errors, [name]: value});
+        setState({errors, [name]: value, });
         if (name === 'phone') {
             setValueMask(value);
         }
+
+
         !loadValidate && setLoadValidate(true);
 
     }
 
-    function handleSubmit(event) {
+   async function handleSubmit(event) {
         event.preventDefault();
         if (validate === null) {
             errors.firstName = 'This field is requared';
@@ -114,15 +125,17 @@ export default function FormCalendar({allPhoneNumbers, locale}) {
             console.info('Valid Form');
             setValidate(true);
             //REDIRECT TO CHECKOUT PAGE
-            const formData = {
-                firstName: document.querySelector("#booking input[name=firstName]").value,
-                lastName: document.querySelector("#booking input[name=lastName]").value,
-                email: document.querySelector("#booking input[name=email]").value,
-                phone_country: document.querySelector("#booking .react-tel-input input").value,
-                phone: document.querySelector("#booking input[name=phone]").value,
-                accept: document.querySelector("#booking input[name=accept]").value,
+            console.log(state, 'state')
+            try {
+                push(`/checkout?code=20833234`)
+                //
+                // const data = await fetchBookingDeparture(state)
+                // push(`/checkout?code=20833234`)
+            } catch (err) {
+                console.log(err);
             }
-x        } else {
+
+        } else {
             console.error('Invalid Form')
             setValidate(false);
         }

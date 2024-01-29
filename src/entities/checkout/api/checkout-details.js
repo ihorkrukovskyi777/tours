@@ -9,9 +9,8 @@ class CheckoutStore {
     makeAutoObservable(this);
   }
 
-  fetchCheckoutDetails() {
-    const staticCode = "669fbb5c1d8f866051835a2d7a61b4f802128535";
-    const url = `${process.env.NEXT_PUBLIC_CHECKOUT_DETAILS_API}/${staticCode}`;
+  fetchCheckoutDetails(staticCode) {
+    const url = `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/${staticCode}`;
     this.isLoading = true;
     this.error = null;
     fetch(url)

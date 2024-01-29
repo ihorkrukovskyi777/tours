@@ -32,14 +32,14 @@ export default function PersonInfo({ data }) {
       <div className="right_box">
         <div className="img_box">
           <img
-            src={brand_logo_url.url}
-            alt={brand_logo_url.alt ? brand_logo_url.alt : "brand logo"}
+            src={brand_logo_url?.url}
+            alt={brand_logo_url?.alt ? brand_logo_url.alt : "brand logo"}
           />
         </div>
       </div>
       <div className="text_box">
         <div className="name">{brand_name}</div>
-        {averge_rating.cnt_reviews && (
+        {averge_rating?.cnt_reviews && (
           <div className="rate_box">
             <FullStarSvg width={20} height={20} />
             <span>{averge_rating.averge_rating}</span>
