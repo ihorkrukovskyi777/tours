@@ -132,9 +132,11 @@ export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDepar
             try {
 
                 const data = await fetchBookingDeparture(state)
+                if(data.booking_id) {
+                    const url = getHrefLocale(params.locale, `/checkout?code=${data.booking_id}`)
+                    push(url)
+                }
 
-                const url = getHrefLocale(params.locale, `/checkout?code=${data.booking_id}`)
-                push(url)
             } catch (err) {
                 console.log(err);
             }

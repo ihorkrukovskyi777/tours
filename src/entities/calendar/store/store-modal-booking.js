@@ -34,7 +34,7 @@ export class StoreModalBooking {
             tour_id: this.departure.tourId,
             is_civitatis: this.departure.is_civitatis ? 1 : 0,
             number_people: this.depLogic.people,
-            email: 'ynherb299222@gmail.com',
+            email: 'ynherb291329222@gmail.com',
             first_name: 'Andrian',
             last_name: 'Domashovets',
             phone: '3 2313 123 121',
