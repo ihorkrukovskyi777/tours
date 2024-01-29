@@ -85,6 +85,9 @@
     .calendar-body .calendar {
         width: 100% !important;
     }
+    .calendar {
+        width: 100% !important;
+    }
 }
 @media(max-width: 350px) {
     .tour_calendar .tab_item {

@@ -1,17 +1,22 @@
-.buttons-map {
+.map_block {
     margin-top: 0.83em;
     margin-bottom: 0.83em;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*gap: 20px;*/
 }
-.buttons-map button {
+.map_block .scroll {
+    position: relative;
+    width: 100%;
+    margin-bottom: 35px;
+}
+.map_block button {
     padding: 20px 52px 20px 22px;
     font-size: 20px;
-    border-radius: 8px;
     border: none;
     cursor: pointer;
     min-height: 60px;
+    border-radius: 8px;
     display: inline-flex;
     align-items: center;
     line-height: 1;
@@ -23,27 +28,40 @@
     color: #000000;
     position: relative;
 }
-.buttons-map button.active {
+.map_block button.active {
     background-color: #D9D9D9;
     pointer-events: none;
 }
-.buttons-map .place_select_post_clear {
-    padding: 15px 52px 15px 22px;
-    margin-left: auto;
-    background-color: var(--main_color);
+.map_block .place_select_post_clear {
     color: #fff;
-    padding-left: 24px;
-    padding-right: 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    min-height: 60px;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    font-family: var(--fontMedium);
+    transition: .3s;
+    text-align: left;
+    background-color: #e10600;
+    font-size: 20px;
+    margin-left: auto;
+    position: absolute;
+    right: 0;
+    z-index: 100;
+    bottom: 0;
+    padding: 15px 24px;
 }
-.buttons-map .place_select_post_clear svg {
+.map_block .place_select_post_clear img {
     margin-right: 9px;
     flex-shrink: 0;
 }
-.buttons-map .place_select_post_clear:hover {
+.map_block .place_select_post_clear:hover {
     opacity: .7;
 }
 
-.buttons-map button .status {
+.map_block button .status {
     margin-left: 15px;
     width: 18px;
     height: 18px;

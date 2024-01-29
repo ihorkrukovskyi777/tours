@@ -26,7 +26,8 @@ export class StoreModalBooking {
         this.isOpened = false
     }
 
-    * fetchBookingDeparture({email, firstName, lastName, phone, phone_county_code, phone_county_slug}) {
+    * fetchBookingDeparture(data) {
+        const {email, firstName, lastName, phone, phone_county_code, phone_country_slug} = data;
         this.errors = [];
         const body = {
             curLang: this.locale,
@@ -34,14 +35,14 @@ export class StoreModalBooking {
             tour_id: this.departure.tourId,
             is_civitatis: this.departure.is_civitatis ? 1 : 0,
             number_people: this.depLogic.people,
-            email: 'ynherb291329222@gmail.com',
-            first_name: 'Andrian',
-            last_name: 'Domashovets',
-            phone: '3 2313 123 121',
-            phone_county_code: '+44',
+            email: email,
+            first_name: firstName,
+            last_name: lastName,
+            phone: phone,
+            phone_county_code: phone_county_code,
             full_time: this.departure.fullTime ?? '',
-            phone_county_slug: 'gb',
-            full_number: "+4432313123121"
+            phone_county_slug: phone_country_slug,
+            full_number: `${phone_county_code}${phone}`
         }
         const results =  yield fetchBookingDepartures(body);
 

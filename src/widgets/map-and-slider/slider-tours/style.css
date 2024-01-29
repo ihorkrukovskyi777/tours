@@ -130,7 +130,7 @@
 
 
 .map_and_slider .circle_items {
-    margin: 5px 0 2px;
+    margin: 5px auto 2px;
     display: flex;
     align-items: center;
     justify-content: center;

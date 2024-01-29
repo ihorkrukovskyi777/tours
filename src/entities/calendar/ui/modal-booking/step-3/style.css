@@ -321,3 +321,54 @@
     border-radius: 50%;
     object-fit: cover;
 }
+.step-3 .center-wrap button {
+    text-transform: capitalize;
+}
+.step-3 .btns-wrap button {
+    padding: 18px;
+    font-size: 20px;
+    font-family: var(--fontMedium);
+}
+
+@media(max-width: 767px){
+    .step-3 .subtitle-text {
+        display: none;
+    }
+    .step-3 .subtitle-text.subtitle-text-mobile {
+        margin-bottom: 8px;
+        display: block;
+    }
+    .step-3 .guide {
+        flex-direction: column;
+        margin-left: 5px;
+    }
+    .step-3 .photo-wrap {
+        margin-bottom: 8px;
+    }
+    .step-3 .flex-change .flex-box {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .step-3 .flex-change .append-wrap2 {
+        margin-top: 15px;
+        margin-bottom: 20px;
+        display: flex;
+    }
+    .step-3 .center-wrap {
+        display: block;
+        margin: auto;
+    }
+    .step-3 form .item-form {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .step-3 form .item-form label span {
+        margin-bottom: 2px;
+    }
+    .step-3 form,
+    .step-3 .form-wrap {
+        margin-bottom: 10px;
+    }
+
+}

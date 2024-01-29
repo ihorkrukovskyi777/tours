@@ -7,6 +7,7 @@
     border-radius: 44px;
     width: 44px;
     height: 44px;
+    border-bottom-right-radius: 0 !important;
 }
 
 .leaflet-zoom-animated.leaflet-interactive .icon.active {
@@ -54,6 +55,7 @@
     position: relative;
     transform: rotate(45deg);
     border: 1px solid #e10600;
+    border-bottom-right-radius: 0 !important;
 }
 .marker .marker_content {
     content: "";

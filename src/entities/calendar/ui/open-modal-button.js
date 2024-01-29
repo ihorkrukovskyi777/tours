@@ -63,7 +63,7 @@ export default observer(function OpenModalButton({storeModalCalendar}) {
                 </div>
                 <span>Pick a Date</span>
             </Button>
-            <ModalBooking show={isOpened}>
+            <ModalBooking show={isOpened} size={'step-1'}>
                 {isOpened ? <Step1
                     title={title}
                     storeModalCalendar={storeModalCalendar}
@@ -71,7 +71,7 @@ export default observer(function OpenModalButton({storeModalCalendar}) {
                     onChange={onChange}
                 /> : null}
             </ModalBooking>
-            <ModalBooking show={isOpenedListDeparture}>
+            <ModalBooking show={isOpenedListDeparture} size={'step-2'}>
                 {isOpenedListDeparture ?
                     <Step2
                         title={title}
