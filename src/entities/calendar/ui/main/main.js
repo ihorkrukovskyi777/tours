@@ -95,7 +95,7 @@ export default observer(function Main({siteLocale}) {
                 {departures?.length ? <DeparturesList/> : null}
             </div>
             <ModalBooking show={isOpened}>
-                 <Step3
+                {isOpened ? <Step3
                     langSelected={locale}
                     people={people}
                     locale={siteLocale}
@@ -105,7 +105,7 @@ export default observer(function Main({siteLocale}) {
                     departure={departure}
                     language={locale}
                     close={close}
-                />
+                /> : null }
             </ModalBooking>
         </div>
 

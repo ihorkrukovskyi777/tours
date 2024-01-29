@@ -1,5 +1,5 @@
 'use client';
-import {useEffect, useRef} from "react";
+import {useEffect, useLayoutEffect, useRef, useState} from "react";
 import {observer} from 'mobx-react-lite';
 import {MapContainer, TileLayer, Marker} from 'react-leaflet';
 import MarkerDefault from '@/shared/ui/map/markers/marker';
@@ -7,10 +7,8 @@ import {renderToString} from 'react-dom/server';
 import {StoreMapContext} from '../map-and-slider';
 import {useContext} from 'react';
 import L from 'leaflet';
-
-
 import 'leaflet/dist/leaflet.css';
-import './style.css';
+import './style.css'
 
 let zIndex = 999;
 export default observer(function Map({id, locale}) {
@@ -25,6 +23,12 @@ export default observer(function Map({id, locale}) {
         useEffect(() => {
             setMap(refMap.current)
         }, [refMap.current])
+
+
+        if(markers.length === 0) {
+            return null;
+        }
+
         return (
             <MapContainer center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>
                 <TileLayer
@@ -33,7 +37,7 @@ export default observer(function Map({id, locale}) {
                 />
                 {markers.map((marker) => <Marker
                     key={marker.id}
-                    zIndexOffset={marker.id === selectedPlaceId ?  zIndex : 1}
+                    zIndexOffset={marker.id === selectedPlaceId ? zIndex : 1}
                     position={[marker.coordinates.latitude, marker.coordinates.longitude]}
                     size={'small'}
                     status={marker.status}
@@ -48,7 +52,7 @@ export default observer(function Map({id, locale}) {
                                 id={marker.id}
                                 isActive={marker.id === selectedPlaceId}
                                 status={'default'}
-                                colors={['#444, #121 , #000']}
+                                colors={marker.colors}
                                 icon={marker.attachment.src}
                             />)
                     })}

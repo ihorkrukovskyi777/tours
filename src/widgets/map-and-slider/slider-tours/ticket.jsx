@@ -1,31 +1,32 @@
 import Image from "next/image";
-import Link from "next/link";
-import heartSVG from '../../../../public/images/svg/tour.svg';
-import clockSVG from '../../../../public/images/svg/tour.svg';
-import tiketsSVG from '../../../../public/images/svg/tour.svg';
+import heartSVG from '/public/images/svg/heart.svg';
+import clockSVG from '/public/images/svg/clock.svg';
+import ticketSVG from '/public/images/svg/tour.svg';
+import {useTranslation} from "@/i18n/client";
+import {pad2, toHoursAndMinutes} from "@/shared/hepers/date";
 
 
+export default function Ticket({duration, title, price, url}) {
+    const {t} = useTranslation();
+    const time = toHoursAndMinutes(duration / 60);
 
-
-export default function Ticket({data}) {
-
-    //const {title , duration , tickets } = data;
-
+    const {hours, minutes} = toHoursAndMinutes(duration);
     return (
         <div className="item-label">
             <p>
                 <Image src={heartSVG} width={20} height={20} alt="icon"/>
-                <span>title</span>
+                <span>{title}</span>
             </p>
+            {hours > 0 || minutes> 0 ? <p>
+                    <Image src={clockSVG} width={20} height={20} alt="icon"/>
+                    <span>{t('Duration')}: {hours}:{pad2(minutes)} {t('Hours')}</span>
+                </p>
+                : null}
             <p>
-                <Image src={clockSVG} width={20} height={20} alt="icon"/>
-                <span>Duration: 20 : 30 Hours</span>
+                <Image src={ticketSVG} width={20} height={20} alt="icon"/>
+                <span>{t('Tickets')}: {t('from')} {price} USD</span>
             </p>
-            <p>
-                <Image src={tiketsSVG} width={20} height={20} alt="icon"/>
-                <span>Tickets: from 20.22 USD</span>
-            </p>
-            <Link className="button_basic" href="#">Book now</Link>
+            <a className="button_basic" href={url}>{t('Book now')}</a>
         </div>
-  )
+    )
 }
