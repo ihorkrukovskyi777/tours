@@ -1,40 +1,24 @@
-"use client";
-import React, { useContext, useEffect } from "react";
-import { observer } from "mobx-react-lite";
-import {
-  CheckoutStoreContext,
-  CheckoutStoreProvider,
-} from "@/entities/checkout/store/checkout-store";
-import CheckoutSection from "@/entities/checkout/ui";
 import OtherTours from "@/widgets/other-tours";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
-import {useSearchParams} from "next/navigation";
+import Checkout from "@/entities/checkout/main";
+import {notFound} from "next/navigation";
 
-const CheckoutContent = observer(() => {
-  const searchParams = useSearchParams()
-  const store = useContext(CheckoutStoreContext);
-  const code = searchParams.get('code');
-  useEffect(() => {
-      store.fetchCheckoutDetails(searchParams.get('code'));
-  }, [store, code]);
+export default async function CheckoutPage({params: {locale}}) {
+    const pageType = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/checkout`,
+        {next: {revalidate: 60}}
+    )
+    const page = await pageType.json();
+    if (page.statusCode === 404 || typeof page.id !== 'number') {
+        notFound();
+    }
 
-  return (
-    <main>
-      {store.isLoading && <p>Loading...</p>}
-      {store.error && <p>Error: {store.error}</p>}
-      {!store.isLoading && store.checkoutDetails && (
-        <CheckoutSection checkoutDetails={store.checkoutDetails} />
-      )}
-      <OtherTours />
-      <ChangeOfLanguage />
-    </main>
-  );
-});
-
-export default function Checkout() {
-  return (
-    <CheckoutStoreProvider>
-      <CheckoutContent />
-    </CheckoutStoreProvider>
-  );
+    console.log(page, 'data')
+    return (
+        <>
+            <Checkout/>
+            <OtherTours/>
+            <ChangeOfLanguage languages={page.languages}/>
+        </>
+    )
 }
