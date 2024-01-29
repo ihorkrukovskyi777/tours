@@ -55,3 +55,18 @@
     position: absolute;
     right: 19px;
 }
+
+@media (max-width: 991px) {
+    .scroll {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+    .row {
+        display: flex;
+        flex-wrap: nowrap;
+        grid-gap: 10px;
+    }
+}
+
+

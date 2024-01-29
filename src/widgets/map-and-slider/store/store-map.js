@@ -5,13 +5,24 @@ import L from 'leaflet';
 let eventSlide = false;
 
 export class StoreMap {
-    constructor() {
+    constructor(id) {
+        this.currentId = id;
+        this.selectedTourId = null;
         this.places = [];
         this.selectedPlaceId = null;
         this.swiper = null;
         this.map = null;
-        eventSlide = false
+        this.initialSlide = 0;
         makeAutoObservable(this, {}, {autoBind: true});
+    }
+
+    setSwiper(swiper) {
+        this.swiper = swiper
+    }
+
+    resetSelectedTour() {
+        this.selectedTourId = null;
+        this.selectedPlaceId = this.places[0].id
     }
 
     setMap(map) {
@@ -21,25 +32,10 @@ export class StoreMap {
         }
     }
 
-    setSwiper(swiper) {
-        if (this.swiper === null) {
-            this.swiper = swiper;
-            window.swiper = swiper;
-            this.swiper.on('slideChange', (v, e) => {
-                if (eventSlide) {
-                    eventSlide = false
-                    return;
-                }
-                const place = this.places[v.slides[v.activeIndex].dataset.swiperSlideIndex]
-                if (place) {
-                    this.setSlideSelectedPlace(place.id)
-                    if (place.coordinates.latitude && place.coordinates.longitude && this.map) {
-                        this.map.setView([place.coordinates.latitude, place.coordinates.longitude])
-                    }
-
-                }
-            })
-        }
+    setSelectedTourId(id) {
+        this.selectedTourId = id;
+        this.setSlideSelectedPlace(this.sliders[0].id);
+        this.centerMap();
 
     }
 
@@ -48,42 +44,69 @@ export class StoreMap {
     }
 
     centerMap() {
-        const bounds = new L.LatLngBounds(this.markers.map(item => [item.coordinates.latitude, item.coordinates.longitude]));
-        this.map.fitBounds(bounds);
+
+        console.log(this.map, 'dsadsa')
+        const bounds = new L.LatLngBounds(this.markers.filter(place => place.status === 'default').map(item => item.coordinates));
+        this.map.fitBounds(bounds.pad(0.5));
+
     }
 
     get currentIndexPlace() {
-        return this.places.findIndex(place => place.id === this.selectedPlaceId)
+        console.log(this.selectedPlaceId, 'this.selectedPlaceId')
+        return this.sliders.findIndex(place => place.id === this.selectedPlaceId)
     }
 
-    * fetchMarkers(id, locale) {
-        const places = yield placesMarkers(id, locale);
-        this.places = places.sort((a, b) => a.order - b.order)
-        if (places[0]) {
-            this.selectedPlaceId = places[0].id
+    * fetchMarkers(id, locale, ids = []) {
+        this.places = yield placesMarkers(id, locale, ids);
+        if (this.places[0]) {
+            this.selectedPlaceId = this.places[0].id
+
         }
 
     }
+
     remove() {
         this.places = this.places.slice(1, this.places.length)
     }
+
+    setOpenMarkerBySlide(id) {
+        this.selectedPlaceId = id;
+    }
+
     setOpenMarker(id) {
         this.selectedPlaceId = id;
-
-        const find = this.places.find(item => item.id === id);
-        eventSlide = true;
-
-        const element = document.querySelector(`[data-place-id="${find.id}"]`).parentNode
-
-        this.swiper?.slideToLoop((element.dataset.swiperSlideIndex * 1), 500, false)
+        if (this.selectedTourId) {
+            const find = this.markers.find(place => place.id === id);
+            if (!find?.tours[this.selectedTourId]) {
+                this.selectedTourId = null;
+                this.initialSlide = this.sliders.findIndex(place => place.id === id)
+            }
+        } else {
+            const findIndex = this.sliders.findIndex(place => place.id === id);
+            console.log(findIndex, 'findIndex')
+            this.swiper.slideToLoop(findIndex)
+        }
     }
 
     get sliders() {
+        if (this.selectedTourId) {
+            return this.places.filter(item => (!!item.tours[this.selectedTourId]))
+        }
         return this.places ?? [];
     }
 
     get markers() {
-        return this.places.filter(item => ((item.coordinates.latitude !== null && item.coordinates.longitude !== null)));
+        return this.places.filter(item => item.coordinates.latitude && item.coordinates.longitude).map(item => {
+            const type = this.selectedTourId === null;
+            return {
+                coordinates: [item.coordinates.latitude, item.coordinates.longitude],
+                status: type ? 'default' : item.tours[this.selectedTourId] ? 'default' : 'small',
+                id: item.id,
+                tours: {...item.tours},
+                src: item.attachment?.src,
+                colors: [...item.colors],
+            }
+        });
     }
 
 }

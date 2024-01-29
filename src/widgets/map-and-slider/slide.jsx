@@ -4,16 +4,17 @@ import Image from "next/image";
 import tourSVG from "/public/images/svg/tour.svg";
 import Ticket from "@/widgets/map-and-slider/slider-tours/ticket";
 
-export default memo(function Slide({tours, id, title, attachment, alt = '', tickets = []}) {
-    return <div className='item' data-place-id={`${id}`}>
+export default memo(function Slide({tours, title, attachment, alt = '', tickets = []}) {
+    return <div className='item'>
         <div className='item_top'>
             <div className="img_wrap">
                 <div className="item_name">{title}</div>
                 <IcloudImage
+                    size="625x350"
                     src={attachment.src}
                     alt={alt}
-                    width={400}
-                    height={300}
+                    width={625}
+                    height={350}
                 />
             </div>
             <div className="text_wrap">

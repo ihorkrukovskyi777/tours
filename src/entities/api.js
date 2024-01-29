@@ -186,10 +186,12 @@ export const searchCities = async (locale = 'en' , search) => {
     }
 }
 
-export const placesMarkers = async (id , locale = 'en' , search) => {
+export const placesMarkers = async (id , locale = 'en' , ids = []) => {
     try {
+
+        const paramsIds = ids.length ? `&ids=${ids.join(',')}` : '';
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/place/pages/${id}?locale=${locale}`,
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/place/pages/${id}?locale=${locale}${paramsIds}`,
             {next: {revalidate: 60}}
         );
         return res.json()

@@ -1,55 +1,27 @@
-import {useEffect, useRef, memo} from "react";
 import {observer} from "mobx-react-lite";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation, Pagination} from "swiper/modules";
-import Slide from "@/widgets/map-and-slider/slide";
-import Image from "next/image";
-import prevSVG from "../../../public/images/svg/arrow-prev.svg";
-import nextSVG from "../../../public/images/svg/arrow-next.svg";
+import {useContext, useCallback} from "react";
+import SliderMemo from "@/widgets/map-and-slider/slider-memo";
+import {StoreMapContext} from "@/widgets/map-and-slider/map-and-slider";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-export default observer(function Sliders({sliders, setSwiper}) {
+export default observer(function Sliders() {
+    const {
+        map: {
+            setOpenMarkerBySlide,
+            selectedTourId,
+            sliders,
+            initialSlide,
+            setSwiper,
+        }
+    } = useContext(StoreMapContext);
 
 
-    return (
-        <div className="slider_block">
-            <Swiper
-                modules={[Navigation, Pagination]}
-                spaceBetween={25}
-                centeredSlides={true}
-                navigation={{
-                    prevEl: '.prev',
-                    nextEl: '.next',
-                }}
-                onInit={(swiper) => {
-                    setSwiper(swiper)
-                }}
-                loop={sliders.length > 3}
-                breakpoints={{
-                    220: {
-                        slidesPerView: 1
-                    },
-                    768: {
-                        slidesPerView: 3,
-                    },
-                }}
-            >
-                {sliders.map((slider) => {
-                    return (
-                        <SwiperSlide key={slider.id}>
-                            <Slide {...slider}></Slide>
-                        </SwiperSlide>
-                    )
-                })}
-            </Swiper>
-            <div className="prev">
-                <Image src={prevSVG} alt='prev' width={12} height={20}></Image>
-            </div>
-            <div className="next">
-                <Image src={nextSVG} alt='prev' width={12} height={20}></Image>
-            </div>
-        </div>
-    )
+    const changeMarker = useCallback((swiper) => {
+        const id = swiper.slides[swiper.activeIndex]?.dataset.id
+        setOpenMarkerBySlide(id);
+    }, [])
+
+    return <SliderMemo changeMarker={changeMarker} sliders={sliders} selectedTourId={selectedTourId} initialSlide={initialSlide} setSwiper={setSwiper}/>
 })

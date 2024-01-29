@@ -11,23 +11,25 @@ import 'leaflet/dist/leaflet.css';
 import './style.css'
 
 let zIndex = 999;
-export default observer(function Map({id, locale}) {
+export default observer(function Map({ids, id, locale}) {
         const refMap = useRef(null);
         const {map: {markers, setOpenMarker, selectedPlaceId, fetchMarkers, setMap}} = useContext(StoreMapContext);
 
         const position = [51.505, -0.09];
         useEffect(() => {
-            fetchMarkers(id, locale);
+            fetchMarkers(id, locale, ids);
         }, [])
 
         useEffect(() => {
-            setMap(refMap.current)
-        }, [refMap.current])
+            console.log(refMap.current, 'refMap.current')
+            if(refMap.current) {
+                setMap(refMap.current)
 
+            }
+        }, [refMap.current, setMap])
 
-        if(markers.length === 0) {
-            return null;
-        }
+    console.log(refMap, 'refMapsss')
+
 
         return (
             <MapContainer center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>
@@ -37,8 +39,8 @@ export default observer(function Map({id, locale}) {
                 />
                 {markers.map((marker) => <Marker
                     key={marker.id}
-                    zIndexOffset={marker.id === selectedPlaceId ? zIndex : 1}
-                    position={[marker.coordinates.latitude, marker.coordinates.longitude]}
+                    zIndexOffset={marker.id === selectedPlaceId ? zIndex : marker.status === 'small' ? 1 : 100}
+                    position={marker.coordinates}
                     size={'small'}
                     status={marker.status}
                     eventHandlers={{
@@ -51,9 +53,9 @@ export default observer(function Map({id, locale}) {
                             <MarkerDefault
                                 id={marker.id}
                                 isActive={marker.id === selectedPlaceId}
-                                status={'default'}
+                                status={marker.status}
                                 colors={marker.colors}
-                                icon={marker.attachment.src}
+                                icon={marker.src}
                             />)
                     })}
                 />)}
