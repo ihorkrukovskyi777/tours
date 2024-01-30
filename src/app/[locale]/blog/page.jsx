@@ -8,7 +8,6 @@ export default async function BlogPage({languages , title}) {
         <main>
             <BannerBlog/>
             <BlogPostItems posts={posts} />
-
         </main>
     )
 }

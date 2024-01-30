@@ -213,7 +213,7 @@ export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDepar
                 </div>
             </div>
             <ul>
-                {errorsMessage?.map((value, index) => <li key={index}>{value}</li>)}
+                {errorsMessage?.map((value, index) => <li key={index} dangerouslySetInnerHTML={{__html: value ?? ''}}></li>)}
             </ul>
             <div className="btns-wrap">
                 <button className='button_custom'>Book Now</button>

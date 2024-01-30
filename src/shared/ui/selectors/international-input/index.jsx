@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import PhoneInput from 'react-phone-input-2'
 import classNames from 'classnames';
 import { InputMask } from '@react-input/mask';
@@ -7,16 +7,19 @@ import 'react-phone-input-2/lib/style.css';
 
 import './style.css';
 
-export default function InternationalInput({locale , allPhoneNumbers , handleChange , valueMask=''}) {
+export default function InternationalInput({locale , allPhoneNumbers, changeCountryCode = () => {}, handleChange , valueMask='', phoneDefault =''}) {
     let formatLanguage = localeFormat(locale);
-    
     formatLanguage = formatLanguage === 'en' ? 'GB' : formatLanguage;
     formatLanguage = formatLanguage === 'pt-pt' ? 'pt' : formatLanguage;
     const languagePageSlug = formatLanguage.toUpperCase();
-    const localizationWP = {};
-    allPhoneNumbers.map((elem) => {
-        localizationWP[elem.code] = elem;
-    });
+    const localizationWP = useMemo(() => {
+        const values = {};
+        allPhoneNumbers.map((elem) => {
+            values[elem.code] = elem;
+        });
+        return values;
+    }, [allPhoneNumbers]);
+
     const  [validation_numbers , setValidation_numbers] = useState(localizationWP[languagePageSlug]['validation_numbers']);
     const [placeholder , setPlaceholder] = useState(localizationWP[languagePageSlug]['mask_number']);
     const [slugCountry , setSlugCountry] = useState(languagePageSlug);
@@ -32,19 +35,27 @@ export default function InternationalInput({locale , allPhoneNumbers , handleCha
             event.preventDefault();
         }
     }
-    const handleFocus = (event) => {
+    const handleFocus = () => {
         setBorder(true)
     };
-    const handleBlur = (event) => {
+    const handleBlur = () => {
         setBorder(false)
     };
 
+    const localization = useMemo(() => {
+        const values = {};
+        for (const item of allPhoneNumbers) {
+            values[item.code.toLowerCase()] = item.name
+        }
+        return values;
+    }, [allPhoneNumbers])
+    const defaultValueProp = phoneDefault ? { value: phoneDefault} : {}
     return (
     <div className={classNames({'border':border} , 'international-phone')}>
         <div className="wrap-input" style={{width: inputCountryWidth}}>
             <PhoneInput
                 country={formatLanguage.toLowerCase()}
-                localization={formatLanguage.toLowerCase()}
+                localization={localization}
                 onChange={(value, country) => {
                     //errors.phone = 'This field is requared';
                     setInputCountryWidth(widthInputs[value.length]);
@@ -58,11 +69,16 @@ export default function InternationalInput({locale , allPhoneNumbers , handleCha
                     setMaskView(maskInput);
                     setBorder(true);
                     setSlugCountry(selectedCountryData)
+                    changeCountryCode({ dialCode: country.dialCode, slugCountry: selectedCountryData})
                 }}
             />
         </div>
-        <InputMask id='phone' name='phone'
-            mask={maskView} replacement="_"
+        <InputMask
+            id='phone'
+            name='phone'
+            {...defaultValueProp}
+            mask={maskView}
+            replacement="_"
             placeholder={placeholder}
             style={{paddingLeft: inputCountryWidth + padding }}
             onChange={handleChange}

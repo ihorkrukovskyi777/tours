@@ -5,8 +5,6 @@ export default function ModalBookingEdit({
   children,
   ModalShow,
   changeData,
-  isOpened,
-  size
 }) {
   return (
     <div
@@ -16,7 +14,7 @@ export default function ModalBookingEdit({
       )}
     >
       <div className={classNames("modal_content", { change: changeData })}>
-        <div className="flex-wrap">{children}</div>
+        <div className="flex-wrap">{children}222</div>
       </div>
     </div>
   );

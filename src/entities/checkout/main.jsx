@@ -1,6 +1,6 @@
 "use client";
-import React, { useContext, useEffect } from "react";
-import { observer } from "mobx-react-lite";
+import React, {useContext, useEffect, useLayoutEffect} from "react";
+import {observer} from "mobx-react-lite";
 import {
     CheckoutStoreContext,
     CheckoutStoreProvider,
@@ -8,28 +8,36 @@ import {
 import CheckoutSection from "@/entities/checkout/ui";
 import {useSearchParams} from "next/navigation";
 
-const CheckoutContent = observer(({ title }) => {
+const CheckoutContent = observer(({title}) => {
     const searchParams = useSearchParams()
-    const store = useContext(CheckoutStoreContext);
     const code = searchParams.get('code');
-    useEffect(() => {
-        store.fetchCheckoutDetails(searchParams.get('code'));
-    }, [store, code]);
+    const store = useContext(CheckoutStoreContext);
+
+    useLayoutEffect(() => {
+        const fetchData = async () => {
+            await Promise.all([
+                store.fetchCheckoutDetails(searchParams.get('code')),
+                store.phone.fetchPhones()
+            ])
+
+        }
+        fetchData().then(() => {
+            store.toggleGlobalLoading()
+        })
+    }, [code]);
 
     return (
         <main>
             {store.isLoading && <p>Loading...</p>}
             {store.error && <p>Error: {store.error}</p>}
-            {!store.isLoading && store.checkoutDetails && (
-                <CheckoutSection checkoutDetails={store.checkoutDetails} title={title}/>
-            )}
+            {!store.globalLoading ? <CheckoutSection title={title}/> : null}
         </main>
     );
 });
 
-export default function Checkout({ title }) {
+export default function Checkout({title, locale}) {
     return (
-        <CheckoutStoreProvider>
+        <CheckoutStoreProvider locale={locale}>
             <CheckoutContent title={title}/>
         </CheckoutStoreProvider>
     );

@@ -28,7 +28,7 @@ const columnsFormula = (column1, column2) => {
     return flag
 }
 export default observer(function ButtonTours({toursPlaces}) {
-    const {map: {selectedTourId,setSelectedTourId, resetSelectedTour}} = useContext(StoreMapContext);
+    const {map: {selectedTourId,setSelectedTourId, resetSelectedTour, places}} = useContext(StoreMapContext);
 
     const fullWidth = toursPlaces.reduce((acc, value) => {
         acc = {
@@ -39,7 +39,7 @@ export default observer(function ButtonTours({toursPlaces}) {
     }, {width: 0, list: []})
 
 
-    const columns = useMemo(() => {
+    let columns = useMemo(() => {
         const columns = [{
             width: 0,
             list: [],
@@ -61,22 +61,29 @@ export default observer(function ButtonTours({toursPlaces}) {
     }, [toursPlaces])
 
 
+
     const toursRows = [];
     let sliceNum = 0;
     for (const item of columns) {
-        let length = item.list.length-1
+        let length = item.list.length
+
         toursRows.push(toursPlaces.slice(sliceNum, sliceNum+length))
         sliceNum = sliceNum+length
     }
 
+
     return (
         <div className="scroll">
             {toursRows.map((lists, index )=> {
+                if(lists.length === 0) return null
                 return (
                     <div className="row buttons-map" key={index}>
                         {lists.map((button) => {
+
+                            const isDisableClass = !places.find(place => !!place.tours[button.id]) ? {pointerEvents: 'none', opacity: '0.4'} : {}
+                            const isActiveClass = `${selectedTourId === button.id ? 'active' : ''}`;
                             return (
-                                <button className={`${selectedTourId === button.id ? 'active' : ''}` } key={button.id} onClick={() => setSelectedTourId(button.id)}>
+                                <button style={isDisableClass} className={isActiveClass} key={button.id} onClick={() => setSelectedTourId(button.id)}>
                                     {button.title}
                                     <span className="status" style={{backgroundColor: button.color}}></span>
                                 </button>

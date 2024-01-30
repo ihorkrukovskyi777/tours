@@ -1,6 +1,5 @@
 import {NextResponse} from 'next/server';
 import {fallbackLng, locales} from './i18n/settings';
-import {get} from "mobx/src/api/object-api";
 
 export function middleware(request) {
     // Check if there is any supported locale in the pathname

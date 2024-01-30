@@ -2,9 +2,9 @@
 import Image from 'next/image';
 import './style.css';
 
-export default function Button({children , icon = null , onClick= () => {} , prevent=false , customClass='' }) {
+export default function Button({children , icon = null , onClick= () => {} , prevent=false , customClass='', style = {} }) {
     return (
-        <button className={`button_custom ${customClass}`}
+        <button style={style} className={`button_custom ${customClass}`}
             onClick={ (e) => {
                 if(prevent) {
                     e.preventDefault();

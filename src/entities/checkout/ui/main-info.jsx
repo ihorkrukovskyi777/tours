@@ -1,17 +1,13 @@
-export default function MainInfo({data}) {
-    const {
-        tour_name,
-        language,
-        activity_date,
-        start_time,
-        duration,
-        number_people,
-        brand_name,
-        address,
-        gps_coordinates,
-        mpv_image,
-        location_description,
-    } = data;
+import {useTranslation} from "@/i18n/client";
+import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
+import {observer} from "mobx-react-lite";
+import {useContext} from "react";
+import Image from "next/image";
+
+export default observer(function MainInfo() {
+    const { t } = useTranslation();
+    const { checkoutInfo } = useContext(CheckoutStoreContext);
+
 
     return (
         <div className="main_info">
@@ -30,8 +26,8 @@ export default function MainInfo({data}) {
                                 fill="#E10600"
                             ></path>
                         </svg>
-                        <strong>Tour:</strong>
-                        {tour_name}
+                        <strong>{t('Tour')}: </strong>
+                        {checkoutInfo.tourName}
                     </li>
                     <li>
                         <svg
@@ -46,8 +42,8 @@ export default function MainInfo({data}) {
                                 fill="#E10600"
                             ></path>
                         </svg>
-                        <strong>Language:</strong>
-                        {language}
+                        <strong>{t('Language')}: </strong>
+                        {checkoutInfo.language}
                     </li>
                     <li>
                         <svg
@@ -62,8 +58,8 @@ export default function MainInfo({data}) {
                                 fill="#E10600"
                             ></path>
                         </svg>
-                        <strong>Date:</strong>
-                        {activity_date}
+                        <strong>{t('Date')}: </strong>
+                        {checkoutInfo.activityDate}
                     </li>
                     <li>
                         <svg
@@ -78,8 +74,8 @@ export default function MainInfo({data}) {
                                 fill="#E10600"
                             ></path>
                         </svg>
-                        <strong>Time:</strong>
-                        {start_time}
+                        <strong>{t('Time')}: </strong>
+                        {checkoutInfo.startTime}
                     </li>
                     <li>
                         <svg
@@ -94,8 +90,8 @@ export default function MainInfo({data}) {
                                 fill="#E10600"
                             ></path>
                         </svg>
-                        <strong>Duration:</strong>
-                        {duration} Hour{" "}
+                        <strong>{t('Duration')}: </strong>
+                        {checkoutInfo.duration}
                     </li>
                     <li>
                         <svg
@@ -111,8 +107,8 @@ export default function MainInfo({data}) {
                                 stroke="#E10600"
                             ></path>
                         </svg>
-                        <strong>Number of people:</strong>
-                        {number_people}
+                        <strong>{t('Number of people')}: </strong>
+                        {checkoutInfo.numberPeople}
                     </li>
                     <li>
                         <svg
@@ -128,8 +124,8 @@ export default function MainInfo({data}) {
                                 stroke="#E10600"
                             ></path>
                         </svg>
-                        <strong>Guide:</strong>
-                        {brand_name}
+                        <strong>{t('Guide')}: </strong>
+                        {checkoutInfo.brandName}
                     </li>
                 </ul>
             </div>
@@ -149,10 +145,10 @@ export default function MainInfo({data}) {
                         ></path>
                     </svg>
                     <div>
-                        Starting point: <span>{address}</span>
+                        {t('Starting point')}: <span>{checkoutInfo.address}</span>
                     </div>
                 </div>
-                {location_description && (
+                {checkoutInfo.locationDescription && (
                     <div className="direction">
                         <svg
                             width="22"
@@ -167,11 +163,11 @@ export default function MainInfo({data}) {
                             ></path>
                         </svg>
                         <div>
-                            <span>Directions:</span> {location_description}
+                            <span>{t('Directions')}:</span> {checkoutInfo.locationDescription}
                         </div>
                     </div>
                 )}
-                {gps_coordinates ?
+                {checkoutInfo.isShowMap ?
                     <div className="flex-wrap">
                         <div className="iframe-wrap">
                             <iframe
@@ -179,13 +175,13 @@ export default function MainInfo({data}) {
                                 height="500"
                                 frameBorder="0"
                                 scrolling="no"
-                                src={`https://maps.google.com/maps?q=${gps_coordinates.lat},${gps_coordinates.lng}&hl=en&z=${gps_coordinates.zoom}&output=embed`}
+                                src={`https://maps.google.com/maps?q=${checkoutInfo.coordinates.lat},${checkoutInfo.coordinates.lng}&hl=en&z=${checkoutInfo.coordinates.zoom}&output=embed`}
                             ></iframe>
                         </div>
-                        {mpv_image && (
+                        {checkoutInfo.mpvImage?.url && (
                             <div className="images_wrap">
                                 <div className="img_first">
-                                    <img src={mpv_image.url} alt="Meeting point image"/>
+                                    <Image src={checkoutInfo.mpvImage.url} width={350} height={240} alt="Meeting point image"/>
                                 </div>
                             </div>
                         )}
@@ -194,4 +190,4 @@ export default function MainInfo({data}) {
             </div>
         </div>
     );
-}
+})
