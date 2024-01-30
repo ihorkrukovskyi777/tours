@@ -21,14 +21,12 @@ export default observer(function Map({ids, id, locale}) {
         }, [])
 
         useEffect(() => {
-            console.log(refMap.current, 'refMap.current')
             if (refMap.current) {
                 setMap(refMap.current)
 
             }
         }, [refMap.current, setMap])
 
-        const display = markers.length === 0 ? {display: 'none'} : {};
         return (
                 <MapContainer center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>
                     <TileLayer

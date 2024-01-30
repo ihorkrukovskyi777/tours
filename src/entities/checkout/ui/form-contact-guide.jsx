@@ -5,7 +5,7 @@ import Loader from "@/shared/ui/loaders/default-loader";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import {useSearchParams} from "next/navigation";
 
-export default function FormContactGuide({isOpenedModal, isOpenedThankYouModal}) {
+export default function FormContactGuide({closeModal}) {
     const searchParams = useSearchParams()
     const code = searchParams.get('code');
 
@@ -35,12 +35,8 @@ export default function FormContactGuide({isOpenedModal, isOpenedThankYouModal})
             setLoading(true);
             setError('');
             setTextArea('');
-
             await sendMessage();
-
-
-            isOpenedModal();
-            isOpenedThankYouModal();
+            closeModal();
             setLoading(false);
 
         } else {

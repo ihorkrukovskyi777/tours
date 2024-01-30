@@ -53,7 +53,6 @@ export default async function Page({params: {locale, slug, tour}}) {
         {title: page.title}
     ]
 
-    console.log(languages, 'languages222')
     return (
         <main>
             <BannerTour locale={page.locale} id={page.id} isMobile={isMobile}/>

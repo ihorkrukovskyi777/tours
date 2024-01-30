@@ -3,7 +3,7 @@ import {useTranslation} from "@/i18n/client";
 import './style.css';
 
 
-export default function ThankYouMessage({isOpenedThankYouModal}) {
+export default function ThankYouMessage({closeModal}) {
     const {t} = useTranslation();
 
     return (
@@ -14,7 +14,7 @@ export default function ThankYouMessage({isOpenedThankYouModal}) {
                     <p>{t('Thank you, your guide has received your message.')}</p>
                     <p>{t('All replies will be sent to the email address which you used to complete the booking.')}</p>
                 </div>
-                <Button onClick={isOpenedThankYouModal}>{t('Close')}</Button>
+                <Button onClick={closeModal}>{t('Close')}</Button>
             </div>
         </div>
     );

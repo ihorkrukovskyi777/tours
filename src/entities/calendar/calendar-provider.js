@@ -35,7 +35,7 @@ export default memo(function CalendarProvider({
                     activeLanguage,
                     title,
                 ),
-                storePhone: new StorePhone(findLocale.code),
+                storePhone: new StorePhone(locale),
             }}
         >
             <Main siteLocale={locale}/>

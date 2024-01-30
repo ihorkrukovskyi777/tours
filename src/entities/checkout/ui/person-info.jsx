@@ -1,51 +1,50 @@
 import FullStarSvg from "@/assets/images/svg/full-star";
+import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
+import Image from "next/image";
+import {useContext} from "react";
+import {observer} from "mobx-react-lite";
+import {useTranslation} from "@/i18n/client";
 
-export default function PersonInfo({ data }) {
-  const {
-    name,
-    last_name,
-    email,
-    phone,
-    book_id,
-    brand_name,
-    brand_logo_url,
-    averge_rating,
-  } = data;
-  return (
-    <div className="person_info">
-      <div className="left_box">
-        <ul>
-          <li>
-            <span>Name:</span> {name + " " + last_name}
-          </li>
-          <li>
-            <span>Email:</span> {email}
-          </li>
-          <li>
-            <span>Phone Number:</span> {phone}
-          </li>
-          <li>
-            <span>Booking ID:</span> {book_id}
-          </li>
-        </ul>
-      </div>
-      <div className="right_box">
-        <div className="img_box">
-          <img
-            src={brand_logo_url?.url}
-            alt={brand_logo_url?.alt ? brand_logo_url.alt : "brand logo"}
-          />
+export default observer(function PersonInfo() {
+    const { t } = useTranslation();
+    const { checkoutInfo } = useContext(CheckoutStoreContext);
+    return (
+        <div className="person_info">
+            <div className="left_box">
+                <ul>
+                    <li>
+                        <span>{t('Name')}: </span> {checkoutInfo.fullName}
+                    </li>
+                    <li>
+                        <span>{t('Email')}: </span> {checkoutInfo.email}
+                    </li>
+                    <li>
+                        <span>{t('Phone Number')}: </span> {checkoutInfo.phone}
+                    </li>
+                    <li>
+                        <span>{t('Booking ID')}: </span> {checkoutInfo.bookingId}
+                    </li>
+                </ul>
+            </div>
+            <div className="right_box">
+                <div className="img_box">
+                    <Image
+                        width={140}
+                        height={140}
+                        src={checkoutInfo.brandLogo}
+                        alt="brand logo"
+                    />
+                </div>
+            </div>
+            <div className="text_box">
+                <div className="name">{checkoutInfo.brandName}</div>
+                {checkoutInfo.isShowRating && (
+                    <div className="rate_box">
+                        <FullStarSvg width={20} height={20}/>
+                        <span>{checkoutInfo.ratingValue}</span>
+                    </div>
+                )}
+            </div>
         </div>
-      </div>
-      <div className="text_box">
-        <div className="name">{brand_name}</div>
-        {averge_rating?.cnt_reviews && (
-          <div className="rate_box">
-            <FullStarSvg width={20} height={20} />
-            <span>{averge_rating.averge_rating}</span>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+    );
+})

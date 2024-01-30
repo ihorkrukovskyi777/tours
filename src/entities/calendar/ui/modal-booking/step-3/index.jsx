@@ -50,12 +50,12 @@ export default observer(function Step3({onChange, people, errors,selectedLocale,
                     </div>
                     <div className="guide-info">
                         <div className="guide-name">{departure.subVendorName}</div>
-                        <div className="guide-rate">
+                        { departure.ranking > 0 ? <div className="guide-rate">
                             <div className="icon-wrap">
                                 <FullStarSvg width={20} height={20}/>
                             </div>
                             <span>{departure.ranking}</span>
-                        </div>
+                        </div> : null }
                     </div>
                 </div>
             </div>

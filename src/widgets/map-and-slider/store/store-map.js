@@ -56,7 +56,6 @@ export class StoreMap {
     }
 
     get currentIndexPlace() {
-        console.log(this.selectedPlaceId, 'this.selectedPlaceId')
         return this.sliders.findIndex(place => place.id === this.selectedPlaceId)
     }
 
@@ -87,7 +86,6 @@ export class StoreMap {
             }
         } else {
             const findIndex = this.sliders.findIndex(place => place.id === id);
-            console.log(findIndex, 'findIndex')
             this.swiper.slideToLoop(findIndex)
         }
     }

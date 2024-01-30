@@ -4,7 +4,6 @@ import {createTranslation} from "@/i18n/server";
 import {PATH_TOURS} from "@/shared/constants/route";
 export default async function TourRow({id, locale = 'en', title}) {
     const results = await getRandomTourByCity(id, locale)
-    console.log(results, 'results')
     if (!Array.isArray(results)) {
         return null;
     }

@@ -29,7 +29,7 @@ export default async function Guides({title, id, locale, type}) {
                         {items.map(item => {
                             return (
                                 <div key={item.id}>
-                                    <Link href={hrefSubVendor(locale, item.brandName)}>{item?.brandName}</Link>
+                                    <Link prefetch={false} href={hrefSubVendor(locale, item.brandName)}>{item?.brandName}</Link>
                                 </div>
                             )
                         })}
