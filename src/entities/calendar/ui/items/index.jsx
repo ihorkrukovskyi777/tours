@@ -21,6 +21,7 @@ export default function Calendar({
         updateCalendar();
     }, [])
 
+
     const updateCalendar = () => {
         setCalenndarData({
             ...CalendarJS.current.previusMonth(),

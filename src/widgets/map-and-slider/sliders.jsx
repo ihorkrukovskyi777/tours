@@ -14,6 +14,7 @@ export default observer(function Sliders() {
             sliders,
             initialSlide,
             setSwiper,
+            setCenterMarker,
         }
     } = useContext(StoreMapContext);
 
@@ -21,6 +22,7 @@ export default observer(function Sliders() {
     const changeMarker = useCallback((swiper) => {
         const id = swiper.slides[swiper.activeIndex]?.dataset.id
         setOpenMarkerBySlide(id);
+        setCenterMarker()
     }, [])
 
     return <SliderMemo changeMarker={changeMarker} sliders={sliders} selectedTourId={selectedTourId} initialSlide={initialSlide} setSwiper={setSwiper}/>

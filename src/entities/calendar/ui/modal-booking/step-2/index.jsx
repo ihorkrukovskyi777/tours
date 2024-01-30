@@ -62,7 +62,7 @@ export default function Step2({title = "test", onBack, close, size = "small", is
                         customClass='gray'
                         onClick={() => selectedDeparture(selectedDep)}
                     >
-                        Save changes
+                        {t('Save changes')}
                     </Button>
                     : null}
             </div>

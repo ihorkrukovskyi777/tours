@@ -5,25 +5,31 @@ import FormEdit from "@/entities/checkout/ui/form-edit";
 import {useTranslation} from "@/i18n/client";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {observer} from "mobx-react-lite";
+import DefaultModal from "@/shared/ui/modals/default-modal";
+import ChooseDate from "@/entities/checkout/ui/calendar/choose-date";
+import {HelperDateHtml} from "@/shared/hepers/helperDateHtml";
 import './style.css';
 
 export default observer(function EditModalTour() {
     const {t} = useTranslation()
-    const {editDeparture, managerModal: {modalEdit, toggleModalEdit}} = useContext(CheckoutStoreContext);
-
+    const {editDeparture, managerModal: {modalEdit, toggleModalEdit, chooseDateModal, toggleModalChoose}} = useContext(CheckoutStoreContext);
+    const helper = new HelperDateHtml(editDeparture.activityDate)
     return (
         <div className={classNames({'show_modal': modalEdit}, 'edit_tour_modal transition')}>
             <div className="modal_content">
+                <DefaultModal modalShow={chooseDateModal} isOpenedModal={toggleModalChoose}>
+                    {chooseDateModal ? <ChooseDate /> : null}
+                </DefaultModal>
                 <div className="flex-wrap">
                     <div className="close-button" onClick={toggleModalEdit}>
                         ×
                     </div>
-                    <Button customClass="btn_wrap" onClick={toggleModalEdit}>
+                    <Button customClass="btn_wrap" onClick={toggleModalChoose}>
                         {t('Change Date/Time/Number of people')}
                     </Button>
                     <div className="item item--row">
                         <div className="choosen-date">
-                            {editDeparture.selectedDate}
+                            {helper.dayDepartureFullTime(t)}
                         </div>
                         <div className="item item--row item item--people">
                             <svg

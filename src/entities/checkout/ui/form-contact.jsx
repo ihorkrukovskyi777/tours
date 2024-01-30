@@ -5,7 +5,7 @@ import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {useContext} from "react";
 import ThankYouMessage from "@/shared/ui/thank-you-message";
 export default observer(function FormContact() {
-    const { managerModal: {modalMessage ,toggleModalMessage, modalThankYou, toggleModalThankYou } } = useContext(CheckoutStoreContext);
+    const {pageOptions, managerModal: {modalMessage ,toggleModalMessage, modalThankYou, toggleModalThankYou } } = useContext(CheckoutStoreContext);
 
     const sendMessage = () => {
         toggleModalMessage();
@@ -28,7 +28,7 @@ export default observer(function FormContact() {
                 isOpenedModal={toggleModalThankYou}
                 size="middle"
             >
-                <ThankYouMessage closeModal={toggleModalThankYou}/>
+                <ThankYouMessage closeModal={toggleModalThankYou} message={pageOptions.thankYouPageMessage}/>
             </DefaultModal>
         </>
     )

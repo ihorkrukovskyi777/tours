@@ -19,6 +19,8 @@ export const StoreMapContext = createContext(null)
 export default function MapAndSlider({id, locale, toursPlaces}) {
 
     const ids = toursPlaces?.map(item => item.id) ?? []
+
+    console.log(toursPlaces)
     return (
         <section className='map_and_slider'>
             <div className="container">
@@ -27,9 +29,7 @@ export default function MapAndSlider({id, locale, toursPlaces}) {
                     <StoreMapContext.Provider value={{
                         map: new StoreMap(id, locale)
                     }}>
-                        {toursPlaces?.length &&
-                            <ButtonTours toursPlaces={toursPlaces}></ButtonTours>
-                        }
+                        { ids.length ? <ButtonTours toursPlaces={toursPlaces}></ButtonTours> : null }
                         <Map ids={ids} id={id} locale={locale}/>
                         <SliderTours/>
                     </StoreMapContext.Provider>

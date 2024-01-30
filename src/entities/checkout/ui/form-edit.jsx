@@ -1,28 +1,50 @@
 'use client'
 import EditSvg from "@/assets/images/svg/edit-svg"
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import Button from "@/shared/ui/selectors/button/button";
 import InternationalInput from "@/shared/ui/selectors/international-input";
 import {useTranslation} from "@/i18n/client";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {observer} from "mobx-react-lite";
+import {useParams, useRouter, useSearchParams} from "next/navigation";
+import {getHrefLocale} from "@/i18n/get-href-locale";
+import Notification from "@/shared/ui/notification/notification";
 
 
-export default observer(function FormEdit({ close }) {
-    const {editDeparture, phone: { phones }} = useContext(CheckoutStoreContext);
-
-    const { t } = useTranslation()
+export default observer(function FormEdit() {
+    const searchParams = useSearchParams()
+    const [error, setError] = useState(false);
+    const {replace} = useRouter();
+    const params = useParams();
+    const {editDeparture, phone: {phones}, fetchCheckoutDetails, managerModal: { toggleModalEdit } } = useContext(CheckoutStoreContext);
+    const {t} = useTranslation()
 
     const changeValue = {
-        firstName: ({ target }) => editDeparture.setFirstName(target.value),
-        lastName: ({ target }) => editDeparture.setLastName(target.value),
-        email: ({ target }) => editDeparture.setEmail(target.value),
+        firstName: ({target}) => editDeparture.setFirstName(target.value),
+        lastName: ({target}) => editDeparture.setLastName(target.value),
+        email: ({target}) => editDeparture.setEmail(target.value),
+    }
+
+    const submitForm = async (e) => {
+        e.preventDefault();
+        const data = await editDeparture.updateDeparture();
+
+        if(data === true) {
+            await fetchCheckoutDetails(searchParams.get('code'));
+            toggleModalEdit();
+        }
+        else if(data.success === false) {
+            setError(true);
+        } else {
+           replace(getHrefLocale(params.locale, `checkout?code=${data.booking_id}`))
+        }
     }
     return (
-        <form id='edit_tour' onSubmit={() => {}}>
+        <form id='edit_tour' onSubmit={submitForm}>
+            {error ? <Notification close={() => setError(false)} /> : null}
             <div className="item">
                 <label htmlFor="">First Name</label>
-                <input type='text' name='firstName' onChange={changeValue.firstName}  value={editDeparture.firstName}/>
+                <input type='text' name='firstName' onChange={changeValue.firstName} value={editDeparture.firstName}/>
                 {/*{errors.firstName.length > 0 ? <span className='error-message'>{errors.firstName}</span> : null}*/}
                 <EditSvg/>
             </div>
@@ -35,7 +57,7 @@ export default observer(function FormEdit({ close }) {
 
             <div className="item">
                 <label htmlFor="">{t('Phone')}</label>
-                {phones.state === 'fulfilled'  ?
+                {phones.state === 'fulfilled' ?
                     <InternationalInput
                         locale={editDeparture.countrySlug}
                         allPhoneNumbers={phones.value}
@@ -43,18 +65,18 @@ export default observer(function FormEdit({ close }) {
                         phoneDefault={editDeparture.phoneNumber}
                         changeCountryCode={editDeparture.changeCountryCode}
                     />
-                    : null }
+                    : null}
                 {/*{errors.phone.length > 0 ? <span className='error-message'>{errors.phone}</span> : null}*/}
                 <EditSvg/>
             </div>
 
             <div className="item">
                 <label htmlFor="">Email</label>
-                <input type='email' name='email' onChange={changeValue.email}  value={editDeparture.email}/>
+                <input type='email' name='email' onChange={changeValue.email} value={editDeparture.email}/>
                 {/*{errors.email.length > 0 ? <span className='error-message'>{errors.email}</span> : null}*/}
                 <EditSvg/>
             </div>
-            <Button customClass='submit' onClick={close}>{t('Save')}</Button>
+            <Button customClass='submit'>{t('Save')}</Button>
         </form>
     )
 })

@@ -28,7 +28,7 @@ export default observer(function PersonInfo() {
             </div>
             <div className="right_box">
                 <div className="img_box">
-                    <Image
+                    <img
                         width={140}
                         height={140}
                         src={checkoutInfo.brandLogo}

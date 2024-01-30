@@ -6,9 +6,9 @@ import CheckoutStore from "@/entities/checkout/store/checkout";
 export const CheckoutStoreContext = createContext(null);
 
 // Provider Component for the CheckoutStore
-export const CheckoutStoreProvider = ({ children, locale }) => {
+export const CheckoutStoreProvider = ({ children, locale, tourLocale }) => {
   return (
-    <CheckoutStoreContext.Provider value={new CheckoutStore(locale)}>
+    <CheckoutStoreContext.Provider value={new CheckoutStore(locale, tourLocale)}>
       {children}
     </CheckoutStoreContext.Provider>
   );

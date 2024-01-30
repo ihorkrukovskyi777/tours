@@ -13,12 +13,9 @@ export default observer(function SliderTours({data}) {
     const {
         map: {
             sliders,
-            initialSlide,
             selectedPlaceId,
             currentIndexPlace,
-            setSlideSelectedPlace,
             setOpenMarker,
-            remove
         }
     } = useContext(StoreMapContext);
     const onlyWidth = useWindowWidth()

@@ -5,16 +5,23 @@ import {observer} from "mobx-react-lite";
 import ClearSVG from '../../../assets/images/svg/clear.svg'
 import Image from "next/image";
 import './style.css';
-
+function getTextWidth(text, font) {
+    // re-use canvas object for better performance
+    const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+    const context = canvas.getContext("2d");
+    context.font = font;
+    const metrics = context.measureText(text);
+    return metrics.width;
+}
 const columnsFormula = (column1, column2) => {
     let flag = false;
     let i = 0;
     while (true) {
         i++;
 
-        if (i > 20) break;
+        if (i > 50) break;
         const lastElement = column1.list[column1.list.length - 1]
-        const checkWidth = column2.width + lastElement;
+        const checkWidth = column2.width;
         if (column1.width > checkWidth) {
             flag = true;
             column1.width = column1.width - lastElement;
@@ -28,38 +35,38 @@ const columnsFormula = (column1, column2) => {
     return flag
 }
 export default observer(function ButtonTours({toursPlaces}) {
-    const {map: {selectedTourId,setSelectedTourId, resetSelectedTour, places}} = useContext(StoreMapContext);
-
-    const fullWidth = toursPlaces.reduce((acc, value) => {
+    const {map: {selectedTourId,setSelectedTourId, resetSelectedTour, places, shortToursTitle}} = useContext(StoreMapContext);
+    const buttons = toursPlaces.map(item => ({...item, title: shortToursTitle[item.id] ?? item.title}))
+    const fullWidth = buttons.reduce((acc, value) => {
         acc = {
-            width: acc.width + value.title.length,
-            list: [...acc.list, value.title.length]
+            width: acc.width + getTextWidth(value.title),
+            list: [...acc.list, getTextWidth(value.title)]
         }
         return acc
     }, {width: 0, list: []})
 
-
     let columns = useMemo(() => {
-        const columns = [{
+        const columns = [
+            fullWidth,
+            {
             width: 0,
             list: [],
         }, {
             width: 0,
             list: [],
-        }, fullWidth]
-        let i = 2;
+        }]
+        let i = 0;
         let j = 0;
         let flags = [true, true];
         while (true) {
-            flags[i - 1] = columnsFormula(columns[i], columns[i - 1]);
-            i--;
+            flags[i - 1] = columnsFormula(columns[i], columns[i +1]);
+            i++;
             j++;
-            if (flags[0] === false && flags[1] === false || j > 20) break
-            if (i === 0) i = 2;
+            if (flags[0] === false && flags[1] === false || j > 30) break
+            if (i === 2) i = 0;
         }
         return columns
-    }, [toursPlaces])
-
+    }, [buttons])
 
 
     const toursRows = [];
@@ -67,7 +74,7 @@ export default observer(function ButtonTours({toursPlaces}) {
     for (const item of columns) {
         let length = item.list.length
 
-        toursRows.push(toursPlaces.slice(sliceNum, sliceNum+length))
+        toursRows.push(buttons.slice(sliceNum, sliceNum+length))
         sliceNum = sliceNum+length
     }
 

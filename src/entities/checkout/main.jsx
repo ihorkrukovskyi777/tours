@@ -15,29 +15,27 @@ const CheckoutContent = observer(({title}) => {
 
     useLayoutEffect(() => {
         const fetchData = async () => {
-            await Promise.all([
+             await Promise.all([
                 store.fetchCheckoutDetails(searchParams.get('code')),
                 store.phone.fetchPhones()
             ])
 
         }
-        fetchData().then(() => {
-            store.toggleGlobalLoading()
-        })
+        fetchData().then()
     }, [code]);
 
     return (
         <main>
             {store.isLoading && <p>Loading...</p>}
             {store.error && <p>Error: {store.error}</p>}
-            {!store.globalLoading ? <CheckoutSection title={title}/> : null}
+            {store.editDeparture ? <CheckoutSection title={title}/> : null}
         </main>
     );
 });
 
-export default function Checkout({title, locale}) {
+export default function Checkout({title, locale, tourLocale}) {
     return (
-        <CheckoutStoreProvider locale={locale}>
+        <CheckoutStoreProvider locale={locale} tourLocale={tourLocale}>
             <CheckoutContent title={title}/>
         </CheckoutStoreProvider>
     );

@@ -33,7 +33,7 @@ export default async function Page({params: {locale, slug }}) {
     }
 
     return (
-        <main>
+        <main id={data.id}>
             {data.type === 'city' ?
                 <CityPage
                     isMobile={isMobile}
