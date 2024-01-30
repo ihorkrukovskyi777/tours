@@ -12,6 +12,16 @@
     position: relative;
     width: 100%;
     margin-bottom:15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 20px;
+}
+.map_block .scroll-wrap {
+    position: relative;
+}
+.map_block .scroll .row {
+    display: flex;
+    gap: 0 20px;
 }
 .map_block button {
     padding: 20px 52px 20px 22px;
@@ -77,11 +87,14 @@
     position: absolute;
     right: 19px;
 }
-
+@media(min-width: 767px) {
+    .map_block .scroll button:last-child {
+        margin-right: 160px;
+    }
+}
 @media (max-width: 991px) {
     .scroll {
         display: flex;
-        flex-direction: column;
         overflow-y: auto;
     }
     .row {
