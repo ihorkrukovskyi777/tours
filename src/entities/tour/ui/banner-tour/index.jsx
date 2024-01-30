@@ -19,10 +19,10 @@ export default async function BannerTour({id, locale, isMobile}) {
         >
             <LanguageImages locales={tour.departure.locales}/>
             <div className="time_wrapper">
+                <ClockSvg/>
                 {tour?.departure?.durations?.length ?
                     <div>
                         <span>{tour.departure.durations.join('-')} Hours</span>
-                        <ClockSvg/>
                     </div>
                : null}
             </div>

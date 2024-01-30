@@ -60,8 +60,8 @@ export default async function Page({params: {locale, slug, tour}}) {
                 <TextQuote id={page.id} locale={locale} type="tour"/>
             </Suspense>
             <Suspense fallback={''}>
-                <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
                 <MapAndSlider locale={page.locale} id={page.id} />
+                <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
                 <LatestReviews id={page.id} locale={locale} type="tour"/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={t('this Tour')} id={page.id} locale={page.locale} type="tour"/>

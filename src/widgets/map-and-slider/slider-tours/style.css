@@ -1,6 +1,5 @@
 .slider_block {
     position: relative;
-    margin-top: 30px;
 }
 .slider_block .item {
     border-radius: 8px;
@@ -130,7 +129,7 @@
 
 
 .map_and_slider .circle_items {
-    margin: 5px auto 2px;
+    margin: 0 auto 2px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -270,8 +269,25 @@
     }
     .slider_block {
         padding: 0 30px;
+        margin-top: 0;
     }
     .slider_block.swiper-less-3 {
         padding: 0;
     }
- }
+    .map_and_slider .circle_item {
+        width: 8px;
+        height: 8px;
+    }
+    .map_and_slider .circle_number {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+    .map_and_slider .circle_brackets {
+        font-size: 16px;
+    }
+    .map_and_slider .circle_items {
+        margin-top: 4px;
+    }
+}
