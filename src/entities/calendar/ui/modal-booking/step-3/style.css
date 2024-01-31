@@ -335,16 +335,14 @@
     width: 100%;
     height: 100%;
     background-color: rgba(255,255,255, 0.5);
-}
-
-.step-3 .calendar_choose_date_loader.hidden {
     display: none;
 }
-.step-3 .calendar_choose_date_loader.add-loader {
+.step-3 .calendar_choose_date_loader.show-loader {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .step-3 .calendar_choose_date_loader .lds-dual-ring {
     display: flex;
     justify-content: center;

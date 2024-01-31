@@ -7,7 +7,7 @@ import Guides from "@/shared/ui/guides";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import {createTranslation} from "@/i18n/server";
 import TextAndSliderTourPage from "@/entities/tour/ui/text-and-slider-tour-page";
-import {isMobileCheck} from "@/shared/hepers";
+import {isMobileCheck} from "src/shared/hepers";
 import dynamic from "next/dynamic";
 import {PATH_TOURS} from "@/shared/constants/route";
 import LatestReviews from "@/widgets/latest-reviews";

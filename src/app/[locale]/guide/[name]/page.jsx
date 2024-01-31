@@ -7,7 +7,7 @@ import GuideTours from "@/entities/guide/ui/guide-tours/guide-tours";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import {headers} from "next/headers";
-import {isMobileCheck} from "@/shared/hepers";
+import {isMobileCheck} from "src/shared/hepers";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Footer from "@/shared/ui/layouts/footer/footer";
 
