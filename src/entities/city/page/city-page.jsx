@@ -2,16 +2,28 @@ import {Suspense} from "react";
 import BannerCity from "@/entities/city/ui/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import MostPopularTours from "@/entities/city/ui/most-popular-tours";
-import LatestReviews from "@/widgets/latest-reviews";
-import Highlights from "@/widgets/highlights";
-import TextBlocks from "@/widgets/text-blocks";
 import Guides from "@/shared/ui/guides";
 import MostPopularCity from "@/entities/city/ui/most-popular-city";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import {createTranslation} from "@/i18n/server";
 import Footer from "@/shared/ui/layouts/footer/footer";
-import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
-
+import dynamic from "next/dynamic";
+const Highlights = dynamic(
+    () => import("@/widgets/highlights"),
+    {ssr: false }
+)
+const TextBlocks = dynamic(
+    () => import("@/widgets/text-blocks"),
+    {ssr: false }
+)
+const ChangeOfLanguage = dynamic(
+    () => import("@/shared/ui/languages/change-of-language/change-of-language"),
+    {ssr: false }
+)
+const LatestReviews = dynamic(
+    () => import("@/widgets/latest-reviews"),
+    {ssr: false }
+)
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     const {t} = await createTranslation(locale);
 
