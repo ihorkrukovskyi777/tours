@@ -16,12 +16,16 @@
     flex-wrap: wrap;
     gap: 0 20px;
 }
+.map_block .wrap-scroll {
+    position: relative;
+}
 .map_block .scroll-wrap {
     position: relative;
 }
 .map_block .scroll .row {
     display: flex;
     gap: 0 20px;
+    flex-wrap: wrap;
 }
 .map_block button {
     padding: 20px 52px 20px 22px;
@@ -92,17 +96,6 @@
         margin-right: 160px;
     }
 }
-@media (max-width: 991px) {
-    .scroll {
-        display: flex;
-        overflow-y: auto;
-    }
-    .row {
-        display: flex;
-        flex-wrap: nowrap;
-        grid-gap: 10px;
-    }
-}
 @media (max-width: 767px) {
     .map_block .buttons-map button {
         padding: 6px 45px 6px 20px;
@@ -151,5 +144,14 @@
     }
     .map_block .leaflet-container {
         height: 315px !important;
+    }
+    .map_block .wrap-scroll .scroll {
+        display: flex;
+        overflow-y: auto;
+    }
+    .map_block .wrap-scroll .row {
+        display: flex;
+        flex-wrap: nowrap;
+        grid-gap: 10px;
     }
 }

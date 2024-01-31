@@ -136,12 +136,15 @@ export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDepar
                 phone: document.getElementsByName('phone')[0].value,
                 phone_country_slug: document.getElementById('phone').getAttribute('data-slug').toLowerCase(),
             }
+
+
+
             try {
 
-                const data = await fetchBookingDeparture(formData)
+                const data = await fetchBookingDeparture(formData);
                 if(data.booking_id) {
-                    const url = getHrefLocale(params.locale, `checkout?code=${data.booking_id}`)
-                    push(url)
+                    //const url = getHrefLocale(params.locale, `checkout?code=${data.booking_id}`)
+                    //push(url)
                 }
 
             } catch (err) {

@@ -4,6 +4,7 @@ import {StoreMapContext} from "@/widgets/map-and-slider/map-and-slider";
 import {observer} from "mobx-react-lite";
 import ClearSVG from '../../../assets/images/svg/clear.svg'
 import Image from "next/image";
+import {useWindowWidth} from '@react-hook/window-size'
 import './style.css';
 function getTextWidth(text, font) {
     // re-use canvas object for better performance
@@ -35,6 +36,8 @@ const columnsFormula = (column1, column2) => {
     return flag
 }
 export default observer(function ButtonTours({toursPlaces}) {
+
+
     const {map: {selectedTourId,setSelectedTourId, resetSelectedTour, places, shortToursTitle}} = useContext(StoreMapContext);
     const buttons = toursPlaces.map(item => ({...item, title: shortToursTitle[item.id] ?? item.title}))
     const fullWidth = buttons.reduce((acc, value) => {
@@ -78,27 +81,33 @@ export default observer(function ButtonTours({toursPlaces}) {
         sliceNum = sliceNum+length
     }
 
+    const windowWidth = useWindowWidth();
+    let buttonsRows;
+    windowWidth > 767 ? buttonsRows = [toursRows.flat()] :  buttonsRows = toursRows;
+
 
     return (
-        <div className="scroll">
-            {toursRows.map((lists, index )=> {
-                if(lists.length === 0) return null
-                return (
-                    <div className="row buttons-map" key={index}>
-                        {lists.map((button) => {
+        <div className="wrap-scroll">
+            <div className="scroll">
+                {buttonsRows.map((lists, index )=> {
+                    if(lists.length === 0) return null
+                    return (
+                        <div className="row buttons-map" key={index}>
+                            {lists.map((button) => {
 
-                            const isDisableClass = !places.find(place => !!place.tours[button.id]) ? {pointerEvents: 'none', opacity: '0.4'} : {}
-                            const isActiveClass = `${selectedTourId === button.id ? 'active' : ''}`;
-                            return (
-                                <button style={isDisableClass} className={isActiveClass} key={button.id} onClick={() => setSelectedTourId(button.id)}>
-                                    {button.title}
-                                    <span className="status" style={{backgroundColor: button.color}}></span>
-                                </button>
-                            )
-                        })}
-                    </div>
-                )
-            })}
+                                const isDisableClass = !places.find(place => !!place.tours[button.id]) ? {pointerEvents: 'none', opacity: '0.4'} : {}
+                                const isActiveClass = `${selectedTourId === button.id ? 'active' : ''}`;
+                                return (
+                                    <button style={isDisableClass} className={isActiveClass} key={button.id} onClick={() => setSelectedTourId(button.id)}>
+                                        {button.title}
+                                        <span className="status" style={{backgroundColor: button.color}}></span>
+                                    </button>
+                                )
+                            })}
+                        </div>
+                    )
+                })}
+            </div>
             {toursPlaces.length > 0 ?
                 <button className="place_select_post_clear" onClick={resetSelectedTour}>
                     <Image src={ClearSVG} alt="clear" /> Clear
