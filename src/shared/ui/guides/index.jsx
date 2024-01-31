@@ -1,8 +1,12 @@
 import {allGuides} from '@/entities/api';
 import {createTranslation} from "@/i18n/server";
-import LazyGuidesRow from "@/shared/ui/guides/lazy-guides-row";
 import {hrefSubVendor} from "@/shared/hepers/url";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const LazyGuidesRow = dynamic(
+    () => import("@/shared/ui/guides/lazy-guides-row"),
+    {ssr: false}
+)
 import './style.css';
 
 export default async function Guides({title, id, locale, type}) {
