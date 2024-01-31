@@ -6,7 +6,7 @@ export default function Banner({attachment = null, title, children, bottomView =
     return (
         <section className={`banner ${nameBanner}`}>
             <div className={size}>
-                {attachment && false ? <IcloudImage
+                 <IcloudImage
                     priority={true}
                     className="banner_bg"
                     quality={10}
@@ -14,7 +14,7 @@ export default function Banner({attachment = null, title, children, bottomView =
                     height={height}
                     src={attachment.src}
                     alt={attachment.alt}
-                /> : null }
+                />
                 <div className="container">
                     <div className="intro">
                         <h1 className="title" dangerouslySetInnerHTML={{__html: title || ''}}></h1>

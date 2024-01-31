@@ -131,7 +131,7 @@ class EditDeparture {
         this.tourLocale = tourLocale;
         this.tourId = tour_id;
         this.is_civitatis = is_civitatis;
-        this.storeDepLogic = new StoreTourLogic(tourLocale, 'tour', tour_id)
+        this.storeDepLogic = new StoreTourLogic(tourLocale, 'checkout', tour_id, Number(number_people))
         this.fullTime = is_civitatis ? activity_date : '';
         this.cancelMessage = '';
         this.oldSubVendor = subVendor;
@@ -141,6 +141,7 @@ class EditDeparture {
         }
         this.selectedDay = null;
         makeAutoObservable(this, {}, {autoBind: true})
+
 
     }
 
@@ -195,7 +196,7 @@ class EditDeparture {
                 if(this.is_civitatis || this.editCivitatis) {
                     return yield this.bookingAndCancel(body, this.cancelMessage);
                 } else {
-                    return yield this.cancelAndBookCivitatis(body, this.cancelMessage);
+                    return yield this.bookingAndCancel(body, this.cancelMessage);
                 }
 
             }
@@ -219,7 +220,7 @@ class EditDeparture {
         try {
             const data = yield fetchBookingDepartures(body);
             if(data.success === false) {
-                return { success: false};
+                return { success: false, errors: data.errors ?? true};
             }
             yield cancelBook(this.staticCode, cancelMessage)
             return data;

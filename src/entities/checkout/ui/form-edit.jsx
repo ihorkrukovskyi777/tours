@@ -1,6 +1,6 @@
 'use client'
 import EditSvg from "@/assets/images/svg/edit-svg"
-import {useContext, useState} from "react";
+import {useContext, useState, useEffect} from "react";
 import Button from "@/shared/ui/selectors/button/button";
 import InternationalInput from "@/shared/ui/selectors/international-input";
 import {useTranslation} from "@/i18n/client";
@@ -19,6 +19,11 @@ export default observer(function FormEdit() {
     const {editDeparture, phone: {phones}, fetchCheckoutDetails, managerModal: { toggleModalEdit } } = useContext(CheckoutStoreContext);
     const {t} = useTranslation()
 
+    useEffect(() => {
+        setError(false);
+    }, [])
+
+
     const changeValue = {
         firstName: ({target}) => editDeparture.setFirstName(target.value),
         lastName: ({target}) => editDeparture.setLastName(target.value),
@@ -28,20 +33,19 @@ export default observer(function FormEdit() {
     const submitForm = async (e) => {
         e.preventDefault();
         const data = await editDeparture.updateDeparture();
-
-        if(data === true) {
+        if(data.isEdit === true && data.success) {
             await fetchCheckoutDetails(searchParams.get('code'));
             toggleModalEdit();
         }
         else if(data.success === false) {
-            setError(true);
+            setError(data.errors ?? true);
         } else {
            replace(getHrefLocale(params.locale, `checkout?code=${data.booking_id}`))
         }
     }
     return (
         <form id='edit_tour' onSubmit={submitForm}>
-            {error ? <Notification close={() => setError(false)} /> : null}
+            {error === true ? <Notification close={() => setError(false)} /> : null}
             <div className="item">
                 <label htmlFor="">First Name</label>
                 <input type='text' name='firstName' onChange={changeValue.firstName} value={editDeparture.firstName}/>
@@ -76,6 +80,7 @@ export default observer(function FormEdit() {
                 {/*{errors.email.length > 0 ? <span className='error-message'>{errors.email}</span> : null}*/}
                 <EditSvg/>
             </div>
+            {Array.isArray(error) ? <ul>{error.map((value, index) => <li key={index}>{value}</li>)}</ul> : null}
             <Button customClass='submit'>{t('Save')}</Button>
         </form>
     )

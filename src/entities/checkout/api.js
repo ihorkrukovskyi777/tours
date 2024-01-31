@@ -22,7 +22,7 @@ export const fetchEditBooking = async (body) => {
 
     try {
 
-         await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/update-book`, {
+        let data = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/update-book`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -30,9 +30,9 @@ export const fetchEditBooking = async (body) => {
             },
             body: JSON.stringify(body)
         })
-
-        return true;
+        data = await data.json()
+        return data.success ? {...data, isEdit: true} : {success: false, errors: data.errors ?? true, isEdit: true};
     } catch (err) {
-        return { success: false}
+        return {success: false}
     }
 }
