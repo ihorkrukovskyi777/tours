@@ -60,13 +60,13 @@ function addTourDay(day, toursDays) {
 }
 
 export default class TourLogic {
-    constructor(id, locale, translate, type) {
+    constructor(id, locale, translate, type, peopleNumber) {
         this.type = type;
         this.id = id;
         this.cache = {};
         this.currentLang = locale;
         this.data = {};
-        this.peopleNubmer = 1;
+        this.peopleNumber = peopleNumber;
         this.date = {
             year: new Date().getFullYear(),
             month: null,
@@ -76,7 +76,7 @@ export default class TourLogic {
 
 
     updatePeopleNumber(number = 1) {
-        this.peopleNubmer = number;
+        this.peopleNumber = number;
     }
 
     getTourTitlePost(id) {
@@ -120,7 +120,7 @@ export default class TourLogic {
             }
             return (a.created_at - b.created_at) * -1;
         }).reverse().filter(item => {
-            return item.maxPerBooking >= this.peopleNubmer;
+            return item.maxPerBooking >= this.peopleNumber;
         })
 
         const toursDays = [];
@@ -173,7 +173,7 @@ export default class TourLogic {
         if (!this.data[this.currentLang]) {
             return []
         }
-        const key = `${this.peopleNubmer}-${month}-${year}`;
+        const key = `${this.peopleNumber}-${month}-${year}`;
         if (this[key]) {
             return this[key]
         }

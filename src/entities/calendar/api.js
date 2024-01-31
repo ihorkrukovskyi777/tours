@@ -1,8 +1,12 @@
 // get api results
 export const fetchDepartures = async (id, type = 'city', locale = 'en') => {
     try {
+        let code = '';
+        if(type === 'checkout') {
+            code = `/${new URL(window.location.href).searchParams.get('code')}`
+        }
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/departures/${type}/${id}?locale=${locale}`,
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/departures/${type}/${id}${code}?locale=${locale}`,
             {next: {revalidate: 0}}
         );
         return res.json()
