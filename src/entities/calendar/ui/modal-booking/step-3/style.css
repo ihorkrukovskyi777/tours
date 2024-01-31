@@ -336,10 +336,19 @@
     height: 100%;
     background-color: rgba(255,255,255, 0.5);
 }
+
+.step-3 .calendar_choose_date_loader.hidden {
+    display: none;
+}
+.step-3 .calendar_choose_date_loader.add-loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .step-3 .calendar_choose_date_loader .lds-dual-ring {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 0;
     left: 0;
@@ -357,6 +366,23 @@
     border: 3px solid #fff;
     border-color: #fff transparent #fff transparent;
     animation: lds-dual-ring 1.2s linear infinite;
+}
+.step-3 .general-error {
+    font-size: 20px;
+    color: red;
+    padding: 0 3px 3px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-family: var(--fontMedium);
+    list-style: none;
+}
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media(max-width: 767px){

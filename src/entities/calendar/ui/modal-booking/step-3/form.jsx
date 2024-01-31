@@ -4,6 +4,7 @@ import {useParams} from "next/navigation";
 import InternationalInput from '../../../../../shared/ui/selectors/international-input';
 import {useRouter} from "next/navigation";
 import {getHrefLocale} from "@/i18n/get-href-locale";
+import classNames from "classnames";
 
 
 export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDeparture, errorsMessage }) {
@@ -123,9 +124,8 @@ export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDepar
             });
             !loadValidate && setLoadValidate(true);
         }
-
-        if (validateForm(state.errors) && loadValidate === true) {
-            console.info('Valid Form');
+        
+        if (validateForm(state.errors) && loadValidate === true && Object.keys(errorsMessage).length === 0) {
             setValidate(true);
             //REDIRECT TO CHECKOUT PAGE
             const formData = {
@@ -136,15 +136,11 @@ export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDepar
                 phone: document.getElementsByName('phone')[0].value,
                 phone_country_slug: document.getElementById('phone').getAttribute('data-slug').toLowerCase(),
             }
-
-
-
             try {
-
                 const data = await fetchBookingDeparture(formData);
                 if(data.booking_id) {
-                    //const url = getHrefLocale(params.locale, `checkout?code=${data.booking_id}`)
-                    //push(url)
+                    const url = getHrefLocale(params.locale, `checkout?code=${data.booking_id}`)
+                    push(url)
                 }
 
             } catch (err) {
@@ -215,12 +211,12 @@ export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDepar
                     {errors.accept.length > 0 ? <span className='error-message'>{errors.accept}</span> : null}
                 </div>
             </div>
-            <ul>
+            <ul className="general-error">
                 {errorsMessage?.map((value, index) => <li key={index} dangerouslySetInnerHTML={{__html: value ?? ''}}></li>)}
             </ul>
             <div className="btns-wrap">
                 <button className='button_custom'>Book Now</button>
-                <div className="calendar_choose_date_loader hidden" id="calendar_choose_date_loader">
+                <div className={classNames({'add-loader': validate}, 'calendar_choose_date_loader hidden')}   id="calendar_choose_date_loader">
                     <div className="lds-dual-ring"></div>
                 </div>
             </div>
