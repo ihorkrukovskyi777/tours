@@ -1,16 +1,9 @@
 import {allGuides} from '@/entities/api';
 import {createTranslation} from "@/i18n/server";
-
-const LazyGuidesRow = dynamic(
-    () => import("@/shared/ui/guides/lazy-guides-row"),
-    {ssr: false}
-)
-import './style.css';
-import dynamic from "next/dynamic";
+import LazyGuidesRow from "@/shared/ui/guides/lazy-guides-row";
 import {hrefSubVendor} from "@/shared/hepers/url";
-import FullStarSvg from "@/assets/images/svg/full-star";
-import CardGuide from "@/shared/ui/card-components/card-guide";
 import Link from "next/link";
+import './style.css';
 
 export default async function Guides({title, id, locale, type}) {
     const items = await allGuides(id, type);

@@ -1,11 +1,6 @@
 import {getHighlightsImages} from "@/entities/api";
 import {createTranslation } from "@/i18n/server";
-import dynamic from "next/dynamic";
-
-const HighlightsLazySlider = dynamic(
-    () => import("@/widgets/highlights/lazy-loading"),
-    {ssr: false}
-)
+import HighlightsLazySlider from "@/widgets/highlights/lazy-loading"
 import './style.css';
 
 export default async function Highlights({id}) {
