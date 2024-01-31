@@ -1,20 +1,26 @@
 import { makeAutoObservable } from "mobx"
-import { fromPromise } from 'mobx-utils'
 import {getCountryPhone} from "@/entities/api";
 
 
 export class StorePhone {
     constructor(locale) {
         this.locale = locale;
-        this.phones = [];
+        this.phones = {
+            state: '',
+            value: []
+        };
         makeAutoObservable(this, {}, { autoBind: true });
     }
     * changeLocale(locale) {
         this.locale = locale;
         yield this.fetchPhones()
     }
-     fetchPhones(){
-        this.phones = fromPromise(getCountryPhone(this.locale))
+     * fetchPhones(){
+       const phones = yield getCountryPhone(this.locale);
+       this.phones = {
+           state: 'fulfilled',
+           value: phones,
+       }
      }
 
 }

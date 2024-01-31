@@ -185,7 +185,6 @@ export default class TourLogic {
     }
 
     filterDays(deps, days) {
-        const start =new Date().getTime();
         const list = {};
 
         for (let i = 0; i < days.length; i++) {

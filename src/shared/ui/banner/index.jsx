@@ -6,7 +6,7 @@ export default function Banner({attachment = null, title, children, bottomView =
     return (
         <section className={`banner ${nameBanner}`}>
             <div className={size}>
-                {attachment ? <IcloudImage
+                {attachment && false ? <IcloudImage
                     priority={true}
                     className="banner_bg"
                     quality={10}

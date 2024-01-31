@@ -21,4 +21,12 @@ export class HelperDateHtml extends ServiceDate {
                ${t(this.month)}
             `;
     }
+    dayDepartureFullTime(t) {
+        return `
+               ${t(this.day)},
+                ${this.dayNum}
+               ${t(this.month)}
+               ${this.time}
+            `;
+    }
 }

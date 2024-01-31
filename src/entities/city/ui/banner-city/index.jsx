@@ -9,7 +9,6 @@ import './style.css';
 export default async function BannerCity({id, locale, size, isMobile = false}) {
     const {t} = await createTranslation()
     const {attachment, title, rating, reviews} = await getBannerData(id, locale, 'city', 60 * 10)
-    console.log('BannerCity')
     return (
         <Banner
             isMobile={isMobile}

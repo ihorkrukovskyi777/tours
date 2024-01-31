@@ -23,6 +23,16 @@ export class StoreMap {
     resetSelectedTour() {
         this.selectedTourId = null;
         this.selectedPlaceId = this.places[0].id
+        this.centerMap();
+    }
+
+    get shortToursTitle() {
+        const titles = {};
+
+        for (const item of this.places) {
+            Object.assign(titles, item.tours)
+        }
+        return titles;
     }
 
     setMap(map) {
@@ -44,15 +54,20 @@ export class StoreMap {
     }
 
     centerMap() {
-
-        console.log(this.map, 'dsadsa')
         const bounds = new L.LatLngBounds(this.markers.filter(place => place.status === 'default').map(item => item.coordinates));
 
-        if(Object.keys(bounds).length) {
+        if (Object.keys(bounds).length) {
             this.map.fitBounds(bounds.pad(0.5));
 
         }
 
+    }
+
+    setCenterMarker() {
+        const find = this.markers.find(marker => marker.id === this.selectedPlaceId);
+        if(find) {
+            this.map.panTo(find.coordinates, {duration: 0.5, easeLinearity: 0.25});
+        }
     }
 
     get currentIndexPlace() {
@@ -60,6 +75,10 @@ export class StoreMap {
     }
 
     * fetchMarkers(id, locale, ids = []) {
+
+        if (ids.length) {
+            this.typePage = 'city';
+        }
         this.places = yield placesMarkers(id, locale, ids);
         if (this.places[0]) {
             this.selectedPlaceId = this.places[0].id

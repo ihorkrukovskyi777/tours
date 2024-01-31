@@ -9,9 +9,7 @@ import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import {headers} from "next/headers";
 import {isMobileCheck} from "@/shared/hepers";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
-import Link from "next/link";
 import Footer from "@/shared/ui/layouts/footer/footer";
-import {getHrefLocale} from "@/i18n/get-href-locale";
 
 export default async function PageGuide({params: {name, locale}}) {
     const [id, languages] = await Promise.all([

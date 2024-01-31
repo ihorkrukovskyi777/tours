@@ -8,7 +8,6 @@ import Link from "next/link";
 import FlagsComponents from "@/shared/ui/flags";
 
 import './style.css';
-import {getHrefLocale} from "@/i18n/get-href-locale";
 
 export default function ChangeOfLanguage({languages, title}) {
     const searchParams = useSearchParams()

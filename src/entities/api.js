@@ -192,7 +192,7 @@ export const placesMarkers = async (id , locale = 'en' , ids = []) => {
         const paramsIds = ids.length ? `&ids=${ids.join(',')}` : '';
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/place/pages/${id}?locale=${locale}${paramsIds}`,
-            {next: {revalidate: 60}}
+            {next: {revalidate: 0}}
         );
         return res.json()
     } catch (err) {

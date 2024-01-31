@@ -5,7 +5,7 @@ import Calendar from "@/entities/calendar/ui/items";
 import CloseSvg from "@/assets/images/svg/close-svg";
 import Loader from "@/shared/ui/loaders/default-loader";
 import useEscHooks from "@/shared/hooks/use-esc-event";
-
+import {useTranslation} from "@/i18n/client";
 import "./style.css";
 export default observer(function Step1({
   storeModalCalendar,
@@ -24,6 +24,7 @@ export default observer(function Step1({
     storeDepLogic: { people, changePeople, locale },
   } = storeModalCalendar;
 
+  const { t } = useTranslation()
   useEscHooks(close, isEsc);
   const closeModal = (e) => {
     e.stopPropagation();
@@ -46,7 +47,7 @@ export default observer(function Step1({
       />
 
       <div className="how-many">
-        <div className="block-title">How many people are coming?</div>
+        <div className="block-title">{t('How many people are coming?')}</div>
         <CounterNumbers startNumber={people} onChange={changePeople} />
       </div>
       <Calendar

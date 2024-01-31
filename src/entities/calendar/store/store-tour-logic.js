@@ -16,7 +16,6 @@ export class StoreTourLogic {
         this.locale = locale;
         this.service = new TourLogic(id, locale, locale, type);
         makeAutoObservable(this, {}, {autoBind: true, deep: false});
-
     }
 
     get isNextPage() {
