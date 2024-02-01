@@ -18,16 +18,16 @@ export default function ChangeOfLanguage({languages, title}) {
         (item) => item.locale !== params?.locale
     );
 
-    let querys = [];
+    let queries = [];
     for (const key of searchParams.entries()) {
-        querys.push(key);
+        queries.push(key);
     }
 
-    querys = querys.map(([key, value], index) => {
+    queries = queries.map(([key, value], index) => {
         const param = index === 0 ? '?' : '&';
         return `${param}${key}=${value}`
     })
-    querys = querys.join(',')
+    queries = queries.join(',')
     const getHref = (locale) => locale === fallbackLng ? '' : `/${locale}`
     return (
         <section id="change-of-language">
@@ -38,7 +38,7 @@ export default function ChangeOfLanguage({languages, title}) {
                         return (
                             <li className="language" key={item.id}>
                                 <Link
-                                    href={`${getHref(item.locale)}/${item.slug}${querys}`}
+                                    href={`${getHref(item.locale)}/${item.slug}${queries}`}
                                     prefetch={false}
                                 >
                                     <span className="wrap-txt">

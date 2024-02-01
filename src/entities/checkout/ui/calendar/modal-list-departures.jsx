@@ -1,9 +1,9 @@
 'use client';
-import {HelperDateHtml} from "@/shared/hepers/helperDateHtml";
+import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 import CloseSvg from '@/assets/images/svg/close-svg';
 import useEscHooks from "@/shared/hooks/use-esc-event";
 import {useContext, useState} from 'react';
-import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/hepers/date";
+import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/helpers/date";
 import {useTranslation} from "@/i18n/client";
 import {observer} from "mobx-react-lite";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";

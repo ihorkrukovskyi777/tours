@@ -1,6 +1,6 @@
 import {allGuides} from '@/entities/api';
 import {createTranslation} from "@/i18n/server";
-import {hrefSubVendor} from "@/shared/hepers/url";
+import {hrefSubVendor} from "@/shared/helpers/url";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 const LazyGuidesRow = dynamic(

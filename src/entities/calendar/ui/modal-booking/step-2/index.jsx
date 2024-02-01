@@ -1,13 +1,13 @@
 'use client';
 import {observer} from "mobx-react-lite";
 import ModalTourItem from '../../modal-tour-item';
-import {HelperDateHtml} from "@/shared/hepers/helperDateHtml";
+import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 import Button from '@/shared/ui/selectors/button/button';
 import CloseSvg from '@/assets/images/svg/close-svg';
 import classNames from 'classnames';
 import useEscHooks from "@/shared/hooks/use-esc-event";
 import {useState} from 'react';
-import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/hepers/date";
+import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/helpers/date";
 import {useTranslation} from "@/i18n/client";
 
 import './style.css';

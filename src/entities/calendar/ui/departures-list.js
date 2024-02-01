@@ -6,7 +6,7 @@ import LanguageLoader from "@/shared/ui/loaders/language-loader";
 import TourItem from "@/entities/calendar/ui/tour-item";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
 import { ServiceDate } from "@/shared/service/service-date";
-import { setFormatDDMMYYYYtoMMDDYYYY } from "@/shared/hepers/date";
+import { setFormatDDMMYYYYtoMMDDYYYY } from "@/shared/helpers/date";
 import {useTranslation} from "@/i18n/client";
 
 export default observer(function DeparturesList() {

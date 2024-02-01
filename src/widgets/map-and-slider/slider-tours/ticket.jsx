@@ -3,7 +3,7 @@ import heartSVG from '/public/images/svg/heart.svg';
 import clockSVG from '/public/images/svg/clock.svg';
 import ticketSVG from '/public/images/svg/tour.svg';
 import {useTranslation} from "@/i18n/client";
-import {pad2, toHoursAndMinutes} from "@/shared/hepers/date";
+import {pad2, toHoursAndMinutes} from "@/shared/helpers/date";
 
 
 export default function Ticket({duration, title, price, url}) {

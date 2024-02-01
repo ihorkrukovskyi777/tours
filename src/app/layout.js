@@ -6,13 +6,6 @@ export const metadata = {
 }
 
 
-export default function RootLayout({ children, params }) {
-
-    return (
-        <html lang={params.locale}>
-        <body>
-            {children}
-        </body>
-        </html>
-    )
+export default function RootLayout({ children}) {
+    return children
 }

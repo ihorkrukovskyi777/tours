@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import PhoneInput from 'react-phone-input-2'
 import classNames from 'classnames';
 import { InputMask } from '@react-input/mask';
-import { localeFormat } from "@/shared/hepers/locale";
+import { localeFormat } from "@/shared/helpers/locale";
 import 'react-phone-input-2/lib/style.css';
 
 import './style.css';

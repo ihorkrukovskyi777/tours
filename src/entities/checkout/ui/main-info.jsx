@@ -3,7 +3,7 @@ import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {observer} from "mobx-react-lite";
 import {useContext} from "react";
 import Image from "next/image";
-import {HelperDateHtml} from "@/shared/hepers/helperDateHtml";
+import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 
 export default observer(function MainInfo() {
     const { t } = useTranslation();

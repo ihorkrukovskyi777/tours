@@ -9,7 +9,7 @@ import {observer} from "mobx-react-lite";
 import {useParams, useRouter, useSearchParams} from "next/navigation";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import Notification from "@/shared/ui/notification/notification";
-import {valid , validationFirstName , validationEmail , validationPhone} from "@/shared/hepers/validation-form";
+import {valid , validationFirstName , validationEmail , validationPhone} from "@/shared/helpers/validation-form";
 
 
 export default observer(function FormEdit() {

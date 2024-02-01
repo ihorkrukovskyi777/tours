@@ -3,9 +3,9 @@ import './style.css';
 
 export default function Post({data}) {
     const { title , slug , excerpt , attachment } = data;
-    const textWithoutCaptions = excerpt.replace(/\[caption[^\]]*](.*?)\[\/caption]/gi, '');
-    const truncateText = (text, maxLength) => text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
-    const truncatedText = truncateText(textWithoutCaptions.trim(), 450);
+    const textWithoutCaptions = excerpt.replace(/\[(\S+)[^\]]*][^\[]*\[\/\1\]/g, '');
+    const truncatedText = textWithoutCaptions;
+
     return (
         <div className="single-post">
             <h3>
@@ -16,7 +16,7 @@ export default function Post({data}) {
                     {attachment.src ? <IcloudImage src={attachment.src} width={800} height={550} alt={attachment.alt ? attachment.alt : 'img'} /> : null }
                 </a>
             </div>
-            <div className="single-post-text" dangerouslySetInnerHTML={{ __html: truncatedText }}></div>
+            <div className="single-post-text" dangerouslySetInnerHTML={{ __html: truncatedText ?? ''}}></div>
         </div>
     )
 }

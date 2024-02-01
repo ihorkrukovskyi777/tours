@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useState} from "react";
+import {useLayoutEffect, useMemo, useState} from "react";
 
 export default function useOnScreen(ref, callback = (ref) => ref) {
 
@@ -13,7 +13,7 @@ export default function useOnScreen(ref, callback = (ref) => ref) {
         }
     ), [ref, isIntersecting])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
 
         observer.observe(callback(ref.current))
         return () => observer.disconnect()

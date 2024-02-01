@@ -7,7 +7,7 @@ import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {observer} from "mobx-react-lite";
 import DefaultModal from "@/shared/ui/modals/default-modal";
 import ChooseDate from "@/entities/checkout/ui/calendar/choose-date";
-import {HelperDateHtml} from "@/shared/hepers/helperDateHtml";
+import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 import './style.css';
 
 export default observer(function EditModalTour() {

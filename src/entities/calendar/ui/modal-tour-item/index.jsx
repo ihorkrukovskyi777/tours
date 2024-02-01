@@ -1,6 +1,6 @@
 import ClockSvg from '@/assets/images/svg/clock-svg';
 import classNames from 'classnames';
-import {pad2, toHoursAndMinutes} from "@/shared/hepers/date";
+import {pad2, toHoursAndMinutes} from "@/shared/helpers/date";
 import {useTranslation} from "@/i18n/client";
 import './style.css';
 

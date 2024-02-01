@@ -4,12 +4,12 @@ import IcloudImage from "@/shared/ui/icloud-image";
 import {Navigation, Pagination} from "swiper/modules";
 
 export default function HighlightsSlider({ images }) {
+
     return (
         <Swiper
-            // install Swiper modules
             modules={[Navigation, Pagination]}
+            navigation={false}
             spaceBetween={10}
-
             slidesPerView={3}
             pagination={{ clickable: true }}
             breakpoints={{
@@ -21,10 +21,10 @@ export default function HighlightsSlider({ images }) {
                 },
             }}
         >
-            {images?.map((item) => {
+            {images?.map((item, index) => {
                 return (
-                    <SwiperSlide key={item.src}>
-                        <IcloudImage width={400} height={250} key={item.src} src={item.src} alt={item.alt} size="500x500" />
+                    <SwiperSlide key={index}>
+                        <IcloudImage width={390} height={250} key={item.src} src={item.src} alt={item.alt} size="390x250" />
                     </SwiperSlide>
                 )
             })}

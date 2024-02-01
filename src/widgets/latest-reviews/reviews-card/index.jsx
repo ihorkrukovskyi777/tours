@@ -1,5 +1,5 @@
 import Reviews from '../item/reviews';
-import {HelperDateHtml} from '@/shared/hepers/helperDateHtml';
+import {HelperDateHtml} from '@/shared/helpers/helperDateHtml';
 import styles from './style.module.css';
 
 

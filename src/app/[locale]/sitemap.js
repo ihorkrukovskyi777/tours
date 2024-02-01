@@ -10,18 +10,23 @@ export default async function sitemap() {
     console.log(siteMaps, 'siteMaps')
     return [
         {
-            url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/cities/sitemap.xml`,
+            url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/sitemap/cities/sitemap.xml`,
             lastModified: siteMaps.cityMod,
             priority: 0.8,
         },
         {
-            url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/posts/sitemap.xml`,
+            url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/sitemap/posts/sitemap.xml`,
             lastModified: siteMaps.postMod,
             priority: 0.5,
         },
         {
-            url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/tours/sitemap.xml`,
+            url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/sitemap/tours/sitemap.xml`,
             lastModified: siteMaps.tourMod,
+            priority: 1,
+        },
+        {
+            url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/sitemap/guides/sitemap.xml`,
+            lastModified: new Date(),
             priority: 1,
         },
     ]

@@ -1,6 +1,6 @@
 import {makeAutoObservable} from "mobx"
 import TourLogic from "@/entities/calendar/service/tour-logic";
-import {isTomorrowOrToday} from "@/shared/hepers/date";
+import {isTomorrowOrToday} from "@/shared/helpers/date";
 
 
 export class StoreTourLogic {

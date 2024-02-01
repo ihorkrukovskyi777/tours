@@ -7,12 +7,12 @@ import GuideTours from "@/entities/guide/ui/guide-tours/guide-tours";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import {headers} from "next/headers";
-import {isMobileCheck} from "src/shared/hepers";
+import {isMobileCheck} from "@/shared/helpers";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Footer from "@/shared/ui/layouts/footer/footer";
 
 export default async function PageGuide({params: {name, locale}}) {
-    const [id, languages] = await Promise.all([
+    const [pageSub, languages] = await Promise.all([
         fetchSubVendorBySlug(name),
         getPageLanguage()
     ])
@@ -20,7 +20,7 @@ export default async function PageGuide({params: {name, locale}}) {
     const {t } = await createTranslation()
 
 
-    if (id?.statusCode === 404) {
+    if (pageSub.id?.statusCode === 404) {
         notFound();
     }
 
@@ -30,14 +30,12 @@ export default async function PageGuide({params: {name, locale}}) {
     return (
         <>
             <Suspense fallback={''}>
-                <BannerGuide id={id} isMobile={isMobile}/>
+                <BannerGuide id={pageSub.id} isMobile={isMobile}/>
             </Suspense>
             <Suspense fallback={''}>
-                <GuideTours id={id} locale={locale}/>
-            </Suspense>
-            <Suspense fallback={''}>
-                <SsrCalendar locale={locale} type="sub-vendor" id={id} showFaq={false}/>
-                <ChangeOfLanguage languages={languagesFormatted} title={name.replaceAll('_' ,' ')}/>
+                <GuideTours id={pageSub.id} locale={locale}/>
+                <SsrCalendar locale={locale} type="sub-vendor" id={pageSub.id} showFaq={false}/>
+                <ChangeOfLanguage languages={languagesFormatted} title={pageSub.brandName}/>
                 <Breadcrumbs pages={[{slug: '/', title: t('Free Tours')}, {title: name.replaceAll('_' ,' ') }]} locale={locale} />
                 <Footer locale={locale}/>
             </Suspense>

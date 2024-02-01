@@ -1,7 +1,7 @@
 import {makeAutoObservable} from "mobx";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
 import {StoreTourLogic} from "@/entities/calendar/store/store-tour-logic";
-import {pad2, setFormatDDMMYYYYtoMMDDYYYY, toHoursAndMinutes} from "@/shared/hepers/date";
+import {pad2, setFormatDDMMYYYYtoMMDDYYYY, toHoursAndMinutes} from "@/shared/helpers/date";
 import {cancelBook, fetchEditBooking} from "@/entities/checkout/api";
 import {fetchBookingDepartures} from "@/entities/calendar/api";
 
