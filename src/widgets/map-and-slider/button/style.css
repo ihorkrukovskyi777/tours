@@ -5,10 +5,27 @@
     /*flex-wrap: wrap;*/
     /*gap: 20px;*/
 }
+.map_block .leaflet-container {
+    height: 666px !important;
+}
 .map_block .scroll {
     position: relative;
     width: 100%;
-    margin-bottom: 35px;
+    margin-bottom:15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 20px;
+}
+.map_block .wrap-scroll {
+    position: relative;
+}
+.map_block .scroll-wrap {
+    position: relative;
+}
+.map_block .scroll .row {
+    display: flex;
+    gap: 0 20px;
+    flex-wrap: wrap;
 }
 .map_block button {
     padding: 20px 52px 20px 22px;
@@ -27,6 +44,7 @@
     background-color: #F6F6F6;
     color: #000000;
     position: relative;
+    margin-bottom: 20px;
 }
 .map_block button.active {
     background-color: #D9D9D9;
@@ -73,18 +91,67 @@
     position: absolute;
     right: 19px;
 }
+@media(min-width: 767px) {
+    .map_block .scroll button:last-child {
+        margin-right: 160px;
+    }
+}
+@media (max-width: 767px) {
+    .map_block .buttons-map button {
+        padding: 6px 45px 6px 20px;
+    }
+    .map_block .buttons-map button,
+    .map_block .place_select_post_clear {
+        margin-right: 10px;
+        font-size: 16px;
+        font-family: var(--fontMedium);
+        min-height: 32px;
+        margin-bottom: 10px;
+    }
 
-@media (max-width: 991px) {
-    .scroll {
+    .map_block button .status {
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        right: 19px;
+    }
+    .map_block .place_select_post_clear {
+        position: static;
+        padding-left: 8px;
+        padding-right: 8px;
+        min-width: 80px;
+        bottom: 10px;
+        height: 32px;
+        margin-bottom: 10px;
+        min-height: 32px;
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: underline;
+        margin-left: 0;
+        margin-right: auto;
+    }
+    .map_and_slider .place_select_post_clear img {
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+    }
+    .map_block .scroll {
+        margin-bottom: 5px;
+    }
+    .map_block .leaflet-container {
+        margin: 0 -20px;
+        width: calc(100% + 40px) !important;
+    }
+    .map_block .leaflet-container {
+        height: 315px !important;
+    }
+    .map_block .wrap-scroll .scroll {
         display: flex;
-        flex-direction: column;
         overflow-y: auto;
     }
-    .row {
+    .map_block .wrap-scroll .row {
         display: flex;
         flex-wrap: nowrap;
         grid-gap: 10px;
     }
 }
-
-

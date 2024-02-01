@@ -16,7 +16,7 @@ import {ServiceDate} from "@/shared/service/service-date"
 
 import './style.css';
 
-export default observer(function Step3({onChange, people, errors,selectedLocale, locale, fetchBookingDeparture, close, size, allPhoneNumbers, departure,isOpened ,langSelected}) {
+export default observer(function Step3({onChange, people, errors,selectedLocale, locale, fetchBookingDeparture, close, size, allPhoneNumbers, departure,isOpened ,langSelected ,isLoading}) {
 
     useEscHooks(close, isOpened);
 
@@ -95,6 +95,7 @@ export default observer(function Step3({onChange, people, errors,selectedLocale,
                 errorsMessage={errors}
                 allPhoneNumbers={allPhoneNumbers}
                 locale={locale}
+                isLoading={isLoading}
                fetchBookingDeparture={fetchBookingDeparture}/>
 
         </div>

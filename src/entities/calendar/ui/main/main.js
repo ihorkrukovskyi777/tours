@@ -50,6 +50,7 @@ export default observer(function Main({siteLocale}) {
                 fetchBookingDeparture,
                 isOpened,
                 close,
+                loadingBooking,
                 departure,
                 selectedLocale,
             },
@@ -111,6 +112,7 @@ export default observer(function Main({siteLocale}) {
                     isOpened={isOpened}
                     departure={departure}
                     language={locale}
+                    isLoading={loadingBooking}
                     close={close}
                 /> : null }
             </ModalBooking>

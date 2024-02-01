@@ -8,6 +8,7 @@ export class StoreModalBooking {
         this.departure = null;
         this.depLogic = depLogic;
         this.errors = [];
+        this.loadingBooking = false;
         makeAutoObservable(this, {}, {autoBind: true});
     }
 
@@ -26,7 +27,13 @@ export class StoreModalBooking {
         this.isOpened = false
     }
 
+    toggleLoading() {
+        this.loadingBooking = !this.loadingBooking;
+    }
+
     * fetchBookingDeparture(data) {
+        this.toggleLoading();
+        console.log(this.loading);
         const {email, firstName, lastName, phone, phone_county_code, phone_country_slug} = data;
         this.errors = [];
         const body = {
@@ -49,6 +56,7 @@ export class StoreModalBooking {
         if(!!results.success === false) {
             this.errors = Object.values(results.errors)
         }
+        this.toggleLoading();
 
         return results
     }
