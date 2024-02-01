@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import {isMobileCheck} from "@/shared/hepers";
+import {isMobileCheck} from "@/shared/hepers/index.js";
 import {notFound} from "next/navigation";
 import {headers} from "next/headers";
 import {createTranslation} from "@/i18n/server";

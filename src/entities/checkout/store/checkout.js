@@ -220,7 +220,8 @@ class EditDeparture {
         try {
             const data = yield fetchBookingDepartures(body);
             if(data.success === false) {
-                return { success: false, errors: data.errors ?? true};
+
+                return { success: false, errors: Object.values(data.errors) ?? true};
             }
             yield cancelBook(this.staticCode, cancelMessage)
             return data;
@@ -344,7 +345,9 @@ export default class CheckoutStore {
         this.checkoutInfo = new CheckoutInfo(data);
         this.isContactGuide = !data.is_civitatis
         this.editDeparture = new EditDeparture(data, this.tourLocale, this.locale, staticCode)
-        this.editDeparture.fetchDepartures();
+        if(this.isActiveCheckout) {
+            this.editDeparture.fetchDepartures();
+        }
         this.globalLoading = false;
     }
 }

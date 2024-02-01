@@ -6,7 +6,8 @@ export const metadata = {
 }
 
 
-export default function RootLayout({ children, params, ...props }) {
+export default function RootLayout({ children, params }) {
+
     return (
         <html lang={params.locale}>
         <body>
