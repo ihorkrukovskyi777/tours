@@ -13,6 +13,8 @@ import {valid , validationFirstName , validationEmail , validationPhone} from "@
 
 
 export default observer(function FormEdit() {
+
+    console.log(validationPhone("10,11"))
     const searchParams = useSearchParams()
     const [error, setError] = useState(false);
     const {replace} = useRouter();
@@ -29,6 +31,7 @@ export default observer(function FormEdit() {
         firstName: ({target}) => editDeparture.setFirstName(target.value),
         lastName: ({target}) => editDeparture.setLastName(target.value),
         email: ({target}) => editDeparture.setEmail(target.value),
+        phone: ({target}) => editDeparture.setPhone(target.value),
     }
 
 
@@ -41,7 +44,7 @@ export default observer(function FormEdit() {
             firstName: validationFirstName(editDeparture.firstName),
             lastName: validationFirstName(editDeparture.lastName),
             email: validationEmail(editDeparture.email),
-            phone: validationFirstName(editDeparture.lastName),
+            phone: validationPhone(editDeparture.phone),
         }
 
         setValidForm({...validForm , ...errorLists})
@@ -105,6 +108,7 @@ export default observer(function FormEdit() {
                     : null}
                 {validForm.phone ? <span className='error-message'> {t(validForm.phone)} </span> : null}
                 <EditSvg/>
+                {validForm.phone ? <span className='error-message'> {t(validForm.phone)} </span> : null}
             </div>
 
             <div className="item">

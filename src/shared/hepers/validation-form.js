@@ -20,10 +20,11 @@ const email = ({val})=> {
     return validEmailRegex.test(val) ? true : 'EMAIL_ERROR'
 }
 
-const phone = ({val})=> {
+const phone = ({val , arrNumbers= '10,11'})=> {
     const valuePhone = val.toString().split('').filter(e => e.trim().length).join('').length;
-    const validateArray = document.querySelector(`input[name=phone]`).getAttribute('validation-number').split(',').map(i => Number(i));
-    return !validateArray.includes(valuePhone) ? true : 'EMAIL_ERROR';
+    const validateArray = arrNumbers.split(',').map(i => Number(i));
+    console.log(!validateArray.includes(valuePhone))
+    return !validateArray.includes(valuePhone) ? true : 'PHONE_ERROR';
 }
 
 const strategyValid = {
@@ -50,5 +51,6 @@ export const validationEmail = (val)=> {
 }
 
 export const validationPhone = (val)=> {
+
     return valid(val , [{type: 'phone'}])
 }
