@@ -11,7 +11,7 @@ import './style.css';
 
 export default async function Guides({title, id, locale, type}) {
     const items = await allGuides(id, type);
-    const {t} = await createTranslation();
+    const {t} = await createTranslation(locale);
 
     if (!items?.length) {
         return null

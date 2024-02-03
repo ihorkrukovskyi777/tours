@@ -70,7 +70,6 @@ export default observer(function Main({siteLocale}) {
             storeModalCalendar.open();
         }
     }
-
     return (
         <div className="calendar_wrap" style={{minHeight: '900px'}}>
             <h2 className="title">Tour Calendar</h2>

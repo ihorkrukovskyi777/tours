@@ -5,8 +5,9 @@ import TourRow from "@/widgets/tour-row/tour-row";
 import {createTranslation} from "@/i18n/server";
 import {notFound} from "next/navigation";
 
+
 export default async function CheckoutPage({params: {locale}, searchParams}) {
-    const { t } = await createTranslation()
+    const { t } = await createTranslation(locale)
     let checkoutData = await fetch(
         `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/${searchParams.code}?locale=${locale}`,
         {next: {revalidate: 0}}
@@ -35,4 +36,11 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
             <Footer />
         </>
     )
+}
+
+export async function generateMetadata() {
+
+    return {
+        robots: {index: false, follow: false},
+    }
 }

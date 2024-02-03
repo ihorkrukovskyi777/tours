@@ -35,7 +35,7 @@ export function middleware(request) {
         const newUrlSearch = new URL(request.url);
         let getParams = '';
 
-        if(newUrlSearch.search) {
+        if (newUrlSearch.search) {
             getParams = newUrlSearch.search;
         }
         return NextResponse.rewrite(
@@ -46,6 +46,5 @@ export function middleware(request) {
 
 export const config = {
     // Do not run the middleware on the following paths
-    matcher:
-        '/((?!api|_next/static|_next/image|manifest.json|assets|favicon.ico).*)',
+    matcher: ['/((?!api|_next/static|_next/image|manifest.json|assets|favicon.ico|robots.txt|default.json|sitemap/*).*)']
 };

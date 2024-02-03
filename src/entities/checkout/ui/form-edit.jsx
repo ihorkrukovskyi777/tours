@@ -14,7 +14,6 @@ import {valid , validationFirstName , validationEmail , validationPhone} from "@
 
 export default observer(function FormEdit() {
 
-    console.log(validationPhone("10,11"))
     const searchParams = useSearchParams()
     const [error, setError] = useState(false);
     const {replace} = useRouter();

@@ -3,7 +3,6 @@ export default async function sitemap() {
     let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap/tours`);
     siteMaps = await siteMaps.json();
 
-    console.log(siteMaps, 'siteMaps')
      return siteMaps.map(tour => {
          const slugLocale = tour.locale === fallbackLng  ? '' : `/${tour.locale}`
          return {

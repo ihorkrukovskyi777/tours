@@ -2,6 +2,7 @@ import {observer} from "mobx-react-lite";
 import Button from "@/shared/ui/selectors/button/button";
 import CalendarSvg from "@/assets/images/svg/calendar-svg";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
+import {useTranslation} from "@/i18n/client";
 import dynamic from "next/dynamic";
 import Loader from "@/shared/ui/loaders/default-loader";
 
@@ -29,6 +30,7 @@ const Step2 = dynamic(
 );
 
 export default observer(function OpenModalButton({storeModalCalendar}) {
+    const { t } = useTranslation();
     const {
         isOpened,
         open,
@@ -61,7 +63,7 @@ export default observer(function OpenModalButton({storeModalCalendar}) {
                 <div className="calendar_icon">
                     <CalendarSvg/>
                 </div>
-                <span>Pick a Date</span>
+                <span>{t('Pick a Date')}</span>
             </Button>
             <ModalBooking show={isOpened} size={'step-1'}>
                 {isOpened ? <Step1

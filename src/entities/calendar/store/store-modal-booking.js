@@ -33,7 +33,6 @@ export class StoreModalBooking {
 
     * fetchBookingDeparture(data) {
         this.toggleLoading();
-        console.log(this.loading);
         const {email, firstName, lastName, phone, phone_county_code, phone_country_slug} = data;
         this.errors = [];
         const body = {

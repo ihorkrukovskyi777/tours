@@ -10,6 +10,9 @@ import {headers} from "next/headers";
 import {isMobileCheck} from "@/shared/helpers";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Footer from "@/shared/ui/layouts/footer/footer";
+import {fallbackLng} from "@/i18n/settings";
+import {generatorSeo} from "@/shared/helpers/generator-seo";
+import {PATH_GUIDES} from "@/shared/constants/route";
 
 export default async function PageGuide({params: {name, locale}}) {
     const [pageSub, languages] = await Promise.all([
@@ -17,10 +20,10 @@ export default async function PageGuide({params: {name, locale}}) {
         getPageLanguage()
     ])
 
-    const {t } = await createTranslation()
+    const {t } = await createTranslation(locale)
 
 
-    if (pageSub.id?.statusCode === 404) {
+    if (pageSub?.statusCode === 404) {
         notFound();
     }
 
@@ -41,4 +44,10 @@ export default async function PageGuide({params: {name, locale}}) {
             </Suspense>
         </>
     )
+}
+export async function generateMetadata({ params : {name, locale} }) {
+    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/guide/${name}?locale=${locale}`, {next: { revalidate: 0 }}).then((res) => res.json())
+    const canonical = locale === fallbackLng ? `${PATH_GUIDES}/${name}` : `${locale}/${PATH_GUIDES}/${name}`
+
+    return generatorSeo(seo,  canonical, locale)
 }

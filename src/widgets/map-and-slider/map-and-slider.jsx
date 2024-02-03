@@ -20,7 +20,6 @@ export default function MapAndSlider({id, locale, toursPlaces}) {
 
     const ids = toursPlaces?.map(item => item.id) ?? []
 
-    console.log(toursPlaces)
     return (
         <section className='map_and_slider'>
             <div className="container">

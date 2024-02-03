@@ -2,12 +2,13 @@
 import {Fragment, memo} from "react";
 import Loader from '../../../../shared/ui/loaders/default-loader';
 import {useTranslation} from "@/i18n/client";
+import {countryLocales} from "@/i18n/locales";
 import FlagsComponents from "@/shared/ui/flags";
 import './style.css';
 
 
 export default memo(function TabsLanguages({loading, onChange = () => {}, selectedCode = 'en', activeLanguage = []}) {
-    const { t } = useTranslation('country');
+    const { t } = useTranslation();
     const settingsTab = activeLanguage?.length < 4 ?  'not_full' : '';
 
     return (
@@ -25,7 +26,7 @@ export default memo(function TabsLanguages({loading, onChange = () => {}, select
                                 <div className="icon_wrap">
                                     <FlagsComponents locale={item.code} alt={item.title} width={30} height={30} />
                                 </div>
-                                <span>{t(`fullName.${item.code}`)}</span>
+                                <span>{countryLocales[item.code]}</span>
                                 <div className="box_loader">
                                     <div className="loader_01"></div>
                                 </div>

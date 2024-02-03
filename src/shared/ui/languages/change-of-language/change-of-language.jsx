@@ -5,13 +5,14 @@ import Button from "@/shared/ui/selectors/button/button";
 import {fallbackLng} from "@/i18n/settings";
 import {useTranslation} from "@/i18n/client";
 import Link from "next/link";
+import {countryLocales} from "@/i18n/locales";
 import FlagsComponents from "@/shared/ui/flags";
 
 import './style.css';
 
 export default function ChangeOfLanguage({languages, title}) {
     const searchParams = useSearchParams()
-    const {t} = useTranslation("country");
+    const {t} = useTranslation();
     const [showLanguage, setShowLanguage] = useState(6);
     const params = useParams();
     const languagesFilter = languages?.filter(
@@ -22,6 +23,8 @@ export default function ChangeOfLanguage({languages, title}) {
     for (const key of searchParams.entries()) {
         queries.push(key);
     }
+
+
 
     queries = queries.map(([key, value], index) => {
         const param = index === 0 ? '?' : '&';
@@ -42,7 +45,7 @@ export default function ChangeOfLanguage({languages, title}) {
                                     prefetch={false}
                                 >
                                     <span className="wrap-txt">
-                                       {title} {item.title} {t(`fullName.${item.locale}`)}</span>
+                                       {title} {item.title} {countryLocales[item.locale]}</span>
                                     <FlagsComponents locale={item.locale}/>
                                 </Link>
                             </li>

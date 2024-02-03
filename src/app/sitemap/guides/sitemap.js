@@ -5,7 +5,6 @@ export default async function sitemap() {
         return page.locale === 'en' ? `${page.slug}` : `${page.locale}/${page.slug}`
     }
 
-    console.log(siteMaps, 'siteMaps')
     return siteMaps.map(page => ({
         url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/${getSlug(page)}`,
         lastModified: page.lastModified,

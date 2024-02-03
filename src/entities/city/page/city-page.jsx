@@ -11,10 +11,8 @@ import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import {createTranslation} from "@/i18n/server";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
-
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     const {t} = await createTranslation(locale);
-
 
     return (
         <>
@@ -28,7 +26,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <SsrCalendar locale={locale} type="city" id={id} title={`${title} ${t('Tour Calendar')}`}/>
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
                 <LatestReviews id={id} locale={locale}/>
-                <Highlights id={id}/>
+                <Highlights id={id} locale={locale}/>
                 <TextBlocks id={id} locale={locale}/>
                 <Guides id={id} locale={locale} title={title} type="city"/>
                 <MostPopularCity locale={locale} id={id} slug={slug}/>

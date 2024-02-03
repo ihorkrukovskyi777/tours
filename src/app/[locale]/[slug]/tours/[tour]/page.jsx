@@ -17,6 +17,8 @@ import TextQuote from "@/widgets/text-quote";
 import CityRow from "@/widgets/city-row/city-row";
 import TourRow from "@/widgets/tour-row/tour-row";
 import TextBlocks from "@/widgets/text-blocks";
+import {fallbackLng} from "@/i18n/settings";
+import {generatorSeo} from "@/shared/helpers/generator-seo";
 
 const ChangeOfLanguage = dynamic(
     () => import("@/shared/ui/languages/change-of-language/change-of-language"),
@@ -36,7 +38,7 @@ export default async function Page({params: {locale, slug, tour}}) {
     const page = await data.json();
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
-    const {t} = await createTranslation()
+    const {t} = await createTranslation(locale)
     if (page.statusCode === 404) {
         notFound();
     }
@@ -74,4 +76,11 @@ export default async function Page({params: {locale, slug, tour}}) {
             </Suspense>
         </main>
     )
+}
+
+export async function generateMetadata({ params : {slug, locale, tour} }) {
+    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/${slug}?locale=${locale}`, {next: { revalidate: 0 }}).then((res) => res.json())
+
+    const canonical = locale === fallbackLng ? `${slug}/${PATH_TOURS}/${tour}` : `${locale}/${slug}/${PATH_TOURS}/${tour}`
+    return generatorSeo(seo, canonical, locale)
 }

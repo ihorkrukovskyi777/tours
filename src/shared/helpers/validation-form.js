@@ -23,7 +23,6 @@ const email = ({val})=> {
 const phone = ({val , arrNumbers= '10,11'})=> {
     const valuePhone = val.toString().split('').filter(e => e.trim().length).join('').length;
     const validateArray = arrNumbers.split(',').map(i => Number(i));
-    console.log(!validateArray.includes(valuePhone))
     return !validateArray.includes(valuePhone) ? true : 'PHONE_ERROR';
 }
 

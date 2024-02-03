@@ -3,7 +3,7 @@ import {createTranslation} from "@/i18n/server";
 import RowCities from "@/shared/ui/card-components/row-cities/row-cities";
 export default async function BannerHome({locale, id, index, flexibleKey}) {
     const data = await fetchFlexibleContent(id, locale, flexibleKey, index, 60*5)
-    const { t } = await createTranslation();
+    const { t } = await createTranslation(locale);
     if(!data) {
         return null
     }

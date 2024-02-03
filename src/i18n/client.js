@@ -1,12 +1,15 @@
 'use client';
 
 import {useEffect} from 'react';
+import {useParams} from "next/navigation";
 import i18next  from 'i18next';
 import {initReactI18next, useTranslation as useTransAlias} from 'react-i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import {getOptions, locales} from './settings';
-
+import {fallbackLng, getOptions, locales} from './settings';
+const filesNames = {
+    common: 'tour-strawbery',
+}
 const runsOnServerSide = typeof window === 'undefined';
 
 // Initialize i18next for the client side
@@ -15,8 +18,15 @@ i18next
     .use(LanguageDetector)
     .use(
         resourcesToBackend(
-            (language, namespace) =>
-                import(`./locales/${language}/${namespace}.json`),
+            async (language, namespace) => {
+                console.log(language, 'client')
+                if(language === fallbackLng) {
+                    return {};
+                }
+                let translates = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${language}/${filesNames[namespace]}`, { next: { revalidate: 50 }});
+                translates = await translates.json();
+                return translates;
+            }
         ),
     )
     .init({
@@ -28,17 +38,20 @@ i18next
         preload: runsOnServerSide ? locales : [],
     });
 
-export function useTranslation(ns = 'default',lng = '') {
+export function useTranslation(lng = '', ns = 'common') {
+
+    const params = useParams();
+    const locale = !!lng === false ? params.locale : lng;
     const translator = useTransAlias(ns);
     const {i18n} = translator;
 
     // Run when content is rendered on server side
-    if (runsOnServerSide && lng && i18n.resolvedLanguage !== lng) {
-        i18n.changeLanguage(lng);
+    if (runsOnServerSide && locale && i18n.resolvedLanguage !== locale) {
+        i18n.changeLanguage(locale);
     } else {
         // Use our custom implementation when running on client side
         // eslint-disable-next-line react-hooks/rules-of-hooks
-        useCustomTranslationImplement(i18n, lng);
+        useCustomTranslationImplement(i18n, locale);
     }
     return translator;
 }

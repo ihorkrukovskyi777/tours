@@ -7,7 +7,7 @@ import './style.css';
 
 
 export default async function BannerCity({id, locale, size, isMobile = false}) {
-    const {t} = await createTranslation()
+    const {t} = await createTranslation(locale)
     const {attachment, title, rating, reviews} = await getBannerData(id, locale, 'city', 60 * 10)
     return (
         <Banner
@@ -17,7 +17,7 @@ export default async function BannerCity({id, locale, size, isMobile = false}) {
             size={size}
             bottomView={<Reviews rating={rating} count_reviews={reviews} title={t('Reviews')}/>}
         >
-            <p className="pick_text">Pick a Date!</p>
+            <p className="pick_text">{t('Pick a Date!')}</p>
             <div className="flex-row">
                 <BannerButtons/>
             </div>
