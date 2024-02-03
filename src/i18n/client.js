@@ -19,7 +19,6 @@ i18next
     .use(
         resourcesToBackend(
             async (language, namespace) => {
-                console.log(language, 'client')
                 if(language === fallbackLng) {
                     return {};
                 }

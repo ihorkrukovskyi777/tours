@@ -14,7 +14,6 @@ const initI18next = async (lang, ns) => {
         .use(
             resourcesToBackend(
                 async (language, namespace) => {
-                    console.log(language, 'language')
                     if(language === fallbackLng) {
                         return {};
                     }

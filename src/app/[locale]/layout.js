@@ -5,7 +5,7 @@ import '../../globals.css'
 export default async function LocaleLayout({children, params}) {
     return (
         <>
-            <html lang={seoLocales[params.locale]}>
+            <html lang={seoLocales[params.locale]?.replace('_', '-')}>
 
             <body>
             <main className={'main_flex_container'}>
