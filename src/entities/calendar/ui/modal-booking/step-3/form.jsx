@@ -1,15 +1,14 @@
 'use client'
 import {useState} from 'react';
-import {useTranslation} from "@/i18n/client";
 import {useParams} from "next/navigation";
 import InternationalInput from '../../../../../shared/ui/selectors/international-input';
 import {useRouter} from "next/navigation";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import classNames from "classnames";
+import Link from "next/link";
 
 
-export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDeparture, errorsMessage , isLoading }) {
-    const {t} = useTranslation();
+export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookingDeparture, errorsMessage , isLoading }) {
     const { push } = useRouter();
     const params = useParams();
     //validation
@@ -206,8 +205,8 @@ export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDepar
                 <div className="item-form full-width checkbox-item">
                     <div className="form-group">
                         <input type='checkbox' id="accept" name='accept' onChange={handleChange}/>
-                        <label htmlFor="accept">I accept all</label>
-                        <a href="/terms-and-conditions/" className="terms-and-conditions">Terms and Conditions</a> <span
+                        <label htmlFor="accept">{i18n.i_accept_all}</label>
+                        <Link href="/terms-and-conditions/" className="terms-and-conditions">{i18n.terms_and_conditions}</Link> <span
                         className="red">*</span>
                     </div>
                     {errors.accept.length > 0 ? <span className='error-message'>{errors.accept}</span> : null}
@@ -217,7 +216,7 @@ export default function FormCalendar({allPhoneNumbers, locale ,fetchBookingDepar
                 {errorsMessage?.map((value, index) => <li key={index} dangerouslySetInnerHTML={{__html: value ?? ''}}></li>)}
             </ul>
             <div className="btns-wrap">
-                <button className='button_custom'>{t('Book Now')}</button>
+                <button className='button_custom'>{i18n.book_now}</button>
                 <div className={classNames({'show-loader': isLoading}, 'calendar_choose_date_loader')}   id="calendar_choose_date_loader">
                     <div className="lds-dual-ring"></div>
                 </div>

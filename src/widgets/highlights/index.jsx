@@ -1,5 +1,5 @@
 import {getHighlightsImages} from "@/entities/api";
-import {createTranslation } from "@/i18n/server";
+import i18n from "@/i18n";
 import dynamic from "next/dynamic";
 const HighlightsLazySlider = dynamic(
     () => import("@/widgets/highlights/lazy-loading"),
@@ -8,13 +8,13 @@ const HighlightsLazySlider = dynamic(
 import './style.css';
 
 export default async function Highlights({id, locale}) {
-    const { t } = await createTranslation(locale);
+    await i18n.getFetch();
     const images = await getHighlightsImages(id);
     return (
         <section className="highlights">
             <div className="container">
                 <div className="wrapper">
-                    <h2 className="title">{t('Highlights of your trip!')}</h2>
+                    <h2 className="title">{i18n.t('Highlights of your trip!')}</h2>
                     <HighlightsLazySlider images={images} />
                 </div>
             </div>

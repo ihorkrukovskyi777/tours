@@ -5,7 +5,7 @@ import ReviewCard from "@/widgets/latest-reviews/reviews-card";
 import Button from "@/shared/ui/selectors/button/button";
 import {useTranslation} from "@/i18n/client";
 import {getReviews} from "@/entities/api";
-export default function ListReviews({reviews, total, limit, id, type}) {
+export default function ListReviews({i18n, reviews, total, limit, id, type}) {
     const {t} = useTranslation();
     const params = useParams();
     const [moreReviews, setMoreReviews] = useState({
@@ -41,7 +41,7 @@ export default function ListReviews({reviews, total, limit, id, type}) {
                     })
                 }
             </div>
-            {total > [...reviews, ...moreReviews.value].length ? <Button onClick={loadReviews} prevent={true}>{t('Show me More')}</Button> : null}
+            {total > [...reviews, ...moreReviews.value].length ? <Button onClick={loadReviews} prevent={true}>{i18n.show_me_more}</Button> : null}
         </>
     )
 }

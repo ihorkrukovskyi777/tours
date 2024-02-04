@@ -4,7 +4,6 @@ import CloseSvg from '@/assets/images/svg/close-svg';
 import useEscHooks from "@/shared/hooks/use-esc-event";
 import {useContext, useState} from 'react';
 import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/helpers/date";
-import {useTranslation} from "@/i18n/client";
 import {observer} from "mobx-react-lite";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import '@/entities/calendar/ui/modal-booking/step-2/style.css';
@@ -12,9 +11,8 @@ import ModalTourItem from "@/entities/calendar/ui/modal-tour-item";
 import classNames from "classnames";
 import Button from "@/shared/ui/selectors/button/button";
 
-export default observer(function ModalListDepartures({size = "small", title, close, isOpened}) {
+export default observer(function ModalListDepartures({i18n, size = "small", title, close, isOpened}) {
     const {checkoutInfo: {tourName}, managerModal: {toggleModalChoose}, editDeparture: {selectedDay, departureByDay, saveNewDep,}} = useContext(CheckoutStoreContext);
-    const {t} = useTranslation()
 
     const [selectedDep, setSelectedDep] = useState(null);
 
@@ -36,8 +34,8 @@ export default observer(function ModalListDepartures({size = "small", title, clo
                 </div>
                 <div className="close-button" onClick={closeModal}><CloseSvg/></div>
             </div>
-            <div className="choosen-date">{serviceDate.dayDeparture(t)}</div>
-            <div className="available-tours">{departureByDay.length} {t('Departure(s) Available')}</div>
+            <div className="choosen-date">{serviceDate.dayDeparture(i18n.days, i18n.months)}</div>
+            <div className="available-tours">{departureByDay.length} {i18n.departures_available}</div>
 
             {departureByDay?.map((dep) =>
                 <ModalTourItem
@@ -59,10 +57,10 @@ export default observer(function ModalListDepartures({size = "small", title, clo
                         closeModal();
                     }}
                 >
-                    {t('Save changes')}
+                    {i18n.save_changes}
                 </Button>
             </div>
-            <Button customClass="gray" onClick={closeModal}>{t('Back')}</Button>
+            <Button customClass="gray" onClick={closeModal}>{i18n.back}</Button>
         </div>
     )
 })

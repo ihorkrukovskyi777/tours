@@ -9,7 +9,7 @@ import { ServiceDate } from "@/shared/service/service-date";
 import { setFormatDDMMYYYYtoMMDDYYYY } from "@/shared/helpers/date";
 import {useTranslation} from "@/i18n/client";
 
-export default observer(function DeparturesList() {
+export default observer(function DeparturesList({ i18n }) {
     const { t} = useTranslation();
     const {
         storeCalendar: {
@@ -39,7 +39,7 @@ export default observer(function DeparturesList() {
 
                         return (
                             <Fragment key={index}>
-                                {showDate ? <div className="day_name">{t(service.day)}, {service.dayNum} {t(service.month)}</div> : null}
+                                {showDate ? <div className="day_name">{i18n.days[service.day]}, {service.dayNum} {i18n.months[service.month]}</div> : null}
                                 <TourItem
                                     locale={locale}
                                     dep={departure}
@@ -50,8 +50,8 @@ export default observer(function DeparturesList() {
                     })}
                 </>
             }
-            {showEmpty ? <div className="error-block block">Departures not found</div> : null}
-            {showMeMore ? <button className="show-more" onClick={nextPage}>Show Me More</button> : null}
+            {showEmpty ? <div className="error-block block">{i18n.departures_not_found}</div> : null}
+            {showMeMore ? <button className="show-more" onClick={nextPage}>{i18n.show_me_more}</button> : null}
         </div>
     )
 })

@@ -5,7 +5,7 @@ import {useContext} from "react";
 import Image from "next/image";
 import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 
-export default observer(function MainInfo() {
+export default observer(function MainInfo({ i18n }) {
     const { t } = useTranslation();
     const { checkoutInfo } = useContext(CheckoutStoreContext);
 
@@ -27,7 +27,7 @@ export default observer(function MainInfo() {
                                 fill="#E10600"
                             ></path>
                         </svg>
-                        <strong>{t('Tour')}: </strong>
+                        <strong>{i18n.tour}: </strong>
                         {checkoutInfo.tourName}
                     </li>
                     <li>
@@ -43,7 +43,7 @@ export default observer(function MainInfo() {
                                 fill="#E10600"
                             ></path>
                         </svg>
-                        <strong>{t('Language')}: </strong>
+                        <strong>{i18n.language}: </strong>
                         {checkoutInfo.language}
                     </li>
                     <li>
@@ -59,7 +59,7 @@ export default observer(function MainInfo() {
                                 fill="#E10600"
                             ></path>
                         </svg>
-                        <strong>{t('Date')}: </strong>
+                        <strong>{i18n.date}: </strong>
                         {helper.dayDeparture(t)}
                     </li>
                     <li>
@@ -75,7 +75,7 @@ export default observer(function MainInfo() {
                                 fill="#E10600"
                             ></path>
                         </svg>
-                        <strong>{t('Time')}: </strong>
+                        <strong>{i18n.time}: </strong>
                         {checkoutInfo.startTime}
                     </li>
                     <li>
@@ -91,7 +91,7 @@ export default observer(function MainInfo() {
                                 fill="#E10600"
                             ></path>
                         </svg>
-                        <strong>{t('Duration')}: </strong>
+                        <strong>{i18n.duration}: </strong>
                         {checkoutInfo.duration}
                     </li>
                     <li>
@@ -108,7 +108,7 @@ export default observer(function MainInfo() {
                                 stroke="#E10600"
                             ></path>
                         </svg>
-                        <strong>{t('Number of people')}: </strong>
+                        <strong>{i18n.number_people}: </strong>
                         {checkoutInfo.numberPeople}
                     </li>
                     <li>
@@ -125,7 +125,7 @@ export default observer(function MainInfo() {
                                 stroke="#E10600"
                             ></path>
                         </svg>
-                        <strong>{t('Guide')}: </strong>
+                        <strong>{i18n.guide}: </strong>
                         {checkoutInfo.brandName}
                     </li>
                 </ul>
@@ -146,7 +146,7 @@ export default observer(function MainInfo() {
                         ></path>
                     </svg>
                     <div>
-                        {t('Starting point')}: <span>{checkoutInfo.address}</span>
+                        {i18n.start_point}: <span>{checkoutInfo.address}</span>
                     </div>
                 </div>
                 {checkoutInfo.locationDescription && (
@@ -164,7 +164,7 @@ export default observer(function MainInfo() {
                             ></path>
                         </svg>
                         <div>
-                            <span>{t('Directions')}:</span> {checkoutInfo.locationDescription}
+                            <span>{i18n.directions}:</span> {checkoutInfo.locationDescription}
                         </div>
                     </div>
                 )}

@@ -1,5 +1,5 @@
 import {allGuides} from '@/entities/api';
-import {createTranslation} from "@/i18n/server";
+import i18n from "@/i18n";
 import {hrefSubVendor} from "@/shared/helpers/url";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -11,8 +11,7 @@ import './style.css';
 
 export default async function Guides({title, id, locale, type}) {
     const items = await allGuides(id, type);
-    const {t} = await createTranslation(locale);
-
+    await i18n.getFetch();
     if (!items?.length) {
         return null
     }
@@ -20,7 +19,7 @@ export default async function Guides({title, id, locale, type}) {
         <>
             <section className="guides_section">
                 <div className="container">
-                    <h2>{t('Your Guides in')} {title}</h2>
+                    <h2>{i18n.t('Your Guides in')} {title}</h2>
                     <LazyGuidesRow guides={items}/>
                     <div style={{display: 'none'}} id="hidden_mirage_guide">
                         {items.map(item => {

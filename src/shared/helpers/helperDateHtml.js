@@ -14,18 +14,19 @@ export class HelperDateHtml extends ServiceDate {
             `;
     }
 
-    dayDeparture(t) {
+    dayDeparture(days = {}, months = {}) {
+
         return `
-               ${t(this.day)},
+               ${days[this.day] ?? this.day},
                 ${this.dayNum}
-               ${t(this.month)}
+               ${months[(this.month)] ?? this.month}
             `;
     }
-    dayDepartureFullTime(t) {
+    dayDepartureFullTime(days = {}, months = {}) {
         return `
-               ${t(this.day)},
+               ${days[this.day]},
                 ${this.dayNum}
-               ${t(this.month)}
+               ${months[this.month]}
                ${this.time}
             `;
     }

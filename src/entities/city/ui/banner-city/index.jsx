@@ -2,12 +2,12 @@ import Banner from '@/shared/ui/banner';
 import BannerButtons from "@/entities/city/ui/banner-buttons/banner-buttons";
 import Reviews from '@/widgets/latest-reviews/item/reviews';
 import {getBannerData} from "@/entities/api";
-import {createTranslation} from "@/i18n/server";
+import i18n from "@/i18n";
 import './style.css';
 
 
 export default async function BannerCity({id, locale, size, isMobile = false}) {
-    const {t} = await createTranslation(locale)
+    await i18n.getFetch();
     const {attachment, title, rating, reviews} = await getBannerData(id, locale, 'city', 60 * 10)
     return (
         <Banner
@@ -15,11 +15,11 @@ export default async function BannerCity({id, locale, size, isMobile = false}) {
             title={title}
             attachment={attachment}
             size={size}
-            bottomView={<Reviews rating={rating} count_reviews={reviews} title={t('Reviews')}/>}
+            bottomView={<Reviews rating={rating} count_reviews={reviews} title={i18n.t('Reviews')}/>}
         >
-            <p className="pick_text">{t('Pick a Date!')}</p>
+            <p className="pick_text">{i18n.t('Pick a Date!')}</p>
             <div className="flex-row">
-                <BannerButtons/>
+                <BannerButtons i18n={{today: i18n.t('Today'), tomorrow: i18n.t('Tomorrow')}} />
             </div>
         </Banner>
     )

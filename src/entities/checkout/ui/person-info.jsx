@@ -5,7 +5,7 @@ import {useContext} from "react";
 import {observer} from "mobx-react-lite";
 import {useTranslation} from "@/i18n/client";
 
-export default observer(function PersonInfo() {
+export default observer(function PersonInfo({ i18n }) {
     const { t } = useTranslation();
     const { checkoutInfo } = useContext(CheckoutStoreContext);
     return (
@@ -13,16 +13,16 @@ export default observer(function PersonInfo() {
             <div className="left_box">
                 <ul>
                     <li>
-                        <span>{t('Name')}: </span> {checkoutInfo.fullName}
+                        <span>{i18n.name}: </span> {checkoutInfo.fullName}
                     </li>
                     <li>
-                        <span>{t('Email')}: </span> {checkoutInfo.email}
+                        <span>{i18n.email}: </span> {checkoutInfo.email}
                     </li>
                     <li>
-                        <span>{t('Phone Number')}: </span> {checkoutInfo.phone}
+                        <span>{i18n.phone_number}: </span> {checkoutInfo.phone}
                     </li>
                     <li>
-                        <span>{t('Booking ID')}: </span> {checkoutInfo.bookingId}
+                        <span>{i18n.booking_id}: </span> {checkoutInfo.bookingId}
                     </li>
                 </ul>
             </div>

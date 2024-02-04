@@ -8,7 +8,7 @@ import {
 import CheckoutSection from "@/entities/checkout/ui";
 import {useSearchParams} from "next/navigation";
 
-const CheckoutContent = observer(({title}) => {
+const CheckoutContent = observer(({title, i18n}) => {
     const searchParams = useSearchParams()
     const code = searchParams.get('code');
     const store = useContext(CheckoutStoreContext);
@@ -28,15 +28,15 @@ const CheckoutContent = observer(({title}) => {
         <main>
             {store.isLoading && <p>Loading...</p>}
             {store.error && <p>Error: {store.error}</p>}
-            {store.editDeparture ? <CheckoutSection title={title}/> : null}
+            {store.editDeparture ? <CheckoutSection title={title} i18n={i18n}/> : null}
         </main>
     );
 });
 
-export default function Checkout({title, locale, tourLocale}) {
+export default function Checkout({title, locale, tourLocale, i18n}) {
     return (
         <CheckoutStoreProvider locale={locale} tourLocale={tourLocale}>
-            <CheckoutContent title={title}/>
+            <CheckoutContent title={title} i18n={i18n}/>
         </CheckoutStoreProvider>
     );
 }

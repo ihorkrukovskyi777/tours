@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import {useContext} from "react";
 import Button from "@/shared/ui/selectors/button/button";
 import FormEdit from "@/entities/checkout/ui/form-edit";
-import {useTranslation} from "@/i18n/client";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {observer} from "mobx-react-lite";
 import DefaultModal from "@/shared/ui/modals/default-modal";
@@ -10,26 +9,25 @@ import ChooseDate from "@/entities/checkout/ui/calendar/choose-date";
 import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 import './style.css';
 
-export default observer(function EditModalTour() {
-    const {t} = useTranslation()
+export default observer(function EditModalTour({ i18n }) {
     const {editDeparture, managerModal: {modalEdit, toggleModalEdit, chooseDateModal, toggleModalChoose}} = useContext(CheckoutStoreContext);
     const helper = new HelperDateHtml(editDeparture.activityDate)
     return (
         <div className={classNames({'show_modal': modalEdit}, 'edit_tour_modal transition')}>
             <div className="modal_content">
                 <DefaultModal modalShow={chooseDateModal} isOpenedModal={toggleModalChoose}>
-                    {chooseDateModal ? <ChooseDate /> : null}
+                    {chooseDateModal ? <ChooseDate i18n={i18n}/> : null}
                 </DefaultModal>
                 <div className="flex-wrap">
                     <div className="close-button" onClick={toggleModalEdit}>
                         ×
                     </div>
                     <Button customClass="btn_wrap" onClick={toggleModalChoose}>
-                        {t('Change Date/Time/Number of people')}
+                        {i18n.change_data_time_number_people}
                     </Button>
                     <div className="item item--row">
                         <div className="choosen-date">
-                            {helper.dayDepartureFullTime(t)}
+                            {helper.dayDepartureFullTime(i18n.days, i18n.months)}
                         </div>
                         <div className="item item--row item item--people">
                             <svg
@@ -45,10 +43,10 @@ export default observer(function EditModalTour() {
                                     stroke="#E10600"
                                 ></path>
                             </svg>
-                            <strong>{t('Number of people')}:</strong>
+                            <strong>{i18n.number_people}:</strong>
                             <div>{editDeparture.numberPeople}</div>
                         </div>
-                        <FormEdit isOpened={false} close={toggleModalEdit}/>
+                        <FormEdit i18n={i18n} isOpened={false} close={toggleModalEdit}/>
                     </div>
                 </div>
             </div>

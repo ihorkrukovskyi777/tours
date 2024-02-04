@@ -9,6 +9,7 @@ import './style.css';
 
 
 export default function Calendar({
+                                     i18n,
                                      children,
                                      onChange,
                                      departures = {},
@@ -70,6 +71,7 @@ export default function Calendar({
     return (
         <div className="calendar">
             <HeaderCalendar
+                i18n={i18n}
                 month={currentMonth}
                 year={currentYear}
                 prevMonth={prevMonth}

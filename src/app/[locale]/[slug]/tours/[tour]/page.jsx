@@ -5,7 +5,6 @@ import {headers} from "next/headers";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import Guides from "@/shared/ui/guides";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
-import {createTranslation} from "@/i18n/server";
 import TextAndSliderTourPage from "@/entities/tour/ui/text-and-slider-tour-page";
 import {isMobileCheck} from "@/shared/helpers";
 import dynamic from "next/dynamic";
@@ -19,11 +18,8 @@ import TourRow from "@/widgets/tour-row/tour-row";
 import TextBlocks from "@/widgets/text-blocks";
 import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
-
-const ChangeOfLanguage = dynamic(
-    () => import("@/shared/ui/languages/change-of-language/change-of-language"),
-    {ssr: false}
-)
+import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
+import i18n from "@/i18n";
 
 const MapAndSlider = dynamic(
     () => import("@/widgets/map-and-slider/map-and-slider"),
@@ -38,7 +34,7 @@ export default async function Page({params: {locale, slug, tour}}) {
     const page = await data.json();
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
-    const {t} = await createTranslation(locale)
+    await i18n.getFetch();
     if (page.statusCode === 404) {
         notFound();
     }
@@ -50,8 +46,8 @@ export default async function Page({params: {locale, slug, tour}}) {
         return ({...item, slug: `${city.slug}/${PATH_TOURS}/${item.slug}`})
     }).filter(Boolean);
     const pagesBreadcrumbs = [
-        {slug: getHrefLocale(locale, ''), title: t('Free Walking Tour')},
-        {slug: page.city.slug, title: `${t('Free Tour')} ${page.city.title}`},
+        {slug: getHrefLocale(locale, ''), title: i18n.t('Free Walking Tour')},
+        {slug: page.city.slug, title: `${i18n.t('Free Tour')} ${page.city.title}`},
         {title: page.title}
     ]
 
@@ -62,13 +58,14 @@ export default async function Page({params: {locale, slug, tour}}) {
             <TextQuote id={page.id} locale={locale} type="tour"/>
             <Suspense fallback={''}>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
-                <MapAndSlider locale={page.locale} id={page.id}/>
+                <MapAndSlider locale={page.locale} id={page.id} i18n={{tour_features: i18n.t('Tour Features')}}/>
                 <LatestReviews id={page.id} locale={locale} type="tour"/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
-                <Guides title={t('this Tour')} id={page.id} locale={page.locale} type="tour"/>
-                <TourRow id={page.id} locale={page.locale} title={`${t('Other Tours in')} ${page.city.title}`}/>
-                <CityRow id={page.id} locale={page.locale} title={`${t('See All Tours in')} ${page.city.title}`}/>
-                <ChangeOfLanguage
+                <Guides title={i18n.t('this Tour')} id={page.id} locale={page.locale} type="tour"/>
+                <TourRow id={page.id} locale={page.locale} title={`${i18n.t('Other Tours in')} ${page.city.title}`}/>
+                <CityRow id={page.id} locale={page.locale} title={`${i18n.t('See All Tours in')} ${page.city.title}`}/>
+                <I18nChangeOfLanguage
+                    locale={locale}
                     languages={languages}
                 />
                 <Breadcrumbs pages={pagesBreadcrumbs} locale={locale}/>

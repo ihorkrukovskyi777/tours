@@ -7,12 +7,12 @@ const MapAndSlider = dynamic(
     () => import("@/widgets/map-and-slider/map-and-slider"),
     {ssr: false}
 )
-export default function ProviderMap({locale, id, toursPlaces, buttonsShow}) {
+export default function ProviderMap({i18n, locale, id, toursPlaces, buttonsShow}) {
     const ref = useRef(null)
     const isVisible = useOnScreen(ref)
     return (
         <div ref={ref}>
-            { isVisible ? <MapAndSlider locale={locale} id={id} toursPlaces={toursPlaces} buttonsShow={buttonsShow}/> : null }
+            { isVisible ? <MapAndSlider i18n={i18n} locale={locale} id={id} toursPlaces={toursPlaces} buttonsShow={buttonsShow}/> : null }
         </div>
     )
 }

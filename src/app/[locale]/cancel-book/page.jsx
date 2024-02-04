@@ -1,6 +1,6 @@
 import {notFound} from "next/navigation";
 import Footer from "@/shared/ui/layouts/footer/footer";
-import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
+import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import '@/entities/post/ui/post-content/style.css';
 export default async function CancelPage({params: {locale}, searchParams}) {
     let cancelBook = await fetch(
@@ -36,7 +36,7 @@ export default async function CancelPage({params: {locale}, searchParams}) {
                     <p dangerouslySetInnerHTML={{__html: cancelBook?.message ?? ''}}></p>
                 </div>
             </div>
-            <ChangeOfLanguage languages={data.languages}/>
+            <I18nChangeOfLanguage locale={locale} languages={data.languages}/>
             <Footer locale={locale}/>
         </>
     )

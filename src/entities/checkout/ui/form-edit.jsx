@@ -12,7 +12,7 @@ import Notification from "@/shared/ui/notification/notification";
 import {valid , validationFirstName , validationEmail , validationPhone} from "@/shared/helpers/validation-form";
 
 
-export default observer(function FormEdit() {
+export default observer(function FormEdit({i18n}) {
 
     const searchParams = useSearchParams()
     const [error, setError] = useState(false);
@@ -82,20 +82,20 @@ export default observer(function FormEdit() {
         <form id='edit_tour' onSubmit={preSubmitForValidation}>
             {error === true ? <Notification close={() => setError(false)} /> : null}
             <div className="item">
-                <label htmlFor="">First Name</label>
+                <label htmlFor="">{i18n.first_name}</label>
                 <input type='text' name='firstName' onChange={changeValue.firstName} value={editDeparture.firstName}/>
                 {validForm.firstName ? <span className='error-message'>{validForm.firstName ? `First Name ${t(validForm.firstName)}`  : null} </span> : null}
                 <EditSvg/>
             </div>
             <div className="item">
-                <label htmlFor="">Last Name</label>
+                <label htmlFor="">{i18n.last_name}</label>
                 <input type='text' name='lastName' onChange={changeValue.lastName} value={editDeparture.lastName}/>
                 {validForm.lastName ? <span className='error-message'>{validForm.lastName ? `Last Name ${t(validForm.lastName)}`  : null} </span> : null}
                 <EditSvg/>
             </div>
 
             <div className="item">
-                <label htmlFor="">{t('Phone')}</label>
+                <label htmlFor="">{i18n.phone}</label>
                 {phones.state === 'fulfilled' ?
                     <InternationalInput
                         locale={editDeparture.countrySlug}
@@ -111,13 +111,13 @@ export default observer(function FormEdit() {
             </div>
 
             <div className="item">
-                <label htmlFor="">Email</label>
+                <label htmlFor="">{i18n.email}</label>
                 <input type='email' name='email' onChange={changeValue.email} value={editDeparture.email}/>
                 {validForm.email ? <span className='error-message'> {t(validForm.email)} </span> : null}
                 <EditSvg/>
             </div>
             {Array.isArray(error) ? <ul>{error.map((value, index) => <li key={index}>{value}</li>)}</ul> : null}
-            <Button customClass='submit'>{t('Save')}</Button>
+            <Button customClass='submit'>{i18n.save}</Button>
         </form>
     )
 })

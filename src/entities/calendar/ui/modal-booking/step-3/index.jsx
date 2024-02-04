@@ -16,7 +16,7 @@ import {ServiceDate} from "@/shared/service/service-date"
 
 import './style.css';
 
-export default observer(function Step3({onChange, people, errors,selectedLocale, locale, fetchBookingDeparture, close, size, allPhoneNumbers, departure,isOpened ,langSelected ,isLoading}) {
+export default observer(function Step3({i18n, onChange, people, errors,selectedLocale, locale, fetchBookingDeparture, close, size, allPhoneNumbers, departure,isOpened ,langSelected ,isLoading}) {
 
     useEscHooks(close, isOpened);
 
@@ -65,7 +65,7 @@ export default observer(function Step3({onChange, people, errors,selectedLocale,
                     <div className="item-data">
                         <div className="choosen-date">{departure.dateLabel}</div>
                         <div
-                            className="time-current-modal">{t(serviceDate.day)} {serviceDate.dayNum} {t(serviceDate.month)} {pad2(time.hours)}:{pad2(time.minutes)}</div>
+                            className="time-current-modal">{i18n.days[serviceDate.day]} {serviceDate.dayNum} {i18n.months[serviceDate.month]} {pad2(time.hours)}:{pad2(time.minutes)}</div>
                         <span>,</span>
                     </div>
                     <div className="append-wrap2">
@@ -73,25 +73,29 @@ export default observer(function Step3({onChange, people, errors,selectedLocale,
                             <div className="tour-item__time">
                                 <div className="duration">
                                     <div className="clock-wrap"><ClockSvg/></div>
-                                    <span>{duration.hours}:{pad2(duration.minutes)} {t('Hours')}</span>
+                                    <span>{duration.hours}:{pad2(duration.minutes)} {time.hours >= 2 ? i18n.hours : i18n.hour}</span>
                                 </div>
                                 <div className="people">
                                     <span className="comma">,</span>
-                                    <span className="people-count">{people}</span>{t('People')}
+                                    <span className="people-count">{people}</span>{i18n.people}
                                 </div>
                                 {selectedLocale}
-                                <FlagsComponents locale={selectedLocale} alt={`flag ${selectedLocale}`}
-                                                 className='country-box-select'/>
+                                <FlagsComponents
+                                    className='country-box-select'
+                                    locale={selectedLocale}
+                                    alt={`flag ${selectedLocale}`}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div className="center-wrap">
-                    <Button className="change" onClick={onChange}>{t('Change')}</Button>
+                    <Button className="change" onClick={onChange}>{i18n.change}</Button>
                 </div>
             </div>
             <FormCalendar
+                i18n={{book_now: i18n.book_now, terms_and_conditions: i18n.terms_and_conditions, i_accept_all: i18n.i_accept_all}}
                 errorsMessage={errors}
                 allPhoneNumbers={allPhoneNumbers}
                 locale={locale}

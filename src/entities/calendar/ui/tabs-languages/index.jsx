@@ -8,7 +8,6 @@ import './style.css';
 
 
 export default memo(function TabsLanguages({loading, onChange = () => {}, selectedCode = 'en', activeLanguage = []}) {
-    const { t } = useTranslation();
     const settingsTab = activeLanguage?.length < 4 ?  'not_full' : '';
 
     return (

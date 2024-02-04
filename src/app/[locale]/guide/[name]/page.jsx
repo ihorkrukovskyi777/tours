@@ -4,7 +4,7 @@ import {createTranslation} from "@/i18n/server";
 import {fetchSubVendorBySlug, getPageLanguage} from "@/entities/guide/api";
 import BannerGuide from "@/entities/guide/ui/banner-guide";
 import GuideTours from "@/entities/guide/ui/guide-tours/guide-tours";
-import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
+import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import {headers} from "next/headers";
 import {isMobileCheck} from "@/shared/helpers";
@@ -38,7 +38,7 @@ export default async function PageGuide({params: {name, locale}}) {
             <Suspense fallback={''}>
                 <GuideTours id={pageSub.id} locale={locale}/>
                 <SsrCalendar locale={locale} type="sub-vendor" id={pageSub.id} showFaq={false}/>
-                <ChangeOfLanguage languages={languagesFormatted} title={pageSub.brandName}/>
+                <I18nChangeOfLanguage locale={locale} languages={languagesFormatted} title={pageSub.brandName}/>
                 <Breadcrumbs pages={[{slug: '/', title: t('Free Tours')}, {title: name.replaceAll('_' ,' ') }]} locale={locale} />
                 <Footer locale={locale}/>
             </Suspense>

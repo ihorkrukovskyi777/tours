@@ -3,7 +3,7 @@ import {useTranslation} from "@/i18n/client";
 import Button from "@/shared/ui/selectors/button/button";
 import CalendarWhite from "/public/images/svg/calendar-white.svg"
 
-export default function BannerButtons() {
+export default function BannerButtons({ i18n }) {
     const { t } = useTranslation();
     function scrollToCalendar() {
         const section = document.querySelector('#tour_calendar_section');
@@ -11,8 +11,8 @@ export default function BannerButtons() {
     };
     return (
        <>
-           <Button onClick={scrollToCalendar}>{t('Today')}</Button>
-           <Button onClick={scrollToCalendar}>{t('Tomorrow')}</Button>
+           <Button onClick={scrollToCalendar}>{i18n.today}</Button>
+           <Button onClick={scrollToCalendar}>{i18n.tomorrow}</Button>
            <Button customClass="calendar-btn" onClick={scrollToCalendar} icon={CalendarWhite}></Button>
        </>
     )

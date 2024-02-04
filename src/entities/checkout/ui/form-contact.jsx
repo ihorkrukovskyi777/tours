@@ -4,7 +4,7 @@ import FormContactGuide from "@/entities/checkout/ui/form-contact-guide";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {useContext} from "react";
 import ThankYouMessage from "@/shared/ui/thank-you-message";
-export default observer(function FormContact() {
+export default observer(function FormContact({ i18n }) {
     const {pageOptions, managerModal: {modalMessage ,toggleModalMessage, modalThankYou, toggleModalThankYou } } = useContext(CheckoutStoreContext);
 
     const sendMessage = () => {
@@ -19,6 +19,7 @@ export default observer(function FormContact() {
                 size="default"
             >
                 <FormContactGuide
+                    i18n={i18n}
                     closeModal={sendMessage}
                 />
             </DefaultModal>

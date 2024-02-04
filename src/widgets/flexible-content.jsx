@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
+import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import BannerHome from "@/shared/ui/flexible-content/banner-home/banner-home";
 import Footer from "@/shared/ui/layouts/footer/footer";
 
@@ -68,7 +68,7 @@ export default async function FlexibleContent({
           />
         );
       })}
-      <ChangeOfLanguage languages={languages} title={title} />
+      <I18nChangeOfLanguage languages={languages} title={title} />
       <Footer locale={locale} />
     </>
   );

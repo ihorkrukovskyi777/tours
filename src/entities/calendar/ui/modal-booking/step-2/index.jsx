@@ -12,7 +12,7 @@ import {useTranslation} from "@/i18n/client";
 
 import './style.css';
 
-export default function Step2({title = "test", onBack, close, size = "small", isOpened, departures, saveButton = false, setDeparture}) {
+export default function Step2({i18n, title = "test", onBack, close, size = "small", isOpened, departures, saveButton = false, setDeparture}) {
     const { t} = useTranslation()
     const [selectedDep, setSelectedDep] = useState(null);
     useEscHooks(close, isOpened)
@@ -39,8 +39,8 @@ export default function Step2({title = "test", onBack, close, size = "small", is
                 </div>
                 <div className="close-button" onClick={close}><CloseSvg/></div>
             </div>
-            <div className="choosen-date">{serviceDate.dayDeparture(t)}</div>
-            <div className="available-tours">{departures.length} {t('Departure(s) Available')}</div>
+            <div className="choosen-date">{serviceDate.dayDeparture(i18n.days, i18n.months)}</div>
+            <div className="available-tours">{departures.length} {i18n.departure_available}</div>
 
             {departures.map((dep) =>
                 <ModalTourItem
@@ -62,11 +62,11 @@ export default function Step2({title = "test", onBack, close, size = "small", is
                         customClass='gray'
                         onClick={() => selectedDeparture(selectedDep)}
                     >
-                        {t('Save changes')}
+                        {i18n.save_changes}
                     </Button>
                     : null}
             </div>
-            <Button customClass="gray" onClick={onBack}>Back</Button>
+            <Button customClass="gray" onClick={onBack}>{i18n.back}</Button>
         </div>
     )
 }

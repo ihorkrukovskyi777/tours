@@ -10,7 +10,7 @@ import FlagsComponents from "@/shared/ui/flags";
 
 import './style.css';
 
-export default function ChangeOfLanguage({languages, title}) {
+export default function ChangeOfLanguage({i18n, languages, title}) {
     const searchParams = useSearchParams()
     const {t} = useTranslation();
     const [showLanguage, setShowLanguage] = useState(6);
@@ -35,7 +35,7 @@ export default function ChangeOfLanguage({languages, title}) {
     return (
         <section id="change-of-language">
             <div className="container">
-                <h2>{t('Free Tours in Your Language')}</h2>
+                <h2>{i18n.free_tour_tour_language}</h2>
                 <ul>
                     {languagesFilter?.slice(0, showLanguage).map((item) => {
                         return (
@@ -54,7 +54,7 @@ export default function ChangeOfLanguage({languages, title}) {
                 </ul>
                 {showLanguage < languagesFilter?.length ?
                     <div className="block-center">
-                        <Button onClick={() => setShowLanguage(value => value + 3)}>{t('Load More')}</Button>
+                        <Button onClick={() => setShowLanguage(value => value + 3)}>{i18n.load_more}</Button>
                     </div>
                     :
                     null

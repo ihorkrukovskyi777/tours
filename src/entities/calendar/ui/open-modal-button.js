@@ -2,7 +2,6 @@ import {observer} from "mobx-react-lite";
 import Button from "@/shared/ui/selectors/button/button";
 import CalendarSvg from "@/assets/images/svg/calendar-svg";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
-import {useTranslation} from "@/i18n/client";
 import dynamic from "next/dynamic";
 import Loader from "@/shared/ui/loaders/default-loader";
 
@@ -29,8 +28,7 @@ const Step2 = dynamic(
     }
 );
 
-export default observer(function OpenModalButton({storeModalCalendar}) {
-    const { t } = useTranslation();
+export default observer(function OpenModalButton({storeModalCalendar, i18n}) {
     const {
         isOpened,
         open,
@@ -63,20 +61,28 @@ export default observer(function OpenModalButton({storeModalCalendar}) {
                 <div className="calendar_icon">
                     <CalendarSvg/>
                 </div>
-                <span>{t('Pick a Date')}</span>
+                <span>{i18n.pick_a_date}</span>
             </Button>
             <ModalBooking show={isOpened} size={'step-1'}>
-                {isOpened ? <Step1
-                    title={title}
-                    storeModalCalendar={storeModalCalendar}
-                    isEsc={isOpened && isOpenedListDeparture === false}
-                    onChange={onChange}
-                /> : null}
+                {isOpened ?
+                    <Step1
+                        i18n={i18n}
+                        title={title}
+                        storeModalCalendar={storeModalCalendar}
+                        isEsc={isOpened && isOpenedListDeparture === false}
+                        onChange={onChange}
+                    /> : null}
             </ModalBooking>
             <ModalBooking show={isOpenedListDeparture} size={'step-2'}>
                 {isOpenedListDeparture ?
                     <Step2
                         title={title}
+                        i18n={{
+                            departure_available: i18n.departure_available,
+                            months: i18n.months,
+                            days: i18n.days,
+                            back: i18n.back
+                        }}
                         setDeparture={selectedDeparture}
                         departures={Object.values(departuresByDate).flat()}
                         storeModalCalendar={storeModalCalendar}

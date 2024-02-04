@@ -1,8 +1,11 @@
 import Header from '@/shared/ui/layouts/header/header'
 import {seoLocales} from "@/shared/constants/locales-seo";
 import WebSiteSchema from "@/shared/schema/web-site";
+import i18n from "@/i18n";
 import '../../globals.css'
 export default async function LocaleLayout({children, params}) {
+    i18n.init(params.locale)
+
     return (
         <>
             <html lang={seoLocales[params.locale]?.replace('_', '-')}>

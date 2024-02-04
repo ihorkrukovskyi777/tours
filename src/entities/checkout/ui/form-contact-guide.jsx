@@ -5,7 +5,7 @@ import Loader from "@/shared/ui/loaders/default-loader";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import {useSearchParams} from "next/navigation";
 
-export default function FormContactGuide({closeModal}) {
+export default function FormContactGuide({closeModal, i18n}) {
     const searchParams = useSearchParams()
     const code = searchParams.get('code');
 
@@ -40,21 +40,21 @@ export default function FormContactGuide({closeModal}) {
             setLoading(false);
 
         } else {
-            setError(t('The message must contain more than 10 characters'))
+            setError(i18n.more_than_10_characters)
         }
 
     }
 
     return (
         <form id='form_contact_guide' onSubmit={handleSubmit} style={{position: 'relative'}}>
-            <h2>{t('Contact Your Guide')}</h2>
+            <h2>{i18n.contact_your_guide}</h2>
             <div className="item">
                 <textarea
                     rows="5"
                     cols="20"
                     required=""
                     name="textArea"
-                    placeholder={t('Write your message here...')}
+                    placeholder={i18n.write_your_message_here_}
                     value={textArea}
                     onChange={({ target }) => setTextArea(target.value)}
                 >
@@ -63,7 +63,7 @@ export default function FormContactGuide({closeModal}) {
                 {!!error ? <span className='error-message'>{error}</span> : null}
             </div>
             <Button>
-                {t('Send Message')}
+                {i18n.send_messages}
             </Button>
             {loading ? <Loader style={{opacity: '0.4'}}/> : null }
         </form>

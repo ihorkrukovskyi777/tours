@@ -7,6 +7,7 @@ import "@/entities/calendar/ui/main/style.css";
 export const StoreCalendarContext = createContext(null);
 
 export default memo(function CalendarProvider({
+    i18n,
                                                   title,
                                                   locale,
                                                   type,
@@ -35,7 +36,7 @@ export default memo(function CalendarProvider({
                 storePhone: new StorePhone(locale),
             }}
         >
-            <Main siteLocale={locale}/>
+            <Main siteLocale={locale} i18n={i18n}/>
         </StoreCalendarContext.Provider>
     );
 });

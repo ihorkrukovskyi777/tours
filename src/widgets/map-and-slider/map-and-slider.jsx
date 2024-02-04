@@ -16,14 +16,14 @@ const SliderTours = dynamic(
 
 export const StoreMapContext = createContext(null)
 
-export default function MapAndSlider({id, locale, toursPlaces}) {
+export default function MapAndSlider({i18n, id, locale, toursPlaces}) {
 
     const ids = toursPlaces?.map(item => item.id) ?? []
 
     return (
         <section className='map_and_slider'>
             <div className="container">
-                <h2>Tour Features</h2>
+                <h2>{i18n.tour_features}</h2>
                 <div className='map_block'>
                     <StoreMapContext.Provider value={{
                         map: new StoreMap(id, locale)
@@ -32,7 +32,6 @@ export default function MapAndSlider({id, locale, toursPlaces}) {
                         <Map ids={ids} id={id} locale={locale}/>
                         <SliderTours/>
                     </StoreMapContext.Provider>
-
                 </div>
             </div>
         </section>

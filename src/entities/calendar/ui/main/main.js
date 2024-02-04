@@ -23,7 +23,7 @@ const Step3 = dynamic(
     () => import("@/entities/calendar/ui/modal-booking/step-3/index"),
     {
         ssr: false,
-        loading: () => <div style={{position: 'relative'}}><Loader /></div>
+        loading: () => <div style={{position: 'relative'}}><Loader/></div>
     }
 )
 const OpenModalButton = dynamic(
@@ -32,7 +32,7 @@ const OpenModalButton = dynamic(
         ssr: false,
     }
 )
-export default observer(function Main({siteLocale}) {
+export default observer(function Main({siteLocale, i18n}) {
     const {
         storePhone: {
             phones,
@@ -72,12 +72,23 @@ export default observer(function Main({siteLocale}) {
     }
     return (
         <div className="calendar_wrap" style={{minHeight: '900px'}}>
-            <h2 className="title">Tour Calendar</h2>
+            <h2 className="title">{i18n.tour_calendar}</h2>
             <div className="wrap-box">
                 <div className="wrap-button">
                     {phones.state !== 'fulfilled' ?
                         null :
-                        <OpenModalButton storeModalCalendar={storeModalCalendar}/>}
+                        <OpenModalButton
+                            storeModalCalendar={storeModalCalendar}
+                            i18n={{
+                                departure_available: i18n.departure_available,
+                                how_a_many_people: i18n.how_a_many_people,
+                                pick_a_date: i18n.pick_a_date,
+                                months: i18n.months,
+                                days: i18n.days,
+                                save_changes: i18n.save_changes,
+                                back: i18n.back,
+                            }}
+                        />}
                 </div>
                 <TabsLanguages
                     selectedCode={locale}
@@ -89,16 +100,36 @@ export default observer(function Main({siteLocale}) {
                     {!isEmpty ?
                         <>
                             <div className="block_title">
-                                How many people are coming?
+                                {i18n.how_a_many_people}
                             </div>
                             <CounterNumbers startNumber={people} onChange={changePeople}/></>
                         : null
                     }
                 </div>
-                {departures?.length ? <DeparturesList/> : null}
+                {departures?.length ?
+                    <DeparturesList
+                        i18n={{
+                            months: i18n.months,
+                            days: i18n.days,
+                            show_me_more: i18n.show_me_more,
+                            departures_not_found: i18n.departures_not_found
+                        }}
+                    />
+                    : null}
             </div>
             <ModalBooking size={'step-3'} show={isOpened}>
                 {isOpened ? <Step3
+                    i18n={{
+                        change: i18n.change,
+                        months: i18n.months,
+                        days: i18n.days,
+                        book_now: i18n.book_now,
+                        people: i18n.people,
+                        hours: i18n.hours,
+                        hour: i18n.hour,
+                        i_accept_all: i18n.i_accept_all,
+                        terms_and_conditions: i18n.terms_and_conditions,
+                    }}
                     langSelected={locale}
                     errors={errors}
                     people={people}
@@ -113,7 +144,7 @@ export default observer(function Main({siteLocale}) {
                     language={locale}
                     isLoading={loadingBooking}
                     close={close}
-                /> : null }
+                /> : null}
             </ModalBooking>
         </div>
 

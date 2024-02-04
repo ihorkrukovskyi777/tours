@@ -1,16 +1,8 @@
 
 export const fallbackLng = 'en';
 export const locales = [fallbackLng, 'fr', 'de', 'es', 'it', 'ru', 'pl', 'pt-pt', 'nl', 'cat'];
-export const defaultNS = 'common';
+export const defaultNS = 'tour-strawbery';
 
-export function getOptions(lang = fallbackLng, ns = defaultNS) {
-    return {
-        // debug: true, // Set to true to see console logs
-        supportedLngs: locales,
-        fallbackLng,
-        lng: lang,
-        fallbackNS: defaultNS,
-        defaultNS,
-        ns,
-    };
-}
+export const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+export const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Today', 'Tomorrow']

@@ -7,12 +7,12 @@ import Highlights from "@/widgets/highlights";
 import TextBlocks from "@/widgets/text-blocks";
 import Guides from "@/shared/ui/guides";
 import MostPopularCity from "@/entities/city/ui/most-popular-city";
+import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
-import {createTranslation} from "@/i18n/server";
+import i18n from "@/i18n";
 import Footer from "@/shared/ui/layouts/footer/footer";
-import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
-    const {t} = await createTranslation(locale);
+    await i18n.getFetch();
 
     return (
         <>
@@ -23,15 +23,15 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 id={id}
             />
             <Suspense fallback="">
-                <SsrCalendar locale={locale} type="city" id={id} title={`${title} ${t('Tour Calendar')}`}/>
+                <SsrCalendar locale={locale} type="city" id={id} title={title}/>
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
                 <LatestReviews id={id} locale={locale}/>
                 <Highlights id={id} locale={locale}/>
                 <TextBlocks id={id} locale={locale}/>
                 <Guides id={id} locale={locale} title={title} type="city"/>
                 <MostPopularCity locale={locale} id={id} slug={slug}/>
-                <ChangeOfLanguage languages={languages} title={t('Free Tours')}/>
-                <Breadcrumbs pages={[{slug: '/', title: t('Free Tour')}, {title: title}]} locale={locale}/>
+                <I18nChangeOfLanguage locale={locale} languages={languages} title="Free Tours"/>
+                <Breadcrumbs pages={[{slug: '/', title: i18n.t('Free Tour')}, {title: title}]} locale={locale}/>
                 <Footer locale={locale}/>
             </Suspense>
         </>

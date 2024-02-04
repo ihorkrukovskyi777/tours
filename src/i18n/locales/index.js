@@ -7,5 +7,6 @@ export const countryLocales = {
     'pt-pt': 'Português',
     cat: 'Català',
     nl: 'Nederlands',
-    ru: 'Russian'
+    ru: 'Russian',
+    pl: 'Polski'
 }

@@ -2,11 +2,13 @@ import Banner from '@/shared/ui/banner';
 import Reviews from '@/widgets/latest-reviews/item/reviews';
 import LanguageImages from "@/shared/ui/languages/language-images";
 import ClockSvg from '@/assets/images/svg/clock-svg';
+import i18n from "@/i18n";
 import {getBannerData} from "@/entities/api";
 import './style.css';
 
 
 export default async function BannerTour({id, locale, isMobile}) {
+    await i18n.getFetch()
     const tour = await getBannerData(id, locale, 'tour')
 
     return (
@@ -15,14 +17,14 @@ export default async function BannerTour({id, locale, isMobile}) {
             title={tour.title}
             attachment={tour.attachment}
             size="tour_banner"
-            bottomView={<Reviews rating={tour?.rating?.rating ?? 0} count_reviews={tour?.rating?.reviews ?? 0}/>}
+            bottomView={<Reviews rating={tour?.rating?.rating ?? 0} count_reviews={tour?.rating?.reviews ?? 0} title={i18n.t('Reviews')}/>}
         >
             <LanguageImages locales={tour.departure.locales}/>
             <div className="time_wrapper">
                 <ClockSvg/>
                 {tour?.departure?.durations?.length ?
                     <div>
-                        <span>{tour.departure.durations.join('-')} Hours</span>
+                        <span>{tour.departure.durations.join('-')} {i18n.t('Hours')}</span>
                     </div>
                : null}
             </div>
