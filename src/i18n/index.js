@@ -25,10 +25,12 @@ class I18n {
         if(this.translates[this.locale] && this.translates[this.locale][ns]) {
             return
         }
+
+        const start = new Date().getTime();
         const res = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${this.locale}/${ns}`, {next: {revalidate: 60}})
         this.translates[this.locale] = {[defaultNS]: {}}
         this.translates[this.locale][ns] = await res.json();
-
+        console.log(new Date().getTime() - start, 'fetch translates')
     }
 
     t(key, locale = this.locale, ns = defaultNS) {
