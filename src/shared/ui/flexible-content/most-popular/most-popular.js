@@ -10,5 +10,10 @@ export default async function BannerHome({locale, id, index, flexibleKey}) {
     }
 
     const cities = data.cities.map(city => ({...city, title: `${ i18n.t('Free Tours')} ${city.title}` }))
-    return <RowCities cities={cities} title={data.title}/>
+
+    return (
+        <>
+            <RowCities cities={cities} title={data.title}/>
+        </>
+    )
 }

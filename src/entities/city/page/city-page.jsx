@@ -1,4 +1,5 @@
 import {Suspense} from "react";
+import i18n from "@/i18n";
 import BannerCity from "@/entities/city/ui/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import MostPopularTours from "@/entities/city/ui/most-popular-tours";
@@ -9,8 +10,10 @@ import Guides from "@/shared/ui/guides";
 import MostPopularCity from "@/entities/city/ui/most-popular-city";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
-import i18n from "@/i18n";
 import Footer from "@/shared/ui/layouts/footer/footer";
+import PlaceSchema from "@/shared/schema/place";
+import ProductSchema from "@/shared/schema/product";
+import EventsSchema from "@/shared/schema/events";
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     await i18n.getFetch();
 
@@ -22,6 +25,11 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 locale={locale}
                 id={id}
             />
+            <Suspense fallback="">
+                <EventsSchema id={id} locale={locale} type="city"/>
+                <PlaceSchema id={id} locale={locale}/>
+                <ProductSchema id={id} locale={locale}/>
+            </Suspense>
             <Suspense fallback="">
                 <SsrCalendar locale={locale} type="city" id={id} title={title}/>
                 <MostPopularTours id={id} locale={locale} slug={slug}/>

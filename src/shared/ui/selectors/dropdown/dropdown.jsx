@@ -1,6 +1,6 @@
+'use client'
 import React, { useState } from 'react';
 import AnimateHeight from 'react-animate-height';
-
 export default function Dropdown({title , children , id}) {
     const [height, setHeight] = useState(0);
     return (

@@ -1,16 +1,20 @@
+import {PATH_TOURS} from "@/shared/constants/route";
+
 const domain = process.env.NEXT_PUBLIC_CANONICAL_DOMAIN;
+import {getHrefLocale} from "@/i18n/get-href-locale";
 
 const getContext = (slug, index) => {
     return {
 
         "@context": "https://schema.org",
         "@type": "ListItem",
-        "url": `${domain}/${slug}`,
-        "position" :index+1,
+        "url": `${domain}${slug}`,
+        "position": index + 1,
     }
 }
-const collectionPageSchema = (listUrl) => {
-
+const collectionPageSchema = (listUrl = [], tour) => {
+    console.log(listUrl, 'listUrl')
+    const url = getHrefLocale(tour.locale, `${tour.city.slug}/${PATH_TOURS}/${tour.slug}`)
     return {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
@@ -19,35 +23,38 @@ const collectionPageSchema = (listUrl) => {
         name: 'Free Tours',
         isPartOf: {
             '@type': 'WebSite',
-            '@id': `${domain}/#website`,
+            '@id': `${domain}${url}/#website`,
         },
         mainEntity: {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            itemListElement: listUrl.map(item => getContext(item)),
+            itemListElement: listUrl.map((item, index) => getContext(getHrefLocale(item.locale, item.slug), index)),
             numberOfItems: listUrl?.length,
         },
         publisher: {
             '@type': 'Organization',
-            ' @id': '',
+            '@id': `${domain}${url}#publisher`,
         },
         copyrightHolder: {
             '@type': 'Organization',
-            '@id': `${domain}#publisher`,
+            '@id': `${domain}${url}#publisher`,
         },
         potentialAction: [
             {
                 '@type': 'ReadAction',
-                target: [`${domain}/`],
+                target: [`${domain}${url}`],
             },
         ],
         copyrightYear: new Date().getFullYear(),
     }
 }
 
-export default async function CollectionPageSchema() {
+export default async function CollectionPageSchema({locale}) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/collection-page?locale=${locale}`, {next: {revalidate: 60 * 60}})
+    const data = await response.json();
+    console.log(data, 'data')
     return <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema()) }}
+        dangerouslySetInnerHTML={{__html: JSON.stringify(collectionPageSchema(data.cities, data.tour))}}
     />
 }
