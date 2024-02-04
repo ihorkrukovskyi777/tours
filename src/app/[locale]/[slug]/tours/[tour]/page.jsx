@@ -20,9 +20,8 @@ import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import i18n from "@/i18n";
-
-const MapAndSlider = dynamic(
-    () => import("@/widgets/map-and-slider/map-and-slider"),
+const ProviderMap = dynamic(
+    () => import("@/widgets/map-and-slider/provider"),
     {ssr: false}
 )
 
@@ -58,7 +57,7 @@ export default async function Page({params: {locale, slug, tour}}) {
             <TextQuote id={page.id} locale={locale} type="tour"/>
             <Suspense fallback={''}>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
-                <MapAndSlider locale={page.locale} id={page.id} i18n={{tour_features: i18n.t('Tour Features')}}/>
+                <ProviderMap locale={page.locale} id={page.id} i18n={{tour_features: i18n.t('Tour Features')}}/>
                 <LatestReviews id={page.id} locale={locale} type="tour"/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={i18n.t('this Tour')} id={page.id} locale={page.locale} type="tour"/>
