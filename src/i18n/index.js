@@ -34,9 +34,7 @@ class I18n {
     }
 
     t(key, locale = this.locale, ns = defaultNS) {
-        if (key === 'Tour Calendar') {
-            console.log(key, locale, ns, this.translates)
-        }
+
         if (!this.translates[locale] || !this.translates[locale][ns] || !this.translates[locale][ns][key] || locale === fallbackLng) {
             return key;
         }

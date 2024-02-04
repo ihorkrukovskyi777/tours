@@ -13,7 +13,6 @@ const getContext = (slug, index) => {
     }
 }
 const collectionPageSchema = (listUrl = [], tour) => {
-    console.log(listUrl, 'listUrl')
     const url = getHrefLocale(tour.locale, `${tour.city.slug}/${PATH_TOURS}/${tour.slug}`)
     return {
         '@context': 'https://schema.org',
@@ -52,7 +51,6 @@ const collectionPageSchema = (listUrl = [], tour) => {
 export default async function CollectionPageSchema({locale}) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/collection-page?locale=${locale}`, {next: {revalidate: 60 * 60}})
     const data = await response.json();
-    console.log(data, 'data')
     return <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{__html: JSON.stringify(collectionPageSchema(data.cities, data.tour))}}

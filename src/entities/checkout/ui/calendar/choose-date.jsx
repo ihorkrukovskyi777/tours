@@ -11,7 +11,6 @@ import "@/entities/calendar/ui/modal-booking/step-1/style.css";
 
 export default observer(function ChooseDate({ i18n }) {
     const {checkoutInfo: { tourName }, editDeparture: { changePeopleNumber, numberPeople, departures, changeMonthAndYearn,  setSelectedDay, selectedDay, resetSelectedDay }} = useContext(CheckoutStoreContext);
-    console.log(i18n, 'i18n')
 
     return (
         <div className={`step-1 `}>
