@@ -17,6 +17,7 @@ export default function Banner({attachment = null, title, children, bottomView =
                 />
                 <div className="container">
                     <div className="intro">
+                        <span style={{color: '#fff'}}>{isMobile ? 'mobile' : 'desktop'}</span>
                         <h1 className="title" dangerouslySetInnerHTML={{__html: title || ''}}></h1>
                         <div className="wrapper">
                             {children}
