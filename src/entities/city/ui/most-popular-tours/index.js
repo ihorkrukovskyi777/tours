@@ -19,7 +19,15 @@ export default async function MostPopularTours({ id,locale,slug}) {
 
     return (
         <>
-            <RowTours tours={tours} title={data.title}></RowTours>
+            <RowTours
+                tours={tours}
+                title={data.title}
+                i18n={{
+                    duration: i18n.t('Duration'),
+                    hours: i18n.t('Hours'),
+                    next_tour: i18n.t('Next Tour'),
+            }} />
+
             <TextQuote id={id} locale={locale}/>
             <ProviderMap i18n={{tour_features: i18n.t('Tour Features')}}  id={id} locale={locale} toursPlaces={toursPlaces} buttonsShow={true} />
         </>

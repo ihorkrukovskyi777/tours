@@ -8,7 +8,8 @@ import {ServiceDate} from "@/shared/service/service-date";
 import {PATH_TOURS} from "@/shared/constants/route";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import './style.css';
-export default function RowTours({tours, title = ''}) {
+import i18n from "@/i18n";
+export default function RowTours({tours, title = '', i18n= {}}) {
     return (
         <section className="most_popular_tour">
             <div className="container">
@@ -45,15 +46,15 @@ export default function RowTours({tours, title = ''}) {
                                                     width={18} height={20}
                                                     style={{fill: 'red'}}
                                                 />
-                                                <span className="second">Duration:</span>
+                                                <span className="second">{i18n.duration}:</span>
                                                 {item.departure?.durations?.length ?
-                                                    <span>{[...new Set(item.departure.durations)].join('-')} Hours</span> : null}
+                                                    <span>{[...new Set(item.departure.durations)].join('-')} {i18n.hours}</span> : null}
                                             </div>
 
                                             <div className="elem">
                                                 <Image src={CalendarImage} alt="clock" width={18}/>
                                                 <span className="second">
-                                                Next Tour: {showTime}
+                                                {i18n.next_tour}: {showTime}
                                             </span>
                                                 <span>{item.lastDeparture}</span>
                                             </div>
