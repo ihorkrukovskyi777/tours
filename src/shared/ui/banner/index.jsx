@@ -12,6 +12,7 @@ export default function Banner({attachment = null, title, children, bottomView =
                     quality={10}
                     width={width}
                     height={height}
+                    size={ isMobile ? '500x500' : 'public'}
                     src={attachment.src}
                     alt={attachment.alt}
                 />
