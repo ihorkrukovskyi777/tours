@@ -6,7 +6,7 @@ import './style.css';
 
 
 export default async function BannerBlog({locale, title , image=""}) {
-    await i18n.getFetch()
+    await i18n.getFetchDefault()
     return (
         <section className='top-banner-blog'>
             <div className='container'>

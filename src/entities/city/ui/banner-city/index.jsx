@@ -7,7 +7,7 @@ import './style.css';
 
 
 export default async function BannerCity({id, locale, size, isMobile = false}) {
-    await i18n.getFetch();
+    await i18n.getFetchDefault();
     const {attachment, title, rating, reviews} = await getBannerData(id, locale, 'city', 60 * 10)
     return (
         <Banner

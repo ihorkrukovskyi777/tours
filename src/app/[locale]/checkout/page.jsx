@@ -26,7 +26,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
     if (page.statusCode === 404 || typeof page.id !== 'number') {
         notFound();
     }
-    await i18n.getFetch();
+    await i18n.getFetchDefault();
     const currentPage = page.languages.find(item => item.locale === locale);
 
     const translates = {
@@ -66,6 +66,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         FIRST_NAME_ERROR_VALIDATION_MAXLENGTH: i18n.t('has an invalid format'),
         FIRST_NAME_ERROR_VALIDATION_WITHOUT_NUMBER: i18n.t('has an invalid format'),
         EMAIL_ERROR: i18n.t('has an invalid format'),
+        PHONE_ERROR: i18n.t('has an invalid format'),
     }
     return (
         <>

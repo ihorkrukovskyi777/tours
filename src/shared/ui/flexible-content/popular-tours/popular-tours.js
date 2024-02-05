@@ -3,7 +3,7 @@ import {fetchFlexibleContent} from "@/shared/api/flexible-content";
 import i18n from "@/i18n";
 
 export default async function PopularTours({locale, id, index, flexibleKey}) {
-    await i18n.getFetch();
+    await i18n.getFetchDefault();
     const data = await fetchFlexibleContent(id, locale, flexibleKey, index)
     if(!data?.tours) {
         return null;

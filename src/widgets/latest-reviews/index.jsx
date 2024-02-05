@@ -6,7 +6,7 @@ import './style.css';
 
 
 export default async function LatestReviews({id, locale, type='city'}) {
-    await i18n.getFetch();
+    await i18n.getFetchDefault();
     const limit = 9
     const reviews = await getReviews(id, locale, limit, 0, type)
     if (!reviews?.data?.length) {

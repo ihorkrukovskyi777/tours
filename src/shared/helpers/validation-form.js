@@ -24,7 +24,6 @@ const phone = (arr)=> {
     let val = arr.val.val;
     let arrNumbers = arr.val.mask.toString();
 
-    console.log(arrNumbers);
     const valuePhone = val.toString().split('').filter(e => e.trim().length).join('').length;
     const validateArray = arrNumbers.split(',').map(i => Number(i));
     return validateArray.includes(valuePhone) === true ? true : 'PHONE_ERROR';

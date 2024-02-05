@@ -54,8 +54,8 @@ export class StoreModalBooking {
 
         if(!!results.success === false) {
             this.errors = Object.values(results.errors)
+            this.toggleLoading();
         }
-        this.toggleLoading();
 
         return results
     }

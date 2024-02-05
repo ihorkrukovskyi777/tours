@@ -2,7 +2,7 @@ import i18n from "@/i18n";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 
 export default async function I18nChangeOfLanguage({locale, title, ...props}) {
-    await i18n.getFetch();
+    await i18n.getFetchDefault();
     return (
         <ChangeOfLanguage
             {...props}

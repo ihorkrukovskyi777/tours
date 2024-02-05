@@ -3,7 +3,7 @@ import {fetchGuideTours} from "@/entities/guide/api";
 import i18n from "@/i18n";
 
 export default async function GuideTours({id, locale, slug}) {
-    await i18n.getFetch()
+    await i18n.getFetchDefault()
     let tours = await fetchGuideTours(id, locale);
     if (!tours?.length) {
         return null

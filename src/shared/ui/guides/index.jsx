@@ -11,7 +11,7 @@ import './style.css';
 
 export default async function Guides({title, id, locale, type}) {
     const items = await allGuides(id, type);
-    await i18n.getFetch();
+    await i18n.getFetchDefault();
     if (!items?.length) {
         return null
     }

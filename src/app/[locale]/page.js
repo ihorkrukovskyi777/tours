@@ -18,7 +18,7 @@ export default async function Home({params: {locale}, ...props}) {
         notFound();
     }
     const {languages} = data;
-    await i18n.getFetch()
+    await i18n.getFetchDefault()
 
 
     return (

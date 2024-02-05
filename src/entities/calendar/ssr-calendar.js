@@ -4,7 +4,7 @@ import Faqs from "@/shared/ui/faqs/faqs";
 import i18n from "@/i18n";
 
 export default async function SsrCalendar({locale, type, id, showFaq = true, title}) {
-    await i18n.getFetch();
+    await i18n.getFetchDefault();
 
     const [questions, activeLanguage] = await Promise.all([
         showFaq ? getFaqBlock(id, locale) : Promise.resolve(),
@@ -29,6 +29,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
         show_me_more: i18n.t('Show me More'),
         departures_not_found: i18n.t('Departures not found'),
         tour_calendar: i18n.t('Tour Calendar'),
+        modal_booking_title: i18n.t('Your booking details. You\'re almost there!'),
     }
     return (
         <section id="tour_calendar_section" className="tour_calendar">

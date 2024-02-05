@@ -10,7 +10,7 @@ const ProviderMap = dynamic(
 )
 export default async function MostPopularTours({id, locale, slug}) {
     let data = await picketToursBox(id, locale);
-    await i18n.getFetch();
+    await i18n.getFetchDefault();
     if (!data.tours?.length) {
         return null;
     }

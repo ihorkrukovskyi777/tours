@@ -3,7 +3,7 @@ import Link from "next/link";
 import i18n from "@/i18n";
 import './style.css';
 export default async function AllCities({ locale, title }) {
-    await i18n.getFetch()
+    await i18n.getFetchDefault()
     const citiesAll = await allCitiesData(locale);
     return (
         <section className="all_cities">

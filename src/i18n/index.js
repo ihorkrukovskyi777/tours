@@ -31,12 +31,16 @@ class I18n {
         return Object.fromEntries(months.map(val => [val, this.t(val)]))
     }
 
-    async getFetch(ns = defaultNS) {
-        if(this.translates[this.locale] && this.translates[this.locale][ns]) {
+    async getFetchDefault() {
+        if(this.translates[this.locale] && this.translates[this.locale][defaultNS]) {
             return
         }
-        const res = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${this.locale}/${ns}`, {next: {revalidate: 60 * 60}})
-        this.translates[this.locale][ns] = await res.json();
+
+        if(this.translates[this.locale] === undefined) {
+            this.translates[this.locale] = { defaultNS: {} };
+        }
+        const res = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${this.locale}/${defaultNS}`, {next: {revalidate: 60 * 5}})
+        this.translates[this.locale][defaultNS] = await res.json();
     }
 
     t(key, locale = this.locale, ns = defaultNS) {

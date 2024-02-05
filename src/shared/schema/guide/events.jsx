@@ -21,7 +21,7 @@ const getSchemaOffer = (offer) => {
 
 const getSchemaEvent = (item) => {
 
-    const firstDep = item?.departuresTimes[0] ?? null;
+    const firstDep = Array.isArray(item?.values) ?  item?.values[0] : '';
 
 
     return {
@@ -64,19 +64,20 @@ const getSchemaEvent = (item) => {
             name: "Strawberry Tours",
             url: process.env.NEXT_PUBLIC_CANONICAL_DOMAIN
         },
-        offers: item?.departuresTimes?.filter(dep => new Date(dep.date).getTime() > new Date().getTime()).slice(0, 22)?.map(dep => getSchemaOffer(dep))
+        offers: item?.values?.filter(dep => new Date(dep.date).getTime() > new Date().getTime()).slice(0, 22)?.map(dep => getSchemaOffer(dep))
     }
 }
 
-export default async function EventsSchema({type = 'city', id, locale}) {
+export default async function EventsGuideSchema({slug, locale}) {
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/events-${type}/${id}?locale=${locale}`, {next: {revalidate: 60*60}})
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/events-guide/${slug}?locale=${locale}`, {next: {revalidate: 0}})
     const data = await response.json();
+    const schemas = data.map(item => getSchemaEvent(item))
     return (
         <script
             async={true}
             type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(getSchemaEvent(data))}}
+            dangerouslySetInnerHTML={{__html: JSON.stringify(schemas)}}
         />
     )
 }
