@@ -32,7 +32,7 @@ const getSchemaProduct = (item, date, locale, description = '') => {
 }
 
 export default async function ProductSchemaGuide({slug, locale}) {
-    await i18n.getFetch(locale);
+    await i18n.getFetch();
     const aYearFromNow = new Date();
     aYearFromNow.setFullYear(aYearFromNow.getFullYear() + 1);
     const date = `${aYearFromNow.getFullYear()}-${aYearFromNow.getMonth()+1}-${aYearFromNow.getDate()}`

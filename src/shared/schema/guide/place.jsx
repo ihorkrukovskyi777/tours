@@ -10,8 +10,8 @@ const getSchemaPlace = (name, description, image) => {
     };
 }
 
-export default async function PlaceGuideSchema({slug, locale}) {
-    await i18n.getFetch(locale);
+export default async function PlaceGuideSchema({slug}) {
+    await i18n.getFetch();
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/place-guide/${slug}`, {next: {revalidate: 60 * 60}})
     const place = await response.json();
     const schema = getSchemaPlace(place.name, `${place.description} ${i18n.t(MESSAGE)}`, place.attachment?.src);
