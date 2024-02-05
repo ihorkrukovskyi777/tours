@@ -20,6 +20,9 @@ import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import i18n from "@/i18n";
+import PlaceSchema from "@/shared/schema/place";
+import ProductSchema from "@/shared/schema/product";
+import EventsSchema from "@/shared/schema/events";
 const ProviderMap = dynamic(
     () => import("@/widgets/map-and-slider/provider"),
     {ssr: false}
@@ -56,6 +59,11 @@ export default async function Page({params: {locale, slug, tour}}) {
             <BannerTour locale={page.locale} id={page.id} isMobile={isMobile}/>
             <TextAndSliderTourPage id={page.id} locale={page.locale} isMobile={isMobile}/>
             <TextQuote id={page.id} locale={locale} type="tour"/>
+            <Suspense fallback={''}>
+                <EventsSchema id={page.id} locale={locale} type="tour"/>
+                <PlaceSchema id={page.id} locale={locale}/>
+                <ProductSchema id={page.id} locale={locale} type="tour"/>
+            </Suspense>
             <Suspense fallback={''}>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
                 <ProviderMap locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}/>

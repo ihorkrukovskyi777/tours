@@ -2,7 +2,6 @@ import {makeAutoObservable} from "mobx";
 import {placesMarkers} from '@/entities/api';
 import L from 'leaflet';
 
-let eventSlide = false;
 
 export class StoreMap {
     constructor(id) {
@@ -66,7 +65,8 @@ export class StoreMap {
     setCenterMarker() {
         const find = this.markers.find(marker => marker.id === this.selectedPlaceId);
         if(find) {
-            this.map.panTo(find.coordinates, {duration: 0.5, easeLinearity: 0.25});
+            console.log(find.coordinates)
+            this.map?.panTo(find.coordinates, {duration: 0.5, easeLinearity: 0.25});
         }
     }
 

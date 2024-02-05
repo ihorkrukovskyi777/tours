@@ -5,7 +5,7 @@ import "./style.css";
 export default function Faqs({i18n, questions = [], style = {}}) {
     return (
         <>
-            <FaqSchema questions={questions}/>
+            {questions?.length ? <FaqSchema questions={questions}/> : null}
             <section className="faq">
                 <div className="container" style={style}>
                     <h2>{i18n.faq}</h2>

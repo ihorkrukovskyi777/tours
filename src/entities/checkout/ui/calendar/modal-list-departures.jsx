@@ -6,10 +6,10 @@ import {useContext, useState} from 'react';
 import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/helpers/date";
 import {observer} from "mobx-react-lite";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
-import '@/entities/calendar/ui/modal-booking/step-2/style.css';
 import ModalTourItem from "@/entities/calendar/ui/modal-tour-item";
 import classNames from "classnames";
 import Button from "@/shared/ui/selectors/button/button";
+import '@/entities/calendar/ui/modal-booking/step-2/style.css';
 
 export default observer(function ModalListDepartures({i18n, size = "small", title, close, isOpened}) {
     const {checkoutInfo: {tourName}, managerModal: {toggleModalChoose}, editDeparture: {selectedDay, departureByDay, saveNewDep,}} = useContext(CheckoutStoreContext);
@@ -39,6 +39,7 @@ export default observer(function ModalListDepartures({i18n, size = "small", titl
 
             {departureByDay?.map((dep) =>
                 <ModalTourItem
+                    i18n={i18n}
                     isActive={selectedDep === dep}
                     key={`${dep.depId}:${dep.time}`}
                     dep={dep}

@@ -60,6 +60,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         departures_available: i18n.t('Departure(s) Available'),
         back: i18n.t('Back'),
         your_message_has_been_sent: i18n.t('Your message has been sent'),
+        hours: i18n.t('hours'),
         close: i18n.t('Close'),
     }
     return (

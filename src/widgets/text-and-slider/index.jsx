@@ -1,6 +1,5 @@
 'use client';
 import {useRef} from 'react';
-import {useTranslation} from "@/i18n/client";
 import Button from '@/shared/ui/selectors/button/button';
 import {Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
 import {Swiper, SwiperSlide} from 'swiper/react';
@@ -13,8 +12,7 @@ import 'swiper/css/pagination';
 import './style.css';
 
 
-export default function TextAndSlider({title, listText = [], attachments = [], isMobile = false}) {
-    const {t} = useTranslation();
+export default function TextAndSlider({i18n, title, listText = [], attachments = [], isMobile = false}) {
     const navigationNextRef = useRef(null);
     const navigationPrevRef = useRef(null);
     const swiperRef = useRef();
@@ -35,7 +33,7 @@ export default function TextAndSlider({title, listText = [], attachments = [], i
                             <ul>
                                 {listText.map((text, index) => <li key={index} dangerouslySetInnerHTML={{__html: text ?? ''}}></li>)}
                             </ul>
-                            <Button onClick={scrollToCalendar}>{t('Book Now')}</Button>
+                            <Button onClick={scrollToCalendar}>{i18n.book_now}</Button>
 
                         </div>
                     </div>

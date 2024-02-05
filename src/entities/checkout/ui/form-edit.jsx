@@ -75,7 +75,6 @@ export default observer(function FormEdit({i18n}) {
 
     });
 
-    console.log(validForm);
 
 
     return (

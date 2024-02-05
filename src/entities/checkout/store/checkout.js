@@ -188,6 +188,8 @@ class EditDeparture {
             full_number: this.phone,
         }
 
+
+        return;
         try {
             this.loading = true;
             if (this.isEdit && !this.editCivitatis) {
@@ -295,9 +297,10 @@ class EditDeparture {
         return this.phone.replace(this.dialCode, '');
     }
 
-    changeCountryCode({dialCode, countrySlug}) {
-        this.dialCode = dialCode;
-        this.countrySlug = countrySlug;
+    changeCountryCode({dialCode, slugCountry}) {
+        this.phone = this.phone.replace(this.dialCode, `+${dialCode}`)
+        this.dialCode = `+${dialCode}`;
+        this.countrySlug = slugCountry;
     }
 
     setFirstName(value) {
@@ -313,6 +316,7 @@ class EditDeparture {
     }
 
     setPhone(value) {
+        console.log(value)
         this.phone = value;
     }
 
