@@ -8,7 +8,9 @@ export default function GoogleScript() {
         window.addEventListener('load', () => {
             const loadScript = () => {
                 window.removeEventListener('scroll', loadScript);
-                setLoad(true);
+                setTimeout(() => {
+                    setLoad(true);
+                }, 5000)
             }
             window.addEventListener('scroll', loadScript)
         })
