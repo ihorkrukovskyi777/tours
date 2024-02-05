@@ -1,27 +1,27 @@
-.title {
+.banner_subvendor .title {
     margin: 0 0 10px;
     line-height: 1.1;
     color: #fff;
 }
-.wrapper {
+.banner_subvendor .wrapper {
     position: relative;
     display: flex;
     color: #fff;
     z-index: 1;
 }
-.img_box {
+.banner_subvendor .img_box {
     margin-right: 30px;
     border-radius: 8px;
     width: 240px;
     height: 240px;
 }
-.img_box .img_subvendor {
+.banner_subvendor .img_box .img_subvendor {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
 }
-.banner_bg {
+.banner_subvendor .banner_bg {
     position: absolute;
     left: 0;
     right: 0;
@@ -30,4 +30,7 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
+}
+.banner_subvendor .flags_wrap {
+    display: flex;
 }
