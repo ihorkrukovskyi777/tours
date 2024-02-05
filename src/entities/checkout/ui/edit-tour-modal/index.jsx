@@ -15,14 +15,14 @@ export default observer(function EditModalTour({ i18n }) {
     return (
         <div className={classNames({'show_modal': modalEdit}, 'edit_tour_modal transition')}>
             <div className="modal_content">
-                <DefaultModal modalShow={chooseDateModal} isOpenedModal={toggleModalChoose}>
+                <DefaultModal modalShow={chooseDateModal} isOpenedModal={toggleModalChoose} size={'small'}>
                     {chooseDateModal ? <ChooseDate i18n={i18n}/> : null}
                 </DefaultModal>
                 <div className="flex-wrap">
                     <div className="close-button" onClick={toggleModalEdit}>
                         ×
                     </div>
-                    <Button customClass="btn_wrap" onClick={toggleModalChoose}>
+                    <Button customClass="btn_wrap red" onClick={toggleModalChoose}>
                         {i18n.change_data_time_number_people}
                     </Button>
                     <div className="item item--row">
@@ -46,7 +46,7 @@ export default observer(function EditModalTour({ i18n }) {
                             <strong>{i18n.number_people}:</strong>
                             <div>{editDeparture.numberPeople}</div>
                         </div>
-                        <FormEdit i18n={i18n} isOpened={false} close={toggleModalEdit}/>
+                        <FormEdit  i18n={i18n} isOpened={false} close={toggleModalEdit}/>
                     </div>
                 </div>
             </div>

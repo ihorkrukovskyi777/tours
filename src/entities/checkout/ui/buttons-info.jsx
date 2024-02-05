@@ -16,7 +16,7 @@ export default observer(function ButtonsInfo({ i18n }) {
 
     return (
         <div className="btn_wrap">
-            {isActiveCheckout ? <Button onClick={toggleModalEdit}>{i18n.edit_booking}</Button> : null }
+            {isActiveCheckout ? <Button customClass="red" onClick={toggleModalEdit}>{i18n.edit_booking}</Button> : null }
             {isContactGuide ? <Button customClass="gray" onClick={toggleModalMessage}> {i18n.contact_your_guide} </Button> : null }
             {isActiveCheckout ? <a
                 className="button_custom gray"
