@@ -6,19 +6,21 @@ import dynamic from "next/dynamic";
 import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
-
-const CounterNumbers = dynamic(
-    () => import("@/shared/ui/selectors/counter-numbers"),
-    {
-        ssr: false,
-    }
-)
-const DeparturesList = dynamic(
-    () => import("@/entities/calendar/ui/departures-list"),
-    {
-        ssr: false,
-    }
-)
+import OpenModalButton from "@/entities/calendar/ui/open-modal-button";
+import CounterNumbers from "@/shared/ui/selectors/counter-numbers";
+import DeparturesList from "@/entities/calendar/ui/departures-list";
+// const CounterNumbers = dynamic(
+//     () => import("@/shared/ui/selectors/counter-numbers"),
+//     {
+//         ssr: false,
+//     }
+// )
+// const DeparturesList = dynamic(
+//     () => import("@/entities/calendar/ui/departures-list"),
+//     {
+//         ssr: false,
+//     }
+// )
 const Step3 = dynamic(
     () => import("@/entities/calendar/ui/modal-booking/step-3/index"),
     {
@@ -26,12 +28,12 @@ const Step3 = dynamic(
         loading: () => <div style={{position: 'relative'}}><Loader/></div>
     }
 )
-const OpenModalButton = dynamic(
-    () => import("@/entities/calendar/ui/open-modal-button"),
-    {
-        ssr: false,
-    }
-)
+// const OpenModalButton = dynamic(
+//     () => import("@/entities/calendar/ui/open-modal-button"),
+//     {
+//         ssr: false,
+//     }
+// )
 export default observer(function Main({siteLocale, i18n}) {
     const {
         storePhone: {

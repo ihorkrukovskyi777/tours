@@ -5,7 +5,7 @@ import '@/entities/post/ui/post-content/style.css';
 import './style.css'
 export default async function CancelPage({params: {locale}, searchParams}) {
     let cancelBook = await fetch(
-        `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/cancel-booking`,
+        `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/cancel-booking?locale=${locale}`,
         {
             method: 'DELETE',
             headers: {
@@ -25,7 +25,9 @@ export default async function CancelPage({params: {locale}, searchParams}) {
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/cancel-book/?locale=${locale}`,
         {next: {revalidate: 60}}
     )
+
     const data = await pageType.json();
+
     if (data.statusCode === 404 || typeof data.id !== 'number') {
         notFound();
     }

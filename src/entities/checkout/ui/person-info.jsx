@@ -6,8 +6,8 @@ import {observer} from "mobx-react-lite";
 import {useTranslation} from "@/i18n/client";
 
 export default observer(function PersonInfo({ i18n }) {
-    const { t } = useTranslation();
     const { checkoutInfo } = useContext(CheckoutStoreContext);
+
     return (
         <div className="person_info">
             <div className="left_box">
@@ -24,6 +24,7 @@ export default observer(function PersonInfo({ i18n }) {
                     <li>
                         <span>{i18n.booking_id}: </span> {checkoutInfo.bookingId}
                     </li>
+
                 </ul>
             </div>
             <div className="right_box">

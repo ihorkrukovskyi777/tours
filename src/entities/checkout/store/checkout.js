@@ -7,6 +7,7 @@ import {fetchBookingDepartures} from "@/entities/calendar/api";
 
 class CheckoutInfo {
     constructor({
+                    voucher,
                     name,
                     last_name,
                     number_people,
@@ -34,6 +35,7 @@ class CheckoutInfo {
         this.startTime = start_time;
         this.firstName = name;
         this.lastName = last_name;
+        this.voucher = voucher;
         this.numberPeople = number_people;
         this.email = email;
         this.bookingId = book_id
@@ -148,17 +150,18 @@ class EditDeparture {
     get isEdit() {
         return Number(this.edit) === Number(this.depId)
     }
+
     getCancelMessage(dep) {
-        if(this.editCivitatis === false && this.is_civitatis) {
+        if (this.editCivitatis === false && this.is_civitatis) {
             return 'Booking changed to civitatis';
-        }
-        else if(Number(this.oldSubVendor) !== Number(dep.subVendorId)) {
+        } else if (Number(this.oldSubVendor) !== Number(dep.subVendorId)) {
             return 'Booking changed to another subvendor';
         } else if (Number(this.isEdit) !== dep.depId && this.editCivitatis === false) {
             return `Tour guest changed departure to DepartureID # ${dep.depId}`
         }
         return null;
     }
+
     saveNewDep(newDep) {
         this.resetSelectedDay();
         this.depId = newDep.depId;
@@ -196,7 +199,7 @@ class EditDeparture {
                 return yield fetchEditBooking({...body, code: this.staticCode});
             } else {
                 body.phone = this.phoneNumber;
-                if(this.is_civitatis || this.editCivitatis) {
+                if (this.is_civitatis || this.editCivitatis) {
                     return yield this.bookingAndCancel(body, this.cancelMessage);
                 } else {
                     return yield this.bookingAndCancel(body, this.cancelMessage);
@@ -209,6 +212,7 @@ class EditDeparture {
             this.loading = false;
         }
     }
+
     * cancelAndBookCivitatis(body, cancelMessage) {
         try {
             yield cancelBook(this.staticCode, cancelMessage)
@@ -216,20 +220,21 @@ class EditDeparture {
 
             return data;
         } catch (err) {
-            return { success: false}
+            return {success: false}
         }
     }
+
     * bookingAndCancel(body, cancelMessage) {
         try {
             const data = yield fetchBookingDepartures(body);
-            if(data.success === false) {
+            if (data.success === false) {
 
-                return { success: false, errors: Object.values(data.errors) ?? true};
+                return {success: false, errors: Object.values(data.errors) ?? true};
             }
             yield cancelBook(this.staticCode, cancelMessage)
             return data;
         } catch (err) {
-            return { success: false}
+            return {success: false}
         }
     }
 
@@ -339,6 +344,7 @@ export default class CheckoutStore {
         this.phone = new StorePhone(locale)
         makeAutoObservable(this, {}, {autoBind: true})
     }
+
     * fetchCheckoutDetails(staticCode) {
         this.globalLoading = true;
         const url = `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/${staticCode}?locale=${this.locale}`;
@@ -349,7 +355,7 @@ export default class CheckoutStore {
         this.checkoutInfo = new CheckoutInfo(data);
         this.isContactGuide = !data.is_civitatis
         this.editDeparture = new EditDeparture(data, this.tourLocale, this.locale, staticCode)
-        if(this.isActiveCheckout) {
+        if (this.isActiveCheckout) {
             this.editDeparture.fetchDepartures();
         }
         this.globalLoading = false;

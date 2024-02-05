@@ -61,6 +61,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         your_message_has_been_sent: i18n.t('Your message has been sent'),
         hours: i18n.t('hours'),
         close: i18n.t('Close'),
+        download_voucher: i18n.t('Voucher download'),
         errors: {
             ...i18n.getFormErrors(),
             first_name: {
@@ -78,8 +79,11 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
     return (
         <>
             <Checkout title={currentPage?.title} i18n={translates} locale={locale} tourLocale={checkoutData.locale}/>
-            <TourRow id={checkoutData.tour_id} locale={locale}
-                     title={`${i18n.t('Other Tours in')} ${checkoutData.city?.post_title}`}/>
+            <TourRow
+                id={checkoutData.tour_id} locale={locale}
+                title={`${i18n.t('Other Tours in')} 
+                ${checkoutData.city?.post_title}`}
+            />
             <I18nChangeOfLanguage locale={locale} languages={page.languages}/>
             <Footer/>
         </>
