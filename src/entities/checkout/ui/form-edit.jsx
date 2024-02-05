@@ -32,18 +32,15 @@ export default observer(function FormEdit({i18n}) {
         email: ({target}) => editDeparture.setEmail(target.value),
         phone: ({target}) => editDeparture.setPhone(target.value),
     }
-
-
-
-
-
+    
     function preSubmitForValidation(e) {
         e.preventDefault();
+        let mask = document.querySelector('#phone').getAttribute('validation-number');
         const errorLists = {
             firstName: validationFirstName(editDeparture.firstName),
             lastName: validationFirstName(editDeparture.lastName),
             email: validationEmail(editDeparture.email),
-            phone: validationPhone(editDeparture.phone),
+            phone: validationPhone({val:editDeparture.phone , mask:mask}),
         }
 
         setValidForm({...validForm , ...errorLists})
@@ -51,6 +48,8 @@ export default observer(function FormEdit({i18n}) {
             submitForm();
         }
     }
+
+
 
 
 
@@ -71,7 +70,7 @@ export default observer(function FormEdit({i18n}) {
         firstName: false,
         lastName: false,
         email: false,
-        phone: false
+        phone: false,
 
     });
 
@@ -105,7 +104,6 @@ export default observer(function FormEdit({i18n}) {
                         changeCountryCode={editDeparture.changeCountryCode}
                     />
                     : null}
-                {validForm.phone ? <span className='error-message'> {t(validForm.phone)} </span> : null}
                 <EditSvg/>
                 {validForm.phone ? <span className='error-message'> {t(validForm.phone)} </span> : null}
             </div>

@@ -20,10 +20,14 @@ const email = ({val})=> {
     return validEmailRegex.test(val) ? true : 'EMAIL_ERROR'
 }
 
-const phone = ({val , arrNumbers= '10,11'})=> {
+const phone = (arr)=> {
+    let val = arr.val.val;
+    let arrNumbers = arr.val.mask.toString();
+
+    console.log(arrNumbers);
     const valuePhone = val.toString().split('').filter(e => e.trim().length).join('').length;
     const validateArray = arrNumbers.split(',').map(i => Number(i));
-    return !validateArray.includes(valuePhone) ? true : 'PHONE_ERROR';
+    return validateArray.includes(valuePhone) === true ? true : 'PHONE_ERROR';
 }
 
 const strategyValid = {
