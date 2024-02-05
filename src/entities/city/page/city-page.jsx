@@ -1,4 +1,5 @@
 import {Suspense} from "react";
+
 import i18n from "@/i18n";
 import BannerCity from "@/entities/city/ui/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";

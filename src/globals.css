@@ -1,5 +1,5 @@
 /* FONTS */
-@import "assets/fonts/fonts.css";
+/*@import "assets/fonts/fonts.css";*/
 
 :root {
   --main_color: #e10600;
@@ -7,14 +7,18 @@
   --hover_color: #f14742;
   --title_color: #000;
   --bg_color: #f7f7f7;
-  --font-ciliric: "Carlito";
-  --font: "BrandonGrotesque-Regular", var(--font-ciliric);
-  --fontMedium: "BrandonGrotesque-Medium", var(--font-ciliric);
-  --fontBold: "BrandonGrotesque-Bold", var(--font-ciliric);
-  --font_300: "Geomanist300", var(--font-ciliric);
-  --font_400: "Geomanist400", var(--font-ciliric);
-  --font_500: "Geomanist500", var(--font-ciliric);
-  --font_700: "Geomanist700", var(--font-ciliric);
+  --font-ciliric: 'Carlito';
+  --font: var(--font-brand-regular) , var(--font-ciliric);
+  --fontMedium: var(--font-brand-medium) , var(--font-ciliric);
+  --fontBold: var(--font-brand-bold) , var(--font-ciliric);
+  --geomanist_light: 'Geomanist300';
+  --geomanist_regular: 'Geomanist400';
+  --geomanist_medium: 'Geomanist500';
+  --geomanist_bold: 'Geomanist700';
+  --font_300: var(--geomanist_light) , var(--font-ciliric);
+  --font_400: var(--geomanist_regular) , var(--font-ciliric);
+  --font_500: var(--geomanist_medium) , var(--font-ciliric);
+  --font_700: var(--geomanist_bold) , var(--font-ciliric);
 }
 
 html,

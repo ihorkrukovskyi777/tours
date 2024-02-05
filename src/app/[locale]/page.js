@@ -4,6 +4,8 @@ import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import CollectionPageSchema from "@/shared/schema/collection-page";
 import i18n from "@/i18n";
+import {getHrefLocale} from "@/i18n/get-href-locale";
+
 const FlexibleContent = dynamic(
     () => import("@/widgets/flexible-content"),
     {ssr: true}
@@ -24,12 +26,28 @@ export default async function Home({params: {locale}, ...props}) {
     return (
         <>
             <CollectionPageSchema locale={locale}/>
-            <FlexibleContent {...data}  id={data.translateId} locale={locale} {...props} languages={languages.map(lang => ({...lang, slug: '', }))}/>
+            <FlexibleContent {...data} id={data.translateId} locale={locale} {...props}
+                             languages={languages.map(lang => ({...lang, slug: '',}))}/>
         </>
     )
 }
-export async function generateMetadata({ params : {slug, locale} }) {
-    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/home?locale=${locale}`, {next: { revalidate: 0 }}).then((res) => res.json())
+
+export async function generateMetadata({params: {slug, locale}}) {
+    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/home?locale=${locale}`, {next: {revalidate: 0}}).then((res) => res.json())
     const canonical = locale === fallbackLng ? slug : `${locale}`
-    return generatorSeo(seo,  canonical, locale)
+    const languages = {}
+    if (Array.isArray(seo.languages)) {
+        for (const lang of seo.languages) {
+            if (lang.locale === locale) {
+                continue;
+            }
+            const slugLocale = lang.locale === 'en' ? '' : `/${lang.locale}`;
+            languages[lang.locale] = [{
+                title: lang.title,
+                url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${slugLocale}`
+            }]
+        }
+    }
+
+    return generatorSeo(seo, canonical, locale, languages)
 }

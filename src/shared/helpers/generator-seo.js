@@ -1,9 +1,12 @@
 import {seoLocales} from "@/shared/constants/locales-seo";
 
-export const generatorSeo = (seo, canonical, locale) => {
+export const generatorSeo = (seo, canonical, locale, languages = []) => {
     const isIndexation = process.env.NEXT_PUBLIC_GOOGLE_INDEXATION === 'yes';
     const isIndex = isIndexation ?  seo.index : false
     const isFollow = isIndexation  ?  seo.follow : false
+
+
+
     return {
         metadataBase: new URL(process.env.NEXT_PUBLIC_CANONICAL_DOMAIN),
         robots: {index: isIndex, follow: isFollow, 'max-image-preview': true, 'max-snippet': 1, 'max-video-preview': -1},
@@ -19,6 +22,7 @@ export const generatorSeo = (seo, canonical, locale) => {
         },
         alternates: {
             canonical,
+            languages,
         }
     }
 }
