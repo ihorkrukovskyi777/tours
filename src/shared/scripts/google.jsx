@@ -10,7 +10,7 @@ export default function GoogleScript() {
                 window.removeEventListener('scroll', loadScript);
                 setTimeout(() => {
                     setLoad(true);
-                }, 5000)
+                }, 3000)
             }
             window.addEventListener('scroll', loadScript)
         })
