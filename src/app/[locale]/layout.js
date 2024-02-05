@@ -4,8 +4,16 @@ import WebSiteSchema from "@/shared/schema/web-site";
 import i18n from "@/i18n";
 import GoogleScript from "@/shared/scripts/google";
 import localFont from 'next/font/local'
-import '../../globals.css'
 import classNames from "classnames";
+import { Carlito } from 'next/font/google'
+
+const carlito = Carlito({
+    weight: ['400', '700'],
+    subsets: ['latin'],
+    variable: '--font-ciliric',
+    display: 'swap'
+})
+import '../../globals.css'
 
 const brandBold = localFont({
     src: '../../assets/fonts/brandon-grotesque/BrandonGrotesque-Bold.woff2',
@@ -25,12 +33,12 @@ const brandRegular = localFont({
     display: 'swap'
 })
 
-const carlitoRegular = localFont({
-    src: '../../assets/fonts/carlito/Carlito-Regular.woff2',
-    variable: '--font-ciliric',
-    style: 'normal',
-    display: 'swap'
-})
+// const carlitoRegular = localFont({
+//     src: '../../assets/fonts/carlito/Carlito-Regular.woff2',
+//     variable: '--font-ciliric',
+//     style: 'normal',
+//     display: 'swap'
+// })
 const GeomanistLight = localFont({
     src: '../../assets/fonts/geomanist/Geomanist-Light.woff2',
     variable: '--geomanist_light',
@@ -55,6 +63,7 @@ const GeomanistBold = localFont({
     style: 'normal',
     display: 'swap'
 })
+
 export default async function LocaleLayout({children, params}) {
     i18n.init(params.locale)
 
@@ -64,11 +73,11 @@ export default async function LocaleLayout({children, params}) {
                 brandBold.variable,
                 brandMedium.variable,
                 brandRegular.variable ,
-                carlitoRegular.variable ,
                 GeomanistLight.variable,
                 GeomanistRegular.variable,
                 GeomanistMeduim.variable,
-                GeomanistBold.variable
+                GeomanistBold.variable,
+                carlito.variable,
             )}>
 
             <body>
