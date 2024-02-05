@@ -117,7 +117,7 @@ export default observer(function FormEdit({i18n}) {
                 <EditSvg/>
             </div>
             {Array.isArray(error) ? <ul>{error.map((value, index) => <li key={index}>{value}</li>)}</ul> : null}
-            <Button customClass='submit'>{i18n.save}</Button>
+            <Button customClass='submit red'>{i18n.save}</Button>
         </form>
     )
 })

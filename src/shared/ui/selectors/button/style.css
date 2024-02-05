@@ -20,6 +20,9 @@
     color: #686868;
     background: var(--bg_color);
 }
+.button_custom.red {
+    background: #E7423E;
+}
 .button_custom:hover {
     background:var(--hover_color);
 }

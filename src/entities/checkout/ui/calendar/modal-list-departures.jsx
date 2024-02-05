@@ -50,7 +50,7 @@ export default observer(function ModalListDepartures({i18n, size = "small", titl
 
             <div className={classNames({'disable': !selectedDep})}>
                 <Button
-                    customClass={!selectedDep ? 'gray' : ''}
+                    customClass={!selectedDep ? 'gray' : 'red'}
                     onClick={() => {
                         saveNewDep(selectedDep)
                         toggleModalChoose()

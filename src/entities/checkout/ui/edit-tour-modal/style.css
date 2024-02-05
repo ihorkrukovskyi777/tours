@@ -32,7 +32,7 @@
     width: 100%;
 }
 .edit_tour_modal .modal_content {
-	max-width: 90%;
+	/*max-width: 90%;*/
 	background: #fff;
 	border-radius: 16px;
 	z-index: 2;
@@ -41,7 +41,13 @@
 	max-height: 90vh;
 	overflow: auto;
     min-width: 640px;
+    position: relative;
 }
+.edit_tour_modal .modal_content .button_custom {
+    padding: 18px 10px;
+    margin-top: 20px;
+}
+
 .edit_tour_modal .close_button {
 	width: 24px;
 	height: 24px;
@@ -78,6 +84,11 @@
     margin-left: auto;
     font: 700 32px/1.105 var(--fontBold);
     color: var(--title_color);
+}
+.edit_tour_modal .step-1 .close-button {
+    position: absolute;
+    right: 0;
+    top: 20px;
 }
 .edit_tour_modal button {
     width: 100%;
@@ -146,4 +157,12 @@
     position: absolute;
     right: 0;
     top: 47px;    
+}
+
+@media(max-width: 700px) {
+    .edit_tour_modal .modal_content {
+        min-width: inherit;
+        width: calc(100% - 40px);
+    }
+
 }

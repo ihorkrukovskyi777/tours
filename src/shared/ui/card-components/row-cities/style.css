@@ -54,11 +54,9 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 48px;
-    line-height: 1.05;
     text-align: center;
     color: #fff;
-    font: 700 48px/1.105 var(--fontBold);    
+    font: 700 32px/1.105 var(--fontBold);
 }
 .most_popular_city .item .intro > a:hover{
     text-decoration: underline;
