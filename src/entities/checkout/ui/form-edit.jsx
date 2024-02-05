@@ -105,7 +105,7 @@ export default observer(function FormEdit({i18n}) {
                     />
                     : null}
                 <EditSvg/>
-                {validForm.phone ? <span className='error-message'> {t(validForm.phone)} </span> : null}
+                {validForm.phone ? <span className='error-message'> {i18n[validForm.phone]} </span> : null}
             </div>
 
             <div className="item">
