@@ -83,7 +83,7 @@ export default observer(function FormEdit({i18n}) {
             <div className="item">
                 <label htmlFor="">{i18n.first_name}</label>
                 <input type='text' name='firstName' onChange={changeValue.firstName} value={editDeparture.firstName}/>
-                {validForm.firstName ? <span className='error-message'>{validForm.firstName ? `First Name ${t(validForm.firstName)}`  : null} </span> : null}
+                {validForm.firstName ? <span className='error-message'>{validForm.firstName ? `First Name ${i18n[validForm.firstName]}`  : null} </span> : null}
                 <EditSvg/>
             </div>
             <div className="item">
@@ -104,15 +104,15 @@ export default observer(function FormEdit({i18n}) {
                         changeCountryCode={editDeparture.changeCountryCode}
                     />
                     : null}
-                {validForm.phone ? <span className='error-message'> {t(validForm.phone)} </span> : null}
+                {validForm.phone ? <span className='error-message'> {i18n[validForm.phone]} </span> : null}
                 <EditSvg/>
-                {validForm.phone ? <span className='error-message'> {t(validForm.phone)} </span> : null}
+                {validForm.phone ? <span className='error-message'> {i18n[validForm.phone]} </span> : null}
             </div>
 
             <div className="item">
                 <label htmlFor="">{i18n.email}</label>
                 <input type='email' name='email' onChange={changeValue.email} value={editDeparture.email}/>
-                {validForm.email ? <span className='error-message'> {t(validForm.email)} </span> : null}
+                {validForm.email ? <span className='error-message'> {i18n[validForm.email]} </span> : null}
                 <EditSvg/>
             </div>
             {Array.isArray(error) ? <ul>{error.map((value, index) => <li key={index}>{value}</li>)}</ul> : null}

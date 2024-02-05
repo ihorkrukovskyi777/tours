@@ -35,7 +35,6 @@ class I18n {
         if(this.translates[this.locale] && this.translates[this.locale][ns]) {
             return
         }
-        console.log(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${this.locale}/${ns}`)
         const res = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${this.locale}/${ns}`, {next: {revalidate: 60 * 60}})
         this.translates[this.locale][ns] = await res.json();
     }
@@ -45,7 +44,7 @@ class I18n {
         if (!this.translates[locale] || !this.translates[locale][ns] || !this.translates[locale][ns][key] || locale === fallbackLng) {
             return key;
         }
-        return this.translates[locale][ns][key]
+        return this.translates[locale][ns][key] ?? key
     }
 }
 
