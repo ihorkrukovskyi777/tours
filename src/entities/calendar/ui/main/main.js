@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
+
 const CounterNumbers = dynamic(
     () => import("@/shared/ui/selectors/counter-numbers"),
     {
@@ -25,7 +26,6 @@ const Step3 = dynamic(
         loading: () => <div style={{position: 'relative'}}><Loader/></div>
     }
 )
-import OpenModalButton from "@/entities/calendar/ui/open-modal-button";
 const OpenModalButton = dynamic(
     () => import("@/entities/calendar/ui/open-modal-button"),
     {
