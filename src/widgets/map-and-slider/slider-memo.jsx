@@ -6,7 +6,7 @@ import Image from "next/image";
 import prevSVG from "../../../public/images/svg/arrow-prev.svg";
 import nextSVG from "../../../public/images/svg/arrow-next.svg";
 
-export default memo(function SliderMemo({ changeMarker, sliders, initialSlide, selectedTourId, setSwiper}) {
+export default memo(function SliderMemo({ i18n, changeMarker, sliders, initialSlide, selectedTourId, setSwiper}) {
     return (
         <div className="slider_block">
             <Swiper
@@ -40,7 +40,7 @@ export default memo(function SliderMemo({ changeMarker, sliders, initialSlide, s
                 {sliders.map((slider) => {
                     return (
                         <SwiperSlide key={slider.id} data-id={slider.id}>
-                            <Slide {...slider}></Slide>
+                            <Slide i18n={i18n} {...slider}></Slide>
                         </SwiperSlide>
                     )
                 })}

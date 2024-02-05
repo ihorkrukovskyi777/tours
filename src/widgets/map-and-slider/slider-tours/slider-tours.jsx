@@ -9,7 +9,7 @@ import {toJS} from "mobx";
 
 import './style.css';
 
-export default observer(function SliderTours({data}) {
+export default observer(function SliderTours({data, i18n = {}}) {
     const {
         map: {
             sliders,
@@ -29,7 +29,7 @@ export default observer(function SliderTours({data}) {
                         return (
                             <div className={`swiper-slide ${slider.id === selectedPlaceId ? 'active' : ''}`}
                                  key={slider.id} onClick={() => setOpenMarker(slider.id)}>
-                                <Slide {...slider}></Slide>
+                                <Slide {...slider} i18n={i18n}></Slide>
                             </div>
                         )
                     })}
@@ -51,7 +51,7 @@ export default observer(function SliderTours({data}) {
                 <div className="circle_item"></div>
                 <div className="circle_brackets">({sliders.length})</div>
             </div>
-            {!(sliders.length <= countSliderSettings) ? <Sliders sliders={toJS(sliders)} initialSlide={1} selectedTourId={null}/> : null }
+            {!(sliders.length <= countSliderSettings) ? <Sliders i18n={i18n} sliders={toJS(sliders)} initialSlide={1} selectedTourId={null}/> : null }
         </>
     )
 })

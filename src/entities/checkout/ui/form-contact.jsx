@@ -29,7 +29,7 @@ export default observer(function FormContact({ i18n }) {
                 isOpenedModal={toggleModalThankYou}
                 size="middle"
             >
-                <ThankYouMessage closeModal={toggleModalThankYou} message={pageOptions.thankYouPageMessage}/>
+                <ThankYouMessage i18n={i18n} closeModal={toggleModalThankYou} message={pageOptions.thankYouPageMessage}/>
             </DefaultModal>
         </>
     )

@@ -59,6 +59,8 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         how_many_people_are_coming: i18n.t('How many people are coming?'),
         departures_available: i18n.t('Departure(s) Available'),
         back: i18n.t('Back'),
+        your_message_has_been_sent: i18n.t('Your message has been sent'),
+        close: i18n.t('Close'),
     }
     return (
         <>

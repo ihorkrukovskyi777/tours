@@ -1,5 +1,5 @@
 "use client";
-import React, {useContext, useEffect, useLayoutEffect} from "react";
+import React, {useContext, useLayoutEffect} from "react";
 import {observer} from "mobx-react-lite";
 import {
     CheckoutStoreContext,

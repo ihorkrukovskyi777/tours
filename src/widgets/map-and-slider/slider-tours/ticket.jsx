@@ -2,14 +2,10 @@ import Image from "next/image";
 import heartSVG from '/public/images/svg/heart.svg';
 import clockSVG from '/public/images/svg/clock.svg';
 import ticketSVG from '/public/images/svg/tour.svg';
-import {useTranslation} from "@/i18n/client";
 import {pad2, toHoursAndMinutes} from "@/shared/helpers/date";
 
 
-export default function Ticket({duration, title, price, url}) {
-    const {t} = useTranslation();
-    const time = toHoursAndMinutes(duration / 60);
-
+export default function Ticket({duration, title, price, url, i18n}) {
     const {hours, minutes} = toHoursAndMinutes(duration);
     return (
         <div className="item-label">
@@ -19,14 +15,14 @@ export default function Ticket({duration, title, price, url}) {
             </p>
             {hours > 0 || minutes> 0 ? <p>
                     <Image src={clockSVG} width={20} height={20} alt="icon"/>
-                    <span>{t('Duration')}: {hours}:{pad2(minutes)} {t('Hours')}</span>
+                    <span>{i18n.duration}: {hours}:{pad2(minutes)} {i18n.hours}</span>
                 </p>
                 : null}
             <p>
                 <Image src={ticketSVG} width={20} height={20} alt="icon"/>
-                <span>{t('Tickets')}: {t('from')} {price} USD</span>
+                <span>{i18n.tickets}: {i18n.from} {price} USD</span>
             </p>
-            <a className="button_basic" href={url}>{t('Book now')}</a>
+            <a className="button_basic" href={url}>{i18n.book_now}</a>
         </div>
     )
 }

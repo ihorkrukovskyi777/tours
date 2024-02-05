@@ -64,12 +64,13 @@ const getSchemaEvent = (item) => {
             name: "Strawberry Tours",
             url: process.env.NEXT_PUBLIC_CANONICAL_DOMAIN
         },
-        offers: item?.departuresTimes?.filter(dep => new Date(dep.date).getTime() > new Date().getTime()).slice(0, 30)?.map(dep => getSchemaOffer(dep))
+        offers: item?.departuresTimes?.filter(dep => new Date(dep.date).getTime() > new Date().getTime()).slice(0, 22)?.map(dep => getSchemaOffer(dep))
     }
 }
 
 export default async function EventsSchema({ type = 'city', id, locale }) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/events-${type}/${id}?locale=${locale}`, {next: {revalidate: 60 * 15}})
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/events-${type}/${id}?locale=${locale}`, {next: {revalidate: 0}})
     const data = await response.json();
     return <script async={true}
                    type="application/ld+json"

@@ -44,6 +44,7 @@ export default async function Page({params: {locale, slug, tour}}) {
             return null
         return ({...item, slug: `${city.slug}/${PATH_TOURS}/${item.slug}`})
     }).filter(Boolean);
+
     const pagesBreadcrumbs = [
         {slug: getHrefLocale(locale, ''), title: i18n.t('Free Walking Tour')},
         {slug: page.city.slug, title: `${i18n.t('Free Tour')} ${page.city.title}`},
@@ -57,7 +58,7 @@ export default async function Page({params: {locale, slug, tour}}) {
             <TextQuote id={page.id} locale={locale} type="tour"/>
             <Suspense fallback={''}>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
-                <ProviderMap locale={page.locale} id={page.id} i18n={{tour_features: i18n.t('Tour Features')}}/>
+                <ProviderMap locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}/>
                 <LatestReviews id={page.id} locale={locale} type="tour"/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={i18n.t('this Tour')} id={page.id} locale={page.locale} type="tour"/>
