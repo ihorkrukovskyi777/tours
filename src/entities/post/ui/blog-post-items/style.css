@@ -43,7 +43,7 @@
 }
 .single-post-text {
     color: var(--title_color);
-    line-height: 1.22
+    line-height: 1.24;
 }
 .single-post-text p {
     margin: 25px 0 0
@@ -58,7 +58,7 @@
 }
 
 .single-post-text {
-    height: 297px;
+    height: 299px;
     position: relative;
     overflow: hidden;
 }
