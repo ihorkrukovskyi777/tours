@@ -27,7 +27,7 @@ class I18n {
         }
 
         const start = new Date().getTime();
-        const res = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${this.locale}/${ns}`, {next: {revalidate: 60}})
+        const res = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${this.locale}/${ns}`, {next: {revalidate: 60 * 60}})
         this.translates[this.locale] = {[defaultNS]: {}}
         this.translates[this.locale][ns] = await res.json();
         console.log(new Date().getTime() - start, 'fetch translates')
