@@ -124,7 +124,7 @@ class EditDeparture {
         this.email = email
         this.activityDate = activity_date;
         this.numberPeople = Number(number_people);
-        this.phone = phone
+        this.phone = phone.replace(country_code, '')
         this.dialCode = country_code;
         this.countrySlug = phone_county_slug;
         this.locale = locale;
@@ -293,7 +293,7 @@ class EditDeparture {
     }
 
     get phoneNumber() {
-        return this.phone.replace(this.dialCode, '');
+        return this.phone.replace(this.dialCode, '').trim();
     }
 
     changeCountryCode({dialCode, slugCountry}) {
@@ -315,7 +315,6 @@ class EditDeparture {
     }
 
     setPhone(value) {
-        console.log(value)
         this.phone = value;
     }
 
