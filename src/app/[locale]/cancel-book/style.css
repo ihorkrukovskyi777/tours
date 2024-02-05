@@ -1,0 +1,12 @@
+.cancel-book {
+    text-align: center;
+    min-height: calc(100vh - 400px);
+}
+
+
+p.canceled {
+    text-align: center;
+    max-width: 90%;
+    width: 900px;
+    margin: 50px auto;
+}

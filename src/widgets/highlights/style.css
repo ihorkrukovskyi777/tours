@@ -41,6 +41,9 @@
         height: auto;
         transform: none !important;
     }
+    .highlights .swiper-slide {
+        width: 100% !important;
+    }
 }
 @media(max-width: 767px) {
     .highlights .swiper-wrapper {

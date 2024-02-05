@@ -6,7 +6,7 @@ export default async function page404() {
     return (
         <>
             <div>
-                <div className="content">
+                <div className="content page-404">
                     <div className="container">
                         <article>
                             <p>{t('Nothing Found')}</p>

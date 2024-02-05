@@ -240,3 +240,29 @@ a {
   border-collapse: collapse;
   padding: 10px;
 }
+.page-404 {
+  min-height: calc(100vh - 153px);
+  width: 100%;
+  clear: both;
+}
+.page-404 .container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page-404 .container article {
+  padding: 100px 0;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+.page-404 .container article h1 {
+  font-size: 190px;
+  line-height: 1;
+  margin: 0 0 30px;
+}
+.page-404 .container article a {
+  color: var(--active-color);
+  font-weight: 700;
+}

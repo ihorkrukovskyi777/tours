@@ -2,6 +2,7 @@ import {notFound} from "next/navigation";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import '@/entities/post/ui/post-content/style.css';
+import './style.css'
 export default async function CancelPage({params: {locale}, searchParams}) {
     let cancelBook = await fetch(
         `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/cancel-booking`,
@@ -32,8 +33,8 @@ export default async function CancelPage({params: {locale}, searchParams}) {
     return (
         <>
             <div className="container">
-                <div className="content">
-                    <p dangerouslySetInnerHTML={{__html: cancelBook?.message ?? ''}}></p>
+                <div className="content cancel-book">
+                    <p className={'canceled'} dangerouslySetInnerHTML={{__html: cancelBook?.message ?? ''}}></p>
                 </div>
             </div>
             <I18nChangeOfLanguage locale={locale} languages={data.languages}/>
