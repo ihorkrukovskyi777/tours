@@ -25,11 +25,9 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 locale={locale}
                 id={id}
             />
-            <Suspense fallback="">
-                <EventsSchema id={id} locale={locale} type="city"/>
-                <PlaceSchema id={id} locale={locale}/>
-                <ProductSchema id={id} locale={locale}/>
-            </Suspense>
+            <EventsSchema id={id} locale={locale} type="city"/>
+            <PlaceSchema id={id} locale={locale}/>
+            <ProductSchema id={id} locale={locale}/>
             <Suspense fallback="">
                 <SsrCalendar locale={locale} type="city" id={id} title={title}/>
                 <MostPopularTours id={id} locale={locale} slug={slug}/>
