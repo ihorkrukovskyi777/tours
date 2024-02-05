@@ -172,6 +172,7 @@ class EditDeparture {
     }
 
     * updateDeparture() {
+
         const body = {
             curLang: this.locale,
             dep_id: this.depId,
@@ -194,6 +195,7 @@ class EditDeparture {
             if (this.isEdit && !this.editCivitatis) {
                 return yield fetchEditBooking({...body, code: this.staticCode});
             } else {
+                body.phone = this.phoneNumber;
                 if(this.is_civitatis || this.editCivitatis) {
                     return yield this.bookingAndCancel(body, this.cancelMessage);
                 } else {
@@ -214,7 +216,7 @@ class EditDeparture {
 
             return data;
         } catch (err) {
-            { success: false}
+            return { success: false}
         }
     }
     * bookingAndCancel(body, cancelMessage) {

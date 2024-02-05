@@ -8,7 +8,7 @@ import './style.css';
 
 
 export default async function BannerTour({id, locale, isMobile}) {
-    await i18n.getFetch()
+    await i18n.getFetchDefault()
     const tour = await getBannerData(id, locale, 'tour')
 
     return (

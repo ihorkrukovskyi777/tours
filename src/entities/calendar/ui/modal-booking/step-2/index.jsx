@@ -44,6 +44,7 @@ export default function Step2({i18n, title = "test", onBack, close, size = "smal
 
             {departures.map((dep) =>
                 <ModalTourItem
+                    i18n={i18n}
                     key={`${dep.depId}:${dep.time}`}
                     dep={dep}
                     onSelected={() => {

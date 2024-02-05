@@ -33,14 +33,14 @@ export default observer(function Step3({i18n, onChange, people, errors,selectedL
     return (
         <div className={`step-3 ${size}`}>
             <div className="subtitle">
-                <div className="subtitle-text">{t('modalBookingTitle')}</div>
+                <div className="subtitle-text">{i18n.modal_booking_title}</div>
                 <div className="close-button" onClick={close}>
                     <CloseSvg/>
                 </div>
             </div>
             <div className="title">
                 <div className="title-intro">
-                    <div className="subtitle-text subtitle-text-mobile">{t('modalBookingTitle')}</div>
+                    <div className="subtitle-text subtitle-text-mobile">{i18n.modal_booking_title}</div>
                     <div className="title-text">{departure.tourTitle}</div>
                 </div>
                 <div className="guide">
@@ -79,7 +79,6 @@ export default observer(function Step3({i18n, onChange, people, errors,selectedL
                                     <span className="comma">,</span>
                                     <span className="people-count">{people}</span>{i18n.people}
                                 </div>
-                                {selectedLocale}
                                 <FlagsComponents
                                     className='country-box-select'
                                     locale={selectedLocale}

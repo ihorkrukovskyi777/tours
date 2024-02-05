@@ -87,6 +87,7 @@ export default observer(function Main({siteLocale, i18n}) {
                                 days: i18n.days,
                                 save_changes: i18n.save_changes,
                                 back: i18n.back,
+                                hours: i18n.hours,
                             }}
                         />}
                 </div>
@@ -129,6 +130,7 @@ export default observer(function Main({siteLocale, i18n}) {
                         hour: i18n.hour,
                         i_accept_all: i18n.i_accept_all,
                         terms_and_conditions: i18n.terms_and_conditions,
+                        modal_booking_title: i18n.modal_booking_title,
                     }}
                     langSelected={locale}
                     errors={errors}

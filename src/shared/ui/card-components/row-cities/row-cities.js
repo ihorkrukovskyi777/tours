@@ -1,8 +1,10 @@
 import {fallbackLng} from "@/i18n/settings";
 import Card from "@/shared/ui/card-components/card/card";
 import Reviews from "@/widgets/latest-reviews/item/reviews";
+import i18n from "@/i18n";
 import './style.css'
-export default function RowCities({ cities = [], title}) {
+export default async function RowCities({ cities = [], title}) {
+    await i18n.getFetchDefault();
 
     if(!cities?.length) {
         return null;
@@ -22,7 +24,7 @@ export default function RowCities({ cities = [], title}) {
                                     attachment={city.attachment}
                                     url={`${localeSlug}/${city.slug}`}
                                     title={city.title}
-                                    bottomElement={<Reviews rating={city.rating} count_reviews={city.reviews}/>}
+                                    bottomElement={<Reviews title={i18n.t('Reviews')} rating={city.rating} count_reviews={city.reviews}/>}
                                 />
                             )
                         })}

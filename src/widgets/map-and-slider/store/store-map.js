@@ -65,7 +65,6 @@ export class StoreMap {
     setCenterMarker() {
         const find = this.markers.find(marker => marker.id === this.selectedPlaceId);
         if(find) {
-            console.log(find.coordinates)
             this.map?.panTo(find.coordinates, {duration: 0.5, easeLinearity: 0.25});
         }
     }

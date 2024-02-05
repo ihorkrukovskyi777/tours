@@ -15,7 +15,7 @@ import PlaceSchema from "@/shared/schema/place";
 import ProductSchema from "@/shared/schema/product";
 import EventsSchema from "@/shared/schema/events";
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
-    await i18n.getFetch();
+    await i18n.getFetchDefault();
 
     return (
         <>

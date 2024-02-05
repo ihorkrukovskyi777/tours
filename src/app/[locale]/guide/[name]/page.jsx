@@ -1,6 +1,5 @@
 import {notFound} from "next/navigation";
 import {Suspense} from "react";
-import {createTranslation} from "@/i18n/server";
 import {fetchSubVendorBySlug, getPageLanguage} from "@/entities/guide/api";
 import BannerGuide from "@/entities/guide/ui/banner-guide";
 import GuideTours from "@/entities/guide/ui/guide-tours/guide-tours";
@@ -15,14 +14,15 @@ import {generatorSeo} from "@/shared/helpers/generator-seo";
 import {PATH_GUIDES} from "@/shared/constants/route";
 import ProductSchemaGuide from "@/shared/schema/guide/product";
 import PlaceGuideSchema from "@/shared/schema/guide/place";
+import EventsGuideSchema from "@/shared/schema/guide/events";
+import i18n from "@/i18n";
 export default async function PageGuide({params: {name, locale}}) {
     const [pageSub, languages] = await Promise.all([
         fetchSubVendorBySlug(name),
         getPageLanguage()
     ])
 
-    const {t } = await createTranslation(locale)
-
+    await i18n.getFetchDefault();
 
     if (pageSub?.statusCode === 404) {
         notFound();
@@ -40,12 +40,13 @@ export default async function PageGuide({params: {name, locale}}) {
             <Suspense fallback={''}>
                 <ProductSchemaGuide slug={name} locale={locale} />
                 <PlaceGuideSchema slug={name} locale={locale}/>
+                <EventsGuideSchema slug={name} locale={locale}/>
             </Suspense>
             <Suspense fallback={''}>
                 <GuideTours id={pageSub.id} locale={locale}/>
                 <SsrCalendar locale={locale} type="sub-vendor" id={pageSub.id} showFaq={false}/>
                 <I18nChangeOfLanguage locale={locale} languages={languagesFormatted} title={pageSub.brandName}/>
-                <Breadcrumbs pages={[{slug: '/', title: t('Free Tours')}, {title: name.replaceAll('_' ,' ') }]} locale={locale} />
+                <Breadcrumbs pages={[{slug: '/', title: i18n.t('Free Tours')}, {title: name.replaceAll('_' ,' ') }]} locale={locale} />
                 <Footer locale={locale}/>
             </Suspense>
         </>

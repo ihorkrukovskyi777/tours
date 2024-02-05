@@ -7,8 +7,8 @@ const HighlightsLazySlider = dynamic(
 )
 import './style.css';
 
-export default async function Highlights({id, locale}) {
-    await i18n.getFetch();
+export default async function Highlights({id}) {
+    await i18n.getFetchDefault();
     const images = await getHighlightsImages(id);
     return (
         <section className="highlights">

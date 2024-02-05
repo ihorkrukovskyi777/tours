@@ -81,7 +81,9 @@ export default observer(function OpenModalButton({storeModalCalendar, i18n}) {
                             departure_available: i18n.departure_available,
                             months: i18n.months,
                             days: i18n.days,
-                            back: i18n.back
+                            back: i18n.back,
+                            hours: i18n.hours,
+                            duration: i18n.duration
                         }}
                         setDeparture={selectedDeparture}
                         departures={Object.values(departuresByDate).flat()}
