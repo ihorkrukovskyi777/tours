@@ -89,7 +89,7 @@ export default observer(function FormEdit({i18n}) {
             <div className="item">
                 <label htmlFor="">{i18n.last_name}</label>
                 <input type='text' name='lastName' onChange={changeValue.lastName} value={editDeparture.lastName}/>
-                {validForm.lastName ? <span className='error-message'>{validForm.lastName ? `Last Name ${t(validForm.lastName)}`  : null} </span> : null}
+                {validForm.lastName ? <span className='error-message'>{validForm.lastName ? `Last Name ${i18n[validForm.lastName]}`  : null} </span> : null}
                 <EditSvg/>
             </div>
 

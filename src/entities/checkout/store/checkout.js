@@ -181,15 +181,14 @@ class EditDeparture {
             email: this.email,
             first_name: this.firstName,
             last_name: this.lastName,
-            phone: this.phoneNumber,
+            phone: `${this.dialCode} ${this.phoneNumber}`,
             phone_county_code: this.dialCode,
             full_time: this.fullTime,
             phone_county_slug: this.countrySlug,
-            full_number: this.phone,
+            full_number: `${this.dialCode} ${this.phone}`,
         }
 
 
-        return;
         try {
             this.loading = true;
             if (this.isEdit && !this.editCivitatis) {
