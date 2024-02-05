@@ -26,7 +26,9 @@ export default observer(function Map({ids, id, locale}) {
 
             }
         }, [refMap.current, setMap])
-
+        if(markers.length === 0) {
+            return null
+        }
         return (
                 <MapContainer center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>
                     <TileLayer

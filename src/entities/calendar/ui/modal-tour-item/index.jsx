@@ -5,7 +5,7 @@ import {useTranslation} from "@/i18n/client";
 import './style.css';
 
 
-export default function ModalTourItem({dep, onSelected, isActive}) {
+export default function ModalTourItem({i18n, dep, onSelected, isActive}) {
     const { t } = useTranslation();
     const {hours, minutes} = toHoursAndMinutes(dep.time);
     const durationFormat = toHoursAndMinutes(dep.duration * 60);
@@ -18,7 +18,7 @@ export default function ModalTourItem({dep, onSelected, isActive}) {
                     <div className="clock-wrap">
                         <ClockSvg/>
                     </div>
-                    <span>{durationFormat.hours}:{pad2(durationFormat.minutes)} {t('Hours')}</span>
+                    <span>{durationFormat.hours}:{pad2(durationFormat.minutes)} {i18n.hours}</span>
                 </div>
             </div>
         </div>

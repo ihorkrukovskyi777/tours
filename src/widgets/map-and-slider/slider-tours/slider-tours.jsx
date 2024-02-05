@@ -18,6 +18,7 @@ export default observer(function SliderTours({data, i18n = {}}) {
             setOpenMarker,
         }
     } = useContext(StoreMapContext);
+
     const onlyWidth = useWindowWidth()
     const countSliderSettings = onlyWidth > 767 ? 3 : 1;
     if (sliders.length <= countSliderSettings) {

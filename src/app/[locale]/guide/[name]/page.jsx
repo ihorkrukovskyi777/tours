@@ -13,7 +13,8 @@ import Footer from "@/shared/ui/layouts/footer/footer";
 import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import {PATH_GUIDES} from "@/shared/constants/route";
-
+import ProductSchemaGuide from "@/shared/schema/guide/product";
+import PlaceGuideSchema from "@/shared/schema/guide/place";
 export default async function PageGuide({params: {name, locale}}) {
     const [pageSub, languages] = await Promise.all([
         fetchSubVendorBySlug(name),
@@ -27,6 +28,7 @@ export default async function PageGuide({params: {name, locale}}) {
         notFound();
     }
 
+
     const languagesFormatted = languages.map(sub => ({...sub, slug: `${sub.slug}/${name}`}))
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
@@ -34,6 +36,10 @@ export default async function PageGuide({params: {name, locale}}) {
         <>
             <Suspense fallback={''}>
                 <BannerGuide id={pageSub.id} isMobile={isMobile}/>
+            </Suspense>
+            <Suspense fallback={''}>
+                <ProductSchemaGuide slug={name} locale={locale} />
+                <PlaceGuideSchema slug={name} locale={locale}/>
             </Suspense>
             <Suspense fallback={''}>
                 <GuideTours id={pageSub.id} locale={locale}/>

@@ -43,11 +43,14 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
                         activeLanguage={activeLanguage}
                         questions={questions} showFaq={showFaq}
                     />
-                    <Faqs
-                        i18n={{faq: i18n.t('FAQ')}}
-                        style={{paddingRight: 0, paddingLeft: 0}}
-                        questions={questions}
-                    />
+                    {activeLanguage?.length ?
+                        <Faqs
+                            i18n={{faq: i18n.t('FAQ')}}
+                            style={{paddingRight: 0, paddingLeft: 0}}
+                            questions={questions}
+                        />
+                        : null}
+
                 </div>
             </div>
         </section>

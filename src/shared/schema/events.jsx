@@ -9,9 +9,9 @@ const getSchemaOffer = (offer) => {
         'priceCurrency': 'EUR',
         'category': offer.tour.city?.title,
         'availabilityStarts': offer.date,
-        'validFrom':  offer.date,
-        'availability':'https://schema.org/InStock',
-        'priceValidUntil':  offer.date,
+        'validFrom': offer.date,
+        'availability': 'https://schema.org/InStock',
+        'priceValidUntil': offer.date,
         'inventoryLevel': {
             '@type': 'QuantitativeValue',
             'value': '999'
@@ -21,7 +21,7 @@ const getSchemaOffer = (offer) => {
 
 const getSchemaEvent = (item) => {
 
-    const firstDep =  item?.departuresTimes[0] ?? null;
+    const firstDep = item?.departuresTimes[0] ?? null;
 
 
     return {
@@ -68,12 +68,15 @@ const getSchemaEvent = (item) => {
     }
 }
 
-export default async function EventsSchema({ type = 'city', id, locale }) {
+export default async function EventsSchema({type = 'city', id, locale}) {
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/events-${type}/${id}?locale=${locale}`, {next: {revalidate: 0}})
     const data = await response.json();
-    return <script async={true}
-                   type="application/ld+json"
-                   dangerouslySetInnerHTML={{ __html: JSON.stringify(getSchemaEvent(data)) }}
-    />
+    return (
+        <script
+            async={true}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{__html: JSON.stringify(getSchemaEvent(data))}}
+        />
+    )
 }

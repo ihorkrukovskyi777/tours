@@ -60,7 +60,12 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         departures_available: i18n.t('Departure(s) Available'),
         back: i18n.t('Back'),
         your_message_has_been_sent: i18n.t('Your message has been sent'),
+        hours: i18n.t('hours'),
         close: i18n.t('Close'),
+        FIRST_NAME_ERROR_VALIDATION: i18n.t('has an invalid format'),
+        FIRST_NAME_ERROR_VALIDATION_MAXLENGTH: i18n.t('has an invalid format'),
+        FIRST_NAME_ERROR_VALIDATION_WITHOUT_NUMBER: i18n.t('has an invalid format'),
+        EMAIL_ERROR: i18n.t('has an invalid format'),
     }
     return (
         <>

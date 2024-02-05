@@ -181,12 +181,13 @@ class EditDeparture {
             email: this.email,
             first_name: this.firstName,
             last_name: this.lastName,
-            phone: this.phoneNumber,
+            phone: `${this.dialCode} ${this.phoneNumber}`,
             phone_county_code: this.dialCode,
             full_time: this.fullTime,
             phone_county_slug: this.countrySlug,
-            full_number: this.phone,
+            full_number: `${this.dialCode} ${this.phone}`,
         }
+
 
         try {
             this.loading = true;
@@ -295,9 +296,10 @@ class EditDeparture {
         return this.phone.replace(this.dialCode, '');
     }
 
-    changeCountryCode({dialCode, countrySlug}) {
-        this.dialCode = dialCode;
-        this.countrySlug = countrySlug;
+    changeCountryCode({dialCode, slugCountry}) {
+        this.phone = this.phone.replace(this.dialCode, `+${dialCode}`)
+        this.dialCode = `+${dialCode}`;
+        this.countrySlug = slugCountry;
     }
 
     setFirstName(value) {
@@ -313,6 +315,7 @@ class EditDeparture {
     }
 
     setPhone(value) {
+        console.log(value)
         this.phone = value;
     }
 
