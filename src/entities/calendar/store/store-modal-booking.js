@@ -2,12 +2,13 @@ import {makeAutoObservable} from "mobx";
 import {fetchBookingDepartures} from "@/entities/calendar/api";
 
 export class StoreModalBooking {
-    constructor(locale, depLogic) {
+    constructor(locale, depLogic, localeError) {
         this.locale = locale
         this.isOpened = false;
         this.departure = null;
         this.depLogic = depLogic;
         this.errors = [];
+        this.localeError = localeError;
         this.loadingBooking = false;
         makeAutoObservable(this, {}, {autoBind: true});
     }
@@ -36,7 +37,7 @@ export class StoreModalBooking {
         const {email, firstName, lastName, phone, phone_county_code, phone_country_slug} = data;
         this.errors = [];
         const body = {
-            curLang: this.locale,
+            curLang: this.localeError,
             dep_id: this.departure.depId,
             tour_id: this.departure.tourId,
             is_civitatis: this.departure.is_civitatis ? 1 : 0,

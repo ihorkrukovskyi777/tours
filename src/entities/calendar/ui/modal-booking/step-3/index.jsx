@@ -94,7 +94,7 @@ export default observer(function Step3({i18n, onChange, people, errors,selectedL
                 </div>
             </div>
             <FormCalendar
-                i18n={{book_now: i18n.book_now, terms_and_conditions: i18n.terms_and_conditions, i_accept_all: i18n.i_accept_all}}
+                i18n={i18n}
                 errorsMessage={errors}
                 allPhoneNumbers={allPhoneNumbers}
                 locale={locale}

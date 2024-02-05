@@ -7,17 +7,17 @@ const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"
 
 const minLength = ({val, minLength})=> {
 
-    return val.length > minLength ? true : 'FIRST_NAME_ERROR_VALIDATION'
+    return val.length > minLength ? true : 'ERROR_VALIDATION'
 }
 const maxLength = ({val, maxLength})=> {
-    return maxLength > val.length  ? true : 'FIRST_NAME_ERROR_VALIDATION_MAXLENGTH'
+    return maxLength > val.length  ? true : 'ERROR_VALIDATION_MAXLENGTH'
 }
 const withoutNumbers = ({val})=> {
-    return !hasNumber.test(val) ? true : 'FIRST_NAME_ERROR_VALIDATION_WITHOUT_NUMBER'
+    return !hasNumber.test(val) ? true : 'ERROR_VALIDATION_WITHOUT_NUMBER'
 }
 
 const email = ({val})=> {
-    return validEmailRegex.test(val) ? true : 'EMAIL_ERROR'
+    return validEmailRegex.test(val) ? true : 'email_error'
 }
 
 const phone = (arr)=> {
@@ -26,7 +26,7 @@ const phone = (arr)=> {
 
     const valuePhone = val.toString().split('').filter(e => e.trim().length).join('').length;
     const validateArray = arrNumbers.split(',').map(i => Number(i));
-    return validateArray.includes(valuePhone) === true ? true : 'PHONE_ERROR';
+    return validateArray.includes(valuePhone) === true ? true : 'phone_number_error';
 }
 
 const strategyValid = {

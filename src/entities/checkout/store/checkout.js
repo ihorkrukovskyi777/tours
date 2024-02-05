@@ -295,7 +295,7 @@ class EditDeparture {
     }
 
     get phoneNumber() {
-        return this.phone.replace(this.dialCode, '').trim();
+        return this.phone.replace(this.dialCode, '').trim() ?? '';
     }
 
     changeCountryCode({dialCode, slugCountry}) {

@@ -57,16 +57,16 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
         let checked = document.querySelector(`#booking input[name=${name}]`).checked;
         switch (name) {
             case 'firstName':
-                if (value.length < 1) errorMsg = 'This field is requared'
-                if (value.length > 50) errorMsg = '"First name" max length is 50 symbols';
-                if (hasNumber.test(value)) errorMsg = '"First name" should be without numbers';
+                if (value.length < 1) errorMsg = i18n.errors.field_is_required
+                if (value.length > 50) errorMsg = i18n.errors.first_name_max_length_is_50_symbols;
+                if (hasNumber.test(value)) errorMsg = i18n.errors.first_name_should_be_without_numbers;
                 errors.firstName = errorMsg
                 break;
 
             case 'lastName':
-                if (value.length < 1) errorMsg = 'This field is requared';
-                if (value.length > 50) errorMsg = '"Last name" max length is 50 symbols';
-                if (hasNumber.test(value)) errorMsg = '"Last name" should be without numbers';
+                if (value.length < 1) errorMsg = i18n.errors.field_is_required;
+                if (value.length > 50) errorMsg = i18n.errors.last_name_max_length_is_50_symbols;
+                if (hasNumber.test(value)) errorMsg = i18n.errors.last_name_should_be_without_numbers;
                 errors.lastName = errorMsg
                 break;
 
@@ -74,18 +74,18 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                 errors.email =
                     validEmailRegex.test(value)
                         ? ''
-                        : 'Email is not valid!';
+                        : i18n.errors.email_error;
                 break;
             case 'phone':
                 const valuePhone = value.toString().split('').filter(e => e.trim().length).join('').length;
                 const validateArray = document.querySelector(`#booking input[name=${name}]`).getAttribute('validation-number').split(',').map(i => Number(i));
                 if (!validateArray.includes(valuePhone)) {
-                    errorMsg = '"Phone number" has an invalid format';
+                    errorMsg = i18n.errors.phone_number_error;
                 }
                 errors.phone = errorMsg
                 break;
             case 'accept':
-                if (checked === false) errorMsg = 'This field is requared';
+                if (checked === false) errorMsg = i18n.errors.field_is_required;
                 errors.accept = errorMsg
                 break;
             default:
@@ -112,11 +112,11 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
    async function handleSubmit(event) {
         event.preventDefault();
         if (validate === null) {
-            errors.firstName = 'This field is requared';
-            errors.lastName = 'This field is requared';
-            errors.email = 'This field is requared';
-            errors.phone = 'This field is requared';
-            errors.accept = 'This field is requared';
+            errors.firstName = i18n.errors.field_is_required;
+            errors.lastName = i18n.errors.field_is_required;
+            errors.email = i18n.errors.field_is_required;
+            errors.phone = i18n.errors.field_is_required;
+            errors.accept = i18n.errors.field_is_required;
             document.querySelectorAll('#booking input').forEach((item) => {
                 if (item.hasAttribute('name')) {
                     validateSwitch(item.getAttribute('name'));
@@ -155,7 +155,6 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
     }
 
 
-
     const {errors} = state;
 
     const [value, setValue] = useState(null);
@@ -168,7 +167,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
             <div className="form-wrap">
                 <div className="item-form">
                     <label htmlFor="">
-                        <span>First Name<span className="red">*</span></span>
+                        <span>{i18n.first_name}<span className="red">*</span></span>
                         <input type='text' name='firstName' onChange={handleChange}/>
                         {errors.firstName.length > 0 ? <span className='error-message'>{errors.firstName}</span> : null}
 
@@ -176,14 +175,14 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                 </div>
                 <div className="item-form">
                     <label htmlFor="">
-                        <span>Last Name<span className="red">*</span></span>
+                        <span>{i18n.last_name}<span className="red">*</span></span>
                         <input type='text' name='lastName' onChange={handleChange}/>
                         {errors.lastName.length > 0 ? <span className='error-message'>{errors.lastName}</span> : null}
                     </label>
                 </div>
                 <div className="item-form">
                     <label htmlFor="">
-                        <span>Email<span className="red">*</span></span>
+                        <span>{i18n.email}<span className="red">*</span></span>
                         <input type='email' name='email' onChange={handleChange}/>
                         {errors.email.length > 0 ? <span className='error-message'>{errors.email}</span> : null}
 
@@ -191,7 +190,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                 </div>
                 <div className="item-form">
                     <label htmlFor="">
-                        <span>Phone Number<span className="red">*</span></span>
+                        <span>{i18n.phone_number}<span className="red">*</span></span>
                         <InternationalInput
                             locale={locale}
                             allPhoneNumbers={allPhoneNumbers}

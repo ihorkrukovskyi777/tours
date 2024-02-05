@@ -45,7 +45,7 @@ export default observer(function FormEdit({i18n}) {
 
         setValidForm({...validForm , ...errorLists})
         if (!Object.values(errorLists).filter(Boolean).length) {
-            submitForm();
+            submitForm().then();
         }
     }
 
@@ -74,22 +74,19 @@ export default observer(function FormEdit({i18n}) {
 
     });
 
-    console.log(validForm);
-
-
     return (
         <form id='edit_tour' onSubmit={preSubmitForValidation}>
             {error === true ? <Notification close={() => setError(false)} /> : null}
             <div className="item">
                 <label htmlFor="">{i18n.first_name}</label>
                 <input type='text' name='firstName' onChange={changeValue.firstName} value={editDeparture.firstName}/>
-                {validForm.firstName ? <span className='error-message'>{validForm.firstName ? `First Name ${t(validForm.firstName)}`  : null} </span> : null}
+                {validForm.firstName ? <span className='error-message'>{validForm.firstName ? i18n.errors?.first_name[validForm.firstName]  : null} </span> : null}
                 <EditSvg/>
             </div>
             <div className="item">
                 <label htmlFor="">{i18n.last_name}</label>
                 <input type='text' name='lastName' onChange={changeValue.lastName} value={editDeparture.lastName}/>
-                {validForm.lastName ? <span className='error-message'>{validForm.lastName ? `Last Name ${t(validForm.lastName)}`  : null} </span> : null}
+                {validForm.lastName ? <span className='error-message'>{validForm.lastName ? i18n.errors?.first_name[validForm.lastName]   : null} </span> : null}
                 <EditSvg/>
             </div>
 
@@ -105,7 +102,7 @@ export default observer(function FormEdit({i18n}) {
                     />
                     : null}
                 <EditSvg/>
-                {validForm.phone ? <span className='error-message'> {i18n[validForm.phone]} </span> : null}
+                {validForm.phone ? <span className='error-message'> {i18n.errors[validForm.phone] ?? ''} </span> : null}
             </div>
 
             <div className="item">

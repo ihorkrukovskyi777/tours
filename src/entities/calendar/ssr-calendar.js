@@ -30,6 +30,11 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
         departures_not_found: i18n.t('Departures not found'),
         tour_calendar: i18n.t('Tour Calendar'),
         modal_booking_title: i18n.t('Your booking details. You\'re almost there!'),
+        first_name: i18n.t('First Name'),
+        last_name: i18n.t('Last Name'),
+        email: i18n.t('Email'),
+        phone_number: i18n.t('Phone Number'),
+        errors: i18n.getFormErrors(),
     }
     return (
         <section id="tour_calendar_section" className="tour_calendar">

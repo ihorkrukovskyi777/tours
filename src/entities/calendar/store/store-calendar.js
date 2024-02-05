@@ -4,13 +4,13 @@ import {StoreTourLogic} from "@/entities/calendar/store/store-tour-logic";
 import {StoreModalBooking} from "@/entities/calendar/store/store-modal-booking";
 import {StoreModalCalendar} from "@/entities/calendar/store/store-modal-calendar";
 export class StoreCalendar {
-    constructor(locale, type, id, activeLanguage, title) {
+    constructor(locale, type, id, activeLanguage, title, localeError) {
         this.type = type;
         this.id = id;
         this.title = title;
         this.activeLanguage = activeLanguage;
         this.storeDepLogic = new StoreTourLogic(locale, type, id)
-        this.storeModalBooking = new StoreModalBooking(locale,   this.storeDepLogic)
+        this.storeModalBooking = new StoreModalBooking(locale, this.storeDepLogic, localeError)
         this.loading = new StoreLoading(true);
         this.storeModalCalendar = new StoreModalCalendar(this.loading, this.storeDepLogic, this.storeModalBooking, this.activeLanguage, title)
         makeAutoObservable(this, {}, {autoBind: true, deep: false});

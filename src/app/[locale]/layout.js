@@ -2,6 +2,7 @@ import Header from '@/shared/ui/layouts/header/header'
 import {seoLocales} from "@/shared/constants/locales-seo";
 import WebSiteSchema from "@/shared/schema/web-site";
 import i18n from "@/i18n";
+import GoogleScript from "@/shared/scripts/google";
 import '../../globals.css'
 export default async function LocaleLayout({children, params}) {
     i18n.init(params.locale)
@@ -15,6 +16,7 @@ export default async function LocaleLayout({children, params}) {
                 <WebSiteSchema />
                 <Header locale={params.locale}/>
                 {children}
+                <GoogleScript />
             </main>
             </body>
             </html>

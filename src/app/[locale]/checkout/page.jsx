@@ -2,7 +2,6 @@ import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-
 import Checkout from "@/entities/checkout/main";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import TourRow from "@/widgets/tour-row/tour-row";
-import {createTranslation} from "@/i18n/server";
 import {notFound} from "next/navigation";
 import i18n from "@/i18n";
 
@@ -14,7 +13,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
     )
     checkoutData = await checkoutData.json();
 
-    if(checkoutData?.data?.status === 404) {
+    if (checkoutData?.data?.status === 404) {
         notFound();
     }
     const pageType = await fetch(
@@ -62,18 +61,27 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         your_message_has_been_sent: i18n.t('Your message has been sent'),
         hours: i18n.t('hours'),
         close: i18n.t('Close'),
-        FIRST_NAME_ERROR_VALIDATION: i18n.t('has an invalid format'),
-        FIRST_NAME_ERROR_VALIDATION_MAXLENGTH: i18n.t('has an invalid format'),
-        FIRST_NAME_ERROR_VALIDATION_WITHOUT_NUMBER: i18n.t('has an invalid format'),
-        EMAIL_ERROR: i18n.t('has an invalid format'),
-        PHONE_ERROR: i18n.t('has an invalid format'),
+        errors: {
+            ...i18n.getFormErrors(),
+            first_name: {
+                ERROR_VALIDATION: i18n.t('This field is required'),
+                ERROR_VALIDATION_MAXLENGTH: i18n.t('first_name_max_length_is_50_symbols'),
+                ERROR_VALIDATION_WITHOUT_NUMBER: i18n.t('first_name_should_be_without_numbers'),
+            },
+            last_name: {
+                ERROR_VALIDATION: i18n.t('This field is required'),
+                ERROR_VALIDATION_MAXLENGTH: i18n.t('last_name_should_be_without_numbers'),
+                ERROR_VALIDATION_WITHOUT_NUMBER: i18n.t('last_name_should_be_without_numbers'),
+            }
+        }
     }
     return (
         <>
             <Checkout title={currentPage?.title} i18n={translates} locale={locale} tourLocale={checkoutData.locale}/>
-            <TourRow id={checkoutData.tour_id} locale={locale} title={`${i18n.t('Other Tours in')} ${checkoutData.city?.post_title}`}/>
+            <TourRow id={checkoutData.tour_id} locale={locale}
+                     title={`${i18n.t('Other Tours in')} ${checkoutData.city?.post_title}`}/>
             <I18nChangeOfLanguage locale={locale} languages={page.languages}/>
-            <Footer />
+            <Footer/>
         </>
     )
 }

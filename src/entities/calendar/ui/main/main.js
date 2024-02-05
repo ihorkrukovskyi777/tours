@@ -120,18 +120,7 @@ export default observer(function Main({siteLocale, i18n}) {
             </div>
             <ModalBooking size={'step-3'} show={isOpened}>
                 {isOpened ? <Step3
-                    i18n={{
-                        change: i18n.change,
-                        months: i18n.months,
-                        days: i18n.days,
-                        book_now: i18n.book_now,
-                        people: i18n.people,
-                        hours: i18n.hours,
-                        hour: i18n.hour,
-                        i_accept_all: i18n.i_accept_all,
-                        terms_and_conditions: i18n.terms_and_conditions,
-                        modal_booking_title: i18n.modal_booking_title,
-                    }}
+                    i18n={i18n}
                     langSelected={locale}
                     errors={errors}
                     people={people}
