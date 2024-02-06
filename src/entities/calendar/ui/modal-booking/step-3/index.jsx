@@ -29,7 +29,6 @@ export default observer(function Step3({i18n, onChange, people, errors,selectedL
     const serviceDate = new ServiceDate(setFormatDDMMYYYYtoMMDDYYYY(departure.date));
     const time = toHoursAndMinutes(departure.time);
     const duration = toHoursAndMinutes(departure.duration * 60);
-
     return (
         <div className={`step-3 ${size}`}>
             <div className="subtitle">
