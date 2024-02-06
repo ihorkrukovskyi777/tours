@@ -55,7 +55,6 @@ export default function InternationalInput({locale , allPhoneNumbers, changeCoun
     }, [allPhoneNumbers])
     const defaultValueProp = phoneDefault ? { value: phoneDefault} : {}
 
-    console.log(masks, 'localization')
     return (
     <div className={classNames({'border':border} , 'international-phone')}>
         <div className="wrap-input" style={{width: inputCountryWidth}}>
