@@ -8,7 +8,7 @@ export default function Faqs({i18n, questions = [], style = {}}) {
             {questions?.length ? <FaqSchema questions={questions}/> : null}
             <section className="faq">
                 <div className="container" style={style}>
-                    <h2>{i18n.faq}</h2>
+                    {questions?.length ? <h2>{i18n.faq}</h2> : null}
                     <div className="wrapper">
                         {questions?.map((item, index) => (
                             <Dropdown key={index} title={item.title} id={"panelid_" + index}>
