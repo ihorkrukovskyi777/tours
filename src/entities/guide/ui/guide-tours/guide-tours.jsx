@@ -16,7 +16,7 @@ export default async function GuideTours({id, locale, slug}) {
         i18n={{
             duration: i18n.t('Duration'),
             hours: i18n.t('Hours'),
-            hour: i18n.t('Hours'),
+            hour: i18n.t('Hour'),
             next_tour: i18n.t('Next Tour'),
             days: i18n.getDays(),
         }}></RowTours>

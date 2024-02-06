@@ -15,7 +15,7 @@ export default async function PopularTours({locale, id, index, flexibleKey}) {
             i18n={{
                 duration: i18n.t('Duration'),
                 hours: i18n.t('Hours'),
-                hour: i18n.t('Hours'),
+                hour: i18n.t('Hour'),
                 next_tour: i18n.t('Next Tour'),
                 days: i18n.getDays(),
             }}
