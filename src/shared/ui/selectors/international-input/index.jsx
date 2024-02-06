@@ -1,12 +1,10 @@
 import { useState, useMemo } from 'react';
-import PhoneInput from 'react-phone-input-2'
+import PhoneInput from "@/lib/react-phone/lib/lib"
 import classNames from 'classnames';
 import { InputMask } from '@react-input/mask';
 import { localeFormat } from "@/shared/helpers/locale";
-import 'react-phone-input-2/lib/style.css';
-
+import '@/lib/react-phone/lib/style.css';
 import './style.css';
-
 export default function InternationalInput({locale , allPhoneNumbers, changeCountryCode = () => {}, handleChange , valueMask='', phoneDefault =''}) {
     let formatLanguage = localeFormat(locale);
     formatLanguage = formatLanguage === 'en' ? 'GB' : formatLanguage;
@@ -19,7 +17,6 @@ export default function InternationalInput({locale , allPhoneNumbers, changeCoun
         });
         return values;
     }, [allPhoneNumbers]);
-
     const  [validation_numbers , setValidation_numbers] = useState(localizationWP[languagePageSlug]['validation_numbers']);
     const [placeholder , setPlaceholder] = useState(localizationWP[languagePageSlug]['mask_number']);
     const [slugCountry , setSlugCountry] = useState(languagePageSlug);
@@ -49,7 +46,16 @@ export default function InternationalInput({locale , allPhoneNumbers, changeCoun
         }
         return values;
     }, [allPhoneNumbers])
+    const masks = useMemo(() => {
+        const values = {};
+        for (const item of allPhoneNumbers) {
+            values[item.code.toLowerCase()] = item.mask_number
+        }
+        return values;
+    }, [allPhoneNumbers])
     const defaultValueProp = phoneDefault ? { value: phoneDefault} : {}
+
+    console.log(masks, 'localization')
     return (
     <div className={classNames({'border':border} , 'international-phone')}>
         <div className="wrap-input" style={{width: inputCountryWidth}}>
@@ -57,6 +63,7 @@ export default function InternationalInput({locale , allPhoneNumbers, changeCoun
                 preferredCountries={['gb' ,'us']}
                 country={formatLanguage.toLowerCase()}
                 localization={localization}
+                masks={masks}
                 onChange={(value, country) => {
                     //errors.phone = 'This field is requared';
                     setInputCountryWidth(widthInputs[value.length]);
