@@ -12,7 +12,7 @@ export default function BannerSubVendor({attachment = null, name, children, avat
                     <div className="img_box">
                         <IcloudImage src={avatar} width={240} height={240}></IcloudImage>
                     </div>
-                    <div>
+                    <div className="text_box">
                         <h1 className="title">{name}</h1>
                         {children}
                     </div>
