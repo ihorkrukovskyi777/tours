@@ -35,7 +35,7 @@ const columnsFormula = (column1, column2) => {
     }
     return flag
 }
-export default observer(function ButtonTours({toursPlaces}) {
+export default observer(function ButtonTours({toursPlaces, i18n}) {
 
 
     const {map: {selectedTourId,setSelectedTourId, resetSelectedTour, places, shortToursTitle}} = useContext(StoreMapContext);
@@ -107,7 +107,7 @@ export default observer(function ButtonTours({toursPlaces}) {
             </div>
             {toursPlaces.length > 1 ?
                 <button className="place_select_post_clear" onClick={resetSelectedTour}>
-                    <Image src={ClearSVG} alt="clear" /> Clear
+                    <Image src={ClearSVG} alt="clear" /> {i18n.clear}
                 </button> : null
             }
         </div>

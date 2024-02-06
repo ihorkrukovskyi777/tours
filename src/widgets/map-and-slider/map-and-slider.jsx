@@ -28,7 +28,7 @@ export default function MapAndSlider({i18n, id, locale, toursPlaces}) {
                     <StoreMapContext.Provider value={{
                         map: new StoreMap(id, locale)
                     }}>
-                        { ids.length ? <ButtonTours toursPlaces={toursPlaces}></ButtonTours> : null }
+                        { ids.length ? <ButtonTours i18n={i18n} toursPlaces={toursPlaces}></ButtonTours> : null }
                         <Map ids={ids} id={id} locale={locale}/>
                         <SliderTours i18n={i18n}/>
                     </StoreMapContext.Provider>

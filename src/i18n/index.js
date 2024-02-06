@@ -16,6 +16,7 @@ class I18n {
             tickets: this.t('Tickets'),
             from: this.t('from'),
             duration: this.t('Duration'),
+            clear: this.t('Clear'),
         }
     }
 
