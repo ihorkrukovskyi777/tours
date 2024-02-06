@@ -6,9 +6,8 @@ import {useRouter} from "next/navigation";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import classNames from "classnames";
 import Link from "next/link";
-
-
 export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookingDeparture, errorsMessage , isLoading }) {
+
     const { push } = useRouter();
     const params = useParams();
     //validation
