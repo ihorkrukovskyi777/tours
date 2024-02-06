@@ -108,7 +108,7 @@ export default observer(function ButtonTours({toursPlaces}) {
                     )
                 })}
             </div>
-            {toursPlaces.length > 0 ?
+            {toursPlaces.length > 1 ?
                 <button className="place_select_post_clear" onClick={resetSelectedTour}>
                     <Image src={ClearSVG} alt="clear" /> Clear
                 </button> : null

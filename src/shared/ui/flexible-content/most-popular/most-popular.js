@@ -9,7 +9,7 @@ export default async function BannerHome({locale, id, index, flexibleKey}) {
         return null
     }
 
-    const cities = data.cities.map(city => ({...city, title: `${ i18n.t('Free Tours')} ${city.title}` }))
+    const cities = data.cities.map(city => ({...city, title: `Free Tours ${city.title}` }))
 
     return (
         <>

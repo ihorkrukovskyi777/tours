@@ -4,7 +4,6 @@ import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import CollectionPageSchema from "@/shared/schema/collection-page";
 import i18n from "@/i18n";
-import {getHrefLocale} from "@/i18n/get-href-locale";
 
 const FlexibleContent = dynamic(
     () => import("@/widgets/flexible-content"),
