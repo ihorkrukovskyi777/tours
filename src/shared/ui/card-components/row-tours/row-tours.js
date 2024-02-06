@@ -10,6 +10,7 @@ import {getHrefLocale} from "@/i18n/get-href-locale";
 import './style.css';
 import i18n from "@/i18n";
 export default function RowTours({tours, title = '', i18n= {}}) {
+
     return (
         <section className="most_popular_tour">
             <div className="container">
@@ -17,6 +18,8 @@ export default function RowTours({tours, title = '', i18n= {}}) {
                     <h2 className="title">{title}</h2>
                     <div className="items">
                         {tours?.map((item) => {
+                            const labelHour = item.departure.durations.find(val => val >= 2) ? 'hours' : 'hour';
+
                             const serviceDate = new ServiceDate(item.departure?.nextDeparture);
                             const showTime = serviceDate.differenceInDays > 7 ?
                                 `${i18n.days[serviceDate.day]}, ${serviceDate.dayNum} ${serviceDate.month}` :
@@ -49,7 +52,7 @@ export default function RowTours({tours, title = '', i18n= {}}) {
                                                 />
                                                 <span className="second">{i18n.duration}:</span>
                                                 {item.departure?.durations?.length ?
-                                                    <span>{[...new Set(item.departure.durations)].join('-')} {i18n.hours}</span> : null}
+                                                    <span>{[...new Set(item.departure.durations)].join('-')} {i18n[labelHour]}</span> : null}
                                             </div>
 
                                             <div className="elem">

@@ -10,7 +10,7 @@ import './style.css';
 export default async function BannerTour({id, locale, isMobile}) {
     await i18n.getFetchDefault()
     const tour = await getBannerData(id, locale, 'tour')
-
+    let labelHour = tour.departure.durations?.find(val => val >= 2) ? 'Hours' : 'Hour';
     return (
         <Banner
             isMobile={isMobile}
@@ -25,7 +25,7 @@ export default async function BannerTour({id, locale, isMobile}) {
                     <>
                         <ClockSvg/>
                         <div>
-                            <span>{tour.departure.durations.join('-')} {i18n.t('Hours')}</span>
+                            <span>{tour.departure.durations.join('-')} {i18n.t(labelHour)}</span>
                         </div>
                     </>
                : null}
