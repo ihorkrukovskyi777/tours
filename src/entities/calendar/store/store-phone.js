@@ -22,7 +22,7 @@ export class StorePhone {
        const phones = yield getCountryPhone(this.locale);
 
          if(typeof window !== "undefined") {
-             if(!Array.isArray(window.rawCountry)) return
+             if(Array.isArray(window.rawCountry)) return
              const listCountry = {...country}
              phones.forEach(item => {
                  if(listCountry[item.code] && item.phone_code) {
