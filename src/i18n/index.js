@@ -10,7 +10,7 @@ class I18n {
 
     getMapSliders() {
         return {
-            our_features: this.t('Tour Features'),
+            tour_features: this.t('Tour Features'),
             book_now: this.t('Book now'),
             hours: this.t('Hours'),
             tickets: this.t('Tickets'),
