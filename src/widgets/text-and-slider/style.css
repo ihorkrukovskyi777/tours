@@ -33,6 +33,7 @@
     margin: 0 0 50px 0;
     font-size: 16px;
     line-height: 1.18;
+    list-style-position: inside;
 }
 .text_and_slider .intro li:not(:last-of-type) {
     margin-bottom: 30px;
