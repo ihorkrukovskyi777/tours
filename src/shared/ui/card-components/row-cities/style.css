@@ -58,6 +58,9 @@
     color: #fff;
     font: 700 32px/1.105 var(--fontBold);
 }
+.most_popular_city .item .intro.large > a{
+    font: 700 48px/1.105 var(--fontBold);
+}
 .most_popular_city .item .intro > a:hover{
     text-decoration: underline;
 }

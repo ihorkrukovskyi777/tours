@@ -19,12 +19,13 @@ export default async function RowCities({ cities = [], title}) {
                             const localeSlug = city?.locale === fallbackLng ? '' : `/${city.locale}`
                             return (
                                 <Card
+                                    font={'large'}
                                     key={index}
                                     size={"390x250"}
                                     attachment={city.attachment}
                                     url={`${localeSlug}/${city.slug}`}
                                     title={city.title}
-                                    bottomElement={<Reviews title={i18n.t('Reviews')} rating={city.rating} count_reviews={city.reviews}/>}
+                                    bottomElement={<Reviews size={12} title={i18n.t('Reviews')} rating={city.rating} count_reviews={city.reviews}/>}
                                 />
                             )
                         })}

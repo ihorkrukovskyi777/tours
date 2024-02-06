@@ -17,6 +17,10 @@
     border-radius: 4px;
     margin-left: 7px;
 }
+.rate_box.small > svg {
+    width: 12px;
+    height: 12px;
+}
 @media(min-width: 768px) {
     .rate_box {
         font-size: 16px;

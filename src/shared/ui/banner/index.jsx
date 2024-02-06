@@ -8,7 +8,7 @@ export default function Banner({attachment = null, title, children, bottomView =
                  <EventIcloudImage
                     priority={true}
                     className="banner_bg"
-                    quality={10}
+                    quality={50}
                     width={width}
                     height={height}
                     isMobile={isMobile}

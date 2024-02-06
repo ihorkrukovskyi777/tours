@@ -2,7 +2,7 @@ import {allCitiesData} from "@/entities/api";
 import Link from "next/link";
 import i18n from "@/i18n";
 import './style.css';
-export default async function AllCities({ locale, title }) {
+export default async function AllCities({ locale }) {
     await i18n.getFetchDefault()
     const citiesAll = await allCitiesData(locale);
     return (
