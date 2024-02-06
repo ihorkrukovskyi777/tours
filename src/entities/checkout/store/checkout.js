@@ -228,12 +228,21 @@ class EditDeparture {
         try {
             const data = yield fetchBookingDepartures(body);
             if (data.success === false) {
-
                 return {success: false, errors: Object.values(data.errors) ?? true};
             }
-            yield cancelBook(this.staticCode, cancelMessage)
+            this.cancelBooking(this.staticCode, cancelMessage, data)
+        } catch (err) {
+            return { success: false}
+        }
+
+    }
+
+    * cancelBooking(staticCode, cancelMessage, data) {
+        try {
+            yield cancelBook(staticCode, cancelMessage)
             return data;
         } catch (err) {
+            this.cancelBooking(staticCode, cancelMessage, data)
             return {success: false}
         }
     }

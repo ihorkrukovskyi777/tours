@@ -77,7 +77,7 @@ export default observer(function FormEdit({i18n}) {
 
     return (
         <form id='edit_tour' onSubmit={preSubmitForValidation}>
-            {error === true ? <Notification close={() => setError(false)} /> : null}
+            {error === true ? <Notification i18n={i18n} close={() => setError(false)} /> : null}
             <div className="item">
                 <label htmlFor="">{i18n.first_name}</label>
                 <input type='text' name='firstName' onChange={changeValue.firstName} value={editDeparture.firstName}/>

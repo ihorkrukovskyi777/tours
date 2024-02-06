@@ -63,6 +63,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         close: i18n.t('Close'),
         download_voucher: i18n.t('Voucher download'),
         departure_not_available: i18n.t('Departure not available'),
+        notification_wrong: i18n.t('Something went wrong, we couldn\'t change your order'),
         errors: {
             ...i18n.getFormErrors(),
             first_name: {
