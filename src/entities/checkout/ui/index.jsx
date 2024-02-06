@@ -21,7 +21,7 @@ export default observer(function CheckoutSection({i18n, title}) {
                 <div className="container">
                     {isActiveCheckout ? null : <p className="departure_alert">{i18n.departure_not_available}</p>}
                     <h2>{title}</h2>
-                    <div className="title">{checkoutInfo.tourName}</div>
+                    <div className="title" dangerouslySetInnerHTML={{__html: checkoutInfo.tourName ?? ''}}></div>
                     <PersonInfo i18n={i18n}/>
                     <MainInfo i18n={i18n}/>
                     <ButtonsInfo i18n={i18n}/>
