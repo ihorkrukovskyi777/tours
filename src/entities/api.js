@@ -47,10 +47,10 @@ export async function picketToursBox(id, locale = 'en') {
     return data.json();
 }
 
-export const getActiveLang = async (id, type = 'city') => {
+export const getActiveLang = async (id, type = 'city', locale) => {
     try {
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/active-language/${id}`,
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/active-language/${id}?locale=${locale}`,
             {next: {revalidate: 0}}
         );
         return res.json()

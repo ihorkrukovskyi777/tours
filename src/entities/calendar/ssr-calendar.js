@@ -8,7 +8,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
 
     const [questions, activeLanguage] = await Promise.all([
         showFaq ? getFaqBlock(id, locale) : Promise.resolve(),
-        getActiveLang(id, type)
+        getActiveLang(id, type, locale)
     ])
 
     const translate = {
