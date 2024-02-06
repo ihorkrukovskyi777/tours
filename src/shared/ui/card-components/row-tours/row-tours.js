@@ -19,8 +19,8 @@ export default function RowTours({tours, title = '', i18n= {}}) {
                         {tours?.map((item) => {
                             const serviceDate = new ServiceDate(item.departure?.nextDeparture);
                             const showTime = serviceDate.differenceInDays > 7 ?
-                                `${serviceDate.day}, ${serviceDate.dayNum} ${serviceDate.month}` :
-                                `${serviceDate.day}, ${serviceDate.time}`
+                                `${i18n.days[serviceDate.day]}, ${serviceDate.dayNum} ${serviceDate.month}` :
+                                `${i18n.days[serviceDate.day]}, ${serviceDate.time}`
 
                             return (
                                 <Card
