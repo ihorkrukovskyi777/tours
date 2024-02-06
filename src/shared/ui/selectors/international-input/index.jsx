@@ -54,6 +54,7 @@ export default function InternationalInput({locale , allPhoneNumbers, changeCoun
     <div className={classNames({'border':border} , 'international-phone')}>
         <div className="wrap-input" style={{width: inputCountryWidth}}>
             <PhoneInput
+                preferredCountries={['gb' ,'us']}
                 country={formatLanguage.toLowerCase()}
                 localization={localization}
                 onChange={(value, country) => {
@@ -87,6 +88,7 @@ export default function InternationalInput({locale , allPhoneNumbers, changeCoun
             onFocus={handleFocus}
             onBlur={handleBlur}
             data-slug={slugCountry}
+
         />
     </div>
 

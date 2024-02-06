@@ -21,6 +21,7 @@
     margin: 0 4px;
     cursor: pointer;
     order: 9999;
+    min-height: 54px;
 }
 .tabs .see-all {
     width: calc(25% - 8px);
@@ -120,6 +121,7 @@
     .tabs .tab_item {
         font-size: 14px;
         padding: 10px;
+        min-height: 38px;
     }
     .tabs .icon_wrap {
         width: 18px;
@@ -141,6 +143,9 @@
     }
     .tabs .tab_item {
         width: calc(25% - 8px);
+    }
+    .tabs.not_full li {
+        min-height: 49px;
     }
 }
 @media(max-width: 500px) {
@@ -170,6 +175,9 @@
         right: 0;
         bottom: 0;
         z-index: 10;
+    }
+    .tabs {
+        padding: 0;
     }
 }
 @media(max-width: 370px) {
