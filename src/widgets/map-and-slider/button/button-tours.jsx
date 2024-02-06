@@ -47,7 +47,6 @@ export default observer(function ButtonTours({toursPlaces}) {
         }
         return acc
     }, {width: 0, list: []})
-
     let columns = useMemo(() => {
         const columns = [
             fullWidth,
@@ -85,7 +84,6 @@ export default observer(function ButtonTours({toursPlaces}) {
     let buttonsRows;
     windowWidth > 767 ? buttonsRows = [toursRows.flat()] :  buttonsRows = toursRows;
 
-
     return (
         <div className="wrap-scroll">
             <div className="scroll">
@@ -94,7 +92,6 @@ export default observer(function ButtonTours({toursPlaces}) {
                     return (
                         <div className="row buttons-map" key={index}>
                             {lists.map((button) => {
-
                                 const isDisableClass = !places.find(place => !!place.tours[button.id]) ? {pointerEvents: 'none', opacity: '0.4'} : {}
                                 const isActiveClass = `${selectedTourId === button.id ? 'active' : ''}`;
                                 return (
