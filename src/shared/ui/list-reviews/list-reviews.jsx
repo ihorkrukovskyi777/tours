@@ -27,6 +27,7 @@ export default function ListReviews({i18n, reviews, total, limit, id, type}) {
                     [...reviews, ...moreReviews.value].map((item) => {
                         return (
                             <ReviewCard
+                                isShow={true}
                                 reviewsTitle={t('Reviews')}
                                 id={item.id}
                                 key={item.id}

@@ -1,15 +1,15 @@
 import './style.css';
-export default function Reviews({rating, count_reviews, text_review = true, number_review = true, title= 'Reviews' }) {
+export default function Reviews({rating, count_reviews, isShow = false, number_review = true, title= 'Reviews' }) {
 
     const stars = Array.from(new Array(5)).map((_, index) => index)
-    if(count_reviews < 99 || !count_reviews) {
+    if(count_reviews < 99 || !count_reviews && isShow === false) {
         return null
     }
 
     return (
         <div className="reviews">
             <div className="rate_box">
-                <div className="count_rate">{count_reviews} {title}</div>
+                {isShow === false ? <div className="count_rate">{count_reviews} {title}</div> : null}
                 <div>
                     {!!rating && stars.map(value => {
                         if((rating - value) >= 1)
