@@ -13,13 +13,13 @@ import "./style.css";
 
 export default observer(function CheckoutSection({i18n, title}) {
     const {t} = useTranslation()
-    const {checkoutInfo, isActiveCheckout, managerModal: {modalEdit}, editDeparture, globalLoading} = useContext(CheckoutStoreContext);
+    const {checkoutInfo, isActiveCheckout, editDeparture, globalLoading} = useContext(CheckoutStoreContext);
     return (
         <>
-            {editDeparture.loading || globalLoading ?  <Loader style={{position: 'fixed', opacity: '0.4', zIndex: 9999}}/>: null}
+            {editDeparture?.loading || globalLoading ?  <Loader style={{position: 'fixed', opacity: '0.4', zIndex: 9999}}/>: null}
             <section className="checkout_section">
                 <div className="container">
-                    {isActiveCheckout ? null : <p className="departure_alert">{t('Departure not available')}</p>}
+                    {isActiveCheckout ? null : <p className="departure_alert">{i18n.departure_not_available}</p>}
                     <h2>{title}</h2>
                     <div className="title">{checkoutInfo.tourName}</div>
                     <PersonInfo i18n={i18n}/>

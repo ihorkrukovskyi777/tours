@@ -23,6 +23,12 @@
   margin-right: 125px;
   flex-shrink: 0;
 }
+
+.loader_checkout {
+  position: fixed;
+  z-index: 999;
+  background-color: #FFFFFF;
+}
 .checkout_section ul {
   padding: 0;
   margin: 0;

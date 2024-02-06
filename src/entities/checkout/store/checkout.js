@@ -304,7 +304,7 @@ class EditDeparture {
     }
 
     changeCountryCode({dialCode, slugCountry}) {
-        this.phone = this.phone.replace(this.dialCode, `+${dialCode}`)
+        this.phone = `+${dialCode}`
         this.dialCode = `+${dialCode}`;
         this.countrySlug = slugCountry;
     }

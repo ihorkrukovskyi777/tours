@@ -1,5 +1,6 @@
 "use client";
-import React, {useContext, useLayoutEffect} from "react";
+import React, {useContext, useLayoutEffect, useState} from "react";
+import Loader from "@/shared/ui/loaders/default-loader";
 import {observer} from "mobx-react-lite";
 import {
     CheckoutStoreContext,
@@ -13,22 +14,34 @@ const CheckoutContent = observer(({title, i18n}) => {
     const code = searchParams.get('code');
     const store = useContext(CheckoutStoreContext);
 
+    const [loading, setLoading] = useState(true);
+
     useLayoutEffect(() => {
         const fetchData = async () => {
              await Promise.all([
                 store.fetchCheckoutDetails(searchParams.get('code')),
                 store.phone.fetchPhones()
             ])
+            setLoading(false);
 
         }
         fetchData().then()
     }, [code]);
 
+
+    const styleLoader = {
+        position: 'fixed',
+        top: 0,
+        zIndex: 999,
+        background: '#fff',
+        width: '100%',
+        height: '100%',
+    }
     return (
         <main>
             {store.isLoading && <p>Loading...</p>}
             {store.error && <p>Error: {store.error}</p>}
-            {store.editDeparture ? <CheckoutSection title={title} i18n={i18n}/> : null}
+            {!loading && store.editDeparture ? <CheckoutSection title={title} i18n={i18n}/> : <div style={styleLoader}><Loader /></div>}
         </main>
     );
 });

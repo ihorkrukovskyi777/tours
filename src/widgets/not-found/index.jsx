@@ -19,7 +19,6 @@ export default function NotFound() {
             setFields(res)
         })
     }, [])
-    console.log(fields, 'fields')
     return (
         <div>
             <div className="content page-404">
