@@ -21,11 +21,13 @@ export default async function BannerTour({id, locale, isMobile}) {
         >
             <LanguageImages locales={tour.departure.locales}/>
             <div className="time_wrapper">
-                <ClockSvg/>
                 {tour?.departure?.durations?.length ?
-                    <div>
-                        <span>{tour.departure.durations.join('-')} {i18n.t('Hours')}</span>
-                    </div>
+                    <>
+                        <ClockSvg/>
+                        <div>
+                            <span>{tour.departure.durations.join('-')} {i18n.t('Hours')}</span>
+                        </div>
+                    </>
                : null}
             </div>
         </Banner>
