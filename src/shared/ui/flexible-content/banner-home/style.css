@@ -44,3 +44,13 @@
     top: 0;
     left: 0;
 }
+@media(max-width: 767px) {
+    .home_banner {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        min-height: 465px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

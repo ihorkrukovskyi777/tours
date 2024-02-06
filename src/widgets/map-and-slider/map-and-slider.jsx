@@ -28,8 +28,11 @@ export default function MapAndSlider({i18n, id, locale, toursPlaces}) {
                     <StoreMapContext.Provider value={{
                         map: new StoreMap(id, locale)
                     }}>
-                        { ids.length ? <ButtonTours i18n={i18n} toursPlaces={toursPlaces}></ButtonTours> : null }
-                        <Map ids={ids} id={id} locale={locale}/>
+                        {ids.length ? <ButtonTours i18n={i18n} toursPlaces={toursPlaces}></ButtonTours> : null}
+                        <div className="wrap-map">
+                            <div className="shadow-map">Use ctrl + scroll to zoom the map</div>
+                            <Map ids={ids} id={id} locale={locale}/>
+                        </div>
                         <SliderTours i18n={i18n}/>
                     </StoreMapContext.Provider>
                 </div>
