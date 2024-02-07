@@ -67,6 +67,9 @@ h6 {
   font: 400 18px var(--fontBold);
   color: var(--title_color);
 }
+img {
+  max-width: 100%;
+}
 @media (max-width: 767px) {
   h1 {
     font-size: 48px;

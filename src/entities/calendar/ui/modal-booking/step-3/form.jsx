@@ -8,6 +8,8 @@ import classNames from "classnames";
 import Link from "next/link";
 export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookingDeparture, errorsMessage , isLoading }) {
 
+
+    const [showError , setShowError] = useState(false);
     const { push } = useRouter();
     const params = useParams();
     //validation
@@ -50,6 +52,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
     const [state, setState] = useState(stateAll);
 
     function validateSwitch(name) {
+        setShowError(false);
         let hasNumber = /\d/;
         let errorMsg = '';
         let value = document.querySelector(`#booking input[name=${name}]`).value;
@@ -158,6 +161,10 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
 
     const [value, setValue] = useState(null);
 
+    function showMsg () {
+        setShowError(true);
+    }
+
     // end validation
 
 
@@ -168,23 +175,21 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                     <label htmlFor="">
                         <span>{i18n.first_name}<span className="red">*</span></span>
                         <input type='text' name='firstName' onChange={handleChange}/>
-                        {errors.firstName.length > 0 ? <span className='error-message'>{errors.firstName}</span> : null}
-
+                        {showError && errors.firstName.length > 0 ? <span className='error-message'>{errors.firstName}</span> : null}
                     </label>
                 </div>
                 <div className="item-form">
                     <label htmlFor="">
                         <span>{i18n.last_name}<span className="red">*</span></span>
                         <input type='text' name='lastName' onChange={handleChange}/>
-                        {errors.lastName.length > 0 ? <span className='error-message'>{errors.lastName}</span> : null}
+                        {showError && errors.lastName.length > 0 ? <span className='error-message'>{errors.lastName}</span> : null}
                     </label>
                 </div>
                 <div className="item-form">
                     <label htmlFor="">
                         <span>{i18n.email}<span className="red">*</span></span>
                         <input type='email' name='email' onChange={handleChange}/>
-                        {errors.email.length > 0 ? <span className='error-message'>{errors.email}</span> : null}
-
+                        {showError && errors.email.length > 0 ? <span className='error-message'>{errors.email}</span> : null}
                     </label>
                 </div>
                 <div className="item-form">
@@ -196,7 +201,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                             handleChange={handleChange}
                             valueMask={valueMask}
                         />
-                        {errors.phone.length > 0 ? <span className='error-message'>{errors.phone}</span> : null}
+                        {showError && errors.phone.length > 0 ? <span className='error-message'>{errors.phone}</span> : null}
                     </label>
 
                 </div>
@@ -207,14 +212,14 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                         <Link href="/terms-and-conditions/" className="terms-and-conditions">{i18n.terms_and_conditions}</Link> <span
                         className="red">*</span>
                     </div>
-                    {errors.accept.length > 0 ? <span className='error-message'>{errors.accept}</span> : null}
+                    {showError && errors.accept.length > 0 ? <span className='error-message'>{errors.accept}</span> : null}
                 </div>
             </div>
             <ul className="general-error">
                 {errorsMessage?.map((value, index) => <li key={index} dangerouslySetInnerHTML={{__html: value ?? ''}}></li>)}
             </ul>
             <div className="btns-wrap">
-                <button className='button_custom'>{i18n.book_now}</button>
+                <button className='button_custom' onClick={showMsg}>{i18n.book_now}</button>
                 <div className={classNames({'show-loader': isLoading}, 'calendar_choose_date_loader')}   id="calendar_choose_date_loader">
                     <div className="lds-dual-ring"></div>
                 </div>

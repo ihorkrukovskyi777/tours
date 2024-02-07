@@ -12,8 +12,8 @@ export default function Banner({attachment = null, title, children, bottomView =
                     height={height}
                     isMobile={isMobile}
                     size={ isMobile ? '500x500' : 'public'}
-                    src={attachment.src}
-                    alt={attachment.alt}
+                    src={attachment?.src}
+                    alt={attachment?.alt}
                 />
                 <div className="container">
                     <div className="intro">
