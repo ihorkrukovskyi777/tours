@@ -3,7 +3,7 @@ import {HelperDateHtml} from '@/shared/helpers/helperDateHtml';
 import styles from './style.module.css';
 
 
-export default function ReviewCard({children, isShow, time, author, rating, count_reviews, title, reviewsTitle}) {
+export default function ReviewCard({children, time, author, rating, count_reviews, title, reviewsTitle}) {
 
     const helperDateHtml = new HelperDateHtml(time);
 
@@ -13,7 +13,6 @@ export default function ReviewCard({children, isShow, time, author, rating, coun
             <div className={styles.top_part}>
                 <div className={styles.stars}>
                     <Reviews
-                        isShow={isShow}
                         reviewsTitle={reviewsTitle}
                         show_rating_number={false}
                         rating={rating}
