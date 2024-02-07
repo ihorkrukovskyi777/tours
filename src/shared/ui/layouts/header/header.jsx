@@ -3,15 +3,17 @@ import Logo from './logo';
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import styles from '@/shared/ui/layouts/header/style.module.css'
 
-export default function Header({ locale }) {
-  return (
-    <header className={styles.header}>
-        <div className="container">
-            <div className={styles.flex}>
-                <Link prefetch={false} href={getHrefLocale(locale)}><Logo /></Link>
+export default async function Header({locale}) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/url-locale/all-cities?locale=${locale}`, { next: {revalidate: 60 * 5}} );
+    const pageAllCities = await response.json();
+    return (
+        <header className={styles.header}>
+            <div className="container">
+                <div className={styles.flex}>
+                    <Link prefetch={false} href={getHrefLocale(pageAllCities.locale, pageAllCities.slug)}><Logo/></Link>
+                </div>
             </div>
-        </div>
-    </header>
-  );
+        </header>
+    );
 }
 

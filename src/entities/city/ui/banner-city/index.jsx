@@ -2,7 +2,7 @@ import Banner from '@/shared/ui/banner';
 import BannerButtons from "@/entities/city/ui/banner-buttons/banner-buttons";
 import Reviews from '@/widgets/latest-reviews/item/reviews';
 import {getBannerData} from "@/entities/api";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import './style.css';
 
 

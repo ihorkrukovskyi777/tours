@@ -13,24 +13,19 @@ import './style.css'
 let zIndex = 999;
 export default observer(function Map({ids, id, locale}) {
         const refMap = useRef(null);
-        const {map: {markers, setOpenMarker, selectedPlaceId, fetchMarkers, setMap}} = useContext(StoreMapContext);
+        const {map: {markers, setOpenMarker,bounds, selectedPlaceId, fetchMarkers, setMap}} = useContext(StoreMapContext);
 
         const position = [51.505, -0.09];
         useEffect(() => {
             fetchMarkers(id, locale, ids);
         }, [])
 
-        useEffect(() => {
-            if (refMap.current) {
-                setMap(refMap.current)
 
-            }
-        }, [refMap.current, setMap])
         if(markers.length === 0) {
             return null
         }
         return (
-                <MapContainer center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>
+                <MapContainer whenReady={(e) => setMap(e.target)} center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

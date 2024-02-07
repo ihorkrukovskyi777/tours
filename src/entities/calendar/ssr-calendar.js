@@ -1,10 +1,14 @@
 import CalendarProvider from "@/entities/calendar/calendar-provider";
 import {getActiveLang, getFaqBlock} from "@/entities/api";
 import Faqs from "@/shared/ui/faqs/faqs";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
+import i18nGenitive from "@/i18n/server-locales/genitive"
 
 export default async function SsrCalendar({locale, type, id, showFaq = true, title}) {
-    await i18n.getFetchDefault();
+    await Promise.all([
+        i18n.getFetchDefault(),
+        i18nGenitive.getFetchDefault(),
+    ])
 
     const [questions, activeLanguage] = await Promise.all([
         showFaq ? getFaqBlock(id, locale) : Promise.resolve(),
@@ -35,7 +39,13 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
         email: i18n.t('Email'),
         phone_number: i18n.t('Phone Number'),
         errors: i18n.getFormErrors(),
+        genitive: {
+            months: {
+                ...i18nGenitive.getMonths(),
+            }
+        }
     }
+
     return (
         <section id="tour_calendar_section" className="tour_calendar">
             <div className="container">

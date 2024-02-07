@@ -1,4 +1,4 @@
-import {notFound} from "next/navigation";
+import {notFound, redirect} from "next/navigation";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import '@/entities/post/ui/post-content/style.css';
@@ -28,7 +28,10 @@ export default async function CancelPage({params: {locale}, searchParams}) {
 
     const data = await pageType.json();
 
-    if (data.statusCode === 404 || typeof data.id !== 'number') {
+    if(data.statusCode === 404 && locale !== 'en') {
+        redirect(`/cancel-book?cancelCode=${searchParams.cancelCode}`);
+    }
+    else if (data.statusCode === 404 || typeof data.id !== 'number') {
         notFound();
     }
 

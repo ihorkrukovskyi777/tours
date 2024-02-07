@@ -9,7 +9,23 @@ import {toJS} from "mobx";
 
 import './style.css';
 
-export default observer(function SliderTours({data, i18n = {}}) {
+
+const CounterSliders = ({currentIndexPlace, sliders}) => {
+    return (
+        <div className="circle_items">
+            <div className="circle_item"></div>
+            <div className="circle_item"></div>
+            <div className="circle_item"></div>
+            <div className="circle_item circle_item-big"></div>
+            <div className="circle_item-number circle_number">{currentIndexPlace + 1}</div>
+            <div className="circle_item circle_item-big"></div>
+            <div className="circle_item"></div>
+            <div className="circle_item"></div>
+            <div className="circle_brackets">({sliders.length})</div>
+        </div>
+    )
+}
+export default observer(function SliderTours({data, i18n = {}, hideBottom = false}) {
     const {
         map: {
             sliders,
@@ -23,36 +39,29 @@ export default observer(function SliderTours({data, i18n = {}}) {
     const countSliderSettings = onlyWidth > 767 ? 3 : 1;
     if (sliders.length <= countSliderSettings) {
         return (
-            <div className="slider_block swiper-less-3">
-                <div className="swiper-wrapper">
+            <>
+                <CounterSliders currentIndexPlace={currentIndexPlace} sliders={sliders}/>
+                <div className="slider_block swiper-less-3">
+                    <div className="swiper-wrapper">
 
-                    {sliders.map(slider => {
-                        return (
-                            <div className={`swiper-slide ${slider.id === selectedPlaceId ? 'active' : ''}`}
-                                 key={slider.id} onClick={() => setOpenMarker(slider.id)}>
-                                <Slide {...slider} i18n={i18n}></Slide>
-                            </div>
-                        )
-                    })}
+                        {sliders.map(slider => {
+                            return (
+                                <div className={`swiper-slide ${slider.id === selectedPlaceId ? 'active' : ''}`}
+                                     key={slider.id} onClick={() => setOpenMarker(slider.id, false)}>
+                                    <Slide hideBottom={hideBottom} {...slider} i18n={i18n}></Slide>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
-            </div>
+            </>
         )
     }
 
     return (
         <>
-            <div className="circle_items">
-                <div className="circle_item"></div>
-                <div className="circle_item"></div>
-                <div className="circle_item"></div>
-                <div className="circle_item circle_item-big"></div>
-                <div className="circle_item-number circle_number">{currentIndexPlace + 1}</div>
-                <div className="circle_item circle_item-big"></div>
-                <div className="circle_item"></div>
-                <div className="circle_item"></div>
-                <div className="circle_brackets">({sliders.length})</div>
-            </div>
-            {!(sliders.length <= countSliderSettings) ? <Sliders i18n={i18n} sliders={toJS(sliders)} initialSlide={1} selectedTourId={null}/> : null }
+            <CounterSliders currentIndexPlace={currentIndexPlace} sliders={sliders}/>
+            {!(sliders.length <= countSliderSettings) ? <Sliders hideBottom={hideBottom} i18n={i18n} sliders={toJS(sliders)} initialSlide={1} selectedTourId={null}/> : null }
         </>
     )
 })

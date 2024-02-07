@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import CollectionPageSchema from "@/shared/schema/collection-page";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 
 const FlexibleContent = dynamic(
     () => import("@/widgets/flexible-content"),
@@ -25,8 +25,13 @@ export default async function Home({params: {locale}, ...props}) {
     return (
         <>
             <CollectionPageSchema locale={locale}/>
-            <FlexibleContent {...data} id={data.translateId} locale={locale} {...props}
-                             languages={languages.map(lang => ({...lang, slug: '',}))}/>
+            <FlexibleContent
+                {...data}
+                {...props}
+                id={data.translateId}
+                locale={locale}
+                languages={languages.map(lang => ({...lang, slug: '',}))}
+            />
         </>
     )
 }

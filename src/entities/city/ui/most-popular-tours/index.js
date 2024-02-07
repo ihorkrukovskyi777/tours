@@ -2,7 +2,7 @@ import {picketToursBox} from "@/entities/api";
 import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import TextQuote from "@/widgets/text-quote";
 import dynamic from "next/dynamic";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 
 const ProviderMap = dynamic(
     () => import("@/widgets/map-and-slider/provider"),
@@ -26,12 +26,14 @@ export default async function MostPopularTours({id, locale, slug}) {
                 i18n={{
                     duration: i18n.t('Duration'),
                     hours: i18n.t('Hours'),
+                    hour: i18n.t('Hour'),
                     next_tour: i18n.t('Next Tour'),
+                    days: i18n.getDays(),
                 }}
             />
 
             <TextQuote id={id} locale={locale}/>
-            <ProviderMap i18n={i18n.getMapSliders()} id={id} locale={locale} toursPlaces={toursPlaces} buttonsShow={true}/>
+            <ProviderMap hideBottom={true} i18n={i18n.getMapSliders()} id={id} locale={locale} toursPlaces={toursPlaces} buttonsShow={true}/>
         </>
     );
 }

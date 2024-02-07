@@ -19,7 +19,7 @@ import TextBlocks from "@/widgets/text-blocks";
 import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import PlaceSchema from "@/shared/schema/place";
 import ProductSchema from "@/shared/schema/product";
 import EventsSchema from "@/shared/schema/events";
@@ -49,7 +49,7 @@ export default async function Page({params: {locale, slug, tour}}) {
     }).filter(Boolean);
 
     const pagesBreadcrumbs = [
-        {slug: getHrefLocale(locale, ''), title: i18n.t('Free Walking Tour')},
+        {slug: getHrefLocale(locale, ''), title: i18n.t('Free Walking Tours')},
         {slug: page.city.slug, title: `${i18n.t('Free Tour')} ${page.city.title}`},
         {title: page.title}
     ]
@@ -65,8 +65,8 @@ export default async function Page({params: {locale, slug, tour}}) {
                 <ProductSchema id={page.id} locale={locale} type="tour"/>
             </Suspense>
             <Suspense fallback={''}>
+                <ProviderMap hideBottom={false} locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}/>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
-                <ProviderMap locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}/>
                 <LatestReviews id={page.id} locale={locale} type="tour"/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={i18n.t('this Tour')} id={page.id} locale={page.locale} type="tour"/>
@@ -84,8 +84,16 @@ export default async function Page({params: {locale, slug, tour}}) {
 }
 
 export async function generateMetadata({ params : {slug, locale, tour} }) {
-    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/${slug}?locale=${locale}`, {next: { revalidate: 0 }}).then((res) => res.json())
-
+    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/tour/${slug}/${tour}?locale=${locale}`, {next: { revalidate: 0 }}).then((res) => res.json())
+    const languages = {};
+    if(Array.isArray(seo.languages)) {
+        for (const lang of seo.languages) {
+            if(lang.locale === locale) {
+                continue;
+            }
+            languages[lang.locale] = [{title: lang.title, url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, `${lang.citySlug}/${PATH_TOURS}/${lang.slug}`)}`}]
+        }
+    }
     const canonical = locale === fallbackLng ? `${slug}/${PATH_TOURS}/${tour}` : `${locale}/${slug}/${PATH_TOURS}/${tour}`
-    return generatorSeo(seo, canonical, locale)
+    return generatorSeo(seo, canonical, locale, languages)
 }

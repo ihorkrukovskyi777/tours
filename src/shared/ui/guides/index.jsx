@@ -1,5 +1,5 @@
 import {allGuides} from '@/entities/api';
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import {hrefSubVendor} from "@/shared/helpers/url";
 import Link from "next/link";
 import dynamic from "next/dynamic";

@@ -2,16 +2,17 @@
 import EditSvg from "@/assets/images/svg/edit-svg"
 import {useContext, useState, useEffect} from "react";
 import Button from "@/shared/ui/selectors/button/button";
-import InternationalInput from "@/shared/ui/selectors/international-input";
-import {useTranslation} from "@/i18n/client";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {observer} from "mobx-react-lite";
 import {useParams, useRouter, useSearchParams} from "next/navigation";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import Notification from "@/shared/ui/notification/notification";
-import {valid , validationFirstName , validationEmail , validationPhone} from "@/shared/helpers/validation-form";
-
-
+import { validationFirstName , validationEmail , validationPhone} from "@/shared/helpers/validation-form";
+import dynamic from "next/dynamic";
+const InternationalInput = dynamic(
+    () => import("@/shared/ui/selectors/international-input"),
+    {ssr: false}
+)
 export default observer(function FormEdit({i18n}) {
 
     const searchParams = useSearchParams()
@@ -19,7 +20,6 @@ export default observer(function FormEdit({i18n}) {
     const {replace} = useRouter();
     const params = useParams();
     const {editDeparture, phone: {phones}, fetchCheckoutDetails, managerModal: { toggleModalEdit } } = useContext(CheckoutStoreContext);
-    const {t} = useTranslation()
 
     useEffect(() => {
         setError(false);
@@ -55,7 +55,8 @@ export default observer(function FormEdit({i18n}) {
 
     const submitForm = async () => {
         const data = await editDeparture.updateDeparture();
-        if(data.isEdit === true && data.success) {
+
+        if(data?.isEdit === true && data.success) {
             await fetchCheckoutDetails(searchParams.get('code'));
             toggleModalEdit();
         }
@@ -76,7 +77,7 @@ export default observer(function FormEdit({i18n}) {
 
     return (
         <form id='edit_tour' onSubmit={preSubmitForValidation}>
-            {error === true ? <Notification close={() => setError(false)} /> : null}
+            {error === true ? <Notification i18n={i18n} close={() => setError(false)} /> : null}
             <div className="item">
                 <label htmlFor="">{i18n.first_name}</label>
                 <input type='text' name='firstName' onChange={changeValue.firstName} value={editDeparture.firstName}/>
@@ -97,7 +98,7 @@ export default observer(function FormEdit({i18n}) {
                         locale={editDeparture.countrySlug}
                         allPhoneNumbers={phones.value}
                         handleChange={(e) => editDeparture.setPhone(e.target.value)}
-                        phoneDefault={editDeparture.phoneNumber}
+                        phoneDefault={editDeparture.phoneNumber ?? ''}
                         changeCountryCode={editDeparture.changeCountryCode}
                     />
                     : null}
@@ -108,7 +109,7 @@ export default observer(function FormEdit({i18n}) {
             <div className="item">
                 <label htmlFor="">{i18n.email}</label>
                 <input type='email' name='email' onChange={changeValue.email} value={editDeparture.email}/>
-                {validForm.email ? <span className='error-message'> {t(validForm.email)} </span> : null}
+                {validForm.email ? <span className='error-message'> {i18n.errors[validForm.email]} </span> : null}
                 <EditSvg/>
             </div>
             {Array.isArray(error) ? <ul>{error.map((value, index) => <li key={index}>{value}</li>)}</ul> : null}

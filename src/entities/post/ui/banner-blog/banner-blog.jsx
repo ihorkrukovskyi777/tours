@@ -1,6 +1,6 @@
 import IcloudImage from '@/shared/ui/icloud-image';
 import DefaultImage from '@/assets/images/default-image.jpeg';
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import Image from 'next/image';
 import './style.css';
 

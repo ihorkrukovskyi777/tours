@@ -1,5 +1,5 @@
 import {getHighlightsImages} from "@/entities/api";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import dynamic from "next/dynamic";
 const HighlightsLazySlider = dynamic(
     () => import("@/widgets/highlights/lazy-loading"),

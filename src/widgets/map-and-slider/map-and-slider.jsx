@@ -16,7 +16,7 @@ const SliderTours = dynamic(
 
 export const StoreMapContext = createContext(null)
 
-export default function MapAndSlider({i18n, id, locale, toursPlaces}) {
+export default function MapAndSlider({i18n, id, locale, toursPlaces, hideBottom}) {
 
     const ids = toursPlaces?.map(item => item.id) ?? []
 
@@ -33,7 +33,7 @@ export default function MapAndSlider({i18n, id, locale, toursPlaces}) {
                             <div className="shadow-map">Use ctrl + scroll to zoom the map</div>
                             <Map ids={ids} id={id} locale={locale}/>
                         </div>
-                        <SliderTours i18n={i18n}/>
+                        <SliderTours i18n={i18n} hideBottom={hideBottom}/>
                     </StoreMapContext.Provider>
                 </div>
             </div>

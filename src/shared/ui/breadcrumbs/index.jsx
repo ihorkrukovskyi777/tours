@@ -22,7 +22,7 @@ export default async function Breadcrumbs({locale, pages}) {
                                               >
                                                   {page.title}
                                               </Link>
-                                              <span className="arrow-right-b"> {index+2 === pages.length ? '›' : '-'} </span>
+                                              <span className="arrow-right-b" style={{marginRight: pages.length === 3 && index === 0 ? '8px' : '0'}}> {index+2 === pages.length ? '›' : '-'} </span>
                                           </Fragment>
                                       )
 

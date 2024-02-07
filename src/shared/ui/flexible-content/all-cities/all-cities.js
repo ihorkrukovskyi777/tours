@@ -1,6 +1,6 @@
 import {allCitiesData} from "@/entities/api";
 import Link from "next/link";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import './style.css';
 export default async function AllCities({ locale }) {
     await i18n.getFetchDefault()

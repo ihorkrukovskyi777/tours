@@ -71,7 +71,7 @@ export default observer(function Main({siteLocale, i18n}) {
         }
     }
     return (
-        <div className="calendar_wrap" style={{minHeight: '900px'}}>
+        <div className="calendar_wrap" style={{minHeight: '400px'}}>
             <h2 className="title">{i18n.tour_calendar}</h2>
             <div className="wrap-box">
                 <div className="wrap-button">
@@ -83,8 +83,8 @@ export default observer(function Main({siteLocale, i18n}) {
                                 departure_available: i18n.departure_available,
                                 how_a_many_people: i18n.how_a_many_people,
                                 pick_a_date: i18n.pick_a_date,
-                                months: i18n.months,
-                                days: i18n.days,
+                                months: i18n?.genitive?.months ?? {},
+                                days: i18n?.days,
                                 save_changes: i18n.save_changes,
                                 back: i18n.back,
                                 hours: i18n.hours,

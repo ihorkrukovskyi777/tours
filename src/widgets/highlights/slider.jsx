@@ -2,7 +2,9 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import IcloudImage from "@/shared/ui/icloud-image";
 import {Navigation, Pagination} from "swiper/modules";
-
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 export default function HighlightsSlider({ images }) {
 
     return (

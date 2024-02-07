@@ -46,5 +46,5 @@ export function middleware(request) {
 
 export const config = {
     // Do not run the middleware on the following paths
-    matcher: ['/((?!api|_next/static|_next/image|manifest.json|assets|favicon.ico|robots.txt|default.json|sitemap/*).*)']
+    matcher: ['/((?!api|_next/static|not-found|_next/image|manifest.json|assets|favicon.ico|robots.txt|default.json|sitemap/*).*)']
 };

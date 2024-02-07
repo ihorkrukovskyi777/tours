@@ -1,4 +1,21 @@
-export async function getBannerData(id, locale, type = 'city', revalidate = 0, ) {
+import country from "@/lib/react-phone/raw-country";
+
+
+const setGlobalVariable = (phones) => {
+    if (typeof window !== "undefined") {
+        if (Array.isArray(window.rawCountry)) return
+        const listCountry = {...country}
+        phones.forEach(item => {
+            if (listCountry[item.code] && item.phone_code) {
+                listCountry[item.code][3] = item.phone_code
+            }
+        })
+        window.rawCountry = Object.values(listCountry)
+    }
+}
+
+
+export async function getBannerData(id, locale, type = 'city', revalidate = 0,) {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/banner/${id}?locale=${locale}`,
         {next: {revalidate: 0}}
@@ -22,6 +39,7 @@ export async function getPickCities(id, locale = 'en') {
     )
     return data.json();
 }
+
 export async function getCityBoxByTour(id, locale = 'en') {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/section/city/${id}?locale=${locale}`,
@@ -60,7 +78,7 @@ export const getActiveLang = async (id, type = 'city', locale) => {
 
 }
 
-export const getTextQuote  = async (id, locale = 'en', type = 'city') => {
+export const getTextQuote = async (id, locale = 'en', type = 'city') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/text-quote/${id}?locale=${locale}`,
@@ -73,7 +91,7 @@ export const getTextQuote  = async (id, locale = 'en', type = 'city') => {
 
 }
 
-export const getHighlightsImages  = async (id) => {
+export const getHighlightsImages = async (id) => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/gallery-section/${id}`,
@@ -86,7 +104,7 @@ export const getHighlightsImages  = async (id) => {
 
 }
 
-export const getTextsBlocks  = async (id, locale ='en', type = 'city') => {
+export const getTextsBlocks = async (id, locale = 'en', type = 'city') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/text-blocks/${id}?locale=${locale}`,
@@ -99,7 +117,7 @@ export const getTextsBlocks  = async (id, locale ='en', type = 'city') => {
 
 }
 
-export const getFaqBlock  = async (id, locale = 'en') => {
+export const getFaqBlock = async (id, locale = 'en') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/faq/${id}?locale=${locale}`,
@@ -119,13 +137,16 @@ export const getCountryPhone = async (locale = 'en') => {
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/phone?locale=${locale}`,
             {next: {revalidate: 60 * 60}}
         );
-        return await res.json()
+        const phones = await res.json()
+
+        setGlobalVariable(phones);
+        return phones
     } catch (err) {
         console.log(err);
     }
 }
 
-export const allCitiesData  = async (locale = 'en') => {
+export const allCitiesData = async (locale = 'en') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/all?locale=${locale}`,
@@ -137,7 +158,7 @@ export const allCitiesData  = async (locale = 'en') => {
     }
 }
 
-export const allGuides = async (id, type ='city') => {
+export const allGuides = async (id, type = 'city') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/sub-vendors/${id}`,
@@ -174,7 +195,7 @@ export const singlePost = async (id, locale = 'en') => {
     }
 }
 
-export const searchCities = async (locale = 'en' , search) => {
+export const searchCities = async (locale = 'en', search) => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/search-city?locale=${locale}&q=${search}`,
@@ -186,7 +207,7 @@ export const searchCities = async (locale = 'en' , search) => {
     }
 }
 
-export const placesMarkers = async (id , locale = 'en' , ids = []) => {
+export const placesMarkers = async (id, locale = 'en', ids = []) => {
     try {
 
         const paramsIds = ids.length ? `&ids=${ids.join(',')}` : '';

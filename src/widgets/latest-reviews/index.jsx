@@ -1,6 +1,6 @@
 import {getReviews} from "@/entities/api";
 import ListReviews from "@/shared/ui/list-reviews/list-reviews";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 
 import './style.css';
 

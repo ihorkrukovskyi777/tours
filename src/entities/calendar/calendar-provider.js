@@ -4,10 +4,11 @@ import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
 import Main from "@/entities/calendar/ui/main/main";
 import "@/entities/calendar/ui/main/style.css";
+
 export const StoreCalendarContext = createContext(null);
 
 export default memo(function CalendarProvider({
-    i18n,
+                                                  i18n,
                                                   title,
                                                   locale,
                                                   type,
