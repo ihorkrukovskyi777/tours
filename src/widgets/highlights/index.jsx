@@ -9,6 +9,10 @@ const HighlightsLazySlider = dynamic(
 export default async function Highlights({id}) {
     await i18n.getFetchDefault();
     const images = await getHighlightsImages(id);
+
+    if(!images?.length) {
+        return null;
+    }
     return (
         <section className="highlights">
             <div className="container">

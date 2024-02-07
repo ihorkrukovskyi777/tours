@@ -2,13 +2,12 @@ import './style.css';
 export default function Reviews({size = 16 ,rating, count_reviews, isShowCountReviews = true, number_review = true, title= 'Reviews' }) {
 
     const stars = Array.from(new Array(5)).map((_, index) => index)
-
     return (
         <div className="reviews">
             <div className={`rate_box ${size}`}>
                 {isShowCountReviews && count_reviews > 99 ? <div className="count_rate">{count_reviews} {title}</div> : null}
                 <div>
-                    {!!rating && stars.map(value => {
+                    {Number(rating) > 0 && stars.map(value => {
                         if((rating - value) >= 1)
                             return <svg width={size} height={size} key={value} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 576 512"
                                         fill="#F6C43D">
