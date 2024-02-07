@@ -106,7 +106,9 @@ a {
   justify-content: center;
   margin: auto;
 }
-
+.grecaptcha-badge {
+  z-index: 10000;
+}
 /* swiper global css */
 .swiper .swiper-button-next,
 .swiper .swiper-button-prev {

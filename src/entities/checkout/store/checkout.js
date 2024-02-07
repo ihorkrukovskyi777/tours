@@ -174,7 +174,7 @@ class EditDeparture {
         this.activityDate = `${setFormatDDMMYYYYtoMMDDYYYY(newDep.date)} ${pad2(hours)}:${pad2(minutes)}:00`
     }
 
-    * updateDeparture() {
+    * updateDeparture(token) {
 
         const body = {
             curLang: this.locale,
@@ -190,6 +190,7 @@ class EditDeparture {
             full_time: this.fullTime,
             phone_county_slug: this.countrySlug,
             full_number: `${this.dialCode} ${this.phone}`,
+            token: token,
         }
 
 

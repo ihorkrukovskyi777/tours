@@ -1,26 +1,38 @@
-import { observer } from "mobx-react-lite";
+import {observer} from "mobx-react-lite";
 import Button from '@/shared/ui/selectors/button/button';
 import CloseSvg from '@/assets/images/svg/close-svg';
 import FullStarSvg from '@/assets/images/svg/full-star';
 import FormCalendar from './form';
-import {useTranslation} from "@/i18n/client";
 import {toHoursAndMinutes, pad2} from "@/shared/helpers/date";
-import { setFormatDDMMYYYYtoMMDDYYYY } from "@/shared/helpers/date";
+import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/helpers/date";
 import useEscHooks from "@/shared/hooks/use-esc-event";
 import IcloudImage from "@/shared/ui/icloud-image";
 import FlagsComponents from "@/shared/ui/flags";
+import {ReCaptchaProvider} from "next-recaptcha-v3";
+import {ServiceDate} from "@/shared/service/service-date"
 //svg
 import ClockSvg from "@/assets/images/svg/clock-svg";
 
-import {ServiceDate} from "@/shared/service/service-date"
-
 import './style.css';
 
-export default observer(function Step3({i18n, onChange, people, errors,selectedLocale, locale, fetchBookingDeparture, close, size, allPhoneNumbers, departure,isOpened ,langSelected ,isLoading}) {
+export default observer(function Step3({
+                                           i18n,
+                                           onChange,
+                                           people,
+                                           errors,
+                                           selectedLocale,
+                                           locale,
+                                           fetchBookingDeparture,
+                                           close,
+                                           size,
+                                           allPhoneNumbers,
+                                           departure,
+                                           isOpened,
+                                           langSelected,
+                                           isLoading
+                                       }) {
 
     useEscHooks(close, isOpened);
-
-    const { t } = useTranslation();
 
 
     if (!departure) {
@@ -49,12 +61,12 @@ export default observer(function Step3({i18n, onChange, people, errors,selectedL
                     </div>
                     <div className="guide-info">
                         <div className="guide-name">{departure.subVendorName}</div>
-                        { departure.ranking > 0 ? <div className="guide-rate">
+                        {departure.ranking > 0 ? <div className="guide-rate">
                             <div className="icon-wrap">
                                 <FullStarSvg width={20} height={20}/>
                             </div>
                             <span>{departure.ranking}</span>
-                        </div> : null }
+                        </div> : null}
                     </div>
                 </div>
             </div>
@@ -92,14 +104,15 @@ export default observer(function Step3({i18n, onChange, people, errors,selectedL
                     <Button className="change" onClick={onChange}>{i18n.change}</Button>
                 </div>
             </div>
-            <FormCalendar
-                i18n={i18n}
-                errorsMessage={errors}
-                allPhoneNumbers={allPhoneNumbers}
-                locale={locale}
-                isLoading={isLoading}
-               fetchBookingDeparture={fetchBookingDeparture}/>
-
+            <ReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}>
+                <FormCalendar
+                    i18n={i18n}
+                    errorsMessage={errors}
+                    allPhoneNumbers={allPhoneNumbers}
+                    locale={locale}
+                    isLoading={isLoading}
+                    fetchBookingDeparture={fetchBookingDeparture}/>
+            </ReCaptchaProvider>
         </div>
     )
 })

@@ -7,10 +7,14 @@ import {observer} from "mobx-react-lite";
 import DefaultModal from "@/shared/ui/modals/default-modal";
 import ChooseDate from "@/entities/checkout/ui/calendar/choose-date";
 import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
+import {ReCaptchaProvider} from "next-recaptcha-v3";
 import './style.css';
 
-export default observer(function EditModalTour({ i18n }) {
-    const {editDeparture, managerModal: {modalEdit, toggleModalEdit, chooseDateModal, toggleModalChoose}} = useContext(CheckoutStoreContext);
+export default observer(function EditModalTour({i18n}) {
+    const {
+        editDeparture,
+        managerModal: {modalEdit, toggleModalEdit, chooseDateModal, toggleModalChoose}
+    } = useContext(CheckoutStoreContext);
     const helper = new HelperDateHtml(editDeparture.activityDate)
     return (
         <div className={classNames({'show_modal': modalEdit}, 'edit_tour_modal transition')}>
@@ -46,7 +50,9 @@ export default observer(function EditModalTour({ i18n }) {
                             <strong>{i18n.number_people}:</strong>
                             <div>{editDeparture.numberPeople}</div>
                         </div>
-                        <FormEdit  i18n={i18n} isOpened={false} close={toggleModalEdit}/>
+                        <ReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}>
+                            <FormEdit i18n={i18n} isOpened={false} close={toggleModalEdit}/>
+                        </ReCaptchaProvider>
                     </div>
                 </div>
             </div>

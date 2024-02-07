@@ -32,7 +32,7 @@ export class StoreModalBooking {
         this.loadingBooking = !this.loadingBooking;
     }
 
-    * fetchBookingDeparture(data) {
+    * fetchBookingDeparture(data, token) {
         this.toggleLoading();
         const {email, firstName, lastName, phone, phone_county_code, phone_country_slug} = data;
         this.errors = [];
@@ -49,7 +49,8 @@ export class StoreModalBooking {
             phone_county_code: phone_county_code,
             full_time: this.departure.fullTime ?? '',
             phone_county_slug: phone_country_slug,
-            full_number: `${phone_county_code}${phone}`
+            full_number: `${phone_county_code}${phone}`,
+            token,
         }
         const results =  yield fetchBookingDepartures(body);
 
