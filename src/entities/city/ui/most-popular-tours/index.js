@@ -11,29 +11,31 @@ const ProviderMap = dynamic(
 export default async function MostPopularTours({id, locale, slug}) {
     let data = await picketToursBox(id, locale);
     await i18n.getFetchDefault();
-    if (!data.tours?.length) {
-        return null;
-    }
+
     const tours = data.tours.map((item) => ({...item, citySlug: slug}));
     const toursPlaces = tours.map(tour => ({id: tour.id, title: tour.title, color: tour.color}));
 
-
     return (
         <>
-            <RowTours
-                tours={tours}
-                title={data.title}
-                i18n={{
-                    duration: i18n.t('Duration'),
-                    hours: i18n.t('Hours'),
-                    hour: i18n.t('Hour'),
-                    next_tour: i18n.t('Next Tour'),
-                    days: i18n.getDays(),
-                }}
-            />
+            {tours?.length ?
+                <>
+                    <RowTours
+                        tours={tours}
+                        title={data.title}
+                        i18n={{
+                            duration: i18n.t('Duration'),
+                            hours: i18n.t('Hours'),
+                            hour: i18n.t('Hour'),
+                            next_tour: i18n.t('Next Tour'),
+                            days: i18n.getDays(),
+                        }}
+                    />
+                    <TextQuote id={id} locale={locale}/>
 
-            <TextQuote id={id} locale={locale}/>
-            <ProviderMap hideBottom={true} i18n={i18n.getMapSliders()} id={id} locale={locale} toursPlaces={toursPlaces} buttonsShow={true}/>
+                </>
+                : null}
+            <ProviderMap hideBottom={true} i18n={i18n.getMapSliders()} id={id} locale={locale} toursPlaces={toursPlaces}
+                         buttonsShow={true}/>
         </>
     );
 }

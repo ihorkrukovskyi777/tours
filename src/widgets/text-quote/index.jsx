@@ -8,8 +8,7 @@ export default async function TextQuote({ id, locale, type = 'city'}) {
         <div className="container">
             <div className="top_wrapper">
                 <h2>{data.title ?? ''}</h2>
-                <div className="description">
-                    {data.description ?? ''}
+                <div className="description" dangerouslySetInnerHTML={{__html: data.description ?? ''}}>
                 </div>
             </div>
         </div>

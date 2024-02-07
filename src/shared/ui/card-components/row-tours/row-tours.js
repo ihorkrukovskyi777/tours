@@ -34,6 +34,7 @@ export default function RowTours({tours, title = '', i18n= {}}) {
                                     topElement={<LanguageImages locales={item?.departure.locales || []}/>}
                                     bottomElement={
                                         <Reviews
+                                            sizeLabelReviews={'medium'}
                                             size={12}
                                             rating={item.rating?.rating || 0}
                                             count_reviews={item.rating?.reviews || 0}

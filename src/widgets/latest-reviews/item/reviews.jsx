@@ -1,11 +1,11 @@
 import './style.css';
-export default function Reviews({size = 16 ,rating, count_reviews, isShowCountReviews = true, number_review = true, title= 'Reviews' }) {
+export default function Reviews({sizeLabelReviews = '', size = 16 ,rating, count_reviews, isShowCountReviews = true, number_review = true, title= 'Reviews' }) {
 
     const stars = Array.from(new Array(5)).map((_, index) => index)
     return (
         <div className="reviews">
             <div className={`rate_box ${size}`}>
-                {isShowCountReviews && count_reviews > 99 ? <div className="count_rate">{count_reviews} {title}</div> : null}
+                {isShowCountReviews && count_reviews > 99 ? <div className={`count_rate ${sizeLabelReviews}`}>{count_reviews} {title}</div> : null}
                 <div>
                     {Number(rating) > 0 && stars.map(value => {
                         if((rating - value) >= 1)

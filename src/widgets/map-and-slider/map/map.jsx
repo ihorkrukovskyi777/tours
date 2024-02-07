@@ -13,13 +13,9 @@ import './style.css'
 let zIndex = 999;
 export default observer(function Map({ids, id, locale}) {
         const refMap = useRef(null);
-        const {map: {markers, setOpenMarker,bounds, selectedPlaceId, fetchMarkers, setMap}} = useContext(StoreMapContext);
+        const {map: {markers, setOpenMarker,bounds, selectedPlaceId, setMap}} = useContext(StoreMapContext);
 
-        const position = [51.505, -0.09];
-        useEffect(() => {
-            fetchMarkers(id, locale, ids);
-        }, [])
-
+        const position = [51.505, -0.09];``
 
         if(markers.length === 0) {
             return null
