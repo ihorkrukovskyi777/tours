@@ -20,7 +20,10 @@ export class StorePhone {
     }
      * fetchPhones(){
        const phones = yield getCountryPhone(this.locale);
-
+         this.phones = {
+             state: 'fulfilled',
+             value: phones,
+         }
          if(typeof window !== "undefined") {
              if(Array.isArray(window.rawCountry)) return
              const listCountry = {...country}
@@ -34,10 +37,7 @@ export class StorePhone {
          }
 
 
-       this.phones = {
-           state: 'fulfilled',
-           value: phones,
-       }
+
      }
 
 }
