@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-export default observer(function Sliders({ i18n }) {
+export default observer(function Sliders({ i18n, hideBottom = false }) {
     const {
         map: {
             setOpenMarkerBySlide,
@@ -25,5 +25,5 @@ export default observer(function Sliders({ i18n }) {
         setCenterMarker()
     }, [])
 
-    return <SliderMemo i18n={i18n} changeMarker={changeMarker} sliders={sliders} selectedTourId={selectedTourId} initialSlide={initialSlide} setSwiper={setSwiper}/>
+    return <SliderMemo hideBottom={hideBottom} i18n={i18n} changeMarker={changeMarker} sliders={sliders} selectedTourId={selectedTourId} initialSlide={initialSlide} setSwiper={setSwiper}/>
 })

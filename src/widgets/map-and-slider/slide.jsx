@@ -4,7 +4,7 @@ import Image from "next/image";
 import tourSVG from "/public/images/svg/tour.svg";
 import Ticket from "@/widgets/map-and-slider/slider-tours/ticket";
 
-export default memo(function Slide({tours, title, attachment, alt = '', tickets = [], i18n}) {
+export default memo(function Slide({tours, title, attachment, alt = '', tickets = [], i18n, hideBottom}) {
     return <div className='item'>
         <div className='item_top'>
             <div className="img_wrap">
@@ -17,16 +17,18 @@ export default memo(function Slide({tours, title, attachment, alt = '', tickets 
                     height={350}
                 />
             </div>
-            <div className="text_wrap">
-                {Object.values(tours).map((val) => (
-                    <div className="list" key={val}>
-                        <div>
-                            <Image src={tourSVG} width={20} height={20} alt="icon"/>
+            {hideBottom ?
+                <div className="text_wrap">
+                    {Object.values(tours).map((val) => (
+                        <div className="list" key={val}>
+                            <div>
+                                <Image src={tourSVG} width={20} height={20} alt="icon"/>
+                            </div>
+                            <div>{val}</div>
                         </div>
-                        <div>{val}</div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+                : null}
         </div>
 
         {tickets?.map((ticket) => <Ticket key={ticket.id} {...ticket} i18n={i18n}/>)}
