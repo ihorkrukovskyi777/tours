@@ -30,6 +30,9 @@
     text-align: center;
     display: none;
 }
+.map_and_slider .shadow-map.hide {
+    display: none;
+}
 @media(max-width: 767px) {
     margin: 65px 0;
 }
