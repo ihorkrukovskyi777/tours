@@ -65,8 +65,8 @@ export default async function Page({params: {locale, slug, tour}}) {
                 <ProductSchema id={page.id} locale={locale} type="tour"/>
             </Suspense>
             <Suspense fallback={''}>
-                <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
                 <ProviderMap hideBottom={false} locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}/>
+                <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
                 <LatestReviews id={page.id} locale={locale} type="tour"/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={i18n.t('this Tour')} id={page.id} locale={page.locale} type="tour"/>

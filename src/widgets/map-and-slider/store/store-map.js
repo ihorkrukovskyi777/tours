@@ -103,6 +103,10 @@ export class StoreMap {
                 this.selectedTourId = null;
                 this.initialSlide = this.sliders.findIndex(place => place.id === id)
             }
+            else {
+                const findIndex = this.sliders.findIndex(place => place.id === id);
+                this.swiper.slideToLoop(findIndex)
+            }
         } else {
             const findIndex = this.sliders.findIndex(place => place.id === id);
             this.swiper.slideToLoop(findIndex)
