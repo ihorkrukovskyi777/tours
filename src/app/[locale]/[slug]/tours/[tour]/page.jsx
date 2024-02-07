@@ -19,7 +19,7 @@ import TextBlocks from "@/widgets/text-blocks";
 import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import PlaceSchema from "@/shared/schema/place";
 import ProductSchema from "@/shared/schema/product";
 import EventsSchema from "@/shared/schema/events";

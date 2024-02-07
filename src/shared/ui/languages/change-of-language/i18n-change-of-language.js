@@ -1,4 +1,4 @@
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
 
 export default async function I18nChangeOfLanguage({locale, title, ...props}) {

@@ -8,7 +8,7 @@ import {ServiceDate} from "@/shared/service/service-date";
 import {PATH_TOURS} from "@/shared/constants/route";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import './style.css';
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 export default function RowTours({tours, title = '', i18n= {}}) {
 
     return (

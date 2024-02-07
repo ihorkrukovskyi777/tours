@@ -230,7 +230,7 @@ class EditDeparture {
             if (data.success === false) {
                 return {success: false, errors: Object.values(data.errors) ?? true};
             }
-            this.cancelBooking(this.staticCode, cancelMessage, data)
+            return this.cancelBooking(this.staticCode, cancelMessage, data)
         } catch (err) {
             return { success: false}
         }

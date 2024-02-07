@@ -1,4 +1,4 @@
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 const MESSAGE = 'offers Free Walking Tours which has been selected and curated and by the Strawberry Tours team.'
 const getSchemaPlace = (name, description, image) => {
     return {

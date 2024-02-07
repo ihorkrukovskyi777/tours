@@ -1,6 +1,6 @@
 import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import {fetchGuideTours} from "@/entities/guide/api";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 
 export default async function GuideTours({id, locale, slug}) {
     await i18n.getFetchDefault()

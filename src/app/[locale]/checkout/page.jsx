@@ -3,7 +3,8 @@ import Checkout from "@/entities/checkout/main";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import TourRow from "@/widgets/tour-row/tour-row";
 import {notFound} from "next/navigation";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
+import i18nGenitive from "@/i18n/server-locales/genitive";
 
 export default async function CheckoutPage({params: {locale}, searchParams}) {
 
@@ -26,6 +27,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         notFound();
     }
     await i18n.getFetchDefault();
+    await i18nGenitive.getFetchDefault();
     const currentPage = page.languages.find(item => item.locale === locale);
 
     const translates = {
@@ -64,6 +66,11 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         download_voucher: i18n.t('Voucher download'),
         departure_not_available: i18n.t('Departure not available'),
         notification_wrong: i18n.t('Something went wrong, we couldn\'t change your order'),
+        genitive: {
+            months: {
+                ...i18nGenitive.getMonths(),
+            }
+        },
         errors: {
             ...i18n.getFormErrors(),
             first_name: {

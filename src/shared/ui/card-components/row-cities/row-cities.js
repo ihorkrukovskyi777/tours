@@ -1,7 +1,7 @@
 import {fallbackLng} from "@/i18n/settings";
 import Card from "@/shared/ui/card-components/card/card";
 import Reviews from "@/widgets/latest-reviews/item/reviews";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import './style.css'
 export default async function RowCities({ cities = [], title}) {
     await i18n.getFetchDefault();

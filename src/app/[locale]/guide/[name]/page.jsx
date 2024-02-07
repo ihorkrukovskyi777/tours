@@ -15,7 +15,7 @@ import {PATH_GUIDES} from "@/shared/constants/route";
 import ProductSchemaGuide from "@/shared/schema/guide/product";
 import PlaceGuideSchema from "@/shared/schema/guide/place";
 import EventsGuideSchema from "@/shared/schema/guide/events";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 export default async function PageGuide({params: {name, locale}}) {
     const [pageSub, languages] = await Promise.all([
         fetchSubVendorBySlug(name),

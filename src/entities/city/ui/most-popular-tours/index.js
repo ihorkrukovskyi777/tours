@@ -2,7 +2,7 @@ import {picketToursBox} from "@/entities/api";
 import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import TextQuote from "@/widgets/text-quote";
 import dynamic from "next/dynamic";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 
 const ProviderMap = dynamic(
     () => import("@/widgets/map-and-slider/provider"),

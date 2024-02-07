@@ -55,7 +55,8 @@ export default observer(function FormEdit({i18n}) {
 
     const submitForm = async () => {
         const data = await editDeparture.updateDeparture();
-        if(data.isEdit === true && data.success) {
+
+        if(data?.isEdit === true && data.success) {
             await fetchCheckoutDetails(searchParams.get('code'));
             toggleModalEdit();
         }

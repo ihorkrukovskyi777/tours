@@ -27,12 +27,12 @@ export default observer(function Step1({
         storeDepLogic: {people, changePeople, locale},
     } = storeModalCalendar;
 
-    const {t} = useTranslation()
     useEscHooks(close, isEsc);
     const closeModal = (e) => {
         e.stopPropagation();
         close();
     };
+
     return (
         <div className={`step-1 ${size}`}>
             <div className="title">

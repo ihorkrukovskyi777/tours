@@ -1,6 +1,6 @@
 import {fetchFlexibleContent} from "@/shared/api/flexible-content";
 import RowCities from "@/shared/ui/card-components/row-cities/row-cities";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 export default async function BannerHome({locale, id, index, flexibleKey}) {
     await i18n.getFetchDefault();
     const data = await fetchFlexibleContent(id, locale, flexibleKey, index, 60*5)

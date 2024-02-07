@@ -1,5 +1,5 @@
 import {getHrefLocale} from "@/i18n/get-href-locale";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import {PATH_GUIDES} from "@/shared/constants/route";
 
 const getSchemaProduct = (item, date, locale, description = '') => {

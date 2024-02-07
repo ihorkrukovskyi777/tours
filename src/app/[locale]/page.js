@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import CollectionPageSchema from "@/shared/schema/collection-page";
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 
 const FlexibleContent = dynamic(
     () => import("@/widgets/flexible-content"),

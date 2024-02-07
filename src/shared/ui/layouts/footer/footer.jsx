@@ -10,7 +10,6 @@ export default async function Footer({ locale }) {
   if(!Array.isArray(menuItems)) {
     return null;
   }
-  console.log(menuItems, 'menuItems')
   return (
     <footer className={styles.footer}>
       <div className="container">

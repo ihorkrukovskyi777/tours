@@ -1,6 +1,6 @@
 import {Suspense} from "react";
 
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import BannerCity from "@/entities/city/ui/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import MostPopularTours from "@/entities/city/ui/most-popular-tours";

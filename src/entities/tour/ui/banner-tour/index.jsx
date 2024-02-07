@@ -2,7 +2,7 @@ import Banner from '@/shared/ui/banner';
 import Reviews from '@/widgets/latest-reviews/item/reviews';
 import LanguageImages from "@/shared/ui/languages/language-images";
 import ClockSvg from '@/assets/images/svg/clock-svg';
-import i18n from "@/i18n";
+import i18n from "@/i18n/server-locales";
 import {getBannerData} from "@/entities/api";
 import './style.css';
 
