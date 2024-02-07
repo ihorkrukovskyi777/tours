@@ -7,6 +7,10 @@ import { getHrefLocale } from "@/i18n/get-href-locale";
 export default async function Footer({ locale }) {
   const menuItems = await fetchFooterMenu(locale);
 
+  if(!Array.isArray(menuItems)) {
+    return null;
+  }
+  console.log(menuItems, 'menuItems')
   return (
     <footer className={styles.footer}>
       <div className="container">
