@@ -7,7 +7,6 @@ const LazyGuidesRow = dynamic(
     () => import("@/shared/ui/guides/lazy-guides-row"),
     {ssr: false}
 )
-import './style.css';
 
 export default async function Guides({title, id, locale, type}) {
     const items = await allGuides(id, type);

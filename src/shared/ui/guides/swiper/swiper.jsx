@@ -8,6 +8,8 @@ import FullStarSvg from '@/assets/images/svg/full-star';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import '../style.css';
+
 
 export default function SwiperGuides({guides}) {
     const params = useParams();

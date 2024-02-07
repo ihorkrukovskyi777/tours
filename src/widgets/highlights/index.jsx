@@ -5,7 +5,6 @@ const HighlightsLazySlider = dynamic(
     () => import("@/widgets/highlights/lazy-loading"),
     {ssr: false}
 )
-import './style.css';
 
 export default async function Highlights({id}) {
     await i18n.getFetchDefault();
