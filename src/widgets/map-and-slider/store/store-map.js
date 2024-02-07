@@ -23,7 +23,7 @@ export class StoreMap {
         this.selectedTourId = null;
         this.selectedPlaceId = this.places[0].id
         this.centerMap();
-        this.swiper.slideToLoop(0)
+        //this.swiper?.slideToLoop(0)
     }
 
     get shortToursTitle() {
@@ -95,7 +95,7 @@ export class StoreMap {
         this.selectedPlaceId = id;
     }
 
-    setOpenMarker(id) {
+    setOpenMarker(id, eventSwiper = true) {
         this.selectedPlaceId = id;
         if (this.selectedTourId) {
             const find = this.markers.find(place => place.id === id);
@@ -103,13 +103,13 @@ export class StoreMap {
                 this.selectedTourId = null;
                 this.initialSlide = this.sliders.findIndex(place => place.id === id)
             }
-            else {
+            else if(eventSwiper){
                 const findIndex = this.sliders.findIndex(place => place.id === id);
-                this.swiper.slideToLoop(findIndex)
+                this.swiper?.slideToLoop(findIndex)
             }
-        } else {
+        } else if(eventSwiper) {
             const findIndex = this.sliders.findIndex(place => place.id === id);
-            this.swiper.slideToLoop(findIndex)
+            this.swiper?.slideToLoop(findIndex)
         }
     }
 

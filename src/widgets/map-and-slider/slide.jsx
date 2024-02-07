@@ -5,7 +5,6 @@ import tourSVG from "/public/images/svg/tour.svg";
 import Ticket from "@/widgets/map-and-slider/slider-tours/ticket";
 
 export default memo(function Slide({tours, title, attachment, alt = '', tickets = [], i18n, hideBottom}) {
-    console.log(tours, 'tours')
     return <div className='item'>
         <div className='item_top'>
             <div className="img_wrap">
