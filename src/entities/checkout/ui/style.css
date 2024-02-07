@@ -5,6 +5,9 @@
   text-align: center;
   color: red;
 }
+.checkout_section  .left_side li strong {
+  margin-right: 5px;
+}
 .checkout_section h2 {
   margin: 0 0 80px 0;
 }
@@ -345,6 +348,7 @@
   .checkout_section .left_box, .checkout_section .left_side {
     max-width: 100%;
   }
+
   .checkout_section .btn_wrap {
     flex-direction: column;
     margin-top: 30px;
