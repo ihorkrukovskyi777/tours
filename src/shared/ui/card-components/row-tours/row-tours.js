@@ -19,7 +19,6 @@ export default function RowTours({tours, title = '', i18n= {}}) {
                     <div className="items">
                         {tours?.map((item) => {
                             const labelHour = item.departure.durations.find(val => val >= 2) ? 'hours' : 'hour';
-                            console.log(labelHour)
                             const serviceDate = new ServiceDate(item.departure?.nextDeparture);
                             const showTime = serviceDate.differenceInDays > 7 ?
                                 `${i18n.days[serviceDate.day]}, ${serviceDate.dayNum} ${serviceDate.month}` :

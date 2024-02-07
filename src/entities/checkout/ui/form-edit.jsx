@@ -36,7 +36,6 @@ export default observer(function FormEdit({i18n}) {
     function preSubmitForValidation(e) {
         e.preventDefault();
         let mask = document.querySelector('#phone').getAttribute('validation-number');
-        console.log(editDeparture.phone , mask)
         const errorLists = {
             firstName: validationFirstName(editDeparture.firstName),
             lastName: validationFirstName(editDeparture.lastName),
