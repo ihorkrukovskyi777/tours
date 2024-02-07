@@ -23,6 +23,7 @@ export class StoreMap {
         this.selectedTourId = null;
         this.selectedPlaceId = this.places[0].id
         this.centerMap();
+        this.swiper.slideToLoop(0)
     }
 
     get shortToursTitle() {
