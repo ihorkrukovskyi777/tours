@@ -94,7 +94,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
                 ${checkoutData.city?.post_title}`}
             />
             <I18nChangeOfLanguage locale={locale} languages={page.languages}/>
-            <Footer/>
+            <Footer locale={locale}/>
         </>
     )
 }
