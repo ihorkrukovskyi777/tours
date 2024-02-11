@@ -8,7 +8,6 @@ import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/helpers/date";
 import useEscHooks from "@/shared/hooks/use-esc-event";
 import IcloudImage from "@/shared/ui/icloud-image";
 import FlagsComponents from "@/shared/ui/flags";
-import {ReCaptchaProvider} from "next-recaptcha-v3";
 import {ServiceDate} from "@/shared/service/service-date"
 //svg
 import ClockSvg from "@/assets/images/svg/clock-svg";
@@ -104,7 +103,6 @@ export default observer(function Step3({
                     <Button className="change" onClick={onChange}>{i18n.change}</Button>
                 </div>
             </div>
-            <ReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}>
                 <FormCalendar
                     i18n={i18n}
                     errorsMessage={errors}
@@ -112,7 +110,6 @@ export default observer(function Step3({
                     locale={locale}
                     isLoading={isLoading}
                     fetchBookingDeparture={fetchBookingDeparture}/>
-            </ReCaptchaProvider>
         </div>
     )
 })

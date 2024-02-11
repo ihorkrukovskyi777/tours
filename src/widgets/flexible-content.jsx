@@ -9,7 +9,7 @@ const AllCities = dynamic(
 );
 
 const ContactUs = dynamic(
-  () => import("@/shared/ui/flexible-content/contact-us/contact-us"),
+  () => import("@/shared/ui/flexible-content/contact-us/ssr-contact-us"),
   { ssr: true }
 );
 const MostPopular = dynamic(
