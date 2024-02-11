@@ -21,6 +21,10 @@ export default function GoogleScript() {
         <>
             <script
                 async={true}
+                src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}`}
+            />
+            <script
+                async={true}
                 src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
             />
 

@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
-import {ReCaptchaProvider} from "next-recaptcha-v3";
 
 const CounterNumbers = dynamic(
     () => import("@/shared/ui/selectors/counter-numbers"),
@@ -72,7 +71,6 @@ export default observer(function Main({siteLocale, i18n}) {
         }
     }
     return (
-        <ReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}>
             <div className="calendar_wrap" style={{minHeight: '400px'}}>
                 <h2 className="title">{i18n.tour_calendar}</h2>
                 <div className="wrap-box">
@@ -141,8 +139,5 @@ export default observer(function Main({siteLocale, i18n}) {
                 </ModalBooking>
 
             </div>
-        </ReCaptchaProvider>
-
-
     )
 })

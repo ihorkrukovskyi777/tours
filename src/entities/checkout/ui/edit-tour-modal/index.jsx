@@ -7,7 +7,6 @@ import {observer} from "mobx-react-lite";
 import DefaultModal from "@/shared/ui/modals/default-modal";
 import ChooseDate from "@/entities/checkout/ui/calendar/choose-date";
 import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
-import {ReCaptchaProvider} from "next-recaptcha-v3";
 import './style.css';
 
 export default observer(function EditModalTour({i18n}) {
@@ -50,9 +49,7 @@ export default observer(function EditModalTour({i18n}) {
                             <strong>{i18n.number_people}:</strong>
                             <div>{editDeparture.numberPeople}</div>
                         </div>
-                        <ReCaptchaProvider reCaptchaKey={process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}>
-                            <FormEdit i18n={i18n} isOpened={false} close={toggleModalEdit}/>
-                        </ReCaptchaProvider>
+                        <FormEdit i18n={i18n} isOpened={false} close={toggleModalEdit}/>
                     </div>
                 </div>
             </div>

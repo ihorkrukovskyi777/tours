@@ -9,13 +9,12 @@ import {getHrefLocale} from "@/i18n/get-href-locale";
 import Notification from "@/shared/ui/notification/notification";
 import { validationFirstName , validationEmail , validationPhone} from "@/shared/helpers/validation-form";
 import dynamic from "next/dynamic";
-import {useReCaptcha} from "next-recaptcha-v3";
+import recaptcha from "@/shared/util/recaptcha";
 const InternationalInput = dynamic(
     () => import("@/shared/ui/selectors/international-input"),
     {ssr: false}
 )
 export default observer(function FormEdit({i18n}) {
-    const { executeRecaptcha } = useReCaptcha();
     const searchParams = useSearchParams()
     const [error, setError] = useState(false);
     const {replace} = useRouter();
@@ -55,7 +54,7 @@ export default observer(function FormEdit({i18n}) {
 
 
     const submitForm = async () => {
-        const token = await executeRecaptcha("booking");
+        const token = await recaptcha("booking");
         const data = await editDeparture.updateDeparture(token);
 
         if(data?.isEdit === true && data.success) {

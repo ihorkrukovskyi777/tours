@@ -4,11 +4,10 @@ import {useParams} from "next/navigation";
 import InternationalInput from '../../../../../shared/ui/selectors/international-input';
 import {useRouter} from "next/navigation";
 import {getHrefLocale} from "@/i18n/get-href-locale";
-import { useReCaptcha} from "next-recaptcha-v3";
 import classNames from "classnames";
+import recaptcha from "@/shared/util/recaptcha";
 import Link from "next/link";
 export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookingDeparture, errorsMessage , isLoading }) {
-    const { executeRecaptcha } = useReCaptcha();
 
     const [showError , setShowError] = useState(false);
     const { push } = useRouter();
@@ -26,12 +25,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
         return valid;
     };
 
-    const [userData, setUserData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-    })
+
     const [loadValidate, setLoadValidate] = useState(false);
     const [validate, setValidate] = useState(null);
     const [valueMask, setValueMask] = useState('');
@@ -96,7 +90,6 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
         }
     }
 
-    console.log(validate, 'validate')
     function handleChange(event) {
         //event.preventDefault();
         const {name} = event.target;
@@ -142,7 +135,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                 phone_country_slug: document.getElementById('phone').getAttribute('data-slug').toLowerCase(),
             }
             try {
-                const token = await executeRecaptcha("booking");
+                const token = await recaptcha("booking");
                 const data = await fetchBookingDeparture(formData, token);
                 if(data.booking_id) {
                     const url = getHrefLocale(params.locale, `checkout?code=${data.booking_id}`)
