@@ -15,7 +15,7 @@ export default observer(function ChooseDate({ i18n }) {
         <div className={`step-1 `}>
             <div className="title">
                 {selectedDay}
-                <div className="title_text">{tourName} {i18n.change_data_time_number_people}</div>
+                <div className="title_text" dangerouslySetInnerHTML={{__html: `${tourName} ${i18n.change_data_time_number_people}`}}></div>
             </div>
             <div className="how-many">
                 <div className="block-title">{i18n.how_many_people_are_coming}</div>
