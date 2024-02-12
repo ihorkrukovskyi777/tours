@@ -220,3 +220,15 @@ export const placesMarkers = async (id, locale = 'en', ids = []) => {
         console.log(err);
     }
 }
+export const getTextAndSlides  = async (id, locale = 'en') => {
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/section/text-and-slider/${id}?locale=${locale}`,
+            {next: {revalidate: 60 * 60, tags: ['section']}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+
+}

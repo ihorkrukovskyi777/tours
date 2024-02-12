@@ -1,5 +1,5 @@
 import TextAndSlider from "@/widgets/text-and-slider";
-import {getTextAndSlides} from "@/entities/tour/api";
+import {getTextAndSlides} from "@/entities/api";
 import i18n from "@/i18n/server-locales";
 export default async function TextAndSliderTourPage({ id, locale, isMobile }) {
     await i18n.getFetchDefault()
