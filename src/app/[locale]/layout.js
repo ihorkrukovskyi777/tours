@@ -16,8 +16,12 @@ export default async function LocaleLayout({children, params}) {
             <script
                 dangerouslySetInnerHTML={{
                     __html: `
-                     window.addEventListener("unload", (event) => {
-                        console.log("I am the 3rd one.");
+                     window.addEventListener("pageshow", (event) => {
+                        if (event.persisted) {
+            alert("jquery - back to page - loaded from bfcache");
+        } else {
+            alert("jquery - loaded page from server");
+        }
                       });
                 `,
                 }}
