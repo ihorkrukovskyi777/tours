@@ -29,8 +29,13 @@ const phone = (arr)=> {
     return validateArray.includes(valuePhone) === true ? true : 'phone_number_error';
 }
 
+const notEmpty = ({val})=> {
+    return val.length > 0 ? true : 'field_is_required'
+}
+
+
 const strategyValid = {
-    minLength , maxLength , withoutNumbers , email , phone
+    minLength , maxLength , withoutNumbers , email , phone , notEmpty
 }
 
 export const valid = (val, types) => {
@@ -55,4 +60,8 @@ export const validationEmail = (val)=> {
 export const validationPhone = (val)=> {
 
     return valid(val , [{type: 'phone'}])
+}
+
+export const validationNotEmpty = (val)=> {
+    return valid(val , [{type: 'notEmpty'}])
 }

@@ -4,8 +4,7 @@ export default async function SrrContactUs () {
     await i18n.getFetchDefault();
     return (
         <ContactUs i18n={{
-            is_field_required: i18n.t('The field is required'),
-            email_error: i18n.t('email_error'),
+            ...i18n.getFormErrors(),
             contact_us: i18n.t('Contact Us'),
             write_your_message_here: i18n.t('Write your message here!'),
             send_messages: i18n.t('Send Message'),
