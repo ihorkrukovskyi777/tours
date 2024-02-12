@@ -13,6 +13,18 @@ export default async function LocaleLayout({children, params}) {
             <html lang={seoLocales[params.locale]?.replace('_', '-')}>
 
             <body>
+            <script
+                dangerouslySetInnerHTML={{
+                    __html: `
+                window.onpageshow = function(event) {
+                console.log(event);
+                    if (event.persisted) {
+                        window.location.reload()
+                    }
+                };
+            `,
+                }}
+            />
             <main className={"main_flex_container"}>
                 <WebSiteSchema />
                 <Header locale={params.locale}/>
