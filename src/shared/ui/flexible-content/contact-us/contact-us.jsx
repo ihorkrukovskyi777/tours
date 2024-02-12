@@ -1,16 +1,20 @@
 'use client';
 import {useState} from "react";
+import {validationNotEmpty , validationEmail} from "@/shared/helpers/validation-form";
+import {fetchContactForm} from "@/shared/api/contact-form";
 import './style.css';
 
+const initialFormState = {
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+}
 export default function ContactUs({i18n}) {
-
+    const [thankYouMsg , setThankYouMsg] = useState('');
     const [formData, setForm] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
+        ...initialFormState
     })
-
 
     const changeValueForm = (key) => {
         return (e) => setForm({...formData, [key]: e.target.value})
@@ -23,10 +27,29 @@ export default function ContactUs({i18n}) {
         message: '',
     })
 
-
-    const handleSubmit = (e) => {
+    async function preSubmitForValidation(e) {
         e.preventDefault();
-        console.log(formData)
+        const errorLists = {
+            name: validationNotEmpty(formData.name),
+            subject: validationNotEmpty(formData.subject),
+            email: validationEmail(formData.email),
+            message: validationNotEmpty(formData.message),
+        }
+
+        setErrors({...errors , ...errorLists})
+        if (!Object.values(errorLists).filter(Boolean).length) {
+            const data = {
+                "your-name": formData.name,
+                "your-email": formData.email,
+                "your-subject": formData.subject,
+                "your-message": formData.message
+            }
+            const response = await fetchContactForm(212 , data);
+            console.log(response);
+            setThankYouMsg(response.message)
+            setForm({...initialFormState})
+
+        }
     }
 
     return (
@@ -34,20 +57,19 @@ export default function ContactUs({i18n}) {
             <div className="container">
                 <h2>{i18n.contact_us}</h2>
                 <div className='form_wrap'>
-                    <form id='contact_form' action="" onSubmit={handleSubmit}>
+                    <form onSubmit={preSubmitForValidation}>
                         <div className="items_form">
                             <div className="form_item">
                                 <label>{i18n.name}<span className="reguired">*</span>
                                     <input
                                         type="text"
-                                        name="firstName"
+                                        name="name"
                                         placeholder="John Doe"
                                         onChange={changeValueForm('name')}
                                         value={formData.name}
                                     />
                                 </label>
-                                {errors.name.length > 0 ?
-                                    <span className='error-message'>{errors.name}</span> : null}
+                                {errors.name ? <span className='error-message'>{i18n[errors.name]}</span> : null}
                             </div>
 
                             <div className="form_item">
@@ -60,7 +82,7 @@ export default function ContactUs({i18n}) {
                                         value={formData.email}
                                     />
                                 </label>
-                                {errors.email.length > 0 ? <span className='error-message'>{errors.email}</span> : null}
+                                {errors.email ? <span className='error-message'>{i18n[errors.email]}</span> : null}
                             </div>
 
                             <div className="form_item">
@@ -73,29 +95,27 @@ export default function ContactUs({i18n}) {
                                         value={formData.subject}
                                     />
                                 </label>
-                                {errors.subject.length > 0 ?
-                                    <span className='error-message'>{errors.subject}</span>
-                                    : null}
+                                {errors.subject ? <span className='error-message'>{i18n[errors.subject]}</span> : null}
                             </div>
 
                             <div className="form_item">
                                 <label>{i18n.message}<span className="reguired">*</span>
                                     <textarea
-                                        name="yourmessage"
+                                        name="message"
                                         cols="40"
                                         rows="10"
-                                        onChange={changeValueForm('subject')}
+                                        onChange={changeValueForm('message')}
                                         value={formData.message}
                                         placeholder={i18n.write_your_message_here}/>
                                 </label>
-                                {errors.message.length > 0 ?
-                                    <span className='error-message'>{errors.message}</span> : null}
+                                {errors.message ? <span className='error-message'>{i18n[errors.message]}</span> : null}
                             </div>
 
                             <div className="form_btn">
-                                <button onSubmit={handleSubmit}>{i18n.send_messages}</button>
+                                <button>{i18n.send_messages}</button>
                             </div>
                         </div>
+                        {thankYouMsg ? <div className='thank-you-message'>{thankYouMsg}</div> : ''}
 
                     </form>
 
