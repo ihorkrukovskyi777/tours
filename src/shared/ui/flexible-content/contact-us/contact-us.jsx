@@ -10,7 +10,7 @@ const initialFormState = {
     subject: '',
     message: '',
 }
-export default function ContactUs({i18n}) {
+export default function ContactUs({i18n, idForm}) {
     const [thankYouMsg , setThankYouMsg] = useState('');
     const [formData, setForm] = useState({
         ...initialFormState
@@ -44,7 +44,7 @@ export default function ContactUs({i18n}) {
                 "your-subject": formData.subject,
                 "your-message": formData.message
             }
-            const response = await fetchContactForm(212 , data);
+            const response = await fetchContactForm(idForm , data);
             console.log(response);
             setThankYouMsg(response.message)
             setForm({...initialFormState})

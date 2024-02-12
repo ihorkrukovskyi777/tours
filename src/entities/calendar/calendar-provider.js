@@ -1,5 +1,5 @@
 "use client";
-import {createContext, memo} from "react";
+import {createContext, memo, useEffect} from "react";
 import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
 import Main from "@/entities/calendar/ui/main/main";
@@ -21,7 +21,17 @@ export default memo(function CalendarProvider({
     if (!findLocale) {
         [findLocale] = activeLanguage;
     }
+
+
+    useEffect(() => {
+        const section = document.getElementById('tour_calendar_section');
+        if(section && !findLocale) {
+            section.style.display = 'none';
+        }
+    }, [])
+
     if (!findLocale) {
+
         return null;
     }
     return (
