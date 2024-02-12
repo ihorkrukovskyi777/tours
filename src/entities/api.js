@@ -15,10 +15,10 @@ const setGlobalVariable = (phones) => {
 }
 
 
-export async function getBannerData(id, locale, type = 'city') {
+export async function getBannerData(id, locale, type = 'city', revalidate = 0) {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/banner/${id}?locale=${locale}`,
-        {next: {revalidate: 0}}
+        {next: {revalidate}}
     )
     return data.json();
 }
