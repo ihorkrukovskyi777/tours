@@ -34,8 +34,14 @@ export default async function MostPopularTours({id, locale, slug}) {
 
                 </>
                 : null}
-            <ProviderMap hideBottom={true} i18n={i18n.getMapSliders()} id={id} locale={locale} toursPlaces={toursPlaces}
-                         buttonsShow={true}/>
+            <ProviderMap
+                hideBottom={true}
+                i18n={i18n.getMapSliders()}
+                id={id}
+                locale={locale}
+                toursPlaces={toursPlaces}
+                buttonsShow={true}
+            />
         </>
     );
 }
