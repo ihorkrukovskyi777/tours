@@ -45,7 +45,6 @@ export default function ContactUs({i18n, idForm}) {
                 "your-message": formData.message
             }
             const response = await fetchContactForm(idForm , data);
-            console.log(response);
             setThankYouMsg(response.message)
             setForm({...initialFormState})
 
@@ -69,7 +68,7 @@ export default function ContactUs({i18n, idForm}) {
                                         value={formData.name}
                                     />
                                 </label>
-                                {errors.name ? <span className='error-message'>{i18n[errors.name]}</span> : null}
+                                {formData.name.length <= 0 ? <span className='error-message'>{i18n[errors.name]}</span> : null}
                             </div>
 
                             <div className="form_item">
@@ -82,7 +81,7 @@ export default function ContactUs({i18n, idForm}) {
                                         value={formData.email}
                                     />
                                 </label>
-                                {errors.email ? <span className='error-message'>{i18n[errors.email]}</span> : null}
+                                {formData.email.length <= 0  ? <span className='error-message'>{i18n[errors.email]}</span> : null}
                             </div>
 
                             <div className="form_item">
@@ -95,7 +94,7 @@ export default function ContactUs({i18n, idForm}) {
                                         value={formData.subject}
                                     />
                                 </label>
-                                {errors.subject ? <span className='error-message'>{i18n[errors.subject]}</span> : null}
+                                {formData.subject.length <= 0 ? <span className='error-message'>{i18n[errors.subject]}</span> : null}
                             </div>
 
                             <div className="form_item">
@@ -108,7 +107,7 @@ export default function ContactUs({i18n, idForm}) {
                                         value={formData.message}
                                         placeholder={i18n.write_your_message_here}/>
                                 </label>
-                                {errors.message ? <span className='error-message'>{i18n[errors.message]}</span> : null}
+                                {formData.message.length <= 0 ? <span className='error-message'>{i18n[errors.message]}</span> : null}
                             </div>
 
                             <div className="form_btn">
