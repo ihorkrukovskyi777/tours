@@ -16,10 +16,12 @@ export default async function LocaleLayout({children, params}) {
             <script
                 dangerouslySetInnerHTML={{
                     __html: `
-                window.onpageshow = function(event) {
-                console.log(event);
-                    if (event.persisted) {
-                        window.location.reload() 
+                window.onpageshow = function(e) {
+                
+                    if (e.persisted) {
+                
+                        alert("Page shown");
+                        window.location.reload();
                     }
                 };
 
