@@ -21,9 +21,8 @@ export default async function LocaleLayout({children, params}) {
                                              ( typeof window.performance != "undefined" && 
                                                   window.performance.navigation.type === 2 );
                       if ( historyTraversal ) {
-                      alert(2);
                         // Handle page restore.
-                        window.location.reload();
+                        window.location.href = '';
                       }
                     });
 
