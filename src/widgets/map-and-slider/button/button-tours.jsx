@@ -22,7 +22,7 @@ const columnsFormula = (column1, column2) => {
 
         if (i > 50) break;
         const lastElement = column1.list[column1.list.length - 1]
-        const checkWidth = column2.width;
+        const checkWidth = column2.width + lastElement;
         if (column1.width > checkWidth) {
             flag = true;
             column1.width = column1.width - lastElement;
