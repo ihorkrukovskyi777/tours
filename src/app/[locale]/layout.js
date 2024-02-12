@@ -22,7 +22,7 @@ export default async function LocaleLayout({children, params}) {
                                                   window.performance.navigation.type === 2 );
                       if ( historyTraversal ) {
                         // Handle page restore.
-                        window.location.href = '';
+                        window.location.reload(true);
                       }
                     });
 
