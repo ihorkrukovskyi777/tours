@@ -1,9 +1,24 @@
 import {NextResponse} from 'next/server';
 import {fallbackLng, locales} from './i18n/settings';
 
-export function middleware(request) {
+export async function middleware(request) {
     // Check if there is any supported locale in the pathname
     const pathname = request.nextUrl.pathname;
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/redirect/${encodeURIComponent(pathname)}`, {next: { revalidate: 60}});
+    const redirect = await response.json();
+    if(redirect.code) {
+
+        const replaceList = [
+            process.env.NEXT_PUBLIC_CANONICAL_DOMAIN,
+            process.env.NEXT_PUBLIC_CANONICAL_DOMAIN.replace('https://', ''),
+            process.env.NEXT_PUBLIC_CANONICAL_DOMAIN.replace('http://', ''),
+        ]
+        const to = replaceList.reduce((to, val) => {
+            return to.replace(val, '')
+        }, redirect.to)
+        return NextResponse.redirect( new URL(`${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${to}`), { status: redirect?.code || 307})
+    }
 
     // Check if the default locale is in the pathname
     if (
