@@ -1,6 +1,6 @@
 import {fallbackLng} from "@/i18n/settings";
 export default async function sitemap() {
-    let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap/tours`);
+    let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap/tours`, {next: { revalidate: 60 * 60, tags: ['seo'] }});
     siteMaps = await siteMaps.json();
 
      return siteMaps.map(tour => {

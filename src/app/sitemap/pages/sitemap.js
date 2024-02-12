@@ -1,5 +1,5 @@
 export default async function sitemap() {
-    let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap/pages`);
+    let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap/pages`, {next: { revalidate: 60 * 60, tags: ['seo'] }});
     siteMaps = await siteMaps.json();
 
     const getSlug = (page) => {

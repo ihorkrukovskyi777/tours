@@ -37,7 +37,7 @@ export default async function Home({params: {locale}, ...props}) {
 }
 
 export async function generateMetadata({params: {slug, locale}}) {
-    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/home?locale=${locale}`, {next: {revalidate: 60 * 15}}).then((res) => res.json())
+    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/home?locale=${locale}`, {next: {revalidate: 60 * 60,  tags: ['seo']}}).then((res) => res.json())
     const canonical = locale === fallbackLng ? slug : `${locale}`
     const languages = {}
     if (Array.isArray(seo.languages)) {

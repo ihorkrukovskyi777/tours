@@ -84,7 +84,7 @@ export default async function Page({params: {locale, slug, tour}}) {
 }
 
 export async function generateMetadata({ params : {slug, locale, tour} }) {
-    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/tour/${slug}/${tour}?locale=${locale}`, {next: { revalidate: 0 }}).then((res) => res.json())
+    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/tour/${slug}/${tour}?locale=${locale}`, {next: { revalidate: 60 * 60, tags: ['seo'] }}).then((res) => res.json())
     const languages = {};
     if(Array.isArray(seo.languages)) {
         for (const lang of seo.languages) {

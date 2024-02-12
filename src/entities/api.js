@@ -15,7 +15,7 @@ const setGlobalVariable = (phones) => {
 }
 
 
-export async function getBannerData(id, locale, type = 'city', revalidate = 0,) {
+export async function getBannerData(id, locale, type = 'city') {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/banner/${id}?locale=${locale}`,
         {next: {revalidate: 0}}
@@ -27,7 +27,7 @@ export async function getReviews(id, locale, limit, offset = 0, type = 'city') {
 
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/reviews/${id}?locale=${locale}&limit=${limit}&offset=${offset}`,
-        {next: {revalidate: 60}}
+        {next: {revalidate: 60 * 15, tags: ['section']}}
     )
     return data.json();
 }
@@ -35,7 +35,7 @@ export async function getReviews(id, locale, limit, offset = 0, type = 'city') {
 export async function getPickCities(id, locale = 'en') {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/pick-cities/${id}?locale=${locale}`,
-        {next: {revalidate: 60}}
+        {next: {revalidate: 60 * 60, tags: ['section']}}
     )
     return data.json();
 }
@@ -82,7 +82,7 @@ export const getTextQuote = async (id, locale = 'en', type = 'city') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/text-quote/${id}?locale=${locale}`,
-            {next: {revalidate: 60}}
+            {next: {revalidate: 60 * 60 , tags: ['section']}}
         );
         return res.json()
     } catch (err) {
@@ -95,7 +95,7 @@ export const getHighlightsImages = async (id) => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/gallery-section/${id}`,
-            {next: {revalidate: 60}}
+            {next: {revalidate: 60 * 60, tags: ['section']}}
         );
         return res.json()
     } catch (err) {
@@ -108,7 +108,7 @@ export const getTextsBlocks = async (id, locale = 'en', type = 'city') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/text-blocks/${id}?locale=${locale}`,
-            {next: {revalidate: 60}}
+            {next: {revalidate: 60 * 60, tags: ['section']}}
         );
         return res.json()
     } catch (err) {
@@ -121,7 +121,7 @@ export const getFaqBlock = async (id, locale = 'en') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/faq/${id}?locale=${locale}`,
-            {next: {revalidate: 60}}
+            {next: {revalidate: 60 * 60, tags: ['section']}}
         );
         return res.json()
     } catch (err) {
@@ -135,7 +135,7 @@ export const getCountryPhone = async (locale = 'en') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/phone?locale=${locale}`,
-            {next: {revalidate: 60 * 60}}
+            {next: {revalidate: 60 * 60, tags: ['phones']}}
         );
         const phones = await res.json()
 
@@ -150,7 +150,7 @@ export const allCitiesData = async (locale = 'en') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/all?locale=${locale}`,
-            {next: {revalidate: 60 * 10}}
+            {next: {revalidate: 60 * 10, tags: ['all-cities']}}
         );
         return res.json()
     } catch (err) {
@@ -171,7 +171,7 @@ export const allGuides = async (id, type = 'city') => {
 }
 
 
-export const blogPosts = async (locale = 'en') => {
+export const blogPosts = async () => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/blog/last-posts`,
@@ -183,7 +183,7 @@ export const blogPosts = async (locale = 'en') => {
     }
 }
 
-export const singlePost = async (id, locale = 'en') => {
+export const singlePost = async (id) => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/blog/post/${id}`,
@@ -199,7 +199,7 @@ export const searchCities = async (locale = 'en', search) => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/search-city?locale=${locale}&q=${search}`,
-            {next: {revalidate: 60}}
+            {next: {revalidate: 60 * 10, tags: ['section']}}
         );
         return res.json()
     } catch (err) {
@@ -213,7 +213,7 @@ export const placesMarkers = async (id, locale = 'en', ids = []) => {
         const paramsIds = ids.length ? `&ids=${ids.join(',')}` : '';
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/place/pages/${id}?locale=${locale}${paramsIds}`,
-            {next: {revalidate: 0}}
+            {next: {revalidate: 60 * 15, tags: ['section']}}
         );
         return res.json()
     } catch (err) {

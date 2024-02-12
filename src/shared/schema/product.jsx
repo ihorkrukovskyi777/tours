@@ -33,7 +33,7 @@ export default async function ProductSchema({id, locale, type = 'city'}) {
     const aYearFromNow = new Date();
     aYearFromNow.setFullYear(aYearFromNow.getFullYear() + 1);
     const date = `${aYearFromNow.getFullYear()}-${aYearFromNow.getMonth()+1}-${aYearFromNow.getDate()}`
-    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/product-${type}/${id}?locale=${locale}`, {next: {revalidate: 60 * 60}})
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/product-${type}/${id}?locale=${locale}`, {next: {revalidate: 60 * 60,  tags: ['schema']}})
     const item = await response.json();
     const schemaData = JSON.stringify(getSchemaProduct(item, date, locale));
     return (

@@ -6,7 +6,7 @@ import i18n from "@/i18n/server-locales";
 export default async function FaqSection({locale, id, index, flexibleKey}) {
     await i18n.getFetchDefault();
 
-    const questions = await fetchFlexibleContent(id, locale, flexibleKey, index, 60*5)
+    const questions = await fetchFlexibleContent(id, locale, flexibleKey, index, 60*60)
     if (!Array.isArray(questions)) {
         return null
     }

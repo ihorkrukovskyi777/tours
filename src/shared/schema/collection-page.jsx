@@ -49,7 +49,7 @@ const collectionPageSchema = (listUrl = [], tour) => {
 }
 
 export default async function CollectionPageSchema({locale}) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/collection-page?locale=${locale}`, {next: {revalidate: 60 * 60}})
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/collection-page?locale=${locale}`, {next: {revalidate: 60 * 60,  tags: ['schema']}})
     const data = await response.json();
     return <script
         type="application/ld+json"

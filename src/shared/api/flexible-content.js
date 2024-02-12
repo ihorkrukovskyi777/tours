@@ -2,7 +2,7 @@ export const fetchFlexibleContent = async (id, locale, key, index, revalidate = 
         try {
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/flexible-content/${key}/${id}/${index}?locale=${locale}`,
-                {next: {revalidate}}
+                {next: {revalidate, tags: ['flexible-content']}}
             );
             return res.json()
         } catch (err) {

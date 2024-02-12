@@ -5,7 +5,7 @@ import {fetchFlexibleContent} from "@/shared/api/flexible-content";
 import './style.css';
 
 export default async function BannerHome({locale, id, index, flexibleKey}) {
-    const data = await fetchFlexibleContent(id, locale, flexibleKey, index, 60*5)
+    const data = await fetchFlexibleContent(id, locale, flexibleKey, index, 60*60)
 
     if (!data) {
         return null

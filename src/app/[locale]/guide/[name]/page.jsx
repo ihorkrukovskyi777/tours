@@ -53,7 +53,7 @@ export default async function PageGuide({params: {name, locale}}) {
     )
 }
 export async function generateMetadata({ params : {name, locale} }) {
-    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/guide/${name}?locale=${locale}`, {next: { revalidate: 0 }}).then((res) => res.json())
+    const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/guide/${name}?locale=${locale}`, {next: { revalidate: 60 * 60, tags: ['seo'] }}).then((res) => res.json())
     const canonical = locale === fallbackLng ? `${PATH_GUIDES}/${name}` : `${locale}/${PATH_GUIDES}/${name}`
 
     return generatorSeo(seo,  canonical, locale)
