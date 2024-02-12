@@ -16,7 +16,18 @@ const nextConfig = {
                 hostname: 'imagedelivery.net',
             },
         ],
-    }
+    },
+    headers: () => [
+        {
+            source: '*',
+            headers: [
+                {
+                    key: 'Cache-Control',
+                    value: 'no-store',
+                },
+            ],
+        },
+    ],
 }
 
 module.exports = nextConfig
