@@ -1,5 +1,5 @@
 export default function robots() {
-    if(process.env.NEXT_PUBLIC_ROBOTS_TXT === 'dev') {
+    if(process.env.NEXT_PUBLIC_ROBOTS_TXT === 'no') {
         return {
             rules: {
                 userAgent: '*',
