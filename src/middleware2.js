@@ -1,7 +1,7 @@
 import {NextResponse} from 'next/server';
 import {fallbackLng, locales} from './i18n/settings';
 
-export async function middleware(request) {
+export async function middleware2(request) {
     // Check if there is any supported locale in the pathname
     const pathname = request.nextUrl.pathname;
 
