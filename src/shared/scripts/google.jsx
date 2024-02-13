@@ -5,16 +5,14 @@ export default function GoogleScript() {
 
     const [load, setLoad] = useState(false);
     useEffect(() => {
-        window.addEventListener('load', () => {
-            const loadScript = () => {
-                window.removeEventListener('scroll', loadScript);
-                    setLoad(true);
-            }
-            window.addEventListener('scroll', loadScript)
-        })
+        const loadScript = () => {
+            window.removeEventListener('scroll', loadScript);
+            setLoad(true);
+        }
+        window.addEventListener('scroll', loadScript)
     }, [])
 
-    if(load === false) {
+    if (load === false) {
         return null;
     }
     return (
