@@ -4,6 +4,23 @@ import {useEffect, useState} from "react";
 export default function GoogleScript() {
 
     const [load, setLoad] = useState(false);
+
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [documentHeight , setDocumentHeight] = useState(0)
+    const handleScroll = () => {
+        const position = window.pageYOffset;
+        setScrollPosition(position);
+        const docHeight = document.querySelector('body').scrollHeight - window.innerHeight - 100;
+        setDocumentHeight(docHeight);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll, { passive: true });
+    }, []);
+
+    scrollPosition > documentHeight ? document.querySelector('body').classList.add('scroll-down-captcha') : document.querySelector('body').classList.remove('scroll-down-captcha')
+
     useEffect(() => {
         const loadScript = () => {
             window.removeEventListener('scroll', loadScript);

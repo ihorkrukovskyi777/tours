@@ -11,7 +11,7 @@ export default function HeaderCalendar({i18n, month, year, prevMonth, nextMonth,
             <div className={classNames({'disable': !disableArrow}, 'prev-month')} onClick={prevMonth}>
                 <Image src={ArrowLeftSvg} alt='arrow right'></Image>
             </div>
-            <div className="month-and-year"><span>{i18n.months[allMonth[month]]} &nbsp; {year}</span></div>
+            <div className="month-and-year"><span>{i18n.months[allMonth[month]]} {year}</span></div>
             <div className="next-month" onClick={nextMonth}><Image src={ArrowRightSvg} alt='arrow right'></Image></div>
         </div>
     );
