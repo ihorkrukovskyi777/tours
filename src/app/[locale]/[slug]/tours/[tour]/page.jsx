@@ -67,7 +67,7 @@ export default async function Page({params: {locale, slug, tour}}) {
                 <ProviderMap hideBottom={false} locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}/>
                 <TextQuote id={page.id} locale={locale} type="tour"/>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
-                <LatestReviews id={page.id} locale={locale} type="tour"/>
+                <LatestReviews id={page.id} locale={locale} type="tour" showTitle={false}/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={i18n.t('Guides Leading this Tour')} id={page.id} locale={page.locale} type="tour"/>
                 <TourRow id={page.id} locale={page.locale} title={`${i18n.t('Other Tours in')} ${page.city.title}`}/>
@@ -84,6 +84,7 @@ export default async function Page({params: {locale, slug, tour}}) {
 }
 
 export async function generateMetadata({ params : {slug, locale, tour} }) {
+    console.log(`process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/tour/${slug}/${tour}?locale=${locale}`)
     const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/tour/${slug}/${tour}?locale=${locale}`, {next: { revalidate: 60 * 60, tags: ['seo'] }}).then((res) => res.json())
     const languages = {};
     if(Array.isArray(seo.languages)) {

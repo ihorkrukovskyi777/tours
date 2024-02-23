@@ -32,7 +32,6 @@ export default observer(function Step1({
         e.stopPropagation();
         close();
     };
-
     return (
         <div className={`step-1 ${size}`}>
             <div className="title">

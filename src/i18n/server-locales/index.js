@@ -58,6 +58,15 @@ class I18n {
         this.translates[this.locale][defaultNS] = await res.json();
 
     }
+    tReplace(key, value, locale = this.locale, ns = defaultNS) {
+        let label = '';
+        if (!this.translates[locale] || !this.translates[locale][ns] || !this.translates[locale][ns][key]) {
+            label = key;
+        }
+        label = this.translates[locale][ns][key] ?? key
+
+        return label.replace('%s', value)
+    }
 
     t(key, locale = this.locale, ns = defaultNS) {
 

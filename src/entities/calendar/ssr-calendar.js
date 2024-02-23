@@ -37,6 +37,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
         first_name: i18n.t('First Name'),
         last_name: i18n.t('Last Name'),
         email: i18n.t('Email'),
+        duration: i18n.t('Duration'),
         phone_number: i18n.t('Phone Number'),
         errors: i18n.getFormErrors(),
         genitive: {
@@ -52,7 +53,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
                 <div className="wrapper">
                     <CalendarProvider
                         i18n={translate}
-                        title={`${title} ${i18n.t('Tour Calendar')}`}
+                        title={i18n.tReplace('%s Tour Calendar', title)}
                         locale={locale}
                         type={type}
                         id={id}

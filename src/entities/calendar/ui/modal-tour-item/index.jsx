@@ -1,12 +1,10 @@
 import ClockSvg from '@/assets/images/svg/clock-svg';
 import classNames from 'classnames';
 import {pad2, toHoursAndMinutes} from "@/shared/helpers/date";
-import {useTranslation} from "@/i18n/client";
 import './style.css';
 
 
 export default function ModalTourItem({i18n, dep, onSelected, isActive}) {
-    const { t } = useTranslation();
     const {hours, minutes} = toHoursAndMinutes(dep.time);
     const durationFormat = toHoursAndMinutes(dep.duration * 60);
     return (
@@ -18,7 +16,7 @@ export default function ModalTourItem({i18n, dep, onSelected, isActive}) {
                     <div className="clock-wrap">
                         <ClockSvg/>
                     </div>
-                    <span>{durationFormat.hours}:{pad2(durationFormat.minutes)} {i18n.hours}</span>
+                    <span>{durationFormat.hours}:{pad2(durationFormat.minutes)} { durationFormat.hours > 1 ? i18n.hours : i18n.hour}</span>
                 </div>
             </div>
         </div>

@@ -22,7 +22,6 @@ export default function TextAndSlider({i18n, title, listText = [], attachments =
         const section = document.querySelector('#tour_calendar_section');
         if (section) section.scrollIntoView({behavior: 'smooth', block: 'start'});
     };
-
     return (
         <section className="text_and_slider">
             <div className="container">

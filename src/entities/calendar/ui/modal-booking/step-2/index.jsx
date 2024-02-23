@@ -1,5 +1,4 @@
 'use client';
-import {observer} from "mobx-react-lite";
 import ModalTourItem from '../../modal-tour-item';
 import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 import Button from '@/shared/ui/selectors/button/button';

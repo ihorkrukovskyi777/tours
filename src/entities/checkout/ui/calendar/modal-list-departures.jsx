@@ -29,8 +29,7 @@ export default observer(function ModalListDepartures({i18n, size = "small", titl
     return (
         <div className={`step-2 ${size}`}>
             <div className="title">
-                <div className="title_text">
-                    {tourName}
+                <div className="title_text" dangerouslySetInnerHTML={{__html: tourName ?? ''}}>
                 </div>
                 <div className="close-button" onClick={closeModal}><CloseSvg/></div>
             </div>

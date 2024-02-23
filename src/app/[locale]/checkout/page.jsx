@@ -99,9 +99,17 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
     )
 }
 
-export async function generateMetadata() {
+export async function generateMetadata({params: {locale}}) {
 
+    const pageType = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/checkout?locale=${locale}`,
+        {next: {revalidate: 0}}
+    )
+    const data = await pageType.json();
+
+    const find = data?.languages.find(seo => seo.locale === locale);
     return {
+        title: find?.title ?? 'Checkout',
         robots: {index: false, follow: false},
     }
 }
