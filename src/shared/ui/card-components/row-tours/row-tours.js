@@ -37,6 +37,7 @@ export default function RowTours({tours, title = '', i18n= {}}) {
                                             size={12}
                                             rating={item.rating?.rating || 0}
                                             count_reviews={item.rating?.reviews || 0}
+                                            title={i18n.reviews}
                                         />
                                     }
                                 >
