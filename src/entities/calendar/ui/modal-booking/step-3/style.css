@@ -192,11 +192,8 @@
 .step-3 .title-text {
     font-size: 32px;
     max-width: 210px;
-}
-.step-3 .title-text {
     font-family: var(--fontBold);
     font-weight: 700;
-    font-size: 24px;
     color: #000;
     margin: 0;
 }
@@ -305,6 +302,9 @@
     font-weight: 500;
     font-family: var(--fontMedium);
     color: #000;
+}
+.step-3 .duration .clock-wrap {
+    margin-right: 6px;
 }
 .step-3 .people {
     display: flex;

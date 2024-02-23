@@ -33,9 +33,13 @@ const notEmpty = ({val})=> {
     return val.length > 0 ? true : 'field_is_required'
 }
 
+const notRequired = ({val})=> {
+    return val.length >= 0 ? true : 'field_is_required'
+}
+
 
 const strategyValid = {
-    minLength , maxLength , withoutNumbers , email , phone , notEmpty
+    minLength , maxLength , withoutNumbers , email , phone , notEmpty , notRequired
 }
 
 export const valid = (val, types) => {
@@ -64,4 +68,8 @@ export const validationPhone = (val)=> {
 
 export const validationNotEmpty = (val)=> {
     return valid(val , [{type: 'notEmpty'}])
+}
+
+export const validationNotRequired = (val)=> {
+    return valid(val , [{type: 'notRequired'}])
 }

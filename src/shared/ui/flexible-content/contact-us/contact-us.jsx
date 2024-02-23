@@ -1,6 +1,6 @@
 'use client';
 import {useState} from "react";
-import {validationNotEmpty , validationEmail} from "@/shared/helpers/validation-form";
+import {validationNotEmpty , validationEmail , validationNotRequired} from "@/shared/helpers/validation-form";
 import {fetchContactForm} from "@/shared/api/contact-form";
 import ButtonLoader from "@/shared/ui/selectors/button-loader/button-loader";
 import './style.css';
@@ -36,7 +36,7 @@ export default function ContactUs({i18n, idForm}) {
             name: validationNotEmpty(formData.name),
             subject: validationNotEmpty(formData.subject),
             email: validationEmail(formData.email),
-            message: validationNotEmpty(formData.message),
+            message: validationNotRequired(formData.message),
         }
 
         setErrors({...errors , ...errorLists})

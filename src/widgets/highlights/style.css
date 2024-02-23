@@ -47,6 +47,9 @@
     .highlights .swiper-slide {
         width: 100% !important;
     }
+    .highlights .swiper-pagination {
+        display: none;
+    }
 }
 @media(max-width: 767px) {
     .highlights .swiper-wrapper {

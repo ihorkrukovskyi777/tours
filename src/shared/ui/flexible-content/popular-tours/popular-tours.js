@@ -2,7 +2,7 @@ import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import {fetchFlexibleContent} from "@/shared/api/flexible-content";
 import i18n from "@/i18n/server-locales";
 
-export default async function PopularTours({locale, id, index, flexibleKey}) {
+export default async function PopularTours({locale, id, index, flexibleKey , pageClass}) {
     await i18n.getFetchDefault();
     const data = await fetchFlexibleContent(id, locale, flexibleKey, index)
     if(!data?.tours) {

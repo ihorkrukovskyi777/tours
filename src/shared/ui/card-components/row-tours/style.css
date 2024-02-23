@@ -1,5 +1,5 @@
 .most_popular_tour {
-  margin: 53px 0 80px 0;
+  margin: 65px 0 80px 0;
 }
 .most_popular_tour h2 {
   margin: 0 0 30px 0;
@@ -123,7 +123,7 @@
 }
 .most_popular_tour .count_rate {
   margin-right: 12px;
-  font-size: 16px;
+  font-size: 12px;
 }
 .most_popular_tour .rate_stars {
   margin-right: 10px;
