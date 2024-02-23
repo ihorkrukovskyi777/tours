@@ -10,7 +10,6 @@ import {getHrefLocale} from "@/i18n/get-href-locale";
 import './style.css';
 import i18n from "@/i18n/server-locales";
 export default function RowTours({tours, title = '', i18n= {}}) {
-
     return (
         <section className="most_popular_tour">
             <div className="container">
@@ -18,7 +17,7 @@ export default function RowTours({tours, title = '', i18n= {}}) {
                     <h2 className="title">{title}</h2>
                     <div className="items">
                         {tours?.map((item) => {
-                            const labelHour = item.departure.durations.find(val => val >= 2) ? 'hours' : 'hour';
+                            const labelHour = item.departure?.durations.find(val => val >= 2) ? 'hours' : 'hour';
                             const serviceDate = new ServiceDate(item.departure?.nextDeparture);
                             const showTime = serviceDate.differenceInDays > 7 ?
                                 `${i18n.days[serviceDate.day]}, ${serviceDate.dayNum} ${serviceDate.month}` :
@@ -31,7 +30,7 @@ export default function RowTours({tours, title = '', i18n= {}}) {
                                     size={'390x250'}
                                     attachment={item.attachment}
                                     title={item.title}
-                                    topElement={<LanguageImages locales={item?.departure.locales || []}/>}
+                                    topElement={<LanguageImages locales={item?.departure?.locales || []}/>}
                                     bottomElement={
                                         <Reviews
                                             sizeLabelReviews={'medium'}
@@ -64,7 +63,7 @@ export default function RowTours({tours, title = '', i18n= {}}) {
                                             </div>
 
                                         </div>
-                                        : null}
+                                        : <div className="item_bottom"><p>{i18n.not_departure}</p></div>}
                                 </Card>
                             )
                         })}

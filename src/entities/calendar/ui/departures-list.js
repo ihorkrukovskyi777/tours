@@ -41,6 +41,7 @@ export default observer(function DeparturesList({ i18n }) {
                             <Fragment key={index}>
                                 {showDate ? <div className="day_name">{i18n.days[service.day]}, {service.dayNum} {i18n.months[service.month]}</div> : null}
                                 <TourItem
+                                    i18n={i18n}
                                     locale={locale}
                                     dep={departure}
                                     onClick={selectedBooking}

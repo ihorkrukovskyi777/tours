@@ -28,7 +28,6 @@ export default async function PageGuide({params: {name, locale}}) {
         notFound();
     }
 
-
     const languagesFormatted = languages.map(sub => ({...sub, slug: `${sub.slug}/${name}`}))
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
@@ -43,10 +42,10 @@ export default async function PageGuide({params: {name, locale}}) {
                 <EventsGuideSchema slug={name} locale={locale}/>
             </Suspense>
             <Suspense fallback={''}>
-                <GuideTours id={pageSub.id} locale={locale}/>
+                <GuideTours id={pageSub.id} locale={locale} brandName={ pageSub.brandName}/>
                 <SsrCalendar locale={locale} type="sub-vendor" id={pageSub.id} showFaq={false}/>
                 <I18nChangeOfLanguage locale={locale} languages={languagesFormatted} title={pageSub.brandName}/>
-                <Breadcrumbs pages={[{slug: '/', title: 'Free Tours'}, {title: name.replaceAll('_' ,' ') }]} locale={locale} />
+                <Breadcrumbs pages={[{slug: '/', title: 'Free Tours'}, {title: pageSub.brandName }]} locale={locale} />
                 <Footer locale={locale}/>
             </Suspense>
         </>

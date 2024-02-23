@@ -9,7 +9,14 @@ const SwiperGuides = dynamic(
 
 export default function LazyGuidesRow({guides}) {
     const ref= useRef(null)
-    const isVisible = useOnScreen(ref, (ref) => ref?.closest('section') ?? ref)
+
+    const refPrevSibling = (ref) => ref?.closest('section').previousElementSibling ?? ref?.closest('section')
+    const refNexSibling = (ref) => ref?.closest('section').nextElementSibling ?? ref?.closest('section')
+
+    const isVisiblePrev = useOnScreen(ref,  refPrevSibling)
+    const isVisibleNext = useOnScreen(ref,  refNexSibling)
+
+    const isVisible = isVisiblePrev || isVisibleNext;
     useEffect(() => {
         if(isVisible) {
             document.getElementById('hidden_mirage_guide')?.remove()
@@ -17,7 +24,7 @@ export default function LazyGuidesRow({guides}) {
     }, [isVisible])
     return (
         <div ref={ref}>
-            {isVisible ? <SwiperGuides guides={guides}/> : null}
+            {isVisible  ? <SwiperGuides guides={guides}/> : null}
         </div>
     )
 }

@@ -83,7 +83,8 @@ export default observer(function Main({siteLocale, i18n}) {
                                     departure_available: i18n.departure_available,
                                     how_a_many_people: i18n.how_a_many_people,
                                     pick_a_date: i18n.pick_a_date,
-                                    months: i18n?.genitive?.months ?? {},
+                                    genitive_months: i18n?.genitive?.months ?? {},
+                                    months: i18n?.months ?? {},
                                     days: i18n?.days,
                                     save_changes: i18n.save_changes,
                                     back: i18n.back,
@@ -112,6 +113,8 @@ export default observer(function Main({siteLocale, i18n}) {
                             i18n={{
                                 months: i18n.months,
                                 days: i18n.days,
+                                hours: i18n.hours,
+                                hour: i18n.hour,
                                 show_me_more: i18n.show_me_more,
                                 departures_not_found: i18n.departures_not_found
                             }}

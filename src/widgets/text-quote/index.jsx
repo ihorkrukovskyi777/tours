@@ -7,7 +7,7 @@ export default async function TextQuote({ id, locale, type = 'city'}) {
     <section className="text_quote">
         <div className="container">
             <div className="top_wrapper">
-                <h2>{data.title ?? ''}</h2>
+                {data.title ? <h2>{data.title}</h2> : null }
                 <div className="description" dangerouslySetInnerHTML={{__html: data.description ?? ''}}>
                 </div>
             </div>

@@ -2,6 +2,7 @@
 import {useState} from "react";
 import {validationNotEmpty , validationEmail} from "@/shared/helpers/validation-form";
 import {fetchContactForm} from "@/shared/api/contact-form";
+import ButtonLoader from "@/shared/ui/selectors/button-loader/button-loader";
 import './style.css';
 
 const initialFormState = {
@@ -12,6 +13,7 @@ const initialFormState = {
 }
 export default function ContactUs({i18n, idForm}) {
     const [thankYouMsg , setThankYouMsg] = useState('');
+    const [isLoading , setLoading] = useState(false);
     const [formData, setForm] = useState({
         ...initialFormState
     })
@@ -29,6 +31,7 @@ export default function ContactUs({i18n, idForm}) {
 
     async function preSubmitForValidation(e) {
         e.preventDefault();
+        setThankYouMsg('')
         const errorLists = {
             name: validationNotEmpty(formData.name),
             subject: validationNotEmpty(formData.subject),
@@ -38,6 +41,7 @@ export default function ContactUs({i18n, idForm}) {
 
         setErrors({...errors , ...errorLists})
         if (!Object.values(errorLists).filter(Boolean).length) {
+            setLoading(true);
             const data = {
                 "your-name": formData.name,
                 "your-email": formData.email,
@@ -47,6 +51,7 @@ export default function ContactUs({i18n, idForm}) {
             const response = await fetchContactForm(idForm , data);
             setThankYouMsg(response.message)
             setForm({...initialFormState})
+            setLoading(false);
 
         }
     }
@@ -109,10 +114,9 @@ export default function ContactUs({i18n, idForm}) {
                                 </label>
                                 {formData.message.length <= 0 ? <span className='error-message'>{i18n[errors.message]}</span> : null}
                             </div>
-
-                            <div className="form_btn">
-                                <button>{i18n.send_messages}</button>
-                            </div>
+                                <div className="button-row">
+                                    <ButtonLoader isSubmit={true} isLoading={isLoading}>{i18n.send_messages}</ButtonLoader>
+                                </div>
                         </div>
                         {thankYouMsg ? <div className='thank-you-message'>{thankYouMsg}</div> : ''}
 

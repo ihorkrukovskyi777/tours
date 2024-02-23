@@ -9,8 +9,16 @@ const MapAndSlider = dynamic(
     {ssr: false}
 )
 export default function ProviderMap({i18n, locale, id, toursPlaces, buttonsShow = false, hideBottom = false}) {
+
+
     const ref = useRef(null)
-    const isVisible = useOnScreen(ref)
+    const refPrevSibling = (ref) => ref?.previousElementSibling ?? ref
+    const refNexSibling = (ref) => ref.nextElementSibling ?? ref
+
+    const isVisiblePrev = useOnScreen(ref,  refPrevSibling)
+    const isVisibleNext = useOnScreen(ref,  refNexSibling)
+
+    const isVisible = isVisiblePrev || isVisibleNext;
 
     return (
         <div ref={ref}>

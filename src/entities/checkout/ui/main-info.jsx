@@ -1,4 +1,3 @@
-import {useTranslation} from "@/i18n/client";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {observer} from "mobx-react-lite";
 import {useContext} from "react";
@@ -6,7 +5,6 @@ import Image from "next/image";
 import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 
 export default observer(function MainInfo({ i18n }) {
-    const { t } = useTranslation();
     const { checkoutInfo } = useContext(CheckoutStoreContext);
 
     const helper = new HelperDateHtml(checkoutInfo.activityDate)
@@ -60,7 +58,7 @@ export default observer(function MainInfo({ i18n }) {
                             ></path>
                         </svg>
                         <strong>{i18n.date}: </strong>
-                        {helper.dayDeparture(t)}
+                        {helper.dayDeparture(i18n.days, i18n.months)}
                     </li>
                     <li>
                         <svg

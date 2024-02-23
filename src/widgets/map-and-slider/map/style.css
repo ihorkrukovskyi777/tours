@@ -68,10 +68,13 @@
     top: 0;
     bottom: 0;
     right: 0;
-	border: solid 3px #fff;
+	border: solid 2px #fff;
     margin: auto;
     transform: rotate(-45deg);
     box-shadow: 0.1rem 0.1rem 0.2rem 0.1rem rgba(0, 0, 0, 0.1);
+}
+.marker.default .marker_content {
+    border-width: 3px;
 }
 .marker.small {
 	border-radius: 20px;
@@ -80,7 +83,7 @@
     display: block;
     margin: auto;
 }
-.marker.default {
+.marker.default  {
 	border-radius: 35px;
     width: 35px;
     height: 35px;

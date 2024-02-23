@@ -104,7 +104,8 @@ a {
   text-align: center;
   display: flex;
   justify-content: center;
-  margin: auto;
+  margin: 50px auto auto auto;
+
 }
 .grecaptcha-badge {
   z-index: 10000;

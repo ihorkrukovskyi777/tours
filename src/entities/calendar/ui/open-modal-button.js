@@ -66,7 +66,7 @@ export default observer(function OpenModalButton({storeModalCalendar, i18n}) {
             <ModalBooking show={isOpened} size={'step-1'}>
                 {isOpened ?
                     <Step1
-                        i18n={i18n}
+                        i18n={{...i18n, months: i18n.genitive_months}}
                         title={title}
                         storeModalCalendar={storeModalCalendar}
                         isEsc={isOpened && isOpenedListDeparture === false}

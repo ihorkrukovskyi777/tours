@@ -115,7 +115,7 @@
 }
 
 .tour_calendar {
-  padding: 80px 0 0;
+  padding: 80px 0 80px 0;
 }
 .tour_calendar .wrapper {
   display: grid;
@@ -424,6 +424,9 @@
   .tour_calendar .tab_item {
     font-size: 18px;
     padding: 12px;
+  }
+  .tour_calendar .faq {
+    margin-bottom: 0;
   }
   .tour_calendar .wrapper {
     grid-template-columns: 100%;

@@ -1,5 +1,8 @@
 .contact_us_section {
-    margin: 65px 0 45px 0;
+    margin: 65px 0 235px 0;
+}
+.contact_us_section .button-row {
+    margin-top: 40px;
 }
 .contact_us_section h2 {
     margin: 0 0 30px 0;

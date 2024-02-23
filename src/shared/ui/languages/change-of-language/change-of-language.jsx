@@ -25,7 +25,6 @@ export default function ChangeOfLanguage({i18n, languages, title}) {
     }
 
 
-
     queries = queries.map(([key, value], index) => {
         const param = index === 0 ? '?' : '&';
         return `${param}${key}=${value}`

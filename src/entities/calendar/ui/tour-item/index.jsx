@@ -1,12 +1,10 @@
 import Image from "next/image";
 import ClockSilver from "/public/images/svg/clock-silver.svg"
 import {pad2, toHoursAndMinutes} from "@/shared/helpers/date";
-import {useTranslation} from "@/i18n/client";
 import FlagsComponents from "@/shared/ui/flags";
 import './style.css';
 
-export default function TourItem({dep, locale, onClick}) {
-    const {t} = useTranslation();
+export default function TourItem({dep, locale, onClick, i18n}) {
     const {hours, minutes} = toHoursAndMinutes(dep.time);
     const {hours: durationHours, minutes: durationMinutes} = toHoursAndMinutes(dep.duration * 60);
     return (
@@ -21,7 +19,7 @@ export default function TourItem({dep, locale, onClick}) {
                         <div className="clock_wrap">
                             <Image src={ClockSilver} alt="clock" width={12} height={13}></Image>
                         </div>
-                        <span>{durationHours}:{pad2(durationMinutes)} {t('Hours')}</span>
+                        <span>{durationHours}:{pad2(durationMinutes)} {i18n.hour}</span>
                     </div>
                     <div className="tour_language">
                         <FlagsComponents locale={locale} alt={`flag ${locale}`}/>

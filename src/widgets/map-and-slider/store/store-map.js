@@ -115,7 +115,9 @@ export class StoreMap {
 
     get sliders() {
         if (this.selectedTourId) {
-            return this.places.filter(item => (!!item.tours[this.selectedTourId]))
+            return this.places.filter(item => (!!item.tours[this.selectedTourId])).sort((a,b) => {
+                return a.ordersTours[this.selectedTourId] - b.ordersTours[this.selectedTourId];
+            })
         }
         return this.places ?? [];
     }

@@ -58,7 +58,6 @@ export default async function Page({params: {locale, slug, tour}}) {
         <main>
             <BannerTour locale={page.locale} id={page.id} isMobile={isMobile}/>
             <TextAndSliderTourPage id={page.id} locale={page.locale} isMobile={isMobile}/>
-            <TextQuote id={page.id} locale={locale} type="tour"/>
             <Suspense fallback={''}>
                 <EventsSchema id={page.id} locale={locale} type="tour"/>
                 <PlaceSchema id={page.id} locale={locale}/>
@@ -66,10 +65,11 @@ export default async function Page({params: {locale, slug, tour}}) {
             </Suspense>
             <Suspense fallback={''}>
                 <ProviderMap hideBottom={false} locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}/>
+                <TextQuote id={page.id} locale={locale} type="tour"/>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
                 <LatestReviews id={page.id} locale={locale} type="tour"/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
-                <Guides title={i18n.t('this Tour')} id={page.id} locale={page.locale} type="tour"/>
+                <Guides title={i18n.t('Guides Leading this Tour')} id={page.id} locale={page.locale} type="tour"/>
                 <TourRow id={page.id} locale={page.locale} title={`${i18n.t('Other Tours in')} ${page.city.title}`}/>
                 <CityRow id={page.id} locale={page.locale} title={`${i18n.t('See All Tours in')} ${page.city.title}`}/>
                 <I18nChangeOfLanguage

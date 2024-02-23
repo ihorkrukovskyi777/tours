@@ -2,6 +2,10 @@
     padding-bottom: 90px
 }
 
+#change-of-language h2 {
+    margin: 33px 0;
+}
+
 #change-of-language .wpml-ls-legacy-dropdown .wpml-ls-sub-menu {
     position: static;
     visibility: visible
@@ -14,7 +18,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 15px 30px;
-    margin-bottom: 30px;
 }
 
 #change-of-language li {

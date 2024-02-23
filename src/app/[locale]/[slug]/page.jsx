@@ -22,6 +22,9 @@ const FlexibleContent = dynamic(
 
 export default async function Page({params: {locale, slug }}) {
 
+    if(slug === 'guide') {
+        notFound();
+    }
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
 

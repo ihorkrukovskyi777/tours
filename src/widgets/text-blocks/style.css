@@ -9,5 +9,9 @@
 @media (max-width: 991px) {
     .text_blocks .wrapper {
         grid-template-columns: 1fr;
-    } 
+        grid-gap: 65px;
+    }
+    .text_blocks {
+        margin: 65px 0;
+    }
 }

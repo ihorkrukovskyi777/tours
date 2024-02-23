@@ -153,7 +153,7 @@ class EditDeparture {
 
     getCancelMessage(dep) {
         if (this.editCivitatis === false && this.is_civitatis) {
-            return 'Booking changed to civitatis';
+            return 'Booking changed to another subvendor';
         } else if (Number(this.oldSubVendor) !== Number(dep.subVendorId)) {
             return 'Booking changed to another subvendor';
         } else if (Number(this.isEdit) !== dep.depId && this.editCivitatis === false) {

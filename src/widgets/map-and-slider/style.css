@@ -4,7 +4,7 @@
     overflow: hidden;
 }
 .map_and_slider h2 {
-    margin-bottom: 32px;    
+    margin: 32px 0;
 }
 .map_and_slider .wrap-map {
     position: relative;
@@ -34,5 +34,7 @@
     display: none;
 }
 @media(max-width: 767px) {
-    margin: 65px 0;
+    .map_and_slider h2 {
+        margin: 26px 0;
+    }
 }
