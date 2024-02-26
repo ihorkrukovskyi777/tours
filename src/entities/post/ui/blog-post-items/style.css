@@ -11,6 +11,7 @@
     grid-column: 1/-1;
     margin: 0
 }
+
 .single-post h3 a {
     color: var(--title_color);
     font-size: inherit;
@@ -56,7 +57,16 @@
     /*overflow: hidden;*/
     /*text-overflow: ellipsis;*/
 }
-
+.single-post-text ul {
+    list-style: none;
+    display: inline;
+}
+.single-post-text ul li {
+    display: inline;
+}
+.single-post-text strong {
+    font-weight: 400;
+}
 .single-post-text {
     height: 299px;
     position: relative;

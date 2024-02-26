@@ -1,4 +1,3 @@
-'use client'
 import BannerBlog from "@/entities/post/ui/banner-blog/banner-blog";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import PostContent from "@/entities/post/ui/post-content/post-content";
@@ -18,7 +17,6 @@ export default async function PostPage({ languages, title, id , locale}) {
         return paragraphsWithTag.join('\n');
     }
     const htmlTextFull = addParagraphTags(content);
-
 
     return (
         <div className="content">
