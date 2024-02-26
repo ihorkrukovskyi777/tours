@@ -42,7 +42,9 @@ const getGradient = (colors) => {
     }
     return Object.entries(gradient);
 }
-export default observer(function MarkerDefault({icon , status , isActive, colors , size , markerActive = false}) {
+export default observer(function MarkerDefault({icon , status , isActive, colors}) {
+
+
     const gradient = getFeatheredGradient(getGradient(colors), 0);
     return(
         <>
@@ -50,8 +52,9 @@ export default observer(function MarkerDefault({icon , status , isActive, colors
                 <div className={'icon active'}>
                     <IcloudImage src={icon} size="500x500" alt={icon} width={64} height={64} />
                     <div className="circles">
-                        <span style={{background: '#ccc'}}>
-                        </span>
+                        {colors.reverse().map(color => {
+                            return <span key={color} style={{background: color}}></span>
+                        })}
                     </div>
                 </div>
             :

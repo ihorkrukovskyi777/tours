@@ -30,12 +30,14 @@ export class StoreTourLogic {
 
             values[key] = values[key].map(dep => {
                 const subVendor = this.getSubVendor(dep.subVendorId)
+
+
                 return {
                     ...dep,
                     tourTitle: this.getTourTitle(dep.tourId),
                     avatar: subVendor.avatar,
                     subVendorName: subVendor.name,
-                    ranking: subVendor.ranking,
+                    ranking: subVendor.rating,
                 }
             })
         }

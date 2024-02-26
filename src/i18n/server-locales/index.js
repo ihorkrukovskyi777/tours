@@ -17,6 +17,7 @@ class I18n {
             from: this.t('from'),
             duration: this.t('Duration'),
             clear: this.t('Clear'),
+            tour: this.t('Tour')
         }
     }
 

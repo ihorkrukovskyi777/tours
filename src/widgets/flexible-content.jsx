@@ -1,8 +1,11 @@
 import dynamic from "next/dynamic";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
-import BannerHome from "@/shared/ui/flexible-content/banner-home/banner-home";
 import Footer from "@/shared/ui/layouts/footer/footer";
 
+const BannerHome = dynamic(
+    () => import("@/shared/ui/flexible-content/banner-home/banner-home"),
+    { ssr: true }
+);
 const AllCities = dynamic(
   () => import("@/shared/ui/flexible-content/all-cities/all-cities"),
   { ssr: true }

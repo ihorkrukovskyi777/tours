@@ -7,12 +7,10 @@ import classNames from 'classnames';
 import useEscHooks from "@/shared/hooks/use-esc-event";
 import {useState} from 'react';
 import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/helpers/date";
-import {useTranslation} from "@/i18n/client";
 
 import './style.css';
 
 export default function Step2({i18n, title = "test", onBack, close, size = "small", isOpened, departures, saveButton = false, setDeparture}) {
-    const { t} = useTranslation()
     const [selectedDep, setSelectedDep] = useState(null);
     useEscHooks(close, isOpened)
 

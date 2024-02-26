@@ -20,6 +20,7 @@ export default observer(function Map({ids, id, locale}) {
         if(markers.length === 0) {
             return null
         }
+
         return (
                 <MapContainer whenReady={(e) => setMap(e.target)} center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>
                     <TileLayer

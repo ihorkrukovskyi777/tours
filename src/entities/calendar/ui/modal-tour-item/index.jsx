@@ -7,6 +7,7 @@ import './style.css';
 export default function ModalTourItem({i18n, dep, onSelected, isActive}) {
     const {hours, minutes} = toHoursAndMinutes(dep.time);
     const durationFormat = toHoursAndMinutes(dep.duration * 60);
+
     return (
         <div className={classNames('modal-tour-item', {'active': isActive})} onClick={onSelected}>
             <h5>{dep.tourTitle}</h5>
