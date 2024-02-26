@@ -24,6 +24,7 @@ export default observer(function MapAndSlider({i18n, id, locale, toursPlaces, hi
     useEffect(() => {
         store.current.fetchMarkers(id, locale, ids)
     }, [])
+
     return (
         <StoreMapContext.Provider value={{
             map: store.current

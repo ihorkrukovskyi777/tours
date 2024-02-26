@@ -122,6 +122,21 @@ export class StoreMap {
         return this.places ?? [];
     }
 
+    get slidersFormatted() {
+        return this.sliders.map(item => {
+
+            const tours = { ...item.tours};
+            if(tours[this.currentId]) {
+                delete tours[this.currentId]
+            }
+            console.log(tours)
+            return {
+                ...item,
+                tours,
+            }
+        })
+    }
+
     get markers() {
         return this.places.filter(item => item.coordinates.latitude && item.coordinates.longitude).map(item => {
             const type = this.selectedTourId === null;

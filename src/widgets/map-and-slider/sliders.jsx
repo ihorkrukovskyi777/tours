@@ -11,7 +11,7 @@ export default observer(function Sliders({ i18n, hideBottom = false }) {
         map: {
             setOpenMarkerBySlide,
             selectedTourId,
-            sliders,
+            slidersFormatted,
             initialSlide,
             setSwiper,
             setCenterMarker,
@@ -25,5 +25,13 @@ export default observer(function Sliders({ i18n, hideBottom = false }) {
         setCenterMarker()
     }, [])
 
-    return <SliderMemo hideBottom={hideBottom} i18n={i18n} changeMarker={changeMarker} sliders={sliders} selectedTourId={selectedTourId} initialSlide={initialSlide} setSwiper={setSwiper}/>
+    return <SliderMemo
+        hideBottom={hideBottom}
+        i18n={i18n}
+        changeMarker={changeMarker}
+        sliders={slidersFormatted}
+        selectedTourId={selectedTourId}
+        initialSlide={initialSlide}
+        setSwiper={setSwiper}
+    />
 })
