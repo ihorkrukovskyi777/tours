@@ -46,6 +46,10 @@
     color: var(--title_color);
     line-height: 1.24;
 }
+.single-post-text h2 {
+    font: 400 20px/1.1 var(--font);
+    display: inline;
+}
 .single-post-text p {
     margin: 25px 0 0
 }
