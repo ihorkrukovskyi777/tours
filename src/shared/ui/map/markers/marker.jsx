@@ -46,6 +46,7 @@ export default observer(function MarkerDefault({icon , status , isActive, colors
 
 
     const gradient = getFeatheredGradient(getGradient(colors), 0);
+
     return(
         <>
             {isActive ?
