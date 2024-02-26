@@ -1,4 +1,4 @@
-export const cancelBook = async (code, cancelMessage = null) => {
+export const cancelBook = async (code, cancelMessage = null, cancelAndNewBooking = true) => {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/cancel-booking`,
         {
@@ -11,6 +11,7 @@ export const cancelBook = async (code, cancelMessage = null) => {
                 code: code,
                 lang: 'en',
                 cancelMessage: cancelMessage,
+                cancelAndNewBooking,
             }),
             next: {revalidate: 0}
         }

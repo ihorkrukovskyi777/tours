@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import {useState, useMemo, useEffect} from 'react';
 import PhoneInput from "@/lib/react-phone/lib/lib"
 import classNames from 'classnames';
 import { InputMask } from '@react-input/mask';
@@ -27,6 +27,16 @@ export default function InternationalInput({locale , allPhoneNumbers, changeCoun
     const [border , setBorder] = useState(false);
     const [inputCountryWidth , setInputCountryWidth] = useState(widthInputs[2]);
 
+
+    useEffect(() => {
+        if(document.querySelector('.react-tel-input input')) {
+            document.querySelector('.react-tel-input input').disabled = true
+        }
+
+        if(document.querySelector('.react-tel-input .selected-flag')) {
+            document.querySelector('.react-tel-input .selected-flag').tabIndex = -1;
+        }
+    })
     function onPress(event) {
         if (!/[0-9]/.test(event.key)) {
             event.preventDefault();
@@ -54,7 +64,6 @@ export default function InternationalInput({locale , allPhoneNumbers, changeCoun
         return values;
     }, [allPhoneNumbers])
     const defaultValueProp = phoneDefault ? { value: phoneDefault} : {}
-
     return (
     <div className={classNames({'border':border} , 'international-phone')}>
         <div className="wrap-input" style={{width: inputCountryWidth}}>

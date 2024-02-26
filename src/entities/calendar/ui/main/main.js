@@ -89,6 +89,7 @@ export default observer(function Main({siteLocale, i18n}) {
                                     save_changes: i18n.save_changes,
                                     back: i18n.back,
                                     hours: i18n.hours,
+                                    hour: i18n.hour,
                                 }}
                             />}
                     </div>
@@ -122,7 +123,7 @@ export default observer(function Main({siteLocale, i18n}) {
                         : null}
                 </div>
                 <ModalBooking size={'step-3'} show={isOpened}>
-                    {isOpened ? <Step3
+                     <Step3
                         i18n={i18n}
                         langSelected={locale}
                         errors={errors}
@@ -138,7 +139,7 @@ export default observer(function Main({siteLocale, i18n}) {
                         language={locale}
                         isLoading={loadingBooking}
                         close={close}
-                    /> : null}
+                    />
                 </ModalBooking>
 
             </div>

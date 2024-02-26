@@ -26,7 +26,7 @@ export default observer(function MainInfo({ i18n }) {
                             ></path>
                         </svg>
                         <strong>{i18n.tour}: </strong>
-                        <span dangerouslySetInnerHTML={{__html: checkoutInfo.tourName ?? ''}}></span>
+                        <p dangerouslySetInnerHTML={{__html: checkoutInfo.tourName ?? ''}}></p>
                     </li>
                     <li>
                         <svg

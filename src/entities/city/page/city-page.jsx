@@ -22,6 +22,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
         <>
             <BannerCity
                 isMobile={isMobile}
+                pageTitle={title}
                 size="city_banner"
                 locale={locale}
                 id={id}

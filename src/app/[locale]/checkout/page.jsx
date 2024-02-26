@@ -48,6 +48,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         contact_your_guide: i18n.t('Contact Your Guide'),
         edit_booking: i18n.t('Edit Booking'),
         change_data_time_number_people: i18n.t('Change Date/Time/Number of people'),
+        lower_change_data_time_number_people: i18n.t('change date/time/number of people'),
         days: i18n.getDays(),
         months: i18n.getMonths(),
         first_name: i18n.t('First Name'),
@@ -61,7 +62,8 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         departures_available: i18n.t('Departure(s) Available'),
         back: i18n.t('Back'),
         your_message_has_been_sent: i18n.t('Your message has been sent'),
-        hours: i18n.t('hours'),
+        hours: i18n.t('Hours'),
+        hour: i18n.t('Hour'),
         close: i18n.t('Close'),
         download_voucher: i18n.t('Voucher download'),
         departure_not_available: i18n.t('Departure not available'),
@@ -100,9 +102,17 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
     )
 }
 
-export async function generateMetadata() {
+export async function generateMetadata({params: {locale}}) {
 
+    const pageType = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/checkout?locale=${locale}`,
+        {next: {revalidate: 0}}
+    )
+    const data = await pageType.json();
+
+    const find = data?.languages.find(seo => seo.locale === locale);
     return {
+        title: find?.title ?? 'Checkout',
         robots: {index: false, follow: false},
     }
 }

@@ -17,6 +17,7 @@ const InternationalInput = dynamic(
 export default observer(function FormEdit({i18n}) {
     const searchParams = useSearchParams()
     const [error, setError] = useState(false);
+    const [submitEventForm, setSubmitEventForm] = useState(false);
     const {replace} = useRouter();
     const params = useParams();
     const {editDeparture, phone: {phones}, fetchCheckoutDetails, managerModal: { toggleModalEdit } } = useContext(CheckoutStoreContext);
@@ -35,6 +36,9 @@ export default observer(function FormEdit({i18n}) {
     
     function preSubmitForValidation(e) {
         e.preventDefault();
+        if(submitEventForm) {
+            return;
+        }
         let mask = document.querySelector('#phone').getAttribute('validation-number');
         const errorLists = {
             firstName: validationFirstName(editDeparture.firstName),
@@ -45,7 +49,10 @@ export default observer(function FormEdit({i18n}) {
 
         setValidForm({...validForm , ...errorLists})
         if (!Object.values(errorLists).filter(Boolean).length) {
-            submitForm().then();
+            setSubmitEventForm(true)
+            submitForm().then(() => {
+                setSubmitEventForm(false)
+            });
         }
     }
 

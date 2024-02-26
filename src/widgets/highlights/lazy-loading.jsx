@@ -10,7 +10,6 @@ const SwiperHighlights = dynamic(
 export default function LazyHighlights({images}) {
     const ref= useRef(null)
     const isVisible = useOnScreen(ref, (ref) => ref?.closest('section') ?? ref)
-
     return (
         <div ref={ref}>
             {isVisible ? <SwiperHighlights images={images}/> : null}

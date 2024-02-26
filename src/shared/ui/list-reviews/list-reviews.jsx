@@ -5,7 +5,7 @@ import ReviewCard from "@/widgets/latest-reviews/reviews-card";
 import Button from "@/shared/ui/selectors/button/button";
 import {useTranslation} from "@/i18n/client";
 import {getReviews} from "@/entities/api";
-export default function ListReviews({i18n, reviews, total, limit, id, type}) {
+export default function ListReviews({i18n, reviews, total, limit, id, type, showTitle = true}) {
     const {t} = useTranslation();
     const params = useParams();
     const [moreReviews, setMoreReviews] = useState({
@@ -27,6 +27,7 @@ export default function ListReviews({i18n, reviews, total, limit, id, type}) {
                     [...reviews, ...moreReviews.value].map((item) => {
                         return (
                             <ReviewCard
+                                showTitle={showTitle}
                                 reviewsTitle={t('Reviews')}
                                 id={item.id}
                                 key={item.id}

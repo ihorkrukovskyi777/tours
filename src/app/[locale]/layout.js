@@ -8,6 +8,7 @@ import '../../globals.css'
 export default async function LocaleLayout({children, params}) {
     i18n.init(params.locale)
     i18nGenitive.init(params.locale)
+
     return (
         <>
             <html lang={seoLocales[params.locale]?.replace('_', '-')}>

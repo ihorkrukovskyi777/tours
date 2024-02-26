@@ -17,16 +17,22 @@ export default function GoogleScript() {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => window.removeEventListener('scroll', handleScroll)
     }, []);
 
-    scrollPosition > documentHeight ? document.querySelector('body').classList.add('scroll-down-captcha') : document.querySelector('body').classList.remove('scroll-down-captcha')
-
+    if(typeof window !== 'undefined') {
+        scrollPosition > documentHeight ? document.querySelector('body').classList.add('scroll-down-captcha') : document.querySelector('body').classList.remove('scroll-down-captcha')
+    }
     useEffect(() => {
         const loadScript = () => {
             window.removeEventListener('scroll', loadScript);
+            window.removeEventListener('mousemove', loadScript);
             setLoad(true);
         }
         window.addEventListener('scroll', loadScript)
+        window.addEventListener('mousemove', loadScript)
+
     }, [])
 
     if (load === false) {

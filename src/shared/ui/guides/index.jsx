@@ -18,7 +18,7 @@ export default async function Guides({title, id, locale, type}) {
         <>
             <section className="guides_section">
                 <div className="container">
-                    <h2>{data.title ?? ''} {title}</h2>
+                    <h2>{data.title ?? title}</h2>
                     <LazyGuidesRow guides={data.subVendors}/>
                     <div style={{display: 'none'}} id="hidden_mirage_guide">
                         {data.subVendors.map(item => {

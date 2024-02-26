@@ -27,7 +27,8 @@ export default async function MostPopularTours({id, locale, slug, title = ''}) {
                             hour: i18n.t('Hour'),
                             next_tour: i18n.t('Next Tour'),
                             days: i18n.getDays(),
-                            not_departure: i18n.t('No Departures Available. Check Soon!')
+                            not_departure: i18n.t('No Departures Available. Check Soon!'),
+                            reviews: i18n.t('Reviews')
                         }}
                     />
                 </>

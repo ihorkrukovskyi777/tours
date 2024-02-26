@@ -206,7 +206,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                     <div className="form-group">
                         <input type='checkbox' id="accept" name='accept' onChange={handleChange}/>
                         <label htmlFor="accept">{i18n.i_accept_all}</label>
-                        <Link href="/terms-and-conditions/" className="terms-and-conditions">{i18n.terms_and_conditions}</Link> <span
+                        <Link href="/terms-and-conditions/" target="_blank" className="terms-and-conditions">{i18n.terms_and_conditions}</Link> <span
                         className="red">*</span>
                     </div>
                     {showError && errors.accept.length > 0 ? <span className='error-message'>{errors.accept}</span> : null}
