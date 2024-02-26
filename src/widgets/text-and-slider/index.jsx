@@ -42,6 +42,7 @@ export default function TextAndSlider({i18n, title, listText = [], attachments =
                             <Swiper
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 slidesPerView={1}
+                                typeof={'bullets'}
                                 onBeforeInit={(swiper) => {
                                     swiperRef.current = swiper;
                                     swiper.navigation.nextEl = navigationNextRef.current;

@@ -14,7 +14,7 @@ export default async function AllCities({ locale }) {
                         <div className='item' key={key}>
                             <div className='item_title'>{key}</div>
                             <div className='item_cities'>
-                                {citiesAll[key].cities.map((item) => {
+                                {citiesAll[key].cities.sort().map((item) => {
                                     const locale = item.locale === 'en' ? '' : `/${item.locale}/`
                                     return <Link prefetch={false} href={`${locale}/${item.slug}`} key={item.title} ><span>{item.title}</span></Link>
                                 })}

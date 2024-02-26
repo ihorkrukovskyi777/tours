@@ -14,7 +14,7 @@ export default async function BannerBlog({locale, title , image=""}) {
                     <IcloudImage src={image.src} width={1920} height={550} alt={image.alt ? image.alt : 'image'} />
                     : <Image width={1920} height={550} src={DefaultImage} alt='111' />
                 }
-                <h1 className='top-banner-text'>{title ? title : i18n.t('Blog')}</h1>
+                <h1 className='top-banner-text'>{title ? title : i18n.t('Blog Page')}</h1>
             </div> 
         </section>
     )

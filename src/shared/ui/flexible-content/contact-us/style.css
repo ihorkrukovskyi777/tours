@@ -99,6 +99,13 @@
     display: none;
 }
 
+.contact_us_section .wpcf7-response-output {
+    margin: 2em 0.5em 1em;
+    padding: 0.2em 1em;
+    border: 2px solid #ffb900;
+    min-height: 56px;
+}
+
 /*RESPONSIVE*/
 @media(max-width: 767px) {
     .contact_us_section {

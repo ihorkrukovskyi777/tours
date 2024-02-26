@@ -13,6 +13,7 @@ const initialFormState = {
 }
 export default function ContactUs({i18n, idForm}) {
     const [thankYouMsg , setThankYouMsg] = useState('');
+    const [statusValidation , setStatusValidation] = useState('');
     const [isLoading , setLoading] = useState(false);
     const [formData, setForm] = useState({
         ...initialFormState
@@ -40,7 +41,7 @@ export default function ContactUs({i18n, idForm}) {
         }
 
         setErrors({...errors , ...errorLists})
-        if (!Object.values(errorLists).filter(Boolean).length) {
+        //if (!Object.values(errorLists).filter(Boolean).length) {
             setLoading(true);
             const data = {
                 "your-name": formData.name,
@@ -49,11 +50,12 @@ export default function ContactUs({i18n, idForm}) {
                 "your-message": formData.message
             }
             const response = await fetchContactForm(idForm , data);
+            setStatusValidation(response.status)
             setThankYouMsg(response.message)
             setForm({...initialFormState})
             setLoading(false);
 
-        }
+       // }
     }
 
     return (
@@ -73,7 +75,8 @@ export default function ContactUs({i18n, idForm}) {
                                         value={formData.name}
                                     />
                                 </label>
-                                {formData.name.length <= 0 ? <span className='error-message'>{i18n[errors.name]}</span> : null}
+                                {formData.name.length <= 0 ?
+                                    <span className='error-message'>{i18n[errors.name]}</span> : null}
                             </div>
 
                             <div className="form_item">
@@ -86,7 +89,8 @@ export default function ContactUs({i18n, idForm}) {
                                         value={formData.email}
                                     />
                                 </label>
-                                {formData.email.length <= 0  ? <span className='error-message'>{i18n[errors.email]}</span> : null}
+                                {formData.email.length <= 0 ?
+                                    <span className='error-message'>{i18n[errors.email]}</span> : null}
                             </div>
 
                             <div className="form_item">
@@ -99,7 +103,8 @@ export default function ContactUs({i18n, idForm}) {
                                         value={formData.subject}
                                     />
                                 </label>
-                                {formData.subject.length <= 0 ? <span className='error-message'>{i18n[errors.subject]}</span> : null}
+                                {formData.subject.length <= 0 ?
+                                    <span className='error-message'>{i18n[errors.subject]}</span> : null}
                             </div>
 
                             <div className="form_item">
@@ -112,13 +117,21 @@ export default function ContactUs({i18n, idForm}) {
                                         value={formData.message}
                                         placeholder={i18n.write_your_message_here}/>
                                 </label>
-                                {formData.message.length <= 0 ? <span className='error-message'>{i18n[errors.message]}</span> : null}
+                                {formData.message.length <= 0 ?
+                                    <span className='error-message'>{i18n[errors.message]}</span> : null}
                             </div>
-                                <div className="button-row">
-                                    <ButtonLoader isSubmit={true} isLoading={isLoading}>{i18n.send_messages}</ButtonLoader>
-                                </div>
+                            <div className="button-row">
+                                <ButtonLoader isSubmit={true} isLoading={isLoading}>{i18n.send_messages}</ButtonLoader>
+                            </div>
                         </div>
-                        {thankYouMsg ? <div className='thank-you-message'>{thankYouMsg}</div> : ''}
+                        {statusValidation === 'validation_failed' ?
+                            <div className="wpcf7-response-output" aria-hidden="true">
+                                {thankYouMsg}
+                            </div>
+                            : null
+                        }
+                        {statusValidation === 'mail_sent' ? <div className='thank-you-message'>{thankYouMsg}</div> : null}
+
 
                     </form>
 

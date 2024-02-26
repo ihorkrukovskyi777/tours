@@ -3,14 +3,14 @@ import Card from "@/shared/ui/card-components/card/card";
 import Reviews from "@/widgets/latest-reviews/item/reviews";
 import i18n from "@/i18n/server-locales";
 import './style.css'
-export default async function RowCities({ cities = [], title}) {
+export default async function RowCities({ cities = [], title , sizeSection}) {
     await i18n.getFetchDefault();
 
     if(!cities?.length) {
         return null;
     }
     return (
-        <section className="most_popular_city">
+        <section className={`most_popular_city ${sizeSection}`}>
             <div className="container">
                 <div className="wrapper">
                     <h2 className="title">{title}</h2>

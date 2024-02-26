@@ -89,6 +89,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         <>
             <Checkout title={currentPage?.title} i18n={translates} locale={locale} tourLocale={checkoutData.locale}/>
             <TourRow
+                sizeSection={'small'}
                 id={checkoutData.tour_id} locale={locale}
                 title={`${i18n.t('Other Tours in')} 
                 ${checkoutData.city?.post_title}`}

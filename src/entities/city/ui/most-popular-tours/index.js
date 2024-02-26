@@ -30,8 +30,6 @@ export default async function MostPopularTours({id, locale, slug, title = ''}) {
                             not_departure: i18n.t('No Departures Available. Check Soon!')
                         }}
                     />
-                    <TextQuote id={id} locale={locale}/>
-
                 </>
                 : null}
             <ProviderMap
@@ -42,6 +40,7 @@ export default async function MostPopularTours({id, locale, slug, title = ''}) {
                 toursPlaces={toursPlaces}
                 buttonsShow={true}
             />
+            <TextQuote id={id} locale={locale}/>
         </>
     );
 }
