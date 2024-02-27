@@ -3,7 +3,6 @@ import {useState} from "react";
 import {useParams, useSearchParams} from "next/navigation";
 import Button from "@/shared/ui/selectors/button/button";
 import {fallbackLng} from "@/i18n/settings";
-import {useTranslation} from "@/i18n/client";
 import Link from "next/link";
 import {countryLocales} from "@/i18n/locales";
 import FlagsComponents from "@/shared/ui/flags";
@@ -12,7 +11,6 @@ import './style.css';
 
 export default function ChangeOfLanguage({i18n, languages, title}) {
     const searchParams = useSearchParams()
-    const {t} = useTranslation();
     const [showLanguage, setShowLanguage] = useState(6);
     const params = useParams();
     const languagesFilter = languages?.filter(
@@ -31,6 +29,10 @@ export default function ChangeOfLanguage({i18n, languages, title}) {
     })
     queries = queries.join(',')
     const getHref = (locale) => locale === fallbackLng ? '' : `/${locale}`
+
+    if(!languagesFilter.length) {
+        return null;
+    }
     return (
         <section id="change-of-language">
             <div className="container">

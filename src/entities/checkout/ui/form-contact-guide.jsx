@@ -1,5 +1,4 @@
 import Button from "@/shared/ui/selectors/button/button";
-import {useTranslation} from "@/i18n/client";
 import {useState} from "react";
 import Loader from "@/shared/ui/loaders/default-loader";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
@@ -9,10 +8,8 @@ export default function FormContactGuide({closeModal, i18n}) {
     const searchParams = useSearchParams()
     const code = searchParams.get('code');
 
-    const {t} = useTranslation()
     const [textArea, setTextArea] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState();
 
 
     const sendMessage = async () => {
@@ -28,21 +25,14 @@ export default function FormContactGuide({closeModal, i18n}) {
             })
         })
     }
+
     async function handleSubmit(event) {
         event.preventDefault();
-
-        if (textArea?.length > 10) {
-            setLoading(true);
-            setError('');
-            setTextArea('');
-            await sendMessage();
-            closeModal();
-            setLoading(false);
-
-        } else {
-            setError(i18n.more_than_10_characters)
-        }
-
+        setLoading(true);
+        setTextArea('');
+        await sendMessage();
+        closeModal();
+        setLoading(false);
     }
 
     return (
@@ -52,20 +42,20 @@ export default function FormContactGuide({closeModal, i18n}) {
                 <textarea
                     rows="5"
                     cols="20"
-                    required=""
+                    required
                     name="textArea"
                     placeholder={i18n.write_your_message_here_}
                     value={textArea}
-                    onChange={({ target }) => setTextArea(target.value)}
+                    onChange={({target}) => setTextArea(target.value)}
                 >
 
                 </textarea>
-                {!!error ? <span className='error-message'>{error}</span> : null}
+                {/*{!!error ? <span className='error-message'>{error}</span> : null}*/}
             </div>
             <Button>
                 {i18n.send_messages}
             </Button>
-            {loading ? <Loader style={{opacity: '0.4'}}/> : null }
+            {loading ? <Loader style={{opacity: '0.4'}}/> : null}
         </form>
     )
 }

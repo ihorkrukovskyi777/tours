@@ -14,7 +14,10 @@ const SliderTours = dynamic(
     () => import("@/widgets/map-and-slider/slider-tours/slider-tours"),
     {ssr: false}
 )
-
+const UseCtrl = dynamic(
+    () => import("@/shared/ui/map/use-ctrl/use-ctrl"),
+    {ssr: false}
+)
 export const StoreMapContext = createContext(null)
 
 export default observer(function MapAndSlider({i18n, id, locale, toursPlaces, hideBottom}) {
@@ -37,7 +40,7 @@ export default observer(function MapAndSlider({i18n, id, locale, toursPlaces, hi
 
                             {ids.length ? <ButtonTours i18n={i18n} toursPlaces={toursPlaces}></ButtonTours> : null}
                             <div className="wrap-map">
-                                <div className="shadow-map">Use ctrl + scroll to zoom the map</div>
+                                <UseCtrl i18n={{use_ctrl: i18n.use_ctrl}}/>
                                 <Map ids={ids} id={id} locale={locale}/>
                             </div>
                             <SliderTours i18n={i18n} hideBottom={hideBottom}/>
