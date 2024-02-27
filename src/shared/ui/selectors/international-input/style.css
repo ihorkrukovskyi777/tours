@@ -39,6 +39,10 @@ form .react-tel-input .flag-dropdown {
     background: #F2F2F2;
     width: inherit;
 }
+form .react-tel-input .country-list .flag {
+    position: relative;
+    top: 1px;
+}
 form .international-phone .react-tel-input input {
     padding-right: 0;
     pointer-events: none;
@@ -77,6 +81,10 @@ form .react-tel-input .country-list .country {
     white-space: pre;
     color: #686868;
     font-weight: 500;
+    font-size: 13px !important;
+    font-family: var(--fontMedium) !important;
+}
+form .react-tel-input .country-list .country span {
     font-size: 13px !important;
     font-family: var(--fontMedium) !important;
 }

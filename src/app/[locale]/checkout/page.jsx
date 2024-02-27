@@ -53,6 +53,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         months: i18n.getMonths(),
         first_name: i18n.t('First Name'),
         last_name: i18n.t('Last Name'),
+        phone: i18n.t('Phone'),
         save: i18n.t('Save'),
         more_than_10_characters: i18n.t('The message must contain more than 10 characters'),
         write_your_message_here_: i18n.t('Write your message here...'),
