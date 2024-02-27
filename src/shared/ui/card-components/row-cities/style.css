@@ -116,6 +116,9 @@
     width: 12px;
     height: 12px;
 }
+.most_popular_city .count_rate svg {
+    width: 13px;
+}
 /*RESPONSIVE*/
 @media(max-width: 1199px) {
     .most_popular_city .items {
