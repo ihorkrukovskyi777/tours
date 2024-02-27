@@ -72,6 +72,7 @@ export class StoreModalCalendar {
         this.loading.enableLoading();
         yield this.storeDepLogic.changeLocale(locale);
         this.loading.disableLoading();
+        this.setDeparturesByDate(null)
 
     }
 

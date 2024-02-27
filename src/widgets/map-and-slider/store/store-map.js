@@ -129,7 +129,6 @@ export class StoreMap {
             if(tours[this.currentId]) {
                 delete tours[this.currentId]
             }
-            console.log(tours)
             return {
                 ...item,
                 tours,

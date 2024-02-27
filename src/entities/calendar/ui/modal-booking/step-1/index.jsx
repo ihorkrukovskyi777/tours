@@ -5,7 +5,6 @@ import Calendar from "@/entities/calendar/ui/items";
 import CloseSvg from "@/assets/images/svg/close-svg";
 import Loader from "@/shared/ui/loaders/default-loader";
 import useEscHooks from "@/shared/hooks/use-esc-event";
-import {useTranslation} from "@/i18n/client";
 import "./style.css";
 
 export default observer(function Step1({
@@ -32,6 +31,7 @@ export default observer(function Step1({
         e.stopPropagation();
         close();
     };
+
     return (
         <div className={`step-1 ${size}`}>
             <div className="title">

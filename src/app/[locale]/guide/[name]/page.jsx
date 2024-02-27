@@ -41,7 +41,7 @@ export default async function PageGuide({params: {name, locale}}) {
             </Suspense>
             <Suspense fallback={''}>
                 <GuideTours id={pageSub.id} locale={locale} brandName={ pageSub.brandName}/>
-                <SsrCalendar locale={locale} type="sub-vendor" id={pageSub.id} title={pageSub.brandName} showFaq={false}/>
+                <SsrCalendar nameDayWeek={false} locale={locale} type="sub-vendor" id={pageSub.id} title={pageSub.brandName} showFaq={false}/>
                 <I18nChangeOfLanguage locale={locale} languages={languagesFormatted} title={pageSub.brandName}/>
                 <Breadcrumbs pages={[{slug: '/', title: 'Free Tours'}, {title: pageSub.brandName }]} locale={locale} />
                 <Footer locale={locale}/>

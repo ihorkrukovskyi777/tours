@@ -54,7 +54,6 @@ export default function ContactUs({i18n, idForm}) {
             setStatusValidation(response.status)
             setThankYouMsg(response.message)
             setLoading(false);
-            console.log(response , 'response');
         //}
             if(response.status === "mail_sent") {
                 setForm({...initialFormState})

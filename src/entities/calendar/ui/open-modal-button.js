@@ -28,11 +28,12 @@ const Step2 = dynamic(
     }
 );
 
-export default observer(function OpenModalButton({storeModalCalendar, i18n, eventLoadingModal}) {
+export default observer(function OpenModalButton({storeModalCalendar, i18n, eventLoadingModal, nameDayWeek}) {
     const {
         isOpened,
         open,
         title,
+        close,
         isOpenedListDeparture,
         openListModal,
         closeListModal,
@@ -63,17 +64,26 @@ export default observer(function OpenModalButton({storeModalCalendar, i18n, even
                 </div>
                 <span>{i18n.pick_a_date}</span>
             </Button>
-            {eventLoadingModal ? <ModalBooking show={isOpened} size={'step-1'} halfOpacity={isOpenedListDeparture}>
-                <Step1
-                    i18n={{...i18n, months: i18n.genitive_months}}
-                    title={title}
-                    storeModalCalendar={storeModalCalendar}
-                    isEsc={isOpened && isOpenedListDeparture === false}
-                    onChange={onChange}
-                />
-            </ModalBooking> : null}
-            {eventLoadingModal ? <ModalBooking show={isOpenedListDeparture} size={'step-2'} halfOpacity={isOpened}>
+            {eventLoadingModal ?
+                <ModalBooking show={isOpened} size={'step-1'} halfOpacity={isOpenedListDeparture} close={close}>
+                    <Step1
+                        i18n={{...i18n, months: i18n.genitive_months}}
+                        title={title}
+                        storeModalCalendar={storeModalCalendar}
+                        isEsc={isOpened && isOpenedListDeparture === false}
+                        onChange={onChange}
+                    />
+                </ModalBooking>
+                : null}
+            {eventLoadingModal ?
+                <ModalBooking
+                    show={isOpenedListDeparture}
+                    size={'step-2'}
+                    halfOpacity={isOpened}
+                    close={closeListModal}
+                >
                     <Step2
+                        nameDayWeek={nameDayWeek}
                         title={title}
                         i18n={{
                             departure_available: i18n.departure_available,

@@ -32,7 +32,7 @@ const OpenModalButton = dynamic(
         ssr: false,
     }
 )
-export default observer(function Main({siteLocale, i18n}) {
+export default observer(function Main({siteLocale, i18n, nameDayWeek = false}) {
 
     const [eventLoadingModal, setEventLoadingModal] = useState(false);
 
@@ -91,6 +91,7 @@ export default observer(function Main({siteLocale, i18n}) {
                     {phones.state !== 'fulfilled' ?
                         null :
                         <OpenModalButton
+                            nameDayWeek={nameDayWeek}
                             storeModalCalendar={storeModalCalendar}
                             eventLoadingModal={eventLoadingModal}
                             i18n={{
@@ -125,6 +126,7 @@ export default observer(function Main({siteLocale, i18n}) {
                 </div>
                 {loading ?
                     <DeparturesList
+                        nameDayWeek={nameDayWeek}
                         i18n={{
                             months: i18n.months,
                             days: i18n.days,
@@ -137,13 +139,14 @@ export default observer(function Main({siteLocale, i18n}) {
                     : null}
             </div>
             {eventLoadingModal ?
-                <ModalBooking size={'step-3'} show={isOpened} halfOpacity={storeModalCalendar.isOpenedListDeparture}>
+                <ModalBooking size={'step-3'} show={isOpened} halfOpacity={storeModalCalendar.isOpenedListDeparture} close={close}>
                     <Step3
                         i18n={i18n}
                         langSelected={locale}
                         errors={errors}
                         people={people}
                         locale={siteLocale}
+                        nameDayWeek={nameDayWeek}
                         selectedLocale={selectedLocale}
                         fetchBookingDeparture={fetchBookingDeparture}
                         size="large"
