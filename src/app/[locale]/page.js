@@ -4,6 +4,8 @@ import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import CollectionPageSchema from "@/shared/schema/collection-page";
 import i18n from "@/i18n/server-locales";
+import {headers} from "next/headers";
+import {isMobileCheck} from "@/shared/helpers";
 
 const FlexibleContent = dynamic(
     () => import("@/widgets/flexible-content"),
@@ -15,6 +17,10 @@ export default async function Home({params: {locale}, ...props}) {
         {next: {revalidate: 60}}
     )
     const data = await pageType.json();
+
+    const headerList = headers()
+    const isMobile = isMobileCheck(headerList.get("user-agent"));
+
     if (data.statusCode === 404 || typeof data.id !== 'number') {
         notFound();
     }
@@ -28,6 +34,7 @@ export default async function Home({params: {locale}, ...props}) {
             <FlexibleContent
                 {...data}
                 {...props}
+                isMobile={isMobile}
                 id={data.translateId}
                 locale={locale}
                 languages={languages.map(lang => ({...lang, slug: '',}))}
