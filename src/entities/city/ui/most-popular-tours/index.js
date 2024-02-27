@@ -34,7 +34,7 @@ export default async function MostPopularTours({id, locale, slug, title = '' , s
                     />
                 </>
                 : null}
-            <TextQuote id={id} locale={locale}/>
+            { toursPlaces?.length ? <TextQuote id={id} locale={locale}/> : null }
 
             <ProviderMap
                 hideBottom={true}
