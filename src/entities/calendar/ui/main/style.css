@@ -441,6 +441,9 @@
     max-width: 100%;
     margin-left: 0;
   }
+  .tour_calendar .faq {
+    max-width: 100%;
+  }
 }
 @media (max-width: 500px) {
   .tour_calendar .tab_item,

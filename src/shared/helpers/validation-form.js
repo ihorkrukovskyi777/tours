@@ -3,7 +3,7 @@
 // if (hasNumber.test(value)) errorMsg = '"First [name]" should be without numbers';
 
 const hasNumber = /\d/;
-const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{1,})$/i);
 
 const minLength = ({val, minLength})=> {
 
@@ -17,7 +17,11 @@ const withoutNumbers = ({val})=> {
 }
 
 const email = ({val})=> {
-    return validEmailRegex.test(val) ? true : 'email_error'
+    if (val.length > 0) {
+        return validEmailRegex.test(val) ? true : 'email_error'
+    } else {
+        return validEmailRegex.test(val) ? true : 'field_is_required'
+    }
 }
 
 const phone = (arr)=> {
