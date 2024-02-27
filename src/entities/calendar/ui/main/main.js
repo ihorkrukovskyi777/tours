@@ -41,7 +41,6 @@ export default observer(function Main({siteLocale, i18n}) {
         storeCalendar: {
             activeLanguage,
             locale, loading, changeLanguage,
-            departures,
             storeDepLogic: {
                 people, changePeople, isEmpty,
             },
@@ -109,7 +108,7 @@ export default observer(function Main({siteLocale, i18n}) {
                             : null
                         }
                     </div>
-                    {departures?.length ?
+                    {loading ?
                         <DeparturesList
                             i18n={{
                                 months: i18n.months,
@@ -122,7 +121,7 @@ export default observer(function Main({siteLocale, i18n}) {
                         />
                         : null}
                 </div>
-                <ModalBooking size={'step-3'} show={isOpened}>
+                <ModalBooking size={'step-3'} show={isOpened} halfOpacity={storeModalCalendar.isOpenedListDeparture}>
                      <Step3
                         i18n={i18n}
                         langSelected={locale}

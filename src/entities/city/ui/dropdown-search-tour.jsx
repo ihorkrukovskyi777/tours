@@ -20,7 +20,7 @@ export default observer(function DropdownSearch({locale}) {
     }
 
     return (
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={e => e.preventDefault()}>
             <label>
                 <input
                     name="q"
