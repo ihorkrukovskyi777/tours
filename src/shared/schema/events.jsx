@@ -21,6 +21,10 @@ const getSchemaOffer = (offer) => {
 
 const getSchemaEvent = (item) => {
 
+
+    if(!item?.departuresTimes?.length) {
+        return null;
+    }
     const firstDep = item?.departuresTimes[0] ?? null;
 
 

@@ -4,6 +4,7 @@ import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
 import Main from "@/entities/calendar/ui/main/main";
 import "@/entities/calendar/ui/main/style.css";
+import {log} from "util";
 
 export const StoreCalendarContext = createContext(null);
 
@@ -17,6 +18,10 @@ export default memo(function CalendarProvider({
                                                   nameDayWeek,
                                               }) {
 
+
+    if(!Array.isArray(activeLanguage)) {
+        return null;
+    }
 
     let findLocale = activeLanguage?.find((item) => item.code === locale);
     if (!findLocale) {
