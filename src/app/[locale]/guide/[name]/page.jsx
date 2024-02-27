@@ -31,6 +31,10 @@ export default async function PageGuide({params: {name, locale}}) {
     const languagesFormatted = languages.map(sub => ({...sub, title: '', slug: `${sub.slug}/${name}`}))
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
+
+
+    let breadcrumbsTitle = i18n.t('Free Walking Tour Breadcrumbs')
+    breadcrumbsTitle = breadcrumbsTitle.replace('Breadcrumbs', '')
     return (
         <>
             <BannerGuide id={pageSub.id} isMobile={isMobile}/>
@@ -43,7 +47,7 @@ export default async function PageGuide({params: {name, locale}}) {
                 <GuideTours id={pageSub.id} locale={locale} brandName={ pageSub.brandName}/>
                 <SsrCalendar nameDayWeek={false} locale={locale} type="sub-vendor" id={pageSub.id} title={pageSub.brandName} showFaq={false}/>
                 <I18nChangeOfLanguage locale={locale} languages={languagesFormatted} title={pageSub.brandName}/>
-                <Breadcrumbs pages={[{slug: '/', title: 'Free Tours'}, {title: pageSub.brandName }]} locale={locale} />
+                <Breadcrumbs pages={[{slug: '/', title: breadcrumbsTitle}, {title: pageSub.brandName }]} locale={locale} />
                 <Footer locale={locale}/>
             </Suspense>
         </>

@@ -47,9 +47,10 @@ export default async function Page({params: {locale, slug, tour}}) {
             return null
         return ({...item, slug: `${city.slug}/${PATH_TOURS}/${item.slug}`})
     }).filter(Boolean);
-
+    let breadcrumbsTitle = i18n.t('Free Walking Tour Breadcrumbs')
+    breadcrumbsTitle = breadcrumbsTitle.replace('Breadcrumbs', '')
     const pagesBreadcrumbs = [
-        {slug: '', title: i18n.t('Free Walking Tour')},
+        {slug: '', title: breadcrumbsTitle},
         {slug: page.city.slug, title: `${i18n.t('Free Tour')} ${page.city.title}`},
         {title: page.title}
     ]
