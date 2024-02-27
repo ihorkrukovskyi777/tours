@@ -28,7 +28,7 @@ const Step2 = dynamic(
     }
 );
 
-export default observer(function OpenModalButton({storeModalCalendar, i18n}) {
+export default observer(function OpenModalButton({storeModalCalendar, i18n, eventLoadingModal}) {
     const {
         isOpened,
         open,
@@ -63,7 +63,7 @@ export default observer(function OpenModalButton({storeModalCalendar, i18n}) {
                 </div>
                 <span>{i18n.pick_a_date}</span>
             </Button>
-            <ModalBooking show={isOpened} size={'step-1'} halfOpacity={isOpenedListDeparture}>
+            {eventLoadingModal ? <ModalBooking show={isOpened} size={'step-1'} halfOpacity={isOpenedListDeparture}>
                 <Step1
                     i18n={{...i18n, months: i18n.genitive_months}}
                     title={title}
@@ -71,27 +71,28 @@ export default observer(function OpenModalButton({storeModalCalendar, i18n}) {
                     isEsc={isOpened && isOpenedListDeparture === false}
                     onChange={onChange}
                 />
-            </ModalBooking>
-            <ModalBooking show={isOpenedListDeparture} size={'step-2'} halfOpacity={isOpened}>
-                <Step2
-                    title={title}
-                    i18n={{
-                        departure_available: i18n.departure_available,
-                        months: i18n.months,
-                        days: i18n.days,
-                        back: i18n.back,
-                        hours: i18n.hours,
-                        hour: i18n.hour,
-                        duration: i18n.duration
-                    }}
-                    setDeparture={selectedDeparture}
-                    departures={Object.values(departuresByDate).flat()}
-                    storeModalCalendar={storeModalCalendar}
-                    onBack={closeListModal}
-                    isOpened={openListModal && isOpenedBookingModal === false}
-                    close={closeListModal}
-                />
-            </ModalBooking>
+            </ModalBooking> : null}
+            {eventLoadingModal ? <ModalBooking show={isOpenedListDeparture} size={'step-2'} halfOpacity={isOpened}>
+                    <Step2
+                        title={title}
+                        i18n={{
+                            departure_available: i18n.departure_available,
+                            months: i18n.months,
+                            days: i18n.days,
+                            back: i18n.back,
+                            hours: i18n.hours,
+                            hour: i18n.hour,
+                            duration: i18n.duration
+                        }}
+                        setDeparture={selectedDeparture}
+                        departures={Object.values(departuresByDate).flat()}
+                        storeModalCalendar={storeModalCalendar}
+                        onBack={closeListModal}
+                        isOpened={openListModal && isOpenedBookingModal === false}
+                        close={closeListModal}
+                    />
+                </ModalBooking>
+                : null}
         </>
     );
 });
