@@ -109,7 +109,7 @@
 .most_popular_city .rate_stars svg:not(:last-of-type) {
     margin-right: 4px;
 }
-.most_popular_tour .rate_number {
+.most_popular_city .rate_number {
    font-size: 12px;
 }
 .most_popular_city .react-stars img {

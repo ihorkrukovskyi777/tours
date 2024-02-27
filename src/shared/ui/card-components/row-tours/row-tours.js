@@ -9,13 +9,13 @@ import {PATH_TOURS} from "@/shared/constants/route";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import './style.css';
 import i18n from "@/i18n/server-locales";
-export default function RowTours({tours, title = '', i18n= {}}) {
+export default function RowTours({tours, title = '', i18n= {} , sizeSection = 'small'}) {
     return (
-        <section className="most_popular_tour">
-            <div className="container">
-                <div className="wrapper">
-                    <h2 className="title">{title}</h2>
-                    <div className="items">
+        <section className={`most_popular_tour ${sizeSection}`}>
+            <div className=" container">
+                <div className=" wrapper">
+                    <h2 className=" title">{title}</h2>
+                    <div className=" items">
                         {tours?.map((item) => {
                             const labelHour = item.departure?.durations.find(val => val >= 2) ? 'hours' : 'hour';
                             const serviceDate = new ServiceDate(item.departure?.nextDeparture);
@@ -42,29 +42,29 @@ export default function RowTours({tours, title = '', i18n= {}}) {
                                     }
                                 >
                                     {item.departure?.nextDeparture ?
-                                        <div className="item_bottom">
-                                            <div className="elem">
+                                        <div className=" item_bottom">
+                                            <div className=" elem">
                                                 <Image
                                                     src={ClockImage}
-                                                    alt="clock"
+                                                    alt=" clock"
                                                     width={18} height={20}
                                                     style={{fill: 'red'}}
                                                 />
-                                                <span className="second">{i18n.duration}:</span>
+                                                <span className=" second">{i18n.duration}:</span>
                                                 {item.departure?.durations?.length ?
                                                     <span>{[...new Set(item.departure.durations)].join('-')} {i18n[labelHour]}</span> : null}
                                             </div>
 
-                                            <div className="elem">
-                                                <Image src={CalendarImage} alt="clock" width={18}/>
-                                                <span className="second">
+                                            <div className=" elem">
+                                                <Image src={CalendarImage} alt=" clock" width={18}/>
+                                                <span className=" second">
                                                 {i18n.next_tour}: {showTime}
                                             </span>
                                                 <span>{item.lastDeparture}</span>
                                             </div>
 
                                         </div>
-                                        : <div className="item_bottom"><p>{i18n.not_departure}</p></div>}
+                                        : <div className=" item_bottom"><p>{i18n.not_departure}</p></div>}
                                 </Card>
                             )
                         })}

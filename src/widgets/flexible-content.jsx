@@ -36,6 +36,11 @@ const FLEXIBLE_CONTENT = {
   popular_tours: PopularTours,
   faq_section: FaqSections,
 };
+
+const componentProps = {
+  most_popular: {size: 'medium'},
+  popular_tours: {size: 'small'}
+}
 export default async function FlexibleContent({
   flexibleContent = [],
   locale,
@@ -57,6 +62,7 @@ export default async function FlexibleContent({
       {flexibleContent.map((flexible, index) => {
         const Component = FLEXIBLE_CONTENT[flexible];
 
+
         if (Component === undefined) {
           return null;
         }
@@ -67,6 +73,7 @@ export default async function FlexibleContent({
             title={title}
             id={id}
             index={index}
+            {...(componentProps[flexible] ?? {})}
             flexibleKey={flexible}
           />
         );
