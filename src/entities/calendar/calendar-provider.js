@@ -19,14 +19,7 @@ export default memo(function CalendarProvider({
                                               }) {
 
 
-    if(!Array.isArray(activeLanguage)) {
-        return null;
-    }
 
-    let findLocale = activeLanguage?.find((item) => item.code === locale);
-    if (!findLocale) {
-        [findLocale] = activeLanguage;
-    }
 
 
     useEffect(() => {
@@ -35,6 +28,15 @@ export default memo(function CalendarProvider({
             section.style.display = 'none';
         }
     }, [])
+
+    if(!Array.isArray(activeLanguage)) {
+        return null;
+    }
+
+    let findLocale = activeLanguage?.find((item) => item.code === locale);
+    if (!findLocale) {
+        [findLocale] = activeLanguage;
+    }
 
     if (!findLocale) {
 
