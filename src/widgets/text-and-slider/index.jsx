@@ -47,14 +47,12 @@ export default function TextAndSlider({i18n, title, listText = [], attachments =
                                     swiper.navigation.nextEl = navigationNextRef.current;
                                     swiper.navigation.prevEl = navigationPrevRef.current;
                                 }}
-
                                 navigation={{
                                     prevEl: navigationPrevRef.current,
                                     nextEl: navigationNextRef.current,
                                 }}
                                 pagination={{clickable: true}}
                             >
-
                                 {attachments.map((image, index) => {
                                     return (
                                         <SwiperSlide key={index}>

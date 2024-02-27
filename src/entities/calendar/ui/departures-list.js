@@ -7,10 +7,8 @@ import TourItem from "@/entities/calendar/ui/tour-item";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
 import { ServiceDate } from "@/shared/service/service-date";
 import { setFormatDDMMYYYYtoMMDDYYYY } from "@/shared/helpers/date";
-import {useTranslation} from "@/i18n/client";
 
 export default observer(function DeparturesList({ i18n }) {
-    const { t} = useTranslation();
     const {
         storeCalendar: {
             loading, departures, selectedBooking,
@@ -22,6 +20,9 @@ export default observer(function DeparturesList({ i18n }) {
 
     const showMeMore = useMemo(() => isNextPage && !loading.isLoad, [isNextPage, loading.isLoad])
     const showEmpty = useMemo(() => !departures.length && !loading.isLoad, [departures.length, loading.isLoad])
+
+
+    console.log(!departures.length && !loading.isLoad, 'showEmpty')
     return (
         <div className="days_wrap">
             <div className="logo-calendar">

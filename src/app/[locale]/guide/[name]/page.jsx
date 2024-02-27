@@ -33,9 +33,7 @@ export default async function PageGuide({params: {name, locale}}) {
     const isMobile = isMobileCheck(headerList.get("user-agent"));
     return (
         <>
-            <Suspense fallback={''}>
-                <BannerGuide id={pageSub.id} isMobile={isMobile}/>
-            </Suspense>
+            <BannerGuide id={pageSub.id} isMobile={isMobile}/>
             <Suspense fallback={''}>
                 <ProductSchemaGuide slug={name} locale={locale} />
                 <PlaceGuideSchema slug={name} locale={locale}/>

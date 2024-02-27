@@ -49,7 +49,7 @@ export default async function Page({params: {locale, slug, tour}}) {
     }).filter(Boolean);
 
     const pagesBreadcrumbs = [
-        {slug: getHrefLocale(locale, ''), title: i18n.t('Free Walking Tours')},
+        {slug: '', title: i18n.t('Free Walking Tour')},
         {slug: page.city.slug, title: `${i18n.t('Free Tour')} ${page.city.title}`},
         {title: page.title}
     ]
