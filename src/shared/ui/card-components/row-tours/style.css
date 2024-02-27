@@ -125,6 +125,9 @@
   margin-right: 12px;
   font-size: 12px;
 }
+.most_popular_tour.medium .count_rate {
+  font-size: 16px;
+}
 .most_popular_tour .rate_stars {
   margin-right: 10px;
   display: flex;
@@ -134,6 +137,13 @@
 }
 .most_popular_tour .rate_number {
   font-size: 12px;
+}
+.most_popular_tour.medium .rate_number {
+  font-size: 16px;
+}
+.most_popular_tour.medium .rate_box svg {
+  width: 13px;
+  height: 13px;
 }
 .most_popular_tour .react-stars img {
   width: 12px;
@@ -163,6 +173,16 @@
 .most_popular_tour .elem img,
 .most_popular_tour .elem span:first-of-type {
   margin-right: 8px;
+}
+
+
+
+.most_popular_tour.small .count_rate,
+.most_popular_tour.small  .rate_number{
+  font-size: 16px;
+}
+.most_popular_tour.small .count_rate svg {
+  width: 13px;
 }
 
 /*RESPONSIVE*/

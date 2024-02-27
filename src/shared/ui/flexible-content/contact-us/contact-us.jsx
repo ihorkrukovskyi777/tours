@@ -39,6 +39,7 @@ export default function ContactUs({i18n, idForm}) {
             email: validationEmail(formData.email),
             message: validationNotRequired(formData.message),
         }
+        console.log(errors);
 
         setErrors({...errors , ...errorLists})
         //if (!Object.values(errorLists).filter(Boolean).length) {
@@ -52,10 +53,12 @@ export default function ContactUs({i18n, idForm}) {
             const response = await fetchContactForm(idForm , data);
             setStatusValidation(response.status)
             setThankYouMsg(response.message)
-            setForm({...initialFormState})
             setLoading(false);
-
-       // }
+            console.log(response , 'response');
+        //}
+            if(response.status === "mail_sent") {
+                setForm({...initialFormState})
+            }
     }
 
     return (
@@ -89,7 +92,7 @@ export default function ContactUs({i18n, idForm}) {
                                         value={formData.email}
                                     />
                                 </label>
-                                {formData.email.length <= 0 ?
+                                {formData.email.length <= 0 || errors.email === 'email_error' ?
                                     <span className='error-message'>{i18n[errors.email]}</span> : null}
                             </div>
 
@@ -124,12 +127,15 @@ export default function ContactUs({i18n, idForm}) {
                                 <ButtonLoader isSubmit={true} isLoading={isLoading}>{i18n.send_messages}</ButtonLoader>
                             </div>
                         </div>
-                        {statusValidation === 'validation_failed' ?
-                            <div className="wpcf7-response-output" aria-hidden="true">
-                                {thankYouMsg}
-                            </div>
-                            : null
+                        {
+                            statusValidation === "validation_failed" ?
+                                <div className="wpcf7-response-output" aria-hidden="true">
+                                    {thankYouMsg}
+                                </div>
+                                : null
                         }
+
+
                         {statusValidation === 'mail_sent' ? <div className='thank-you-message'>{thankYouMsg}</div> : null}
 
 

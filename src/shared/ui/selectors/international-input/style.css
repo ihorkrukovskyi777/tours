@@ -91,3 +91,8 @@ form .react-tel-input .country-list .country span {
 form .react-tel-input .country-list {
     margin: 0;
 }
+@media(max-width: 767px) {
+    form .react-tel-input .country-list {
+        bottom: 100%;
+    }
+}

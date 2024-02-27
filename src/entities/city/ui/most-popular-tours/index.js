@@ -8,7 +8,7 @@ const ProviderMap = dynamic(
     () => import("@/widgets/map-and-slider/provider"),
     {ssr: false}
 )
-export default async function MostPopularTours({id, locale, slug, title = ''}) {
+export default async function MostPopularTours({id, locale, slug, title = '' , size= 'small'}) {
     let data = await picketToursBox(id, locale);
     await i18n.getFetchDefault();
 
@@ -21,6 +21,7 @@ export default async function MostPopularTours({id, locale, slug, title = ''}) {
                     <RowTours
                         tours={tours}
                         title={`${data.title} ${title}`}
+                        sizeSection={size}
                         i18n={{
                             duration: i18n.t('Duration'),
                             hours: i18n.t('Hours'),
