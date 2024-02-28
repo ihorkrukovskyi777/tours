@@ -14,6 +14,7 @@ export default function InternationalInput({
     let formatLanguage = localeFormat(locale);
     formatLanguage = formatLanguage === 'en' ? 'GB' : formatLanguage;
     formatLanguage = formatLanguage === 'pt-pt' ? 'pt' : formatLanguage;
+    formatLanguage = formatLanguage === 'cat' ? 'es' : formatLanguage;
     const languagePageSlug = formatLanguage.toUpperCase();
     const localizationWP = useMemo(() => {
         const values = {};
