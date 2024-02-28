@@ -115,7 +115,9 @@
 #change-of-language.hidden-text-tour .text-tour {
     display: none
 }
-
+#change-of-language button {
+    padding: 13.5px 15px 13.5px;
+}
 @media (max-width: 991px) {
     #change-of-language ul {
         grid-template-columns:1fr 1fr

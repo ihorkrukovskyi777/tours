@@ -140,7 +140,7 @@
 
 .tour_calendar .wrap-box .show-more {
   display: table;
-  padding: 8px 14px;
+  padding: 4px 14px 5px;
   font-family: var(--fontMedium);
   font-size: 20px;
   background-color: var(--main_color);
