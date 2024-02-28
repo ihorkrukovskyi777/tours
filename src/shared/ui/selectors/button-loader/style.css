@@ -47,6 +47,9 @@
     border-color: #fff transparent #fff transparent;
     animation: button-loader 1.2s linear infinite;
 }
+.button_loader.sm {
+    padding: 7px 32px;
+}
 @keyframes button-loader {
     0% {
         transform: rotate(0deg);

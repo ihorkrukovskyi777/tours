@@ -65,7 +65,7 @@ export const getTextQuote = async (id, locale = 'en', type = 'city') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/text-quote/${id}?locale=${locale}`,
-            {next: {revalidate: 60 * 60 , tags: ['section']}}
+            {next: {revalidate: 60 * 60, tags: ['section']}}
         );
         return res.json()
     } catch (err) {
@@ -139,7 +139,7 @@ export const allCitiesData = async (locale = 'en') => {
     }
 }
 
-export const allGuides = async (id, type = 'city', locale ='en') => {
+export const allGuides = async (id, type = 'city', locale = 'en') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/sub-vendors/${id}?locale=${locale}`,
@@ -201,12 +201,55 @@ export const placesMarkers = async (id, locale = 'en', ids = []) => {
         console.log(err);
     }
 }
-export const getTextAndSlides  = async (id, locale = 'en') => {
+export const getTextAndSlides = async (id, locale = 'en') => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/section/text-and-slider/${id}?locale=${locale}`,
             {next: {revalidate: 60 * 60, tags: ['section']}}
         );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+export const canYouAddAReview = async (code, rating) => {
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/review/${code}/${rating}`,
+            {next: {revalidate: 0}}
+        );
+        if (res.status === 404) {
+            return {status: 404}
+        }
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+
+}
+
+export const addReview = async (code, replay) => {
+    try {
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/review`,
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    code,
+                    replay,
+                }),
+                method: "POST",
+                next: {revalidate: 0}
+            }
+        );
+        if (res.status === 404) {
+            return {status: 404}
+        }
         return res.json()
     } catch (err) {
         console.log(err);

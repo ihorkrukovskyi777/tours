@@ -1,4 +1,3 @@
-'use client'
 import DropdownSearch from '@/entities/city/ui/dropdown-search-tour';
 import Banner from '@/shared/ui/banner';
 import LocationSvg from '@/assets/images/svg/location-svg';
@@ -12,9 +11,9 @@ export default async function BannerHome({locale, id, index, flexibleKey, isMobi
     if (!data) {
         return null
     }
+    console.log(data.image, isMobile)
 
     let image = isMobile ? data?.image?.mobileImage : data.image?.image;
-
 
     return (
         <Banner nameBanner="home_banner" title={data.title ?? ''} attachment={image} isMobile={false}>

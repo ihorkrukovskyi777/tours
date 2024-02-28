@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    gap: 50px;
+    gap: 35px;
     margin-bottom: 200px;
 }
 
@@ -35,16 +35,14 @@
 }
 
 .review_form .sub_but {
-    background-color: var(--main_color);
     color: #fff;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s ease-in-out;
-    padding: 7px 32px;
     font-size: 20px;
-    margin-top: 20px;
     text-align: center;
     border: none;
+    margin-top: 0;
 }
 
 .review_form .sub_but:hover {

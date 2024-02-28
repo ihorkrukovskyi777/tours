@@ -6,7 +6,10 @@ import CollectionPageSchema from "@/shared/schema/collection-page";
 import i18n from "@/i18n/server-locales";
 import {headers} from "next/headers";
 import {isMobileCheck} from "@/shared/helpers";
-
+const ThanksReviewModal = dynamic(
+    () => import("@/entities/add-review/ui/thanks-review-modal"),
+    {ssr: false}
+)
 const FlexibleContent = dynamic(
     () => import("@/widgets/flexible-content"),
     {ssr: true}
@@ -27,9 +30,11 @@ export default async function Home({params: {locale}, ...props}) {
     const {languages} = data;
     await i18n.getFetchDefault()
 
-
+    console.log(props, 'props')
+    const isAddReview = !!props.searchParams?.success_review_add
     return (
         <>
+            {isAddReview ? <ThanksReviewModal message={i18n.t('review_confirmation_message')}/> : null}
             <CollectionPageSchema locale={locale}/>
             <FlexibleContent
                 {...data}
