@@ -30,7 +30,6 @@ export default async function Home({params: {locale}, ...props}) {
     const {languages} = data;
     await i18n.getFetchDefault()
 
-    console.log(props, 'props')
     const isAddReview = !!props.searchParams?.success_review_add
     return (
         <>
