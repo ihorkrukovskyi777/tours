@@ -30,14 +30,14 @@
 }
 @font-face {
     font-family: 'Carlito';
-    src: url('./carlito/g-carlito-regular.woff2') format('woff2');
+    src: url('./carlito/Carlito-Regular.woff2') format('woff2');
     font-style: normal;
     font-display: swap;
     font-weight: 400;
 }
 @font-face {
     font-family: 'Carlito';
-    src: url('./carlito/g-carlito-bold.woff2') format('woff2');
+    src: url('./carlito/Carlito-Bold.woff2') format('woff2');
     font-style: normal;
     font-display: swap;
     font-weight: 700;
