@@ -259,6 +259,12 @@
 .step-3 .item-data {
     display: flex;
 }
+.step-3 .item-data span {
+    font-size: 20px;
+    font-family: var(--fontMedium);
+    font-weight: 500;
+    color: #000;
+}
 .step-3 .choosen-date {
     font-size: 20px;
     font-family: var(--fontMedium);
@@ -387,6 +393,12 @@
 }
 
 @media(max-width: 767px){
+    .step-3 .time-current-modal span.comma {
+        display: none;
+    }
+    .step-3 .time-current-modal {
+        display: flex;
+    }
     .step-3 .subtitle-text {
         display: none;
     }

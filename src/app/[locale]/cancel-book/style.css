@@ -3,7 +3,9 @@
     min-height: calc(100vh - 400px);
 }
 
-
+.cancel-book a {
+    color: #5A69B9;
+}
 p.canceled {
     text-align: center;
     max-width: 90%;

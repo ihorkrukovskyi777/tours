@@ -76,8 +76,12 @@ export default observer(function Step3({
                     <div className="item-data">
                         <div className="choosen-date">{departure.dateLabel}</div>
                         <div
-                            className="time-current-modal">{i18n.days[serviceDate.day]}, {serviceDate.dayNum} {i18n.months[serviceDate.month]} {pad2(time.hours)}:{pad2(time.minutes)}</div>
-                        <span>,</span>
+                            className="time-current-modal">
+                            <span>{i18n.days[serviceDate.day]}, {serviceDate.dayNum} {i18n.months[serviceDate.month]} </span>
+                            <span>{pad2(time.hours)}:{pad2(time.minutes)}</span>
+                            <span className="comma">,</span>
+                        </div>
+
                     </div>
                     <div className="append-wrap2">
                         <div className="tour-item step-next">
