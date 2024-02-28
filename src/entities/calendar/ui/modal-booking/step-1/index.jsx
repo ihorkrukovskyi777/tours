@@ -41,6 +41,7 @@ export default observer(function Step1({
                 </div>
             </div>
             <TabsLanguages
+                i18n={{see_all: i18n.see_all}}
                 selectedCode={locale}
                 loading={loading.isLoad}
                 activeLanguage={activeLanguage}
