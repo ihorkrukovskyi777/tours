@@ -147,6 +147,7 @@
     .tabs.not_full li {
         min-height: 49px;
     }
+
 }
 @media(max-width: 500px) {
     .tabs .tab_item ,
@@ -155,6 +156,9 @@
         margin-top: 4px;
         margin-bottom: 4px;
         padding: 14px 10px;
+    }
+    .tabs .see-all ~ .tab_item {
+        display: none;
     }
     .tabs .tabs_wrap {
         position: relative;
