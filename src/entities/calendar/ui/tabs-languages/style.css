@@ -157,6 +157,9 @@
         margin-bottom: 4px;
         padding: 14px 10px;
     }
+    .hide_lasts_li li:not(.see-all):nth-child(n+7) {
+        display: none !important;
+    }
     .tabs .see-all ~ .tab_item {
         display: none;
     }

@@ -10,13 +10,13 @@ import './style.css';
 export default memo(function TabsLanguages({loading, onChange = () => {}, selectedCode = 'en', activeLanguage = []}) {
     const settingsTab = activeLanguage?.length < 4 ?  'not_full' : '';
     const [seeAllBtn , setSeeAllBtn ] = useState(false);
-
     function toggleSeeAll() {
         setSeeAllBtn(true);
     }
+    const mobileClass = activeLanguage.length > 5 && !seeAllBtn ? 'hide_lasts_li' : '';
 
     return (
-        <ul className={`tabs ${settingsTab}`}>
+        <ul className={`tabs ${settingsTab} ${mobileClass}`}>
             {activeLanguage?.map((item, index) => {
                 return (
                     <Fragment key={index}>

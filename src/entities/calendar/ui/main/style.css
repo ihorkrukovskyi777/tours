@@ -444,6 +444,9 @@
   .tour_calendar .faq {
     max-width: 100%;
   }
+  .tour_calendar .tab_item span {
+    font-size: 18px;
+  }
 }
 @media (max-width: 500px) {
   .tour_calendar .tab_item,
@@ -475,6 +478,9 @@
   }
 }
 @media (max-width: 370px) {
+  .tour_calendar .tab_item span {
+    font-size: 15px;
+  }
   .tour_calendar .see-all {
     max-height: 42px;
   }
