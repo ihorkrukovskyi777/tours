@@ -2,8 +2,8 @@ import { ServiceDate } from "../service/service-date";
 
 export class HelperDateHtml extends ServiceDate {
 
-    constructor(date){
-        super(date);
+    constructor(date, fullNameDayWeek = true){
+        super(date, fullNameDayWeek);
     }
 
     get ddmmyear() {

@@ -32,6 +32,7 @@
     width: calc(50% - 20px);
     margin-bottom: 28px;
 }
+.step-3 form .item-form .label span,
 .step-3 form .item-form label span {
     color: #686868;
     font-weight: 500;
@@ -40,6 +41,7 @@
     margin-bottom: 4px;
     display: inline-block;
 }
+.step-3 form .item-form .label span.red,
 .step-3 form .item-form label span.red {
     display: inline-block;
     color: red;
@@ -365,6 +367,7 @@
     border-color: #fff transparent #fff transparent;
     animation: lds-dual-ring 1.2s linear infinite;
 }
+
 .step-3 .general-error {
     font-size: 20px;
     color: red;
@@ -416,6 +419,7 @@
         width: 100%;
         margin-bottom: 15px;
     }
+    .step-3 form .item-form .label span,
     .step-3 form .item-form label span {
         margin-bottom: 2px;
     }

@@ -6,7 +6,6 @@ import './style.css';
 
 export default function TourItem({dep, locale, onClick, i18n}) {
 
-    console.log(dep)
     const {hours, minutes} = toHoursAndMinutes(dep.time);
     const {hours: durationHours, minutes: durationMinutes} = toHoursAndMinutes(dep.duration * 60);
     return (

@@ -1,6 +1,7 @@
 export class ServiceDate {
-    constructor(date) {
+    constructor(date, fullNameDayWeek = true) {
         this.date = new Date(date);
+        this.fullNameDayWeek = fullNameDayWeek
         this.MONTH = [
             "January",
             "February",
@@ -46,9 +47,9 @@ export class ServiceDate {
     }
 
     get day() {
-        if (this.isToday) {
+        if (this.isToday && this.fullNameDayWeek) {
             return 'Today';
-        } else if (this.isTomorrow) {
+        } else if (this.isTomorrow && this.fullNameDayWeek) {
             return 'Tomorrow';
         }
         return this.WEEK_DAYS[this.date.getDay()]

@@ -28,7 +28,8 @@ export default observer(function Step3({
                                            departure,
                                            isOpened,
                                            langSelected,
-                                           isLoading
+                                           isLoading,
+                                           nameDayWeek = true
                                        }) {
 
     useEscHooks(close, isOpened);
@@ -37,7 +38,7 @@ export default observer(function Step3({
     if (!departure) {
         return null;
     }
-    const serviceDate = new ServiceDate(setFormatDDMMYYYYtoMMDDYYYY(departure.date));
+    const serviceDate = new ServiceDate(setFormatDDMMYYYYtoMMDDYYYY(departure.date), nameDayWeek);
     const time = toHoursAndMinutes(departure.time);
     const duration = toHoursAndMinutes(departure.duration * 60);
     return (

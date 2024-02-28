@@ -47,9 +47,10 @@ export default async function Page({params: {locale, slug, tour}}) {
             return null
         return ({...item, slug: `${city.slug}/${PATH_TOURS}/${item.slug}`})
     }).filter(Boolean);
-
+    let breadcrumbsTitle = i18n.t('Free Walking Tour Breadcrumbs')
+    breadcrumbsTitle = breadcrumbsTitle.replace('Breadcrumbs', '')
     const pagesBreadcrumbs = [
-        {slug: '', title: i18n.t('Free Walking Tour')},
+        {slug: '', title: breadcrumbsTitle},
         {slug: page.city.slug, title: `${i18n.t('Free Tour')} ${page.city.title}`},
         {title: page.title}
     ]
@@ -84,7 +85,6 @@ export default async function Page({params: {locale, slug, tour}}) {
 }
 
 export async function generateMetadata({ params : {slug, locale, tour} }) {
-    console.log(`process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/tour/${slug}/${tour}?locale=${locale}`)
     const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/tour/${slug}/${tour}?locale=${locale}`, {next: { revalidate: 60 * 60, tags: ['seo'] }}).then((res) => res.json())
     const languages = {};
     if(Array.isArray(seo.languages)) {

@@ -16,6 +16,41 @@ form #phone {
     outline: navajowhite;
 
 }
+.iti__flag-container {
+    padding: 0;
+}
+.iti__country.iti__standard[data-country-code="kp"] {
+    display: none!important;
+}
+#phone::placeholder {
+    color: #BDBDBD;
+    opacity: 1;
+    font-family: var(--font);
+    font-weight: 300 !important;
+}
+.iti__dropdown-content {
+    width: 280px!important;
+}
+.iti__country {
+    padding: 5px 10px;
+    margin-bottom: 0 !important;
+    outline: none;
+}
+.iti__dial-code {
+    color: #686868;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: var(--fontMedium) !important;
+}
+.iti__country-name {
+    font-size: 13px!important;
+    color: #686868;
+    font-weight: 500;
+    font-family: var(--fontMedium) !important;
+}
+.iti__tel-input {
+    outline: none;
+}
 form .international-phone {
     display: flex;
     border: 2px solid #F6F6F6;

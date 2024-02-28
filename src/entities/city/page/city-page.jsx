@@ -18,6 +18,8 @@ import EventsSchema from "@/shared/schema/events";
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     await i18n.getFetchDefault();
 
+    let breadcrumbsTitle = i18n.t('Free Tour Breadcrumbs')
+    breadcrumbsTitle = breadcrumbsTitle.replace('Breadcrumbs', '')
     return (
         <>
             <BannerCity
@@ -39,7 +41,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <Guides id={id} locale={locale} title={title} type="city"/>
                 <MostPopularCity locale={locale} id={id} slug={slug} size={'medium'} />
                 <I18nChangeOfLanguage locale={locale} languages={languages} title="Free Tours"/>
-                <Breadcrumbs pages={[{slug: '/', title: i18n.t('Free Tour')}, {title: title}]} locale={locale}/>
+                <Breadcrumbs pages={[{slug: '/', title: breadcrumbsTitle}, {title: title}]} locale={locale}/>
                 <Footer locale={locale}/>
             </Suspense>
         </>

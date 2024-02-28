@@ -4,6 +4,7 @@ import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
 import Main from "@/entities/calendar/ui/main/main";
 import "@/entities/calendar/ui/main/style.css";
+import {log} from "util";
 
 export const StoreCalendarContext = createContext(null);
 
@@ -14,13 +15,11 @@ export default memo(function CalendarProvider({
                                                   type,
                                                   id,
                                                   activeLanguage,
+                                                  nameDayWeek,
                                               }) {
 
 
-    let findLocale = activeLanguage?.find((item) => item.code === locale);
-    if (!findLocale) {
-        [findLocale] = activeLanguage;
-    }
+
 
 
     useEffect(() => {
@@ -29,6 +28,15 @@ export default memo(function CalendarProvider({
             section.style.display = 'none';
         }
     }, [])
+
+    if(!Array.isArray(activeLanguage)) {
+        return null;
+    }
+
+    let findLocale = activeLanguage?.find((item) => item.code === locale);
+    if (!findLocale) {
+        [findLocale] = activeLanguage;
+    }
 
     if (!findLocale) {
 
@@ -48,7 +56,7 @@ export default memo(function CalendarProvider({
                 storePhone: new StorePhone(locale),
             }}
         >
-            <Main siteLocale={locale} i18n={i18n}/>
+            <Main siteLocale={locale} i18n={i18n} nameDayWeek={nameDayWeek}/>
         </StoreCalendarContext.Provider>
     );
 });

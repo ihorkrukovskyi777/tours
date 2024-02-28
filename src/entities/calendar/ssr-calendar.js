@@ -4,7 +4,7 @@ import Faqs from "@/shared/ui/faqs/faqs";
 import i18n from "@/i18n/server-locales";
 import i18nGenitive from "@/i18n/server-locales/genitive"
 
-export default async function SsrCalendar({locale, type, id, showFaq = true, title}) {
+export default async function SsrCalendar({locale, type, id, showFaq = true, title, nameDayWeek = true }) {
     await Promise.all([
         i18n.getFetchDefault(),
         i18nGenitive.getFetchDefault(),
@@ -52,6 +52,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
             <div className="container">
                 <div className="wrapper">
                     <CalendarProvider
+                        nameDayWeek={nameDayWeek}
                         i18n={translate}
                         title={i18n.tReplace('%s Tour Calendar', title)}
                         locale={locale}

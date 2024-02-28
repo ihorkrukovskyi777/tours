@@ -8,7 +8,7 @@ import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
 import { ServiceDate } from "@/shared/service/service-date";
 import { setFormatDDMMYYYYtoMMDDYYYY } from "@/shared/helpers/date";
 
-export default observer(function DeparturesList({ i18n }) {
+export default observer(function DeparturesList({ i18n, nameDayWeek}) {
     const {
         storeCalendar: {
             loading, departures, selectedBooking,
@@ -17,12 +17,10 @@ export default observer(function DeparturesList({ i18n }) {
     } = useContext(StoreCalendarContext);
 
     const showNewDay = {};
-
     const showMeMore = useMemo(() => isNextPage && !loading.isLoad, [isNextPage, loading.isLoad])
     const showEmpty = useMemo(() => !departures.length && !loading.isLoad, [departures.length, loading.isLoad])
 
 
-    console.log(!departures.length && !loading.isLoad, 'showEmpty')
     return (
         <div className="days_wrap">
             <div className="logo-calendar">
@@ -35,7 +33,7 @@ export default observer(function DeparturesList({ i18n }) {
                     {departures.map((departure, index) => {
                         const date = departure.date;
                         const showDate = !showNewDay[date];
-                        const service = new ServiceDate(setFormatDDMMYYYYtoMMDDYYYY(date))
+                        const service = new ServiceDate(setFormatDDMMYYYYtoMMDDYYYY(date), nameDayWeek)
                         showNewDay[date] = true;
 
                         return (

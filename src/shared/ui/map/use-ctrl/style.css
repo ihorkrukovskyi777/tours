@@ -1,0 +1,19 @@
+.use_ctrl{
+    transition: .5s;
+    position: absolute;
+    z-index: 9999;
+    background: rgba(0, 0, 0, .6);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: visible;
+    font-size: 35px;
+    color: #fff;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+}

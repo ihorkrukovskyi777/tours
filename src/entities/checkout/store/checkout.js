@@ -137,6 +137,7 @@ class EditDeparture {
         this.fullTime = is_civitatis ? activity_date : '';
         this.cancelMessage = '';
         this.oldSubVendor = subVendor;
+        this.openModalDepartureList = false;
         this.date = {
             month: null,
             year: null,
@@ -254,8 +255,11 @@ class EditDeparture {
 
     setSelectedDay(fullDate) {
         this.selectedDay = fullDate
+        this.openModalDepartureList = true;
     }
-
+    toggleModalDepartureList(value) {
+        this.openModalDepartureList = value;
+    }
     get departureByDay() {
         if (this.selectedDay === null) {
             return [];

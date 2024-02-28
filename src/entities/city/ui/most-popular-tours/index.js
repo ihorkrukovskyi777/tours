@@ -12,6 +12,9 @@ export default async function MostPopularTours({id, locale, slug, title = '' , s
     let data = await picketToursBox(id, locale);
     await i18n.getFetchDefault();
 
+    if(!Array.isArray(data.tours)) {
+        return null;
+    }
     const tours = data.tours.map((item) => ({...item, citySlug: slug}));
     const toursPlaces = tours.map(tour => ({id: tour.id, title: tour.title, color: tour.color}));
     return (
@@ -34,7 +37,7 @@ export default async function MostPopularTours({id, locale, slug, title = '' , s
                     />
                 </>
                 : null}
-            <TextQuote id={id} locale={locale}/>
+            { toursPlaces?.length ? <TextQuote id={id} locale={locale}/> : null }
 
             <ProviderMap
                 hideBottom={true}

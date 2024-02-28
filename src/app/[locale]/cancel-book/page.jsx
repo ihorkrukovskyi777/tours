@@ -34,7 +34,7 @@ export default async function CancelPage({params: {locale}, searchParams}) {
     else if (data.statusCode === 404 || typeof data.id !== 'number') {
         notFound();
     }
-
+    console.log(data, 'data')
     return (
         <>
             <div className="container">
@@ -42,7 +42,7 @@ export default async function CancelPage({params: {locale}, searchParams}) {
                     <p className={'canceled'} dangerouslySetInnerHTML={{__html: cancelBook?.message ?? ''}}></p>
                 </div>
             </div>
-            <I18nChangeOfLanguage locale={locale} languages={data.languages}/>
+            <I18nChangeOfLanguage locale={locale} languages={data.languages?.map(item => ({...item, title: 'Free Tours'}))}/>
             <Footer locale={locale}/>
         </>
     )
