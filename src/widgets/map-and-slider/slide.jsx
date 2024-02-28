@@ -24,7 +24,7 @@ export default memo(function Slide({tours, title, attachment, tickets = [], i18n
                         <div>
                             <Image src={tourSVG} width={20} height={20} alt="icon"/>
                         </div>
-                        <div>{i18n.tour}: {Object.values(tours).join(', ')}</div>
+                        <div>{Object.values(tours)?.length > 1 ? i18n.tours : i18n.tour}: {Object.values(tours).join(', ')}</div>
                     </div>
                 </div>
                 : null}

@@ -18,6 +18,7 @@ class I18n {
             duration: this.t('Duration'),
             clear: this.t('Clear'),
             tour: this.t('Tour'),
+            tours: this.t('Tours'),
             use_ctrl: this.t('Use ctrl + scroll to zoom the map'),
         }
     }
