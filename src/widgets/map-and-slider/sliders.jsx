@@ -26,7 +26,10 @@ export default observer(function Sliders({ i18n, hideBottom = false }) {
     useEffect(() => {
         const resize = () => {
             window.requestAnimationFrame(() => {
-                setIndexSlider(Math.ceil(Math.random() * 100))
+
+                if(window.innerWidth > 767 && slidersFormatted.length === 4) {
+                    setIndexSlider(Math.ceil(Math.random() * 100))
+                }
             })
         }
 
