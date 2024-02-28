@@ -49,7 +49,7 @@ export default function InternationalInput({
         }
         return values;
     }, [allPhoneNumbers])
-    console.log(localization, 'localization')
+
     const defaultValueProp = phoneDefault ? {value: phoneDefault} : {}
     return (
         <div className={classNames({'border': border}, 'international-phone')}>
