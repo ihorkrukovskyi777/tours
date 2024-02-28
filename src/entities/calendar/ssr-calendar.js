@@ -40,6 +40,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
         duration: i18n.t('Duration'),
         phone_number: i18n.t('Phone Number'),
         errors: i18n.getFormErrors(),
+        see_all: i18n.t('See All'),
         genitive: {
             months: {
                 ...i18nGenitive.getMonths(),

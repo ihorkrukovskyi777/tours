@@ -7,7 +7,7 @@ import FlagsComponents from "@/shared/ui/flags";
 import './style.css';
 
 
-export default memo(function TabsLanguages({loading, onChange = () => {}, selectedCode = 'en', activeLanguage = []}) {
+export default memo(function TabsLanguages({loading, onChange = () => {}, selectedCode = 'en', activeLanguage = [], i18n}) {
     const settingsTab = activeLanguage?.length < 4 ?  'not_full' : '';
     const [seeAllBtn , setSeeAllBtn ] = useState(false);
 
@@ -26,7 +26,7 @@ export default memo(function TabsLanguages({loading, onChange = () => {}, select
                             </li>
                             :
                             <>
-                                {index === 6 && !seeAllBtn ? <li className="see-all" onClick={toggleSeeAll}>See All</li> : null}
+                                {index === 6 && !seeAllBtn ? <li className="see-all" onClick={toggleSeeAll}>{i18n.see_all}</li> : null}
                                 <li onClick={() => onChange(item.code)}
                                     className={selectedCode === item.code ? "tab_item active" : "tab_item"} key={item.code}>
                                     <div className="icon_wrap">

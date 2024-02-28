@@ -105,10 +105,12 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false}) {
                                 back: i18n.back,
                                 hours: i18n.hours,
                                 hour: i18n.hour,
+                                see_all: i18n.see_all,
                             }}
                         />}
                 </div>
                 <TabsLanguages
+                    i18n={{see_all: i18n.see_all}}
                     selectedCode={locale}
                     activeLanguage={activeLanguage}
                     loading={loading.isLoad}
