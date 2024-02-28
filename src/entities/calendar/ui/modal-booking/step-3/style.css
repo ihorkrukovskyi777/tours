@@ -373,7 +373,9 @@
     border-color: #fff transparent #fff transparent;
     animation: lds-dual-ring 1.2s linear infinite;
 }
-
+.iti--fullscreen-popup.iti--container {
+    z-index: 99999999;
+}
 .step-3 .general-error {
     font-size: 20px;
     color: red;
