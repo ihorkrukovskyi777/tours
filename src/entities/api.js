@@ -1,20 +1,3 @@
-import country from "@/lib/react-phone/raw-country";
-
-
-const setGlobalVariable = (phones) => {
-    if (typeof window !== "undefined") {
-        if (Array.isArray(window.rawCountry)) return
-        const listCountry = {...country}
-        phones.forEach(item => {
-            if (listCountry[item.code] && item.phone_code) {
-                listCountry[item.code][3] = item.phone_code
-            }
-        })
-        window.rawCountry = Object.values(listCountry)
-    }
-}
-
-
 export async function getBannerData(id, locale, type = 'city', revalidate = 0) {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/banner/${id}?locale=${locale}`,
@@ -138,8 +121,6 @@ export const getCountryPhone = async (locale = 'en') => {
             {next: {revalidate: 60 * 60, tags: ['phones']}}
         );
         const phones = await res.json()
-
-        setGlobalVariable(phones);
         return phones
     } catch (err) {
         console.log(err);

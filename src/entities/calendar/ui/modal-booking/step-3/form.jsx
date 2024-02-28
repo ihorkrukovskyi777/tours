@@ -130,7 +130,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                 firstName: document.getElementsByName('firstName')[0].value,
                 lastName: document.getElementsByName('lastName')[0].value,
                 email: document.getElementsByName('email')[0].value,
-                phone_county_code: document.querySelector('.international-phone .form-control').value,
+                phone_county_code: document.querySelector('.international-phone .iti__selected-dial-code').innerText,
                 phone: document.getElementsByName('phone')[0].value,
                 phone_country_slug: document.getElementById('phone').getAttribute('data-slug').toLowerCase(),
             }
@@ -178,19 +178,19 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                 <div className="item-form">
                     <label htmlFor="">
                         <span>{i18n.last_name}<span className="red">*</span></span>
-                        <input type='text' name='lastName' onChange={handleChange}/>
+                        <input type='text' name='lastName' onChange={handleChange} required/>
                         {showError && errors.lastName.length > 0 ? <span className='error-message'>{errors.lastName}</span> : null}
                     </label>
                 </div>
                 <div className="item-form">
                     <label htmlFor="">
                         <span>{i18n.email}<span className="red">*</span></span>
-                        <input type='email' name='email' onChange={handleChange}/>
+                        <input type='email' name='email' onChange={handleChange} required/>
                         {showError && errors.email.length > 0 ? <span className='error-message'>{errors.email}</span> : null}
                     </label>
                 </div>
                 <div className="item-form">
-                    <label htmlFor="">
+                    <div className="label">
                         <span>{i18n.phone_number}<span className="red">*</span></span>
                         <InternationalInput
                             locale={locale}
@@ -199,17 +199,16 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                             valueMask={valueMask}
                         />
                         {showError && errors.phone.length > 0 ? <span className='error-message'>{errors.phone}</span> : null}
-                    </label>
+                    </div>
 
                 </div>
                 <div className="item-form full-width checkbox-item">
                     <div className="form-group">
-                        <input type='checkbox' id="accept" name='accept' onChange={handleChange}/>
+                        <input type='checkbox' id="accept" name='accept' onChange={handleChange} required/>
                         <label htmlFor="accept">{i18n.i_accept_all}</label>
                         <Link href="/terms-and-conditions/" target="_blank" className="terms-and-conditions">{i18n.terms_and_conditions}</Link> <span
                         className="red">*</span>
                     </div>
-                    {showError && errors.accept.length > 0 ? <span className='error-message'>{errors.accept}</span> : null}
                 </div>
             </div>
             <ul className="general-error">
