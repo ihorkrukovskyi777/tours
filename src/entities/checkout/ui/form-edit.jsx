@@ -56,10 +56,6 @@ export default observer(function FormEdit({i18n}) {
         }
     }
 
-
-
-
-
     const submitForm = async () => {
         const token = await recaptcha("booking");
         const data = await editDeparture.updateDeparture(token);

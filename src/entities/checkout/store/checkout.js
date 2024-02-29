@@ -114,7 +114,7 @@ class EditDeparture {
                     depId,
                     tour_id,
                     is_civitatis
-                }, tourLocale, locale, staticCode) {
+                }, tourLocale, locale, staticCode, date) {
         this.staticCode = staticCode
         this.loading = false;
         this.edit = depId;
@@ -138,10 +138,7 @@ class EditDeparture {
         this.cancelMessage = '';
         this.oldSubVendor = subVendor;
         this.openModalDepartureList = false;
-        this.date = {
-            month: null,
-            year: null,
-        }
+        this.date = date
         this.selectedDay = null;
         makeAutoObservable(this, {}, {autoBind: true})
 
@@ -359,6 +356,9 @@ export default class CheckoutStore {
         makeAutoObservable(this, {}, {autoBind: true})
     }
 
+    toggleGlobalLoading(value) {
+        this.globalLoading = value;
+    }
     * fetchCheckoutDetails(staticCode) {
         this.globalLoading = true;
         const url = `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/${staticCode}?locale=${this.locale}`;
@@ -368,7 +368,13 @@ export default class CheckoutStore {
         this.pageOptions = data.pageOptions;
         this.checkoutInfo = new CheckoutInfo(data);
         this.isContactGuide = !data.is_civitatis
-        this.editDeparture = new EditDeparture(data, this.tourLocale, this.locale, staticCode)
+
+        const initDateCalendar = this.editDeparture?.date ?? {
+            month: null,
+            year: null,
+        };
+
+        this.editDeparture = new EditDeparture(data, this.tourLocale, this.locale, staticCode, initDateCalendar)
         if (this.isActiveCheckout) {
             this.editDeparture.fetchDepartures();
         }

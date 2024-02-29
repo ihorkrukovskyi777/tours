@@ -1,4 +1,4 @@
-import {days, defaultNS, fallbackLng, locales, months} from "@/i18n/settings";
+import {days, defaultNS, locales, months} from "@/i18n/settings";
 
 class I18n {
     locale = null
@@ -35,6 +35,10 @@ class I18n {
         }
     }
 
+    setLocale(locale) {
+        this.locale = locale;
+    }
+
     init(locale) {
         this.translates = Object.fromEntries(locales.map(locale => [locale, {}]));
         this.locale = locale;
@@ -48,7 +52,12 @@ class I18n {
         return Object.fromEntries(months.map(val => [val, this.t(val)]))
     }
 
-    async getFetchDefault() {
+    async getFetchDefault(locale = null) {
+
+        if (locale !== null && locales.includes(locale)) {
+            this.locale = local
+        }
+
         if (this.translates[this.locale] && this.translates[this.locale][defaultNS]) {
             return
         }
@@ -56,11 +65,20 @@ class I18n {
         if (this.translates[this.locale] === undefined) {
             this.translates[this.locale] = {defaultNS: {}};
         }
-        const res = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${this.locale}/${defaultNS}`, {next: {revalidate: 60 * 5}})
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${this.locale}/${defaultNS}`,
+            {
+                next: {
+                    revalidate: 60 * 60,
+                    tags: ['translates']
+                }
+            }
+        )
 
         this.translates[this.locale][defaultNS] = await res.json();
 
     }
+
     tReplace(key, value, locale = this.locale, ns = defaultNS) {
         let label = '';
         if (!this.translates[locale] || !this.translates[locale][ns] || !this.translates[locale][ns][key]) {

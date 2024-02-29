@@ -36,6 +36,7 @@ export default async function Page({params: {locale, slug, tour}}) {
     const page = await data.json();
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
+    i18n.setLocale(locale)
     await i18n.getFetchDefault();
     if (page.statusCode === 404) {
         notFound();

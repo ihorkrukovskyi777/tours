@@ -11,7 +11,17 @@ import {toJS} from "mobx";
 import "@/entities/calendar/ui/modal-booking/step-1/style.css";
 
 export default observer(function ChooseDate({ i18n }) {
-    const {checkoutInfo: { tourName }, editDeparture: { changePeopleNumber, numberPeople, departures, changeMonthAndYearn,  setSelectedDay, toggleModalDepartureList, openModalDepartureList }} = useContext(CheckoutStoreContext);
+    const {
+        checkoutInfo: { tourName },
+        editDeparture: {
+            changePeopleNumber,
+            numberPeople,
+            departures,
+            changeMonthAndYearn,
+            setSelectedDay,
+            toggleModalDepartureList,
+            openModalDepartureList }
+    } = useContext(CheckoutStoreContext);
 
     return (
         <div className={`step-1 `}>

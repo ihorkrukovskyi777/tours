@@ -60,7 +60,7 @@ export default observer(function EditModalTour({i18n}) {
                             <strong>{i18n.number_people}:</strong>
                             <div>{editDeparture.numberPeople}</div>
                         </div>
-                        <FormEdit i18n={i18n} isOpened={false} close={toggleModalEdit}/>
+                        <FormEdit i18n={i18n}/>
                     </div>
                 </div>
             </div>

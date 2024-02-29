@@ -32,9 +32,8 @@ export default function GoogleScript({ locale }) {
             if(typeof window === 'undefined') {
                 return;
             }
-            console.log('loadScript', 'loadScript')
-
-            window.removeEventListener('scroll', loadScript);
+            console.log(22222)
+            window.removeEventListener('touchmove', loadScript);
             window.removeEventListener('mousemove', loadScript);
             setLoad(true);
 
@@ -43,9 +42,10 @@ export default function GoogleScript({ locale }) {
             document.body.append(script)
         }
         window.addEventListener('mousemove', loadScript)
+        window.addEventListener('touchmove', loadScript)
 
         return () => {
-            window.removeEventListener('scroll', loadScript)
+            window.removeEventListener('touchmove', loadScript)
             window.removeEventListener('mousemove', loadScript)
             const oldElement = document.querySelectorAll(`[src='https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}']`)
             if(oldElement?.length) {
