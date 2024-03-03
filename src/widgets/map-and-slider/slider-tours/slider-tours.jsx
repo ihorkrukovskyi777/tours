@@ -28,7 +28,7 @@ const CounterSliders = ({currentIndexPlace, sliders}) => {
 export default observer(function SliderTours({data, i18n = {}, hideBottom = false}) {
     const {
         map: {
-            sliders,
+            slidersFormatted,
             selectedPlaceId,
             currentIndexPlace,
             setOpenMarker,
@@ -37,14 +37,14 @@ export default observer(function SliderTours({data, i18n = {}, hideBottom = fals
 
     const onlyWidth = useWindowWidth()
     const countSliderSettings = onlyWidth > 767 ? 3 : 1;
-    if (sliders.length <= countSliderSettings) {
+    if (slidersFormatted.length <= countSliderSettings) {
         return (
             <>
-                <CounterSliders currentIndexPlace={currentIndexPlace} sliders={sliders}/>
+                <CounterSliders currentIndexPlace={currentIndexPlace} sliders={slidersFormatted}/>
                 <div className="slider_block swiper-less-3">
                     <div className="swiper-wrapper">
 
-                        {sliders.map(slider => {
+                        {slidersFormatted.map(slider => {
                             return (
                                 <div className={`swiper-slide ${slider.id === selectedPlaceId ? 'active' : ''}`}
                                      key={slider.id} onClick={() => setOpenMarker(slider.id, false)}>
@@ -60,8 +60,15 @@ export default observer(function SliderTours({data, i18n = {}, hideBottom = fals
 
     return (
         <>
-            <CounterSliders currentIndexPlace={currentIndexPlace} sliders={sliders}/>
-            {!(sliders.length <= countSliderSettings) ? <Sliders hideBottom={hideBottom} i18n={i18n} sliders={toJS(sliders)} initialSlide={1} selectedTourId={null}/> : null }
+            <CounterSliders currentIndexPlace={currentIndexPlace} sliders={slidersFormatted}/>
+            {!(slidersFormatted.length <= countSliderSettings) ?
+                <Sliders
+                    hideBottom={hideBottom}
+                    i18n={i18n}
+                    initialSlide={1}
+                />
+                : null
+            }
         </>
     )
 })

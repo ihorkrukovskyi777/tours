@@ -56,9 +56,6 @@ export default function InternationalInput({
             <div className="wrap-input" style={{width: inputCountryWidth}}>
 
                 <IntlTelInput
-                    onFocus={() => {
-                        console.log('foucs')
-                    }}
                     onChangeCountry={(val) => {
 
                         const find = window.intlTelInputGlobals.getCountryData().find(item => item.iso2 === val);
