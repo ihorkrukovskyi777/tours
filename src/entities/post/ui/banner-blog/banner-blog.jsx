@@ -1,12 +1,12 @@
 import IcloudImage from '@/shared/ui/icloud-image';
 import DefaultImage from '@/assets/images/default-image.jpeg';
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import Image from 'next/image';
 import './style.css';
 
 
 export default async function BannerBlog({locale, title , image=""}) {
-    await i18n.getFetchDefault()
+    const i18n = await useDefaultI18n(locale);
     return (
         <section className='top-banner-blog'>
             <div className='container'>

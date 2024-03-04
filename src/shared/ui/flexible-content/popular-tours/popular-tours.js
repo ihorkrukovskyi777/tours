@@ -1,9 +1,9 @@
 import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import {fetchFlexibleContent} from "@/shared/api/flexible-content";
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 
 export default async function PopularTours({locale, id, index, flexibleKey , size = 'small'}) {
-    await i18n.getFetchDefault();
+    const i18n = await useDefaultI18n(locale);
     const data = await fetchFlexibleContent(id, locale, flexibleKey, index)
     if(!data?.tours) {
         return null;

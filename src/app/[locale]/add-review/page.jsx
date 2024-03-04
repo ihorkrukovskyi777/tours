@@ -1,4 +1,4 @@
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import FormReview from "@/entities/add-review/ui/form";
@@ -13,7 +13,7 @@ export default async function Page({params: {locale, }, searchParams}) {
     )
     const pageData = await data.json();
 
-    await i18n.getFetchDefault()
+    const i18n = await useDefaultI18n(locale);
 
     if(!searchParams.code) {
         notFound()

@@ -19,10 +19,10 @@ import TextBlocks from "@/widgets/text-blocks";
 import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
-import i18n from "@/i18n/server-locales";
 import PlaceSchema from "@/shared/schema/place";
 import ProductSchema from "@/shared/schema/product";
 import EventsSchema from "@/shared/schema/events";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 const ProviderMap = dynamic(
     () => import("@/widgets/map-and-slider/provider"),
     {ssr: false}
@@ -36,11 +36,11 @@ export default async function Page({params: {locale, slug, tour}}) {
     const page = await data.json();
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
-    i18n.setLocale(locale)
-    await i18n.getFetchDefault();
+    const i18n = await useDefaultI18n(locale);
     if (page.statusCode === 404) {
         notFound();
     }
+
 
     const languages = page.languages?.map(item => {
         const city = page.cityLanguages.find(city => city.locale === item.locale)
@@ -48,7 +48,7 @@ export default async function Page({params: {locale, slug, tour}}) {
             return null
         return ({...item, slug: `${city.slug}/${PATH_TOURS}/${item.slug}`})
     }).filter(Boolean);
-    let breadcrumbsTitle = i18n.t('Free Walking Tour Breadcrumbs')
+    let breadcrumbsTitle = i18n.t('Free Tour Breadcrumbs')
     breadcrumbsTitle = breadcrumbsTitle.replace('Breadcrumbs', '')
     const pagesBreadcrumbs = [
         {slug: '', title: breadcrumbsTitle},

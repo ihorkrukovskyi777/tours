@@ -1,8 +1,8 @@
-import i18n from "@/i18n/server-locales";
 import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of-language";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 
 export default async function I18nChangeOfLanguage({locale, title, ...props}) {
-    await i18n.getFetchDefault();
+    const i18n = await useDefaultI18n(locale)
     return (
         <ChangeOfLanguage
             {...props}

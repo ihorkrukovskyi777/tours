@@ -1,9 +1,9 @@
 import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import {fetchGuideTours} from "@/entities/guide/api";
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 
 export default async function GuideTours({id, locale, slug, brandName = ''}) {
-    await i18n.getFetchDefault()
+    const i18n = await useDefaultI18n(locale);
     let tours = await fetchGuideTours(id, locale);
     if (!tours?.length) {
         return null

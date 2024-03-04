@@ -1,8 +1,8 @@
 import ContactUs from "@/shared/ui/flexible-content/contact-us/contact-us";
-import i18n from "@/i18n/server-locales/index"
 import {fetchLocaleIdContactForm} from "@/shared/api/contact-form";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 export default async function SrrContactUs ({ locale }) {
-    await i18n.getFetchDefault();
+    const i18n = await useDefaultI18n(locale)
 
     const idForm = await fetchLocaleIdContactForm(212, locale);
     return (

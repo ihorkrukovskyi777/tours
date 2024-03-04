@@ -1,5 +1,4 @@
 import {allGuides} from '@/entities/api';
-import i18n from "@/i18n/server-locales";
 import {hrefSubVendor} from "@/shared/helpers/url";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -10,7 +9,7 @@ const LazyGuidesRow = dynamic(
 
 export default async function Guides({title, id, locale, type}) {
     const data = await allGuides(id, type, locale);
-    await i18n.getFetchDefault();
+
     if (!data.subVendors?.length) {
         return null
     }

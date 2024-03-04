@@ -1,9 +1,7 @@
 import FullStarSvg from "@/assets/images/svg/full-star";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
-import Image from "next/image";
 import {useContext} from "react";
 import {observer} from "mobx-react-lite";
-import {useTranslation} from "@/i18n/client";
 
 export default observer(function PersonInfo({ i18n }) {
     const { checkoutInfo } = useContext(CheckoutStoreContext);

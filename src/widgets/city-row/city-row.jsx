@@ -6,6 +6,5 @@ export default async function CityRow({id, locale = 'en', title}) {
         return null;
     }
 
-    console.log(cities, 'cities')
-    return <RowCities  cities={cities.map(city => ({...city, title: `Free Tours ${city.title}`}))} title={title}/>
+    return <RowCities locale={locale} cities={cities.map(city => ({...city, title: `Free Tours ${city.title}`}))} title={title}/>
 }

@@ -1,10 +1,10 @@
 import {fetchFlexibleContent} from "@/shared/api/flexible-content";
 import Faqs from "@/shared/ui/faqs/faqs";
 import FaqSchema from "@/shared/schema/faq";
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 
 export default async function FaqSection({locale, id, index, flexibleKey}) {
-    await i18n.getFetchDefault();
+    const i18n = await useDefaultI18n(locale)
 
     const questions = await fetchFlexibleContent(id, locale, flexibleKey, index, 60*60)
     if (!Array.isArray(questions)) {

@@ -2,13 +2,13 @@ import Banner from '@/shared/ui/banner';
 import Reviews from '@/widgets/latest-reviews/item/reviews';
 import LanguageImages from "@/shared/ui/languages/language-images";
 import ClockSvg from '@/assets/images/svg/clock-svg';
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import {getBannerData} from "@/entities/api";
 import './style.css';
 
 
 export default async function BannerTour({id, locale, isMobile}) {
-    await i18n.getFetchDefault()
+    const i18n = await useDefaultI18n(locale);
     const tour = await getBannerData(id, locale, 'tour')
     let labelHour = tour.departure.durations?.find(val => val >= 2) ? 'Hours' : 'Hour';
 

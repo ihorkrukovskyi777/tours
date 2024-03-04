@@ -1,9 +1,9 @@
 import {allCitiesData} from "@/entities/api";
 import Link from "next/link";
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import './style.css';
 export default async function AllCities({ locale }) {
-    await i18n.getFetchDefault()
+    const i18n = await useDefaultI18n(locale);
     const citiesAll = await allCitiesData(locale);
     return (
         <section className="all_cities">

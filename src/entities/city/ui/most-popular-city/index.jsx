@@ -6,5 +6,5 @@ export default async function MostPopularCity({id, locale = 'en' ,size= 'small'}
         return null;
     }
     const cities = data.cities.map(city => ({...city, title: `Free Tours ${city.title}` }))
-    return <RowCities cities={cities} title={data?.title} sizeSection={size}/>
+    return <RowCities locale={locale} cities={cities} title={data?.title} sizeSection={size}/>
 }

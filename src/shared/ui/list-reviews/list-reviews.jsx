@@ -3,10 +3,8 @@ import {useState} from "react";
 import {useParams} from "next/navigation";
 import ReviewCard from "@/widgets/latest-reviews/reviews-card";
 import Button from "@/shared/ui/selectors/button/button";
-import {useTranslation} from "@/i18n/client";
 import {getReviews} from "@/entities/api";
 export default function ListReviews({i18n, reviews, total, limit, id, type, showTitle = true}) {
-    const {t} = useTranslation();
     const params = useParams();
     const [moreReviews, setMoreReviews] = useState({
         offset: limit,
@@ -28,7 +26,6 @@ export default function ListReviews({i18n, reviews, total, limit, id, type, show
                         return (
                             <ReviewCard
                                 showTitle={showTitle}
-                                reviewsTitle={t('Reviews')}
                                 id={item.id}
                                 key={item.id}
                                 title={item.title}

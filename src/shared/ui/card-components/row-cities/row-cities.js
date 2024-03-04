@@ -1,10 +1,10 @@
 import {fallbackLng} from "@/i18n/settings";
 import Card from "@/shared/ui/card-components/card/card";
 import Reviews from "@/widgets/latest-reviews/item/reviews";
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import './style.css'
-export default async function RowCities({ cities = [], title , sizeSection}) {
-    await i18n.getFetchDefault();
+export default async function RowCities({ locale, cities = [], title , sizeSection}) {
+    const i18n = await useDefaultI18n(locale);
 
     if(!cities?.length) {
         return null;

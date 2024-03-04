@@ -11,7 +11,6 @@ export default async function BannerHome({locale, id, index, flexibleKey, isMobi
     if (!data) {
         return null
     }
-    console.log(data.image, isMobile)
 
     let image = isMobile ? data?.image?.mobileImage : data.image?.image;
 

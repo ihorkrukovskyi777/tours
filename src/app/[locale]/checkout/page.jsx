@@ -3,8 +3,9 @@ import Checkout from "@/entities/checkout/main";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import TourRow from "@/widgets/tour-row/tour-row";
 import {notFound} from "next/navigation";
-import i18n from "@/i18n/server-locales";
-import i18nGenitive from "@/i18n/server-locales/genitive";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
+import useGenitiveI18n from "@/i18n/hooks/useGenitiveI18n";
+
 
 export default async function CheckoutPage({params: {locale}, searchParams}) {
 
@@ -26,8 +27,11 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
     if (page.statusCode === 404 || typeof page.id !== 'number') {
         notFound();
     }
-    await i18n.getFetchDefault();
-    await i18nGenitive.getFetchDefault();
+    const [i18n, i18nGenitive] = await Promise.all([
+        useDefaultI18n(locale),
+        useGenitiveI18n(locale),
+    ])
+
     const currentPage = page.languages.find(item => item.locale === locale);
 
     const translates = {

@@ -15,14 +15,14 @@ import {PATH_GUIDES} from "@/shared/constants/route";
 import ProductSchemaGuide from "@/shared/schema/guide/product";
 import PlaceGuideSchema from "@/shared/schema/guide/place";
 import EventsGuideSchema from "@/shared/schema/guide/events";
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 export default async function PageGuide({params: {name, locale}}) {
     const [pageSub, languages] = await Promise.all([
         fetchSubVendorBySlug(name),
         getPageLanguage()
     ])
 
-    await i18n.getFetchDefault();
+    const i18n = await useDefaultI18n(locale);
 
     if (pageSub?.statusCode === 404) {
         notFound();

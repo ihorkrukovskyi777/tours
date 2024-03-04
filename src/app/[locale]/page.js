@@ -3,9 +3,9 @@ import dynamic from "next/dynamic";
 import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/generator-seo";
 import CollectionPageSchema from "@/shared/schema/collection-page";
-import i18n from "@/i18n/server-locales";
 import {headers} from "next/headers";
 import {isMobileCheck} from "@/shared/helpers";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 const ThanksReviewModal = dynamic(
     () => import("@/entities/add-review/ui/thanks-review-modal"),
     {ssr: false}
@@ -28,7 +28,7 @@ export default async function Home({params: {locale}, ...props}) {
         notFound();
     }
     const {languages} = data;
-    await i18n.getFetchDefault()
+    const i18n = await useDefaultI18n(locale);
 
     const isAddReview = !!props.searchParams?.success_review_add
     return (

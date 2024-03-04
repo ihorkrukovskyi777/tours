@@ -34,7 +34,6 @@ export default async function CancelPage({params: {locale}, searchParams}) {
     else if (data.statusCode === 404 || typeof data.id !== 'number') {
         notFound();
     }
-    console.log(data, 'data')
     return (
         <>
             <div className="container">

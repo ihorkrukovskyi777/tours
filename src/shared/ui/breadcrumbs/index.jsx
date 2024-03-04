@@ -1,8 +1,7 @@
 import Link from "next/link";
-import {createTranslation} from "@/i18n/server";
 import {getHrefLocale} from "@/i18n/get-href-locale";
-import './style.css';
 import {Fragment} from "react";
+import './style.css';
 
 export default async function Breadcrumbs({locale, pages}) {
     return (

@@ -32,7 +32,6 @@ export default function GoogleScript({ locale }) {
             if(typeof window === 'undefined') {
                 return;
             }
-            console.log(22222)
             window.removeEventListener('touchmove', loadScript);
             window.removeEventListener('mousemove', loadScript);
             setLoad(true);

@@ -2,7 +2,7 @@ import {picketToursBox} from "@/entities/api";
 import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import TextQuote from "@/widgets/text-quote";
 import dynamic from "next/dynamic";
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 
 const ProviderMap = dynamic(
     () => import("@/widgets/map-and-slider/provider"),
@@ -10,7 +10,7 @@ const ProviderMap = dynamic(
 )
 export default async function MostPopularTours({id, locale, slug, title = '' , size= 'small'}) {
     let data = await picketToursBox(id, locale);
-    await i18n.getFetchDefault();
+    const i18n = await useDefaultI18n(locale);
 
     if(!Array.isArray(data.tours)) {
         return null;

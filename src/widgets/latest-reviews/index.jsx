@@ -1,12 +1,12 @@
 import {getReviews} from "@/entities/api";
 import ListReviews from "@/shared/ui/list-reviews/list-reviews";
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 
 import './style.css';
 
 
 export default async function LatestReviews({id, locale, type='city', showTitle= true}) {
-    await i18n.getFetchDefault();
+    const i18n = await useDefaultI18n(locale)
     const limit = 9
     const reviews = await getReviews(id, locale, limit, 0, type)
     if (!reviews?.data?.length) {

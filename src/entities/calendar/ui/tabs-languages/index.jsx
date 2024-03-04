@@ -1,7 +1,6 @@
 'use client';
 import {Fragment, memo, useState} from "react";
 import Loader from '../../../../shared/ui/loaders/default-loader';
-import {useTranslation} from "@/i18n/client";
 import {countryLocales} from "@/i18n/locales";
 import FlagsComponents from "@/shared/ui/flags";
 import './style.css';

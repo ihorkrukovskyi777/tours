@@ -2,12 +2,12 @@ import Banner from '@/shared/ui/banner';
 import BannerButtons from "@/entities/city/ui/banner-buttons/banner-buttons";
 import Reviews from '@/widgets/latest-reviews/item/reviews';
 import {getBannerData} from "@/entities/api";
-import i18n from "@/i18n/server-locales";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import './style.css';
 
 
 export default async function BannerCity({id, locale, size, isMobile = false, pageTitle = null}) {
-    await i18n.getFetchDefault();
+    const i18n = await useDefaultI18n(locale);
     const {attachment, title, rating, reviews} = await getBannerData(id, locale, 'city', 60 * 10)
 
     let titleAndCity = title ?? '';

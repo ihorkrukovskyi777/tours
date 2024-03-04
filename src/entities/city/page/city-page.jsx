@@ -1,6 +1,4 @@
 import {Suspense} from "react";
-
-import i18n from "@/i18n/server-locales";
 import BannerCity from "@/entities/city/ui/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import MostPopularTours from "@/entities/city/ui/most-popular-tours";
@@ -15,11 +13,12 @@ import Footer from "@/shared/ui/layouts/footer/footer";
 import PlaceSchema from "@/shared/schema/place";
 import ProductSchema from "@/shared/schema/product";
 import EventsSchema from "@/shared/schema/events";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
-    await i18n.getFetchDefault();
+    const i18n = await useDefaultI18n(locale);
 
-    let breadcrumbsTitle = i18n.t('Free Tour Breadcrumbs')
-    breadcrumbsTitle = breadcrumbsTitle.replace('Breadcrumbs', '')
+    let breadcrumbsTitle = i18n.t('Free Walking Tour Breadcrumbs')
+    breadcrumbsTitle = breadcrumbsTitle.replace(' Breadcrumbs', '')
     return (
         <>
             <BannerCity

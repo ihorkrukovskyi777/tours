@@ -8,11 +8,9 @@ import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {observer} from "mobx-react-lite";
 import EditModalTour from "@/entities/checkout/ui/edit-tour-modal";
 import Loader from "@/shared/ui/loaders/default-loader";
-import {useTranslation} from "@/i18n/client";
 import "./style.css";
 
 export default observer(function CheckoutSection({i18n, title}) {
-    const {t} = useTranslation()
     const {checkoutInfo, isActiveCheckout, editDeparture, globalLoading} = useContext(CheckoutStoreContext);
     return (
         <>
