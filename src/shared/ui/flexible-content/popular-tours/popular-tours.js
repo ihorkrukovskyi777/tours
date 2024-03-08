@@ -14,6 +14,7 @@ export default async function PopularTours({locale, id, index, flexibleKey , siz
             title={data.title}
             sizeSection={size}
             i18n={{
+                reviews: i18n.t('Reviews'),
                 duration: i18n.t('Duration'),
                 hours: i18n.t('Hours'),
                 hour: i18n.t('Hour'),

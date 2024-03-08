@@ -1,10 +1,10 @@
 "use client";
+import {useContext, useEffect} from "react";
 import Button from "@/shared/ui/selectors/button/button";
 import {useSearchParams, useParams} from "next/navigation";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import {observer} from "mobx-react-lite";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
-import {useContext} from "react";
 
 export default observer(function ButtonsInfo({i18n}) {
     const params = useParams();
@@ -16,6 +16,14 @@ export default observer(function ButtonsInfo({i18n}) {
     } = useContext(CheckoutStoreContext);
     const searchParams = useSearchParams();
     const code = searchParams.get("code");
+
+    useEffect(() => {
+        const isOpenModal = searchParams.get("open_contact_modal");
+
+        if(isOpenModal === '1') {
+            toggleModalMessage();
+        }
+    }, [])
 
     return (
         <div className="btn_wrap">
