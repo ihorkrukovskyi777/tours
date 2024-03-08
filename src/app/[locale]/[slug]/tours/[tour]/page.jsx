@@ -17,7 +17,7 @@ import CityRow from "@/widgets/city-row/city-row";
 import TourRow from "@/widgets/tour-row/tour-row";
 import TextBlocks from "@/widgets/text-blocks";
 import {fallbackLng} from "@/i18n/settings";
-import {generatorSeo} from "@/shared/helpers/generator-seo";
+import {generatorSeo} from "@/shared/helpers/seo/generator-seo";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import PlaceSchema from "@/shared/schema/place";
 import ProductSchema from "@/shared/schema/product";

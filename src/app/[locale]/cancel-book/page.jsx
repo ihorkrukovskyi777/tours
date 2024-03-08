@@ -1,8 +1,10 @@
 import {notFound, redirect} from "next/navigation";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
+import generateSeoPage from "@/shared/helpers/seo/generate-seo-page";
 import '@/entities/post/ui/post-content/style.css';
 import './style.css'
+
 export default async function CancelPage({params: {locale}, searchParams}) {
     let cancelBook = await fetch(
         `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/cancel-booking?locale=${locale}`,
@@ -45,4 +47,9 @@ export default async function CancelPage({params: {locale}, searchParams}) {
             <Footer locale={locale}/>
         </>
     )
+}
+export async function generateMetadata({ params : {locale} }) {
+    const slug = 'cancel-book';
+
+    return await generateSeoPage(slug, locale);
 }
