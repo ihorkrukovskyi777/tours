@@ -27,7 +27,7 @@ export default function ChangeOfLanguage({i18n, languages, title}) {
         const param = index === 0 ? '?' : '&';
         return `${param}${key}=${value}`
     })
-    queries = queries.join(',')
+    queries = queries.join('')
     const getHref = (locale) => locale === fallbackLng ? '' : `/${locale}`
 
     if(!languagesFilter.length) {
