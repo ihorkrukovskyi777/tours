@@ -8,7 +8,8 @@ import {ServiceDate} from "@/shared/service/service-date";
 import {PATH_TOURS} from "@/shared/constants/route";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import './style.css';
-export default function RowTours({tours, title = '', i18n= {} , sizeSection = 'small'}) {
+
+export default function RowTours({tours, title = '', i18n = {}, sizeSection = 'small'}) {
     return (
         <section className={`most_popular_tour ${sizeSection}`}>
             <div className=" container">
@@ -40,7 +41,7 @@ export default function RowTours({tours, title = '', i18n= {} , sizeSection = 's
                                         />
                                     }
                                 >
-                                    {item.departure?.nextDeparture ?
+                                    {item.departure?.locales?.length ?
                                         <div className=" item_bottom">
                                             <div className=" elem">
                                                 <Image
@@ -53,14 +54,15 @@ export default function RowTours({tours, title = '', i18n= {} , sizeSection = 's
                                                 {item.departure?.durations?.length ?
                                                     <span>{[...new Set(item.departure.durations)].join('-')} {i18n[labelHour]}</span> : null}
                                             </div>
-
-                                            <div className=" elem">
-                                                <Image src={CalendarImage} alt=" clock" width={18}/>
-                                                <span className=" second">
-                                                {i18n.next_tour}: {showTime}
-                                            </span>
-                                                <span>{item.lastDeparture}</span>
-                                            </div>
+                                            {item.departure?.nextDeparture ?
+                                                <div className=" elem">
+                                                    <Image src={CalendarImage} alt=" clock" width={18}/>
+                                                    <span className=" second">
+                                                        {i18n.next_tour}: {showTime}
+                                                    </span>
+                                                    <span>{item.lastDeparture}</span>
+                                                </div> :
+                                                null}
 
                                         </div>
                                         : <div className=" item_bottom"><p>{i18n.not_departure}</p></div>}

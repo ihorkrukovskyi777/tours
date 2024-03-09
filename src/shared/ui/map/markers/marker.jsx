@@ -51,7 +51,7 @@ export default observer(function MarkerDefault({icon , status , isActive, colors
         <>
             {isActive ?
                 <div className={'icon active'}>
-                    <IcloudImage src={icon} size="500x500" alt={icon} width={64} height={64} />
+                    <IcloudImage src={icon} size="500x500" alt={icon} width={512} height={512} />
                     <div className="circles">
                         {colors.reverse().map(color => {
                             return <span key={color} style={{background: color}}></span>

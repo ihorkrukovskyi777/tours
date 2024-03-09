@@ -56,7 +56,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
                     <CalendarProvider
                         nameDayWeek={nameDayWeek}
                         i18n={translate}
-                        title={i18n.tReplace('%s Tour Calendar', title)}
+                        title={title}
                         locale={locale}
                         type={type}
                         id={id}

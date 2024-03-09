@@ -277,6 +277,9 @@
 .step-3 span {
     margin-right: 3px;
 }
+.step-3 .red {
+    color: red;
+}
 .step-3 .time-current-modal {
     font-size: 20px;
     font-family: var(--fontMedium);

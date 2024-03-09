@@ -4,7 +4,6 @@ import { defaultNS, } from "@/i18n/settings";
 import {cache} from "react";
 
 const serverContext = cache((locale) => {
-    console.log('serverContext useDefaultI18n')
     return new I18nDefault(defaultNS, locale);
 })
 export default async function useDefaultI18n(locale) {

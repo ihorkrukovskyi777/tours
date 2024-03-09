@@ -171,7 +171,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                 <div className="item-form">
                     <label htmlFor="">
                         <span>{i18n.first_name}<span className="red">*</span></span>
-                        <input type='text' name='firstName' onChange={handleChange}/>
+                        <input type='text' name='firstName' required onChange={handleChange}/>
                         {showError && errors.firstName.length > 0 ? <span className='error-message'>{errors.firstName}</span> : null}
                     </label>
                 </div>

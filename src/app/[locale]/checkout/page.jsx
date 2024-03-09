@@ -5,6 +5,7 @@ import TourRow from "@/widgets/tour-row/tour-row";
 import {notFound} from "next/navigation";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import useGenitiveI18n from "@/i18n/hooks/useGenitiveI18n";
+import generateSeoPage from "@/shared/helpers/seo/generate-seo-page";
 
 
 export default async function CheckoutPage({params: {locale}, searchParams}) {
@@ -109,15 +110,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
 
 export async function generateMetadata({params: {locale}}) {
 
-    const pageType = await fetch(
-        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/checkout?locale=${locale}`,
-        {next: {revalidate: 0}}
-    )
-    const data = await pageType.json();
+    const slug = 'checkout';
 
-    const find = data?.languages.find(seo => seo.locale === locale);
-    return {
-        title: find?.title ?? 'Checkout',
-        robots: {index: false, follow: false},
-    }
+    return await generateSeoPage(slug, locale);
 }

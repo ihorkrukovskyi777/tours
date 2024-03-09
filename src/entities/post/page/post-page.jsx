@@ -8,7 +8,7 @@ export default async function PostPage({ languages, title, id , locale}) {
 
     const data = await singlePost(id);
     const {attachment , content} = data;
-
+    console.log(content, 'content')
     function addParagraphTags(text) {
         let paragraphs = text.split('\n');
         let paragraphsWithTag = paragraphs.map(function(paragraph) {

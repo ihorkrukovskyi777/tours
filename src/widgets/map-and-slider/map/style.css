@@ -11,8 +11,8 @@
 }
 
 .leaflet-zoom-animated.leaflet-interactive .icon.active {
-    width: 63px;
-    height: 63px;
+    width: 70px;
+    height: 70px;
 }
 
 .map_block .leaflet-div-icon {
@@ -94,4 +94,11 @@
 	width: 70px;
 	height: 70px;
 	border-radius: 100%;
+}
+
+@media (max-width: 767px) {
+    .leaflet-zoom-animated.leaflet-interactive .icon.active {
+        width: 54px;
+        height: 54px;
+    }
 }

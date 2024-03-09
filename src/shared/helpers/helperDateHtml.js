@@ -26,7 +26,7 @@ export class HelperDateHtml extends ServiceDate {
         return `
                ${days[this.day]},
                 ${this.dayNum}
-               ${months[this.month]}
+               ${months[this.month]},
                ${this.time}
             `;
     }
