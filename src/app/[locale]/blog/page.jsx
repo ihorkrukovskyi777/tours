@@ -5,7 +5,7 @@ import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-
 import Footer from "@/shared/ui/layouts/footer/footer";
 import {seoLocales} from "@/shared/constants/locales-seo";
 export default async function BlogPage({ params: {locale} }) {
-    const posts = await blogPosts();
+    const posts = await blogPosts(locale);
 
     const languages = [{ locale: 'en', slug: 'blog', id: 1}, { locale: 'es', slug: 'blog', id: 2}]
     return (

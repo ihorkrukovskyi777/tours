@@ -116,7 +116,9 @@ export default observer(function FormEdit({i18n}) {
                 {validForm.email ? <span className='error-message'> {i18n.errors[validForm.email]} </span> : null}
                 <EditSvg/>
             </div>
-            {Array.isArray(error) ? <ul>{error.map((value, index) => <li key={index}>{value}</li>)}</ul> : null}
+            {Array.isArray(error) ? <ul>{error.map((value, index) => {
+                return  <li style={{margin: '10px 0', color: 'red'}} key={index}>{value}</li>
+            })}</ul> : null}
             <Button customClass='submit red'>{i18n.save}</Button>
         </form>
     )

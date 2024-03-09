@@ -51,7 +51,10 @@
     line-height: 1.22;
     margin: 25px 0 0;
 }
-
+.post_content figure img {
+    display: block;
+    margin: 20px 0;
+}
 /* Slider */
 .post_content .slider_wrap{
     margin-top: 30px;

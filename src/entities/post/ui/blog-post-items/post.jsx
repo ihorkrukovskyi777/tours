@@ -1,22 +1,26 @@
-'use client'
 import IcloudImage from '@/shared/ui/icloud-image';
 import Link from "next/link";
+import clip from "text-clipper";
+import {next} from "@wordpress/shortcode";
 import './style.css';
 
 export default function Post({data}) {
     const { title , slug , excerpt , attachment } = data;
-    const textWithoutCaptions = excerpt.replace(/\[(\S+)[^\]]*][^\[]*\[\/\1\]/g, '');
-    const truncatedText = textWithoutCaptions;
 
-    function text(paragraph, countWords) {
-        let words = paragraph.split(' ');
-        let f = words.slice(0, countWords);
-        return f.join(' ')
+    let replaceShortCode = excerpt;
+    let index = 0;
+    while (true) {
+        const shortCode = next('caption',replaceShortCode, index)
+        if(!shortCode) {
+            break
+        }
+
+        if(shortCode.shortcode.tag === 'caption') {
+            replaceShortCode = replaceShortCode.replace(shortCode.content, ``);
+        }
+        index = shortCode.index+1
     }
-
-    let paragraph = truncatedText;
-    let result = text(paragraph, 70) + '...';
-
+    const content =  clip(replaceShortCode, 414, { html: true, stripTags : [ "img" ,  "svg" ] });
     return (
         <div className="single-post">
             <h3>
@@ -24,10 +28,10 @@ export default function Post({data}) {
             </h3>
             <div className="single-post-img">
                 <Link href={slug}>
-                    {attachment.src ? <IcloudImage src={attachment.src} width={800} height={550} alt={attachment.alt ? attachment.alt : 'img'} /> : null }
+                    {attachment.src ? <IcloudImage src={attachment.src} width={1920} height={500} alt={attachment.alt ? attachment.alt : 'img'} /> : null }
                 </Link>
             </div>
-            <div className="single-post-text" dangerouslySetInnerHTML={{ __html: result ?? ''}}></div>
+            <div className="single-post-text" dangerouslySetInnerHTML={{ __html: content ?? ''}}></div>
         </div>
     )
 }

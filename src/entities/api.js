@@ -152,10 +152,10 @@ export const allGuides = async (id, type = 'city', locale = 'en') => {
 }
 
 
-export const blogPosts = async () => {
+export const blogPosts = async (locale) => {
     try {
         const res = await fetch(
-            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/blog/last-posts`,
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/blog/last-posts?locale=${locale}`,
             {next: {revalidate: 60}}
         );
         return res.json()

@@ -3,12 +3,12 @@ import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-
 import PostContent from "@/entities/post/ui/post-content/post-content";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import { singlePost } from "@/entities/api";
+import {next} from "@wordpress/shortcode";
 import './style.css'
 export default async function PostPage({ languages, title, id , locale}) {
 
     const data = await singlePost(id);
     const {attachment , content} = data;
-    console.log(content, 'content')
     function addParagraphTags(text) {
         let paragraphs = text.split('\n');
         let paragraphsWithTag = paragraphs.map(function(paragraph) {
@@ -16,8 +16,20 @@ export default async function PostPage({ languages, title, id , locale}) {
         });
         return paragraphsWithTag.join('\n');
     }
-    const htmlTextFull = addParagraphTags(content);
+    let htmlTextFull = addParagraphTags(content);
 
+    let index = 0;
+    while (true) {
+       const shortCode = next('caption',htmlTextFull, index)
+        if(!shortCode) {
+            break
+        }
+
+        if(shortCode.shortcode.tag === 'caption') {
+            htmlTextFull = htmlTextFull.replace(shortCode.content, `<figure>${shortCode.shortcode.content}</figure>`);
+        }
+        index = shortCode.index+1
+    }
     return (
         <div className="content">
             <BannerBlog title={title} image={attachment} />
