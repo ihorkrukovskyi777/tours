@@ -2,13 +2,14 @@
 import {useEffect, useState} from "react";
 import Script from "next/script";
 import {type} from "os";
+
 export default function GoogleScript() {
 
     const [load, setLoad] = useState(false);
 
 
     const [scrollPosition, setScrollPosition] = useState(0);
-    const [documentHeight , setDocumentHeight] = useState(0)
+    const [documentHeight, setDocumentHeight] = useState(0)
     const handleScroll = () => {
         const position = window.pageYOffset;
         setScrollPosition(position);
@@ -17,28 +18,26 @@ export default function GoogleScript() {
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('scroll', handleScroll, {passive: true});
 
         return () => window.removeEventListener('scroll', handleScroll)
     }, []);
 
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
         scrollPosition > documentHeight ? document.querySelector('body').classList.add('scroll-down-captcha') : document.querySelector('body').classList.remove('scroll-down-captcha')
     }
     useEffect(() => {
 
         const loadScript = () => {
-            if(typeof window === 'undefined') {
+            if (typeof window === 'undefined') {
                 return;
             }
             window.removeEventListener('touchstart', loadScript);
             window.removeEventListener('mousemove', loadScript);
-
-            setTimeout(() => {
-                const script = document.createElement('script')
-                script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}`;
-                document.body.append(script)
-            }, 100)
+            setLoad(true);
+            const script = document.createElement('script')
+            script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}`;
+            document.body.append(script)
         }
         window.addEventListener('mousemove', loadScript)
         window.addEventListener('touchstart', loadScript)
@@ -47,10 +46,10 @@ export default function GoogleScript() {
             window.removeEventListener('touchstart', loadScript)
             window.removeEventListener('mousemove', loadScript)
             const oldElement = document.querySelectorAll(`[src='https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}']`)
-            if(oldElement?.length) {
-               window.requestAnimationFrame(() => {
-                   oldElement.forEach(elem => elem.remove());
-               })
+            if (oldElement?.length) {
+                window.requestAnimationFrame(() => {
+                    oldElement.forEach(elem => elem.remove());
+                })
             }
         }
 
