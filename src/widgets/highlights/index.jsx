@@ -10,9 +10,7 @@ export default async function Highlights({id, locale}) {
     const i18n = await useDefaultI18n(locale)
     const images = await getHighlightsImages(id);
 
-    if(!images?.length) {
-        return null;
-    }
+
     return (
         <section className="highlights">
             <div className="container">

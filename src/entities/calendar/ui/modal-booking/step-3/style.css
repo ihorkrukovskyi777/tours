@@ -398,8 +398,25 @@
 }
 
 @media(max-width: 767px){
+    .step-3 .icon-wrap,
+    .step-3 .icon-wrap svg {
+        width: 16px;
+        height: 16px;
+    }
+    .step-3 .guide-rate {
+        justify-content: flex-end;
+    }
     .step-3 .time-current-modal span.comma {
         display: none;
+    }
+    .step-3 .guide-name {
+        font-size: 16px;
+    }
+    .step-3 .guide-info {
+        margin-left: 0;
+    }
+    .step-3 .title-text {
+        font-size: 24px;
     }
     .step-3 .time-current-modal {
         display: flex;

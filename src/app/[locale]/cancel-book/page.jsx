@@ -28,7 +28,6 @@ export default async function CancelPage({params: {locale}, searchParams}) {
         {next: {revalidate: 60}}
     )
 
-    console.log(cancelBook, 'cancelBook')
 
     const data = await pageType.json();
     if(data.statusCode === 404 && locale !== 'en') {

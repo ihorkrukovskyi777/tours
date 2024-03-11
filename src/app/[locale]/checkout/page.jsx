@@ -72,7 +72,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         hour: i18n.t('Hour'),
         close: i18n.t('Close'),
         download_voucher: i18n.t('Voucher download'),
-        departure_not_available: i18n.t('Departure not available'),
+        booking_canceled: i18n.t('Booking canceled'),
         notification_wrong: i18n.t('Something went wrong, we couldn\'t change your order'),
         genitive: {
             months: {
@@ -98,9 +98,9 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
             <Checkout title={currentPage?.title} i18n={translates} locale={locale} tourLocale={checkoutData.locale}/>
             <TourRow
                 sizeSection={'small'}
-                id={checkoutData.tour_id} locale={locale}
-                title={`${i18n.t('Other Tours in')} 
-                ${checkoutData.city?.post_title}`}
+                id={checkoutData.tour_id}
+                locale={locale}
+                title={`${i18n.t('Other Tours in')} ${checkoutData.city?.post_title}`}
             />
             <I18nChangeOfLanguage locale={locale} languages={page.languages}/>
             <Footer locale={locale}/>

@@ -52,8 +52,19 @@
     font-family: var(--fontMedium);
     color: #fff;
 }
+.tour_banner_bottom_mobile .time_wrapper {
+    display: none;
+}
 @media(max-width: 767px) {
     .tour_banner {
         min-height: auto;
+    }
+    .tour_banner_bottom_mobile .time_wrapper {
+        display: flex;
+    }
+    .tour_banner_bottom_mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 }

@@ -17,3 +17,17 @@
     position: relative;
     z-index: 1;
 }
+@media (max-width: 767px) {
+    .city_banner .pick_text {
+        margin: 0 auto 8px auto;
+        max-width: 235px;
+        text-align: left;
+    }
+    .city_banner .button_custom {
+        font-size: 16px;
+        min-height: 44px;
+    }
+    .city_banner .flex-row button:last-of-type {
+        padding: 13px;
+    }
+}

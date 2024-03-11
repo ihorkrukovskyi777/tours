@@ -1,4 +1,4 @@
-import {useState, useMemo} from 'react';
+import {useState, useMemo, useRef, useEffect} from 'react';
 import classNames from 'classnames';
 import {InputMask} from '@react-input/mask';
 import {localeFormat} from "@/shared/helpers/locale";
@@ -9,7 +9,7 @@ import './style.css';
 
 export default function InternationalInput({
                                                locale, allPhoneNumbers, changeCountryCode = () => {
-    }, handleChange, valueMask = '', phoneDefault = ''
+    }, handleChange, phoneDefault = ''
                                            }) {
     let formatLanguage = localeFormat(locale);
     formatLanguage = formatLanguage === 'en' ? 'GB' : formatLanguage;
@@ -29,16 +29,33 @@ export default function InternationalInput({
     const getMask = placeholder.replace(/[0-9]/g, "_");
     const [maskView, setMaskView] = useState(getMask)
     const widthInputs = {1: 68, 2: 80, 3: 92, 4: 98, 5: 116, 6: 121};
-    const padding = 7;
     const [border, setBorder] = useState(false);
     const [inputCountryWidth, setInputCountryWidth] = useState(widthInputs[2]);
-    const [dialCodeLen, setDialCodeLen] = useState(2);
+
+
+    const refPaddingLeft = useRef(null);
     function onPress(event) {
         if (!/[0-9]/.test(event.key)) {
             event.preventDefault();
         }
     }
 
+    const [inputTelWidth, setInputTelWidth] = useState(100);
+    useEffect(() => {
+        const config = { attributes: true, childList: true, subtree: true };
+            const changeWidth = () => {
+                const w = refPaddingLeft.current.querySelector('div').offsetWidth ?? 100;
+                setInputTelWidth(w)
+            }
+            const observer = new MutationObserver(changeWidth)
+
+            observer.observe(refPaddingLeft.current, config);
+
+            changeWidth();
+
+            return () => observer.disconnect();
+
+    },[])
     const handleFocus = () => setBorder(true);
     const handleBlur = () => setBorder(false);
 
@@ -49,19 +66,16 @@ export default function InternationalInput({
         }
         return values;
     }, [allPhoneNumbers])
-
     const defaultValueProp = phoneDefault ? {value: phoneDefault} : {}
     return (
         <div className={classNames({'border': border}, 'international-phone')}>
-            <div className="wrap-input" style={{width: inputCountryWidth}}>
+            <div className="wrap-input" style={{width: inputCountryWidth}} ref={refPaddingLeft}>
 
                 <IntlTelInput
                     onChangeCountry={(val) => {
 
                         const find = window.intlTelInputGlobals.getCountryData().find(item => item.iso2 === val);
                         const value = find.dialCode;
-
-                        setDialCodeLen(value?.length);
 
                         const country = {
                             countryCode: find.iso2,
@@ -100,7 +114,7 @@ export default function InternationalInput({
                 replacement="_"
                 required
                 placeholder={placeholder}
-                style={{paddingLeft: inputCountryWidth + padding + Math.min((dialCodeLen * 5), 10) }}
+                style={{paddingLeft: inputTelWidth }}
                 onChange={handleChange}
                 validation-number={validation_numbers}
                 onKeyPress={onPress}

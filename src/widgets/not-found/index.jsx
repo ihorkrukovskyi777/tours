@@ -1,7 +1,16 @@
 'use client'
 import {useEffect, useState} from "react";
 import {useParams} from "next/navigation";
-
+const notFoundTitle = {
+    en: 'Page Not Found',
+    ru: 'Page Not Found',
+    de: 'Seite nicht gefunden',
+    es: 'Página no encontrada',
+    it: 'Pagina non trovata',
+    'cat': 'Página não encontrada',
+    nl: 'Pagina niet gevonden',
+    pl: 'Nie znaleziono strony',
+}
 export default function NotFound() {
     const [fields, setFields] = useState({
         error: '',
@@ -21,6 +30,7 @@ export default function NotFound() {
     }, [])
     return (
         <div>
+            <title>{notFoundTitle[params.locale] ?? notFoundTitle['en']}</title>
             <div className="content page-404">
                 <div className="container">
                     <article>

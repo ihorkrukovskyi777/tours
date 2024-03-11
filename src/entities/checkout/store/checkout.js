@@ -361,6 +361,7 @@ export default class CheckoutStore {
     }
     * fetchCheckoutDetails(staticCode) {
         this.globalLoading = true;
+        this.editDeparture = null;
         const url = `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/checkout/${staticCode}?locale=${this.locale}`;
         let data = yield fetch(url, {next: {revalidate: 0}})
         data = yield data.json();
@@ -378,6 +379,8 @@ export default class CheckoutStore {
         if (this.isActiveCheckout) {
             this.editDeparture.fetchDepartures();
         }
-        this.globalLoading = false;
+        setTimeout(() => {
+            this.globalLoading = false;
+        }, 200)
     }
 }

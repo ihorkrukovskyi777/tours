@@ -36,6 +36,16 @@
 .post_content{
     margin: 65px 0 60px;
 }
+.post_content .alignleft {
+    float: left;
+    margin: 7px 28px 28px 0;
+    height: auto !important;
+}
+.post_content .alignright {
+    float: right;
+    margin: 7px 0 28px 28px;
+    height: auto !important;
+}
 .post_content .wrapper{
     max-width: 66.7%;
 }

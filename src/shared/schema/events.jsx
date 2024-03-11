@@ -20,8 +20,7 @@ const getSchemaOffer = (offer) => {
 }
 
 const getSchemaEvent = (item) => {
-
-
+    console.log(item, 'item')
     if(!item?.departuresTimes?.length) {
         return null;
     }

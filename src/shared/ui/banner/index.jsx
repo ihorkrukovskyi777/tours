@@ -1,9 +1,12 @@
 import EventIcloudImage from "@/shared/ui/event-icloud-image";
 import './style.css';
-export default function Banner({attachment = null, title, children, bottomView = null, size , nameBanner='', isMobile = false}) {
+export default function Banner({headMobile= null, attachment = null, title, children, bottomView = null, size , nameBanner='', isMobile = false}) {
     const [width, height] = isMobile ? [430, 430] : [1900, 1200]
     return (
-        <section className={`banner ${nameBanner}`}>
+        <section className={`banner ${nameBanner} ${headMobile ? 'head_mobile' : ''}`}>
+            {headMobile ?
+                <div className="banner_head_mobile">{headMobile}</div>
+            : null}
             <div className={size}>
                  <EventIcloudImage
                     priority={true}

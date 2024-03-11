@@ -18,7 +18,7 @@ export async function getReviews(id, locale, limit, offset = 0, type = 'city') {
 export async function getPickCities(id, locale = 'en') {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/pick-cities/${id}?locale=${locale}`,
-        {next: {revalidate: 60 * 60, tags: ['section']}}
+        {next: {revalidate: 60 * 15, tags: ['section']}}
     )
     return data.json();
 }

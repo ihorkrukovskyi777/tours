@@ -3,6 +3,13 @@
   background-color: #ccc;
   z-index: 3;
 }
+.banner.head_mobile .banner_head_mobile {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  z-index: 1;
+}
 .banner:after {
   content: "";
   position: absolute;
@@ -97,6 +104,15 @@
   }
 }
 @media (max-width: 767px) {
+  .banner.head_mobile .banner_head_mobile {
+    display: flex;
+  }
+  .banner.head_mobile .wrapper {
+    display: none;
+  }
+  .banner.head_mobile .tour_banner .intro .title {
+    margin-bottom: 130px;
+  }
   .banner .banner_bg {
     object-fit: cover;
   }

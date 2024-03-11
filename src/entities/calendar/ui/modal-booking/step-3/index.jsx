@@ -88,7 +88,7 @@ export default observer(function Step3({
                             <div className="tour-item__time">
                                 <div className="duration">
                                     <div className="clock-wrap"><ClockSvg/></div>
-                                    <span>{duration.hours}:{pad2(duration.minutes)} {time.hours >= 2 ? i18n.hours : i18n.hour}</span>
+                                    <span>{duration.hours}:{pad2(duration.minutes)} {duration.hours >= 2 ? i18n.hours : i18n.hour}</span>
                                 </div>
                                 <div className="people">
                                     <span className="comma">,</span>

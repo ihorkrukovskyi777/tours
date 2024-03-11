@@ -10,7 +10,7 @@ export default async function BannerGuide({id, isMobile}) {
     return (
         <BannerSubVendor name={profile?.name} avatar={profile.avatar} attachment={attachment} isMobile={isMobile}>
             <div className="rate_box">
-                {rating.rating > 0 ? <FullStarSvg/> : null }
+                {rating?.rating > 0 ? <FullStarSvg/> : null }
                 {rating?.reviews ? <span>{rating.rating} ({rating.reviews})</span> : null}
             </div>
             <LanguageImages locales={locales}/>

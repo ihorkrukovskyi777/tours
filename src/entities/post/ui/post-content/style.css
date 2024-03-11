@@ -15,7 +15,7 @@
     max-width: 100%;
 }
 .post_content a {
-    color: #551A8B;
+    color: #0000EE;
 }
 .post_content p:empty {
     display: none;
@@ -33,7 +33,6 @@
     list-style-position: inside;
 }
 .post_content strong {
-    font-size: 20px;
     color: #000;
     line-height: 1.22;
     margin: 25px 0 25px 0;

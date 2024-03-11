@@ -17,7 +17,7 @@ export default observer(function CheckoutSection({i18n, title}) {
             {editDeparture?.loading || globalLoading ?  <Loader style={{position: 'fixed', opacity: '0.4', zIndex: 9999}}/>: null}
             <section className="checkout_section">
                 <div className="container">
-                    {isActiveCheckout ? null : <p className="departure_alert">{i18n.departure_not_available}</p>}
+                    {isActiveCheckout ? null : <p className="departure_alert">{i18n.booking_canceled}</p>}
                     <h2>{title}</h2>
                     <div className="title" dangerouslySetInnerHTML={{__html: checkoutInfo.tourName ?? ''}}></div>
                     <PersonInfo i18n={i18n}/>
