@@ -32,7 +32,7 @@ export const fetchEditBooking = async (body) => {
             body: JSON.stringify(body)
         })
         data = await data.json()
-        return data.success ? {...data, isEdit: true} : {success: false, errors: data.errors ?? true, isEdit: true};
+        return data.success ? {...data, isEdit: true} : {success: false, errors: data.errors ?? true, isEdit: true, isCancel: data?.isCancel ?? false};
     } catch (err) {
         return {success: false}
     }

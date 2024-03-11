@@ -72,7 +72,7 @@ export default function ContactUs({i18n, idForm}) {
                                     <input
                                         type="text"
                                         name="name"
-                                        placeholder="John Doe"
+                                        placeholder={i18n.placeholder_name}
                                         onChange={changeValueForm('name')}
                                         value={formData.name}
                                     />
@@ -86,7 +86,7 @@ export default function ContactUs({i18n, idForm}) {
                                     <input
                                         type="email"
                                         name="email"
-                                        placeholder="johndoe@mail.com"
+                                        placeholder={i18n.placeholder_email}
                                         onChange={changeValueForm('email')}
                                         value={formData.email}
                                     />
@@ -100,7 +100,7 @@ export default function ContactUs({i18n, idForm}) {
                                     <input
                                         type="text"
                                         name="yoursubject"
-                                        placeholder={i18n.subject}
+                                        placeholder={i18n.placeholder_subject}
                                         onChange={changeValueForm('subject')}
                                         value={formData.subject}
                                     />
@@ -117,7 +117,7 @@ export default function ContactUs({i18n, idForm}) {
                                         rows="10"
                                         onChange={changeValueForm('message')}
                                         value={formData.message}
-                                        placeholder={i18n.write_your_message_here}/>
+                                        placeholder={i18n.placeholder_message}/>
                                 </label>
                                 {formData.message.length <= 0 ?
                                     <span className='error-message'>{i18n[errors.message]}</span> : null}
