@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: false,
     experimental: { optimizeCss: true },
-    compress: true,
+    compress: false,
     swcMinify: true,
     // compiler: {
     //     removeConsole: {

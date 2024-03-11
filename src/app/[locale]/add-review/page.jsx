@@ -15,7 +15,6 @@ export default async function Page({params: {locale,}, searchParams}) {
     const pageData = await data.json();
 
     const i18n = await useDefaultI18n(locale);
-
     if (!searchParams.code) {
         notFound()
     }
