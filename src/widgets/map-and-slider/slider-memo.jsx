@@ -30,7 +30,8 @@ export default memo(function SliderMemo({ i18n, changeMarker, sliders, initialSl
                 loop={sliders.length > 3}
                 breakpoints={{
                     220: {
-                        slidesPerView: 1
+                        slidesPerView: 0.88,
+                        spaceBetween: 15,
                     },
                     768: {
                         slidesPerView: 3,

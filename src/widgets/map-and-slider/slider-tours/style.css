@@ -290,4 +290,10 @@
     .map_and_slider .circle_items {
         margin-top: 4px;
     }
+    .map_and_slider .img_wrap {
+        padding-top: 215px;
+    }
+    .map_and_slider .text_wrap {
+        font-size: 16px;
+    }
 }
