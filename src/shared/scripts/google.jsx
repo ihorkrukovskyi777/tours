@@ -55,11 +55,6 @@ export default function GoogleScript() {
 
     }, [])
 
-    useEffect(() => {
-        const load = () => setLoad(true);
-        window.addEventListener('scroll', load)
-        return () => window.removeEventListener('scroll', load)
-    }, [])
 
     if (load === false) {
         return null;
