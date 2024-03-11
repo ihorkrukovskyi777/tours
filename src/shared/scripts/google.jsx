@@ -36,9 +36,11 @@ export default function GoogleScript({ locale }) {
             window.removeEventListener('mousemove', loadScript);
             setLoad(true);
 
-            const script = document.createElement('script')
-            script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}`;
-            document.body.append(script)
+            setTimeout(() => {
+                const script = document.createElement('script')
+                script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}`;
+                document.body.append(script)
+            }, 100)
         }
         window.addEventListener('mousemove', loadScript)
         window.addEventListener('touchmove', loadScript)
