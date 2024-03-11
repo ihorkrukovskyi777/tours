@@ -214,7 +214,7 @@
 
 @media(min-width: 767px) {
     .map_and_slider .swiper-less-3 .swiper-wrapper .swiper-slide {
-        width: calc(33.333% - 13px);
+        width: calc(33.333% - 20px);
     }
 }
 @media(min-width: 1200px) {
