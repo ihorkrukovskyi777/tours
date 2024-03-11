@@ -4,8 +4,8 @@ import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-
 import FormReview from "@/entities/add-review/ui/form";
 import {canYouAddAReview} from "@/entities/api";
 import {notFound} from "next/navigation";
-import './style.css'
 import generateSeoPage from "@/shared/helpers/seo/generate-seo-page";
+import './style.css'
 
 export default async function Page({params: {locale,}, searchParams}) {
     const data = await fetch(

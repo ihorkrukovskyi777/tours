@@ -2,8 +2,6 @@
 const nextConfig = {
     reactStrictMode: false,
     experimental: { optimizeCss: true },
-    compress: true,
-    swcMinify: true,
     // compiler: {
     //     removeConsole: {
     //         exclude: ['error'],
