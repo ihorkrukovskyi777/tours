@@ -319,6 +319,7 @@
 }
 .step-3 .people {
     display: flex;
+    align-items: center;
     font-size: 20px;
     font-family: var(--fontMedium);
     font-weight: 500;
@@ -461,5 +462,12 @@
     .step-3 .form-wrap {
         margin-bottom: 10px;
     }
-
+}
+@media(max-width: 370px){
+    .step-3 .choosen-date,
+    .step-3 .item-data span,
+    .step-3 .people,
+    .step-3 .duration{
+        font-size: 18px;
+    }
 }
