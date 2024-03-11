@@ -1,7 +1,8 @@
 'use client';
-import {useState, useRef} from 'react';
+import { useRef } from 'react';
 import Button from '@/shared/ui/selectors/button/button';
 import {Navigation, Pagination, Scrollbar, A11y} from 'swiper/modules';
+import EventIcloudImage from "@/shared/ui/event-icloud-image";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import IcloudImage from "@/shared/ui/icloud-image";
 import ArrowSwiper from '@/assets/images/svg/arrowSwiper-svg';
@@ -75,7 +76,7 @@ export default function TextAndSlider({i18n, title, listText = [], attachments =
                                     return (
                                         <SwiperSlide key={index}>
                                             <div className='img_box'>
-                                                <IcloudImage
+                                                <EventIcloudImage
                                                     {...priority}
                                                     src={image.src}
                                                     alt={image?.alt ?? ''}
