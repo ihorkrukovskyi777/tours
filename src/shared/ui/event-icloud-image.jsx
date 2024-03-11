@@ -10,8 +10,18 @@ export default function EventIcloudImage( { src , size = 'public', alt = '',isMo
         const scroll = () => {
             setIsEvent(true)
             window.removeEventListener('scroll', scroll)
+            window.removeEventListener('mousemove', scroll)
+            window.removeEventListener('touchmove', scroll)
         };
-        window.addEventListener('scroll', scroll, false)
+        window.addEventListener('scroll', scroll)
+        window.addEventListener('mousemove', scroll)
+        window.addEventListener('touchmove', scroll)
+        return () => {
+            window.removeEventListener('scroll', scroll)
+            window.removeEventListener('mousemove', scroll)
+            window.removeEventListener('touchmove', scroll)
+        }
+
     }, [])
 
     if(typeof src !== 'string' || !!src === false || isEvent === false) {

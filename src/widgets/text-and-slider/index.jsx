@@ -78,6 +78,7 @@ export default function TextAndSlider({i18n, title, listText = [], attachments =
                                             <div className='img_box'>
                                                 <EventIcloudImage
                                                     {...priority}
+                                                    isMobile={isMobile}
                                                     src={image.src}
                                                     alt={image?.alt ?? ''}
                                                     width={width}
