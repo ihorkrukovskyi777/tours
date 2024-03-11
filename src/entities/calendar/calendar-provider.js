@@ -4,7 +4,6 @@ import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
 import Main from "@/entities/calendar/ui/main/main";
 import "@/entities/calendar/ui/main/style.css";
-import {log} from "util";
 
 export const StoreCalendarContext = createContext(null);
 
