@@ -33,10 +33,6 @@ export default function GoogleScript({ locale }) {
             }
             window.removeEventListener('touchstart', loadScript);
             window.removeEventListener('mousemove', loadScript);
-            setTimeout(() => {
-                console.log(document.readyState, 'document.readyState')
-                setLoad(true);
-            }, 250)
 
             setTimeout(() => {
                 const script = document.createElement('script')
@@ -60,7 +56,13 @@ export default function GoogleScript({ locale }) {
 
     }, [])
 
-    if (load === false || true) {
+    useEffect(() => {
+        const load = () => setLoad(true);
+        window.addEventListener('scroll', load)
+        return () => window.removeEventListener('scroll', load)
+    }, [])
+
+    if (load === false) {
         return null;
     }
     return (
