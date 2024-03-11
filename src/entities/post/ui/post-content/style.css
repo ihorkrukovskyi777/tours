@@ -14,9 +14,7 @@
 .post_content .wrapper div {
     max-width: 100%;
 }
-.post_content a {
-    color: #0000EE;
-}
+
 .post_content p:empty {
     display: none;
 }
