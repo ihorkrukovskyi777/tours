@@ -5,7 +5,7 @@ import useGenitiveI18n from "@/i18n/hooks/useGenitiveI18n";
 import dynamic from "next/dynamic";
 const CalendarProvider = dynamic(
     () => import("@/entities/calendar/calendar-provider"),
-    {ssr: false, loading: () => <div></div>}
+    {ssr: false, loading: () => <div style={{minHeight: '500px'}}></div>}
 )
 
 
