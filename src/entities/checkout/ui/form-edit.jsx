@@ -66,7 +66,7 @@ export default observer(function FormEdit({i18n}) {
         const token = await recaptcha("booking");
         const data = await editDeparture.updateDeparture(token);
 
-        if (data?.isEdit === true && data.success) {
+        if ((data?.isEdit === true && data.success) || data?.isCancel) {
             await fetchCheckoutDetails(searchParams.get('code'));
             toggleModalEdit();
         } else if (data.success === false) {
