@@ -35,7 +35,7 @@ export default function HighlightsSlider({ images }) {
             modules={options}
             navigation={false}
             loop={true}
-            spaceBetween={10}
+            spaceBetween={15}
             slidesPerView={3}
             pagination={{ clickable: true }}
             breakpoints={{
