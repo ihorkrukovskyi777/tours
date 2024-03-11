@@ -34,7 +34,9 @@ export default function GoogleScript({ locale }) {
             }
             window.removeEventListener('touchmove', loadScript);
             window.removeEventListener('mousemove', loadScript);
-            setLoad(true);
+            setTimeout(() => {
+                setLoad(true);
+            }, 250)
 
             setTimeout(() => {
                 const script = document.createElement('script')
