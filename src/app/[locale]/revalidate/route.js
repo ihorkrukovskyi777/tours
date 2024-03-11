@@ -9,6 +9,7 @@ export async function GET() {
         revalidateTag('section'),
         revalidateTag('all-cities'),
         revalidateTag('translates'),
+        revalidateTag('redirect'),
     ])
     return Response.json('Cache cleared')
 }

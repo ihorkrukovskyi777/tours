@@ -7,7 +7,7 @@ export async function middleware(request) {
 
     if(pathname !== '/') {
        try {
-           const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/redirect/${encodeURIComponent(pathname)}`, {next: { revalidate: 60}});
+           const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/redirect/${encodeURIComponent(pathname)}`, {next: { revalidate: 60, tags: ['redirect']}});
            const redirect = await response.json();
 
            if(redirect.code) {
