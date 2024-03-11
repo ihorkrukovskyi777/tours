@@ -28,13 +28,13 @@ export default function GoogleScript({ locale }) {
     useEffect(() => {
 
         const loadScript = () => {
-
             if(typeof window === 'undefined') {
                 return;
             }
-            window.removeEventListener('touchmove', loadScript);
+            window.removeEventListener('touchstart', loadScript);
             window.removeEventListener('mousemove', loadScript);
             setTimeout(() => {
+                console.log(document.readyState, 'document.readyState')
                 setLoad(true);
             }, 250)
 
@@ -45,10 +45,10 @@ export default function GoogleScript({ locale }) {
             }, 100)
         }
         window.addEventListener('mousemove', loadScript)
-        window.addEventListener('touchmove', loadScript)
+        window.addEventListener('touchstart', loadScript)
 
         return () => {
-            window.removeEventListener('touchmove', loadScript)
+            window.removeEventListener('touchstart', loadScript)
             window.removeEventListener('mousemove', loadScript)
             const oldElement = document.querySelectorAll(`[src='https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RE_CAPTCHA_KEY}']`)
             if(oldElement?.length) {
