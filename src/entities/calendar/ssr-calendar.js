@@ -1,12 +1,8 @@
+import CalendarProvider from "@/entities/calendar/calendar-provider";
 import {getActiveLang, getFaqBlock} from "@/entities/api";
 import Faqs from "@/shared/ui/faqs/faqs";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import useGenitiveI18n from "@/i18n/hooks/useGenitiveI18n";
-import dynamic from "next/dynamic";
-const CalendarProvider = dynamic(
-    () => import("@/entities/calendar/calendar-provider"),
-    {ssr: false, loading: () => <div style={{minHeight: '500px'}}></div>}
-)
 
 
 export default async function SsrCalendar({locale, type, id, showFaq = true, title, nameDayWeek = true }) {
