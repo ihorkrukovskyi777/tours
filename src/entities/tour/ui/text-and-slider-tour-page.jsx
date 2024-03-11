@@ -5,6 +5,12 @@ export default async function TextAndSliderTourPage({ id, locale, isMobile }) {
     const i18n = await useDefaultI18n(locale)
     const repeater = await getTextAndSlides(id, locale);
     return (
-        <TextAndSlider i18n={{ book_now: i18n.t('Book Now')}} title={repeater.title ?? ''} isMobile={isMobile} attachments={repeater.attachments} listText={repeater.texts} />
+        <TextAndSlider
+            i18n={{ book_now: i18n.t('Book Now')}}
+            title={repeater.title ?? ''}
+            isMobile={isMobile}
+            attachments={repeater.attachments}
+            listText={repeater.texts}
+        />
     )
 }
