@@ -71,10 +71,12 @@ export default function TextAndSlider({i18n, title, listText = [], attachments =
                                 pagination={{clickable: true}}
                             >
                                 {attachments.map((image, index) => {
+                                    const priority = index === 0 ? {priority: true} : {};
                                     return (
                                         <SwiperSlide key={index}>
                                             <div className='img_box'>
                                                 <IcloudImage
+                                                    {...priority}
                                                     src={image.src}
                                                     alt={image?.alt ?? ''}
                                                     width={width}
