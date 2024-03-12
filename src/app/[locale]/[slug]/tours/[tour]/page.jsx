@@ -31,7 +31,7 @@ const ProviderMap = dynamic(
 export default async function Page({params: {locale, slug, tour}}) {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/${slug}/tours/${tour}?locale=${locale}`,
-        {next: {revalidate: 60}}
+        {next: {revalidate: 60, tags: ['page']}}
     )
     const page = await data.json();
     const headerList = headers()
@@ -43,8 +43,13 @@ export default async function Page({params: {locale, slug, tour}}) {
 
 
     const languages = page.languages?.map(item => {
-        const city = page.cityLanguages.find(city => city.locale === item.locale)
+        let city = page.cityLanguages.find(city => city.locale === item.locale)
         if (!city?.slug)
+        {
+            city = page.cityLanguages.find(city => city.locale === fallbackLng)
+        }
+
+        if(!city?.slug)
             return null
         return ({...item, slug: `${city.slug}/${PATH_TOURS}/${item.slug}`})
     }).filter(Boolean);
