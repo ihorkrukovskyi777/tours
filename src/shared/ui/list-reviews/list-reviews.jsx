@@ -31,7 +31,9 @@ export default function ListReviews({i18n, reviews, total, limit, id, type, show
                                 title={item.title}
                                 time={item.date}
                                 author={item.author}
+                                brandName={item.brandName}
                                 rating={item.rating}
+                                reply={item.reply}
                             >
                                 {item.message}
                             </ReviewCard>

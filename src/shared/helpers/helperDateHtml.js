@@ -6,14 +6,11 @@ export class HelperDateHtml extends ServiceDate {
         super(date, fullNameDayWeek);
     }
 
-    get ddmmyear() {
-        return `
-               ${this.dayNum}/
-               ${this.monthNum}/
-               ${this.yearNum}
-            `;
+    get ddMmYYYY() {
+        const day = this.dayNum < 10 ? `0${this.dayNum}`: this.dayNum;
+        const monthNum = this.monthNum < 10 ? `0${this.monthNum}`: this.monthNum;
+        return `${day}/${monthNum}/${this.yearNum}`;
     }
-
     dayDeparture(days = {}, months = {}) {
 
         return `

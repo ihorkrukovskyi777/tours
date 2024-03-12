@@ -74,7 +74,7 @@ export class ServiceDate {
     }
 
     get monthNum() {
-        return this.date.getMonth();
+        return this.date.getMonth()+1;
     }
 
     get yearNum() {
