@@ -1,5 +1,5 @@
 'use client'
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import {useParams} from "next/navigation";
 import InternationalInput from '../../../../../shared/ui/selectors/international-input';
 import {useRouter} from "next/navigation";
@@ -7,10 +7,12 @@ import {getHrefLocale} from "@/i18n/get-href-locale";
 import classNames from "classnames";
 import recaptcha from "@/shared/util/recaptcha";
 import Link from "next/link";
-export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookingDeparture, errorsMessage , isLoading }) {
 
-    const [showError , setShowError] = useState(false);
-    const { push } = useRouter();
+export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookingDeparture, errorsMessage, isLoading}) {
+
+    const refForm = useRef();
+    const [showError, setShowError] = useState(false);
+    const {push} = useRouter();
     const params = useParams();
     //validation
     const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -48,6 +50,9 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
 
     function validateSwitch(name) {
         setShowError(false);
+        if (refForm.current.checkValidity() === false) {
+            return;
+        }
         let hasNumber = /\d/;
         let errorMsg = '';
         let value = document.querySelector(`#booking input[name=${name}]`).value;
@@ -74,7 +79,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
                         : i18n.errors.email_error;
                 break;
             case 'phone':
-                const valuePhone = value.toString().replace(/ /g , '').replace(/[-()]/g , '').length;
+                const valuePhone = value.toString().replace(/ /g, '').replace(/[-()]/g, '').length;
                 const validateArray = document.querySelector(`#booking input[name=${name}]`).getAttribute('validation-number').split(',').map(i => Number(i));
                 if (!validateArray.includes(valuePhone)) {
                     errorMsg = i18n.errors.phone_number_error;
@@ -158,7 +163,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
 
     const value = null
 
-    function showMsg () {
+    function showMsg() {
         setShowError(true);
     }
 
@@ -166,7 +171,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale ,fetchBookin
 
 
     return (
-        <form onSubmit={handleSubmit} id='booking'>
+        <form onSubmit={handleSubmit} id='booking' ref={refForm}>
             <div className="form-wrap">
                 <div className="item-form">
                     <label htmlFor="">
