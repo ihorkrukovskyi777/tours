@@ -274,6 +274,7 @@ class EditDeparture {
     changePeopleNumber(val) {
         this.numberPeople = val;
         this.storeDepLogic.changePeople(val);
+        this.resetSelectedDay();
     }
 
     get departures() {
