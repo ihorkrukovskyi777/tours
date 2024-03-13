@@ -218,7 +218,7 @@ export const canYouAddAReview = async (code, rating) => {
     try {
         const res = await fetch(
             `${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/review/${code}/${rating}`,
-            {next: {revalidate: 60*60}}
+            {next: {revalidate: 0}}
         );
         if (res.status === 404) {
             return {status: 404}
