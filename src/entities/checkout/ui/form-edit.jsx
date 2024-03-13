@@ -1,6 +1,6 @@
 'use client'
 import EditSvg from "@/assets/images/svg/edit-svg"
-import {useContext, useState, useEffect} from "react";
+import {useContext, useState, useEffect, useRef} from "react";
 import Button from "@/shared/ui/selectors/button/button";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {observer} from "mobx-react-lite";
@@ -15,6 +15,15 @@ const InternationalInput = dynamic(
     () => import("@/shared/ui/selectors/international-input"),
     {ssr: false}
 )
+
+
+const initialStateFormError = {
+    firstName: false,
+    lastName: false,
+    email: false,
+    phone: false,
+
+}
 export default observer(function FormEdit({i18n}) {
     const searchParams = useSearchParams()
     const [error, setError] = useState(false);
@@ -31,6 +40,8 @@ export default observer(function FormEdit({i18n}) {
     useEffect(() => {
         setError(false);
     }, [])
+
+    const refForm = useRef(null);
 
 
     const changeValue = {
@@ -77,29 +88,43 @@ export default observer(function FormEdit({i18n}) {
         }
     }
 
-    const [validForm, setValidForm] = useState({
-        firstName: false,
-        lastName: false,
-        email: false,
-        phone: false,
-
-    });
+    const [validForm, setValidForm] = useState({...initialStateFormError});
 
     return (
-        <form id='edit_tour' onSubmit={preSubmitForValidation}>
+        <form id='edit_tour' onSubmit={preSubmitForValidation} ref={refForm}>
             {error === true ? <Notification i18n={i18n} close={() => setError(false)}/> : null}
             <div className="item">
                 <label htmlFor="">{i18n.first_name}</label>
-                <input type='text' name='firstName' onChange={changeValue.firstName} value={editDeparture.firstName}/>
-                {validForm.firstName ? <span
-                    className='error-message'>{validForm.firstName ? i18n.errors?.first_name[validForm.firstName] : null} </span> : null}
+                <input
+                    required
+                    type='text'
+                    name='firstName'
+                    onChange={changeValue.firstName}
+                    value={editDeparture.firstName}
+                />
+                {validForm.firstName ?
+                    <span className='error-message'>
+                        {validForm.firstName ? i18n.errors?.first_name[validForm.firstName] : null}
+                    </span>
+                    : null
+                }
                 <EditSvg/>
             </div>
             <div className="item">
                 <label htmlFor="">{i18n.last_name}</label>
-                <input type='text' name='lastName' onChange={changeValue.lastName} value={editDeparture.lastName}/>
-                {validForm.lastName ? <span
-                    className='error-message'>{validForm.lastName ? i18n.errors?.first_name[validForm.lastName] : null} </span> : null}
+                <input
+                    required
+                    type='text'
+                    name='lastName'
+                    onChange={changeValue.lastName}
+                    value={editDeparture.lastName}
+                />
+                {validForm.lastName ?
+                    <span className='error-message'>
+                        {validForm.lastName ? i18n.errors?.first_name[validForm.lastName] : null}
+                    </span>
+                    : null
+                }
                 <EditSvg/>
             </div>
 
@@ -120,14 +145,30 @@ export default observer(function FormEdit({i18n}) {
 
             <div className="item">
                 <label htmlFor="">{i18n.email}</label>
-                <input type='email' name='email' onChange={changeValue.email} value={editDeparture.email}/>
-                {validForm.email ? <span className='error-message'> {i18n.errors[validForm.email]} </span> : null}
+                <input
+                    required
+                    type='email'
+                    name='email'
+                    onChange={changeValue.email}
+                    value={editDeparture.email}
+                />
+                {validForm.email ?
+                    <span className='error-message'> {i18n.errors[validForm.email]} </span>
+                    : null
+                }
                 <EditSvg/>
             </div>
-            {Array.isArray(error) ? <ul>{error.map((value, index) => {
-                return <li style={{margin: '10px 0', color: 'red'}} key={index}>{value}</li>
-            })}</ul> : null}
-            <Button customClass='submit red'>{i18n.save}</Button>
+            {Array.isArray(error) ?
+                <ul>{error.map((value, index) => {
+                    return <li style={{margin: '10px 0', color: 'red'}} key={index}>{value}</li>
+                })}</ul>
+                : null}
+            <Button customClass='submit red' onClick={(e) => {
+                if(refForm.current.checkValidity() === false) {
+                    setValidForm({ ...initialStateFormError })
+
+                }
+            }}>{i18n.save}</Button>
         </form>
     )
 })

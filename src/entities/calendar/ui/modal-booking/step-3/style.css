@@ -66,6 +66,7 @@
 .step-3 form .full-width.checkbox-item .form-group {
     display: flex;
     align-items: center;
+    position: relative;
 }
 .step-3 form .item-form.checkbox-item input {
     width: auto;

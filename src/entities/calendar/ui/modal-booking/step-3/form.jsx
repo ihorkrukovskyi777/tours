@@ -50,9 +50,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookin
 
     function validateSwitch(name) {
         setShowError(false);
-        if (refForm.current.checkValidity() === false) {
-            return;
-        }
+
         let hasNumber = /\d/;
         let errorMsg = '';
         let value = document.querySelector(`#booking input[name=${name}]`).value;
@@ -164,7 +162,12 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookin
     const value = null
 
     function showMsg() {
-        setShowError(true);
+        if (refForm.current.checkValidity() === false) {
+            setShowError(false);
+        } else {
+            setShowError(true);
+        }
+
     }
 
     // end validation
