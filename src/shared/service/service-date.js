@@ -80,8 +80,7 @@ export class ServiceDate {
     get yearNum() {
         return this.date.getFullYear();
     }
-
-
-
-
+    get yearYY() {
+        return `${this.yearNum}`.replace('20', '')
+    }
 }

@@ -21,7 +21,7 @@ export default function ReviewCard({children, reply = null, brandName ='', time,
                         reply={reply}
                     />
                 </div>
-                <div className={styles.date}>{helperDateHtml.ddMmYYYY}</div>
+                <div className={styles.date}>{helperDateHtml.ddMmYy}</div>
             </div>
             <div className={styles.text}>
                 {children}
