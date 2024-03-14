@@ -30,7 +30,7 @@ export default function Reviews({sizeLabelReviews = '', size = 16 ,rating, count
                 </div>
                 {rating > 0 && number_review ?
                     <div className="rate_number">
-                        {rating}
+                        {(Number(rating)).toFixed(2)}
                     </div>
                     : null
                 }
