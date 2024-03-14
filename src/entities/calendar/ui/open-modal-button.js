@@ -56,6 +56,11 @@ export default observer(function OpenModalButton({storeModalCalendar, i18n, even
         openModalBooking();
     };
 
+    const closeStep2 = () => {
+        closeListModal()
+        setDeparturesByDate(null)
+    }
+
     return (
         <>
             <Button onClick={open}>
@@ -80,7 +85,7 @@ export default observer(function OpenModalButton({storeModalCalendar, i18n, even
                     show={isOpenedListDeparture}
                     size={'step-2'}
                     halfOpacity={isOpened}
-                    close={closeListModal}
+                    close={closeStep2}
                 >
                     <Step2
                         nameDayWeek={nameDayWeek}
@@ -97,9 +102,9 @@ export default observer(function OpenModalButton({storeModalCalendar, i18n, even
                         setDeparture={selectedDeparture}
                         departures={Object.values(departuresByDate).flat()}
                         storeModalCalendar={storeModalCalendar}
-                        onBack={closeListModal}
+                        onBack={closeStep2}
                         isOpened={openListModal && isOpenedBookingModal === false}
-                        close={closeListModal}
+                        close={closeStep2}
                     />
                 </ModalBooking>
                 : null}
