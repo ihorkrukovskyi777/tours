@@ -9,7 +9,7 @@ import FlagsComponents from "@/shared/ui/flags";
 
 import './style.css';
 
-export default function ChangeOfLanguage({i18n, languages, title}) {
+export default function ChangeOfLanguage({i18n, languages, title, filterQuery = []}) {
     const searchParams = useSearchParams()
     const [showLanguage, setShowLanguage] = useState(6);
     const params = useParams();
@@ -22,8 +22,9 @@ export default function ChangeOfLanguage({i18n, languages, title}) {
         queries.push(key);
     }
 
-
-    queries = queries.map(([key, value], index) => {
+    queries = queries.filter(([key]) => {
+        return !filterQuery.includes(key)
+    }).map(([key, value], index) => {
         const param = index === 0 ? '?' : '&';
         return `${param}${key}=${value}`
     })
