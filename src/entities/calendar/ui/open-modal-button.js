@@ -58,7 +58,9 @@ export default observer(function OpenModalButton({storeModalCalendar, i18n, even
 
     const closeStep2 = () => {
         closeListModal()
-        setDeparturesByDate(null)
+        setTimeout(() => {
+            setDeparturesByDate(null)
+        }, 100)
     }
 
     return (
