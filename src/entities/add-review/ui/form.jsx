@@ -11,9 +11,13 @@ export default function FormReview({pageData, i18n, code}) {
         e.preventDefault();
         setLoading(true);
         const isAdd = await addReview(code, reply)
-
         if(isAdd) {
-            router.replace('/?success_review_add=yes')
+            if(reply?.trim() === '') {
+                router.push('/?success_review_add=yes')
+            } else {
+                router.replace('/?success_review_add=yes')
+            }
+
         } else {
             setLoading(false);
         }
