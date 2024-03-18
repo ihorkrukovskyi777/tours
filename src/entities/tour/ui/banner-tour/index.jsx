@@ -10,7 +10,7 @@ import './style.css';
 export default async function BannerTour({id, locale, isMobile}) {
     const i18n = await useDefaultI18n(locale);
     const tour = await getBannerData(id, locale, 'tour')
-    let labelHour = tour.departure.durations?.find(val => val >= 2) ? 'Hours' : 'Hour';
+    let labelHour = tour.departure.durations?.find(val => val > 1) ? 'Hours' : 'Hour';
 
     const TimeComponent = (
         <>

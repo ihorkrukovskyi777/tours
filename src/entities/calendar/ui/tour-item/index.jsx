@@ -20,7 +20,7 @@ export default function TourItem({dep, locale, onClick, i18n}) {
                         <div className="clock_wrap">
                             <Image src={ClockSilver} alt="clock" width={12} height={13}></Image>
                         </div>
-                        <span>{durationHours}:{pad2(durationMinutes)} { durationHours >= 2 ? i18n.hours : i18n.hour}</span>
+                        <span>{durationHours}:{pad2(durationMinutes)} { durationHours > 1 ? i18n.hours : i18n.hour}</span>
                     </div>
                     <div className="tour_language">
                         <FlagsComponents locale={locale} alt={`flag ${locale}`}/>
