@@ -17,7 +17,7 @@ export default function ModalTourItem({i18n, dep, onSelected, isActive}) {
                     <div className="clock-wrap">
                         <ClockSvg/>
                     </div>
-                    <span>{durationFormat.hours}:{pad2(durationFormat.minutes)} { durationFormat.hours > 1 ? i18n.hours : i18n.hour}</span>
+                    <span>{durationFormat.hours}:{pad2(durationFormat.minutes)} { dep.duration > 1 ? i18n.hours : i18n.hour}</span>
                 </div>
             </div>
         </div>
