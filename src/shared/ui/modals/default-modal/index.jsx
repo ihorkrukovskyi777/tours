@@ -3,9 +3,10 @@ import './style.css';
 import useEscHooks from "@/shared/hooks/use-esc-event";
 import {useRef} from "react";
 
-export default function DefaultModal({children, modalShow, isOpenedModal, size = 'default'}) {
+export default function DefaultModal({children, modalShow, isOpenedModal, size = 'default', halfOpacity = false}) {
     const bgRef = useRef(null)
-    useEscHooks(isOpenedModal, modalShow)
+    useEscHooks(isOpenedModal, modalShow);
+    const opacity = halfOpacity ? {backgroundColor: `rgba(0, 0, 0, 0.3)`} : {}
     return (
         <div
             ref={bgRef}
@@ -15,6 +16,7 @@ export default function DefaultModal({children, modalShow, isOpenedModal, size =
                 }
             }}
             className={classNames({'show_modal': modalShow}, 'default-modal transition')}
+            style={opacity}
         >
             <div className={`modal_content ${size} `}>
                 <div className="flex-wrap">

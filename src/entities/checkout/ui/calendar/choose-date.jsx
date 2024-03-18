@@ -13,6 +13,7 @@ import "@/entities/calendar/ui/modal-booking/step-1/style.css";
 export default observer(function ChooseDate({ i18n }) {
     const {
         checkoutInfo: { tourName },
+        managerModal: {chooseDateModal},
         editDeparture: {
             changePeopleNumber,
             numberPeople,
@@ -20,7 +21,8 @@ export default observer(function ChooseDate({ i18n }) {
             changeMonthAndYearn,
             setSelectedDay,
             toggleModalDepartureList,
-            openModalDepartureList }
+            openModalDepartureList
+        }
     } = useContext(CheckoutStoreContext);
 
     return (
@@ -41,7 +43,7 @@ export default observer(function ChooseDate({ i18n }) {
                 departures={toJS(departures)}
                 changeDate={changeMonthAndYearn}
             />
-            <ModalBooking show={openModalDepartureList} size={'step-2'} close={() => toggleModalDepartureList(false)}>
+            <ModalBooking halfOpacity={chooseDateModal} show={openModalDepartureList} size={'step-2'} close={() => toggleModalDepartureList(false)}>
                 <ModalListDepartures i18n={i18n} isOpened={openModalDepartureList} close={() => toggleModalDepartureList(false)}/>
             </ModalBooking>
         </div>

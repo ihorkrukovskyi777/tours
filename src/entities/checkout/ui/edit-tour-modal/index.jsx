@@ -12,12 +12,14 @@ import './style.css';
 export default observer(function EditModalTour({i18n}) {
     const {
         editDeparture,
-        managerModal: {modalEdit, toggleModalEdit, chooseDateModal, toggleModalChoose}
+        managerModal: {modalEdit, toggleModalEdit, chooseDateModal, toggleModalChoose},
     } = useContext(CheckoutStoreContext);
     const helper = new HelperDateHtml(editDeparture.activityDate)
 
     const bgRef = useRef(null)
 
+    const opacityValue = chooseDateModal && editDeparture.openModalDepartureList ? 0 : 0.3;
+    const opacity = chooseDateModal ? {backgroundColor: `rgba(0, 0, 0,${opacityValue})`} : {}
     return (
         <div
             ref={bgRef}
@@ -26,10 +28,11 @@ export default observer(function EditModalTour({i18n}) {
                     toggleModalEdit();
                 }
             }}
+            style={opacity}
             className={classNames({'show_modal': modalEdit}, 'edit_tour_modal transition')}
         >
             <div className="modal_content">
-                <DefaultModal modalShow={chooseDateModal} isOpenedModal={toggleModalChoose} size={'small'}>
+                <DefaultModal halfOpacity={modalEdit} modalShow={chooseDateModal} isOpenedModal={toggleModalChoose}  size={'small'}>
                      <ChooseDate i18n={i18n}/>
                 </DefaultModal>
                 <div className="flex-wrap">
