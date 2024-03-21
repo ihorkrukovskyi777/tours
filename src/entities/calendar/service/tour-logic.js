@@ -216,7 +216,7 @@ export default class TourLogic {
                     const nextTime = nextItem?.time;
 
                     const isFirstFlag = (prevItem === undefined || prevItem?.tourId !== item.tourId) || (item.time - prevTime) > timePeriod;
-                    const isSecondFlag = (nextTime === undefined || nextTime?.tourId !== item.tourId) || (nextTime - item.time) > timePeriod;
+                    const isSecondFlag = (nextTime === undefined || nextItem?.tourId !== item.tourId) || (nextTime - item.time) > timePeriod;
 
                     if (isFirstFlag && isSecondFlag) {
                         newDepFilter.push(item);
