@@ -18,6 +18,7 @@ export default async function PlaceGuideSchema({slug, locale}) {
     const schema = getSchemaPlace(place.name, `${place.description} ${i18n.t(MESSAGE)}`, place.attachment?.src);
     return (
         <Script
+            id="guide-place-schema"
             type="application/ld+json"
             dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
         />

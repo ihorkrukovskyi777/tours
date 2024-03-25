@@ -42,6 +42,7 @@ export default async function ProductSchemaGuide({slug, locale}) {
     const schemaData = JSON.stringify(getSchemaProduct(item, date, locale, i18n.t('offers Free Walking Tours which has been selected and curated and by the Strawberry Tours team.')));
     return (
         <Script
+            id="guide-product-schema"
             type="application/ld+json"
             dangerouslySetInnerHTML={{__html: schemaData}}
         />

@@ -53,6 +53,7 @@ export default async function CollectionPageSchema({locale}) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/collection-page?locale=${locale}`, {next: {revalidate: 60 * 60,  tags: ['schema']}})
     const data = await response.json();
     return <Script
+        id="collection-page-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{__html: JSON.stringify(collectionPageSchema(data.cities, data.tour))}}
     />

@@ -24,6 +24,7 @@ const webSiteSchemaJsonb = {
 
 export default function WebSiteSchema() {
     return <Script
+        id="web-site-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchemaJsonb) }}
     />

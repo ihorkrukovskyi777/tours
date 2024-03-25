@@ -15,6 +15,7 @@ export default async function PlaceSchema({id, locale}) {
     const place = await response.json();
 
     return <Script
+        id="place-schema"
        type="application/ld+json"
        dangerouslySetInnerHTML={{__html: JSON.stringify(getSchemaPlace(place.name, place.description, place.attachment?.src))}}
     />

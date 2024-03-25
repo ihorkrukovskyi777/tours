@@ -84,6 +84,7 @@ export default async function EventsSchema({type = 'city', id, locale}) {
 
     return (
         <Script
+            id="events-schema"
             type="application/ld+json"
             dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
         />

@@ -35,6 +35,7 @@ export default async function ProductSchema({id, locale, type = 'city'}) {
     const schemaData = JSON.stringify(getSchemaProduct(item, date, locale));
     return (
         <Script
+            id="product-schema"
             type="application/ld+json"
             dangerouslySetInnerHTML={{__html: schemaData}}
         />

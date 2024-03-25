@@ -76,6 +76,7 @@ export default async function EventsGuideSchema({slug, locale}) {
     const schemas = data.map(item => getSchemaEvent(item))
     return (
         <Script
+            id="guide-events-schema"
             type="application/ld+json"
             dangerouslySetInnerHTML={{__html: JSON.stringify(schemas)}}
         />

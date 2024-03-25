@@ -17,6 +17,7 @@ const getSchemaFaq = (answers) => {
 
 export default  function FaqSchema({ questions }) {
     return <Script
+        id="faq-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getSchemaFaq(questions)) }}
     />
