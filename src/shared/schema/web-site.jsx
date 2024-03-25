@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 const webSiteSchemaJsonb = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -21,8 +23,7 @@ const webSiteSchemaJsonb = {
 }
 
 export default function WebSiteSchema() {
-    return <script
-        async={true}
+    return <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchemaJsonb) }}
     />

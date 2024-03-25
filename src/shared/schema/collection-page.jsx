@@ -2,6 +2,7 @@ import {PATH_TOURS} from "@/shared/constants/route";
 
 const domain = process.env.NEXT_PUBLIC_CANONICAL_DOMAIN;
 import {getHrefLocale} from "@/i18n/get-href-locale";
+import Script from "next/script";
 
 const getContext = (slug, index) => {
     return {
@@ -51,7 +52,7 @@ const collectionPageSchema = (listUrl = [], tour) => {
 export default async function CollectionPageSchema({locale}) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/collection-page?locale=${locale}`, {next: {revalidate: 60 * 60,  tags: ['schema']}})
     const data = await response.json();
-    return <script
+    return <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{__html: JSON.stringify(collectionPageSchema(data.cities, data.tour))}}
     />

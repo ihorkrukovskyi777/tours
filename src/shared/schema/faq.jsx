@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 const getSchemaFaq = (answers) => {
     return {
         '@context': 'https://schema.org',
@@ -14,7 +16,7 @@ const getSchemaFaq = (answers) => {
 }
 
 export default  function FaqSchema({ questions }) {
-    return <script async={true}
+    return <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(getSchemaFaq(questions)) }}
     />

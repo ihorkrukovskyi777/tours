@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 const getSchemaPlace = (name, description, image) => {
     return {
         "@context": "https://schema.org",
@@ -12,8 +14,8 @@ export default async function PlaceSchema({id, locale}) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/place/${id}?locale=${locale}`, {next: {revalidate: 60 * 60,  tags: ['schema']}})
     const place = await response.json();
 
-    return <script async={true}
-                   type="application/ld+json"
-                   dangerouslySetInnerHTML={{__html: JSON.stringify(getSchemaPlace(place.name, place.description, place.attachment?.src))}}
+    return <Script
+       type="application/ld+json"
+       dangerouslySetInnerHTML={{__html: JSON.stringify(getSchemaPlace(place.name, place.description, place.attachment?.src))}}
     />
 }

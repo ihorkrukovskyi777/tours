@@ -1,4 +1,5 @@
 import {getHrefLocale} from "@/i18n/get-href-locale";
+import Script from "next/script";
 
 const getSchemaProduct = (item, date, locale) => {
     const url = getHrefLocale(locale, item.slug)
@@ -33,8 +34,7 @@ export default async function ProductSchema({id, locale, type = 'city'}) {
     const item = await response.json();
     const schemaData = JSON.stringify(getSchemaProduct(item, date, locale));
     return (
-        <script
-            async={true}
+        <Script
             type="application/ld+json"
             dangerouslySetInnerHTML={{__html: schemaData}}
         />

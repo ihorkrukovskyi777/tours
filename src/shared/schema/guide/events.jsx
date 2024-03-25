@@ -1,4 +1,5 @@
 import {getHrefLocale} from "@/i18n/get-href-locale";
+import Script from "next/script";
 
 const getSchemaOffer = (offer) => {
     const url = `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(offer.tour?.locale, `${offer.tour.city?.slug}/${offer.tour.slug}`)}`
@@ -74,8 +75,7 @@ export default async function EventsGuideSchema({slug, locale}) {
     const data = await response.json();
     const schemas = data.map(item => getSchemaEvent(item))
     return (
-        <script
-            async={true}
+        <Script
             type="application/ld+json"
             dangerouslySetInnerHTML={{__html: JSON.stringify(schemas)}}
         />

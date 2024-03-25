@@ -1,4 +1,5 @@
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
+import Script from "next/script";
 const MESSAGE = 'offers Free Walking Tours which has been selected and curated and by the Strawberry Tours team.'
 const getSchemaPlace = (name, description, image) => {
     return {
@@ -16,8 +17,7 @@ export default async function PlaceGuideSchema({slug, locale}) {
     const place = await response.json();
     const schema = getSchemaPlace(place.name, `${place.description} ${i18n.t(MESSAGE)}`, place.attachment?.src);
     return (
-        <script
-            async={true}
+        <Script
             type="application/ld+json"
             dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
         />

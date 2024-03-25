@@ -1,6 +1,7 @@
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import {PATH_GUIDES} from "@/shared/constants/route";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
+import Script from "next/script";
 
 const getSchemaProduct = (item, date, locale, description = '') => {
     const url = getHrefLocale(locale, `${PATH_GUIDES}/${item.slug}`)
@@ -40,8 +41,7 @@ export default async function ProductSchemaGuide({slug, locale}) {
     const item = await response.json();
     const schemaData = JSON.stringify(getSchemaProduct(item, date, locale, i18n.t('offers Free Walking Tours which has been selected and curated and by the Strawberry Tours team.')));
     return (
-        <script
-            async={true}
+        <Script
             type="application/ld+json"
             dangerouslySetInnerHTML={{__html: schemaData}}
         />
