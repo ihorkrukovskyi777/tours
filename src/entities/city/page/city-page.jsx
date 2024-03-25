@@ -31,7 +31,6 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
             <EventsSchema id={id} locale={locale} type="city"/>
             <PlaceSchema id={id} locale={locale}/>
             <ProductSchema id={id} locale={locale}/>
-            <Suspense fallback="">
                 <SsrCalendar locale={locale} type="city" id={id} title={i18n.tReplace('%s Tour Calendar', title)}/>
                 <MostPopularTours id={id} locale={locale} slug={slug} title={title} size={'small'}/>
                 <LatestReviews id={id} locale={locale}/>
@@ -42,7 +41,6 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <I18nChangeOfLanguage locale={locale} languages={languages} title="Free Tours"/>
                 <Breadcrumbs pages={[{slug: '/', title: breadcrumbsTitle}, {title: title}]} locale={locale}/>
                 <Footer locale={locale}/>
-            </Suspense>
         </>
     )
 }
