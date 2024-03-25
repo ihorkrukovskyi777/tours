@@ -75,7 +75,7 @@ export default async function EventsSchema({type = 'city', id, locale}) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/events-${type}/${id}?locale=${locale}`, {next: {revalidate: 60*60, tags: ['schema']}})
     const data = await response.json();
     let schema = null;
-
+    console.log(data, 'data')
     if(type === 'tour') {
         schema = getSchemaEvent(data)
     } else {
