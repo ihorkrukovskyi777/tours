@@ -5,7 +5,7 @@ const webSiteSchemaJsonb = {
     'author': {
         '@type': 'Organization',
         'name': 'Strawberry Tours',
-        'alternateName': ['FreeTours', 'FreeTours.com'],
+        'alternateName': ['StrawberryTours', 'StrawberryTours.com'],
         'sameAs': [
             'https://www.facebook.com/StrawberryToursENG',
             'https://twitter.com/StrawberryTours',

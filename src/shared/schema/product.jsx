@@ -9,12 +9,8 @@ const getSchemaProduct = (item, date, locale) => {
         "name": item.name,
         "description": item.description,
         "image": `${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${item.attachment?.src}/public`,
-        "brand": {
-            "name": item.name,
-        },
         "offers": {
             "@type": "Offer",
-            "availability": "https://schema.org/InStock",
             "price": "0",
             "priceCurrency": "EUR",
             'priceValidUntil': date,
@@ -22,7 +18,7 @@ const getSchemaProduct = (item, date, locale) => {
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": item.rating?.rating || 5,
-            "ratingCount": item.rating?.reviews || 0,
+            "reviewCount": item.rating?.reviews || 0,
             "bestRating": "5",
             "worstRating": "0",
         },
