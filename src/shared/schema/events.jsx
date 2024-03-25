@@ -29,7 +29,7 @@ const getSchemaEvent = (item) => {
     return {
         '@context': "https://schema.org",
         '@type': "Event",
-        name: item.seoName,
+        name: item.name,
         eventStatus: "https://schema.org/EventScheduled",
         startDate: firstDep ? firstDep.date : '',
         description: item.description,
