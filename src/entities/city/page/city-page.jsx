@@ -37,12 +37,15 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <LatestReviews id={id} locale={locale}/>
                 <Highlights id={id} locale={locale}/>
                 <TextBlocks id={id} locale={locale}/>
+                <div id="drawww" dangerouslySetInnerHTML={{__html: `<script async defer src="https://assets.guruwalk.com/affiliates/widget.min.js"></script>`}}></div>
+
                 <Guides id={id} locale={locale} title={title} type="city"/>
                 <MostPopularCity locale={locale} id={id} slug={slug} size={'small'} />
                 <I18nChangeOfLanguage locale={locale} languages={languages} title="Free Tours"/>
                 <Breadcrumbs pages={[{slug: '/', title: breadcrumbsTitle}, {title: title}]} locale={locale}/>
                 <Footer locale={locale}/>
             </Suspense>
-        </>
+
+            </>
     )
 }
