@@ -14,11 +14,13 @@ export default async function GuideTours({id, locale, slug, brandName = ''}) {
         tours={tours}
         title={i18n.t('Tours That %s Leads').replace('%s', brandName)}
         i18n={{
-            reviews: i18n.t('Reviews'),
             duration: i18n.t('Duration'),
             hours: i18n.t('Hours'),
             hour: i18n.t('Hour'),
             next_tour: i18n.t('Next Tour'),
             days: i18n.getDays(),
+            not_departure: i18n.t('No Departures Available. Check Soon!'),
+            reviews: i18n.t('Reviews'),
+            months: i18n.getMonths(),
         }} />
 }

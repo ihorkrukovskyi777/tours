@@ -20,7 +20,7 @@ export default function RowTours({tours, title = '', i18n = {}, sizeSection = 's
                             const labelHour = item.departure?.durations.find(val => val > 1) ? 'hours' : 'hour';
                             const serviceDate = new ServiceDate(item.departure?.nextDeparture);
                             const showTime = serviceDate.differenceInDays > 7 ?
-                                `${i18n.days[serviceDate.day]}, ${serviceDate.dayNum} ${serviceDate.month}` :
+                                `${i18n.days[serviceDate.day]}, ${serviceDate.dayNum} ${i18n.months[serviceDate.month]}` :
                                 `${i18n.days[serviceDate.day]}, ${serviceDate.time}`
 
                             return (
