@@ -83,3 +83,29 @@
 .single-post-text ol {
     list-style-position: inside;
 }
+.single-post-img a:empty {
+    display: none;
+}
+@media(max-width: 767px) {
+    .single-post h3 {
+        font-size: 24px;
+    }
+    .single-post,
+    .single-post:nth-child(2n+2){
+        grid-template-columns: 100%;
+        margin-top: 65px;
+        grid-gap: 0;
+    }
+    .single-post-text {
+        height: auto;
+        margin-top: 30px;
+    }
+    .blog-posts {
+        display: flex;
+        flex-direction: column;
+    }
+    .single-post .single-post-img a {
+        margin-top: 30px;
+    }
+
+}
