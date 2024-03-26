@@ -32,13 +32,12 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
             <PlaceSchema id={id} locale={locale}/>
             <ProductSchema id={id} locale={locale}/>
             <Suspense fallback={''}>
-                <SsrCalendar locale={locale} type="city" id={id} title={i18n.tReplace('%s Tour Calendar', title)}/>
+                {/*<SsrCalendar locale={locale} type="city" id={id} title={i18n.tReplace('%s Tour Calendar', title)}/>*/}
                 <MostPopularTours id={id} locale={locale} slug={slug} title={title} size={'small'}/>
                 <LatestReviews id={id} locale={locale}/>
                 <Highlights id={id} locale={locale}/>
                 <TextBlocks id={id} locale={locale}/>
-                <div id="drawww" dangerouslySetInnerHTML={{__html: `<script async defer src="https://assets.guruwalk.com/affiliates/widget.min.js"></script>`}}></div>
-
+                <div className="insert-a-code container" dangerouslySetInnerHTML={{__html: `<script async defer src="https://assets.guruwalk.com/affiliates/widget.min.js"></script><guruwalk-tour-cards affiliate="cqp26vnp1mgq8sywmd76" city="p18748-korce" lang="en" text-color="#484848" primary-color="#ff0000" secondary-color="#008489" limit="3" description="none"></guruwalk-tour-cards>`}}></div>
                 <Guides id={id} locale={locale} title={title} type="city"/>
                 <MostPopularCity locale={locale} id={id} slug={slug} size={'small'} />
                 <I18nChangeOfLanguage locale={locale} languages={languages} title="Free Tours"/>
