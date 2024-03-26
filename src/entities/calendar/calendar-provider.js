@@ -2,14 +2,8 @@
 import {createContext, memo, useEffect} from "react";
 import {StoreCalendar} from "@/entities/calendar/store/store-calendar";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
-const Main = dynamic(
-    () => import("@/entities/calendar/ui/main/main"),
-    {
-        ssr: false,
-    }
-)
+import Main from "@/entities/calendar/ui/main/main";
 import "@/entities/calendar/ui/main/style.css";
-import dynamic from "next/dynamic";
 
 export const StoreCalendarContext = createContext(null);
 
