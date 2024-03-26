@@ -37,7 +37,6 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <LatestReviews id={id} locale={locale}/>
                 <Highlights id={id} locale={locale}/>
                 <TextBlocks id={id} locale={locale}/>
-                <div className="insert-a-code container" dangerouslySetInnerHTML={{__html: `<script async defer src="https://assets.guruwalk.com/affiliates/widget.min.js"></script><guruwalk-tour-cards affiliate="cqp26vnp1mgq8sywmd76" city="p18748-korce" lang="en" text-color="#484848" primary-color="#ff0000" secondary-color="#008489" limit="3" description="none"></guruwalk-tour-cards>`}}></div>
                 <Guides id={id} locale={locale} title={title} type="city"/>
                 <MostPopularCity locale={locale} id={id} slug={slug} size={'small'} />
                 <I18nChangeOfLanguage locale={locale} languages={languages} title="Free Tours"/>
