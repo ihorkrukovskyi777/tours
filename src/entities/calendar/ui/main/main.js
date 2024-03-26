@@ -119,19 +119,19 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false}) {
                         : null
                     }
                 </div>
-                {loading ?
-                    <DeparturesList
-                        nameDayWeek={nameDayWeek}
-                        i18n={{
-                            months: i18n.months,
-                            days: i18n.days,
-                            hours: i18n.hours,
-                            hour: i18n.hour,
-                            show_me_more: i18n.show_me_more,
-                            departures_not_found: i18n.departures_not_found
-                        }}
-                    />
-                    : null}
+                {/*{loading ?*/}
+                {/*    <DeparturesList*/}
+                {/*        nameDayWeek={nameDayWeek}*/}
+                {/*        i18n={{*/}
+                {/*            months: i18n.months,*/}
+                {/*            days: i18n.days,*/}
+                {/*            hours: i18n.hours,*/}
+                {/*            hour: i18n.hour,*/}
+                {/*            show_me_more: i18n.show_me_more,*/}
+                {/*            departures_not_found: i18n.departures_not_found*/}
+                {/*        }}*/}
+                {/*    />*/}
+                {/*    : null}*/}
             </div>
             {eventLoadingModal ?
                 <ModalBooking size={'step-3'} show={isOpened} halfOpacity={storeModalCalendar.isOpenedListDeparture} close={close}>
