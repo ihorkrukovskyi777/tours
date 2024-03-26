@@ -4,7 +4,7 @@ import {useParams} from "next/navigation";
 import ReviewCard from "@/widgets/latest-reviews/reviews-card";
 import Button from "@/shared/ui/selectors/button/button";
 import {getReviews} from "@/entities/api";
-export default function ListReviews({i18n, reviews, total, limit, id, type, showTitle = true}) {
+export default function ListReviews({i18n, total, reviewsInit = 0,  limit, id, type, showTitle = true, children}) {
     const params = useParams();
     const [moreReviews, setMoreReviews] = useState({
         offset: limit,
@@ -17,12 +17,12 @@ export default function ListReviews({i18n, reviews, total, limit, id, type, show
             offset: moreReviews.offset + limit,
         })
     }
-
     return (
         <>
             <div className="wrapper">
+                {children}
                 {
-                    [...reviews, ...moreReviews.value].map((item) => {
+                    moreReviews.value.map((item) => {
                         return (
                             <ReviewCard
                                 showTitle={showTitle}
@@ -41,7 +41,7 @@ export default function ListReviews({i18n, reviews, total, limit, id, type, show
                     })
                 }
             </div>
-            {total > [...reviews, ...moreReviews.value].length ? <Button onClick={loadReviews} prevent={true}>{i18n.show_me_more}</Button> : null}
+            {total > reviewsInit + moreReviews.value.length ? <Button onClick={loadReviews} prevent={true}>{i18n.show_me_more}</Button> : null}
         </>
     )
 }
