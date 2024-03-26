@@ -140,7 +140,10 @@
   font-size: 12px;
 }
 .most_popular_tour.medium .rate_number {
-  font-size: 16px;
+  font-size: 12px;
+}
+.most_popular_tour.medium .item .intro > a {
+  font-size: 48px;
 }
 .most_popular_tour.medium .rate_box svg {
   width: 13px;
