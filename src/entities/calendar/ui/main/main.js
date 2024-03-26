@@ -6,19 +6,8 @@ import dynamic from "next/dynamic";
 import TabsLanguages from "@/entities/calendar/ui/tabs-languages";
 import ModalBooking from "@/entities/calendar/ui/modal-booking";
 import {StoreCalendarContext} from "@/entities/calendar/calendar-provider";
-
-const CounterNumbers = dynamic(
-    () => import("@/shared/ui/selectors/counter-numbers"),
-    {
-        ssr: false,
-    }
-)
-const DeparturesList = dynamic(
-    () => import("@/entities/calendar/ui/departures-list"),
-    {
-        ssr: false,
-    }
-)
+import DeparturesList from "@/entities/calendar/ui/departures-list";
+import CounterNumbers from "@/shared/ui/selectors/counter-numbers";
 const Step3 = dynamic(
     () => import("@/entities/calendar/ui/modal-booking/step-3/index"),
     {
