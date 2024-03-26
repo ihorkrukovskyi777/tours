@@ -129,7 +129,7 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false, is
                         : null
                     }
                 </div>
-                {loading && (eventLoadingModal || !isMobile) ?
+                {loading ?
                     <DeparturesList
                         nameDayWeek={nameDayWeek}
                         i18n={{
