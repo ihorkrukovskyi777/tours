@@ -34,7 +34,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
             <Suspense fallback={''}>
                 {/*<SsrCalendar locale={locale} type="city" id={id} title={i18n.tReplace('%s Tour Calendar', title)}/>*/}
                 {/*<MostPopularTours id={id} locale={locale} slug={slug} title={title} size={'small'}/>*/}
-                <LatestReviews id={id} locale={locale}/>
+                {/*<LatestReviews id={id} locale={locale}/>*/}
                 <Highlights id={id} locale={locale}/>
                 <TextBlocks id={id} locale={locale}/>
                 <Guides id={id} locale={locale} title={title} type="city"/>
