@@ -1,5 +1,7 @@
+'use client'
 import Script from "next/script";
-export default function ClientInsertCode({ scripts, children, scriptInner }) {
+import {memo} from "react";
+export default memo(function ClientInsertCode({ scripts, children, scriptInner }) {
 
     return (
         <div className="insert-a-code container">
@@ -8,4 +10,4 @@ export default function ClientInsertCode({ scripts, children, scriptInner }) {
             {children}
         </div>
     )
-}
+})
