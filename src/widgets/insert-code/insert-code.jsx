@@ -31,6 +31,5 @@ export default async function InsertCode({id, type = 'city'}) {
             }
         }
     })
-    console.log(scriptInner, 'scripts')
     return <ClientInsertCode scripts={scripts.filter(Boolean)} scriptInner={scriptInner}>{html}</ClientInsertCode>
 }
