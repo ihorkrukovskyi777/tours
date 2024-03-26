@@ -1,6 +1,6 @@
 import {Suspense} from "react";
 import BannerCity from "@/entities/city/ui/banner-city";
-import SsrCalendar from "@/entities/calendar/ssr-calendar";
+// import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import MostPopularTours from "@/entities/city/ui/most-popular-tours";
 import LatestReviews from "@/widgets/latest-reviews";
 import Highlights from "@/widgets/highlights";
