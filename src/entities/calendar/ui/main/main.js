@@ -32,6 +32,7 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false}) {
             window.removeEventListener('touchstart', load)
             window.removeEventListener('mousemove', load)
             window.removeEventListener('touchmove', load)
+            window.removeEventListener('scroll', load)
             setEventLoadingModal(true)
 
         };
@@ -39,12 +40,14 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false}) {
         window.addEventListener('touchstart', load)
         window.addEventListener('touchmove', load)
         window.addEventListener('mousemove', load)
+        window.addEventListener('scroll', load)
 
         return () => {
             window.removeEventListener('click', load)
             window.removeEventListener('touchstart', load)
             window.removeEventListener('mousemove', load)
             window.removeEventListener('touchmove', load)
+            window.removeEventListener('scroll', load)
         }
     }, [])
     const {
