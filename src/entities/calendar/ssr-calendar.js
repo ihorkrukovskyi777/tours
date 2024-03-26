@@ -5,7 +5,7 @@ import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import useGenitiveI18n from "@/i18n/hooks/useGenitiveI18n";
 
 
-export default async function SsrCalendar({locale, type, id, showFaq = true, title, nameDayWeek = true }) {
+export default async function SsrCalendar({locale, type, id, showFaq = true, title, nameDayWeek = true, isMobile = false }) {
     const [i18n,  i18nGenitive] = await Promise.all([
         useDefaultI18n(locale),
         useGenitiveI18n(locale),
@@ -54,6 +54,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
             <div className="container">
                 <div className="wrapper">
                     <CalendarProvider
+                        isMobile={isMobile}
                         nameDayWeek={nameDayWeek}
                         i18n={translate}
                         title={title}

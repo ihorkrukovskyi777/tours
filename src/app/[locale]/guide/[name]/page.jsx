@@ -44,6 +44,7 @@ export default async function PageGuide({params: {name, locale}}) {
             <Suspense fallback={''}>
                 <GuideTours id={pageSub.id} locale={locale} brandName={ pageSub.brandName}/>
                 <SsrCalendar
+                    isMobile={isMobile}
                     nameDayWeek={false}
                     locale={locale}
                     type="sub-vendor"

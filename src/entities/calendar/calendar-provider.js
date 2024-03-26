@@ -15,6 +15,7 @@ export default memo(function CalendarProvider({
                                                   id,
                                                   activeLanguage,
                                                   nameDayWeek,
+                                                  isMobile = false
                                               }) {
 
 
@@ -55,7 +56,7 @@ export default memo(function CalendarProvider({
                 storePhone: new StorePhone(locale),
             }}
         >
-            <Main siteLocale={locale} i18n={i18n} nameDayWeek={nameDayWeek}/>
+            <Main siteLocale={locale} i18n={i18n} nameDayWeek={nameDayWeek} isMobile={isMobile}/>
         </StoreCalendarContext.Provider>
     );
 });

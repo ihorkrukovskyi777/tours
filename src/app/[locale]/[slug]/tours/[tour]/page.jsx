@@ -73,7 +73,7 @@ export default async function Page({params: {locale, slug, tour}}) {
             <Suspense fallback={''}>
                 <ProviderMap hideBottom={false} locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}/>
                 <TextQuote id={page.id} locale={locale} type="tour"/>
-                <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title}/>
+                <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title} isMobile={isMobile}/>
                 <LatestReviews id={page.id} locale={locale} type="tour" showTitle={false}/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={i18n.t('Guides Leading this Tour')} id={page.id} locale={page.locale} type="tour"/>

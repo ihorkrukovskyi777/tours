@@ -21,7 +21,7 @@ const OpenModalButton = dynamic(
         ssr: false,
     }
 )
-export default observer(function Main({siteLocale, i18n, nameDayWeek = false}) {
+export default observer(function Main({siteLocale, i18n, nameDayWeek = false, isMobile = false}) {
 
     const [eventLoadingModal, setEventLoadingModal] = useState(false);
 
@@ -129,7 +129,7 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false}) {
                         : null
                     }
                 </div>
-                {loading && eventLoadingModal ?
+                {loading && (eventLoadingModal || !isMobile) ?
                     <DeparturesList
                         nameDayWeek={nameDayWeek}
                         i18n={{
