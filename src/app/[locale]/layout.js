@@ -14,7 +14,7 @@ export default async function LocaleLayout({children, params}) {
                 <WebSiteSchema />
                 <Header locale={params.locale}/>
                 {children}
-                {/*<GoogleScript />*/}
+                <GoogleScript />
             </main>
             </body>
             </html>
