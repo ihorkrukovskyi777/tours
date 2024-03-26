@@ -29,12 +29,16 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false}) {
     useEffect(() => {
         const load = () => {
             window.removeEventListener('click', load)
+            window.removeEventListener('touchstart', load)
             setEventLoadingModal(true)
 
         };
         window.addEventListener('click', load)
+        window.addEventListener('touchstart', load)
 
-        return () => window.removeEventListener('click', load)
+        return () => {
+            window.removeEventListener('touchstart', load)
+        }
     }, [])
     const {
         storePhone: {
