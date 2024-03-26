@@ -13,7 +13,9 @@ import Footer from "@/shared/ui/layouts/footer/footer";
 import PlaceSchema from "@/shared/schema/place";
 import ProductSchema from "@/shared/schema/product";
 import EventsSchema from "@/shared/schema/events";
+import InsertCode from "@/widgets/insert-code/insert-code";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
+
 export default async function CityPage({locale, title, id, languages, slug, isMobile}) {
     const i18n = await useDefaultI18n(locale);
 
@@ -38,6 +40,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
                 <Highlights id={id} locale={locale}/>
                 <TextBlocks id={id} locale={locale}/>
                 <Guides id={id} locale={locale} title={title} type="city"/>
+                <InsertCode id={id} type="city"/>
                 <MostPopularCity locale={locale} id={id} slug={slug} size={'small'} />
                 <I18nChangeOfLanguage locale={locale} languages={languages} title="Free Tours"/>
                 <Breadcrumbs pages={[{slug: '/', title: breadcrumbsTitle}, {title: title}]} locale={locale}/>

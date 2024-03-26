@@ -13,6 +13,7 @@
     "@react-input/mask": "^1.0.20",
     "@wordpress/shortcode": "^3.53.0",
     "classnames": "^2.3.2",
+    "html-react-parser": "^5.1.9",
     "intl-tel-input": "^19.5.3",
     "leaflet": "^1.9.4",
     "lodash.debounce": "^4.0.8",

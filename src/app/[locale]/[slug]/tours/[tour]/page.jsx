@@ -23,6 +23,7 @@ import PlaceSchema from "@/shared/schema/place";
 import ProductSchema from "@/shared/schema/product";
 import EventsSchema from "@/shared/schema/events";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
+import InsertCode from "@/widgets/insert-code/insert-code";
 const ProviderMap = dynamic(
     () => import("@/widgets/map-and-slider/provider"),
     {ssr: false}
@@ -77,12 +78,10 @@ export default async function Page({params: {locale, slug, tour}}) {
                 <LatestReviews id={page.id} locale={locale} type="tour" showTitle={false}/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={i18n.t('Guides Leading this Tour')} id={page.id} locale={page.locale} type="tour"/>
+                <InsertCode id={page.id} type="tour"/>
                 <TourRow id={page.id} locale={page.locale} title={`${i18n.t('Other Tours in')} ${page.city.title}`}/>
                 <CityRow id={page.id} locale={page.locale} title={`${i18n.t('See All Tours in')} ${page.city.title}`}/>
-                <I18nChangeOfLanguage
-                    locale={locale}
-                    languages={languages}
-                />
+                <I18nChangeOfLanguage locale={locale} languages={languages}/>
                 <Breadcrumbs pages={pagesBreadcrumbs} locale={locale}/>
                 <Footer locale={locale}/>
             </Suspense>

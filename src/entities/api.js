@@ -256,3 +256,11 @@ export const addReview = async (code, replay) => {
     }
 
 }
+
+export const insertCode = async (id, type = 'city') => {
+    const data = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/insert-code/${id}`,
+        {next: {revalidate: 60 * 15, tags: ['section']}}
+    )
+    return data.text();
+}
