@@ -2,13 +2,12 @@
 import {useRef} from "react";
 import dynamic from "next/dynamic";
 import useOnScreen from "@/shared/hooks/useOnScreen";
-import {log} from "util";
 
 const MapAndSlider = dynamic(
     () => import("@/widgets/map-and-slider/map-and-slider"),
     {ssr: false}
 )
-export default function ProviderMap({i18n, locale, id, toursPlaces, buttonsShow = false, hideBottom = false}) {
+export default function ProviderMap({i18n, locale, id, toursPlaces, buttonsShow = false, hideBottom = false, children}) {
 
 
     const ref = useRef(null)
@@ -22,7 +21,11 @@ export default function ProviderMap({i18n, locale, id, toursPlaces, buttonsShow 
 
     return (
         <div ref={ref}>
-            { isVisible ? <MapAndSlider hideBottom={hideBottom} i18n={i18n} locale={locale} id={id} toursPlaces={toursPlaces} buttonsShow={buttonsShow}/> : null }
+            { isVisible ?
+                <MapAndSlider hideBottom={hideBottom} i18n={i18n} locale={locale} id={id} toursPlaces={toursPlaces} buttonsShow={buttonsShow}>
+                    {children}
+                </MapAndSlider>
+                : null }
         </div>
     )
 }

@@ -12,7 +12,6 @@ import {PATH_TOURS} from "@/shared/constants/route";
 import LatestReviews from "@/widgets/latest-reviews";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import {getHrefLocale} from "@/i18n/get-href-locale";
-import TextQuote from "@/widgets/text-quote";
 import CityRow from "@/widgets/city-row/city-row";
 import TourRow from "@/widgets/tour-row/tour-row";
 import TextBlocks from "@/widgets/text-blocks";
@@ -24,6 +23,7 @@ import ProductSchema from "@/shared/schema/product";
 import EventsSchema from "@/shared/schema/events";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import InsertCode from "@/widgets/insert-code/insert-code";
+import TextQuote from "@/widgets/text-quote";
 const ProviderMap = dynamic(
     () => import("@/widgets/map-and-slider/provider"),
     {ssr: false}
@@ -72,8 +72,9 @@ export default async function Page({params: {locale, slug, tour}}) {
                 <ProductSchema id={page.id} locale={locale} type="tour"/>
             </Suspense>
             <Suspense fallback={''}>
-                <ProviderMap hideBottom={false} locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}/>
-                <TextQuote id={page.id} locale={locale} type="tour"/>
+                <ProviderMap hideBottom={false} locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}>
+                    <TextQuote id={page.id} locale={locale} type="tour"/>
+                </ProviderMap>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title} isMobile={isMobile}/>
                 <LatestReviews id={page.id} locale={locale} type="tour" showTitle={false}/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
