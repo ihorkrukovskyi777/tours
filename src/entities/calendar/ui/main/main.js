@@ -39,13 +39,13 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false}) {
 
     useEffect(() => {
         const load = () => {
-            window.removeEventListener('mousemove', load)
+            window.removeEventListener('click', load)
             setEventLoadingModal(true)
 
         };
-        window.addEventListener('mousemove', load)
+        window.addEventListener('click', load)
 
-        return () => window.removeEventListener('mousemove', load)
+        return () => window.removeEventListener('click', load)
     }, [])
     const {
         storePhone: {
