@@ -32,7 +32,7 @@ export default async function CityPage({locale, title, id, languages, slug, isMo
             <PlaceSchema id={id} locale={locale}/>
             <ProductSchema id={id} locale={locale}/>
             <Suspense fallback={''}>
-                <SsrCalendar locale={locale} type="city" id={id} title={i18n.tReplace('%s Tour Calendar', title)}/>
+                {/*<SsrCalendar locale={locale} type="city" id={id} title={i18n.tReplace('%s Tour Calendar', title)}/>*/}
                 {/*<MostPopularTours id={id} locale={locale} slug={slug} title={title} size={'small'}/>*/}
                 <LatestReviews id={id} locale={locale}/>
                 <Highlights id={id} locale={locale}/>
