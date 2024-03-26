@@ -5,7 +5,7 @@ export default function Reviews({sizeLabelReviews = '', size = 16 ,rating, count
     return (
         <div className="reviews">
             <div className={`rate_box ${size}`}>
-                {isShowCountReviews && count_reviews > 9 ? <div className={`count_rate ${sizeLabelReviews}`}>{count_reviews} {title}</div> : null}
+                {isShowCountReviews && count_reviews > 18 ? <div className={`count_rate ${sizeLabelReviews}`}>{count_reviews} {title}</div> : null}
                 <div>
                     {Number(rating) > 0 && stars.map(value => {
                         if((rating - value) >= 1)
