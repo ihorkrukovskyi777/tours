@@ -78,7 +78,7 @@ export default async function Page({params: {locale, slug, tour}}) {
                 <LatestReviews id={page.id} locale={locale} type="tour" showTitle={false}/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>
                 <Guides title={i18n.t('Guides Leading this Tour')} id={page.id} locale={page.locale} type="tour"/>
-                <InsertCode id={page.id} type="tour"/>
+                <InsertCode id={page.id} type="tour" locale={page.locale} />
                 <TourRow id={page.id} locale={page.locale} title={`${i18n.t('Other Tours in')} ${page.city.title}`}/>
                 <CityRow id={page.id} locale={page.locale} title={`${i18n.t('See All Tours in')} ${page.city.title}`}/>
                 <I18nChangeOfLanguage locale={locale} languages={languages}/>

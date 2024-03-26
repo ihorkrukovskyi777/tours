@@ -257,9 +257,9 @@ export const addReview = async (code, replay) => {
 
 }
 
-export const insertCode = async (id, type = 'city') => {
+export const insertCode = async (id, type = 'city', locale) => {
     const data = await fetch(
-        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/insert-code/${id}`,
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/insert-code/${id}?locale=${locale}`,
         {next: {revalidate: 60 * 15, tags: ['section']}}
     )
     return data.text();

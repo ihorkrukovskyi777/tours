@@ -1,6 +1,7 @@
 import {insertCode} from "@/entities/api";
 import dynamic from "next/dynamic";
 import parse from 'html-react-parser';
+import {fallbackLng} from "@/i18n/settings";
 
 const ClientInsertCode = dynamic(
     () => import("@/widgets/insert-code/client/client-insert-code"),
@@ -8,8 +9,8 @@ const ClientInsertCode = dynamic(
         ssr: false,
     }
 )
-export default async function InsertCode({id, type = 'city'}) {
-    const code = await insertCode(id, type);
+export default async function InsertCode({id, type = 'city', locale = fallbackLng}) {
+    const code = await insertCode(id, type, locale);
 
     if (typeof code !== 'string') {
         return null;
