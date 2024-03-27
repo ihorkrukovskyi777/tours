@@ -62,12 +62,15 @@ export default function GoogleScript() {
     return (
         <>
             <Script
+                id="script-gtag"
                 strategy="lazyOnload"
                 src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
             />
-            <script
+            <Script
+                id="google-analytics"
                 dangerouslySetInnerHTML={{
                     __html: `
+                    console.log('analytics');
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
