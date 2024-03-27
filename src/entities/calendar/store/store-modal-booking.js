@@ -1,6 +1,6 @@
 import {makeAutoObservable} from "mobx";
 import {fetchBookingDepartures} from "@/entities/calendar/api";
-
+import {sendEventsGTM} from "@/shared/helpers/google/send-event";
 export class StoreModalBooking {
     constructor(locale, depLogic, localeError) {
         this.locale = locale
@@ -34,7 +34,7 @@ export class StoreModalBooking {
 
     * fetchBookingDeparture(data, token) {
         this.toggleLoading();
-        const {email, firstName, lastName, phone, phone_county_code, phone_country_slug} = data;
+        const {email, firstName, lastName, phone, phone_county_code, phone_country_slug, tourName} = data;
         this.errors = [];
         const body = {
             curLang: this.localeError,
@@ -52,8 +52,22 @@ export class StoreModalBooking {
             full_number: `${phone_county_code}${phone}`,
             token,
         }
-        const results =  yield fetchBookingDepartures(body);
 
+
+        const results =  yield fetchBookingDepartures(body);
+        try {
+            sendEventsGTM({
+                eventName: 'add_booking',
+                bookID: results.booking_id,
+                firstName,
+                lastName,
+                tourName,
+                phoneNumber: phone,
+                numberOfPeople: this.depLogic.people,
+            })
+        } catch (err) {
+            console.log(err)
+        }
         if(!!results.success === false) {
             this.errors = Object.values(results.errors)
             this.toggleLoading();

@@ -130,6 +130,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookin
             setValidate(true);
             //REDIRECT TO CHECKOUT PAGE
             const formData = {
+                tourName: document.querySelector('.title-text')?.innerHTML,
                 firstName: document.getElementsByName('firstName')[0].value,
                 lastName: document.getElementsByName('lastName')[0].value,
                 email: document.getElementsByName('email')[0].value,
