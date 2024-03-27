@@ -6,7 +6,7 @@ import debounce from 'lodash.debounce';
 import { getHrefLocale } from '@/i18n/get-href-locale';
 import Link from 'next/link';
 
-export default observer(function DropdownSearch({locale}) {
+export default observer(function DropdownSearch({locale, i18n}) {
     const [store] = useState(new StoreSearchCity(locale));
     const debouncedChangeHandler = useCallback(
         debounce(() => {store.getFetchCities()}, 300)
@@ -25,7 +25,7 @@ export default observer(function DropdownSearch({locale}) {
                 <input
                     name="q"
                     type="text"
-                    placeholder="Where Are You Going?"
+                    placeholder={i18n.where_are_you_going}
                     value={store.value}
                     onChange={fetchData}
                 />
