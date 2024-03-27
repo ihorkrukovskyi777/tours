@@ -11,7 +11,7 @@ export default function robots() {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: '/api/v1/',
+            disallow: '/api/v1/*',
         },
         sitemap: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/sitemap.xml`,
     }
