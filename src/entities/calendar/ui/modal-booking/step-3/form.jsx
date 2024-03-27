@@ -9,7 +9,7 @@ import recaptcha from "@/shared/util/recaptcha";
 import Link from "next/link";
 
 export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookingDeparture, errorsMessage, isLoading}) {
-
+    const refSendFetch = useRef(false);
     const refForm = useRef();
     const [showError, setShowError] = useState(false);
     const {push} = useRouter();
@@ -125,9 +125,10 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookin
             });
             !loadValidate && setLoadValidate(true);
         }
-        
-        if (validateForm(state.errors) && loadValidate === true) {
-            setValidate(true);
+
+       if (validateForm(state.errors) && loadValidate === true &&  refSendFetch.current === false) {
+           refSendFetch.current = true;
+           setValidate(true);
             //REDIRECT TO CHECKOUT PAGE
             const formData = {
                 tourName: document.querySelector('.title-text')?.innerHTML,
@@ -148,6 +149,9 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookin
 
             } catch (err) {
                 console.log(err);
+            } finally {
+                refSendFetch.current = false;
+
             }
 
         } else {
