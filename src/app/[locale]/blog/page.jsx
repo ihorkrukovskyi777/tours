@@ -22,7 +22,7 @@ export async function generateMetadata({ params : {locale} }) {
 const canonical = `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${locale === 'en' ? '' : `/${locale}`}/blog`
     return {
         metadataBase: new URL(process.env.NEXT_PUBLIC_CANONICAL_DOMAIN),
-        robots: {index: true, follow: true, 'max-image-preview': true, 'max-snippet': 1, 'max-video-preview': -1},
+        robots: {index: true, follow: true, 'max-image-preview': true, 'max-snippet': -1, 'max-video-preview': -1},
         title: 'Blog | Strawberry Tours',
         // description: seo.description,
         openGraph: {

@@ -9,7 +9,7 @@ export const generatorSeo = (seo, canonical, locale, languages = []) => {
 
     return {
         metadataBase: new URL(process.env.NEXT_PUBLIC_CANONICAL_DOMAIN),
-        robots: {index: isIndex, follow: isFollow, 'max-image-preview': true, 'max-snippet': 1, 'max-video-preview': -1},
+        robots: {index: isIndex, follow: isFollow, 'max-image-preview': true, 'max-snippet': -1, 'max-video-preview': -1},
         title: seo.title,
         description: seo.description,
         openGraph: {
