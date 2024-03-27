@@ -80,7 +80,7 @@ export default async function FlexibleContent({
                     />
                 );
             })}
-            <I18nChangeOfLanguage languages={languages.map(item => ({...item, title: ''}))} title={'Free Tours'}/>
+            <I18nChangeOfLanguage locale={locale} languages={languages.map(item => ({...item, title: ''}))} title={'Free Tours'}/>
             <Footer locale={locale}/>
         </>
     );
