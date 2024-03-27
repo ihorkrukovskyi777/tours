@@ -79,6 +79,37 @@ export default function GoogleScript() {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}');
+                
+                
+                 window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+            
+                    const consentDenied = {
+                        'ad_storage': 'denied',
+                        'ad_user_data': 'denied',
+                        'ad_personalization': 'denied',
+                        'analytics_storage': 'denied'
+                    };
+                    const consentGranted = {
+                        'ad_user_data': 'granted',
+                        'ad_personalization': 'granted',
+                        'ad_storage': 'granted',
+                        'analytics_storage': 'granted',
+                        'functionality_storage': 'granted',
+                        'personalization_storage': 'granted',
+                        'security_storage': 'granted',
+                    }
+            
+                    // Set default consent to 'denied' as a placeholder
+                    // Determine actual values based on your own requirements
+                    gtag('consent', 'default', consentDenied);
+            
+                    function updateGtag() {
+                        gtag('consent', 'update', consentGranted);
+                    }
+            
+                    const consentSuggestion = window.localStorage.getItem('consent_suggestion')
+                    if(consentSuggestion === 'true') updateGtag()
             `,
                 }}
             />
