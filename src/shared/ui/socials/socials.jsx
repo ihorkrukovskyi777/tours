@@ -1,18 +1,29 @@
+'use client'
 import Image from 'next/image';
+import InstagramIcon from '@/assets/images/svg/instagram.svg'
+import FacebookIcon from '@/assets/images/svg/facebook.svg'
 import styles from '../socials/style.module.css';
-import InstagramIcon  from '@/assets/images/svg/instagram.svg'
-import FacebookIcon  from '@/assets/images/svg/facebook.svg'
 
 export default function Socials() {
-  return (
-    <ul className={styles.social}>
-        <a className={styles.url} href="https://www.facebook.com/StrawberryToursENG" target="_blank">
-            <Image src={FacebookIcon} alt='facebook' />
-        </a>
-        <a className={styles.url} href="https://www.instagram.com/StrawberryTours/" target="_blank">
-            <Image src={InstagramIcon} alt="instagram" />
-        </a>
-    </ul>
-  );
+    return (
+        <ul className={styles.social}>
+            <li
+                className={styles.url}
+                onClick={() => {
+                    window.open('https://www.facebook.com/StrawberryToursENG', '_blank').focus()
+                }}
+            >
+                <Image src={FacebookIcon} alt='facebook'/>
+            </li>
+            <li
+                className={styles.url}
+                onClick={() => {
+                    window.open('https://www.instagram.com/StrawberryTours/', '_blank').focus()
+                }}
+            >
+                <Image src={InstagramIcon} alt="instagram"/>
+            </li>
+        </ul>
+    );
 }
 

@@ -6,6 +6,7 @@
 .url {
     display: flex;
     transition: .3s;
+    cursor: pointer;
 }
 .url:hover {
     opacity: .6;
