@@ -1,4 +1,4 @@
-import {picketToursBox} from "@/entities/api";
+import {picketToursBox, placesMarkers} from "@/entities/api";
 import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import TextQuote from "@/widgets/text-quote";
 import dynamic from "next/dynamic";
@@ -12,11 +12,16 @@ export default async function MostPopularTours({id, locale, slug, title = '' , s
     let data = await picketToursBox(id, locale);
     const i18n = await useDefaultI18n(locale);
 
+
     if(!Array.isArray(data.tours)) {
         return null;
     }
+
     const tours = data.tours.map((item) => ({...item, citySlug: slug}));
     const toursPlaces = tours.map(tour => ({id: tour.id, title: tour.title, color: tour.color}));
+
+    const places = await placesMarkers(id, locale, tours?.map(tour => tour.id))
+
     return (
         <>
             {tours?.length ?
@@ -45,6 +50,7 @@ export default async function MostPopularTours({id, locale, slug, title = '' , s
                 i18n={i18n.getMapSliders()}
                 id={id}
                 locale={locale}
+                places={places}
                 toursPlaces={toursPlaces}
                 buttonsShow={true}
             />

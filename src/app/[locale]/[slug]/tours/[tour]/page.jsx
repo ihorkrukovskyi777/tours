@@ -24,10 +24,7 @@ import EventsSchema from "@/shared/schema/events";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import InsertCode from "@/widgets/insert-code/insert-code";
 import TextQuote from "@/widgets/text-quote";
-const ProviderMap = dynamic(
-    () => import("@/widgets/map-and-slider/provider"),
-    {ssr: false}
-)
+import MapAndSliderTour from "@/entities/tour/ui/map-and-slider-tour/map-and-slider-tour";
 
 export default async function Page({params: {locale, slug, tour}}) {
     const data = await fetch(
@@ -72,9 +69,9 @@ export default async function Page({params: {locale, slug, tour}}) {
                 <ProductSchema id={page.id} locale={locale} type="tour"/>
             </Suspense>
             <Suspense fallback={''}>
-                <ProviderMap hideBottom={false} locale={page.locale} id={page.id} i18n={i18n.getMapSliders()}>
+                <MapAndSliderTour hideBottom={false} locale={page.locale} id={page.id}>
                     <TextQuote id={page.id} locale={locale} type="tour"/>
-                </ProviderMap>
+                </MapAndSliderTour>
                 <SsrCalendar locale={page.locale} type="tour" id={page.id} title={page.title} isMobile={isMobile}/>
                 <LatestReviews id={page.id} locale={locale} type="tour" showTitle={false}/>
                 <TextBlocks id={page.id} locale={locale} type="tour"/>

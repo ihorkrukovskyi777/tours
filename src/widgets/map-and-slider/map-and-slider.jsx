@@ -20,12 +20,12 @@ const UseCtrl = dynamic(
 )
 export const StoreMapContext = createContext(null)
 
-export default observer(function MapAndSlider({i18n, id, locale, toursPlaces, hideBottom, children}) {
+export default observer(function MapAndSlider({i18n, id, locale, places = [], toursPlaces, hideBottom, children}) {
     const store = useRef(new StoreMap(id, locale))
     const ids = toursPlaces?.map(item => item.id) ?? []
 
     useEffect(() => {
-        store.current.fetchMarkers(id, locale, ids)
+        store.current.setMarkers(places)
     }, [])
 
     return (

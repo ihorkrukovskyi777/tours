@@ -86,6 +86,13 @@ export class StoreMap {
         }
 
     }
+    setMarkers(places) {
+        this.places = places;
+        if (this.places[0]) {
+            this.selectedPlaceId = this.places[0].id
+
+        }
+    }
 
     remove() {
         this.places = this.places.slice(1, this.places.length)
