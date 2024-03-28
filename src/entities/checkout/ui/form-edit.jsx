@@ -160,7 +160,7 @@ export default observer(function FormEdit({i18n}) {
             </div>
             {Array.isArray(error) ?
                 <ul>{error.map((value, index) => {
-                    return <li style={{margin: '10px 0', color: 'red'}} key={index}>{value}</li>
+                    return <li style={{margin: '10px 0', color: 'red'}} key={index} dangerouslySetInnerHTML={{__html: value}}></li>
                 })}</ul>
                 : null}
             <Button customClass='submit red' onClick={(e) => {
