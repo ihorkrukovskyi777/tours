@@ -38,8 +38,11 @@ export default function SwiperGuides({guides}) {
                 const rating = item.rating.rating.toFixed(2);
                 return (
                     <SwiperSlide key={item.id}>
-                        <CardGuide avatar={item?.avatar} url={hrefSubVendor(locale, item.brandName)}
-                                   bottomView={item?.locales}>
+                        <CardGuide
+                            avatar={item?.avatar}
+                            url={hrefSubVendor(locale, item.brandName)}
+                            bottomView={item?.locales}
+                        >
                             <div className="item_title">{item?.brandName}</div>
                             {rating > 0 ?
                                 <div className="rating_box">

@@ -1,10 +1,12 @@
-import Link from "next/link";
+'use client'
+import {useRouter} from "next/navigation";
 import IcloudImage from '../../icloud-image';
 import FlagsComponents from "@/shared/ui/flags";
 import styles from './style.module.css'
 export default function CardGuide({children , avatar , url , bottomView = []}) {
+    const router = useRouter();
     return (
-        <Link href={url?.toLowerCase()} className={styles.item} prefetch={false}>
+        <div onClick={() => { router.push(url?.toLowerCase())}} className={styles.item}>
             <div className={styles.text_wrapper}>
             <div className="img_box">
                 {avatar ? <IcloudImage src={avatar} width={270} height={270} alt="brand logo" /> : null }
@@ -18,6 +20,6 @@ export default function CardGuide({children , avatar , url , bottomView = []}) {
                     ))}
                 </div>
             </div>
-        </Link>
+        </div>
     )
 }
