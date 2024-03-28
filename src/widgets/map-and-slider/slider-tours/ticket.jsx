@@ -22,7 +22,7 @@ export default function Ticket({duration, title, price, url, i18n}) {
                 <Image src={ticketSVG} width={20} height={20} alt="icon"/>
                 <span>{i18n.tickets}: {i18n.from} {price} USD</span>
             </p>
-            <a className="button_basic" href={url+'?aid=3715&cmp=Features'}>{i18n.book_now}</a>
+            <a className="button_basic" href={url+'?aid=3715&cmp=Features'}>{i18n.read_more}</a>
         </div>
     )
 }

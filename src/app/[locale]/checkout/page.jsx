@@ -74,6 +74,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         download_voucher: i18n.t('Voucher download'),
         booking_canceled: i18n.t('Booking canceled'),
         notification_wrong: i18n.t('Something went wrong, we couldn\'t change your order'),
+        additional_information: i18n.t('Additional information'),
         genitive: {
             months: {
                 ...i18nGenitive.getMonths(),

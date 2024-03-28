@@ -50,6 +50,7 @@ export default observer(function CheckoutSection({i18n, title}) {
                     <MainInfo i18n={i18n}/>
                     <ButtonsInfo i18n={i18n} title={title}/>
                 </div>
+
                 <EditModalTour i18n={i18n} title={title}/>
                 <FormContact i18n={i18n}/>
             </section>
