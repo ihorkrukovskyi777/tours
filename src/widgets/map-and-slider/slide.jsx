@@ -30,6 +30,7 @@ export default memo(function Slide({tours, title, attachment, tickets = [], i18n
                 : null}
         </div>
 
+        {Object.keys(tickets).length > 0 ? <h3>{i18n.activities_nearby}:</h3> : null}
         {tickets?.map((ticket) => <Ticket key={ticket.id} {...ticket} i18n={i18n}/>)}
 
     </div>

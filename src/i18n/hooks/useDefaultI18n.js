@@ -37,6 +37,8 @@ class I18nDefault extends I18n {
             tour: this.t('Tour', locale),
             tours: this.t('Tours', locale),
             use_ctrl: this.t('Use ctrl + scroll to zoom the map', locale),
+            read_more: this.t('Read More', locale),
+            activities_nearby: this.t('Activities nearby', locale),
         }
     }
     getFormErrors(locale) {

@@ -2,6 +2,7 @@ import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
 import {observer} from "mobx-react-lite";
 import {useContext} from "react";
 import Image from "next/image";
+import AdditionalInformation from "@/entities/checkout/ui/additional-information";
 import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 
 export default observer(function MainInfo({ i18n }) {
@@ -186,12 +187,16 @@ export default observer(function MainInfo({ i18n }) {
                         {checkoutInfo.mpvImage?.url && (
                             <div className="images_wrap">
                                 <div className="img_first">
-                                    <Image src={checkoutInfo.mpvImage.url} width={350} height={240} alt="Meeting point image"/>
+                                    <Image src={checkoutInfo.mpvImage.url} width={350} height={240}
+                                           alt="Meeting point image"/>
                                 </div>
                             </div>
                         )}
                     </div>
                     : null}
+
+                <AdditionalInformation i18n={i18n} />
+
             </div>
         </div>
     );
