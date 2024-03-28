@@ -32,7 +32,7 @@ const CheckoutContent = observer(({title, i18n}) => {
     const styleLoader = {
         position: 'fixed',
         top: 0,
-        zIndex: 999,
+        zIndex: 9999,
         background: '#fff',
         width: '100%',
         height: '100%',

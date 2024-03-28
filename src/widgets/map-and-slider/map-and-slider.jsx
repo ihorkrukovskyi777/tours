@@ -27,7 +27,6 @@ export default observer(function MapAndSlider({i18n, id, locale, places = [], to
     useEffect(() => {
         store.current.setMarkers(places)
     }, [])
-
     return (
         <StoreMapContext.Provider value={{
             map: store.current

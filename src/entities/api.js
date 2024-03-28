@@ -201,6 +201,19 @@ export const placesMarkers = async (id, locale = 'en', ids = []) => {
         console.log(err);
     }
 }
+
+export const placesMarkersCheckout = async (tourId, locale = 'en') => {
+    try {
+        console.log(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/place/by-tour/${tourId}?locale=${locale}`)
+        const res = await fetch(
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/place/by-tour/${tourId}?locale=${locale}`,
+            {next: {revalidate: 60 * 15, tags: ['section']}}
+        );
+        return res.json()
+    } catch (err) {
+        console.log(err);
+    }
+}
 export const getTextAndSlides = async (id, locale = 'en') => {
     try {
         const res = await fetch(

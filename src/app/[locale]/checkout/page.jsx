@@ -6,6 +6,7 @@ import {notFound} from "next/navigation";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import useGenitiveI18n from "@/i18n/hooks/useGenitiveI18n";
 import generateSeoPage from "@/shared/helpers/seo/generate-seo-page";
+import CheckoutMapEndSlider from "@/entities/checkout/ui/map-and-slider/checkout-map-end-slider";
 
 
 export default async function CheckoutPage({params: {locale}, searchParams}) {
@@ -93,9 +94,11 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
             }
         }
     }
+
     return (
         <>
             <Checkout title={currentPage?.title} i18n={translates} locale={locale} tourLocale={checkoutData.locale}/>
+            <CheckoutMapEndSlider locale={locale} tourId={checkoutData.tour_id}/>
             <TourRow
                 sizeSection={'small'}
                 id={checkoutData.tour_id}
