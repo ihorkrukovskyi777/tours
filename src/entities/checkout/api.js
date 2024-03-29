@@ -37,3 +37,13 @@ export const fetchEditBooking = async (body) => {
         return {success: false}
     }
 }
+
+export const additionalInformation = async (code, locale) => {
+    try {
+
+        let data = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/checkout/additional-information/${code}?locale=${locale}`, {next: {revalidate: 10}})
+        return data.json()
+    } catch (err) {
+        return {success: false}
+    }
+}

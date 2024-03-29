@@ -80,18 +80,34 @@ export class StoreMap {
             this.typePage = 'city';
         }
         this.places = yield placesMarkers(id, locale, ids);
+
         if (this.places[0]) {
             this.selectedPlaceId = this.places[0].id
 
         }
 
     }
-    setMarkers(places) {
+    setMarkers(places, selectedId) {
         this.places = places;
         if (this.places[0]) {
             this.selectedPlaceId = this.places[0].id
-
+            const findTourById = places.find(item => Object.keys(item.ordersTours).includes(selectedId))
+            if(selectedId && findTourById) {
+                this.setSelectedTourId(String(selectedId))
+            }
         }
+    }
+
+    get enableClearButton() {
+        if(!Array.isArray(this.places)) {
+            return false;
+        }
+
+        let tours = {};
+        for (const place of this.places) {
+            tours =  {...tours, ...(place.ordersTours || {})}
+        }
+        return Object.keys(tours).length > 1
     }
 
     remove() {

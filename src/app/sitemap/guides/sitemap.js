@@ -6,7 +6,7 @@ export default async function sitemap() {
     }
 
     return siteMaps.map(page => ({
-        url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/${getSlug(page)}`,
+        url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/guide/${getSlug(page)}`,
         lastModified: page.lastModified,
     }))
 }

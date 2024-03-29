@@ -1,14 +1,27 @@
+'use client'
+import {useEffect, useState} from "react";
+import {useParams, useSearchParams} from "next/navigation";
+import {additionalInformation} from "@/entities/checkout/api";
 
-import {observer} from "mobx-react-lite";
-import {useContext} from "react";
-import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
+export default function AdditionalInformation({ i18n }) {
+    const [message, setMessage] = useState('')
+    const query = useSearchParams();
+    const params = useParams();
 
-export default observer(function AdditionalInformation({ i18n }) {
-    const { checkoutInfo } = useContext(CheckoutStoreContext);
+    const code = query.get('code');
+    useEffect(() => {
+        additionalInformation(code, params.locale).then(data => {
+            setMessage(data?.message)
+        })
+    }, [code, params.locale])
+
+    if(!message?.trim()) {
+        return null;
+    }
     return (
         <div className="additional-information">
             <h3>{i18n.additional_information}<span className="dot">:</span></h3>
-            <p>Take the right after the stars and look out for a green umbrella.</p>
+            <p>{message}</p>
         </div>
     );
-})
+}

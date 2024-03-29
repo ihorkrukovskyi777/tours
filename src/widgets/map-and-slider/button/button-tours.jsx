@@ -38,7 +38,16 @@ const columnsFormula = (column1, column2) => {
 export default observer(function ButtonTours({toursPlaces, i18n}) {
 
 
-    const {map: {selectedTourId,setSelectedTourId, resetSelectedTour, places, shortToursTitle}} = useContext(StoreMapContext);
+    const {
+        map: {
+            selectedTourId,
+            setSelectedTourId,
+            resetSelectedTour,
+            places,
+            shortToursTitle,
+            enableClearButton,
+        }
+    } = useContext(StoreMapContext);
     const buttons = toursPlaces.map(item => ({...item, title: shortToursTitle[item.id] ?? item.title}))
     const fullWidth = buttons.reduce((acc, value) => {
         acc = {
@@ -105,7 +114,7 @@ export default observer(function ButtonTours({toursPlaces, i18n}) {
                     )
                 })}
             </div>
-            {toursPlaces.length > 1 ?
+            {enableClearButton ?
                 <button className="place_select_post_clear" onClick={resetSelectedTour}>
                     <Image src={ClearSVG} alt="clear" /> {i18n.clear}
                 </button> : null

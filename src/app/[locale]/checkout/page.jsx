@@ -7,6 +7,7 @@ import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import useGenitiveI18n from "@/i18n/hooks/useGenitiveI18n";
 import generateSeoPage from "@/shared/helpers/seo/generate-seo-page";
 import CheckoutMapEndSlider from "@/entities/checkout/ui/map-and-slider/checkout-map-end-slider";
+import {additionalInformation} from "@/entities/checkout/api";
 
 
 export default async function CheckoutPage({params: {locale}, searchParams}) {
