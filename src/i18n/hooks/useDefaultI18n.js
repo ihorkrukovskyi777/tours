@@ -27,7 +27,7 @@ class I18nDefault extends I18n {
     }
     getMapSliders(locale) {
         return {
-            tour_features: this.t('Activities nearby', locale),
+            tour_features: this.t('Tour Features', locale),
             book_now: this.t('Book now', locale),
             hours: this.t('Hours', locale),
             tickets: this.t('Tickets', locale),
