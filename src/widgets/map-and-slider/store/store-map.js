@@ -91,7 +91,9 @@ export class StoreMap {
         this.places = places;
         if (this.places[0]) {
             this.selectedPlaceId = this.places[0].id
-            const findTourById = places.find(item => Object.keys(item.ordersTours).includes(selectedId))
+            const findTourById = places.find(item => Object.keys(item.ordersTours).includes(String(selectedId)))
+
+            console.log(findTourById)
             if(selectedId && findTourById) {
                 this.setSelectedTourId(String(selectedId))
             }
