@@ -7,7 +7,6 @@ import Guides from "@/shared/ui/guides";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import TextAndSliderTourPage from "@/entities/tour/ui/text-and-slider-tour-page";
 import {isMobileCheck} from "@/shared/helpers";
-import dynamic from "next/dynamic";
 import {PATH_TOURS} from "@/shared/constants/route";
 import LatestReviews from "@/widgets/latest-reviews";
 import Footer from "@/shared/ui/layouts/footer/footer";
