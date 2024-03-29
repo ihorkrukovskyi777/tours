@@ -2,6 +2,7 @@
     margin: 50px 0 30px;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 .map_and_slider h2 {
     margin: 32px 0;
