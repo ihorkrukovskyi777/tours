@@ -32,9 +32,12 @@ export async function getCityBoxByTour(id, locale = 'en') {
 }
 
 export async function getRandomTourByCity(id, locale = 'en') {
+
+    const itemsRandom = [1,2,3,4,5];
+    const random = itemsRandom[Math.floor(Math.random()*itemsRandom.length)];
     const data = await fetch(
-        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/section/random-tours/${id}?locale=${locale}`,
-        {next: {revalidate: 5}}
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/section/random-tours/${id}?locale=${locale}&rand=${random}`,
+        {next: {revalidate: 60 * 5}}
     )
     return data.json();
 }
