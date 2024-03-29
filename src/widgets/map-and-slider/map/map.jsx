@@ -20,7 +20,7 @@ export default observer(function Map({ids, id, locale}) {
         if(markers.length === 0) {
             return null
         }
-
+        const ifOnlySmallStatus = !markers.find(marker => marker.status !== 'small');
         return (
                 <MapContainer whenReady={(e) => setMap(e.target)} center={position} zoom={13} style={{height: '400px', width: '100%'}} ref={refMap}>
                     <TileLayer
@@ -43,7 +43,7 @@ export default observer(function Map({ids, id, locale}) {
                                 <MarkerDefault
                                     id={marker.id}
                                     isActive={marker.id === selectedPlaceId}
-                                    status={marker.status}
+                                    status={ifOnlySmallStatus ? 'default' : marker.status}
                                     colors={marker.colors}
                                     icon={marker.src}
                                 />)
