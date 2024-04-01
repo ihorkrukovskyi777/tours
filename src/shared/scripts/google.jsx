@@ -55,17 +55,21 @@ export default function GoogleScript() {
 
     }, [])
 
-
+    if(load === false) {
+        return null;
+    }
     return (
         <>
             <Script
                 async={true}
+                defer={true}
                 id="script-gtag"
                 strategy="lazyOnload"
                 src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
             />
             <Script
                 async={true}
+                defer={true}
                 id="google-analytics"
                 dangerouslySetInnerHTML={{
                     __html: `
