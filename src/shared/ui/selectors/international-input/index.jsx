@@ -43,17 +43,17 @@ export default function InternationalInput({
     const [inputTelWidth, setInputTelWidth] = useState(100);
     useEffect(() => {
         const config = { attributes: true, childList: true, subtree: true };
-            const changeWidth = () => {
-                const w = refPaddingLeft.current.querySelector('div').offsetWidth ?? 100;
-                setInputTelWidth(w)
-            }
-            const observer = new MutationObserver(changeWidth)
+        const changeWidth = () => {
+            const w = refPaddingLeft.current.querySelector('div').offsetWidth ?? 100;
+            setInputTelWidth(w)
+        }
+        const observer = new MutationObserver(changeWidth)
 
-            observer.observe(refPaddingLeft.current, config);
+        observer.observe(refPaddingLeft.current, config);
 
-            changeWidth();
+        changeWidth();
 
-            return () => observer.disconnect();
+        return () => observer.disconnect();
 
     },[])
     const handleFocus = () => setBorder(true);
@@ -88,7 +88,7 @@ export default function InternationalInput({
                         })
                         const selectedCountryData = country.countryCode.toUpperCase();
                         const placeholderInput = localizationWP[selectedCountryData]['mask_number'];
-                        const maskInput = placeholderInput.replace(/[0-9]/g, "_");
+                        const maskInput = placeholderInput.replace(/[^0-9]/g, '');
                         setPlaceholder(placeholderInput);
                         setValidation_numbers(localizationWP[selectedCountryData]['validation_numbers'])
                         setMaskView(maskInput);
@@ -121,6 +121,10 @@ export default function InternationalInput({
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 data-slug={slugCountry}
+                onPaste={(e)=>{
+                    e.preventDefault()
+                    return false;
+                }}
             />
         </div>
 
