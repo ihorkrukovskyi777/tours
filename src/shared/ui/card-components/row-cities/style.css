@@ -28,6 +28,18 @@
     height: 100%;
     border-radius: 8px;
 }
+.most_popular_city .card_item_locales {
+    position: absolute;
+    z-index: 1;
+}
+.most_popular_city .flags_wrap {
+    display: flex;
+    flex-direction: row-reverse;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    z-index: 1;
+}
 .most_popular_city .item:after {
     position: absolute;
     content: '';

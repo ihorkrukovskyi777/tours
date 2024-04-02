@@ -31,13 +31,13 @@ export async function getCityBoxByTour(id, locale = 'en') {
     return data.json();
 }
 
-export async function getRandomTourByCity(id, locale = 'en') {
+export async function getRandomTourByCity(id, locale = 'en', limit = 3) {
 
-    const itemsRandom = [1,2,3,4,5];
-    const random = itemsRandom[Math.floor(Math.random()*itemsRandom.length)];
+    // const itemsRandom = [1,2,3,4,5];
+    // const random = itemsRandom[Math.floor(Math.random()*itemsRandom.length)];
     const data = await fetch(
-        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/section/random-tours/${id}?locale=${locale}&rand=${random}`,
-        {next: {revalidate: 60 * 5,  tags: ['section']}}
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/section/random-tours/${id}?locale=${locale}&limit=${limit}`,
+        {next: {revalidate: 0,  tags: ['section']}}
     )
     return data.json();
 }

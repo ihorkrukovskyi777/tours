@@ -55,9 +55,7 @@ export default function GoogleScript() {
 
     }, [])
 
-    if(load === false) {
-        return null;
-    }
+
     return (
         <>
             <Script
