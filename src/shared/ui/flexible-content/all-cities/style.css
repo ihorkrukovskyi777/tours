@@ -56,8 +56,10 @@
         min-height: 136px;
         margin: 0;
     }
+
     .all_cities {
         margin: 30px 0 115px 0;
+        min-height: 4000px;
     }
     .all_cities .items {
         min-height: 2136px;
