@@ -56,7 +56,9 @@
         min-height: 136px;
         margin: 0;
     }
-
+    .all_cities .item_title {
+        min-height: 26px;
+    }
     .all_cities {
         margin: 30px 0 115px 0;
         min-height: 4000px;
@@ -67,5 +69,9 @@
 
     .all_cities h2 {
         margin-bottom: 30px;
+    }
+    .all_cities .item_cities span {
+        height: 18px;
+        display: inline-block;
     }
 }
