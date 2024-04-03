@@ -8,6 +8,6 @@ export default async function TourRow({id, locale = 'en', title , sizeSection='s
     }
 
     let tours = results.map(item => ({ ...item, slug: `${item.city.slug}/${PATH_TOURS}/${item.slug}` }));
-    tours = tours.map(tour => ({...tour, reviews: tour?.rating.reviews || 0 , rating: tour.rating?.rating || 0}))
+    tours = tours.map(tour => ({...tour, reviews: tour?.rating?.reviews || 0 , rating: tour?.rating?.rating || 0}))
     return <RowCities locale={locale} cities={tours} title={title} sizeSection={sizeSection}/>
 }
