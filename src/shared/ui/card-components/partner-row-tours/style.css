@@ -1,0 +1,219 @@
+.partners_tour {
+  margin: 65px 0 80px 0;
+}
+.partners_tour h2 {
+  margin: 0 0 30px 0;
+  line-height: 1;
+}
+.partners_tour .items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+.partners_tour .item_wrap {
+  display: flex;
+  flex-direction: column;
+}
+.partners_tour .item {
+  padding: 18px;
+  display: block;
+  position: relative;
+  color: #fff;
+  height: 100%;
+  min-height: 230px;
+  flex-direction: column;
+}
+.partners_tour .item .img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px 8px 0 0;
+  object-fit: cover;
+}
+.partners_tour .elem svg {
+  width: 18px;
+  height: 20px;
+}
+.partners_tour .flags_wrap {
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  z-index: 1;
+}
+.partners_tour .elem {
+  display: flex;
+  align-items: center;
+}
+.partners_tour .elem svg path {
+  fill: var(--main_color);
+}
+.partners_tour .item:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.69) -2.14%,
+    rgba(0, 0, 0, 0.1311) 121.52%
+  );
+  border-radius: 8px 8px 0 0;
+}
+.partners_tour .item .intro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+.partners_tour .item .intro > a {
+  position: absolute;
+  max-width: 240px;
+  margin: 0 auto;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  font: 700 32px/1.105 var(--fontBold);
+}
+.partners_tour .item .intro > a:hover {
+  text-decoration: underline;
+}
+.partners_tour .item .intro > a span {
+  content: "Free Tours";
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 100%;
+  text-align: center;
+  font-size: 22px;
+  font-family: "BrandonGrotesque-Medium";
+  font-weight: 450;
+}
+.partners_tour .item h3 {
+  margin: auto 0;
+  font-size: 48px;
+  line-height: 1.05;
+  text-align: center;
+  color: #fff;
+}
+.partners_tour .reviews {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1.16;
+  font-family: var(--fontMedium);
+  margin-top: auto;
+  z-index: 1;
+  bottom: 20px;
+  position: relative;
+}
+.partners_tour .count_rate {
+  margin-right: 12px;
+  font-size: 12px;
+}
+.partners_tour.medium .count_rate {
+  font-size: 16px;
+}
+.partners_tour .rate_stars {
+  margin-right: 10px;
+  display: flex;
+}
+.partners_tour .rate_stars svg:not(:last-of-type) {
+  margin-right: 4px;
+}
+.partners_tour .rate_number {
+  font-size: 12px;
+}
+.partners_tour.medium .rate_number {
+  font-size: 12px;
+}
+.partners_tour.medium .item .intro > a {
+  font-size: 48px;
+}
+.partners_tour.medium .rate_box svg {
+  width: 13px;
+  height: 13px;
+}
+.partners_tour .react-stars img {
+  width: 12px;
+  height: 12px;
+}
+.partners_tour .item_bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 17px 20px;
+  background: var(--bg_color);
+  border-radius: 0 0 8px 8px;
+}
+.partners_tour .item_bottom p {
+  margin: 20px 0;
+}
+.partners_tour .elem {
+  margin-bottom: 15px;
+}
+.partners_tour .elem,
+.partners_tour .button {
+  font-size: 20px;
+  line-height: 1.2;
+  font-family: var(--fontMedium);
+}
+.partners_tour .elem svg,
+.partners_tour .elem img,
+.partners_tour .elem span:first-of-type {
+  margin-right: 8px;
+}
+.partners_tour.small .count_rate,
+.partners_tour.small .rate_number {
+  font-size: 12px;
+}
+.partners_tour.small .count_rate svg {
+  width: 13px;
+}
+
+/*RESPONSIVE*/
+@media (max-width: 1199px) {
+  .partners_tour .items {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 767px) {
+  .partners_tour {
+    margin: 30px 0 65px 0;
+  }
+  .partners_tour .elem,
+  .partners_tour .button {
+    font-size: 16px;
+  }
+  .partners_tour .count_rate {
+    font-size: 12px;
+  }
+}
+@media (max-width: 600px) {
+  .partners_tour .items {
+    grid-template-columns: 100%;
+    grid-gap: 25px;
+  }
+  .partners_tour .item {
+    min-height: 210px;
+  }
+  .partners_tour .count_rate {
+    margin-right: 5px;
+  }
+  .partners_tour .rate_stars {
+    margin-right: 7px;
+  }
+}

@@ -1,0 +1,46 @@
+import ViewQuote from "@/widgets/text-quote/view-quote";
+import PartnerRowTours from "@/shared/ui/card-components/partner-row-tours/partner-row-tours";
+import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
+
+import { picketPartnerTours } from "@/entities/api";
+
+export default async function PartnerTours({
+  id,
+  locale,
+  title = "Paid Tours And Activities",
+  size = "small",
+}) {
+  let data = await picketPartnerTours(id, locale);
+  const i18n = await useDefaultI18n(locale);
+
+  if (!Array.isArray(data.partnerTours)) {
+    return null;
+  }
+
+  const tours = data.partnerTours.map((item) => ({
+    ...item,
+  }));
+
+  return (
+    <>
+      <ViewQuote title={data.title} description={data.description} />
+      {tours?.length && (
+        <>
+          <PartnerRowTours
+            tours={tours}
+            title={title}
+            i18n={{
+              duration: i18n.t("Duration"),
+              hours: i18n.t("Hours"),
+              hour: i18n.t("Hour"),
+              days: i18n.getDays(),
+              reviews: i18n.t("Reviews"),
+              months: i18n.getMonths(),
+              ticket: i18n.t("Tickets"),
+            }}
+          />
+        </>
+      )}
+    </>
+  );
+}
