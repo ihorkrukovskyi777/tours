@@ -17,11 +17,12 @@ export default async function InsertPartnerCode({
 }) {
   let data = await insertPartnerCode(id, type, locale);
 
-  if (typeof data.insertCode !== "string") {
-    return null;
-  }
 
   const { scripts, scriptInner, html } = useParseCode(data.insertCode);
+
+    if (typeof data.insertCode !== "string") {
+        return null;
+    }
 
   return (
     <>

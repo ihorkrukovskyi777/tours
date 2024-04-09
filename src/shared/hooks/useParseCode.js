@@ -1,9 +1,10 @@
 import parse from "html-react-parser";
 
 function useParseCode(code) {
+
   const scripts = [];
   let scriptInner = "";
-  const html = parse(code, {
+  const html = parse(typeof code  === 'string' ? code :  '', {
     replace: (domNode) => {
       if (domNode.name === "script") {
         scripts.push(domNode.attribs.src);
