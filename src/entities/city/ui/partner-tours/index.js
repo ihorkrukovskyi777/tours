@@ -4,12 +4,7 @@ import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 
 import { picketPartnerTours } from "@/entities/api";
 
-export default async function PartnerTours({
-  id,
-  locale,
-  title = "Paid Tours And Activities",
-  size = "small",
-}) {
+export default async function PartnerTours({ id, locale, size = "small" }) {
   let data = await picketPartnerTours(id, locale);
   const i18n = await useDefaultI18n(locale);
 
@@ -23,12 +18,13 @@ export default async function PartnerTours({
 
   return (
     <>
-      <ViewQuote title={data.title} description={data.description} />
       {tours?.length && (
         <>
+          {data?.title && (
+            <ViewQuote title={data.title} description={data.description} />
+          )}
           <PartnerRowTours
             tours={tours}
-            title={title}
             i18n={{
               duration: i18n.t("Duration"),
               hours: i18n.t("Hours"),
@@ -37,6 +33,7 @@ export default async function PartnerTours({
               reviews: i18n.t("Reviews"),
               months: i18n.getMonths(),
               ticket: i18n.t("Tickets"),
+              title: i18n.t("Paid Tours And Activities"),
             }}
           />
         </>

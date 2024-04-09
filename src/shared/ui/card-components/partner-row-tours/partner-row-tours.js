@@ -8,12 +8,12 @@ import { PATH_TOURS } from "@/shared/constants/route";
 import LanguageImages from "@/shared/ui/languages/language-images";
 import "./style.css";
 
-export default function PartnerRowTours({ tours, title, i18n = {} }) {
+export default function PartnerRowTours({ tours, i18n = {} }) {
   return (
     <section className="partners_tour">
       <div className="container">
         <div className="wrapper">
-          <h2 className="title">{title}</h2>
+          <h2 className="title">{i18n.title}</h2>
           <div className="items">
             {tours?.map((item) => {
               const labelHour = item.departure?.durations.find((val) => val > 1)
