@@ -35,7 +35,6 @@ export default async function BannerTour({id, locale, isMobile}) {
     return (
         <Banner
             headMobile={<LanguageImages locales={tour.departure.locales}/>}
-            isMobile={isMobile}
             title={tour.title}
             attachment={tour.attachment}
             size="tour_banner"
