@@ -1,6 +1,6 @@
 "use client";
-import Script from "next/script";
 import { memo } from "react";
+import Script from "next/script";
 export default memo(function ClientInsertCode({
   scripts,
   children,

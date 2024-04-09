@@ -25,9 +25,13 @@ export default function TextAndSlider({
   const [width, height] = isMobile ? [340, 220] : [625, 350];
 
   function scrollToCalendar() {
-    const section =
-      document.querySelector("#tour_calendar_section") ||
-      document.querySelector("#insert_code_block");
+    let section =
+      document.querySelector("#tour_calendar_section") ;
+
+    if(section.style.display === 'none') {
+      section = document.querySelector("#insert_code_block")
+    }
+
     if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 

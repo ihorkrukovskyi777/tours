@@ -15,12 +15,12 @@ export default async function InsertCode({
   locale = fallbackLng,
 }) {
   const code = await insertCode(id, type, locale);
-
+  const { scripts, scriptInner, html } = useParseCode(code);
   if (typeof code !== "string") {
     return null;
   }
 
-  const { scripts, scriptInner, html } = useParseCode(code);
+
   return (
     <ClientInsertCode scripts={scripts} scriptInner={scriptInner}>
       {html}
