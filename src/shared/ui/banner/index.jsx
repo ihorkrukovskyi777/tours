@@ -13,7 +13,6 @@ export default function Banner({headMobile= null, attachment = null, title, chil
                     className="banner_bg"
                     width={width}
                     height={height}
-                    isMobile={isMobile}
                     size={ isMobile ? '500x500' : 'public'}
                     src={attachment?.src}
                     alt={attachment?.alt}
