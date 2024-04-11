@@ -37,6 +37,7 @@ export default function PartnerRowTours({ tours, i18n = {} }) {
                       size={12}
                       rating={item.rating?.rating || 0}
                       count_reviews={item.rating?.reviews || 0}
+                      title={i18n.reviews}
                     />
                   }
                 >
