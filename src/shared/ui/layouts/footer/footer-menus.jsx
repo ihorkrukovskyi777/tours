@@ -13,7 +13,14 @@ export default function FooterMenus({ menuItems }) {
                 <li
                     style={styles}
                     key={menu.slug}
-                    onClick={() => { router.push(getHrefLocale(menu.locale, menu.slug))}}
+                    onClick={() => {
+                        if(window?.bugPageRoute) {
+                            window.location.href = getHrefLocale(menu.locale, menu.slug)
+                        } else {
+                            router.push(getHrefLocale(menu.locale, menu.slug))
+                        }
+
+                    }}
                 >
                     {menu.title || ""}
                 </li>
