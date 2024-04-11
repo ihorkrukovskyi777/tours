@@ -32,7 +32,7 @@ export default async function InsertPartnerCode({
             {data?.title?.trim() && (
                 <ViewQuote title={data.title} description={data.description}/>
             )}
-            { isMobile || true ? <FixedRoutePartnerTours/> : null }
+            { isMobile ? <FixedRoutePartnerTours/> : null }
             <ClientInsertCode scripts={scripts} scriptInner={scriptInner}>
                 {html}
             </ClientInsertCode>
