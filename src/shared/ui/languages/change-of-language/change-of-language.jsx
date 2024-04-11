@@ -43,8 +43,9 @@ export default function ChangeOfLanguage({i18n, languages, title, filterQuery = 
                         return (
                             <li className="language" key={item.id}>
                                 <Link
+                                    onClick={() => {alert(2)}}
                                     href={`${getHref(item.locale)}/${item.slug}${queries}`}
-                                    prefetch={true}
+                                    prefetch={false}
                                 >
                                     <span className="wrap-txt">
                                        {title} {item.title} {countryLocales[item.locale]}</span>
