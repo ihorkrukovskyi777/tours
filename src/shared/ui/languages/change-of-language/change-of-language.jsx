@@ -1,6 +1,6 @@
 "use client";
 import {useState} from "react";
-import {useParams, useSearchParams} from "next/navigation";
+import {useParams, useRouter, useSearchParams} from "next/navigation";
 import Button from "@/shared/ui/selectors/button/button";
 import {fallbackLng} from "@/i18n/settings";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import './style.css';
 
 export default function ChangeOfLanguage({i18n, languages, title, filterQuery = []}) {
     const searchParams = useSearchParams()
+    const {push} = useRouter();
     const [showLanguage, setShowLanguage] = useState(6);
     const params = useParams();
     const languagesFilter = languages?.filter(
@@ -43,7 +44,7 @@ export default function ChangeOfLanguage({i18n, languages, title, filterQuery = 
                         return (
                             <li className="language" key={item.id}>
                                 <Link
-                                    onClick={() => {alert(2)}}
+                                    onClick={() => push(`${getHref(item.locale)}/${item.slug}${queries}`)}}
                                     href={`${getHref(item.locale)}/${item.slug}${queries}`}
                                     prefetch={false}
                                 >
