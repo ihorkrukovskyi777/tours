@@ -44,7 +44,7 @@ export default function ChangeOfLanguage({i18n, languages, title, filterQuery = 
                         return (
                             <li className="language" key={item.id}>
                                 <Link
-                                    onClick={() => push(`${getHref(item.locale)}/${item.slug}${queries}`)}}
+                                    onClick={() => push(`${getHref(item.locale)}/${item.slug}${queries}`)}
                                     href={`${getHref(item.locale)}/${item.slug}${queries}`}
                                     prefetch={false}
                                 >
