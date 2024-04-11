@@ -12,7 +12,6 @@ export default async function BannerTour({ id, locale, isMobile }) {
   let labelHour = tour.departure.durations?.find((val) => val > 1)
     ? "Hours"
     : "Hour";
-  console.log(tour.departure.durations);
 
   const TimeComponent = (
     <>
