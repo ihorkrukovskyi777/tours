@@ -42,14 +42,14 @@ export default function ChangeOfLanguage({i18n, languages, title, filterQuery = 
                     {languagesFilter?.slice(0, showLanguage).map((item) => {
                         return (
                             <li className="language" key={item.id}>
-                                <Link
+                                <a
                                     href={`${getHref(item.locale)}/${item.slug}${queries}`}
                                     prefetch={false}
                                 >
                                     <span className="wrap-txt">
                                        {title} {item.title} {countryLocales[item.locale]}</span>
                                     <FlagsComponents locale={item.locale}/>
-                                </Link>
+                                </a>
                             </li>
                         )
                     })}
