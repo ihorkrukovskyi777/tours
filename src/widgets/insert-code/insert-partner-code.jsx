@@ -30,9 +30,10 @@ export default async function InsertPartnerCode({
         {data?.title?.trim() && (
             <ViewQuote title={data.title} description={data.description} />
         )}
-      <ClientInsertCode scripts={scripts} scriptInner={scriptInner}>
-        {html}
-      </ClientInsertCode>
+        <iframe src={`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/endpoint`} frameBorder="0"></iframe>
+      {/*<ClientInsertCode scripts={scripts} scriptInner={scriptInner}>*/}
+      {/*  {html}*/}
+      {/*</ClientInsertCode>*/}
     </>
   );
 }
