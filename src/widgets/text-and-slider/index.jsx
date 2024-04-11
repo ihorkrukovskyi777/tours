@@ -43,7 +43,7 @@ export default function TextAndSlider({
   };
 
   return (
-    <section className="text_and_slider">
+    <section className="text_and_slider" style={{zIndex: 999, position: 'relative'}}>
       <div className="container">
         <div className="wrapper">
           <div className="left_box">

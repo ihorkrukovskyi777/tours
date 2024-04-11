@@ -8,7 +8,7 @@ export default function FixedRoutePartnerTours() {
                     const { target } = e;
                     
                     const tag = target.nodeName === 'A' ? target : target.closest('a')
-                    if(tag.nodeName === 'A') {                                    
+                    if(tag?.nodeName === 'A') {                                    
                         e.preventDefault();
                         const [url] = tag.href.split('?')
                         window.location.href = url;

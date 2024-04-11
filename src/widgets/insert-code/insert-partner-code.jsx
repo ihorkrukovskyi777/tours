@@ -28,7 +28,7 @@ export default async function InsertPartnerCode({
     }
 
     return (
-        <div  style={{position: 'relative'}}>
+        <>
             {data?.title?.trim() && (
                 <ViewQuote title={data.title} description={data.description}/>
             )}
@@ -36,6 +36,6 @@ export default async function InsertPartnerCode({
             <ClientInsertCode scripts={scripts} scriptInner={scriptInner}>
                 {html}
             </ClientInsertCode>
-        </div>
+        </>
     );
 }
