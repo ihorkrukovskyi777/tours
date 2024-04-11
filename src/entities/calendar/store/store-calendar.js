@@ -1,9 +1,8 @@
-import {makeAutoObservable, configure} from "mobx"
+import {makeAutoObservable} from "mobx"
 import {StoreLoading} from "@/entities/calendar/store/store-loading";
 import {StoreTourLogic} from "@/entities/calendar/store/store-tour-logic";
 import {StoreModalBooking} from "@/entities/calendar/store/store-modal-booking";
 import {StoreModalCalendar} from "@/entities/calendar/store/store-modal-calendar";
-configure( { isolateGlobalState: true });
 export class StoreCalendar {
 
     constructor(locale, type, id, activeLanguage, title, localeError) {

@@ -64,6 +64,8 @@ export default async function Page({params: {locale, slug, tour}}) {
     return (
         <main>
             <BannerTour locale={page.locale} id={page.id} isMobile={isMobile}/>
+            <I18nChangeOfLanguage locale={locale} languages={languages}/>
+
             <TextAndSliderTourPage
                 id={page.id}
                 locale={page.locale}
@@ -110,7 +112,8 @@ export default async function Page({params: {locale, slug, tour}}) {
                     locale={page.locale}
                     title={`${i18n.t("See All Tours in")} ${page.city.title}`}
                 />
-                <I18nChangeOfLanguage locale={locale} languages={languages}/>
+
+
                 <Breadcrumbs pages={pagesBreadcrumbs} locale={locale}/>
                 <Footer locale={locale}/>
             </Suspense>
