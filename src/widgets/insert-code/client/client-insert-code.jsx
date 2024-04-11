@@ -1,11 +1,24 @@
 "use client";
-import { memo } from "react";
+import {memo, useEffect} from "react";
 import Script from "next/script";
+import {useState} from "react";
 export default memo(function ClientInsertCode({
   scripts,
   children,
   scriptInner,
 }) {
+
+
+    const [load, setLoad] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoad(true);
+        }, 2000)
+    }, [])
+    if(!load) {
+        return null;
+    }
   return (
     <div id="insert_code_block" className="insert-a-code container">
       <Script
