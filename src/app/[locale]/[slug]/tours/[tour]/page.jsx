@@ -98,7 +98,7 @@ export default async function Page({params: {locale, slug, tour}}) {
                     locale={page.locale}
                     type="tour"
                 />
-                <InsertPartnerCode id={page.id} type="tour" locale={page.locale}/>
+                <InsertPartnerCode id={page.id} type="tour" locale={page.locale} isMobile={isMobile}/>
                 <InsertCode id={page.id} type="tour" locale={page.locale}/>
                 <TourRow
                     id={page.id}
