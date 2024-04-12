@@ -74,7 +74,7 @@ export default function PartnerRowTours({ tours, i18n = {} }) {
                           style={{ fill: "red" }}
                         />
                         <span className=" second">{i18n.ticket}:</span>
-                        <span>{item.price} USD</span>
+                        <span>{item.price}</span>
                       </div>
                     )}
                   </div>
