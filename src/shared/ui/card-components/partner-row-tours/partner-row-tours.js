@@ -53,14 +53,13 @@ export default function PartnerRowTours({ tours, i18n = {} }) {
                       <span className=" second">{i18n.duration}:</span>
                       {item.departure?.durations?.length && (
                         <span>
-                          {[...new Set(item.departure.durations)]
-                            .map((duration) => {
-                              const isExactHalf = (duration * 10) % 10 === 5;
-                              return isExactHalf
-                                ? duration?.toFixed(1)
-                                : duration?.toFixed(2);
-                            })
-                            .join("-")}{" "}
+                          {item?.departure?.durations
+                              ?.map((duration) =>
+                                  Number.isInteger(duration)
+                                      ? duration.toString()
+                                      : parseFloat(duration?.toFixed(2))
+                              )
+                              .join("-")}{" "}
                           {i18n[labelHour]}
                         </span>
                       )}
