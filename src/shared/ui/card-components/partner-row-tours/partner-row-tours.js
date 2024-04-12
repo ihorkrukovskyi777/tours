@@ -57,8 +57,8 @@ export default function PartnerRowTours({ tours, i18n = {} }) {
                             .map((duration) => {
                               const isExactHalf = (duration * 10) % 10 === 5;
                               return isExactHalf
-                                ? duration.toFixed(1)
-                                : duration.toFixed(2);
+                                ? duration?.toFixed(1)
+                                : duration?.toFixed(2);
                             })
                             .join("-")}{" "}
                           {i18n[labelHour]}
