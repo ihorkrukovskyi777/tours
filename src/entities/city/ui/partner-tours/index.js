@@ -35,7 +35,7 @@ export default async function PartnerTours({ id, locale, size = "small" }) {
               reviews: i18n.t("Reviews"),
               months: i18n.getMonths(),
               ticket: i18n.t("Tickets"),
-              title: i18n.t("Paid Tours And Activities"),
+              title: i18n.t("Paid Tours and Activities"),
             }}
           />
         </>
