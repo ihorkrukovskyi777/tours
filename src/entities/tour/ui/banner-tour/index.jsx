@@ -22,7 +22,7 @@ export default async function BannerTour({ id, locale, isMobile }) {
             ?.map((duration) =>
               Number.isInteger(duration)
                 ? duration.toString()
-                : parseFloat(duration.toFixed(2))
+                : parseFloat(duration?.toFixed(2))
             )
             .join("-")}{" "}
           {i18n.t(labelHour)}
