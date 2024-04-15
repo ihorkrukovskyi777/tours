@@ -15,7 +15,16 @@ export default function ChangeOfLanguage({i18n, languages, title, filterQuery = 
     const params = useParams();
     const languagesFilter = languages?.filter(
         (item) => item.locale !== params?.locale
-    );
+    ).filter(item => {
+        if(params?.locale === fallbackLng) {
+            return true;
+        }
+
+        if(params?.locale === 'es') {
+            return item.locale === fallbackLng
+        }
+        return item.locale === fallbackLng || item.locale === 'es';
+    });
 
     let queries = [];
     for (const key of searchParams.entries()) {
