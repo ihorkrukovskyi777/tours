@@ -50,6 +50,7 @@ export class StoreModalBooking {
             full_time: this.departure.fullTime ?? '',
             phone_county_slug: phone_country_slug,
             full_number: `${phone_county_code}${phone}`,
+            page: 'tour',
             token,
         }
 
