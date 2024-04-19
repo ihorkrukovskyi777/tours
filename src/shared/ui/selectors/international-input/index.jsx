@@ -62,8 +62,13 @@ export default function InternationalInput({
         }, 1)
 
         //console.log(!/[0-9]/.test(event.key) , event.key , event.target.value);
+        console.log(event.key);
+
+        if (event.key !== 'Backspace') {
         if (!/[0-9]/.test(event.key)) {
             event.preventDefault();
+
+        }
         }
 
         console.log('111');
@@ -150,8 +155,8 @@ export default function InternationalInput({
                 style={{paddingLeft: inputTelWidth }}
                 onChange={handleChange}
                 validation-number={validation_numbers}
-                onKeyPress={onPress}
-                //onKeyDown={onPress}
+                //onKeyPress={onPress}
+                onKeyDown={onPress}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 data-slug={slugCountry}
