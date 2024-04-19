@@ -34,10 +34,40 @@ export default function InternationalInput({
 
 
     const refPaddingLeft = useRef(null);
+
+    function isNumeric(str) {
+        const valueInput = str.replace(/[^\w\s]/gi, '')
+        return /^-?\d*\.?\d+$/.test(valueInput);
+    }
+
+
+    function disablePress(el) {
+        console.log(el)
+        el.preventDefault();
+    }
+
     function onPress(event) {
+
+        setTimeout(function () {
+            const aaa = document.querySelector('#phone').value;
+            const aaa2 = document.querySelector('#phone').value;
+            const valuePhone = aaa.trim().replace(/\s/g, '');
+            if (!isNumeric(valuePhone)) {
+                const arr = aaa2.split('');
+                const numbers = ['1','2','3','4','5','6','7','8','9','0']
+                const filteredArray = arr.filter(item => numbers.includes(item) || item === ' ');
+                const valueAndroid = filteredArray.toString().replace(/,/g  , '');
+                document.querySelector('#phone').value = valueAndroid;
+            }
+        }, 1)
+
+        //console.log(!/[0-9]/.test(event.key) , event.key , event.target.value);
         if (!/[0-9]/.test(event.key)) {
             event.preventDefault();
         }
+
+
+
     }
 
     const [inputTelWidth, setInputTelWidth] = useState(100);
@@ -89,6 +119,7 @@ export default function InternationalInput({
                         const selectedCountryData = country.countryCode.toUpperCase();
                         const placeholderInput = localizationWP[selectedCountryData]['mask_number'];
                         const maskInput = placeholderInput.replace(/[0-9]/g, "_");
+                        console.log(placeholderInput);
                         setPlaceholder(placeholderInput);
                         setValidation_numbers(localizationWP[selectedCountryData]['validation_numbers'])
                         setMaskView(maskInput);
@@ -118,6 +149,7 @@ export default function InternationalInput({
                 onChange={handleChange}
                 validation-number={validation_numbers}
                 onKeyPress={onPress}
+                //onKeyDown={onPress}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 data-slug={slugCountry}
