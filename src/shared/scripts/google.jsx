@@ -121,7 +121,7 @@ var klaroConfig = {
     want to get consent once for multiple matching domains. By default, Klaro will
     use the current domain. Only relevant if 'storageMethod' is set to 'cookie'.
     */
-    cookieDomain: 'localhost',
+    cookieDomain: 'strawberrytours.com',
 
     /*
     You can also set a custom expiration time for the Klaro cookie. By default, it
