@@ -182,63 +182,266 @@ var klaroConfig = {
             privacyPolicyUrl: '/legal',
 
         },
-        de: {
-            /*
-            You can specify a language-specific link to your privacy policy here.
-            */
-            privacyPolicyUrl: '/de/rechtliches',
-            consentNotice: {
-                description: 'Dieser Text wird in der Einwilligungsbox erscheinen.',
-            },
-            consentModal: {
-                description:
-                    'Hier kÃ¶nnen Sie einsehen und anpassen, welche Information wir Ã¼ber Sie ' + 
-                    'sammeln. EintrÃ¤ge die als "Beispiel" gekennzeichnet sind dienen lediglich ' + 
-                    'zu Demonstrationszwecken und werden nicht wirklich verwendet.',
-            },
-            /*
-            You should also define translations for every purpose you define in the
-            'services' section. You can define a title and an (optional) description.
-            */
-            purposes: {
-                analytics: {
-                    title: 'Besucher-Statistiken'
-                },
-                security: {
-                    title: 'Sicherheit'
-                },
-                livechat: {
-                    title: 'Live Chat'
-                },
-                advertising: {
-                    title: 'Anzeigen von Werbung'
-                },
-                styling: {
-                    title: 'Styling'
-                },
-            },
-        },
         en: {
-            privacyPolicyUrl: '/legal',
-     
-            purposes: {
-                analytics: {
-                    title: 'Analytics'
-                },
-                security: {
-                    title: 'Security'
-                },
-                livechat: {
-                    title: 'Livechat'
-                },
-                advertising: {
-                    title: 'Advertising'
-                },
-                styling: {
-                    title: 'Styling'
+            consentModal: {
+                title: 'We value your privacy',
+                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
                 },
             },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+            },
+            acceptSelected: 'Configurar',
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
         },
+        es: {
+            consentModal: {
+                title: 'Valoramos tu privacidad',
+                description: 'Aquí puedes valorar y personalizar los servicios que nos gustaría utilizar en este sitio web. ¡Tú mandas! Activa o desactiva los servicios como creas conveniente. Para saber más, lee nuestra',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+            },
+            acceptSelected: 'Configurar',
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+        },
+        pt: {
+            consentModal: {
+                title: 'Valorizamos a sua privacidade',
+                description: 'Aqui você pode avaliar e personalizar os serviços que gostaríamos de utilizar neste site. Você está no comando! Ative ou desative serviços conforme achar adequado. Para saber mais, por favor leia nossa Política de Privacidade. Para saber mais, leia nosso',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+            },
+            acceptSelected: 'Configurar',
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+        },
+        de: {
+            consentModal: {
+                title: 'Wir legen Wert auf Ihre Privatsphäre',
+                description: 'Hier können Sie die Dienste bewerten und anpassen, die wir auf dieser Website nutzen möchten. Du bist verantwortlich! Aktivieren oder deaktivieren Sie Dienste nach Belieben. Um mehr zu erfahren, lesen Sie bitte unsere Datenschutzrichtlinie. Um mehr zu erfahren, lesen Sie bitte unsere',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+            },
+            acceptSelected: 'Configurar',
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+        },
+        fr: {
+            consentModal: {
+                title: 'Nous accordons une grande importance à votre vie privée',
+                description: 'Ici, vous pouvez utiliser et personnaliser les services que nous vous proposons d’utiliser ce site. Vous n’êtes pas un commando ! Les services atifs ou désatifs sont conformes à ce qui est adéquat. Pour savoir plus, veuillez favoriser notre politique de confidentialité. Pour savoir plus, leia nosso Um more zu erfahren, lesen Sie bitte nous sommes',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+            },
+            acceptSelected: 'Configurar',
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+        },
+        it: {
+            consentModal: {
+                title: 'Apprezziamo la tua privacy',
+                description: 'Qui puoi usufruire e personalizzare i servizi che ci piacerebbe utilizzare in questo sito. Non sei al comando! Ative ou desative serviços conformi achar adequado. Per saber mais, por favor leia nossa Política de Privacidade. Para saber mais, leia nosso Um mehr zu erfahren, lesen Sie bitte unsere',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+            },
+            acceptSelected: 'Configurar',
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+        },
+        pl: {
+            consentModal: {
+                title: 'Cenimy Twoją prywatność',
+                description: 'Tutaj możesz cieszyć się i dostosowywać usługi, z których chcielibyśmy korzystać na tej stronie. Nie ty tu rządzisz! Usługi aktywne lub nieaktywne są zgodne z odpowiednimi informacjami. Aby dowiedzieć się więcej, zapoznaj się z naszą Polityką Prywatności. Aby dowiedzieć się więcej, daj nam dowiedzieć się więcej na ten temat, daj nam znać',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+            },
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            acceptSelected: 'Configurar',
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+        },
+        ru: {
+            consentModal: {
+                title: 'Мы ценим вашу конфиденциальность',
+                description: 'Здесь вы можете пользоваться и настраивать услуги, которые мы хотели бы использовать на этом сайте. Ты не главный! Активные или деактивированные услуги соответствуют адекватной информации. Чтобы узнать больше, прочтите нашу Политику конфиденциальности. Чтобы узнать больше, давайте узнаем больше об этом, дайте нам знать',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+              privacyPolicy: {
+                text: 'политика конфиденциальности',
+            },
+            purposeItem: {
+                services: 'Эти службы обрабатывают личную информацию, чтобы показывать вам соответствующий контент о продуктах, услугах или темах, которые могут вас заинтересовать.',
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+            },
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+        },
+        cat: {
+            consentModal: {
+                title: 'Valorem la teva privadesa',
+                description: 'Aquí podeu utilitzar i personalitzar els serveis que ens agradaria que utilitzeu en aquest lloc. No ets el responsable! Els serveis actius o desactivats corresponen a la informació adequada. Per obtenir més informació, llegiu la nostra Política de privadesa. Per saber-ne més, esbrinem-ne més, fes-nos-ho saber',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+            },
+            privacyPolicy: {
+                text: 'Política de privacitat',
+            },
+            acceptAll: 'Acceptar-ho tot',
+            acceptSelected: 'Configurar',
+            purposeItem: {
+                services: 'Aquests serveis processen informació personal per mostrar-vos contingut rellevant sobre productes, serveis o temes que us poden interessar.',
+            },
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+        },
+        nl: {
+            consentModal: {
+                title: 'Wij waarderen uw privacy',
+                description: 'Hier kunt u de diensten die u op deze site wilt gebruiken, gebruiken en aanpassen. Jij bent niet de baas! Actieve of gedeactiveerde diensten komen overeen met adequate informatie. Lees ons privacybeleid voor meer informatie. Als u meer wilt weten, laten we er meer over weten, laat het ons weten',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            acceptSelected: 'Configurar',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+            },
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+        },
+        
+        
+        
+        
+       
+        
+        
+        
     },
 
     /*
@@ -286,6 +489,27 @@ var klaroConfig = {
                     'analytics_storage': 'denied',
                 })
             \`,
+        },
+        {
+            name: 'google-ads',
+            cookies: [],
+            onAccept: \`
+                // we grant ad storage and personalization
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted'
+                })
+            \`,
+            onDecline: \`
+                // we decline ad storage and personalization
+                gtag('consent', 'update', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied'
+                })
+            \`,
+            purposes: ['marketing'],
         }
     ],
 
