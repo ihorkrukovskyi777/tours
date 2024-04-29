@@ -71,7 +71,7 @@ export default function GoogleScript() {
                 defer={true}
                 data-config="klaroConfig"
                 type="application/javascript"
-                src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js"
+                src="https://cdn.kiprotect.com/klaro/v0.7/klaro-no-css.js"
             />
             <Script
                 id="klaro-script-inner"
