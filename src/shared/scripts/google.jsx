@@ -182,6 +182,39 @@ var klaroConfig = {
             privacyPolicyUrl: '/legal',
 
         },
+        cat: {
+            consentModal: {
+                title: 'Ігор лох соловїною',
+                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+                item: {
+                 services: 'dsadsa',
+                }
+            },
+            acceptAll: 'dsadsa',
+            decline: 'sdassdas',
+            acceptSelected: 'Igor Loh',
+            purposeItem: {
+            services: 'Igor loh',
+            },
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+       
+        },
         de: {
             /*
             You can specify a language-specific link to your privacy policy here.
