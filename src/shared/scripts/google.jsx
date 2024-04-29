@@ -359,8 +359,9 @@ var klaroConfig = {
                     name: 'privacy policy (the name)',
                 },
             },
-              privacyPolicy: {
-                text: 'политика конфиденциальности',
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'политика конфиденциальности',
             },
             purposeItem: {
                 services: 'Эти службы обрабатывают личную информацию, чтобы показывать вам соответствующий контент о продуктах, услугах или темах, которые могут вас заинтересовать.',
@@ -396,7 +397,8 @@ var klaroConfig = {
                 livechat: 'Livechat',
             },
             privacyPolicy: {
-                text: 'Política de privacitat',
+                text: '{privacyPolicy}.',
+                name: 'Política de privacitat',
             },
             acceptAll: 'Acceptar-ho tot',
             acceptSelected: 'Configurar',
@@ -418,6 +420,10 @@ var klaroConfig = {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
                 },
+            },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacybeleid',
             },
             poweredBy: 'view config',
             ok: 'Wohoo!',
