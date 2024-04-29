@@ -40,7 +40,7 @@ const getSchemaEvent = (item) => {
             '@type': "AggregateRating",
             ratingValue: item.rating?.rating || 5,
             ratingCount: item.rating?.reviews || 0,
-            reviewCount: item.rating?.reviews || 0,
+            reviewCount: item.rating?.reviews || 1,
             bestRating: "5",
             worstRating: "0"
         },
@@ -81,7 +81,9 @@ export default async function EventsSchema({type = 'city', id, locale}) {
     } else {
         schema = data?.map(item => getSchemaEvent(item))
     }
-
+    if(schema === null) {
+        return null;
+    }
     return (
         <Script
             id="events-schema"

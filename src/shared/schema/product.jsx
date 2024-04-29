@@ -19,7 +19,7 @@ const getSchemaProduct = (item, date, locale) => {
         "aggregateRating": {
             "@type": "AggregateRating",
             "ratingValue": item.rating?.rating || 5,
-            "reviewCount": item.rating?.reviews || 0,
+            "reviewCount": item.rating?.reviews || 1,
             "bestRating": "5",
             "worstRating": "0",
         },
