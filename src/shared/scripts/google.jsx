@@ -193,6 +193,7 @@ var klaroConfig = {
             },
             poweredBy: 'view config',
             ok: 'Wohoo!',
+            
             purposes: {
                 analytics: 'Analytics',
                 security: 'Security',
@@ -215,6 +216,7 @@ var klaroConfig = {
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicyUrl: '/es/legal',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -239,6 +241,7 @@ var klaroConfig = {
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicyUrl: '/pt-pt/legal',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -263,6 +266,7 @@ var klaroConfig = {
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicyUrl: '/de/rechtliches',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -287,6 +291,7 @@ var klaroConfig = {
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicyUrl: '/fr/mentions-legales',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -311,6 +316,7 @@ var klaroConfig = {
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicyUrl: '/it/condizioni-legali',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -335,6 +341,7 @@ var klaroConfig = {
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicyUrl: '/pl/prawne',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -389,6 +396,7 @@ var klaroConfig = {
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicyUrl: '/cat/avis-legal',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
