@@ -79,7 +79,6 @@ export default function GoogleScript() {
                         const arrTranslate = {'en-US': 'Configure' , 'es-ES': 'Configurar'};
                         const lang = document.querySelector('html').getAttribute('lang');
                         const title = arrTranslate[lang]  ? arrTranslate[lang] : arrTranslate['en-US'];
-                        console.log(lang);
                         document.querySelector('.cm-footer-buttons').insertAdjacentHTML("afterbegin", `<button class='cm-btn cm-btn-success cm-btn-info toggle-body'>${title}</button>`);
                         document.querySelector('.toggle-body').addEventListener('click' , function() {
                             document.querySelector('.klaro .cm-body').classList.toggle('open');
