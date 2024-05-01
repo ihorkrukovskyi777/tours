@@ -264,15 +264,21 @@ var klaroConfig = {
         pt: {
            consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacy policy',
+            },
+            purposeItem: {
+                services: 'services',
+            },
             poweredBy: 'view config',
             ok: 'Wohoo!',
-            
             purposes: {
                 analytics: 'Analytics',
                 security: 'Security',
@@ -282,6 +288,10 @@ var klaroConfig = {
                     title:"Marketing"
                 },
             },
+            service: {
+                purpose: 'Purpose',
+            },
+            acceptAll: 'Accept all',
             acceptSelected: 'Confirm Choices',
             googleAnalytics: {
                 description: 'Collection of visitor statistics',
@@ -293,20 +303,34 @@ var klaroConfig = {
         de: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacy policy',
+            },
+            purposeItem: {
+                services: 'services',
+            },
             poweredBy: 'view config',
             ok: 'Wohoo!',
-            
             purposes: {
                 analytics: 'Analytics',
                 security: 'Security',
                 livechat: 'Livechat',
+                marketing:{
+                    description:"These services process personal information to show you relevant content about products, services or topics that you might be interested in.",
+                    title:"Marketing"
+                },
             },
+            service: {
+                purpose: 'Purpose',
+            },
+            acceptAll: 'Accept all',
             acceptSelected: 'Confirm Choices',
             googleAnalytics: {
                 description: 'Collection of visitor statistics',
@@ -318,20 +342,34 @@ var klaroConfig = {
         fr: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacy policy',
+            },
+            purposeItem: {
+                services: 'services',
+            },
             poweredBy: 'view config',
             ok: 'Wohoo!',
-            
             purposes: {
                 analytics: 'Analytics',
                 security: 'Security',
                 livechat: 'Livechat',
+                marketing:{
+                    description:"These services process personal information to show you relevant content about products, services or topics that you might be interested in.",
+                    title:"Marketing"
+                },
             },
+            service: {
+                purpose: 'Purpose',
+            },
+            acceptAll: 'Accept all',
             acceptSelected: 'Confirm Choices',
             googleAnalytics: {
                 description: 'Collection of visitor statistics',
@@ -343,20 +381,34 @@ var klaroConfig = {
         it: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacy policy',
+            },
+            purposeItem: {
+                services: 'services',
+            },
             poweredBy: 'view config',
             ok: 'Wohoo!',
-            
             purposes: {
                 analytics: 'Analytics',
                 security: 'Security',
                 livechat: 'Livechat',
+                marketing:{
+                    description:"These services process personal information to show you relevant content about products, services or topics that you might be interested in.",
+                    title:"Marketing"
+                },
             },
+            service: {
+                purpose: 'Purpose',
+            },
+            acceptAll: 'Accept all',
             acceptSelected: 'Confirm Choices',
             googleAnalytics: {
                 description: 'Collection of visitor statistics',
@@ -368,20 +420,34 @@ var klaroConfig = {
         pl: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacy policy',
+            },
+            purposeItem: {
+                services: 'services',
+            },
             poweredBy: 'view config',
             ok: 'Wohoo!',
-            
             purposes: {
                 analytics: 'Analytics',
                 security: 'Security',
                 livechat: 'Livechat',
+                marketing:{
+                    description:"These services process personal information to show you relevant content about products, services or topics that you might be interested in.",
+                    title:"Marketing"
+                },
             },
+            service: {
+                purpose: 'Purpose',
+            },
+            acceptAll: 'Accept all',
             acceptSelected: 'Confirm Choices',
             googleAnalytics: {
                 description: 'Collection of visitor statistics',
@@ -393,20 +459,34 @@ var klaroConfig = {
         ru: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacy policy',
+            },
+            purposeItem: {
+                services: 'services',
+            },
             poweredBy: 'view config',
             ok: 'Wohoo!',
-            
             purposes: {
                 analytics: 'Analytics',
                 security: 'Security',
                 livechat: 'Livechat',
+                marketing:{
+                    description:"These services process personal information to show you relevant content about products, services or topics that you might be interested in.",
+                    title:"Marketing"
+                },
             },
+            service: {
+                purpose: 'Purpose',
+            },
+            acceptAll: 'Accept all',
             acceptSelected: 'Confirm Choices',
             googleAnalytics: {
                 description: 'Collection of visitor statistics',
@@ -418,20 +498,34 @@ var klaroConfig = {
         cat: {
            consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacy policy',
+            },
+            purposeItem: {
+                services: 'services',
+            },
             poweredBy: 'view config',
             ok: 'Wohoo!',
-            
             purposes: {
                 analytics: 'Analytics',
                 security: 'Security',
                 livechat: 'Livechat',
+                marketing:{
+                    description:"These services process personal information to show you relevant content about products, services or topics that you might be interested in.",
+                    title:"Marketing"
+                },
             },
+            service: {
+                purpose: 'Purpose',
+            },
+            acceptAll: 'Accept all',
             acceptSelected: 'Confirm Choices',
             googleAnalytics: {
                 description: 'Collection of visitor statistics',
@@ -443,20 +537,34 @@ var klaroConfig = {
         nl: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
                 },
             },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacy policy',
+            },
+            purposeItem: {
+                services: 'services',
+            },
             poweredBy: 'view config',
             ok: 'Wohoo!',
-            
             purposes: {
                 analytics: 'Analytics',
                 security: 'Security',
                 livechat: 'Livechat',
+                marketing:{
+                    description:"These services process personal information to show you relevant content about products, services or topics that you might be interested in.",
+                    title:"Marketing"
+                },
             },
+            service: {
+                purpose: 'Purpose',
+            },
+            acceptAll: 'Accept all',
             acceptSelected: 'Confirm Choices',
             googleAnalytics: {
                 description: 'Collection of visitor statistics',
