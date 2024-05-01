@@ -36,7 +36,7 @@ export default async function Page({params: {locale, slug }}) {
     }
 
     return (
-        <main id={data.id}>
+        <main id={`page-id-${data.id}`}>
             {data.type === 'city' ?
                 <CityPage
                     isMobile={isMobile}
