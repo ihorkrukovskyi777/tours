@@ -74,40 +74,42 @@ export default function GoogleScript() {
                 data-config="klaroConfig"
                 type="application/javascript"
                 src="https://cdn.kiprotect.com/klaro/v0.7/klaro.js"
-                onLoad={() => {
-                    try {
-                        const arrTranslate = {'en-US': 'Configure' , 'es-ES': 'Configurar'};
-                        const lang = document.querySelector('html').getAttribute('lang');
-                        const title = arrTranslate[lang]  ? arrTranslate[lang] : arrTranslate['en-US'];
-                        /*const loadKlaroJS =  setInterval(function () {
-                            if(document.querySelector('.klaro') !== null) {
-                                document.querySelector('.cm-footer-buttons').insertAdjacentHTML("afterbegin", `<button class='cm-btn cm-btn-success cm-btn-info toggle-body'>${title}</button>`);
-                                document.querySelector('.toggle-body').addEventListener('click', function () {
-                                    document.querySelector('.klaro .cm-body').classList.toggle('open');
-                                })
-                                clearInterval(loadKlaroJS);
-                            }
-                        } , 110)*/
-
-                        window.requestAnimationFrame(() => {
-                            if(document.querySelector('#klaro') !== null && document.querySelector('.cm-footer-buttons') !== null) {
-                                document.querySelector('.cm-footer-buttons').insertAdjacentHTML("afterbegin", `<button class='cm-btn cm-btn-success cm-btn-info toggle-body'>${title}</button>`);
-                                document.querySelector('.toggle-body').addEventListener('click', function () {
-                                    document.querySelector('.klaro .cm-body').classList.toggle('open');
-                                })
-
-                            }
-                        })
-
-
-
-                    } catch (error) {
-                        console.log(error)
-                    }
-
-
-                }}
             />
+            <Script id="klaro-observer"
+                    dangerouslySetInnerHTML={{__html: `
+             
+    
+                    try {
+                        (function() {
+                            const arrTranslate = {'en-US': 'Configure' , 'es-ES': 'Configurar'};
+                                const lang = document.querySelector('html').getAttribute('lang');
+                                const title = arrTranslate[lang]  ? arrTranslate[lang] : arrTranslate['en-US'];
+            
+                                
+                                let observer = new MutationObserver(mutationRecords => {
+                                        if(document.querySelector('#klaro') !== null && document.querySelector('.cm-footer-buttons') !== null) {
+                                            document.querySelector('.cm-footer-buttons').insertAdjacentHTML("afterbegin", '<button class="cm-btn cm-btn-success cm-btn-info toggle-body">'+title+'</button>');
+                                            document.querySelector('.toggle-body').addEventListener('click', function () {
+                                                document.querySelector('.klaro .cm-body').classList.toggle('open');
+                                            })
+                                            observer.disconnect();
+                                        }
+                                });
+                            
+                                observer.observe(document.querySelector('#klaro'), {
+                                    childList: true,
+                                    subtree: true,
+                                    characterDataOldValue: true
+                                });
+                        
+                        })();
+                    } catch(err) {
+                        console.log(err);
+                    }
+                
+          
+            
+            `}} />
             <Script
                 id="klaro-script-inner"
                 dangerouslySetInnerHTML={{
