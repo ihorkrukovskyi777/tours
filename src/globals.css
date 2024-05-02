@@ -474,6 +474,7 @@ a {
   line-height: 30px !important;
   letter-spacing: 0.05em !important;
   transition: .3s;
+  text-transform: capitalize;
 }
 .klaro .cm-btn-accept:hover,
 .klaro .cm-btn-accept-all:hover {

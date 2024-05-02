@@ -87,7 +87,7 @@ export default function GoogleScript() {
                                 })
                                 clearInterval(loadKlaroJS);
                             }
-                        } , 100)
+                        } , 110)
 
                     } catch (error) {
                         console.log(error)
@@ -210,11 +210,12 @@ var klaroConfig = {
         en: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
-                privacyPolicy: {
-                    text: 'This is the text with a link to your {privacyPolicy}.',
-                    name: 'privacy policy (the name)',
-                },
+                description: '1We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
+               
+            },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacy policy',
             },
             poweredBy: 'view config',
             ok: 'Wohoo!',
@@ -237,10 +238,11 @@ var klaroConfig = {
             consentModal: {
                 title: 'Valoramos tu privacidad',
                 description: 'Usamos cookies para mejorar tu experiencia de usuario y puedes activarlas o desactivarlas como tú prefieras. Para saber más, puedes leer nuestra',
-                privacyPolicy: {
-                    text: 'This is the text with a link to your {privacyPolicy}.',
-                    name: 'privacy policy (the name)',
-                },
+         
+            },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'política de privacidad.',
             },
             privacyPolicyUrl: '/es/legal',
             poweredBy: 'view config',
@@ -269,7 +271,7 @@ var klaroConfig = {
         pt: {
            consentModal: {
                 title: 'We value your privacy',
-                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit.',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
