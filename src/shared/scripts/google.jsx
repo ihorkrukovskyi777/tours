@@ -90,12 +90,12 @@ export default function GoogleScript() {
                         } , 110)*/
 
                         window.requestAnimationFrame(() => {
-                            if(document.querySelector('#klaro') !== null) {
+                            if(document.querySelector('#klaro') !== null && document.querySelector('.cm-footer-buttons') !== null) {
                                 document.querySelector('.cm-footer-buttons').insertAdjacentHTML("afterbegin", `<button class='cm-btn cm-btn-success cm-btn-info toggle-body'>${title}</button>`);
                                 document.querySelector('.toggle-body').addEventListener('click', function () {
                                     document.querySelector('.klaro .cm-body').classList.toggle('open');
                                 })
-                                
+
                             }
                         })
 
@@ -222,7 +222,7 @@ var klaroConfig = {
         en: {
             consentModal: {
                 title: 'We value your privacy',
-                description: '1We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
                
             },
             privacyPolicy: {
