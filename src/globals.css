@@ -277,10 +277,6 @@ a {
   font-weight: 700;
 }
 
-#page-id-220 + #klaro {
-  display: none !important;
-}
-
 .klaro .cookie-modal a {
   transition: .3s;
 }
