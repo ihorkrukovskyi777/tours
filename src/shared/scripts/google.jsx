@@ -210,7 +210,7 @@ var klaroConfig = {
         en: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy.',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
@@ -236,7 +236,7 @@ var klaroConfig = {
         es: {
             consentModal: {
                 title: 'Valoramos tu privacidad',
-                description: 'Aquí puedes valorar y personalizar los servicios que nos gustaría utilizar en este sitio web. ¡Tú mandas! Activa o desactiva los servicios como creas conveniente. Para saber más, lee nuestra',
+                description: 'Usamos cookies para mejorar tu experiencia de usuario y puedes activarlas o desactivarlas como tú prefieras. Para saber más, puedes leer nuestra',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
@@ -269,7 +269,7 @@ var klaroConfig = {
         pt: {
            consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
@@ -308,7 +308,7 @@ var klaroConfig = {
         de: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
@@ -347,7 +347,7 @@ var klaroConfig = {
         fr: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
@@ -386,7 +386,7 @@ var klaroConfig = {
         it: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
@@ -425,7 +425,7 @@ var klaroConfig = {
         pl: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
@@ -464,7 +464,7 @@ var klaroConfig = {
         ru: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
@@ -503,7 +503,7 @@ var klaroConfig = {
         cat: {
            consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
@@ -542,7 +542,7 @@ var klaroConfig = {
         nl: {
             consentModal: {
                 title: 'We value your privacy',
-                description: 'Here you can assess and customize the services that we’d like to use on this website. You’re in charge! Enable or disable services as you see fit. To learn more, please read our privacy policy. To learn more, please read our',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
                 privacyPolicy: {
                     text: 'This is the text with a link to your {privacyPolicy}.',
                     name: 'privacy policy (the name)',
