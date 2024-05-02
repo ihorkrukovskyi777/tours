@@ -258,7 +258,7 @@ var klaroConfig = {
                 text: '{privacyPolicy}.',
                 name: 'política de privacidad.',
             },
-            privacyPolicyUrl: '/es/legal',
+            privacyPolicyUrl: '/es/aviso-legal',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             
