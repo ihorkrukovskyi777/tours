@@ -7,6 +7,7 @@ import {headers} from "next/headers";
 import {isMobileCheck} from "@/shared/helpers";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import {seoLocales} from "@/shared/constants/locales-seo";
+import {getHrefLocale} from "@/i18n/get-href-locale";
 const ThanksReviewModal = dynamic(
     () => import("@/entities/add-review/ui/thanks-review-modal"),
     {ssr: false}
@@ -61,6 +62,9 @@ export async function generateMetadata({params: {slug, locale}}) {
                 title: lang.title,
                 url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${slugLocale}`
             }]
+            if(lang.locale === fallbackLng) {
+                languages['x-default'] = [{title: lang.title, url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, lang.slug)}`}]
+            }
         }
     }
 

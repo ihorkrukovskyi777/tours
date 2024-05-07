@@ -7,7 +7,6 @@ import { log } from "util";
 
 export default async function PartnerTours({ id, locale, size = "small" }) {
   let data = await picketPartnerTours(id, locale);
-  console.log(locale);
   const i18n = await useDefaultI18n(locale);
 
   if (!Array.isArray(data.partnerTours) || data.partnerTours.length === 0) {

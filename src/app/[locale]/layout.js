@@ -5,6 +5,7 @@ import GoogleScript from "@/shared/scripts/google";
 import '../../globals.css'
 export default async function LocaleLayout({children, params}) {
 
+
     return (
         <>
             <html lang={seoLocales[params.locale]?.replace('_', '-')}>
