@@ -8,7 +8,8 @@ const style = {
     fontSize: '36px',
     textAlign: 'center',
     lineHeight: 1.05,
-    padding: '20px 0'
+    padding: '20px 0',
+    zIndex: 9999,
 }
 export default function ThanksReviewModal({message}) {
     const [isOpen, setOpen] = useState(true);
