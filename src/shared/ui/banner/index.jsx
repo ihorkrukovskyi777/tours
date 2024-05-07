@@ -3,7 +3,7 @@ import './style.css';
 export default function Banner({headMobile= null, attachment = null, title, children, bottomView = null, size , nameBanner='', isMobile = false}) {
     const [width, height] = isMobile ? [430, 430] : [1900, 1200]
     return (
-        <section className={`banner ${nameBanner} ${headMobile ? 'head_mobile' : ''}`} style={{zIndex: 999, position: 'relative'}}>
+        <section className={`banner ${nameBanner} ${headMobile ? 'head_mobile' : ''}`} style={{zIndex: 998, position: 'relative'}}>
             {headMobile ?
                 <div className="banner_head_mobile">{headMobile}</div>
             : null}
