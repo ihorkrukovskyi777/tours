@@ -42,7 +42,7 @@ export default async function Page({params: {locale,}, searchParams}) {
                 {contentIsCanceled === null ?
                     <div className="content">
                         <div className="container">
-                            <FormReview pageData={pageData} i18n={{send: i18n.t('Send')}} code={searchParams.code}/>
+                            <FormReview locale={locale} pageData={pageData} i18n={{send: i18n.t('Send')}} code={searchParams.code}/>
                         </div>
                     </div>
                     : contentIsCanceled}

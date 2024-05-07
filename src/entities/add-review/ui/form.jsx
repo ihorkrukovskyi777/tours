@@ -3,7 +3,8 @@ import {addReview} from "@/entities/api";
 import {useState} from "react";
 import ButtonLoader from "@/shared/ui/selectors/button-loader/button-loader";
 import { useRouter } from 'next/navigation'
-export default function FormReview({pageData, i18n, code}) {
+import {fallbackLng} from "@/i18n/settings";
+export default function FormReview({pageData, i18n, code, locale}) {
     const [loading, setLoading] = useState(false);
     const [reply, setReplay] = useState('');
     const router = useRouter()
@@ -11,11 +12,13 @@ export default function FormReview({pageData, i18n, code}) {
         e.preventDefault();
         setLoading(true);
         const isAdd = await addReview(code, reply)
+
+        const localeRedirect = locale === fallbackLng ? '' : `/${locale}`
         if(isAdd) {
             if(reply?.trim() === '') {
-                router.push('/?success_review_add=yes')
+                router.push(`${localeRedirect}/?success_review_add=yes`)
             } else {
-                router.replace('/?success_review_add=yes')
+                router.replace(`${localeRedirect}/?success_review_add=yes`)
             }
 
         } else {
