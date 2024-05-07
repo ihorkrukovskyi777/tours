@@ -8,13 +8,15 @@ export default async function generateSeoPage(slug, locale) {
     const languages = {};
     if(Array.isArray(seo.languages)) {
         for (const lang of seo.languages) {
+            if(lang.locale === fallbackLng) {
+                languages['x-default'] = [{ url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, lang.slug)}`}]
+            }
+
             if(lang.locale === locale) {
                 continue;
             }
             languages[seoLocales[lang.locale] ?? fallbackLng] = [{title: lang.title, url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, lang.slug)}`}]
-            if(lang.locale === fallbackLng) {
-                languages['x-default'] = [{title: lang.title, url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, lang.slug)}`}]
-            }
+
         }
     }
 

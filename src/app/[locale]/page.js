@@ -52,19 +52,21 @@ export async function generateMetadata({params: {slug, locale}}) {
     const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/type/home?locale=${locale}`, {next: {revalidate: 60 * 60,  tags: ['seo']}}).then((res) => res.json())
     const canonical = locale === fallbackLng ? slug : `${locale}`
     const languages = {}
+
     if (Array.isArray(seo.languages)) {
         for (const lang of seo.languages) {
+            if(lang.locale === fallbackLng) {
+                languages['x-default'] = [{ url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, lang.slug)}`}]
+            }
             if (lang.locale === locale) {
                 continue;
             }
             const slugLocale = lang.locale === 'en' ? '' : `/${lang.locale}`;
-            languages[seoLocales[lang.locale] ?? 'en'] = [{
+            languages[seoLocales[lang.locale] ?? 'x-default'] = [{
                 title: lang.title,
                 url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${slugLocale}`
             }]
-            if(lang.locale === fallbackLng) {
-                languages['x-default'] = [{title: lang.title, url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, lang.slug)}`}]
-            }
+
         }
     }
 
