@@ -61,13 +61,7 @@ export default function GoogleScript() {
     return (
         <>
             <div id="klaro" style={{zIndex: 9999}}></div>
-            <Script
-                async={true}
-                defer={true}
-                id="script-gtag"
-                strategy="lazyOnload"
-                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-            />
+
             <Script
                 id="klaro-script-include"
                 defer={true}
