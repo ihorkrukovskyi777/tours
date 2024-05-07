@@ -9,7 +9,6 @@ export default function ReviewCard({children, reply = null, brandName ='', time,
     const helperDateHtml = new HelperDateHtml(time);
     return (
         <div className={styles.review_item}>
-            {showTitle ? <div className={styles.review_title}>{title}</div> : null}
             <div className={styles.top_part}>
                 <div className={styles.stars}>
                     <Reviews
