@@ -17,7 +17,7 @@ export default async function Breadcrumbs({locale, pages}) {
                                               <Link
                                                   prefetch={false}
                                                   className="first_link"
-                                                  href={getHrefLocale(locale, page.slug)}
+                                                  href={getHrefLocale(locale, page.slug)?.replace(/^(.+?)\/*?$/, "$1")}
                                               >
                                                   {page.title}
                                               </Link>
