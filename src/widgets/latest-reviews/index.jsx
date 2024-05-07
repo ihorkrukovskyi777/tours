@@ -8,7 +8,7 @@ import ReviewCard from "@/widgets/latest-reviews/reviews-card";
 
 export default async function LatestReviews({id, locale, type='city', showTitle= true}) {
     const i18n = await useDefaultI18n(locale)
-    const limit = 9
+    const limit = 3
     const reviews = await getReviews(id, locale, limit, 0, type)
     if (!reviews?.data?.length) {
         return null

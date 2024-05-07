@@ -43,7 +43,7 @@ export default async function CancelPage({params: {locale}, searchParams}) {
                     <p className={'canceled'} dangerouslySetInnerHTML={{__html: cancelBook?.message ?? ''}}></p>
                 </div>
             </div>
-            <I18nChangeOfLanguage locale={locale} languages={data.languages?.map(item => ({...item, title: 'Free Tours'}))}/>
+            <I18nChangeOfLanguage locale={locale} languages={data.languages?.map(item => ({...item, title: 'Free Tours'}))} addQueries={true}/>
             <Footer locale={locale}/>
         </>
     )

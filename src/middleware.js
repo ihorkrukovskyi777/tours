@@ -4,7 +4,13 @@ import {fallbackLng, locales} from './i18n/settings';
 export async function middleware(request) {
     // Check if there is any supported locale in the pathname
     const pathname = request.nextUrl.pathname;
+    const origin = request.nextUrl.origin;
 
+    if (pathname !== pathname.toLowerCase()) {
+        return NextResponse.redirect(new URL(origin + pathname.toLowerCase()), 301)
+    }
+
+    // By using URL, we're making sure that query string stays as it is.
     if(pathname !== '/') {
        try {
            const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/redirect/${encodeURIComponent(pathname)}`, {next: { revalidate: 60, tags: ['redirect']}});

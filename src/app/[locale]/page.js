@@ -6,6 +6,7 @@ import CollectionPageSchema from "@/shared/schema/collection-page";
 import {headers} from "next/headers";
 import {isMobileCheck} from "@/shared/helpers";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
+import {seoLocales} from "@/shared/constants/locales-seo";
 const ThanksReviewModal = dynamic(
     () => import("@/entities/add-review/ui/thanks-review-modal"),
     {ssr: false}
@@ -23,7 +24,6 @@ export default async function Home({params: {locale}, ...props}) {
 
     const headerList = headers()
     const isMobile = isMobileCheck(headerList.get("user-agent"));
-
     if (data.statusCode === 404 || typeof data.id !== 'number') {
         notFound();
     }
@@ -57,7 +57,7 @@ export async function generateMetadata({params: {slug, locale}}) {
                 continue;
             }
             const slugLocale = lang.locale === 'en' ? '' : `/${lang.locale}`;
-            languages[lang.locale] = [{
+            languages[seoLocales[lang.locale] ?? 'en'] = [{
                 title: lang.title,
                 url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${slugLocale}`
             }]

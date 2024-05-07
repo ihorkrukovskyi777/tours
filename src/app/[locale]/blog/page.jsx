@@ -24,17 +24,9 @@ const canonical = `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${locale === 'en' 
         metadataBase: new URL(process.env.NEXT_PUBLIC_CANONICAL_DOMAIN),
         robots: {index: true, follow: true, 'max-image-preview': true, 'max-snippet': -1, 'max-video-preview': -1},
         title: 'Blog | Strawberry Tours',
-        // description: seo.description,
         openGraph: {
             url: canonical,
             locale: seoLocales[locale]
         },
-        // verification: {
-        //     google: isIndexation ? 'mQKRBl_GbVi0Ly3Xwl9-M1pVM5Jm5y1O9Koi7Pj54M8' : '',
-        // },
-        // alternates: {
-        //     canonical,
-        //     languages,
-        // }
     }
 }

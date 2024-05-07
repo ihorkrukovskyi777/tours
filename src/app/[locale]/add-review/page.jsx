@@ -50,6 +50,7 @@ export default async function Page({params: {locale,}, searchParams}) {
             <I18nChangeOfLanguage
                 locale={locale}
                 languages={pageData.languages?.map(item => ({...item, title: 'Free Tours'}))}
+                addQueries={true}
             />
             <Footer locale={locale}/>
         </>

@@ -18,7 +18,6 @@ const FlexibleContent = dynamic(
 )
 
 export default async function Page({params: {locale, slug }}) {
-
     if(slug === 'guide') {
         notFound();
     }
@@ -30,10 +29,13 @@ export default async function Page({params: {locale, slug }}) {
         {next: {revalidate: 60,  tags: ['page']}}
     )
     const data = await pageType.json();
+    console.log(data)
 
     if (data.statusCode === 404 || typeof data.id !== 'number' || ['tour-page', 'tours'].includes(slug)) {
         notFound();
     }
+
+
 
     return (
         <main id={`page-id-${data.id}`}>

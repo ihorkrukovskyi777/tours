@@ -108,7 +108,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
                 limit={3}
                 title={`${i18n.t('Other Tours in')} ${checkoutData.city?.post_title}`}
             />
-            <I18nChangeOfLanguage filterQuery={['open_contact_modal']} locale={locale} languages={page.languages}/>
+            <I18nChangeOfLanguage filterQuery={['open_contact_modal']} locale={locale} languages={page.languages} addQueries={true}/>
             <Footer locale={locale}/>
         </>
     )

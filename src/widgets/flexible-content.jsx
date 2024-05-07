@@ -50,6 +50,7 @@ export default async function FlexibleContent({
                                                   content = "",
                                                   isMobile,
                                               }) {
+
     return (
         <>
             {!!content && typeof content === "string" ? (
