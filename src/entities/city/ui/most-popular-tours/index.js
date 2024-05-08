@@ -3,7 +3,7 @@ import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import TextQuote from "@/widgets/text-quote";
 import dynamic from "next/dynamic";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
-
+import PlacesFixedSeo from "@/shared/ui/seo-fixed/places";
 const ProviderMap = dynamic(() => import("@/widgets/map-and-slider/provider"), {
   ssr: false,
 });
@@ -32,6 +32,7 @@ export default async function MostPopularTours({
     locale,
     tours?.map((tour) => tour.id)
   );
+  console.log(places)
   return (
     <>
       {tours?.length ? (
@@ -64,6 +65,9 @@ export default async function MostPopularTours({
         toursPlaces={toursPlaces}
         buttonsShow={true}
       />
+      <ul style={{display: "none"}}>
+        {places?.map(place => <PlacesFixedSeo key={place.id} title={place.title} tickets={place.tickets}  attachment={place.attachment} i18n={i18n.getMapSliders()}/>)}
+      </ul>
     </>
   );
 }
