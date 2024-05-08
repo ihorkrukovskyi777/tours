@@ -54,7 +54,6 @@ export default async function MostPopularTours({
         </>
       ) : null}
       {toursPlaces?.length ? <TextQuote id={id} locale={locale} /> : null}
-
       <ProviderMap
         hideBottom={true}
         i18n={i18n.getMapSliders()}
@@ -64,9 +63,6 @@ export default async function MostPopularTours({
         toursPlaces={toursPlaces}
         buttonsShow={true}
       />
-      <ul style={{display: "none"}} id="city_places">
-        {places?.map(place => <PlacesFixedSeo key={place.id} title={place.title} tickets={place.tickets}  attachment={place.attachment} i18n={i18n.getMapSliders()}/>)}
-      </ul>
     </>
   );
 }
