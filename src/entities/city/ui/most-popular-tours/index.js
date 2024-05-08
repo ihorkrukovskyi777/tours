@@ -32,7 +32,6 @@ export default async function MostPopularTours({
     locale,
     tours?.map((tour) => tour.id)
   );
-  console.log(places)
   return (
     <>
       {tours?.length ? (
@@ -65,7 +64,7 @@ export default async function MostPopularTours({
         toursPlaces={toursPlaces}
         buttonsShow={true}
       />
-      <ul style={{display: "none"}}>
+      <ul style={{display: "none"}} id="city_places">
         {places?.map(place => <PlacesFixedSeo key={place.id} title={place.title} tickets={place.tickets}  attachment={place.attachment} i18n={i18n.getMapSliders()}/>)}
       </ul>
     </>
