@@ -41,7 +41,7 @@ export async function middleware(request) {
             )
             const data = await pageType.json();
             const slugLocale = locale === fallbackLng ? '' : `${locale}/`;
-            if(data.id) {
+            if(data?.type === 'city') {
                 return NextResponse.redirect(new URL(origin + '/' + slugLocale + ifToursPage[0].toLowerCase()), 301)
             }
         }
