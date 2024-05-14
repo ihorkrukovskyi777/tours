@@ -45,6 +45,10 @@ export async function middleware(request) {
             const slugLocale = locale === fallbackLng ? '' : `${locale}/`;
             if(data?.type === 'city') {
                 return NextResponse.redirect(new URL(origin + '/' + slugLocale + ifToursPage[0].toLowerCase()), 301)
+            } else {
+                return new NextResponse(Page410(),
+                    {status: 410, headers: {'content-type': 'text/html'}}
+                )
             }
         }
 
