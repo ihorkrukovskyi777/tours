@@ -11,11 +11,11 @@ export async function middleware(request) {
     try {
         const firstPath = pathname.split('/').filter(slug => !!slug)
         const [slugApi410] = firstPath;
-        if (slugApi410 === '/ajax_tour') {
+        if (slugApi410 === 'ajax_tour') {
             return new NextResponse(Page410(),
                 {status: 410, headers: {'content-type': 'text/html'}}
             )
-        } else if (slugApi410 === '/wp-json') {
+        } else if (slugApi410 === 'wp-json') {
             return new NextResponse(Page410(),
                 {status: 410, headers: {'content-type': 'text/html'}}
             )
