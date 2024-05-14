@@ -9,11 +9,13 @@ export async function middleware(request) {
 
 
     try {
-        if (pathname === '/ajax_tour') {
+        const firstPath = pathname.split('/').filter(slug => !!slug)
+        const [slugApi410] = firstPath;
+        if (slugApi410 === '/ajax_tour') {
             return new NextResponse(Page410(),
                 {status: 410, headers: {'content-type': 'text/html'}}
             )
-        } else if (pathname === '/wp-json') {
+        } else if (slugApi410 === '/wp-json') {
             return new NextResponse(Page410(),
                 {status: 410, headers: {'content-type': 'text/html'}}
             )
