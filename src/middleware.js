@@ -33,7 +33,7 @@ export async function middleware(request) {
         if(locale.includes(ifToursPage[0])) {
             ifToursPage = ifToursPage.slice(1);
         }
-        if (ifToursPage[1] === 'tours') {
+        if (ifToursPage[ifToursPage.length - 1] === 'tours') {
             const slug = ifToursPage[0];
             const pageType = await fetch(
                 `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/${slug}?locale=${locale}`,
