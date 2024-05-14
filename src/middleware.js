@@ -1,43 +1,90 @@
 import {NextResponse} from 'next/server';
 import {fallbackLng, locales} from './i18n/settings';
+import {Page410} from "@/page-410";
 
 export async function middleware(request) {
     // Check if there is any supported locale in the pathname
     const pathname = request.nextUrl.pathname;
     const origin = request.nextUrl.origin;
 
+
+    try {
+        if (pathname === '/ajax_tour') {
+            return new NextResponse(Page410(),
+                {status: 410, headers: {'content-type': 'text/html'}}
+            )
+        } else if (pathname === '/wp-json') {
+            return new NextResponse(Page410(),
+                {status: 410, headers: {'content-type': 'text/html'}}
+            )
+        }
+
+        const isGuidePage410 = locales.find(locale => pathname.includes(`/guide/${locale}`));
+        if (isGuidePage410) {
+            return new NextResponse(Page410(),
+                {status: 410, headers: {'content-type': 'text/html'}}
+            )
+        }
+
+        let ifToursPage = pathname.split('/').filter(slug => !!slug)
+        const locale = locales.find(locale => ifToursPage[0]?.toLowerCase() === locale.toLowerCase()) ?? fallbackLng
+
+
+        if(locale.includes(ifToursPage[0])) {
+            ifToursPage = ifToursPage.slice(1);
+        }
+        if (ifToursPage[1] === 'tours') {
+            const slug = ifToursPage[0];
+            const pageType = await fetch(
+                `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/${slug}?locale=${locale}`,
+                {next: {revalidate: 60,  tags: ['page']}}
+            )
+            const data = await pageType.json();
+            const slugLocale = locale === fallbackLng ? '' : `${locale}/`;
+            if(data.id) {
+                return NextResponse.redirect(new URL(origin + '/' + slugLocale + ifToursPage[0].toLowerCase()), 301)
+            }
+        }
+
+    } catch (err) {
+        console.log(err);
+    }
     if (pathname !== pathname.toLowerCase()) {
         return NextResponse.redirect(new URL(origin + pathname.toLowerCase()), 301)
     }
-
     // By using URL, we're making sure that query string stays as it is.
-    if(pathname !== '/') {
-       try {
-           const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/redirect/${encodeURIComponent(pathname)}`, {next: { revalidate: 60, tags: ['redirect']}});
-           const redirect = await response.json();
+    if (pathname !== '/') {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/redirect/${encodeURIComponent(pathname)}`, {
+                next: {
+                    revalidate: 60,
+                    tags: ['redirect']
+                }
+            });
+            const redirect = await response.json();
 
-           if(redirect.code) {
+            if (redirect.code) {
 
-               const replaceList = [
-                   process.env.NEXT_PUBLIC_CANONICAL_DOMAIN,
-                   process.env.NEXT_PUBLIC_CANONICAL_DOMAIN.replace('https://', ''),
-                   process.env.NEXT_PUBLIC_CANONICAL_DOMAIN.replace('http://', ''),
-               ]
-               const to = replaceList.reduce((to, val) => {
-                   return to.replace(val, '')
-               }, redirect.to)
-               return NextResponse.redirect( new URL(`${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${to}`), { status: redirect?.code || 307})
-           }
-       } catch (err) {
-           console.log(err)
-       }
+                const replaceList = [
+                    process.env.NEXT_PUBLIC_CANONICAL_DOMAIN,
+                    process.env.NEXT_PUBLIC_CANONICAL_DOMAIN.replace('https://', ''),
+                    process.env.NEXT_PUBLIC_CANONICAL_DOMAIN.replace('http://', ''),
+                ]
+                const to = replaceList.reduce((to, val) => {
+                    return to.replace(val, '')
+                }, redirect.to)
+                return NextResponse.redirect(new URL(`${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${to}`), {status: redirect?.code || 307})
+            }
+        } catch (err) {
+            console.log(err)
+        }
     }
-
     // Check if the default locale is in the pathname
     if (
         pathname.startsWith(`/${fallbackLng}/`) ||
         pathname === `/${fallbackLng}`
     ) {
+
         // e.g. incoming request is /en/about
         // The new URL is now /about
         return NextResponse.redirect(
