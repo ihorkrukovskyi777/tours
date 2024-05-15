@@ -13,7 +13,7 @@ export default async function LatestReviews({id, locale, type='city', showTitle=
     if (!reviews?.data?.length) {
         return null
     }
-    const title =  !city ? i18n.t('Latest reviews') : i18n.t('Reviews of Free Tours in') + city;
+    const title =  !city ? i18n.t('Latest reviews') : i18n.t('Reviews of Free Tours in') + ' ' + city;
 
     return (
         <section className="latest_reviews">
