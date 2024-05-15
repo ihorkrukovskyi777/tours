@@ -1,10 +1,9 @@
 import "./style.css";
 
-export default function ViewQuote({ description , no_margin = false }) {
-  const margin = no_margin ? "no_margin" : "default";
+export default function ViewQuote({ description }) {
 
   return (
-    <section className={`text_quote ${margin}`}>
+    <section className="text_quote">
       <div className="container">
         <div className="top_wrapper">
           <div

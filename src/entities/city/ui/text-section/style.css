@@ -1,42 +1,42 @@
-.text_quote {
-    margin: 80px 0;
-}
-.text_quote.no_margin {
+.text_section {
     margin: 0;
 }
-.text_quote .top_wrapper {
-    padding: 20px 20px;
+.text_section.no_margin {
+    margin: 0;
+}
+.text_section .top_wrapper {
     width: 100%;
-    max-width: 800px;
-    text-align: center;
-    background: #f7f7f7;
+    /*max-width: 800px;
+    text-align: center;*/
     border-radius: 8px;
     margin: 0 auto;
 }
-.text_quote .top_wrapper h2 {
+.text_section .top_wrapper h2 {
     margin: 0 0 15px;
     line-height: 1;
     text-transform: inherit;
 }
-.text_quote .description {
+.text_section .description {
     width: 100%;
-    max-width: 580px;
+    /*max-width: 580px;*/
     margin: 0 auto;
+    background: #f7f7f7;
+    padding: 20px 20px;
     font-size: 20px;
     line-height: 1.2;
     color: #686868;
 }
 @media (max-width: 767px) {
-    .text_quote {
+    .text_section {
         margin: 65px 0;
     }
-    .text_quote .description {
+    .text_section .description {
         text-align: left;
     }
-    .text_quote .top_wrapper h2 {
+    .text_section .top_wrapper h2 {
         text-align: left;
     }
-    .text_quote .top_wrapper {
+    .text_section .top_wrapper {
         padding: 18px 18px;
     }
 }

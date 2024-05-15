@@ -2,9 +2,6 @@ import { Suspense } from "react";
 import BannerCity from "@/entities/city/ui/banner-city";
 import SsrCalendar from "@/entities/calendar/ssr-calendar";
 import MostPopularTours from "@/entities/city/ui/most-popular-tours";
-import LatestReviews from "@/widgets/latest-reviews";
-import Highlights from "@/widgets/highlights";
-import TextBlocks from "@/widgets/text-blocks";
 import Guides from "@/shared/ui/guides";
 import MostPopularCity from "@/entities/city/ui/most-popular-city";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
@@ -16,7 +13,9 @@ import EventsSchema from "@/shared/schema/events";
 import InsertCode from "@/widgets/insert-code/insert-code";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import PartnerTours from "@/entities/city/ui/partner-tours";
-import ViewQuote from "@/widgets/text-quote/view-quote";
+import {getTextsBlocks} from "@/entities/api";
+
+
 
 export default async function CityPage({
   locale,
@@ -29,6 +28,7 @@ export default async function CityPage({
   const i18n = await useDefaultI18n(locale);
 
 
+  const texts = await getTextsBlocks(id, locale, 'city');
 
   let breadcrumbsTitle = i18n.t("Free Walking Tour Breadcrumbs");
   breadcrumbsTitle = breadcrumbsTitle.replace(" Breadcrumbs", "");
@@ -59,10 +59,11 @@ export default async function CityPage({
           slug={slug}
           title={title}
           size={"small"}
+          texts={texts}
         />
 
-        <PartnerTours id={id} locale={locale} size={"small"} title={title} />
-        <TextBlocks id={id} locale={locale} />
+        <PartnerTours id={id} locale={locale} size={"small"} title={title} texts={texts} />
+
         <Guides id={id} locale={locale} title={i18n.t('Free Tour Guides in') + ' ' + title} type="city"  />
         <InsertCode id={id} type="city" locale={locale} />
         <MostPopularCity locale={locale} id={id} slug={slug} size={"medium"} />

@@ -6,8 +6,10 @@ import { picketPartnerTours } from "@/entities/api";
 
 import Highlights from "@/widgets/highlights";
 import LatestReviews from "@/widgets/latest-reviews";
+import TextBlocks from "@/widgets/text-blocks";
+import TextSection from "@/entities/city/ui/text-section";
 
-export default async function PartnerTours({ id, locale, size = "small" , title = '' }) {
+export default async function PartnerTours({ id, locale, size = "small" , title = '' , texts = '' }) {
   let data = await picketPartnerTours(id, locale);
   const i18n = await useDefaultI18n(locale);
 
@@ -18,16 +20,20 @@ export default async function PartnerTours({ id, locale, size = "small" , title 
   const tours = data.partnerTours.map((item) => ({
     ...item,
   }));
+  
 
   return (
     <>
       {tours?.length && (
         <>
-          {data?.description && (
-            <ViewQuote description={data.description} no_margin={true} />
+          {texts[1] && (
+              <TextSection data={texts[1]} />
           )}
           <Highlights id={id} locale={locale} hiddenTitle={true} />
           <LatestReviews id={id} locale={locale} city={title} />
+          {texts[2] && (
+              <TextSection data={texts[2]} />
+          )}
           <PartnerRowTours
             tours={tours}
             i18n={{
