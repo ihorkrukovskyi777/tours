@@ -70,7 +70,7 @@ export default async function CityPage({
                     size={"small"}
                     title={title}
                     topText={ <TextSection data={texts[1] ?? ''}/>}
-                    secondText={ <TextSection data={texts[2] ?? ''}/>}
+                    secondText={ <TextSection showTitle={true} data={texts[2] ?? ''}/>}
                 />
 
                 <Guides id={id} locale={locale} title={i18n.t('Free Tour Guides in') + ' ' + title} type="city"/>
