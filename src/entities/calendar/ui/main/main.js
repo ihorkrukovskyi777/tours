@@ -21,7 +21,7 @@ const OpenModalButton = dynamic(
         ssr: false,
     }
 )
-export default observer(function Main({siteLocale, i18n, nameDayWeek = false, isMobile = false , pageTitle = ''}) {
+export default observer(function Main({siteLocale, i18n, nameDayWeek = false, isMobile = false , title = ''}) {
 
     const [eventLoadingModal, setEventLoadingModal] = useState(false);
     const [scrollTop, setScrollTop] = useState(false);
@@ -92,7 +92,7 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false, is
     }
     return (
         <div className="calendar_wrap" style={{minHeight: '400px'}}>
-            <h2 className="title">{pageTitle} {i18n.free_tour_calendar}</h2>
+            <h2 className="title">{title}</h2>
             <div className="wrap-box">
                 <div className="wrap-button">
                     {phones.state !== 'fulfilled' ?

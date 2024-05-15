@@ -50,8 +50,7 @@ export default async function CityPage({
                     locale={locale}
                     type="city"
                     id={id}
-                    pageTitle={title}
-                    title={i18n.tReplace("%s Free Tour Calendar", title)}
+                    title={title + ' ' + i18n.t("Free Tour Calendar") }
                     isMobile={isMobile}
                 />
                 <MostPopularTours
