@@ -16,6 +16,7 @@ import EventsSchema from "@/shared/schema/events";
 import InsertCode from "@/widgets/insert-code/insert-code";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import PartnerTours from "@/entities/city/ui/partner-tours";
+import ViewQuote from "@/widgets/text-quote/view-quote";
 
 export default async function CityPage({
   locale,
@@ -26,6 +27,8 @@ export default async function CityPage({
   isMobile,
 }) {
   const i18n = await useDefaultI18n(locale);
+
+
 
   let breadcrumbsTitle = i18n.t("Free Walking Tour Breadcrumbs");
   breadcrumbsTitle = breadcrumbsTitle.replace(" Breadcrumbs", "");
@@ -46,7 +49,8 @@ export default async function CityPage({
           locale={locale}
           type="city"
           id={id}
-          title={i18n.tReplace("%s Tour Calendar", title)}
+          pageTitle={title}
+          title={i18n.tReplace("%s Free Tour Calendar", title)}
           isMobile={isMobile}
         />
         <MostPopularTours
@@ -56,11 +60,10 @@ export default async function CityPage({
           title={title}
           size={"small"}
         />
-        <PartnerTours id={id} locale={locale} size={"small"} />
-        <LatestReviews id={id} locale={locale} />
-        <Highlights id={id} locale={locale} />
+
+        <PartnerTours id={id} locale={locale} size={"small"} title={title} />
         <TextBlocks id={id} locale={locale} />
-        <Guides id={id} locale={locale} title={title} type="city" />
+        <Guides id={id} locale={locale} title={i18n.t('Free Tour Guides in') + ' ' + title} type="city"  />
         <InsertCode id={id} type="city" locale={locale} />
         <MostPopularCity locale={locale} id={id} slug={slug} size={"medium"} />
         <I18nChangeOfLanguage

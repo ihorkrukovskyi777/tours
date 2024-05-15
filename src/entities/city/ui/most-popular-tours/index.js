@@ -38,7 +38,8 @@ export default async function MostPopularTours({
         <>
           <RowTours
             tours={tours}
-            title={`${data.title} ${title}`}
+            title_first={i18n.t("Best Free Walking Tours in")}
+            title={`${title}`}
             sizeSection={size}
             i18n={{
               duration: i18n.t("Duration"),
@@ -53,10 +54,10 @@ export default async function MostPopularTours({
           />
         </>
       ) : null}
-      {toursPlaces?.length ? <TextQuote id={id} locale={locale} /> : null}
+      {toursPlaces?.length ? <TextQuote id={id} locale={locale}  /> : null}
       <ProviderMap
         hideBottom={true}
-        i18n={i18n.getMapSliders()}
+        i18n={{...i18n.getMapSliders() , tour_features: title + ' ' + i18n.t("Walking Tours Highlights") }}
         id={id}
         locale={locale}
         places={places}

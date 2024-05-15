@@ -20,9 +20,13 @@ const UseCtrl = dynamic(
 )
 export const StoreMapContext = createContext(null)
 
-export default observer(function MapAndSlider({i18n, id, locale, places = [], toursPlaces, hideBottom, children, selectedTourDefault = null}) {
+export default observer(function MapAndSlider({i18n, id, locale, places = [], toursPlaces, hideBottom, children, selectedTourDefault = null , title = ''}) {
     const store = useRef(new StoreMap(id, locale))
     const ids = toursPlaces?.map(item => item.id) ?? []
+
+    if (title === '') {
+        title = i18n.tour_features
+    }
 
     useEffect(() => {
         store.current.setMarkers(places, selectedTourDefault)
@@ -35,7 +39,7 @@ export default observer(function MapAndSlider({i18n, id, locale, places = [], to
                <>
                    <section className='map_and_slider'>
                        <div className="container">
-                           <h2>{i18n.tour_features}</h2>
+                           <h2>{title}</h2>
                            <div className='map_block'>
                                {ids.length ? <ButtonTours i18n={i18n} toursPlaces={toursPlaces}></ButtonTours> : null}
                                <div className="wrap-map">

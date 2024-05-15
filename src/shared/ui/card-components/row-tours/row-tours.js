@@ -9,12 +9,12 @@ import {PATH_TOURS} from "@/shared/constants/route";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import './style.css';
 
-export default function RowTours({tours, title = '', i18n = {}, sizeSection = 'small'}) {
+export default function RowTours({tours, title = '', title_first = '' ,  i18n = {}, sizeSection = 'small'}) {
     return (
         <section className={`most_popular_tour ${sizeSection}`}>
             <div className=" container">
                 <div className=" wrapper">
-                    <h2 className=" title">{title}</h2>
+                    <h2 className=" title">{title_first} {title}</h2>
                     <div className=" items">
                         {tours?.map((item) => {
                             const labelHour = item.departure?.durations.find(val => val > 1) ? 'hours' : 'hour';

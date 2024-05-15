@@ -6,6 +6,7 @@
     max-width: 280px;
     margin: 0 0 30px;
     transition: .3s;
+    font-size: 32px;
 }
 .block_text {
     color: #686868;

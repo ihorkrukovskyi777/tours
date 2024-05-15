@@ -3,5 +3,5 @@ import ViewQuote from "./view-quote";
 
 export default async function TextQuote({ id, locale, type = "city" }) {
   const data = await getTextQuote(id, locale, type);
-  return <ViewQuote title={data.title} description={data.description} />;
+  return <ViewQuote title={data.title} description={data.description} no_margin={type} />;
 }

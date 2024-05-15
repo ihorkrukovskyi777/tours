@@ -1,11 +1,12 @@
 import "./style.css";
 
-export default function ViewQuote({ title, description }) {
+export default function ViewQuote({ description , no_margin = false }) {
+  const margin = no_margin ? "no_margin" : "default";
+
   return (
-    <section className="text_quote">
+    <section className={`text_quote ${margin}`}>
       <div className="container">
         <div className="top_wrapper">
-          {title && <h2>{title}</h2>}
           <div
             className="description"
             dangerouslySetInnerHTML={{ __html: description ?? "" }}
