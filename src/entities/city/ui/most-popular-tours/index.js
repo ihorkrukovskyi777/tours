@@ -4,6 +4,7 @@ import TextQuote from "@/widgets/text-quote";
 import dynamic from "next/dynamic";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import PlacesFixedSeo from "@/shared/ui/seo-fixed/places";
+import TextSection from "@/entities/city/ui/text-section";
 const ProviderMap = dynamic(() => import("@/widgets/map-and-slider/provider"), {
   ssr: false,
 });
@@ -13,6 +14,7 @@ export default async function MostPopularTours({
   slug,
   title = "",
   size = "small",
+  texts = '',
 }) {
   let data = await picketToursBox(id, locale);
   const i18n = await useDefaultI18n(locale);
@@ -38,7 +40,8 @@ export default async function MostPopularTours({
         <>
           <RowTours
             tours={tours}
-            title={`${data.title} ${title}`}
+            title_first={i18n.t("Best Free Walking Tours in")}
+            title={`${title}`}
             sizeSection={size}
             i18n={{
               duration: i18n.t("Duration"),
@@ -53,10 +56,13 @@ export default async function MostPopularTours({
           />
         </>
       ) : null}
-      {toursPlaces?.length ? <TextQuote id={id} locale={locale} /> : null}
+
+
+     {/* {toursPlaces?.length ? <TextQuote id={id} locale={locale}  /> : null}*/}
+      <TextSection data={texts[0]}  />
       <ProviderMap
         hideBottom={true}
-        i18n={i18n.getMapSliders()}
+        i18n={{...i18n.getMapSliders() , tour_features: title + ' ' + i18n.t("Walking Tours Highlights") }}
         id={id}
         locale={locale}
         places={places}

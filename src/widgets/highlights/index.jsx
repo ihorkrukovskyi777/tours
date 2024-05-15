@@ -6,7 +6,7 @@ const HighlightsLazySlider = dynamic(
     {ssr: false}
 )
 
-export default async function Highlights({id, locale}) {
+export default async function Highlights({id, locale , hiddenTitle = false}) {
     const i18n = await useDefaultI18n(locale)
     const images = await getHighlightsImages(id);
 
@@ -15,7 +15,7 @@ export default async function Highlights({id, locale}) {
         <section className="highlights">
             <div className="container">
                 <div className="wrapper">
-                    <h2 className="title">{i18n.t('Highlights of your trip!')}</h2>
+                    {!hiddenTitle ? <h2 className="title">{i18n.t('Highlights of your trip!')}</h2> : ''}
                     <HighlightsLazySlider images={images} />
                 </div>
             </div>

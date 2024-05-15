@@ -16,6 +16,8 @@ const FlexibleContent = dynamic(
     () => import("@/widgets/flexible-content"),
     {ssr: true}
 )
+
+
 export default async function Home({params: {locale}, ...props}) {
     const pageType = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/home?locale=${locale}`,

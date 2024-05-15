@@ -5,11 +5,12 @@ import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import useGenitiveI18n from "@/i18n/hooks/useGenitiveI18n";
 
 
-export default async function SsrCalendar({locale, type, id, showFaq = true, title, nameDayWeek = true, isMobile = false }) {
+export default async function SsrCalendar({locale, type, id, showFaq = true, title, nameDayWeek = true, isMobile = false , pageTitle = '' }) {
     const [i18n,  i18nGenitive] = await Promise.all([
         useDefaultI18n(locale),
         useGenitiveI18n(locale),
     ])
+
 
     const [questions, activeLanguage] = await Promise.all([
         showFaq ? getFaqBlock(id, locale) : Promise.resolve(),
@@ -34,6 +35,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
         show_me_more: i18n.t('Show me More'),
         departures_not_found: i18n.t('Departures not found'),
         tour_calendar: i18n.t('Tour Calendar'),
+        free_tour_calendar: i18n.t('Free Tour Calendar'),
         modal_booking_title: i18n.t('Your booking details. You\'re almost there!'),
         first_name: i18n.t('First Name'),
         last_name: i18n.t('Last Name'),
@@ -57,6 +59,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
                         isMobile={isMobile}
                         nameDayWeek={nameDayWeek}
                         i18n={translate}
+                        pageTitle={pageTitle}
                         title={title}
                         locale={locale}
                         type={type}
@@ -66,7 +69,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
                     />
                     {activeLanguage?.length ?
                         <Faqs
-                            i18n={{faq: i18n.t('FAQ')}}
+                            i18n={{faq: i18n.t('FAQs for Free Tours')}}
                             style={{paddingRight: 0, paddingLeft: 0}}
                             questions={questions}
                         />

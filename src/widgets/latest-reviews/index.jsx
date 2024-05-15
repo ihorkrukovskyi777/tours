@@ -6,17 +6,19 @@ import './style.css';
 import ReviewCard from "@/widgets/latest-reviews/reviews-card";
 
 
-export default async function LatestReviews({id, locale, type='city', showTitle= true}) {
+export default async function LatestReviews({id, locale, type='city', showTitle= true , city = ''}) {
     const i18n = await useDefaultI18n(locale)
     const limit = 3
     const reviews = await getReviews(id, locale, limit, 0, type)
     if (!reviews?.data?.length) {
         return null
     }
+    const title =  !city ? i18n.t('Latest reviews') : i18n.t('Reviews of Free Tours in') + city;
+
     return (
         <section className="latest_reviews">
             <div className="container">
-                <h2 className="title">{i18n.t('Latest reviews')}</h2>
+                <h2 className="title">{title}</h2>
                     <ListReviews
                         showTitle={showTitle}
                         i18n={{show_me_more: i18n.t('Show me More')}}
