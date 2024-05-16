@@ -31,6 +31,8 @@ export default async function CityPage({
     let texts = await getTextsBlocks(id, locale, 'city');
     texts = Array.isArray(texts) ? texts : [];
 
+    const getTitleText2 = locale === 'en' ? title + ' ' +  i18n.t("Walking Tours Highlights") : i18n.t("Walking Tours Highlights") + ' ' + title;
+
     let breadcrumbsTitle = i18n.t("Free Walking Tour Breadcrumbs");
     breadcrumbsTitle = breadcrumbsTitle.replace(" Breadcrumbs", "");
     return (
@@ -69,7 +71,7 @@ export default async function CityPage({
                     locale={locale}
                     size={"small"}
                     title={title}
-                    titleTextSection={title + ' ' +  i18n.t("Walking Tours Highlights")}
+                    titleTextSection={getTitleText2}
                     textSectionData={texts}
                 />
 
