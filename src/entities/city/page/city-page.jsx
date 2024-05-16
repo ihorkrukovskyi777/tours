@@ -59,17 +59,16 @@ export default async function CityPage({
                     slug={slug}
                     title={title}
                     size={"small"}
-                >
-                    <TextSection data={texts[0] ?? ''}/>
-                </MostPopularTours>
+                    textSectionData={texts}
+                />
+
 
                 <PartnerTours
                     id={id}
                     locale={locale}
                     size={"small"}
                     title={title}
-                    topText={ <TextSection data={texts[1] ?? ''}/>}
-                    secondText={ <TextSection showTitle={true} data={texts[2] ?? ''}/>}
+                    textSectionData={texts}
                 />
 
                 <Guides id={id} locale={locale} title={i18n.t('Free Tour Guides in') + ' ' + title} type="city"/>

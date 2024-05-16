@@ -3,13 +3,18 @@ import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import { picketPartnerTours } from "@/entities/api";
 import Highlights from "@/widgets/highlights";
 import LatestReviews from "@/widgets/latest-reviews";
+import TextSection from "@/entities/city/ui/text-section";
 
-export default async function PartnerTours({ id, locale, size = "small" , title = '' , texts = '', topText, secondText} ) {
+export default async function PartnerTours({ id, locale, size = "small" , title = '' , texts = '', textSectionData} ) {
   let data = await picketPartnerTours(id, locale);
   const i18n = await useDefaultI18n(locale);
 
   if (!Array.isArray(data.partnerTours) || data.partnerTours.length === 0) {
-    return null;
+    return <>
+      <TextSection showTitle={true} data={textSectionData[1] ?? ''}/>
+      <Highlights id={id} locale={locale} hiddenTitle={true}  />
+      <TextSection showTitle={true} data={textSectionData[2] ?? ''}/>
+    </>;
   }
 
   const tours = data.partnerTours.map((item) => ({
@@ -19,12 +24,12 @@ export default async function PartnerTours({ id, locale, size = "small" , title 
 
   return (
     <>
+      <TextSection data={textSectionData[1] ?? ''}/>
       {tours?.length && (
         <>
-          {topText}
           <Highlights id={id} locale={locale} hiddenTitle={true} />
           <LatestReviews id={id} locale={locale} city={title} />
-          {secondText}
+          <TextSection showTitle={true} data={textSectionData[2] ?? ''}/>
           <PartnerRowTours
             tours={tours}
             i18n={{

@@ -10,7 +10,6 @@
 }
 .latest_reviews .title{
     margin: 0;
-    text-transform: capitalize;
 }
 .latest_reviews button {
     margin: 20px auto auto auto;
