@@ -59,6 +59,7 @@ export default async function CityPage({
                     slug={slug}
                     title={title}
                     size={"small"}
+                    titleTextSection={i18n.t("Best Free Walking Tours in") + ' ' + title }
                     textSectionData={texts}
                 />
 
@@ -68,6 +69,7 @@ export default async function CityPage({
                     locale={locale}
                     size={"small"}
                     title={title}
+                    titleTextSection={title + ' ' +  i18n.t("Walking Tours Highlights")}
                     textSectionData={texts}
                 />
 

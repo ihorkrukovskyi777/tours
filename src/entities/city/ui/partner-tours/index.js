@@ -5,13 +5,13 @@ import Highlights from "@/widgets/highlights";
 import LatestReviews from "@/widgets/latest-reviews";
 import TextSection from "@/entities/city/ui/text-section";
 
-export default async function PartnerTours({ id, locale, size = "small" , title = '' , texts = '', textSectionData} ) {
+export default async function PartnerTours({ id, locale, size = "small" , title = '' , texts = '', textSectionData , titleTextSection = ''} ) {
   let data = await picketPartnerTours(id, locale);
   const i18n = await useDefaultI18n(locale);
 
   if (!Array.isArray(data.partnerTours) || data.partnerTours.length === 0) {
     return <>
-      <TextSection showTitle={true} data={textSectionData[1] ?? ''}/>
+      <TextSection titleSection={titleTextSection} showTitle={true} data={textSectionData[1] ?? ''}/>
       <Highlights id={id} locale={locale} hiddenTitle={true}  />
       <TextSection showTitle={true} data={textSectionData[2] ?? ''}/>
     </>;

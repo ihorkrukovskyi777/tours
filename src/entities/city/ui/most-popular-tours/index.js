@@ -13,11 +13,11 @@ export default async function MostPopularTours({
                                                    slug,
                                                    title = "",
                                                    size = "small",
-                                                   textSectionData = {}
+                                                   textSectionData = {},
+                                                   titleTextSection = '',
                                                }) {
     let data = await picketToursBox(id, locale);
     const i18n = await useDefaultI18n(locale);
-
     if (!Array.isArray(data.tours)) {
         return null;
     }
@@ -56,7 +56,7 @@ export default async function MostPopularTours({
                     <TextSection data={textSectionData[0] ?? ''}/>
                 </>
             ) : <>
-                    <TextSection showTitle={true} data={textSectionData[0] ?? ''}/>
+                    <TextSection titleSection={titleTextSection} showTitle={true} data={textSectionData[0] ?? ''}/>
                 </>
 
             }
