@@ -32,6 +32,8 @@ export default async function CityPage({
     texts = Array.isArray(texts) ? texts : [];
 
     const getTitleText2 = locale === 'en' ? title + ' ' +  i18n.t("Walking Tours Highlights") : i18n.t("Walking Tours Highlights") + ' ' + title;
+    const getTitleText1 = i18n.t("Best Free Walking Tours in") + ' ' + title;
+    const getTitleText3 = i18n.t("Things to Do in") + ' ' + title;
 
     let breadcrumbsTitle = i18n.t("Free Walking Tour Breadcrumbs");
     breadcrumbsTitle = breadcrumbsTitle.replace(" Breadcrumbs", "");
@@ -61,7 +63,7 @@ export default async function CityPage({
                     slug={slug}
                     title={title}
                     size={"small"}
-                    titleTextSection={i18n.t("Best Free Walking Tours in") + ' ' + title }
+                    titleTextSection={getTitleText1}
                     textSectionData={texts}
                 />
 
@@ -71,7 +73,7 @@ export default async function CityPage({
                     locale={locale}
                     size={"small"}
                     title={title}
-                    titleTextSection={getTitleText2}
+                    titleTextSection={getTitleText3}
                     textSectionData={texts}
                 />
 

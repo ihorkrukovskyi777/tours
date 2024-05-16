@@ -7,7 +7,7 @@ export default async function TextSection({data , showTitle = false , titleSecti
                 <section className="block_text_section">
                     <div className="container">
                         <div className="top_wrapper">
-                            {titleSection !== '' && showTitle ? <h2>{titleSection}</h2> : <h2>{data?.title}</h2>}
+                            {titleSection !== '' && showTitle ? <h2>{titleSection}</h2> : null}
                             <div
                                 className="description"
                                 dangerouslySetInnerHTML={{__html: data?.text ?? ""}}
