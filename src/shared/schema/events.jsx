@@ -2,7 +2,7 @@ import {getHrefLocale} from "@/i18n/get-href-locale";
 import Script from "next/script";
 
 const getSchemaOffer = (offer) => {
-    const url = `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(offer.tour?.locale, `${offer.tour.city?.slug}/${offer.tour.slug}`)}`
+    const url = `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(offer.tour?.locale, `${offer.tour.city?.slug}/tours/${offer.tour.slug}`)}`
     return {
         '@type': 'Offer',
         'price': '0',
