@@ -18,8 +18,8 @@ const getSchemaProduct = (item, date, locale) => {
         },
         "aggregateRating": {
             "@type": "AggregateRating",
-            "ratingValue": item.rating?.rating || 5,
-            "reviewCount": item.rating?.reviews || 1,
+            "ratingValue": Number(item.rating?.rating) || 5,
+            "reviewCount": Number(item.rating?.reviews) || 1,
             "bestRating": "5",
             "worstRating": "0",
         },
@@ -33,6 +33,7 @@ export default async function ProductSchema({id, locale, type = 'city'}) {
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/product-${type}/${id}?locale=${locale}`, {next: {revalidate: 60 * 60,  tags: ['schema']}})
     const item = await response.json();
     const schemaData = JSON.stringify(getSchemaProduct(item, date, locale));
+
     return (
         <Script
             id="product-schema"

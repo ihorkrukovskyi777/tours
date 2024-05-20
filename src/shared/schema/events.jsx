@@ -38,9 +38,9 @@ const getSchemaEvent = (item) => {
         eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
         aggregateRating: {
             '@type': "AggregateRating",
-            ratingValue: item.rating?.rating || 5,
-            ratingCount: item.rating?.reviews || 0,
-            reviewCount: item.rating?.reviews || 1,
+            ratingValue: Number(item.rating?.rating) || 5,
+            ratingCount: Number(item.rating?.reviews) || 0,
+            reviewCount: Number(item.rating?.reviews) || 1,
             bestRating: "5",
             worstRating: "0"
         },
