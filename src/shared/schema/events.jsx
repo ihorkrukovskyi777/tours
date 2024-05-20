@@ -66,12 +66,7 @@ const getSchemaEvent = (item) => {
             name: "Strawberry Tours",
             url: process.env.NEXT_PUBLIC_CANONICAL_DOMAIN
         },
-        offers: item?.departuresTimes?.filter(dep => {
-            if(dep?.tour?.id === 3206 ) {
-                console.log(dep)
-            }
-            return new Date(dep.date).getTime() > new Date().getTime()
-        }).slice(0, 22)?.map(dep => getSchemaOffer(dep))
+        offers: item?.departuresTimes?.filter(dep => new Date(dep.date).getTime() > new Date().getTime()).slice(0, 22)?.map(dep => getSchemaOffer(dep))
     }
 }
 
