@@ -37,7 +37,8 @@ const getSchemaBreadcrumbList = (item, locale) => {
                 {
                     "@type": "ListItem",
                     "position": 1,
-                    "name": item?.homePage?.title ?? "Free walking tours",
+                    // "name": item?.homePage?.title ?? "Free walking tours",
+                    "name": "Home",
                     "item": homeLink
                 },
                 {
@@ -68,7 +69,8 @@ const getSchemaCityBreadcrumbList = (item, locale) => {
                 {
                     "@type": "ListItem",
                     "position": 1,
-                    "name": item?.homePage?.title ?? "Free walking tours",
+                    // "name": item?.homePage?.title ?? "Free walking tours",
+                    "name": "Home",
                     "item": homeLink
                 },
                 {
