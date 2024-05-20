@@ -39,7 +39,7 @@ const getSchemaEvent = (item) => {
         aggregateRating: {
             '@type': "AggregateRating",
             ratingValue: Number(item.rating?.rating) || 5,
-            ratingCount: Number(item.rating?.reviews) || 0,
+            ratingCount: Number(item.rating?.reviews) || 1,
             reviewCount: Number(item.rating?.reviews) || 1,
             bestRating: "5",
             worstRating: "0"
