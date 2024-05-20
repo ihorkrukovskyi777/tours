@@ -11,7 +11,7 @@ const getSchemaProduct = (item, date, locale) => {
         "description": item.description,
         "image": `${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${item.attachment?.src}/public`,
         "offers": {
-            "@type": "Offer",
+            "@type": "AggregateOffer",
             "price": "0",
             "priceCurrency": "EUR",
             'priceValidUntil': date,
