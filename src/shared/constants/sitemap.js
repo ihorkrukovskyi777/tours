@@ -1,4 +1,4 @@
-export const LIMIT = 500;
+export const LIMIT = 1000;
 
 export const generatePages = (total) =>  {
     const pages = Math.ceil(total / LIMIT);
