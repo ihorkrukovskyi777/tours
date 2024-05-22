@@ -34,7 +34,7 @@ const getSchemaEvent = (item) => {
         name: item.name,
         eventStatus: "https://schema.org/EventScheduled",
         startDate: firstDep ? firstDep.date : '',
-        dateEnd: item.dateEnd,
+        endDate: item.endDate,
         description: item.description,
         image: `${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${item.attachment?.src}/public`,
         eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
