@@ -1,5 +1,4 @@
 import {generatePages, LIMIT} from "@/shared/constants/sitemap";
-import {fetchTours} from "@/app/sitemap/tours/sitemap";
 
 export async function fetchPages() {
     let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap/pages`, {next: { revalidate: 60 * 60, tags: ['seo'] }});
