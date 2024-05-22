@@ -11,7 +11,7 @@ const getSchemaPlace = (name, description, image) => {
 }
 
 export default async function PlaceSchema({id, locale}) {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/place/${id}?locale=${locale}`, {next: {revalidate: 60 * 60,  tags: ['schema']}})
+    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/place/${id}?locale=${locale}`, {next: {revalidate: 60,  tags: ['schema']}})
     const place = await response.json();
 
     return <Script
