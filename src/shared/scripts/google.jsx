@@ -242,7 +242,7 @@ var klaroConfig = {
                
             },
         },
-        cat: {
+        ca: {
             consentModal: {
                 title: 'We value your privacy',
                 description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
