@@ -57,12 +57,7 @@ export async function generateMetadata({params: {slug, locale}}) {
 
     if (Array.isArray(seo.languages)) {
         for (const lang of seo.languages) {
-            if(lang.locale === fallbackLng) {
-                languages['x-default'] = [{ url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, lang.slug)}`}]
-            }
-            if (lang.locale === locale) {
-                continue;
-            }
+
             const slugLocale = lang.locale === 'en' ? '' : `/${lang.locale}`;
             languages[seoLocales[lang.locale] ?? 'x-default'] = [{
                 title: lang.title,
