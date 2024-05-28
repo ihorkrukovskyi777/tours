@@ -60,9 +60,8 @@ export async function generateMetadata({params: {slug, locale}}) {
             if(lang.locale === fallbackLng) {
                 languages['x-default'] = [{ url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, lang.slug)}`}]
             }
-
             const slugLocale = lang.locale === 'en' ? '' : `/${lang.locale}`;
-            if(languages[seoLocales[lang.locale]]) {
+            if(seoLocales[lang.locale]) {
                 languages[seoLocales[lang.locale]] = [{
                     title: lang.title,
                     url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${slugLocale}`
