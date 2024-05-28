@@ -94,7 +94,6 @@ export default async function ProductSchema({id, locale, type = 'city'}) {
     })
     const item = await response.json();
     const schemaData = JSON.stringify(getSchemaProduct(item, date, locale));
-    console.log(item)
     return (
         <>
             <Script
