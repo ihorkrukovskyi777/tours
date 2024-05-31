@@ -57,10 +57,11 @@ export async function generateMetadata({params: {slug, locale}}) {
 
     if (Array.isArray(seo.languages)) {
         for (const lang of seo.languages) {
-            if(lang.locale === fallbackLng) {
-                languages['x-default'] = [{ url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, lang.slug)}`}]
-            }
             const slugLocale = lang.locale === 'en' ? '' : `/${lang.locale}`;
+
+            if(lang.locale === fallbackLng) {
+                languages['x-default'] = [{ url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${slugLocale}`}]
+            }
             if(seoLocales[lang.locale]) {
                 languages[seoLocales[lang.locale]] = [{
                     title: lang.title,
