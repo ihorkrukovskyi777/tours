@@ -127,7 +127,10 @@ export async function generateMetadata({params: {slug, locale, tour}}) {
     if (Array.isArray(seo.languages)) {
         for (const lang of seo.languages) {
             if(lang.locale === fallbackLng) {
-                languages['x-default'] = [{ url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(lang.locale, lang.slug)}`}]
+                languages['x-default'] = [{ url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(
+                        lang.locale,
+                        `${lang.citySlug}/${PATH_TOURS}/${lang.slug}`
+                    )}`}]
             }
             languages[lang.locale] = [
                 {
