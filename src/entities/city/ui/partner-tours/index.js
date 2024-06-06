@@ -14,6 +14,7 @@ export default async function PartnerTours({ id, locale, size = "small" , title 
 
        {/*SHOW WHEN NO MAP*/}
       <Highlights id={id} locale={locale} hiddenTitle={true}  />
+      <LatestReviews id={id} locale={locale} city={title} />
       <TextSection titleSection={titleTextSection} showTitle={true} data={textSectionData[2] ?? ''}/>
     </>;
   }
