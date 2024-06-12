@@ -21,7 +21,7 @@ export async function middleware(request) {
             )
         }
 
-        const isGuidePage410 = locales.find(locale => pathname.includes(`/guide/${locale}`));
+        const isGuidePage410 = locales.find(locale => pathname === `/guide/${locale}`);
         if (isGuidePage410) {
             return new NextResponse(Page410(),
                 {status: 410, headers: {'content-type': 'text/html'}}
