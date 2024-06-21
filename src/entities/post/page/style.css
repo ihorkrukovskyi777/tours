@@ -227,7 +227,8 @@
         margin: 30px 0 135px;
     }
     .post_content .wrapper{
-        max-width: 100%;
+        max-width: 100% !important;
+        width: 100% !important;
     }
     .post_content h3 {
         margin: 65px 0 30px;

@@ -55,6 +55,7 @@ export default async function CityPage({
                     type="city"
                     id={id}
                     title={title + ' ' + i18n.t("Free Tour Calendar") }
+                    titleCalendar={title + ' ' + i18n.t("Free Tour Calendar")}
                     isMobile={isMobile}
                 />
                 <MostPopularTours
