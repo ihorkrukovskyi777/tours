@@ -4,7 +4,7 @@ import styles from './style.module.css';
 import classNames from "classnames";
 
 
-export default function ReviewCard({children, reply = null, brandName ='', time, author, rating, count_reviews, title, showTitle = true}) {
+export default function ReviewCard({children, reply = null, country = '', brandName ='', time, author, rating, count_reviews, title, showTitle = true}) {
 
     const helperDateHtml = new HelperDateHtml(time);
     return (
@@ -25,7 +25,7 @@ export default function ReviewCard({children, reply = null, brandName ='', time,
             <div className={styles.text}>
                 {children}
             </div>
-            <div className={styles.author}>{author}</div>
+            <div className={styles.author}>{author}{country ? `, ${country}` : ''}</div>
             {reply ? <div className={styles.reply_item}>
                 <div className={classNames(styles.reply,styles.text)}>{reply}</div>
                 <div className={classNames(styles.subv_tour,styles.author)}>
