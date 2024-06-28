@@ -25,7 +25,7 @@ export default function ReviewCard({children, reply = null, country = '', brandN
             <div className={styles.text}>
                 {children}
             </div>
-            <div className={styles.author}>{author}{country ? `, ${country}` : ''}</div>
+            <div className={styles.author}>{author?.trimEnd()}{country ? `, ${country}` : ''}</div>
             {reply ? <div className={styles.reply_item}>
                 <div className={classNames(styles.reply,styles.text)}>{reply}</div>
                 <div className={classNames(styles.subv_tour,styles.author)}>
