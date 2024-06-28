@@ -84,6 +84,7 @@ export default async function Page({params: {locale, slug, tour}}) {
                     id={page.id}
                     title={page.title}
                     isMobile={isMobile}
+                    titleCalendar={i18n.t("Tour Calendar")}
                 />
                 <LatestReviews
                     id={page.id}
