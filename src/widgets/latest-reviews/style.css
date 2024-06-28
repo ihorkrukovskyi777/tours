@@ -8,7 +8,7 @@
 }
 .latest_reviews__title .count_rate {
     color: rgba(0, 0, 0, 1);
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 }
 .latest_reviews .wrapper{
     display: grid;
@@ -23,6 +23,10 @@
 .latest_reviews button {
     margin: 20px auto auto auto;
 }
+.latest_reviews__title__reviews {
+    margin-top: 7px;
+}
+
 /* Responsive */
 @media(max-width:767px){
     .latest_reviews{
