@@ -34,7 +34,7 @@ export default async function PostPage({ languages, title, id , locale}) {
         <div className="content">
             <BannerBlog title={title} image={attachment} />
             <PostContent>{htmlTextFull}</PostContent>
-            <I18nChangeOfLanguage locale={locale} languages={languages.map((item) => ({...item, title: 'Free Tour'}))} title={''}/>
+            <I18nChangeOfLanguage locale={locale} languages={languages.map((item) => ({...item, title: ''}))} title={''}/>
             <Footer locale={locale}/>
         </div>
     )
