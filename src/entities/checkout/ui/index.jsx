@@ -10,11 +10,11 @@ import {observer} from "mobx-react-lite";
 import EditModalTour from "@/entities/checkout/ui/edit-tour-modal";
 import Loader from "@/shared/ui/loaders/default-loader";
 import {useSearchParams} from "next/navigation";
-import "./style.css";
 import {sendEventsGTM} from "@/shared/helpers/google/send-event";
+import "./style.css";
 
 export default observer(function CheckoutSection({i18n, title}) {
-    const {checkoutInfo, isActiveCheckout, editDeparture, globalLoading} = useContext(CheckoutStoreContext);
+    const {checkoutInfo, isActiveCheckout, isCancel, editDeparture, globalLoading} = useContext(CheckoutStoreContext);
     const searchParams = useSearchParams();
 
 
@@ -38,12 +38,16 @@ export default observer(function CheckoutSection({i18n, title}) {
             console.log(err);
         }
     }, [])
+
     return (
         <>
             {editDeparture?.loading || globalLoading ?  <Loader style={{position: 'fixed', opacity: '0.4', zIndex: 9999}}/>: null}
             <section className="checkout_section">
                 <div className="container">
-                    {isActiveCheckout ? null : <p className="departure_alert">{i18n.booking_canceled}</p>}
+                    <div className="notification_booking_status">
+                        {isActiveCheckout ? null : <p className="departure_alert">{i18n.booking_canceled}</p>}
+                        {!isCancel ? null : <p className="departure_alert">{i18n.departure_not_available}</p>}
+                    </div>
                     <h2>{title}</h2>
                     <div className="title" dangerouslySetInnerHTML={{__html: checkoutInfo.tourName ?? ''}}></div>
                     <PersonInfo i18n={i18n}/>

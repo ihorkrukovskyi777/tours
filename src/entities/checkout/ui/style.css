@@ -1,6 +1,12 @@
 .checkout_section {
   margin: 65px 0 0 0;
 }
+.checkout_section .notification_booking_status p:not(:first-child){
+    margin-top: 20px;
+}
+.checkout_section .notification_booking_status p:last-child {
+  margin-bottom: 20px;
+}
 .departure_alert {
   text-align: center;
   color: red;

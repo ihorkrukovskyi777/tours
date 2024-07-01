@@ -7,7 +7,6 @@ import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import useGenitiveI18n from "@/i18n/hooks/useGenitiveI18n";
 import generateSeoPage from "@/shared/helpers/seo/generate-seo-page";
 import CheckoutMapEndSlider from "@/entities/checkout/ui/map-and-slider/checkout-map-end-slider";
-import {additionalInformation} from "@/entities/checkout/api";
 
 
 export default async function CheckoutPage({params: {locale}, searchParams}) {
@@ -46,6 +45,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         language: i18n.t('Language'),
         date: i18n.t('Date'),
         time: i18n.t('Time'),
+        departure_not_available: i18n.t('Departure not available'),
         duration: i18n.t('Duration'),
         number_people: i18n.t('Number of people'),
         guide: i18n.t('Guide'),

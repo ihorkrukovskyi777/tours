@@ -113,7 +113,8 @@ class EditDeparture {
                     phone_county_slug,
                     depId,
                     tour_id,
-                    is_civitatis
+                    is_civitatis,
+                    is_cancel,
                 }, tourLocale, locale, staticCode, date) {
         this.staticCode = staticCode
         this.loading = false;
@@ -123,6 +124,7 @@ class EditDeparture {
         this.startTime = start_time;
         this.firstName = name;
         this.lastName = last_name;
+        this.is_cancel = is_cancel;
         this.email = email
         this.activityDate = activity_date;
         this.numberPeople = Number(number_people);
@@ -349,6 +351,7 @@ export default class CheckoutStore {
         this.tourLocale = tourLocale
         this.globalLoading = true;
         this.isActiveCheckout = true;
+        this.isCancel = false
         this.isContactGuide = false
         this.managerModal = new ManagerModal();
         this.pageOptions = {};
@@ -367,6 +370,7 @@ export default class CheckoutStore {
         let data = yield fetch(url, {next: {revalidate: 0}})
         data = yield data.json();
         this.isActiveCheckout = data.show_button;
+        this.isCancel = data?.is_cancel ?? false;
         this.pageOptions = data.pageOptions;
         this.checkoutInfo = new CheckoutInfo(data);
         this.isContactGuide = !data.is_civitatis
