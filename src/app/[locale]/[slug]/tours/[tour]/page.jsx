@@ -84,6 +84,7 @@ export default async function Page({params: {locale, slug, tour}}) {
                     id={page.id}
                     title={page.title}
                     isMobile={isMobile}
+                    titleCalendar={i18n.t("Tour Calendar")}
                 />
                 <LatestReviews
                     id={page.id}
@@ -126,8 +127,11 @@ export async function generateMetadata({params: {slug, locale, tour}}) {
     const languages = {};
     if (Array.isArray(seo.languages)) {
         for (const lang of seo.languages) {
-            if (lang.locale === locale) {
-                continue;
+            if(lang.locale === fallbackLng) {
+                languages['x-default'] = [{ url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(
+                        lang.locale,
+                        `${lang.citySlug}/${PATH_TOURS}/${lang.slug}`
+                    )}`}]
             }
             languages[lang.locale] = [
                 {

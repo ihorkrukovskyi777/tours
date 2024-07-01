@@ -4,10 +4,10 @@ import {useParams} from "next/navigation";
 import ReviewCard from "@/widgets/latest-reviews/reviews-card";
 import Button from "@/shared/ui/selectors/button/button";
 import {getReviews} from "@/entities/api";
-export default function ListReviews({i18n, total, reviewsInit = 0,  limit, id, type, showTitle = true, children}) {
+export default function ListReviews({i18n, total, reviewsInit = 0, offset,  limit, id, type, showTitle = true, children}) {
     const params = useParams();
     const [moreReviews, setMoreReviews] = useState({
-        offset: limit,
+        offset: offset,
         value: [],
     })
     const loadReviews = async () => {
@@ -34,6 +34,7 @@ export default function ListReviews({i18n, total, reviewsInit = 0,  limit, id, t
                                 brandName={item.brandName}
                                 rating={item.rating}
                                 reply={item.reply}
+                                country={i18n[item.country] ?? ''}
                             >
                                 {item.message}
                             </ReviewCard>

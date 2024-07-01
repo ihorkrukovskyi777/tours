@@ -43,6 +43,7 @@
         margin-top: 30px;
         height: auto;
         transform: none !important;
+        pointer-events: none;
     }
     .highlights .swiper-slide {
         width: 100% !important;

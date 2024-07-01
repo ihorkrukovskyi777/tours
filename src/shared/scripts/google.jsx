@@ -242,6 +242,45 @@ var klaroConfig = {
                
             },
         },
+        ca: {
+            consentModal: {
+                title: 'We value your privacy',
+                description: 'We use cookies to improve your user experiences and you can enable and disable services as you see fit. To learn more, see our',
+                privacyPolicy: {
+                    text: 'This is the text with a link to your {privacyPolicy}.',
+                    name: 'privacy policy (the name)',
+                },
+            },
+            privacyPolicy: {
+                text: '{privacyPolicy}.',
+                name: 'privacy policy',
+            },
+            purposeItem: {
+                services: 'services',
+            },
+            poweredBy: 'view config',
+            ok: 'Wohoo!',
+            purposes: {
+                analytics: 'Analytics',
+                security: 'Security',
+                livechat: 'Livechat',
+                marketing:{
+                    description:"These services process personal information to show you relevant content about products, services or topics that you might be interested in.",
+                    title:"Marketing"
+                },
+            },
+            service: {
+                purpose: 'Purpose',
+            },
+            acceptAll: 'Accept all',
+            acceptSelected: 'Confirm Choices',
+            googleAnalytics: {
+                description: 'Collection of visitor statistics',
+            },
+            mouseflow: {
+                description: 'Real-time user analytics',
+            },
+        },
         es: {
             consentModal: {
                 title: 'Valoramos tu privacidad',

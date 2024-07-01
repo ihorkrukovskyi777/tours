@@ -31,6 +31,10 @@ export default async function CityPage({
     let texts = await getTextsBlocks(id, locale, 'city');
     texts = Array.isArray(texts) ? texts : [];
 
+    const getTitleText2 = locale === 'en' ? title + ' ' +  i18n.t("Walking Tours Highlights") : i18n.t("Walking Tours Highlights") + ' ' + title;
+    const getTitleText1 = i18n.t("Best Free Walking Tours in") + ' ' + title;
+    const getTitleText3 = i18n.t("Things to Do in") + ' ' + title;
+
     let breadcrumbsTitle = i18n.t("Free Walking Tour Breadcrumbs");
     breadcrumbsTitle = breadcrumbsTitle.replace(" Breadcrumbs", "");
     return (
@@ -50,8 +54,8 @@ export default async function CityPage({
                     locale={locale}
                     type="city"
                     id={id}
-                    pageTitle={title}
-                    title={i18n.tReplace("%s Free Tour Calendar", title)}
+                    title={title + ' ' + i18n.t("Free Tour Calendar") }
+                    titleCalendar={title + ' ' + i18n.t("Free Tour Calendar")}
                     isMobile={isMobile}
                 />
                 <MostPopularTours
@@ -60,17 +64,18 @@ export default async function CityPage({
                     slug={slug}
                     title={title}
                     size={"small"}
-                >
-                    <TextSection data={texts[0] ?? ''}/>
-                </MostPopularTours>
+                    titleTextSection={getTitleText1}
+                    textSectionData={texts}
+                />
+
 
                 <PartnerTours
                     id={id}
                     locale={locale}
                     size={"small"}
                     title={title}
-                    topText={ <TextSection data={texts[1] ?? ''}/>}
-                    secondText={ <TextSection data={texts[2] ?? ''}/>}
+                    titleTextSection={getTitleText3}
+                    textSectionData={texts}
                 />
 
                 <Guides id={id} locale={locale} title={i18n.t('Free Tour Guides in') + ' ' + title} type="city"/>

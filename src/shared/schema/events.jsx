@@ -2,7 +2,7 @@ import {getHrefLocale} from "@/i18n/get-href-locale";
 import Script from "next/script";
 
 const getSchemaOffer = (offer) => {
-    const url = `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(offer.tour?.locale, `${offer.tour.city?.slug}/${offer.tour.slug}`)}`
+    const url = `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(offer.tour?.locale, `${offer.tour.city?.slug}/tours/${offer.tour.slug}`)}`
     return {
         '@type': 'Offer',
         'price': '0',
@@ -24,8 +24,9 @@ const getSchemaEvent = (item) => {
     if(!item?.departuresTimes?.length) {
         return null;
     }
-    const firstDep = item?.departuresTimes[0] ?? null;
 
+    item.departuresTimes?.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    const firstDep = item?.departuresTimes[0] ?? null;
 
     return {
         '@context': "https://schema.org",
@@ -33,14 +34,15 @@ const getSchemaEvent = (item) => {
         name: item.name,
         eventStatus: "https://schema.org/EventScheduled",
         startDate: firstDep ? firstDep.date : '',
+        endDate: item.endDate,
         description: item.description,
         image: `${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${item.attachment?.src}/public`,
         eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
         aggregateRating: {
             '@type': "AggregateRating",
-            ratingValue: item.rating?.rating || 5,
-            ratingCount: item.rating?.reviews || 0,
-            reviewCount: item.rating?.reviews || 1,
+            ratingValue: Number(item.rating?.rating) || 5,
+            ratingCount: Number(item.rating?.reviews) || 1,
+            reviewCount: Number(item.rating?.reviews) || 1,
             bestRating: "5",
             worstRating: "0"
         },
@@ -84,6 +86,7 @@ export default async function EventsSchema({type = 'city', id, locale}) {
     if(schema === null) {
         return null;
     }
+
     return (
         <Script
             id="events-schema"

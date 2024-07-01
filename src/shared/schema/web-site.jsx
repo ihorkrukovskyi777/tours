@@ -12,6 +12,7 @@ const webSiteSchemaJsonb = {
             'https://www.facebook.com/StrawberryToursENG',
             'https://twitter.com/StrawberryTours',
             'https://www.instagram.com/strawberrytours/',
+            'https://www.linkedin.com/company/strawberry-tours/',
         ],
         'logo': {
             '@type': 'ImageObject',

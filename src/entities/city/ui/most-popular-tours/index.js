@@ -3,6 +3,7 @@ import RowTours from "@/shared/ui/card-components/row-tours/row-tours";
 import dynamic from "next/dynamic";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import TextSection from "@/entities/city/ui/text-section";
+import {fallbackLng} from "@/i18n/settings";
 
 const ProviderMap = dynamic(() => import("@/widgets/map-and-slider/provider"), {
     ssr: false,
@@ -13,11 +14,11 @@ export default async function MostPopularTours({
                                                    slug,
                                                    title = "",
                                                    size = "small",
-                                                   children
+                                                   textSectionData = {},
+                                                   titleTextSection = '',
                                                }) {
     let data = await picketToursBox(id, locale);
     const i18n = await useDefaultI18n(locale);
-
     if (!Array.isArray(data.tours)) {
         return null;
     }
@@ -33,6 +34,10 @@ export default async function MostPopularTours({
         locale,
         tours?.map((tour) => tour.id)
     );
+
+
+    const titleWalkingTours = locale === fallbackLng ? title + ' ' + i18n.t("Walking Tours Highlights") : i18n.t("Walking Tours Highlights") + ' ' + title
+
     return (
         <>
             {tours?.length ? (
@@ -53,19 +58,27 @@ export default async function MostPopularTours({
                             months: i18n.getMonths(),
                         }}
                     />
+                    <TextSection data={textSectionData[0] ?? ''}/>
                 </>
-            ) : null}
+            ) : <>
 
-            {children}
+                    <TextSection titleSection={titleTextSection} showTitle={true} data={textSectionData[0] ?? ''}/>
+                </>
+
+            }
+
+
+
             <ProviderMap
                 hideBottom={true}
-                i18n={{...i18n.getMapSliders(), tour_features: title + ' ' + i18n.t("Walking Tours Highlights")}}
+                i18n={{...i18n.getMapSliders(), tour_features: titleWalkingTours}}
                 id={id}
                 locale={locale}
                 places={places}
                 toursPlaces={toursPlaces}
                 buttonsShow={true}
             />
+            <TextSection titleSection={titleWalkingTours} showTitle={!places.length} data={textSectionData[1] ?? ''}/>
         </>
     );
 }
