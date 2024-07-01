@@ -45,8 +45,8 @@ export default observer(function CheckoutSection({i18n, title}) {
             <section className="checkout_section">
                 <div className="container">
                     <div className="notification_booking_status">
-                        {isActiveCheckout ? null : <p className="departure_alert">{i18n.booking_canceled}</p>}
-                        {!isCancel ? null : <p className="departure_alert">{i18n.departure_not_available}</p>}
+                        {isActiveCheckout ? null : <p className="departure_alert">{i18n.departure_not_available}</p>}
+                        {!isCancel ? null : <p className="departure_alert">{i18n.booking_canceled}</p>}
                     </div>
                     <h2>{title}</h2>
                     <div className="title" dangerouslySetInnerHTML={{__html: checkoutInfo.tourName ?? ''}}></div>
