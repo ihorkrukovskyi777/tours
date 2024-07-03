@@ -24,6 +24,7 @@
     "react-animate-height": "^3.2.3",
     "react-dom": "^18",
     "react-leaflet": "=4.2.0",
+    "react-string-replace": "^1.1.1",
     "swiper": "^11.0.5",
     "text-clipper": "^2.2.0"
   },

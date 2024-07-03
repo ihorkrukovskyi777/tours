@@ -1,0 +1,56 @@
+.travel_resources {
+    display: flex;
+    flex-direction: column;
+    max-width: 984px;
+    margin: 45px auto 45px auto;
+}
+
+.travel_resources .title {
+    background-color: rgba(225, 6, 0, 1);
+    color: #FFFFFF;
+    font-family: var(--fontBold);
+    font-size: 24px;
+    padding: 16px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.travel_resources__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    background-color: rgba(247, 247, 247, 1);
+    padding: 24px;
+}
+.travel_resources__content > div {
+    display: flex;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 16px;
+    padding: 12px;
+}
+.travel_resources__content > div img {
+    border-radius: 8px;
+    margin-right: 12px;
+    display: block;
+}
+.travel_resources__content > div a {
+    color: rgba(225, 6, 0, 1);
+    text-decoration: underline;
+}
+.travel_resources__content > div h4 {
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 500;
+    font-family: var(--fontBold);
+    color: rgba(225, 6, 0, 1);
+    margin-bottom: 6px;
+}
+.travel_resources__content_text {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--fontMedium);
+}
+@media (max-width: 991px) {
+    .travel_resources__content {
+        grid-template-columns: 1fr;
+    }
+}

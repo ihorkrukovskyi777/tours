@@ -281,3 +281,11 @@ export const insertPartnerCode = async (id, type = "city", locale) => {
   );
   return data.json();
 };
+
+export const fetchTravelResources = async (id, locale = 'en') => {
+  const data = await fetch(
+      `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/travel-resources/${id}?locale=${locale}`,
+      { next: { revalidate: 0 } }
+  );
+  return data.json();
+}

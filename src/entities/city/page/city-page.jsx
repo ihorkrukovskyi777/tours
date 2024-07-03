@@ -14,8 +14,7 @@ import InsertCode from "@/widgets/insert-code/insert-code";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import PartnerTours from "@/entities/city/ui/partner-tours";
 import {getTextsBlocks} from "@/entities/api";
-import TextSection from "@/entities/city/ui/text-section";
-
+import TravelResources from "@/widgets/travel-resources/travel-resources";
 
 export default async function CityPage({
                                            locale,
@@ -31,7 +30,6 @@ export default async function CityPage({
     let texts = await getTextsBlocks(id, locale, 'city');
     texts = Array.isArray(texts) ? texts : [];
 
-    const getTitleText2 = locale === 'en' ? title + ' ' +  i18n.t("Walking Tours Highlights") : i18n.t("Walking Tours Highlights") + ' ' + title;
     const getTitleText1 = i18n.t("Best Free Walking Tours in") + ' ' + title;
     const getTitleText3 = i18n.t("Things to Do in") + ' ' + title;
 
@@ -80,6 +78,7 @@ export default async function CityPage({
 
                 <Guides id={id} locale={locale} title={i18n.t('Free Tour Guides in') + ' ' + title} type="city"/>
                 <InsertCode id={id} type="city" locale={locale}/>
+                <TravelResources id={id} locale={locale}/>
                 <MostPopularCity locale={locale} id={id} slug={slug} size={"medium"}/>
                 <I18nChangeOfLanguage
                     locale={locale}
