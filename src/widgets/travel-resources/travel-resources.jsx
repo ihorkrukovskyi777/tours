@@ -28,7 +28,7 @@ export default async function TravelResources({ id, locale }) {
                             <div key={index}>
                                 <IcloudImage src={item.icon.src} width={54} height={54}></IcloudImage>
                                 <div>
-                                    <h4>{item.post.title}</h4>
+                                    <h4>{item.title}</h4>
                                     <div className="travel_resources__content_text">{content}</div>
                                 </div>
                             </div>
