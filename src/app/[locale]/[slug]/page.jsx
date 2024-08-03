@@ -44,6 +44,7 @@ export default async function Page({params: {locale, slug}}) {
 
     return (
         <main id={`page-id-${data.id}`}>
+            {data.statusCode === 404 ? <SystemPage slug={slug} locale={locale}/> : null}
             {data.type === 'city' ?
                 <CityPage
                     isMobile={isMobile}
@@ -75,7 +76,6 @@ export default async function Page({params: {locale, slug}}) {
                 />
                 : null}
 
-            {data.statusCode === 404 ? <SystemPage slug={slug} locale={locale}/> : null}
 
         </main>
     )
@@ -84,14 +84,13 @@ export default async function Page({params: {locale, slug}}) {
 
 export async function generateMetadata({params: {slug, locale}}) {
     try {
-        const systemPage = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/system-distribution/external-api/seo/${slug}?locale=${locale}`, {next: { revalidate: 60 }})
+        const systemPage = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/system-distribution/external-api/seo/${slug}?locale=${locale}`, {next: { revalidate: 0 }})
         const isIndexation = process.env.NEXT_PUBLIC_GOOGLE_INDEXATION === 'yes';
 
 
         if(systemPage.status === 404) {
             return generateSeoPage(slug, locale);
         } else {
-
             const page = await systemPage.json();
             const seo = page.data.seo.locales.find(item => item.locale === locale);
             const canonical = locale === fallbackLng ? slug : `${locale}/${slug}`
