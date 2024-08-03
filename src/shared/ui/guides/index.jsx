@@ -8,7 +8,6 @@ const LazyGuidesRow = dynamic(
 
 export default async function Guides({title, id, locale, type}) {
     const data = await allGuides(id, type, locale);
-    const i18n = await useDefaultI18n(locale)
     if (!data.subVendors?.length) {
         return null
     }

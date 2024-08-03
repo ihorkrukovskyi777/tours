@@ -66,7 +66,6 @@ export default async function CityPage({
                     textSectionData={texts}
                 />
 
-
                 <PartnerTours
                     id={id}
                     locale={locale}
