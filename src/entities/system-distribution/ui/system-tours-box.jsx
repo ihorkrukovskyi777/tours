@@ -6,6 +6,10 @@ export default async function SystemToursBox({ id, locale, flexible }) {
     const tours = await getSystemTourBox(id, locale)
     const i18n = await useDefaultI18n(locale);
     const { title } = getContentFlexibleTitle(flexible, locale)
+
+    if(!tours?.length) {
+        return null;
+    }
     return (
         <RowTours
             tours={tours ?? []}

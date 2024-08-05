@@ -14,8 +14,8 @@ const getContentFlexible = (flexible, locale) => {
             return {
                 title: page?.title?.trim() || global?.title || '',
                 values: (page?.values?.length ? page.values : global.values)?.map(item => ({
-                    title: item.answer,
-                    text: item.question
+                    title: item.question,
+                    text: item.answer
                 }))
             }
         })(page?.faqs, global?.faqs)

@@ -127,7 +127,7 @@ export async function generateMetadata({params: {slug, locale}}) {
             }
         }
     } catch (err) {
-        console.log(err)
+        return generateSeoPage(slug, locale);
     }
 
 }

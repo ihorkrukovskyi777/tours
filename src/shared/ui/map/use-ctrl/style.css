@@ -2,7 +2,7 @@
     transition: .5s;
     position: absolute;
     z-index: 9999;
-    background: rgba(0, 0, 0, .6);
+    background-color: rgba(0, 0, 0, 0.6);
     left: 0;
     top: 0;
     width: 100%;

@@ -17,7 +17,7 @@ export default async function SystemMapAndSliders({id, locale, flexible}) {
             id={0}
             locale={locale}
             places={places}
-            toursPlaces={Object.values(toursPlaces ?? {})}
+            toursPlaces={toursPlaces}
             buttonsShow={true}
         />
     )

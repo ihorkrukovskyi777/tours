@@ -12,7 +12,8 @@ const getContentFlexible = (flexible, locale) => {
     const global =  flexible.globalMeta?.find(item => item.locale === locale);
 
     return {
-        title: page?.title?.trim() || global?.title
+        title: page?.title?.trim() || global?.title,
+        image: page?.image
     }
 
 
@@ -21,13 +22,15 @@ export default async function SystemBanner({id, locale ,isMobile, titles, attach
     const i18n = await useDefaultI18n(locale);
     const rating = await getSystemPageRating(id)
     const pageTitle = titles.find(item => item.locale === locale)
-    const { title } = getContentFlexible(flexible, locale)
+    const { title , image } = getContentFlexible(flexible, locale)
 
+
+    const mainImage = { ...attachment, alt: attachment?.alt.find(item => item.locale === locale)?.value ?? ''}
     return (
             <Banner
                 isMobile={isMobile}
                 title={pageTitle?.name ?? ''}
-                attachment={attachment}
+                attachment={image || mainImage}
                 size='city_banner'
                 bottomView={<Reviews rating={rating.rating} count_reviews={rating.reviews} title={i18n.t('Reviews')}/>}
             >

@@ -61,6 +61,7 @@ export default async function PageSystem({ slug, locale }) {
 
     let breadcrumbsTitle = i18n.t("Free Walking Tour Breadcrumbs");
     breadcrumbsTitle = breadcrumbsTitle.replace(" Breadcrumbs", "");
+
     return (
         <main>
             <SystemPlaceSchema seo={page.seo} locale={locale} image={page.image}/>
