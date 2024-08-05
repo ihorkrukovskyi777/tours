@@ -1,7 +1,7 @@
 import {fallbackLng} from "@/i18n/settings";
 import {generatePages, LIMIT} from "@/shared/constants/sitemap";
 export async function fetchTours() {
-    let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap/tours`, {next: { revalidate: 60 * 60, tags: ['seo'] }});
+    let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap/tours`, {next: { revalidate: 0}});
     const data = await siteMaps.json();
     return data.filter(item => item.city.slug !== undefined);
 }

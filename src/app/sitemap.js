@@ -4,24 +4,34 @@ import {fetchCities} from "@/app/sitemap/cities/sitemap";
 import {fetchGuides} from "@/app/sitemap/guides/sitemap";
 import {fetchPages} from "@/app/sitemap/pages/sitemap";
 import {fetchPosts} from "@/app/sitemap/posts/sitemap";
+import {fetchIsActive} from "@/app/sitemap/system-distribution/sitemap";
+
+export const revalidate = 40;
 export default async function sitemap() {
     let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap`, {next: { revalidate: 60 * 60, tags: ['seo'] }});
     siteMaps = await siteMaps.json();
 
 
-    const [tours, cities, guides, pages, posts] = await Promise.all([
+    const [tours, cities, guides, pages, posts, systemData] = await Promise.all([
         fetchTours(),
         fetchCities(),
         fetchGuides(),
         fetchPages(),
-        fetchPosts()
+        fetchPosts(),
+        fetchIsActive(),
     ])
-
     const sitemapsTours = generatePages(tours.length);
     const sitemapsCities = generatePages(cities.length);
     const sitemapsGuides = generatePages(guides.length);
     const sitemapsPages = generatePages(pages.length);
     const sitemapsPosts = generatePages(posts.length);
+
+
+    const system = systemData.isActive ? [{
+        url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/sitemap/system-distribution/sitemap.xml`,
+        lastModified: systemData.date,
+        priority: 0.9,
+    }] : []
     return [
         ...sitemapsPosts.map(({id}) => ({
             url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/sitemap/posts/sitemap/${id}.xml`,
@@ -48,5 +58,6 @@ export default async function sitemap() {
             lastModified: siteMaps.cityMod,
             priority: 0.9,
         })),
+        ...system,
     ]
 }
