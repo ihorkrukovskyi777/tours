@@ -13,7 +13,7 @@ const getContentFlexible = (flexible, locale) => {
         faqs: (function(page, global) {
             return {
                 title: page?.title?.trim() || global?.title || '',
-                values: (page?.values?.length ? page.values : global.values)?.map(item => ({
+                values: (page?.values?.length ? page.values : global?.values)?.map(item => ({
                     title: item.question,
                     text: item.answer
                 }))
