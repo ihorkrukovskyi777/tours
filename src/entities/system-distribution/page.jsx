@@ -47,7 +47,7 @@ const FLEXIBLE_CONTENT = {
     tours_box: SystemToursBox,
 };
 export default async function PageSystem({ slug, locale }) {
-    const page = await getPageBySlug('strawberrytours.com', slug, locale);
+    const page = await getPageBySlug(process.env.NEXT_PUBLIC_SYSTEM_HOSTING, slug, locale);
     if (page.statusCode === 404) {
         notFound();
     }
