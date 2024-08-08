@@ -4,6 +4,8 @@ import Reviews from "@/widgets/latest-reviews/item/reviews";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import LanguageImages from "@/shared/ui/languages/language-images";
 import './style.css'
+
+
 export default async function RowCities({ locale, cities = [], title , sizeSection}) {
     const i18n = await useDefaultI18n(locale);
 

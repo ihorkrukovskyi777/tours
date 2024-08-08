@@ -1,5 +1,5 @@
 .block_text_section {
-    margin: 30px 0 0;
+    margin: 30px 0 30px;
 }
 .block_text_section.no_margin {
     margin: 0;

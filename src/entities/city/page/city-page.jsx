@@ -64,6 +64,7 @@ export default async function CityPage({
                     size={"small"}
                     titleTextSection={getTitleText1}
                     textSectionData={texts}
+                    isMobile={isMobile}
                 />
 
                 <PartnerTours
@@ -78,7 +79,7 @@ export default async function CityPage({
                 <Guides id={id} locale={locale} title={i18n.t('Free Tour Guides in') + ' ' + title} type="city"/>
                 <InsertCode id={id} type="city" locale={locale}/>
                 <TravelResources id={id} locale={locale}/>
-                <MostPopularCity locale={locale} id={id} slug={slug} size={"medium"}/>
+                <MostPopularCity locale={locale} id={id} slug={slug} size={"medium"} title={i18n.t("Free Tours in More Cities")}/>
                 <I18nChangeOfLanguage
                     locale={locale}
                     languages={languages}

@@ -25,7 +25,7 @@ const CounterSliders = ({currentIndexPlace, sliders}) => {
         </div>
     )
 }
-export default observer(function SliderTours({data, i18n = {}, hideBottom = false}) {
+export default observer(function SliderTours({data, i18n = {}, hideBottom = false , isMobile = false}) {
     const {
         map: {
             slidersFormatted,
@@ -63,6 +63,7 @@ export default observer(function SliderTours({data, i18n = {}, hideBottom = fals
             <CounterSliders currentIndexPlace={currentIndexPlace} sliders={slidersFormatted}/>
             {!(slidersFormatted.length <= countSliderSettings) ?
                 <Sliders
+                    isMobile={isMobile}
                     hideBottom={hideBottom}
                     i18n={i18n}
                     initialSlide={1}

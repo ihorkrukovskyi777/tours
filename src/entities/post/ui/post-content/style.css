@@ -24,6 +24,9 @@
     margin: 30px 0 0;
     padding: 0;
 }
+.post_content ul li ul {
+    margin: 0 0 0 40px;
+}
 .post_content ul p {
     padding: 0;
     margin: 0;
