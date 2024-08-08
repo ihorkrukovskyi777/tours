@@ -11,3 +11,4 @@ export default async function TourRow({id, locale = 'en', title , sizeSection='s
     tours = tours.map(tour => ({...tour, reviews: tour?.rating?.reviews || 0 , rating: tour?.rating?.rating || 0}))
     return <RowCities locale={locale} cities={tours} title={title} sizeSection={sizeSection}/>
 }
+

@@ -6,6 +6,7 @@ import {getHrefLocale} from "@/i18n/get-href-locale";
 import {sendEventsGTM} from "@/shared/helpers/google/send-event";
 import {observer} from "mobx-react-lite";
 import {CheckoutStoreContext} from "@/entities/checkout/store/checkout-store";
+import {setCookieSession} from "@/shared/helpers/cookies";
 
 export default observer(function ButtonsInfo({i18n, title}) {
     const params = useParams();
@@ -28,6 +29,7 @@ export default observer(function ButtonsInfo({i18n, title}) {
     }, [])
 
     const loadingCancelBooking = () => {
+        setCookieSession('cancel_booking_locale', 'yes')
         toggleGlobalLoading(true)
         try {
             sendEventsGTM({
