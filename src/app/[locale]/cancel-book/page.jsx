@@ -27,7 +27,6 @@ export default async function CancelPage({params: {locale}, searchParams}) {
     )
 
     cancelBook = await cancelBook.json();
-    console.log('cancelBook', cancelCookies)
     const pageType = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/cancel-book/?locale=${locale}`,
         {next: {revalidate: 60}}
