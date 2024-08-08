@@ -16,6 +16,7 @@ export default async function MostPopularTours({
                                                    size = "small",
                                                    textSectionData = {},
                                                    titleTextSection = '',
+                                                   isMobile = false
                                                }) {
     let data = await picketToursBox(id, locale);
     const i18n = await useDefaultI18n(locale);
@@ -77,6 +78,8 @@ export default async function MostPopularTours({
                 places={places}
                 toursPlaces={toursPlaces}
                 buttonsShow={true}
+                isMobile={isMobile}
+
             />
             <TextSection titleSection={titleWalkingTours} showTitle={!places.length} data={textSectionData[1] ?? ''}/>
         </>

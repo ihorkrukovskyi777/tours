@@ -64,6 +64,7 @@ export default async function CityPage({
                     size={"small"}
                     titleTextSection={getTitleText1}
                     textSectionData={texts}
+                    isMobile={isMobile}
                 />
 
 

@@ -20,7 +20,7 @@ const UseCtrl = dynamic(
 )
 export const StoreMapContext = createContext(null)
 
-export default observer(function MapAndSlider({i18n, id, locale, places = [], toursPlaces, hideBottom, children, selectedTourDefault = null , title = ''}) {
+export default observer(function MapAndSlider({i18n, id, locale, places = [], toursPlaces, hideBottom, children, selectedTourDefault = null , title = '' , isMobile = false}) {
     const store = useRef(new StoreMap(id, locale))
     const ids = toursPlaces?.map(item => item.id) ?? []
 
@@ -46,7 +46,7 @@ export default observer(function MapAndSlider({i18n, id, locale, places = [], to
                                    <UseCtrl i18n={{use_ctrl: i18n.use_ctrl}}/>
                                    <Map ids={ids} id={id} locale={locale}/>
                                </div>
-                               <SliderTours i18n={i18n} hideBottom={hideBottom}/>
+                               <SliderTours i18n={i18n} hideBottom={hideBottom} isMobile={isMobile}/>
                            </div>
                        </div>
                    </section>

@@ -7,7 +7,7 @@ const MapAndSlider = dynamic(
     () => import("@/widgets/map-and-slider/map-and-slider"),
     {ssr: false}
 )
-export default function ProviderMap({i18n, locale, id, places, toursPlaces, buttonsShow = false, hideBottom = false, children}) {
+export default function ProviderMap({i18n, locale, id, places, toursPlaces, buttonsShow = false, hideBottom = false, children , isMobile = false}) {
 
     const [isScroll, setScroll] = useState(false);
     const ref = useRef(null)
@@ -40,6 +40,8 @@ export default function ProviderMap({i18n, locale, id, places, toursPlaces, butt
                     places={places}
                     toursPlaces={toursPlaces}
                     buttonsShow={buttonsShow}
+                    isMobile={isMobile}
+
                 >
                     {children}
                 </MapAndSlider>
