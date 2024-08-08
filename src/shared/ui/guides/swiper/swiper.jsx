@@ -152,14 +152,7 @@ export default function SwiperGuides({guides}) {
             >
                 <ArrowSwiper />
             </div>
-
-            {/*<div className="prev swiper-button-disabled">
-                <Image src={prevSVG} alt='prev' width={12} height={20}></Image>
-            </div>
-            <div className="next">
-                <Image src={nextSVG} alt='prev' width={12} height={20}></Image>
-            </div>*/}
-
+            
         </>
 
 
