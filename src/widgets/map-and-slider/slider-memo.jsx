@@ -32,9 +32,11 @@ export default memo(function SliderMemo({ i18n, changeMarker, sliders, initialSl
                     220: {
                         slidesPerView: 0.88,
                         spaceBetween: 15,
+                        speed:2000
                     },
                     768: {
                         slidesPerView: 3,
+                        speed:100,
                     },
                 }}
             >
