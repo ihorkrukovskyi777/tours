@@ -150,7 +150,49 @@
 .guides_section .flags_wrap {
     margin: 0;
 }
+
+.guides_section .next,
+.guides_section .prev {
+    position: absolute;
+    top: calc(50% - 24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background-color: #E10600;
+    outline: none;
+    transition: .3s ease-in-out;
+    z-index: 10;
+    cursor: pointer;
+}
+.guides_section .next {
+    right: -4px;
+}
+.guides_section .prev {
+    left: -4px;
+}
+
+.guides_section .next svg,
+.guides_section .prev svg {
+    max-width: 13px;
+}
 /*RESPONSIVE*/
+
+@media(max-width: 1270px) {
+    .guides_section .next,
+    .guides_section .prev {
+        width: 40px;
+        height: 40px;
+    }
+    .guides_section .next {
+        right: 5px;
+    }
+    .guides_section .prev {
+        left: 5px;
+    }
+}
 @media(max-width: 1600px) {
     .guides_section .swiper-button-prev {
         left: 0;
@@ -160,8 +202,8 @@
     }
 }
 @media(max-width: 991px) {
-    .guides_section .swiper-button-prev,
-    .guides_section .swiper-button-next {
+    .guides_section .next,
+    .guides_section .prev {
         display: none;
     }
 }

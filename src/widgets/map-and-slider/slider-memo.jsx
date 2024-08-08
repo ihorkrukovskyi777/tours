@@ -6,7 +6,7 @@ import Image from "next/image";
 import prevSVG from "../../../public/images/svg/arrow-prev.svg";
 import nextSVG from "../../../public/images/svg/arrow-next.svg";
 
-export default memo(function SliderMemo({ i18n, changeMarker, sliders, initialSlide, selectedTourId, setSwiper, hideBottom = false}) {
+export default memo(function SliderMemo({ i18n, changeMarker, sliders, initialSlide, selectedTourId, setSwiper, hideBottom = false , isMobile = false}) {
     return (
         <div className="slider_block">
             <Swiper
@@ -15,6 +15,7 @@ export default memo(function SliderMemo({ i18n, changeMarker, sliders, initialSl
                 spaceBetween={25}
                 initialSlide={initialSlide}
                 centeredSlides={true}
+
                 onInit={(swiper) => {
                     setSwiper(swiper)
                 }}
@@ -28,6 +29,7 @@ export default memo(function SliderMemo({ i18n, changeMarker, sliders, initialSl
                 onNavigationNext={changeMarker}
                 onNavigationPrev={changeMarker}
                 loop={sliders.length > 3}
+                speed={isMobile ? 0 : 300}
                 breakpoints={{
                     220: {
                         slidesPerView: 0.88,

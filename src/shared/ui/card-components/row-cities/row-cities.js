@@ -20,8 +20,6 @@ export default async function RowCities({ locale, cities = [], title , sizeSecti
                     <div className="items">
                         {cities.map((city, index) => {
                             const localeSlug = city?.locale === fallbackLng ? '' : `/${city.locale}`
-
-
                             return (
                                 <Card
                                     locales={city?.departure?.locales || []}

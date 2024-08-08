@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-export default observer(function Sliders({ i18n, hideBottom = false }) {
+export default observer(function Sliders({ i18n, hideBottom = false , isMobile = false}) {
 
     const [slideIndex, setIndexSlider] = useState(1)
     const {
@@ -53,5 +53,6 @@ export default observer(function Sliders({ i18n, hideBottom = false }) {
         selectedTourId={selectedTourId}
         initialSlide={initialSlide}
         setSwiper={setSwiper}
+        isMobile={isMobile}
     />
 })
