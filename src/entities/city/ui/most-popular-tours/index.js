@@ -16,7 +16,8 @@ export default async function MostPopularTours({
                                                    size = "small",
                                                    textSectionData = {},
                                                    titleTextSection = '',
-                                                   isMobile = false
+                                                   isMobile = false,
+    children
                                                }) {
     let data = await picketToursBox(id, locale);
     const i18n = await useDefaultI18n(locale);
@@ -41,7 +42,7 @@ export default async function MostPopularTours({
 
     return (
         <>
-            {tours?.length ? (
+            {tours?.length  ? (
                 <>
                     <RowTours
                         tours={tours}
@@ -59,10 +60,11 @@ export default async function MostPopularTours({
                             months: i18n.getMonths(),
                         }}
                     />
+                    {children}
                     <TextSection data={textSectionData[0] ?? ''}/>
                 </>
             ) : <>
-
+                {children}
                     <TextSection titleSection={titleTextSection} showTitle={true} data={textSectionData[0] ?? ''}/>
                 </>
 
