@@ -11,6 +11,7 @@ import FlagsComponents from "@/shared/ui/flags";
 import {ServiceDate} from "@/shared/service/service-date"
 //svg
 import ClockSvg from "@/assets/images/svg/clock-svg";
+import LogoSvg from "@/assets/images/svg/logo-svg";
 
 import './style.css';
 
@@ -44,17 +45,15 @@ export default observer(function Step3({
     return (
         <div className={`step-3 ${size}`}>
             <div className="subtitle">
-                <div className="subtitle-text">{i18n.modal_booking_title}</div>
+                <div className="logo"><LogoSvg/></div>
                 <div className="close-button" onClick={close}>
                     <CloseSvg/>
                 </div>
             </div>
             <div className="title">
-                <div className="title-intro">
-                    <div className="subtitle-text subtitle-text-mobile">{i18n.modal_booking_title}</div>
-                    <div className="title-text">{departure.tourTitle}</div>
-                </div>
-                <div className="guide">
+                <div className="title-text">{departure.tourTitle}</div>
+
+               {/* <div className="guide">
                     <div className="photo-wrap">
                         {departure.avatar ?
                             <IcloudImage src={departure.avatar} alt="brand logo" width={81} height={90}/> : null}
@@ -68,7 +67,7 @@ export default observer(function Step3({
                             <span>{departure.ranking}</span>
                         </div> : null}
                     </div>
-                </div>
+                </div>*/}
             </div>
 
             <div className="flex-change">

@@ -1,7 +1,6 @@
 .step-3 .subtitle {
     display: flex;
     align-items: center;
-    justify-content: space-between;   
 }
 .step-3 .subtitle-text {
     font-size: 20px;
@@ -9,14 +8,16 @@
     font-weight: 500;
     color: #686868;
 }
+.step-3 .subtitle .logo {
+    display: flex;
+}
 .step-3 .title {
     align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 30px;
-}
-.step-3 .title-text {
-    font-size: 32px;
-    max-width: 210px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    margin-top: 4px;
 }
 .step-3 .icon-wrap {
     margin-right: 2px;
@@ -183,18 +184,12 @@
     cursor: pointer;
     margin-left: auto;
 }
-.step-3 .title {
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 30px;
-}
 .step-3 .subtitle-text.subtitle-text-mobile {
     margin-bottom: 8px;
     display: none;
 }
 .step-3 .title-text {
     font-size: 32px;
-    max-width: 210px;
     font-family: var(--fontBold);
     font-weight: 700;
     color: #000;
@@ -400,6 +395,10 @@
 }
 
 @media(max-width: 767px){
+    .step-3 .title {
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
     .step-3 .icon-wrap,
     .step-3 .icon-wrap svg {
         width: 16px;
