@@ -21,6 +21,7 @@ export default function SwiperGuides({guides}) {
     const params = useParams();
     const locale = params.locale;
 
+    const totalGuides = guides.length;
 
     const navigationNextRef = useRef(null);
     const navigationPrevRef = useRef(null);
@@ -33,6 +34,8 @@ export default function SwiperGuides({guides}) {
         navigationNextRef.current.style.visibility =
             index === total ? "hidden" : "visible";
     };
+
+
     return (
         <>
             <Swiper
@@ -92,48 +95,6 @@ export default function SwiperGuides({guides}) {
                         </SwiperSlide>
                     )
                 })}
-                {guides?.map((item) => {
-                    const rating = item.rating.rating.toFixed(2);
-                    return (
-                        <SwiperSlide key={item.id}>
-                            <CardGuide
-                                avatar={item?.avatar}
-                                url={hrefSubVendor(locale, item.brandName)}
-                                bottomView={item?.locales}
-                            >
-                                <div className="item_title">{item?.brandName}</div>
-                                {rating > 0 ?
-                                    <div className="rating_box">
-                                        <FullStarSvg/>
-                                        <div className="rating_number">{rating}</div>
-                                    </div>
-                                    : null
-                                }
-                            </CardGuide>
-                        </SwiperSlide>
-                    )
-                })}
-                {guides?.map((item) => {
-                    const rating = item.rating.rating.toFixed(2);
-                    return (
-                        <SwiperSlide key={item.id}>
-                            <CardGuide
-                                avatar={item?.avatar}
-                                url={hrefSubVendor(locale, item.brandName)}
-                                bottomView={item?.locales}
-                            >
-                                <div className="item_title">{item?.brandName}</div>
-                                {rating > 0 ?
-                                    <div className="rating_box">
-                                        <FullStarSvg/>
-                                        <div className="rating_number">{rating}</div>
-                                    </div>
-                                    : null
-                                }
-                            </CardGuide>
-                        </SwiperSlide>
-                    )
-                })}
             </Swiper>
 
 
@@ -145,13 +106,17 @@ export default function SwiperGuides({guides}) {
             >
                 <ArrowSwiper />
             </div>
-            <div
-                className="swiper-button-next next"
-                ref={navigationNextRef}
-                onClick={() => swiperRef.current?.slideNext()}
-            >
-                <ArrowSwiper />
-            </div>
+
+            {totalGuides > 4 ?
+                <div
+                    className="swiper-button-next next"
+                    ref={navigationNextRef}
+                    onClick={() => swiperRef.current?.slideNext()}
+                >
+                    <ArrowSwiper />
+                </div>
+                : null
+            }
 
             {/*<div className="prev swiper-button-disabled">
                 <Image src={prevSVG} alt='prev' width={12} height={20}></Image>
