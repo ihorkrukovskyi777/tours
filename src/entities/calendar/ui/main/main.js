@@ -21,14 +21,9 @@ const OpenModalButton = dynamic(
         ssr: false,
     }
 )
-export default observer(function Main({siteLocale, i18n, nameDayWeek = false, isMobile = false , title = '' , titleCalendar = ''}) {
+export default observer(function Main({siteLocale, i18n, nameDayWeek = false, titleCalendar = ''}) {
 
     const [eventLoadingModal, setEventLoadingModal] = useState(false);
-    const [scrollTop, setScrollTop] = useState(false);
-
-    useEffect(() => {
-        setScrollTop(window.scrollY > 200)
-    }, [])
 
     useEffect(() => {
         const load = () => {
@@ -133,7 +128,7 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false, is
                         : null
                     }
                 </div>
-                {loading && (eventLoadingModal || !isMobile || scrollTop) ?
+                {loading  ?
                     <DeparturesList
                         nameDayWeek={nameDayWeek}
                         i18n={{

@@ -48,14 +48,6 @@ export default async function CityPage({
             <PlaceSchema id={id} locale={locale}/>
             <ProductSchema id={id} locale={locale}/>
             <Suspense fallback={""}>
-                <SsrCalendar
-                    locale={locale}
-                    type="city"
-                    id={id}
-                    title={title + ' ' + i18n.t("Free Tour Calendar") }
-                    titleCalendar={title + ' ' + i18n.t("Free Tour Calendar")}
-                    isMobile={isMobile}
-                />
                 <MostPopularTours
                     id={id}
                     locale={locale}
@@ -65,7 +57,16 @@ export default async function CityPage({
                     titleTextSection={getTitleText1}
                     textSectionData={texts}
                     isMobile={isMobile}
-                />
+                >
+                    <SsrCalendar
+                        locale={locale}
+                        type="city"
+                        id={id}
+                        title={title + ' ' + i18n.t("Free Tour Calendar") }
+                        titleCalendar={title + ' ' + i18n.t("Free Tour Calendar")}
+                        isMobile={isMobile}
+                    />
+                </MostPopularTours>
 
                 <PartnerTours
                     id={id}
