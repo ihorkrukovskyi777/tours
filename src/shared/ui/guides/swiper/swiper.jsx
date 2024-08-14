@@ -21,47 +21,23 @@ export default function SwiperGuides({guides}) {
     const params = useParams();
     const locale = params.locale;
 
-    const totalGuides = guides.length;
-
-    const navigationNextRef = useRef(null);
-    const navigationPrevRef = useRef(null);
-    const swiperRef = useRef();
-
-
-    const isShowArrow = (index, total) => {
-        navigationPrevRef.current.style.visibility =
-            index === 0 ? "hidden" : "visible";
-        navigationNextRef.current.style.visibility =
-            index === total ? "hidden" : "visible";
-    };
+    const totalGuides = guides?.length;
 
 
     return (
         <>
             <Swiper
                 // install Swiper modules
-                modules={[Navigation, Pagination , Scrollbar, A11y]}
+                modules={[Navigation, Pagination , A11y]}
                 spaceBetween={25}
                 slidesPerView={4}
                 pagination={{clickable: true}}
-
-                typeof={"bullets"}
-                onBeforeInit={(swiper) => {
-                    swiperRef.current = swiper;
-                    swiper.navigation.nextEl = navigationNextRef.current;
-                    swiper.navigation.prevEl = navigationPrevRef.current;
-                }}
-                init={(swiper) => {
-                    isShowArrow(swiper.activeIndex, swiper.slides.length - 1);
-                }}
+                watchOverflow={true}
+                //typeof={"bullets"}
                 navigation={{
-                    prevEl: navigationPrevRef.current,
-                    nextEl: navigationNextRef.current,
+                    prevEl: '.prev',
+                    nextEl: '.next',
                 }}
-                onSlideChange={(swiper) => {
-                    isShowArrow(swiper.activeIndex, swiper.slides.length - 1);
-                }}
-
                 breakpoints={{
                     220: {
                         slidesPerView: 1.7,
@@ -97,34 +73,17 @@ export default function SwiperGuides({guides}) {
                 })}
             </Swiper>
 
-
-            <div
-                style={{ visibility: "hidden" }}
-                className="swiper-button-prev prev"
-                ref={navigationPrevRef}
-                onClick={() => swiperRef.current?.slidePrev()}
-            >
-                <ArrowSwiper />
-            </div>
-
             {totalGuides > 4 ?
-                <div
-                    className="swiper-button-next next"
-                    ref={navigationNextRef}
-                    onClick={() => swiperRef.current?.slideNext()}
-                >
-                    <ArrowSwiper />
-                </div>
+                <>
+                    <div className="prev">
+                        <Image src={prevSVG} alt='prev' width={12} height={20}></Image>
+                    </div>
+                    <div className="next">
+                        <Image src={nextSVG} alt='prev' width={12} height={20}></Image>
+                    </div>
+                </>
                 : null
             }
-
-            {/*<div className="prev swiper-button-disabled">
-                <Image src={prevSVG} alt='prev' width={12} height={20}></Image>
-            </div>
-            <div className="next">
-                <Image src={nextSVG} alt='prev' width={12} height={20}></Image>
-            </div>*/}
-
         </>
 
 

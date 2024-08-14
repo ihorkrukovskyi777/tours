@@ -142,8 +142,8 @@
 .guides_section .swiper-button-prev:after {
     display: none;
 }
-.guides_section .swiper-button-next.swiper-button-disabled,
-.guides_section .swiper-button-prev.swiper-button-disabled {
+.guides_section .next.swiper-button-disabled,
+.guides_section .prev.swiper-button-disabled {
     opacity: 0;
     display: none;
 }
