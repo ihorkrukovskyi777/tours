@@ -2,8 +2,8 @@ import {useState, useMemo, useRef, useEffect} from 'react';
 import classNames from 'classnames';
 import {InputMask} from '@react-input/mask';
 import {localeFormat} from "@/shared/helpers/locale";
-import IntlTelInput from 'intl-tel-input/react/build/IntlTelInput.esm';
-import 'intl-tel-input/build/css/intlTelInput.min.css'
+import IntlTelInput from '@/shared/ui/intl-tel-input/index';
+import '@/shared/ui/intl-tel-input/style.css'
 
 import './style.css';
 
@@ -40,22 +40,30 @@ export default function InternationalInput({
         }
     }
 
+    function onPasteValid(event) {
+        let paste = (event.clipboardData || window.clipboardData).getData("text");
+        if(!/^-?\d+\.?\d*$/.test(paste.replaceAll(' ', ''))) {
+            event.preventDefault();
+        }
+
+    }
+
     const [inputTelWidth, setInputTelWidth] = useState(100);
     useEffect(() => {
-        const config = { attributes: true, childList: true, subtree: true };
-            const changeWidth = () => {
-                const w = refPaddingLeft.current.querySelector('div').offsetWidth ?? 100;
-                setInputTelWidth(w)
-            }
-            const observer = new MutationObserver(changeWidth)
+        const config = {attributes: true, childList: true, subtree: true};
+        const changeWidth = () => {
+            const w = refPaddingLeft.current.querySelector('div').offsetWidth ?? 100;
+            setInputTelWidth(w)
+        }
+        const observer = new MutationObserver(changeWidth)
 
-            observer.observe(refPaddingLeft.current, config);
+        observer.observe(refPaddingLeft.current, config);
 
-            changeWidth();
+        changeWidth();
 
-            return () => observer.disconnect();
+        return () => observer.disconnect();
 
-    },[])
+    }, [])
     const handleFocus = () => setBorder(true);
     const handleBlur = () => setBorder(false);
 
@@ -114,9 +122,10 @@ export default function InternationalInput({
                 replacement="_"
                 required
                 placeholder={placeholder}
-                style={{paddingLeft: inputTelWidth }}
+                style={{paddingLeft: inputTelWidth}}
                 onChange={handleChange}
                 validation-number={validation_numbers}
+                onPaste={onPasteValid}
                 onKeyPress={onPress}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
