@@ -177,7 +177,6 @@ class EditDeparture {
     * updateDeparture(token) {
 
         const body = {
-            depLocale: this.storeDepLogic?.locale ?? 'en',
             curLang: this.locale,
             dep_id: this.depId,
             tour_id: this.tourId,
