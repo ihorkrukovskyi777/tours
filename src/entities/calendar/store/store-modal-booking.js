@@ -37,6 +37,7 @@ export class StoreModalBooking {
         const {email, firstName, lastName, phone, phone_county_code, phone_country_slug, tourName} = data;
         this.errors = [];
         const body = {
+            depLocale: this.depLogic?.locale ?? 'en',
             curLang: this.localeError,
             dep_id: this.departure.depId,
             tour_id: this.departure.tourId,
