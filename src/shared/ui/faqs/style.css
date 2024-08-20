@@ -3,6 +3,7 @@
 }
 .faq h2 {
   margin: 0;
+  text-transform: uppercase;
 }
 .faq .title {
   margin: 0;

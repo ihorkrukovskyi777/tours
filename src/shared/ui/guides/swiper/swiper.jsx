@@ -1,7 +1,7 @@
 'use client';
 import {useParams} from "next/navigation";
 import {hrefSubVendor} from "@/shared/helpers/url";
-import {A11y, Navigation, Pagination, Scrollbar} from 'swiper/modules';
+import {Navigation, Pagination} from 'swiper/modules';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import CardGuide from '@/shared/ui/card-components/card-guide';
 import FullStarSvg from '@/assets/images/svg/full-star';
@@ -12,8 +12,7 @@ import Image from "next/image";
 import prevSVG from "../../../../../public/images/svg/arrow-prev.svg";
 import nextSVG from "../../../../../public/images/svg/arrow-next.svg";
 import '../style.css';
-import ArrowSwiper from "@/assets/images/svg/arrowSwiper-svg";
-import {useRef} from "react";
+import {useState} from "react";
 
 
 
@@ -21,47 +20,33 @@ export default function SwiperGuides({guides}) {
     const params = useParams();
     const locale = params.locale;
 
-    const totalGuides = guides.length;
+    const totalGuides = guides?.length;
 
-    const navigationNextRef = useRef(null);
-    const navigationPrevRef = useRef(null);
-    const swiperRef = useRef();
-
-
-    const isShowArrow = (index, total) => {
-        navigationPrevRef.current.style.visibility =
-            index === 0 ? "hidden" : "visible";
-        navigationNextRef.current.style.visibility =
-            index === total ? "hidden" : "visible";
-    };
+    const [hideArrow , setHideArrow] = useState('hidden')
 
 
     return (
         <>
             <Swiper
                 // install Swiper modules
-                modules={[Navigation, Pagination , Scrollbar, A11y]}
+                modules={[Navigation, Pagination]}
                 spaceBetween={25}
                 slidesPerView={4}
                 pagination={{clickable: true}}
-
-                typeof={"bullets"}
-                onBeforeInit={(swiper) => {
-                    swiperRef.current = swiper;
-                    swiper.navigation.nextEl = navigationNextRef.current;
-                    swiper.navigation.prevEl = navigationPrevRef.current;
-                }}
-                init={(swiper) => {
-                    isShowArrow(swiper.activeIndex, swiper.slides.length - 1);
-                }}
                 navigation={{
-                    prevEl: navigationPrevRef.current,
-                    nextEl: navigationNextRef.current,
+                    nextEl: ".next",
+                    prevEl: ".prev",
                 }}
+                watchOverflow={true}
+                typeof={"bullets"}
+                // navigation={{
+                //     prevEl: '.prev',
+                //     nextEl: '.next',
+                // }}
                 onSlideChange={(swiper) => {
-                    isShowArrow(swiper.activeIndex, swiper.slides.length - 1);
+                    console.log('change');
+                    setHideArrow('');
                 }}
-
                 breakpoints={{
                     220: {
                         slidesPerView: 1.7,
@@ -96,34 +81,14 @@ export default function SwiperGuides({guides}) {
                     )
                 })}
             </Swiper>
-
-
-            <div
-                style={{ visibility: "hidden" }}
-                className="swiper-button-prev prev"
-                ref={navigationPrevRef}
-                onClick={() => swiperRef.current?.slidePrev()}
-            >
-                <ArrowSwiper />
-            </div>
-
             {totalGuides > 4 ?
-                <div
-                    className="swiper-button-next next"
-                    ref={navigationNextRef}
-                    onClick={() => swiperRef.current?.slideNext()}
-                >
-                    <ArrowSwiper />
-                </div>
+                <>
+                    <div className={`prev ${hideArrow}`}><Image src={prevSVG} alt='prev' width={12} height={20}></Image></div>
+                    <div className={'next'}><Image src={nextSVG} alt='next' width={12} height={20}></Image></div>
+                </>
                 : null
             }
 
-            {/*<div className="prev swiper-button-disabled">
-                <Image src={prevSVG} alt='prev' width={12} height={20}></Image>
-            </div>
-            <div className="next">
-                <Image src={nextSVG} alt='prev' width={12} height={20}></Image>
-            </div>*/}
 
         </>
 

@@ -142,14 +142,18 @@
 .guides_section .swiper-button-prev:after {
     display: none;
 }
-.guides_section .swiper-button-next.swiper-button-disabled,
-.guides_section .swiper-button-prev.swiper-button-disabled {
+.guides_section .next.swiper-button-disabled,
+.guides_section .prev.swiper-button-disabled {
     opacity: 0;
     display: none;
 }
 .guides_section .flags_wrap {
     margin: 0;
 }
+.guides_section .prev.hidden {
+    display: none;
+}
+
 
 .guides_section .next,
 .guides_section .prev {
