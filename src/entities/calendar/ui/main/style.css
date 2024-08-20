@@ -237,6 +237,9 @@
   font-family: var(--fontMedium);
   color: #686868;
 }
+.tour_calendar .faq h2 {
+  text-transform: inherit;
+}
 .tour_calendar .faq {
   max-width: 490px;
   width: 100%;
