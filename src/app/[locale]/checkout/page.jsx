@@ -77,6 +77,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         booking_canceled: i18n.t('Booking canceled'),
         notification_wrong: i18n.t('Something went wrong, we couldn\'t change your order'),
         additional_information: i18n.t('Additional Information'),
+        flexible: i18n.t('Flexible'),
         genitive: {
             months: {
                 ...i18nGenitive.getMonths(),

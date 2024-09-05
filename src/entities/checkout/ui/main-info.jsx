@@ -5,12 +5,10 @@ import Image from "next/image";
 import AdditionalInformation from "@/entities/checkout/ui/additional-information";
 import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 
-export default observer(function MainInfo({ i18n }) {
-    const { checkoutInfo } = useContext(CheckoutStoreContext);
-
+export default observer(function MainInfo({i18n}) {
+    const {checkoutInfo, isSelfGuide} = useContext(CheckoutStoreContext);
     const helper = new HelperDateHtml(checkoutInfo.activityDate)
-    return (
-        <div className="main_info">
+    return (<div className="main_info">
             <div className="left_side">
                 <ul>
                     <li>
@@ -75,7 +73,7 @@ export default observer(function MainInfo({ i18n }) {
                             ></path>
                         </svg>
                         <strong>{i18n.time}: </strong>
-                        {checkoutInfo.startTime}
+                        {isSelfGuide ? i18n.flexible : checkoutInfo.startTime}
                     </li>
                     <li>
                         <svg
@@ -110,7 +108,7 @@ export default observer(function MainInfo({ i18n }) {
                         <strong>{i18n.number_people}: </strong>
                         {checkoutInfo.numberPeople}
                     </li>
-                    <li>
+                    {!isSelfGuide ? <li>
                         <svg
                             width="20"
                             height="20"
@@ -126,13 +124,13 @@ export default observer(function MainInfo({ i18n }) {
                         </svg>
                         <strong>{i18n.guide}: </strong>
                         {checkoutInfo.brandName}
-                    </li>
-                    {checkoutInfo.voucher ?
-                        <li>
-                            <a style={{color: '#0693e3'}} href={checkoutInfo.voucher} download target="_blank">{i18n.download_voucher}</a>
+                    </li> : null}
+                    {checkoutInfo.voucher ? <li>
+                            <a style={{color: '#0693e3'}} href={checkoutInfo.voucher} download
+                               target="_blank">{i18n.download_voucher}</a>
                         </li>
 
-                        : null }
+                        : null}
                 </ul>
             </div>
 
@@ -154,8 +152,7 @@ export default observer(function MainInfo({ i18n }) {
                         {i18n.start_point}: <span>{checkoutInfo.address}</span>
                     </div>
                 </div>
-                {checkoutInfo.locationDescription && (
-                    <div className="direction">
+                {checkoutInfo.locationDescription && (<div className="direction">
                         <svg
                             width="22"
                             height="22"
@@ -171,33 +168,27 @@ export default observer(function MainInfo({ i18n }) {
                         <div>
                             <span>{i18n.directions}:</span> {checkoutInfo.locationDescription}
                         </div>
+                    </div>)}
+                {checkoutInfo.isShowMap ? <div className="flex-wrap">
+                    <div className="iframe-wrap">
+                        <iframe
+                            width="1300"
+                            height="500"
+                            frameBorder="0"
+                            scrolling="no"
+                            src={`https://maps.google.com/maps?q=${checkoutInfo.coordinates.lat},${checkoutInfo.coordinates.lng}&hl=en&z=${checkoutInfo.coordinates.zoom}&output=embed`}
+                        ></iframe>
                     </div>
-                )}
-                {checkoutInfo.isShowMap ?
-                    <div className="flex-wrap">
-                        <div className="iframe-wrap">
-                            <iframe
-                                width="1300"
-                                height="500"
-                                frameBorder="0"
-                                scrolling="no"
-                                src={`https://maps.google.com/maps?q=${checkoutInfo.coordinates.lat},${checkoutInfo.coordinates.lng}&hl=en&z=${checkoutInfo.coordinates.zoom}&output=embed`}
-                            ></iframe>
-                        </div>
-                        {checkoutInfo.mpvImage?.url && (
-                            <div className="images_wrap">
-                                <div className="img_first">
-                                    <Image src={checkoutInfo.mpvImage.url} width={350} height={240}
-                                           alt="Meeting point image"/>
-                                </div>
+                    {checkoutInfo.mpvImage?.url && (<div className="images_wrap">
+                            <div className="img_first">
+                                <Image src={checkoutInfo.mpvImage.url} width={350} height={240}
+                                       alt="Meeting point image"/>
                             </div>
-                        )}
-                    </div>
-                    : null}
+                        </div>)}
+                </div> : null}
 
-                <AdditionalInformation i18n={i18n} />
+                <AdditionalInformation i18n={i18n}/>
 
             </div>
-        </div>
-    );
+        </div>);
 })

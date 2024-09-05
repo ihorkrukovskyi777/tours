@@ -108,6 +108,7 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false, ti
                                 hours: i18n.hours,
                                 hour: i18n.hour,
                                 see_all: i18n.see_all,
+                                flexible: i18n.flexible
                             }}
                         />}
                 </div>
@@ -137,7 +138,8 @@ export default observer(function Main({siteLocale, i18n, nameDayWeek = false, ti
                             hours: i18n.hours,
                             hour: i18n.hour,
                             show_me_more: i18n.show_me_more,
-                            departures_not_found: i18n.departures_not_found
+                            departures_not_found: i18n.departures_not_found,
+                            flexible: i18n.flexible,
                         }}
                     />
                     : null}

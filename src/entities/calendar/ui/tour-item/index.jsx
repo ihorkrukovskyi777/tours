@@ -8,12 +8,20 @@ export default function TourItem({dep, locale, onClick, i18n}) {
     const {hours, minutes} = toHoursAndMinutes(dep.time);
     const {hours: durationHours, minutes: durationMinutes} = toHoursAndMinutes(dep.duration * 60);
 
+    const getTime = () => {
+        if (dep.is_self_guide) {
+            return i18n.flexible
+        }
+
+        return `${pad2(hours)}:${pad2(minutes)}`
+    }
+
     return (
         <div className="tours_wrap" onClick={() => onClick(dep)}>
             <div className="tour_block">
                 <div className="top_part">
                     <div className="tour_name">{dep.tourTitle}</div>
-                    <div className="tour_hour">{pad2(hours)}:{pad2(minutes)}</div>
+                    <div className="tour_hour">{getTime()}</div>
                 </div>
                 <div className="bottom_part">
                     <div className="tour_duration">

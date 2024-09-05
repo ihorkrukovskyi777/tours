@@ -77,7 +77,6 @@
 }
 .tours_wrap .tour_duration span {
   line-height: 1.22;
-  text-transform: lowercase;
 }
 .tours_wrap .tour_language {
   width: 16px;

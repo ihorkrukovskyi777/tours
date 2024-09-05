@@ -1,5 +1,5 @@
 'use client';
-import {useEffect, useRef} from "react";
+import { useRef} from "react";
 import {observer} from 'mobx-react-lite';
 import {MapContainer, TileLayer, Marker} from 'react-leaflet';
 import MarkerDefault from '@/shared/ui/map/markers/marker';
@@ -13,9 +13,9 @@ import './style.css'
 let zIndex = 999;
 export default observer(function Map({ids, id, locale}) {
         const refMap = useRef(null);
-        const {map: {markers, setOpenMarker,bounds, selectedPlaceId, setMap}} = useContext(StoreMapContext);
+        const {map: {markers, setOpenMarker, selectedPlaceId, setMap}} = useContext(StoreMapContext);
 
-        const position = [51.505, -0.09];``
+        const position = [51.505, -0.09];
 
         if(markers.length === 0) {
             return null

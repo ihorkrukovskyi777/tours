@@ -345,6 +345,7 @@ export default class CheckoutStore {
     checkoutInfo = null;
     editDeparture = null;
     tourLogic = null
+    isSelfGuide = false;
 
     constructor(locale, tourLocale) {
         this.locale = locale
@@ -374,7 +375,7 @@ export default class CheckoutStore {
         this.pageOptions = data.pageOptions;
         this.checkoutInfo = new CheckoutInfo(data);
         this.isContactGuide = !data.is_civitatis
-
+        this.isSelfGuide = data.is_self_guide;
         const initDateCalendar = this.editDeparture?.date ?? {
             month: null,
             year: null,

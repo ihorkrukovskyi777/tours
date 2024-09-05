@@ -42,6 +42,14 @@ export default observer(function Step3({
     const serviceDate = new ServiceDate(setFormatDDMMYYYYtoMMDDYYYY(departure.date), nameDayWeek);
     const time = toHoursAndMinutes(departure.time);
     const duration = toHoursAndMinutes(departure.duration * 60);
+
+    const getTime = () => {
+        if (departure.is_self_guide) {
+            return i18n.flexible
+        }
+
+        return `${pad2(time.hours)}:${pad2(time.minutes)}`
+    }
     return (
         <div className={`step-3 ${size}`}>
             <div className="subtitle">
@@ -52,22 +60,6 @@ export default observer(function Step3({
             </div>
             <div className="title">
                 <div className="title-text">{departure.tourTitle}</div>
-
-               {/* <div className="guide">
-                    <div className="photo-wrap">
-                        {departure.avatar ?
-                            <IcloudImage src={departure.avatar} alt="brand logo" width={81} height={90}/> : null}
-                    </div>
-                    <div className="guide-info">
-                        <div className="guide-name">{departure.subVendorName}</div>
-                        {departure.ranking > 0 ? <div className="guide-rate">
-                            <div className="icon-wrap">
-                                <FullStarSvg width={20} height={20}/>
-                            </div>
-                            <span>{departure.ranking}</span>
-                        </div> : null}
-                    </div>
-                </div>*/}
             </div>
 
             <div className="flex-change">
@@ -77,7 +69,7 @@ export default observer(function Step3({
                         <div
                             className="time-current-modal">
                             <span>{i18n.days[serviceDate.day]}, {serviceDate.dayNum} {i18n.months[serviceDate.month]} </span>
-                            <span>{pad2(time.hours)}:{pad2(time.minutes)}</span>
+                            <span>{getTime()}</span>
                             <span className="comma">,</span>
                         </div>
 

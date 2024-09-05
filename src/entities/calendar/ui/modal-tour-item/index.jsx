@@ -7,12 +7,18 @@ import './style.css';
 export default function ModalTourItem({i18n, dep, onSelected, isActive}) {
     const {hours, minutes} = toHoursAndMinutes(dep.time);
     const durationFormat = toHoursAndMinutes(dep.duration * 60);
+    const getTime = () => {
+        if (dep.is_self_guide) {
+            return i18n.flexible
+        }
 
+        return `${pad2(hours)}:${pad2(minutes)}`
+    }
     return (
         <div className={classNames('modal-tour-item', {'active': isActive})} onClick={onSelected}>
             <h5>{dep.tourTitle}</h5>
             <div className="tour-item__time">
-                <div className="start-time">{pad2(hours)}:{pad2(minutes)}</div>
+                <div className="start-time">{getTime()}</div>
                 <div className="duration">
                     <div className="clock-wrap">
                         <ClockSvg/>

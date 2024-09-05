@@ -99,7 +99,8 @@ export default observer(function OpenModalButton({storeModalCalendar, i18n, even
                             back: i18n.back,
                             hours: i18n.hours,
                             hour: i18n.hour,
-                            duration: i18n.duration
+                            duration: i18n.duration,
+                            flexible: i18n.flexible,
                         }}
                         setDeparture={selectedDeparture}
                         departures={Object.values(departuresByDate).flat()}

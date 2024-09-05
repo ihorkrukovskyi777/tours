@@ -15,6 +15,7 @@ export default observer(function ButtonsInfo({i18n, title}) {
         isActiveCheckout,
         isContactGuide,
         editDeparture,
+        isSelfGuide,
         managerModal: {toggleModalMessage, toggleModalEdit}
     } = useContext(CheckoutStoreContext);
     const searchParams = useSearchParams();
@@ -47,10 +48,10 @@ export default observer(function ButtonsInfo({i18n, title}) {
     }
     return (
         <div className="btn_wrap">
-            {isActiveCheckout ? <Button customClass="red" onClick={toggleModalEdit}>{i18n.edit_booking}</Button> : null}
-            {isContactGuide ?
+            {isActiveCheckout && !isSelfGuide ? <Button customClass="red" onClick={toggleModalEdit}>{i18n.edit_booking}</Button> : null}
+            {isContactGuide && !isSelfGuide ?
                 <Button customClass="gray" onClick={toggleModalMessage}> {i18n.contact_your_guide} </Button> : null}
-            {isActiveCheckout ?
+            {isActiveCheckout && !isSelfGuide ?
                 <a
                     className="button_custom gray"
                     onClick={loadingCancelBooking}
