@@ -36,6 +36,7 @@ export class ServiceDate {
             today.getDate() === this.date.getDate();
     }
 
+
     get isTomorrow() {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);

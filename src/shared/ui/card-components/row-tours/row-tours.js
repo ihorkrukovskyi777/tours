@@ -19,6 +19,8 @@ export default function RowTours({tours, title = '', title_first = '' ,  i18n = 
                         {tours?.map((item) => {
                             const labelHour = item.departure?.durations.find(val => val > 1) ? 'hours' : 'hour';
                             const serviceDate = new ServiceDate(item.departure?.nextDeparture);
+
+                            const isSelfGuide = serviceDate.time === '23:59'
                             const showTime = serviceDate.differenceInDays > 7 ?
                                 `${i18n.days[serviceDate.day]}, ${serviceDate.dayNum} ${i18n.months[serviceDate.month]}` :
                                 `${i18n.days[serviceDate.day]}, ${serviceDate.time}`
@@ -58,7 +60,7 @@ export default function RowTours({tours, title = '', title_first = '' ,  i18n = 
                                                 <div className=" elem">
                                                     <Image src={CalendarImage} alt=" clock" width={18}/>
                                                     <span className=" second">
-                                                        {i18n.next_tour}: {showTime}
+                                                        {i18n.next_tour}: {isSelfGuide ? showTime.replace('23:59', i18n.flexible) : showTime}
                                                     </span>
                                                     <span>{item.lastDeparture}</span>
                                                 </div> :
