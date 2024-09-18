@@ -35,6 +35,7 @@ export async function useCalendarTranslate(locale) {
         errors: i18n.getFormErrors(),
         see_all: i18n.t('See All'),
         faq: i18n.t('FAQs for Free Tours'),
+        flexible: i18n.t('Flexible'),
         genitive: {
             months: {
                 ...i18nGenitive.getMonths(),
