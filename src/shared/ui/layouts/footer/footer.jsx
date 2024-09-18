@@ -6,7 +6,6 @@ import styles from "@/shared/ui/layouts/footer/style.module.css";
 
 export default async function Footer({ locale, resetCookies = true }) {
   const menuItems = await fetchFooterMenu(locale);
-
   if(!Array.isArray(menuItems)) {
     return null;
   }

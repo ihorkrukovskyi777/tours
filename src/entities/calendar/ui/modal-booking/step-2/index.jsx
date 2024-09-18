@@ -10,7 +10,7 @@ import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/helpers/date";
 
 import './style.css';
 
-export default function Step2({i18n, nameDayWeek= false, title = "test", onBack, close, size = "small", isOpened, departures, saveButton = false, setDeparture}) {
+export default function Step2({i18n, nameDayWeek= false, title = "", onBack, close, size = "small", isOpened, departures, saveButton = false, setDeparture}) {
     const [selectedDep, setSelectedDep] = useState(null);
     useEscHooks(close, isOpened)
 

@@ -1,7 +1,7 @@
 import {generatePages, LIMIT} from "@/shared/constants/sitemap";
 
 export async function fetchCities() {
-    let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap/cities`, {next: { revalidate: 60 * 60, tags: ['seo'] }});
+    let siteMaps = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/sitemap/cities`, {next: { revalidate: 0, tags: ['seo'] }});
     return await siteMaps.json();
 }
 export async function generateSitemaps() {
