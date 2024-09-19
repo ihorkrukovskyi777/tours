@@ -4,8 +4,10 @@ import {generatorSeo} from "@/shared/helpers/seo/generator-seo";
 import {seoLocales} from "@/shared/constants/locales-seo";
 
 export default async function generateSeoPage(slug, locale) {
+
     const seo = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/seo/meta/page/${slug}?locale=${locale}`, {next: { revalidate: 60 * 60, tags: ['seo'] }}).then((res) => res.json())
     const languages = {};
+
     if(Array.isArray(seo.languages)) {
         for (const lang of seo.languages) {
             if(lang.locale === fallbackLng) {

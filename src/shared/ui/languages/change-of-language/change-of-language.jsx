@@ -50,7 +50,7 @@ export default function ChangeOfLanguage({i18n, languages, title, filterQuery = 
                 <ul>
                     {languagesFilter?.slice(0, showLanguage).map((item) => {
                         return (
-                            <li className="language" key={item.id}>
+                            <li className="language" key={item.slug + item.locale}>
                                 <Link
                                     href={`${getHref(item.locale)}/${item.slug}${queries}`}
                                     prefetch={false}

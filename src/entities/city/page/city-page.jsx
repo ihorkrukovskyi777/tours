@@ -68,7 +68,6 @@ export default async function CityPage({
                     />
                 </MostPopularTours>
 
-
                 <PartnerTours
                     id={id}
                     locale={locale}
