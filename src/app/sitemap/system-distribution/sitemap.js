@@ -26,7 +26,7 @@ export async function fetchTours() {
 export default async function sitemap() {
     const siteMaps = await fetchTours()
 
-    return [];
+
     const getSlug = (page) => {
         if (page.locale === 'en' && page.slug === '') {
             return '';
