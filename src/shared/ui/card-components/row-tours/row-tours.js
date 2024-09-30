@@ -60,7 +60,7 @@ export default function RowTours({tours, title = '', title_first = '' ,  i18n = 
                                                 <div className=" elem">
                                                     <Image src={CalendarImage} alt=" clock" width={18}/>
                                                     <span className=" second">
-                                                        {i18n.next_tour}: {isSelfGuide ? showTime.replace('23:59', i18n.flexible) : showTime}
+                                                        {i18n.next_tour}: {isSelfGuide ? i18n.flexible : showTime}
                                                     </span>
                                                     <span>{item.lastDeparture}</span>
                                                 </div> :

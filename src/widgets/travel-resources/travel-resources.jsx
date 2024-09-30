@@ -21,7 +21,7 @@ export default async function TravelResources({ id, locale }) {
 
                         for (const text of matchText) {
                             content =  reactStringReplace(item.content, text, (match, i) => {
-                                return  <Link href={getHrefLocale(item.post.locale, item.post.slug) }>{match.replace('<link>', '').replace('</link>', '')}</Link>
+                                return  <Link href={getHrefLocale(item.post?.locale, item.post?.slug) }>{match.replace('<link>', '').replace('</link>', '')}</Link>
                             });
                         }
                         return (

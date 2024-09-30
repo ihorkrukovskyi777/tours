@@ -43,13 +43,8 @@ export default observer(function Step3({
     const time = toHoursAndMinutes(departure.time);
     const duration = toHoursAndMinutes(departure.duration * 60);
 
-    const getTime = () => {
-        if (departure.is_self_guide) {
-            return i18n.flexible
-        }
 
-        return `${pad2(time.hours)}:${pad2(time.minutes)}`
-    }
+    const isShowTimeDep = !departure.is_self_guide
     return (
         <div className={`step-3 ${size}`}>
             <div className="subtitle">
@@ -69,8 +64,8 @@ export default observer(function Step3({
                         <div
                             className="time-current-modal">
                             <span>{i18n.days[serviceDate.day]}, {serviceDate.dayNum} {i18n.months[serviceDate.month]} </span>
-                            <span>{getTime()}</span>
-                            <span className="comma">,</span>
+                            {isShowTimeDep ? <span>{pad2(time.hours)}:{pad2(time.minutes)}</span> : null }
+                            {isShowTimeDep ? <span className="comma">,</span> : null}
                         </div>
 
                     </div>
