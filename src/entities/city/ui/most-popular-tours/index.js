@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import TextSection from "@/entities/city/ui/text-section";
 import {fallbackLng} from "@/i18n/settings";
+import InsertCode from "@/widgets/insert-code/insert-code";
 
 const ProviderMap = dynamic(() => import("@/widgets/map-and-slider/provider"), {
     ssr: false,
@@ -65,7 +66,8 @@ export default async function MostPopularTours({
                     <TextSection data={textSectionData[0] ?? ''}/>
                 </>
             ) : <>
-                {children}
+                    {children}
+                    <InsertCode id={id} type="city" locale={locale}/>
                     <TextSection titleSection={titleTextSection} showTitle={true} data={textSectionData[0] ?? ''}/>
                 </>
 
