@@ -12,9 +12,9 @@ export default memo(function ClientInsertCode(props) {
     const isErrorCityWidget = async () => {
         setTimeout(async () => {
             const d1 = document.querySelector('#insert_code_block guruwalk-tour-cards');
-            const shadow = d1.shadowRoot.querySelector('div')?.querySelector('#error')
+            const shadow = d1?.shadowRoot.querySelector('div')?.querySelector('#error')
             if (shadow) {
-                const data = await fetch(
+                 await fetch(
                     `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city-notification/error-widget`,
                     {
                         method: 'POST',

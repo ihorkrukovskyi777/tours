@@ -14,7 +14,6 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
     ])
 
     const translate = await useCalendarTranslate(locale)
-
     return (
         <section id="tour_calendar_section" className="tour_calendar">
             <div className="container">

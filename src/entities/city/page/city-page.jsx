@@ -10,7 +10,6 @@ import Footer from "@/shared/ui/layouts/footer/footer";
 import PlaceSchema from "@/shared/schema/place";
 import ProductSchema from "@/shared/schema/product";
 import EventsSchema from "@/shared/schema/events";
-import InsertCode from "@/widgets/insert-code/insert-code";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import PartnerTours from "@/entities/city/ui/partner-tours";
 import {getTextsBlocks} from "@/entities/api";

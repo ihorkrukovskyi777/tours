@@ -106,7 +106,7 @@ export const getFaqBlock = async (id, locale = "en") => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/faq/${id}?locale=${locale}`,
-      { next: { revalidate: 60 * 60, tags: ["section"] } }
+      { next: { revalidate: 60 * 60, tags: ["faq-section"] } }
     );
     return res.json();
   } catch (err) {

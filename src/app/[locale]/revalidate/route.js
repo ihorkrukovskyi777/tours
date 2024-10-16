@@ -11,6 +11,7 @@ export async function GET() {
         revalidateTag('translates'),
         revalidateTag('redirect'),
         revalidateTag('page'),
+        revalidateTag('faq-section'),
     ])
     return Response.json('Cache cleared')
 }
