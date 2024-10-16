@@ -273,11 +273,15 @@ export const insertCode = async (id, type = "city", locale) => {
 };
 
 export async function picketPartnerTours(id, locale = "en") {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/partners-tours/${id}?locale=${locale}`,
-    { next: { revalidate: 60 * 60, tags: ["section"] } }
-  );
-  return data.json();
+  try {
+    const data = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/city/section/partners-tours/${id}?locale=${locale}`,
+        { next: { revalidate: 60 * 60, tags: ["section"] } }
+    );
+    return data.json();
+  } catch (err) {
+    return {};
+  }
 }
 
 export const insertPartnerCode = async (id, type = "city", locale) => {
