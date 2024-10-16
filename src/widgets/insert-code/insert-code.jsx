@@ -22,7 +22,7 @@ export default async function InsertCode({
   }
 
   return (
-    <ClientInsertCode scripts={scripts} scriptInner={scriptInner}>
+    <ClientInsertCode scripts={scripts} scriptInner={scriptInner} id={id}>
       {html}
     </ClientInsertCode>
   );
