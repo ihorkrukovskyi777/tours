@@ -1,10 +1,14 @@
 
 export async function getPageBySlug(host, slug, locale) {
-    const data = await fetch(
-        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/system-distribution/external-api/${host}/page/${slug}?locale=${locale}`,
-        { next: { revalidate: 0 } }
-    );
-    return data.json();
+    try {
+        const data = await fetch(
+            `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/system-distribution/external-api/${host}/page/${slug}?locale=${locale}`,
+            { next: { revalidate: 0 } }
+        );
+        return data.json();
+    } catch (err) {
+        return { statusCode: 404}
+    }
 }
 
 export async function getSystemPageRating(page_id) {

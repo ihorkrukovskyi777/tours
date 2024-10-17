@@ -102,49 +102,51 @@ export async function generateMetadata({params: {slug, locale, system}}) {
 
         const systemPage = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/system-distribution/external-api/seo/${system}/${slug}?locale=${locale}`, {next: {revalidate: 0}})
         const isIndexation = process.env.NEXT_PUBLIC_GOOGLE_INDEXATION === 'yes';
-        const page = await systemPage.json();
-        const seo = page.data.seo.locales.find(item => item.locale === locale);
-        const canonical = locale === fallbackLng ? slug : `${locale}/${slug}`
-        const languages = {};
 
-        if (Array.isArray(page.data.slugs)) {
-            for (const slug of page.data.slugs) {
+        try {
+            const page = await systemPage.json();
+            const seo = page.data.seo.locales.find(item => item.locale === locale);
+            const canonical = locale === fallbackLng ? slug : `${locale}/${slug}`
+            const languages = {};
 
-                if (!slug.published) continue
+            if (Array.isArray(page.data.slugs)) {
+                for (const slug of page.data.slugs) {
 
-                if (slug.locale === fallbackLng) {
-                    languages['x-default'] = [{url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(slug.locale, slug.slug)}`}]
+                    if (!slug.published) continue
+
+                    if (slug.locale === fallbackLng) {
+                        languages['x-default'] = [{url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(slug.locale, slug.slug)}`}]
+                    }
+
+                    const find = page.data.titles.find(item => item.locale === slug.locale)
+                    languages[seoLocales[slug.locale] ?? fallbackLng] = [{
+                        title: find.title,
+                        url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(slug.locale, slug.slug)}`
+                    }]
+
                 }
-
-                const find = page.data.titles.find(item => item.locale === slug.locale)
-                languages[seoLocales[slug.locale] ?? fallbackLng] = [{
-                    title: find.title,
-                    url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(slug.locale, slug.slug)}`
-                }]
-
             }
-        }
 
-        return {
-            metadataBase: new URL(process.env.NEXT_PUBLIC_CANONICAL_DOMAIN),
-            robots: {
-                index: isIndexation,
-                follow: isIndexation,
-                'max-image-preview': true,
-                'max-snippet': -1,
-                'max-video-preview': -1
-            },
-            title: seo.title,
-            description: seo.description,
-            verification: {
-                google: isIndexation ? 'mQKRBl_GbVi0Ly3Xwl9-M1pVM5Jm5y1O9Koi7Pj54M8' : '',
-            },
-            alternates: {
-                canonical,
-                languages,
+            return {
+                metadataBase: new URL(process.env.NEXT_PUBLIC_CANONICAL_DOMAIN),
+                robots: {
+                    index: isIndexation,
+                    follow: isIndexation,
+                    'max-image-preview': true,
+                    'max-snippet': -1,
+                    'max-video-preview': -1
+                },
+                title: seo.title,
+                description: seo.description,
+                verification: {
+                    google: isIndexation ? 'mQKRBl_GbVi0Ly3Xwl9-M1pVM5Jm5y1O9Koi7Pj54M8' : '',
+                },
+                alternates: {
+                    canonical,
+                    languages,
+                }
             }
+        } catch (err) {
+            return {}
         }
-
-
-
 }
