@@ -67,6 +67,47 @@
     height: 100%;
     object-fit: cover;
 }
+.guides_section .img_box video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.guides_section .play {
+    outline: none;
+    box-shadow: none;
+    border: none;
+    position: absolute;
+    top: 0;
+    z-index: 111;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .25);
+}
+.guides_section .img_box button img {
+    position: static;
+    background: transparent;
+    max-width: 48px;
+    max-height: 48px;
+}
+.guides_section .pause {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 111;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-size: 0;
+    cursor: pointer;
+}
 .guides_section .item_title {
     margin-bottom: 10px;
     font-size: 24px;
