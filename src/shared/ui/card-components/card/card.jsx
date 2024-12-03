@@ -1,5 +1,4 @@
 import Link from "next/link";
-import IcloudImage from "@/shared/ui/icloud-image";
 
 export default function Card({font = '' ,attachment = '', url, title, children, size = 'public', topElement, bottomElement}) {
     return (
