@@ -1,18 +1,20 @@
-import IcloudImage from "@/shared/ui/icloud-image";
 import Link from "next/link";
+import IcloudImage from "@/shared/ui/icloud-image";
 
 export default function Card({font = '' ,attachment = '', url, title, children, size = 'public', topElement, bottomElement}) {
     return (
         <div className='item_wrap'>
             <div className="item">
-                <IcloudImage
+
+                <img
                     className="img"
+                    key={attachment.src}
                     width={518}
                     height={250}
-                    src={attachment.src}
-                    alt={attachment.alt || ''}
-                    size={size}
+                    src={`${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${attachment.src}/${size}`}
+                    alt={attachment.alt ?? 'trip'}
                 />
+
                 <div className={`intro ${font}`}>
                     <Link href={url} prefetch={false}>{title}</Link>
                 </div>

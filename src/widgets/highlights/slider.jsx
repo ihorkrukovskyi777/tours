@@ -1,9 +1,7 @@
 'use client'
 import {useLayoutEffect, useState} from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
-import IcloudImage from "@/shared/ui/icloud-image";
 import {Navigation, Pagination} from "swiper/modules";
-import Image from "next/image";
 import image1 from "/public/images/default-gallery-trip/gallery_img_1.jpg"
 import image2 from "/public/images/default-gallery-trip/gallery_img_2-scaled.jpg"
 import image3 from "/public/images/default-gallery-trip/gallery_img_3.jpg"
@@ -50,9 +48,8 @@ export default function HighlightsSlider({ images }) {
             {sliders?.map((item, index) => {
                 return (
                     <SwiperSlide key={index}>
-                        {imageCLoud ?
-                            <IcloudImage width={390} height={250} key={item.src} src={item.src} alt={item.alt ?? 'trip'} size="390x250" />
-                            : <Image width={390} height={250} key={item.src} src={item.src} alt={item.alt ?? 'trip'} size="390x250" />
+                        {imageCLoud &&
+                            <img width={390} height={250} key={item.src} src={`${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${item.src}/390x250`} alt={item.alt ?? 'trip'} />
                         }
                     </SwiperSlide>
                 )
