@@ -10,18 +10,18 @@ import Image from "next/image";
 
 export default function CardGuide({children , avatar , url , bottomView = [] , videoURL = ''}) {
     const router = useRouter();
-
-    const [isPlay, setIsPlay] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
 
     const videoRef = useRef(null);
     const playVideo = () => {
         videoRef.current.play();
+        setIsPlaying(true);
     };
     const pauseVideo = () => {
         videoRef.current.pause();
+        setIsPlaying(false);
     };
     return (
-
         <div
             onClick={() => {
                 if (!videoURL.length > 0) {
@@ -35,19 +35,15 @@ export default function CardGuide({children , avatar , url , bottomView = [] , v
             <div className="img_box">
                 {videoURL &&
                     <div>
-
+                        {avatar && !isPlaying && <div className="custom_poster"><IcloudImage src={avatar} width={300} height={300} alt="icon"/></div>}
                         <Stream
                             streamRef={videoRef}
                             src={videoURL}
                         />
-                        <button onClick={playVideo} type="button">
-                            Watch
-                        </button>
-                        <button onClick={pauseVideo} type="button">
-                            pause
-                        </button>
-
-
+                        {!isPlaying ?
+                            <button className="play" onClick={playVideo} type="button"><Image src={imagePlay} alt='icon'/></button> :
+                            <button className="pause" onClick={pauseVideo} type="button"></button>
+                        }
                     </div>
                 }
             </div>
