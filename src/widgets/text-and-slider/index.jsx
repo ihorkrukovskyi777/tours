@@ -84,13 +84,13 @@ export default function TextAndSlider({
                 pagination={{ clickable: true }}
               >
                 {attachments.map((image, index) => {
-                  const priority = index === 0 ? { priority: true } : {};
+                  const src = `${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${image.src}/public`
                   return (
                     <SwiperSlide key={index}>
                       <div className="img_box">
-                        <IcloudImage
-                          {...priority}
-                          src={image.src}
+                        <img
+                          loading="lazy"
+                          src={src}
                           alt={image?.alt ?? ""}
                           width={width}
                           height={height}
