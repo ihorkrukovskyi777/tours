@@ -6,6 +6,7 @@ export default function Card({font = '' ,attachment = '', url, title, children, 
             <div className="item">
 
                 <img
+                    loading="lazy"
                     className="img"
                     key={attachment.src}
                     width={518}

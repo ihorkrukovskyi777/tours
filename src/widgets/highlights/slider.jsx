@@ -49,7 +49,7 @@ export default function HighlightsSlider({ images }) {
                 return (
                     <SwiperSlide key={index}>
                         {imageCLoud &&
-                            <img width={390} height={250} key={item.src} src={`${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${item.src}/390x250`} alt={item.alt ?? 'trip'} />
+                            <img loading="lazy" width={390} height={250} key={item.src} src={`${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${item.src}/390x250`} alt={item.alt ?? 'trip'} />
                         }
                     </SwiperSlide>
                 )
