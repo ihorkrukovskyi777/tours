@@ -77,6 +77,11 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookin
                         : i18n.errors.email_error;
                 break;
             case 'phone':
+                const arr = value.toString().replace(/ /g, '').replace(/[-()]/g, '').split('');
+                const hasLetter = arr.some(char => /[a-zA-Z]/.test(char));
+                if (hasLetter) {
+                    return false;
+                }
                 const valuePhone = value.toString().replace(/ /g, '').replace(/[-()]/g, '').length;
                 const validateArray = document.querySelector(`#booking input[name=${name}]`).getAttribute('validation-number').split(',').map(i => Number(i));
                 if (!validateArray.includes(valuePhone)) {
