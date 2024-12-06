@@ -24,7 +24,6 @@ export default function SwiperGuides({guides}) {
 
     const [hideArrow , setHideArrow] = useState('hidden')
 
-
     return (
         <>
             <Swiper
@@ -67,6 +66,7 @@ export default function SwiperGuides({guides}) {
                                 avatar={item?.avatar}
                                 url={hrefSubVendor(locale, item.brandName)}
                                 bottomView={item?.locales}
+                                videoURL={item?.video.src}
                             >
                                 <div className="item_title">{item?.brandName}</div>
                                 {rating > 0 ?
