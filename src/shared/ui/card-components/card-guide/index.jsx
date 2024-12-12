@@ -21,6 +21,8 @@ export default function CardGuide({children , avatar , url , bottomView = [] , v
         videoRef.current.pause();
         setIsPlaying(false);
     };
+    console.log(videoURL , 'avatar');
+
     return (
         <div
             onClick={() => {
@@ -31,26 +33,30 @@ export default function CardGuide({children , avatar , url , bottomView = [] , v
             className={styles.item}
         >
             <div className={styles.text_wrapper}>
-
-            <div className="img_box">
-                {videoURL &&
-                    <div>
-                        {avatar && !isPlaying && <div className="custom_poster"><IcloudImage src={avatar} width={300} height={300} alt="icon"/></div>}
-                        <Stream
-                            streamRef={videoRef}
-                            src={videoURL}
-                        />
-                        {!isPlaying ?
-                            <button className="play" onClick={playVideo} type="button"><Image src={imagePlay} alt='icon'/></button> :
-                            <button className="pause" onClick={pauseVideo} type="button"></button>
-                        }
+                {videoURL.length > 0 &&
+                    <div className="img_box">
+                        <div>
+                            {avatar && !isPlaying && <div className="custom_poster"><IcloudImage src={avatar} width={300} height={300} alt="icon"/></div>}
+                            <Stream
+                                streamRef={videoRef}
+                                src={videoURL}
+                            />
+                            {!isPlaying ?
+                                <button className="play" onClick={playVideo} type="button"><Image src={imagePlay} alt='icon'/></button> :
+                                <button className="pause" onClick={pauseVideo} type="button"></button>
+                            }
+                        </div>
                     </div>
                 }
-            </div>
 
                 <div onClick={() => {
                     if (videoURL.length > 0) router.push(url?.toLowerCase())
                 }}>
+                    {!videoURL.length > 0 &&
+                        <div className="img_box">
+                            {avatar ? <IcloudImage src={avatar} width={270} height={270} alt="brand logo" /> : null }
+                        </div>
+                    }
                     {children}
                     <div className='flags_wrap'>
                         {bottomView.map((item, index) => (
