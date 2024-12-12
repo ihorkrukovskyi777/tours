@@ -97,7 +97,8 @@
     pointer-events: none;
 }
 .guides_section .img_box video,
-.guides_section .img_box iframe{
+.guides_section .img_box iframe ,
+.guides_section .img_box img{
     position: absolute;
     top: 0;
     left: 0;
