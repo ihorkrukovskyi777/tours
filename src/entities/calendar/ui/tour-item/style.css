@@ -1,1 +1,25 @@
+.tours_wrap.active {
+    border: solid 2px var(--main_color);
+    border-radius: 8px;
+}
+.tours_wrap .dep_book_now {
+    outline: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    background-color: var(--main_color);
+    display: block;
+    margin: 10px 0 0 0;
+    width: 100%;
+    padding: 18px 0;
+    font-family: var(--fontMedium);
+    border-radius: 8px;
+    cursor: pointer;
+}
 
+.tours_wrap .btns-wrap {
+    position: relative;
+}
+.tours_wrap .btns-wrap .box-loader {
+    border-radius: 0;
+}

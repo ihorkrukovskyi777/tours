@@ -1,3 +1,4 @@
+// eslint-disable-next-line @next/next/no-server-import-in-page
 import {NextResponse} from 'next/server';
 import {fallbackLng, locales} from './i18n/settings';
 import {Page410} from "@/page-410";

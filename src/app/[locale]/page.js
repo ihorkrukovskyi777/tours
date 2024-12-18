@@ -7,7 +7,6 @@ import {headers} from "next/headers";
 import {isMobileCheck} from "@/shared/helpers";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import {seoLocales} from "@/shared/constants/locales-seo";
-import {getHrefLocale} from "@/i18n/get-href-locale";
 const ThanksReviewModal = dynamic(
     () => import("@/entities/add-review/ui/thanks-review-modal"),
     {ssr: false}

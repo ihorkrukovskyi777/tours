@@ -34,7 +34,6 @@
   border-radius: 8px;
   padding: 15px;
   margin-top: 20px;
-  pointer-events: none;
 }
 .tours_wrap .tour_block:first-child {
   margin-top: 0;

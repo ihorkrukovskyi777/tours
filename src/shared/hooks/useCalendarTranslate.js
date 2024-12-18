@@ -8,6 +8,10 @@ export async function useCalendarTranslate(locale) {
     ])
 
     return {
+        details: i18n.t('Details'),
+        no_thakns: i18n.t('No Thanks'),
+        booking_confirmed: i18n.t('Booking confirmed'),
+        done: i18n.t('Done'),
         pick_a_date: i18n.t('Pick a Date'),
         how_a_many_people: i18n.t('How many people are coming?'),
         departure_available: i18n.t('Departure(s) Available'),
@@ -23,6 +27,8 @@ export async function useCalendarTranslate(locale) {
         terms_and_conditions: i18n.t('Terms and Conditions'),
         i_accept_all: i18n.t('I accept all'),
         show_me_more: i18n.t('Show me More'),
+        see_more: i18n.t('See More'),
+        change_date: i18n.t('Change date'),
         departures_not_found: i18n.t('Departures not found'),
         tour_calendar: i18n.t('Tour Calendar'),
         free_tour_calendar: i18n.t('Free Tour Calendar'),
@@ -34,6 +40,9 @@ export async function useCalendarTranslate(locale) {
         phone_number: i18n.t('Phone Number'),
         errors: i18n.getFormErrors(),
         see_all: i18n.t('See All'),
+        book_another_tour: i18n.t('Book another Tour'),
+        discover_more_popular: i18n.t(`Discover more popular tours in Madrid the same afternoon, book them as well with just %one click%.`),
+        unsure_of_your_plans: i18n.t(`Unsure of your plans? You can book now to secure a spot and cancel anytime until the start time of the tour.`),
         faq: i18n.t('FAQs for Free Tours'),
         flexible: i18n.t('Flexible'),
         genitive: {

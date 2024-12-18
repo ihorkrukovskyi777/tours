@@ -1,7 +1,7 @@
 import './style.css';
 
 
-export default function Loader({ style }) {
+export default function Loader({ style = {} }) {
 
 
     return (

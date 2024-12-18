@@ -1,12 +1,12 @@
 import {observer} from "mobx-react-lite";
 import Button from '@/shared/ui/selectors/button/button';
 import CloseSvg from '@/assets/images/svg/close-svg';
-import FullStarSvg from '@/assets/images/svg/full-star';
+
 import FormCalendar from './form';
 import {toHoursAndMinutes, pad2} from "@/shared/helpers/date";
 import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/helpers/date";
 import useEscHooks from "@/shared/hooks/use-esc-event";
-import IcloudImage from "@/shared/ui/icloud-image";
+import ProcessBookingLine from "@/entities/lib/calendar/ui/process-booking-line";
 import FlagsComponents from "@/shared/ui/flags";
 import {ServiceDate} from "@/shared/service/service-date"
 //svg
@@ -16,6 +16,7 @@ import LogoSvg from "@/assets/images/svg/logo-svg";
 import './style.css';
 
 export default observer(function Step3({
+                                           isRedirect = true,
                                            i18n,
                                            onChange,
                                            people,
@@ -28,9 +29,9 @@ export default observer(function Step3({
                                            allPhoneNumbers,
                                            departure,
                                            isOpened,
-                                           langSelected,
                                            isLoading,
-                                           nameDayWeek = true
+                                           nameDayWeek = true,
+                                           hideButtonChange = false
                                        }) {
 
     useEscHooks(close, isOpened);
@@ -53,18 +54,18 @@ export default observer(function Step3({
                     <CloseSvg/>
                 </div>
             </div>
-            <div className="title">
-                <div className="title-text">{departure.tourTitle}</div>
-            </div>
-
+            {/*<div className="title">*/}
+            {/*    <div className="title-text">{departure.tourTitle}</div>*/}
+            {/*</div>*/}
+            <ProcessBookingLine title={departure.tourTitle} step={1}/>
             <div className="flex-change">
                 <div className="flex-box">
                     <div className="item-data">
-                        <div className="choosen-date">{departure.dateLabel}</div>
+                        { departure.dateLabel && <div className="choosen-date">{departure.dateLabel}</div>}
                         <div
                             className="time-current-modal">
                             <span>{i18n.days[serviceDate.day]}, {serviceDate.dayNum} {i18n.months[serviceDate.month]} </span>
-                            {isShowTimeDep ? <span>{pad2(time.hours)}:{pad2(time.minutes)}</span> : null }
+                            {isShowTimeDep ? <span>{pad2(time.hours)}:{pad2(time.minutes)}</span> : null}
                             {isShowTimeDep ? <span className="comma">,</span> : null}
                         </div>
 
@@ -89,18 +90,21 @@ export default observer(function Step3({
                         </div>
                     </div>
                 </div>
+                {!hideButtonChange &&
+                    <div className="center-wrap">
+                        <Button className="change" onClick={onChange}>{i18n.change}</Button>
+                    </div>
+                }
 
-                <div className="center-wrap">
-                    <Button className="change" onClick={onChange}>{i18n.change}</Button>
-                </div>
             </div>
-                <FormCalendar
-                    i18n={i18n}
-                    errorsMessage={errors}
-                    allPhoneNumbers={allPhoneNumbers}
-                    locale={locale}
-                    isLoading={isLoading}
-                    fetchBookingDeparture={fetchBookingDeparture}/>
+            <FormCalendar
+                isRedirect={isRedirect}
+                i18n={i18n}
+                errorsMessage={errors}
+                allPhoneNumbers={allPhoneNumbers}
+                locale={locale}
+                isLoading={isLoading}
+                fetchBookingDeparture={fetchBookingDeparture}/>
         </div>
     )
 })

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import './style.css';
 
 export default function ModalBooking({
-                                         children, show, changeData, size, halfOpacity = false, close = () => {
+                                         children, show, changeData = undefined, size, halfOpacity = false, close = () => {
     }
                                      }) {
 

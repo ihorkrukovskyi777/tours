@@ -1,6 +1,6 @@
 import {allGuides} from '@/entities/api';
 import dynamic from "next/dynamic";
-import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
+
 const LazyGuidesRow = dynamic(
     () => import("@/shared/ui/guides/lazy-guides-row"),
     {ssr: false}

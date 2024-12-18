@@ -1,11 +1,19 @@
-import CalendarProvider from "@/entities/calendar/calendar-provider";
 import {getActiveLang, getFaqBlock} from "@/entities/api";
 import Faqs from "@/shared/ui/faqs/faqs";
-
 import {useCalendarTranslate} from "@/shared/hooks/useCalendarTranslate";
+import ProcessBookingProvider from "@/entities/lib/calendar/process-booking.provider";
 
 
-export default async function SsrCalendar({locale, type, id, showFaq = true, title, nameDayWeek = true, isMobile = false , pageTitle = '' , titleCalendar = '' }) {
+export default async function SsrCalendar({
+                                              locale,
+                                              type,
+                                              id,
+                                              showFaq = true,
+                                              title,
+                                              nameDayWeek = true,
+                                              isMobile = false,
+                                              pageTitle = '',
+                                          }) {
 
 
     const [questions, activeLanguage] = await Promise.all([
@@ -14,23 +22,29 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
     ])
 
     const translate = await useCalendarTranslate(locale)
+
+    if(!activeLanguage?.length) {
+        return null
+    }
     return (
         <section id="tour_calendar_section" className="tour_calendar">
             <div className="container">
                 <div className="wrapper">
-                    <CalendarProvider
-                        isMobile={isMobile}
-                        nameDayWeek={nameDayWeek}
+                    <ProcessBookingProvider
                         i18n={translate}
-                        pageTitle={pageTitle}
-                        title={title}
-                        locale={locale}
-                        type={type}
-                        id={id}
-                        activeLanguage={activeLanguage}
-                        showFaq={showFaq}
-                        titleCalendar={titleCalendar}
+                        option={{
+                            isMobile: isMobile,
+                            nameDayWeek: nameDayWeek,
+                            pageTitle: pageTitle,
+                            title: title,
+                            locale: locale,
+                            type: type,
+                            id: id,
+                            activeLanguage: activeLanguage,
+                            showFaq: showFaq
+                        }}
                     />
+
                     {activeLanguage?.length ?
                         <Faqs
                             i18n={{faq: translate.faq}}
@@ -41,6 +55,7 @@ export default async function SsrCalendar({locale, type, id, showFaq = true, tit
 
                 </div>
             </div>
+
         </section>
     )
 }
