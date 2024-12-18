@@ -127,7 +127,7 @@ export default observer(function MainInfo({i18n}) {
                     </li> : null}
                     {checkoutInfo.voucher ? <li>
                             <a style={{color: '#0693e3'}} href={checkoutInfo.voucher} download
-                               target="_blank">{i18n.download_voucher}</a>
+                               target="_blank" rel="noreferrer">{i18n.download_voucher}</a>
                         </li>
 
                         : null}

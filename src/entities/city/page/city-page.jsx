@@ -29,6 +29,7 @@ export default async function CityPage({
     let texts = await getTextsBlocks(id, locale, 'city');
     texts = Array.isArray(texts) ? texts : [];
 
+
     const getTitleText1 = i18n.t("Best Free Walking Tours in") + ' ' + title;
     const getTitleText3 = i18n.t("Things to Do in") + ' ' + title;
 

@@ -7,14 +7,18 @@ import classNames from 'classnames';
 import useEscHooks from "@/shared/hooks/use-esc-event";
 import {useState} from 'react';
 import {setFormatDDMMYYYYtoMMDDYYYY} from "@/shared/helpers/date";
+import Loader from "@/shared/ui/loaders/default-loader";
 
 import './style.css';
 
-export default function Step2({i18n, nameDayWeek= false, title = "", onBack, close, size = "small", isOpened, departures, saveButton = false, setDeparture}) {
+export default function Step2({isLoading, saveButtonText = '', i18n, nameDayWeek= false, title = "", onBack, close, size = "small", isOpened, departures, saveButton = false, setDeparture}) {
     const [selectedDep, setSelectedDep] = useState(null);
-    useEscHooks(close, isOpened)
 
-
+    const onBackModal = () => {
+        onBack();
+        setSelectedDep(null);
+    }
+    useEscHooks(onBackModal, isOpened)
     const selectedDeparture = (dep) => {
         setDeparture(dep);
         setSelectedDep(null);
@@ -28,8 +32,11 @@ export default function Step2({i18n, nameDayWeek= false, title = "", onBack, clo
 
     const serviceDate = new HelperDateHtml(setFormatDDMMYYYYtoMMDDYYYY(dep.date), nameDayWeek)
 
+
+
     return (
         <div className={`step-2 ${size}`}>
+            {isLoading && <Loader /> }
             <div className="title">
                 <div className="title_text">
                     {title}
@@ -54,17 +61,17 @@ export default function Step2({i18n, nameDayWeek= false, title = "", onBack, clo
                 />
             )}
 
-            <div className={classNames({'disable': !!selectedDep})}>
+            <div className={classNames({'disable': !selectedDep})}>
                 {saveButton ?
                     <Button
-                        customClass='gray'
+                        customClass={selectedDep ? 'gray red' : 'gray'}
                         onClick={() => selectedDeparture(selectedDep)}
                     >
-                        {i18n.save_changes}
+                        {saveButtonText ? saveButtonText : i18n.save_changes}
                     </Button>
                     : null}
             </div>
-            <Button customClass="gray" onClick={onBack}>{i18n.back}</Button>
+            <Button customClass="gray" onClick={onBackModal}>{i18n.back}</Button>
         </div>
     )
 }

@@ -17,14 +17,14 @@ export default function Calendar({
                                  }) {
 
     const CalendarJS = useRef(new CalendarModel());
-    const [calendarData, setCalenndarData] = useState(null);
+    const [calendarData, setCalendarData] = useState(null);
     useLayoutEffect(() => {
         updateCalendar();
     }, [])
 
 
     const updateCalendar = () => {
-        setCalenndarData({
+        setCalendarData({
             ...CalendarJS.current.previusMonth(),
             ...CalendarJS.current.month,
             ...CalendarJS.current.nextMonth()
@@ -51,7 +51,7 @@ export default function Calendar({
         setCount(count - 1);
         count <= 0 ? setCount(0) : null;
         count <= 1 ? setdisableClass(false) : setdisableClass(true);
-        setCalenndarData(prevMonth)
+        setCalendarData(prevMonth)
     }
 
     function nextMonth() {
@@ -60,7 +60,7 @@ export default function Calendar({
         setCurrentYear(CalendarJS.current.year);
         setCount(count + 1);
         count >= 0 ? setdisableClass(true) : setdisableClass(false);
-        setCalenndarData(nextMonth);
+        setCalendarData(nextMonth);
     }
 
 

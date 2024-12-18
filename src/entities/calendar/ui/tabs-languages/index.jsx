@@ -13,7 +13,6 @@ export default memo(function TabsLanguages({loading, onChange = () => {}, select
         setSeeAllBtn(true);
     }
     const mobileClass = activeLanguage.length > 5 && !seeAllBtn ? 'hide_lasts_li' : '';
-
     return (
         <ul className={`tabs ${settingsTab} ${mobileClass}`}>
             {activeLanguage?.map((item, index) => {
@@ -29,7 +28,7 @@ export default memo(function TabsLanguages({loading, onChange = () => {}, select
                                 <li onClick={() => onChange(item.code)}
                                     className={selectedCode === item.code ? "tab_item active" : "tab_item"} key={item.code}>
                                     <div className="icon_wrap">
-                                        <FlagsComponents locale={item.code} alt={item.title} width={30} height={30} />
+                                        <FlagsComponents locale={item.code} alt={item.name} width={30} height={30} />
                                     </div>
                                     <span>{countryLocales[item.code]}</span>
                                     <div className="box_loader">

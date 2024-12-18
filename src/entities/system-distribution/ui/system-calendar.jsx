@@ -1,4 +1,4 @@
-import CalendarProvider from "@/entities/calendar/calendar-provider";
+import ProcessBookingProvider from "@/entities/lib/calendar/process-booking.provider";
 import {getSystemActiveLanguage} from "@/entities/system-distribution/api";
 import {useCalendarTranslate} from "@/shared/hooks/useCalendarTranslate";
 import Faqs from "@/shared/ui/faqs/faqs";
@@ -35,17 +35,19 @@ export default async function SystemSsrCalendar({flexible, locale,  id, showFaq 
         <section id="tour_calendar_section" className="tour_calendar">
             <div className="container">
                 <div className="wrapper">
-                    <CalendarProvider
-                        isMobile={isMobile}
-                        nameDayWeek={nameDayWeek}
+                    <ProcessBookingProvider
                         i18n={translate}
-                        titleCalendar={dataFlexible.title}
-                        title={dataFlexible.title}
-                        locale={locale}
-                        type={type}
-                        id={id}
-                        activeLanguage={activeLanguage}
-                        showFaq={showFaq}
+                        option={{
+                            isMobile: isMobile,
+                            nameDayWeek: nameDayWeek,
+                            pageTitle: pageTitle,
+                            title: dataFlexible.title,
+                            locale: locale,
+                            type: type,
+                            id: id,
+                            activeLanguage: activeLanguage,
+                            showFaq: showFaq
+                        }}
                     />
                     {activeLanguage?.length && dataFlexible.faqs?.values?.length ?
                         <Faqs

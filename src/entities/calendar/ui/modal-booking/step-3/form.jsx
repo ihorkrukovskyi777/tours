@@ -8,7 +8,7 @@ import classNames from "classnames";
 import recaptcha from "@/shared/util/recaptcha";
 import Link from "next/link";
 
-export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookingDeparture, errorsMessage, isLoading}) {
+export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, locale, fetchBookingDeparture, errorsMessage, isLoading}) {
     const refSendFetch = useRef(false);
     const refForm = useRef();
     const [showError, setShowError] = useState(false);
@@ -140,9 +140,9 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookin
                 phone_country_slug: document.getElementById('phone').getAttribute('data-slug').toLowerCase(),
             }
             try {
-                const token = await recaptcha("booking");
-                const data = await fetchBookingDeparture(formData, token);
-                if(data.booking_id) {
+                // const token = await recaptcha("booking");
+                const data = await fetchBookingDeparture(formData, '');
+                if(data?.booking_id && isRedirect) {
                     const url = getHrefLocale(params.locale, `checkout?code=${data.booking_id}`)
                     push(url)
                 }
@@ -219,7 +219,7 @@ export default function FormCalendar({i18n, allPhoneNumbers, locale, fetchBookin
                     <div className="form-group">
                         <input type='checkbox' id="accept" name='accept' onChange={handleChange} required/>
                         <label htmlFor="accept">{i18n.i_accept_all}</label>
-                        <Link href="/terms-and-conditions/" target="_blank" className="terms-and-conditions">{i18n.terms_and_conditions}</Link> <span
+                        <Link href="/terms-and-conditions/" rel="noreferrer" target="_blank" className="terms-and-conditions">{i18n.terms_and_conditions}</Link> <span
                         className="red">*</span>
                     </div>
                 </div>

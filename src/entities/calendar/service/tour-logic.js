@@ -168,6 +168,9 @@ export default class TourLogic {
         return this._fetch;
     }
 
+    setDepartures(data) {
+        this.data[this.currentLang] = data;
+    }
     getTourByMonthAndYear(month, year) {
 
         if (!this.data[this.currentLang]) {

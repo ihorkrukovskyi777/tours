@@ -903,15 +903,7 @@ R.propTypes = {
     onFocus: d.func,
     onBlur: d.func
 };
-R.defaultProps = {
-    initialValue: "", placeholder: "", onChangeNumber: () => {
-    }, onChangeCountry: () => {
-    }, onChangeValidity: () => {
-    }, onChangeErrorCode: () => {
-    }, initOptions: {}, className: "", disabled: !1, onFocus: () => {
-    }, onBlur: () => {
-    }
-};
+
 var pt = R;
 export {pt as default};
 //# sourceMappingURL=IntlTelInput.esm.js.map

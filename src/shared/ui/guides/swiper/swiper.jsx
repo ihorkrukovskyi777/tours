@@ -43,7 +43,6 @@ export default function SwiperGuides({guides}) {
                 //     nextEl: '.next',
                 // }}
                 onSlideChange={(swiper) => {
-                    console.log('change');
                     setHideArrow('');
                 }}
                 breakpoints={{
