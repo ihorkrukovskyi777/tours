@@ -63,6 +63,9 @@ export default async function OderPage({params}: { params: { locale: string, cod
                         const duration = toHoursAndMinutes(booking.duration * 60);
 
                         const checkoutSlug = getHrefLocale(booking.profile.locale, `${CHECKOUT}?code=${booking.checkout_code}`)
+                        const isSelfGuide = serviceDate.time === '23:59'
+                        const durationLabel = isSelfGuide ? i18n.t('Flexible') : booking.duration > 1 ? i18n.t('Hours') : i18n.t('Hour')
+
                         return (
                             <div key={booking.booking_id}>
                                 <div className="page_orders__item">
@@ -80,12 +83,12 @@ export default async function OderPage({params}: { params: { locale: string, cod
                                 {days[serviceDate.day]}, {serviceDate.dayNum} {months[serviceDate.month]} {serviceDate.yearNum}, {serviceDate.time}
                             </span>
                                     <span>
-                              <ClockSvg/> <span>{duration.hours}:{pad2(duration.minutes)} {booking.duration > 1 ? i18n.t('Hours') : i18n.t('Hour')}, {booking.number_people} {i18n.t('People')}</span>
+                              <ClockSvg/> <span>{duration.hours}:{pad2(duration.minutes)} {durationLabel}, {booking.number_people} {i18n.t('People')}</span>
                             </span>
                                 </div>
                                 <Link href={checkoutSlug}
-                                      className="page_orders__button">{i18n.t('Edit Booking')}</Link>
-
+                                      className="page_orders__button">{i18n.t('Edit Booking')}
+                                </Link>
                             </div>
                         )
                     })}
