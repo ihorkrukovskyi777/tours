@@ -49,6 +49,7 @@ export default async function PageGuide({params: {name, locale}}) {
                     locale={locale}
                     type="sub-vendor"
                     id={pageSub.id}
+                    isGuide={true}
                     title={pageSub.brandName}
                     showFaq={false}
                 />

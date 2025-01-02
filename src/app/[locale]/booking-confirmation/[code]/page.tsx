@@ -1,6 +1,6 @@
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import {notFound} from "next/navigation";
-import LanguageImages from "@/shared/ui/languages/language-images";
+import LanguageImages from "@shared/ui/languages/language-images";
 import Link from "next/link";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import {CHECKOUT, PATH_TOURS} from "@shared/constants/route";
@@ -26,6 +26,7 @@ interface Booking {
     booking_id: number
     number_people: number
     duration: number
+    booked_datetime: string
 }
 
 export default async function OderPage({params}: { params: { locale: string, code: string }, }) {
@@ -49,13 +50,21 @@ export default async function OderPage({params}: { params: { locale: string, cod
     const bookings = await response.json() as Booking[];
     const months = i18n.getMonths();
     const days = i18n.getDays();
+
+
+    const sortBooking = (bookings:Booking[]) => {
+        return bookings.sort((a,b) => {
+            return new Date(a.booked_datetime).getTime() - new Date(b.booked_datetime).getTime()
+        })
+    }
+
     return (
         <div className="page_orders_container">
             <div className="page_orders">
                 <h1>{i18n.t('Click on the links below to see full booking confirmation and manage your bookings.')}</h1>
 
                 <div className="page_orders__items">
-                    {bookings.map(booking => {
+                    {sortBooking(bookings).map(booking => {
 
                         const serviceDate = new ServiceDate(booking.fullTime)
                         const slug = `${getHrefLocale(booking.profile.locale)}${booking.profile.city?.slug}/${PATH_TOURS}/${booking.profile.slug}`;
@@ -98,7 +107,7 @@ export default async function OderPage({params}: { params: { locale: string, cod
             <ChangeOfLanguage
                 languages={languages}
                 addQueries={false}
-                title={'Your orders'}
+                title={i18n.t('Booking Confirmation')}
                 i18n={{
                     load_more: i18n.t('Load More'),
                     free_tour_tour_language: ''
@@ -111,6 +120,6 @@ export default async function OderPage({params}: { params: { locale: string, cod
 export async function generateMetadata() {
     return {
         robots: {index: false, follow: false},
-        title: 'Your Orders',
+        title: 'Booking Confirmation',
     }
 }

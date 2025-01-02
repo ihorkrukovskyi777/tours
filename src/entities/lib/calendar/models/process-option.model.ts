@@ -8,18 +8,19 @@ export class ProcessOptionModel {
     availableLocale: ActiveLocale[] = []
     peopleNumber: number
 
-    readonly page: { title: string, id: number, type: TourType, nameDayWeek: boolean, locale: string }
+    readonly page: { title: string, id: number, type: TourType, nameDayWeek: boolean, locale: string, isGuide: boolean }
 
-    constructor(option: ProcessOption) {
+    constructor(option: ProcessOption, peopleNumber: number = 1) {
         this._locale = option.locale
         this.availableLocale = option.activeLanguage;
-        this.peopleNumber = 1
+        this.peopleNumber = peopleNumber
         this.page = {
             title: option.title,
             type: option.type,
             id: option.id,
             nameDayWeek: option.nameDayWeek,
-            locale: option.locale
+            locale: option.locale,
+            isGuide: option.isGuide
         }
         makeAutoObservable(this, {}, {autoBind: true})
     }

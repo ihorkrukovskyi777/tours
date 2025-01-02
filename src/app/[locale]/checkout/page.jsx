@@ -25,6 +25,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         {next: {revalidate: 0}}
     )
 
+
     const page = await pageType.json();
     if (page.statusCode === 404 || typeof page.id !== 'number') {
         notFound();

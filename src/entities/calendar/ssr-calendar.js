@@ -13,6 +13,7 @@ export default async function SsrCalendar({
                                               nameDayWeek = true,
                                               isMobile = false,
                                               pageTitle = '',
+                                              isGuide = false
                                           }) {
 
 
@@ -40,6 +41,7 @@ export default async function SsrCalendar({
                             locale: locale,
                             type: type,
                             id: id,
+                            isGuide: isGuide,
                             activeLanguage: activeLanguage,
                             showFaq: showFaq
                         }}

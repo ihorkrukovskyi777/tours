@@ -4,6 +4,7 @@ import {ActiveLocale} from "@entities/lib/calendar/@types/locales";
 export interface ProcessOption {
     i18n: { [key in string]: string }
     title: string
+    isGuide: boolean
     locale: string
     type: TourType
     id: number

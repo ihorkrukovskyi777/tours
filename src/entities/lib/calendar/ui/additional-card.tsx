@@ -34,6 +34,7 @@ const AdditionalSaleCard = observer(({tour, nameDayWeek, onOpenCalendar, isLoadi
 
     const onBooking = useCaseFetchBookingAdditional();
 
+
     const toggleSelect = (key: string) => {
         setSelectedDeep(key)
     }
@@ -49,10 +50,10 @@ const AdditionalSaleCard = observer(({tour, nameDayWeek, onOpenCalendar, isLoadi
                     />
                 }
                 <div className="intro">
-                    <Link href={tour.slug}>{tour.title}</Link>
+                    {tour.title}
                 </div>
                 <div className="additional_card__image__show_more" onClick={toggleSee}>
-                    {i18n.see_more}
+                    <span>{i18n.see_more.toLowerCase()}</span>
                     <div className={seeMore ? 'active' : ''}>
                         <Image src={ArrowNormalSvg} alt=""/>
                     </div>
@@ -72,7 +73,7 @@ const AdditionalSaleCard = observer(({tour, nameDayWeek, onOpenCalendar, isLoadi
                 </div>
                 <div className="days_wrap additional_card__image__days_wrap">
 
-                    {departures.map((departure, index) => {
+                    {departures.slice(0, 3).map((departure, index) => {
 
                         const key = `${departure.fullTime ?? ''}${departure.depId}`
                         const date = departure.date

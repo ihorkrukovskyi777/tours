@@ -6,7 +6,7 @@ import {
 import {ProcessOptionModel} from "@entities/lib/calendar/models/process-option.model";
 import {FormDataBooking} from "@entities/lib/calendar/models/booking-form.model";
 
-const createOptionModel = (tour: DataTourSale) => {
+const createOptionModel = (tour: DataTourSale, peopleNumber: number) => {
     const [locale] = tour.departure.locales;
     return new ProcessOptionModel({
         i18n: {},
@@ -20,7 +20,7 @@ const createOptionModel = (tour: DataTourSale) => {
             id: locale.id,
             defaultLocale: locale.code,
         }]
-    })
+    }, peopleNumber)
 }
 
 interface SelectTourCalendar {
@@ -94,7 +94,7 @@ export class AdditionalSalesModel {
             runInAction(() => {
                 this.tours = data.filter(tour => !!tour.departure.locales.length)
                     .map(tour => {
-                        const option = createOptionModel(tour);
+                        const option = createOptionModel(tour, this.option.peopleNumber);
                         return new TourAdditionalModel({
                             ...tour,
                             id: Number(tour.id)

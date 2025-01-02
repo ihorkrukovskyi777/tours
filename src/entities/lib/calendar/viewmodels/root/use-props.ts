@@ -18,6 +18,9 @@ export function useProcessBookingProps() {
             get title() {
                 return store.option.page.title
             },
+            get isShowTitle() {
+              return !store.option.page.isGuide
+            },
             get depModel() {
                 return store.depModel
             },

@@ -33,6 +33,12 @@ export function useAdditionalSalesProps() {
 
             return '/'
         },
+        get cityName() {
+           if(store.additionalSales.tours[0]) {
+               return store.additionalSales.tours[0].cityName
+           }
+           return ''
+        },
         get isLoadingBooking() {
             return store.loading.isAdditionalBooking
         }
