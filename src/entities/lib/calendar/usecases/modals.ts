@@ -4,6 +4,7 @@ import {MODAL} from "@entities/lib/calendar/models/modal-steps.model";
 import {Day} from "@entities/lib/calendar/models/departures/departure-by-day.model";
 import {DepBooking} from "@entities/lib/calendar/@types";
 import {toJS} from "mobx";
+import {useCaseRedirectToCheckout} from "@entities/lib/calendar/usecases/index";
 
 
 export function useCaseOpenCalendar() {
@@ -70,8 +71,10 @@ export function useCaseBooking() {
 
 export function useCaseCloseModalAdditional() {
     const store = useContextStore();
-    return useCallback(function () {
+    const redirectToCheckout = useCaseRedirectToCheckout()
+    return useCallback(async function () {
         store.modals.closeModal(MODAL.ADDITIONAL_SALES)
+        await redirectToCheckout();
 
     }, [store])
 }

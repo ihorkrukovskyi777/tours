@@ -33,6 +33,7 @@ const ModalListToursView = observer(() => {
     const getLink = (value: string) => {
         const stringExtractor = extract(['%', '%'])
         const text = stringExtractor(value);
+
         return `${value.replaceAll(`%${text}%`, `<span >${text}</>`)}`
     }
 
@@ -40,15 +41,15 @@ const ModalListToursView = observer(() => {
         setInit(true)
     }, [])
 
-    useEffect(() => {
-        const redirect = async () => {
-            await push(viewModel.linkCity)
-        }
-        ref.current?.addEventListener('click', redirect)
-
-        return () => ref.current?.removeEventListener('click', redirect)
-
-    }, [ref.current])
+    // useEffect(() => {
+    //     const redirect = async () => {
+    //         await push(viewModel.linkCity)
+    //     }
+    //     ref.current?.addEventListener('click', redirect)
+    //
+    //     return () => ref.current?.removeEventListener('click', redirect)
+    //
+    // }, [ref.current])
 
     if (!init) return null;
 
@@ -69,7 +70,7 @@ const ModalListToursView = observer(() => {
                         {i18n.book_another_tour}
                     </div>
                     <div className="paragraph">
-                        <p ref={ref} dangerouslySetInnerHTML={{__html: getLink(i18n.discover_more_popular)}}></p>
+                        <p ref={ref} dangerouslySetInnerHTML={{__html: getLink(i18n.discover_more_popular.replaceAll('%city%', viewModel.cityName))}}></p>
                         <p>{i18n.unsure_of_your_plans}</p>
                     </div>
                 </div>
@@ -86,7 +87,7 @@ const ModalListToursView = observer(() => {
                         )
                     })}
                 </div>
-                <button className="additional_sales_list__no_thanks" onClick={redirectToCheckout}>{i18n.no_thakns}</button>
+                <button className="additional_sales_list__no_thanks" onClick={redirectToCheckout}>{i18n.no_thakns.toLowerCase()}</button>
             </div>
         </ModalBooking>
     )

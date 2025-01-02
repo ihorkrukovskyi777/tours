@@ -55,6 +55,9 @@ export class TourAdditionalModel {
         return this.data.title
     }
 
+    get cityName() {
+        return this.data.city.title
+    }
     get citySlug() {
         return this.data.city.slug
     }

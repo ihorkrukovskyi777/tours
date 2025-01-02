@@ -10,7 +10,7 @@ export async function useCalendarTranslate(locale) {
     return {
         details: i18n.t('Details'),
         no_thakns: i18n.t('No Thanks'),
-        booking_confirmed: i18n.t('Booking confirmed'),
+        booking_confirmed: i18n.t('Booking confirmed!'),
         done: i18n.t('Done'),
         pick_a_date: i18n.t('Pick a Date'),
         how_a_many_people: i18n.t('How many people are coming?'),
@@ -41,7 +41,7 @@ export async function useCalendarTranslate(locale) {
         errors: i18n.getFormErrors(),
         see_all: i18n.t('See All'),
         book_another_tour: i18n.t('Book another Tour'),
-        discover_more_popular: i18n.t(`Discover more popular tours in Madrid the same afternoon, book them as well with just %one click%.`),
+        discover_more_popular: i18n.t(`Discover more popular tours in %city% the same afternoon, book them as well with just %one click%.`),
         unsure_of_your_plans: i18n.t(`Unsure of your plans? You can book now to secure a spot and cancel anytime until the start time of the tour.`),
         faq: i18n.t('FAQs for Free Tours'),
         flexible: i18n.t('Flexible'),

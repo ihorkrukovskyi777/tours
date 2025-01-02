@@ -44,7 +44,7 @@ const ProcessBookingView = observer(() => {
     const onOpenCalendar = useCaseOpenCalendar()
     return (
         <div className="calendar_wrap" style={{minHeight: '400px'}}>
-            <h2 className="title">{getters.title}</h2>
+            {getters.isShowTitle && <h2 className="title">{getters.title}</h2> }
             <div className="wrap-box">
                 <Button onClick={onOpenCalendar}>
                     <div className="calendar_icon">

@@ -35,7 +35,9 @@
     font-family: var(--fontMedium);
     cursor: pointer;
     font-size: 16px;
-
+}
+.additional_card__image__show_more span::first-letter {
+    text-transform: uppercase;
 }
 .additional_card__image__show_more > div {
     display: flex;
