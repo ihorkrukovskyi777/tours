@@ -8,6 +8,7 @@
     font-weight: 700;
     color: #000;
     margin: 0;
+    text-transform: capitalize;
 }
 .process_booking_line .title-text {
     width: 100%;

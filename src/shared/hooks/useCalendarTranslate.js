@@ -10,7 +10,8 @@ export async function useCalendarTranslate(locale) {
     return {
         details: i18n.t('Details'),
         no_thakns: i18n.t('No Thanks'),
-        booking_confirmed: i18n.t('Booking confirmed!'),
+        booking_confirmed_: i18n.t('Booking confirmed!'),
+        booking_confirmed: i18n.t('Booking confirmed'),
         done: i18n.t('Done'),
         pick_a_date: i18n.t('Pick a Date'),
         how_a_many_people: i18n.t('How many people are coming?'),

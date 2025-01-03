@@ -64,7 +64,7 @@ const ModalListToursView = observer(() => {
 
             <div className="step-1 default additional_sales_list">
                 <div className="close-button" onClick={onClose}><CloseSvg/></div>
-                <ProcessBookingLine title={i18n.booking_confirmed} step={2}/>
+                <ProcessBookingLine title={i18n.booking_confirmed_} step={2}/>
                 <div className="additional_sales_list__content">
                     <div className="title_text">
                         {i18n.book_another_tour}
