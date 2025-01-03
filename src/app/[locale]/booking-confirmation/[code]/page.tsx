@@ -117,9 +117,20 @@ export default async function OderPage({params}: { params: { locale: string, cod
     )
 }
 
-export async function generateMetadata() {
+
+export async function generateMetadata({params}) {
+    const title = {
+        en: 'Booking Confirmation',
+        es: 'Confirmación de reserva',
+        'pt-pt': 'Confirmação de reserva',
+        fr: 'Confirmation de réservation',
+        de: 'Buchungsbestätigung',
+        nl: 'Boekingsbevestiging',
+        pl: 'Potwierdzenie rezerwacji',
+        cat: 'Confirmació de reserva',
+    }
     return {
         robots: {index: false, follow: false},
-        title: 'Booking Confirmation',
+        title: title[params.locale],
     }
 }
