@@ -3,7 +3,7 @@ import {notFound} from "next/navigation";
 import LanguageImages from "@shared/ui/languages/language-images";
 import Link from "next/link";
 import {getHrefLocale} from "@/i18n/get-href-locale";
-import {CHECKOUT, PATH_TOURS} from "@shared/constants/route";
+import {ADDITIONAL_ROUTE, CHECKOUT, PATH_TOURS} from "@shared/constants/route";
 import {ServiceDate} from "@shared/service/service-date";
 import {pad2, toHoursAndMinutes} from "@shared/helpers/date";
 import ClockSvg from '@/assets/images/svg/clock-svg';
@@ -45,7 +45,7 @@ export default async function OderPage({params}: { params: { locale: string, cod
 
     }
 
-    const languages = locales.map(locale => ({slug: `orders/${params.code}`, locale}))
+    const languages = locales.map(locale => ({slug: `${ADDITIONAL_ROUTE}/${params.code}`, locale}))
 
     const bookings = await response.json() as Booking[];
     const months = i18n.getMonths();
