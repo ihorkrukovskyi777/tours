@@ -87,7 +87,7 @@ const ModalListToursView = observer(() => {
                         )
                     })}
                 </div>
-                <button className="additional_sales_list__no_thanks" onClick={redirectToCheckout}>{i18n.no_thakns.toLowerCase()}</button>
+                <button className="additional_sales_list__no_thanks" onClick={redirectToCheckout}>{i18n.no_thanks.toLowerCase()}</button>
             </div>
         </ModalBooking>
     )
