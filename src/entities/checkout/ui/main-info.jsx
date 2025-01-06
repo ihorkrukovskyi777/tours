@@ -166,7 +166,7 @@ export default observer(function MainInfo({i18n}) {
                             ></path>
                         </svg>
                         <div>
-                            <span>{i18n.directions}:</span> {checkoutInfo.locationDescription}
+                            <span>{i18n.directions}:</span> <p style={{display: 'inline'}} dangerouslySetInnerHTML={checkoutInfo.locationDescription}></p>
                         </div>
                     </div>)}
                 {checkoutInfo.isShowMap ? <div className="flex-wrap">
