@@ -3,8 +3,14 @@ import {useCallback} from "react";
 import {MODAL} from "@entities/lib/calendar/models/modal-steps.model";
 import {Day} from "@entities/lib/calendar/models/departures/departure-by-day.model";
 import {DepBooking} from "@entities/lib/calendar/@types";
-import {toJS} from "mobx";
+import {fetchCategories} from "@entities/lib/calendar/api/fetch-categories";
+import {
+    CivitatisCategoriesModel,
+    ICivitatisCategory,
+    PayloadRateCivitatis
+} from "@entities/lib/calendar/models/civitatis-categories.model";
 import {useCaseRedirectToCheckout} from "@entities/lib/calendar/usecases/index";
+import {toJS} from "mobx";
 
 
 export function useCaseOpenCalendar() {
@@ -62,9 +68,49 @@ export function useCaseCloseModalBooking() {
 
 export function useCaseBooking() {
     const store = useContextStore();
-    return useCallback(function (dep: DepBooking) {
+    return useCallback(async function (dep: DepBooking) {
         store.modals.openModal(MODAL.FORM_BOOKING)
-        store.formBooking.setDeparture(dep)
+
+        if(Number(dep.is_civitatis) === 1) {
+            store.formBooking.setDeparture(dep)
+            store.loading.set('loading-categories')
+            const categories = await fetchCategories(dep.depId, store.option.page.locale)
+            store.formBooking.setCategories(categories.map(rate => new CivitatisCategoriesModel(rate.rate_id, rate.text,rate.categories, store.option.peopleNumber, dep.maxPerBooking)))
+            store.loading.turnOff('loading-categories')
+        } else {
+            store.formBooking.setDeparture(dep)
+
+        }
+    }, [store])
+}
+
+export function useCaseNextCivitatisAdditionalBooking() {
+    const store = useContextStore();
+    return useCallback(async function (dep: DepBooking, prevCategories: ICivitatisCategory[], peopleNumber: number) {
+        if(Number(dep.is_civitatis) === 1) {
+            store.formBooking.setDeparture(dep)
+            store.loading.set('loading-categories')
+            const categories = await fetchCategories(dep.depId, store.option.page.locale)
+
+
+            store.formBooking.setCategories(categories.map(rate => new CivitatisCategoriesModel(rate.rate_id, rate.text,rate.categories, peopleNumber, dep.maxPerBooking)))
+            store.formBooking.civitatisCategorySelected?.setDistributeByCategories(peopleNumber, prevCategories)
+
+            const orEqual = prevCategories.filter(cat => {
+                return !store.formBooking.civitatisCategorySelected?.categories.some(item => {
+                    return (item.text.toLowerCase() === cat.text.toLowerCase() && item.count === cat.count && item.canBookAlone === cat.canBookAlone)
+                })
+            }).length === 0;
+
+            const firstBooking = store.formBooking.getFirstBooking();
+            if(orEqual && !!prevCategories.length && firstBooking) {
+                await store.formBooking.fetchBookingDeparture(firstBooking.customer, '')
+                return
+            }
+            store.modals.openModal(MODAL.FORM_BOOKING)
+            store.loading.turnOff('loading-categories')
+
+        }
     }, [store])
 }
 

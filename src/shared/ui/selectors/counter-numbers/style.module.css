@@ -8,6 +8,10 @@
 .wrap{
     display: flex;
 }
+.disabled {
+    pointer-events: none;
+    background-color: silver!important;
+}
 .minus, 
 .plus {
     display: inline-block;

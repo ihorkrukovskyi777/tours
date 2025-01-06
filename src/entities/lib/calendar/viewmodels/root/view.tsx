@@ -8,8 +8,8 @@ import {useDeparturesListProps} from "@entities/lib/calendar/viewmodels/departur
 import {useProcessBookingProps} from "@entities/lib/calendar/viewmodels/root/use-props";
 
 import {
-    useCaseCloseCalendar, useCaseCloseDeparturesDay,
-    useCaseOpenCalendar, useCaseOpenDeparturesDay, useCaseBooking
+    useCaseCloseDeparturesDay,
+    useCaseOpenCalendar, useCaseBooking
 } from "@entities/lib/calendar/usecases/modals";
 import FormBookingView from "@entities/lib/calendar/viewmodels/form-booking/view";
 import CalendarView from "@entities/lib/calendar/viewmodels/calendar/view";
@@ -19,6 +19,16 @@ import {useDeparturesDayProps} from "@entities/lib/calendar/viewmodels/departure
 import AdditionalSalesRootView from "@entities/lib/calendar/additiona-sales/viewmodels/root/view";
 import {useHowManyProps} from "@entities/lib/calendar/viewmodels/how-many/use-props";
 import "@/entities/calendar/ui/main/style.css";
+
+
+const WrapperFixRender = observer(() => {
+    return (
+        <>
+            <AdditionalSalesRootView />
+            <FormBookingView/>
+        </>
+    )
+})
 
 const ProcessBookingView = observer(() => {
     const {getters, i18n} = useProcessBookingProps()
@@ -64,8 +74,7 @@ const ProcessBookingView = observer(() => {
                 <HowManyView viewModel={viewModelHowMany}/>
             </CalendarView>
             <DeparturesDayItemsView viewModel={viewModelDeparturesDay}/>
-            <FormBookingView/>
-            <AdditionalSalesRootView />
+            <WrapperFixRender />
         </div>
     )
 })

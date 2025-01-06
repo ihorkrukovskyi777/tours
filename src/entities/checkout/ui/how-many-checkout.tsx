@@ -1,6 +1,5 @@
 import {observer} from "mobx-react-lite";
 import CounterNumbers from "@/shared/ui/selectors/counter-numbers";
-import {useContextProcessBookingI18N} from "@entities/lib/calendar/process-booking.provider";
 interface Props {
     people: number,
     changePeople(val: number): void
@@ -9,10 +8,10 @@ interface Props {
     maxDisabled?: boolean
     minDisabled?: boolean
     minCount?: number
+    i18n: {[key in string]: string}
 }
 
-const HowMany = observer(({ people, changePeople, isEmpty, label, maxDisabled = false, minDisabled = false, minCount = 1} : Props) => {
-    const i18n = useContextProcessBookingI18N()
+const HowManyCheckout = observer(({i18n, people, changePeople, isEmpty, label, maxDisabled = false, minDisabled = false, minCount = 2} : Props) => {
     return (
         <div className="how_many">
             {!isEmpty ?
@@ -28,4 +27,4 @@ const HowMany = observer(({ people, changePeople, isEmpty, label, maxDisabled = 
     )
 })
 
-export default HowMany
+export default HowManyCheckout

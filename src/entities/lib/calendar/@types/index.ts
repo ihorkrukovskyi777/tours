@@ -22,3 +22,17 @@ export interface DepBooking {
     tourId: number
     tourTitle: string
 }
+
+export interface CivitatisCategory {
+    id: number;
+    text: string;
+    canBookAlone: boolean;
+    group: any[];
+}
+
+export interface CivitatisRate {
+    rate_id: number
+    text: string
+    categories: CivitatisCategory[]
+
+}

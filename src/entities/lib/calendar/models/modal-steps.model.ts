@@ -9,17 +9,17 @@ export enum MODAL {
     'ADDITIONAL_SALES_DEP_DAY'
 }
 
-type ModalT = {[key in MODAL]: { index: number, visibly: boolean}}
+type ModalT = {[key in MODAL]: { index: number, visibly: boolean, zIndex: number | null}}
 
 
 export class ModalStepsModel {
     modals: ModalT = {
-        [MODAL.CALENDAR]: { index: 0, visibly: false},
-        [MODAL.DAY_LIST]: { index: 1, visibly: false},
-        [MODAL.FORM_BOOKING]: { index: 2, visibly: false},
-        [MODAL.ADDITIONAL_SALES]: { index: 3, visibly: false},
-        [MODAL.ADDITIONAL_SALES_CALENDAR]: { index: 4, visibly: false},
-        [MODAL.ADDITIONAL_SALES_DEP_DAY]: { index: 5, visibly: false},
+        [MODAL.CALENDAR]: { index: 0, visibly: false, zIndex: null},
+        [MODAL.DAY_LIST]: { index: 1, visibly: false, zIndex: null},
+        [MODAL.FORM_BOOKING]: { index: 2, visibly: false, zIndex: null},
+        [MODAL.ADDITIONAL_SALES]: { index: 3, visibly: false, zIndex: null},
+        [MODAL.ADDITIONAL_SALES_CALENDAR]: { index: 4, visibly: false, zIndex: null},
+        [MODAL.ADDITIONAL_SALES_DEP_DAY]: { index: 5, visibly: false, zIndex: null},
     }
 
     constructor() {
@@ -39,8 +39,9 @@ export class ModalStepsModel {
             body.style.overflow = 'auto'
         }
     }
-    openModal(name: MODAL) {
+    openModal(name: MODAL, zIndex: number | null = null) {
         this.modals[name].visibly = true
+        this.modals[name].zIndex = zIndex
         this.addOverflow();
     }
 

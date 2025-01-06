@@ -9,7 +9,6 @@ import {getHrefLocale} from "@/i18n/get-href-locale";
 import Notification from "@/shared/ui/notification/notification";
 import {validationFirstName, validationEmail, validationPhone} from "@/shared/helpers/validation-form";
 import dynamic from "next/dynamic";
-import recaptcha from "@/shared/util/recaptcha";
 
 const InternationalInput = dynamic(
     () => import("@/shared/ui/selectors/international-input"),
@@ -74,7 +73,7 @@ export default observer(function FormEdit({i18n}) {
     }
 
     const submitForm = async () => {
-        const token = await recaptcha("booking");
+        const token = '';
         const data = await editDeparture.updateDeparture(token);
 
         if ((data?.isEdit === true && data.success) || data?.isCancel) {

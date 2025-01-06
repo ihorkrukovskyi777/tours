@@ -3,11 +3,13 @@ import {sendEventsGTM} from "@shared/helpers/google/send-event";
 import {FormDataBooking} from "@entities/lib/calendar/models/booking-form.model";
 import {DepBooking} from "@entities/lib/calendar/@types";
 import {toJS} from "mobx";
+import {ICivitatisCategory, PayloadRateCivitatis} from "@entities/lib/calendar/models/civitatis-categories.model";
 
 
 interface DepData extends DepBooking {
     pageLocale: string,
     peopleNumber: number
+    civitatisCategories?: PayloadRateCivitatis
 }
 
 export async function fetchBooking (data: FormDataBooking, token: string, dep: DepData) {
@@ -28,6 +30,7 @@ export async function fetchBooking (data: FormDataBooking, token: string, dep: D
         phone_county_slug: phone_country_slug,
         full_number: `${phone_county_code}${phone}`,
         page: 'tour',
+        civitatis_categories: dep.civitatisCategories,
         token,
     }
 

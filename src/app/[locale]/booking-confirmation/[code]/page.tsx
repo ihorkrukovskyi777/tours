@@ -118,7 +118,8 @@ export default async function OderPage({params}: { params: { locale: string, cod
 }
 
 
-export async function generateMetadata({params}) {
+// @ts-ignore
+export async function generateMetadata({params}: { locale: string}) {
     const title = {
         en: 'Booking Confirmation',
         es: 'Confirmación de reserva',
@@ -131,6 +132,7 @@ export async function generateMetadata({params}) {
     }
     return {
         robots: {index: false, follow: false},
-        title: title[params.locale],
+        // @ts-ignore
+        title: title[params?.locale] ?? 'Booking Confirmation',
     }
 }

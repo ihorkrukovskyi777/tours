@@ -42,7 +42,7 @@ function createProcessBookingStore(option: ProcessOption): ProcessBookingStore {
         new DeparturesModel(optionModel),
         new LoadingModel(),
         new BookingFormModel(optionModel),
-        new AdditionalSalesModel(optionModel)
+        new AdditionalSalesModel(new ProcessOptionModel(option))
     )
 }
 

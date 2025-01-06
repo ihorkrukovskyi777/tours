@@ -4,7 +4,8 @@ import {StoreTourLogic} from "@/entities/calendar/store/store-tour-logic";
 import {pad2, setFormatDDMMYYYYtoMMDDYYYY, toHoursAndMinutes} from "@/shared/helpers/date";
 import {cancelBook, fetchEditBooking} from "@/entities/checkout/api";
 import {fetchBookingDepartures} from "@/entities/calendar/api";
-
+import {CivitatisCheckoutModel} from "@/entities/checkout/store/civitatis-categories.model";
+import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
 class CheckoutInfo {
     constructor({
                     voucher,
@@ -115,6 +116,7 @@ class EditDeparture {
                     tour_id,
                     is_civitatis,
                     is_cancel,
+                    civitatis_rate = undefined
                 }, tourLocale, locale, staticCode, date) {
         this.staticCode = staticCode
         this.loading = false;
@@ -142,11 +144,44 @@ class EditDeparture {
         this.openModalDepartureList = false;
         this.date = date
         this.selectedDay = null;
+        this.civCategories = new CivitatisCheckoutModel(civitatis_rate, {
+            onChangePeople: (val) => {
+                this.numberPeople = val;
+            }
+        })
         makeAutoObservable(this, {}, {autoBind: true})
-
 
     }
 
+    async init() {
+        if(this.is_civitatis) {
+            try {
+                const dateHelper = new HelperDateHtml(new Date(this.activityDate))
+                const deps = this.storeDepLogic.getToursByDay(dateHelper.ddMmYy)
+
+                const find = Object.values(deps).flat().find(item => item.fullTime === this.activityDate && item.depId === this.depId);
+
+
+                if(!find) {
+                    throw new Error();
+                }
+
+                let maxBooking = find ? find.maxPerDep : this.numberPeople;
+                maxBooking = maxBooking > (this.numberPeople + find.maxPerBooking) ? this.numberPeople + find.maxPerBooking : maxBooking
+                await this.civCategories.fetchEditCivitatisCategories(this.depId, this.locale, this.numberPeople, maxBooking)
+            } catch (err) {
+                await this.civCategories.fetchEditCivitatisCategories(this.depId, this.locale, this.numberPeople, this.numberPeople)
+            }
+        }
+
+    }
+
+    get numberPeopleOrCiv() {
+        if(this.civCategories.rate) {
+            return this.civCategories.rate.total
+        }
+        return this.numberPeople
+    }
     get isEdit() {
         return Number(this.edit) === Number(this.depId)
     }
@@ -162,7 +197,13 @@ class EditDeparture {
         return null;
     }
 
-    saveNewDep(newDep) {
+    async saveNewDep(newDep) {
+
+        if(newDep.is_civitatis) {
+            await this.civCategories.fetchNewCategories(newDep.depId, this.locale, this.numberPeople, newDep.maxPerBooking)
+        } else {
+            await this.civCategories.reset()
+        }
         this.resetSelectedDay();
         this.depId = newDep.depId;
         this.tourId = newDep.tourId;
@@ -176,12 +217,18 @@ class EditDeparture {
 
     * updateDeparture(token) {
 
+
+        let people = this.numberPeople
+
+        if(this.is_civitatis) {
+            people = this.civCategories.rate.total
+        }
         const body = {
             curLang: this.locale,
             dep_id: this.depId,
             tour_id: this.tourId,
             is_civitatis: this.is_civitatis ? 1 : 0,
-            number_people: this.numberPeople,
+            number_people: people,
             email: this.email,
             first_name: this.firstName,
             last_name: this.lastName,
@@ -190,9 +237,9 @@ class EditDeparture {
             full_time: this.fullTime,
             phone_county_slug: this.countrySlug,
             full_number: `${this.dialCode} ${this.phone}`,
+            civitatis_categories: this.civCategories?.rate?.dataRate ?? [],
             token: token,
         }
-
 
         try {
             this.loading = true;
@@ -201,7 +248,7 @@ class EditDeparture {
             } else {
                 body.phone = this.phoneNumber;
                 if (this.is_civitatis || this.editCivitatis) {
-                    return yield this.bookingAndCancel(body, this.cancelMessage);
+                    return yield this.cancelAndBookCivitatis(body, this.cancelMessage);
                 } else {
                     return yield this.bookingAndCancel(body, this.cancelMessage);
                 }
@@ -309,8 +356,9 @@ class EditDeparture {
         }
     }
 
-    fetchDepartures() {
-        this.storeDepLogic.fetchDepartures();
+    * fetchDepartures() {
+        yield this.storeDepLogic.fetchDepartures();
+        this.init().then()
     }
 
     get phoneNumber() {

@@ -10,6 +10,7 @@ const createOptionModel = (tour: DataTourSale, peopleNumber: number) => {
     const [locale] = tour.departure.locales;
     return new ProcessOptionModel({
         i18n: {},
+        isGuide: false,
         locale: locale.code,
         title: tour.title,
         nameDayWeek: true,

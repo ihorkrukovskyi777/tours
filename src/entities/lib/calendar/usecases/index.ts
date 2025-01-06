@@ -7,9 +7,13 @@ import {MODAL} from "@entities/lib/calendar/models/modal-steps.model";
 import {Day} from "@entities/lib/calendar/models/departures/departure-by-day.model";
 import {fetchBooking} from "@entities/lib/calendar/api/fetch-booking";
 import {DepBooking} from "@entities/lib/calendar/@types";
-import {fetchBookingsAdditional} from "@entities/lib/calendar/api/fetch-additionals-booking";
+import {BookingsAdditionalDto, fetchBookingsAdditional} from "@entities/lib/calendar/api/fetch-additionals-booking";
 import {ADDITIONAL_ROUTE, CHECKOUT} from "@shared/constants/route";
+import {
+    useCaseNextCivitatisAdditionalBooking
+} from "@entities/lib/calendar/usecases/modals";
 import {toJS} from "mobx";
+
 export function useFetchDepartures() {
     const store = useContextStore();
     return useCallback(async function () {
@@ -68,17 +72,25 @@ export function useCaseRedirectToCheckout() {
 export function useCaseFetchBooking() {
     const store = useContextStore();
     const redirect = useCaseRedirectToCheckout()
-
+    const setAdditionalBooking = useFetchAdditionalRedirect();
     return useCallback(async function (data: FormDataBooking, token: string) {
         try {
             store.loading.set('fetch-booking')
             await store.formBooking.fetchBookingDeparture(data, token)
+
+            if (store.formBooking.bookings.length > 1) {
+
+                await setAdditionalBooking(store.formBooking.bookings.map(item => ({ type: item.type, booking_id: item.booking_id})))
+                return;
+            }
+
             const booking = store.formBooking.getFirstBooking();
             if (!booking || !!store.formBooking.errors.length) {
                 store.loading.turnOff('fetch-booking')
                 return null
             }
 
+            store.additionalSales.option.setPeople(store.formBooking.lastBookingPeopleNumber ?? 1)
             store.additionalSales.setCustomer(booking.customer)
             await store.additionalSales.fetchAnotherTour(booking.booking_id, store.option.page.locale, store.formBooking.tours_ids)
             store.modals.openModal(MODAL.ADDITIONAL_SALES)
@@ -109,37 +121,62 @@ export function useCaseOpenDeparturesDayAdditional() {
     }, [store])
 }
 
+export function useFetchAdditionalRedirect() {
+    const store = useContextStore()
+    const {push} = useRouter()
+    const redirect = useCaseRedirectToCheckout();
+
+
+    return useCallback(async function (bookings: BookingsAdditionalDto[]) {
+        try {
+            const order = await fetchBookingsAdditional(bookings)
+
+            if (order) {
+                const url = getHrefLocale(store.option.page.locale, `${ADDITIONAL_ROUTE}/${order}`)
+                await push(url)
+            } else {
+                throw new Error()
+            }
+        } catch (err) {
+            await redirect();
+        }
+    }, [])
+}
+
 export function useCaseFetchBookingAdditional() {
     const store = useContextStore();
     const redirect = useCaseRedirectToCheckout();
-    const { push } = useRouter()
+    const nextCivitatisAdditionalBooking = useCaseNextCivitatisAdditionalBooking();
+    const setAdditionalBooking = useFetchAdditionalRedirect();
 
     return useCallback(async function (dep: DepBooking) {
         const depModel = store.additionalSales.selectTourCalendar.departuresModel?.departuresCalendar
         const booking = store.formBooking.getFirstBooking();
-
         if (depModel && booking) {
             try {
-                store.loading.set('additional-booking')
-                const data = await fetchBooking(booking.customer, '', {
-                    ...dep,
-                    peopleNumber: depModel.option.peopleNumber,
-                    pageLocale: depModel.option.page.locale
-                })
 
-                const order = await fetchBookingsAdditional([data.data, ...store.formBooking.bookings])
+                if (!dep.is_civitatis) {
+                    store.loading.set('additional-booking')
+                    const data = await fetchBooking(booking.customer, '', {
+                        ...dep,
+                        peopleNumber: depModel.option.peopleNumber,
+                        pageLocale: depModel.option.page.locale,
+                        civitatisCategories: undefined
+                    })
+                    await setAdditionalBooking([
+                        data.data,
+                        ...store.formBooking.bookings.map(item => ({type: item.type, booking_id: item.booking_id}))
+                    ])
 
-
-                if(order) {
-                    const url = getHrefLocale(store.option.page.locale, `${ADDITIONAL_ROUTE}/${order}`)
-                    await push(url)
                 } else {
-                    throw new Error()
+                    store.loading.set('additional-booking')
+                    await nextCivitatisAdditionalBooking(dep, store.formBooking.lastBookingCivCategories, depModel.option.peopleNumber)
+                    store.loading.turnOff('additional-booking')
                 }
 
             } catch (err) {
+                console.log(err)
                 await redirect();
-
             }
 
         }

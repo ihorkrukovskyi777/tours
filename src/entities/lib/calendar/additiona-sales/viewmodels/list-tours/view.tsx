@@ -10,14 +10,12 @@ import useEscHooks from "@shared/hooks/use-esc-event";
 import ProcessBookingLine from "@entities/lib/calendar/ui/process-booking-line";
 import {extract} from "@shared/helpers/index"
 import {useEffect,  useRef, useState} from "react";
-import {useRouter} from "next/navigation";
 import {useCaseRedirectToCheckout} from "@entities/lib/calendar/usecases";
 import '@entities/lib/calendar/styles/additional-sales-list.css'
 
 
 const ModalListToursView = observer(() => {
 
-    const { push } = useRouter()
     const [init, setInit] = useState(false)
     const ref = useRef<HTMLParagraphElement>(null)
 
