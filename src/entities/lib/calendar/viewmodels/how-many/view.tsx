@@ -13,7 +13,6 @@ interface Props {
 }
 
 const HowManyView = observer(({viewModel}: Props) => {
-
     return (
         <HowMany
             people={viewModel.peopleNumber}

@@ -7,6 +7,8 @@ import {observer} from "mobx-react-lite";
 import DefaultModal from "@/shared/ui/modals/default-modal";
 import ChooseDate from "@/entities/checkout/ui/calendar/choose-date";
 import {HelperDateHtml} from "@/shared/helpers/helperDateHtml";
+import CivitatisCategoriesCheckout from "@/entities/checkout/ui/civitatis-categories-checkout";
+import Loader from "@/shared/ui/loaders/default-loader";
 import './style.css';
 
 export default observer(function EditModalTour({i18n}) {
@@ -32,10 +34,17 @@ export default observer(function EditModalTour({i18n}) {
             className={classNames({'show_modal': modalEdit}, 'edit_tour_modal transition')}
         >
             <div className="modal_content">
+
                 <DefaultModal halfOpacity={modalEdit} modalShow={chooseDateModal} isOpenedModal={toggleModalChoose}  size={'small'}>
                      <ChooseDate i18n={i18n}/>
                 </DefaultModal>
                 <div className="flex-wrap">
+                    {editDeparture.civCategories.isLoading &&
+                        <div className="checkout_edit_tour_loader">
+                            <Loader/>
+                        </div>
+                    }
+
                     <div className="close-button" onClick={toggleModalEdit}>
                         ×
                     </div>
@@ -61,8 +70,9 @@ export default observer(function EditModalTour({i18n}) {
                                 ></path>
                             </svg>
                             <strong>{i18n.number_people}:</strong>
-                            <div>{editDeparture.numberPeople}</div>
+                            <div>{editDeparture.numberPeopleOrCiv}</div>
                         </div>
+                        { editDeparture.civCategories && <CivitatisCategoriesCheckout model={editDeparture.civCategories}/> }
                         <FormEdit i18n={i18n}/>
                     </div>
                 </div>

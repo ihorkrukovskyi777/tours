@@ -4,23 +4,29 @@ import classNames from 'classnames';
 import './style.css';
 
 export default function ModalBooking({
-                                         children, show, changeData = undefined, size, halfOpacity = false, close = () => {
-    }
+                                         style = {},
+                                         children,
+                                         show,
+                                         changeData = undefined,
+                                         size,
+                                         halfOpacity = false,
+                                         close = () => {
+                                         }
                                      }) {
 
     const bgRef = useRef(null)
     const opacity = halfOpacity ? {backgroundColor: `rgba(0, 0, 0, 0.3)`} : {}
-        return (
+    return (
         <div
             ref={bgRef}
             onClick={(e) => {
-                if(e.target === bgRef.current) {
+                if (e.target === bgRef.current) {
                     close();
                 }
             }}
             className={classNames({'show_modal': show}, `custom_modal transition ${size}`)}
             style={{...opacity, visibility: show ? 'visible' : 'hidden', pointerEvents: show ? 'auto' : 'none'}}>
-            <div className={classNames('modal_content', {'change': changeData})}>
+            <div className={classNames('modal_content', {'change': changeData})} style={style}>
                 <div className="flex-wrap">
                     {children}
                 </div>

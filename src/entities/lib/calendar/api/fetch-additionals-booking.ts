@@ -1,5 +1,5 @@
 
-interface BookingsAdditionalDto  {
+export interface BookingsAdditionalDto  {
     booking_id: string,
     type: string
 }

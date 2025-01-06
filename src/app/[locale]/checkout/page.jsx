@@ -79,6 +79,7 @@ export default async function CheckoutPage({params: {locale}, searchParams}) {
         notification_wrong: i18n.t('Something went wrong, we couldn\'t change your order'),
         additional_information: i18n.t('Additional Information'),
         flexible: i18n.t('Flexible'),
+        max_number_of_people_per_booking: i18n.t('Maximum number of people per booking'),
         genitive: {
             months: {
                 ...i18nGenitive.getMonths(),

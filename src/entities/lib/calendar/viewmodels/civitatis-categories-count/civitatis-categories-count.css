@@ -1,0 +1,23 @@
+.civitatis_categories_count {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-direction: column;
+    width: fit-content;
+    margin-top: 25px;
+    grid-gap: 20px;
+}
+@media (max-width: 767px) {
+    .civitatis_categories_count {
+        grid-template-columns: 1fr;
+    }
+}
+.civitatis_categories_count .how_many {
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto 132px;
+    gap: 20px;
+    margin-top: 0!important;
+}
+.civitatis_categories_count .how_many div:last-child {
+    margin-top: 0;
+}

@@ -1,8 +1,12 @@
-import {makeAutoObservable} from "mobx";
+import {makeAutoObservable, runInAction, toJS} from "mobx";
 import {StorePhone} from "@/entities/calendar/store/store-phone";
 import {ProcessOptionModel} from "@entities/lib/calendar/models/process-option.model";
-import {DepBooking} from "@entities/lib/calendar/@types";
+import { DepBooking} from "@entities/lib/calendar/@types";
 import {fetchBooking} from "@entities/lib/calendar/api/fetch-booking";
+import {
+    CivitatisCategoriesModel,
+    ICivitatisCategory,
+} from "@entities/lib/calendar/models/civitatis-categories.model";
 
 export interface FormDataBooking {
     tourName: string,
@@ -18,7 +22,7 @@ interface Booking {
     type: 'civitatis' | 'oneport'
     booking_id: string
     customer: FormDataBooking
-
+    civitatis_categories: ICivitatisCategory[]
     tour_id: number
 }
 
@@ -29,6 +33,11 @@ export class BookingFormModel {
 
     bookings: Booking[] = [];
 
+    civitatisCategories: CivitatisCategoriesModel[] = [];
+    civitatisCategorySelected: CivitatisCategoriesModel | null = null;
+
+    lastBookingPeopleNumber: number | null = null
+
     constructor(readonly option: ProcessOptionModel) {
         this.departure = null;
         this.phone = new StorePhone(option.page.locale)
@@ -36,13 +45,27 @@ export class BookingFormModel {
         makeAutoObservable(this, {}, {autoBind: true});
     }
 
+    setCategories(categories: CivitatisCategoriesModel[]) {
+        this.civitatisCategories = categories
+        if (categories.length) {
+            this.civitatisCategorySelected = categories[0]
+        }
+    }
+
+    get lastBookingCivCategories() {
+
+        return [...this.bookings].findLast(book => !!book.civitatis_categories.length)?.civitatis_categories ?? []
+    }
+
     setDeparture(dep: DepBooking | null) {
+        this.reset()
         this.departure = dep;
     }
 
     reset() {
-        this.bookings = []
-        this.setDeparture(null)
+        this.civitatisCategories = [];
+        this.civitatisCategorySelected = null
+        this.departure = null
     }
 
     getFirstBooking() {
@@ -64,17 +87,23 @@ export class BookingFormModel {
         this.errors = [];
 
 
+        const peopleNumber = this.civitatisCategorySelected?.peopleNumber ?? this.option.peopleNumber
+
         const results = await fetchBooking(data, token, {
             ...this.departure,
             pageLocale: this.option.page.locale,
-            peopleNumber: this.option.peopleNumber
+            peopleNumber: peopleNumber,
+            civitatisCategories: this.civitatisCategorySelected?.dataRate
         });
 
         if (!!results.success === false) {
             this.errors = Object.values(results.errors)
             return null
         }
-        this.bookings.push(results.data)
+        runInAction(() => {
+            this.lastBookingPeopleNumber = peopleNumber
+            this.bookings.push({...results.data, civitatis_categories: this.civitatisCategorySelected?.notEmptyCategories ?? []})
+        })
         return results
     }
 }

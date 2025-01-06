@@ -1,4 +1,6 @@
 // get api results
+import { serialize } from 'object-to-formdata';
+
 export const fetchDepartures = async (id, type = 'city', locale = 'en') => {
     try {
         let code = '';
@@ -22,11 +24,9 @@ export const fetchDepartures = async (id, type = 'city', locale = 'en') => {
 
 export const fetchBookingDepartures = async (body) => {
 
-    const formData = new FormData();
+    const formData = serialize(body, { indices: true})
 
-    for ( const key in body ) {
-        formData.append(key, body[key]);
-    }
+
     const data =  await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS}/wp-json/oneport/v1/booking`, {
         method: 'POST',
         body: formData

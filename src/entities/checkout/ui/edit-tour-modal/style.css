@@ -25,6 +25,17 @@
 	align-items: center;
     min-width: 30vw;
 }
+.edit_tour_modal .modal_content > .flex-wrap {
+    position: relative;
+}
+.edit_tour_modal .checkout_edit_tour_loader {
+    position: absolute;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    opacity: 0.8;
+}
 .edit_tour_modal.transition {
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
@@ -37,11 +48,14 @@
 	border-radius: 16px;
 	z-index: 2;
 	margin: 0 auto;
-	padding: 30px 30px 50px;
 	max-height: 90vh;
 	overflow: auto;
     min-width: 640px;
     position: relative;
+    padding: 0;
+}
+.edit_tour_modal .modal_content > .flex-wrap {
+    padding: 30px 30px 50px;
 }
 .edit_tour_modal .modal_content .button_custom {
     padding: 18px 10px;

@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx";
-type Loading = 'main' | 'fetch-booking' | 'additional' | 'additional-booking'
+type Loading = 'main' | 'fetch-booking' | 'additional' | 'additional-booking' | 'loading-categories'
 export class LoadingModel {
 
     private loading: Loading[] = ['main']
@@ -22,6 +22,9 @@ export class LoadingModel {
 
     get isBookingLoading() {
         return !!this.loading.find(val => val === 'fetch-booking')
+    }
+    get isLoadingCategories() {
+        return !!this.loading.find(val => val === 'loading-categories')
     }
 
     get isAdditionalBooking() {

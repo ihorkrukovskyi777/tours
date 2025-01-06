@@ -18,6 +18,7 @@ import './style.css';
 export default observer(function Step3({
                                            isRedirect = true,
                                            i18n,
+                                           categories = null,
                                            onChange,
                                            people,
                                            errors,
@@ -44,7 +45,6 @@ export default observer(function Step3({
     const time = toHoursAndMinutes(departure.time);
     const duration = toHoursAndMinutes(departure.duration * 60);
 
-
     const isShowTimeDep = !departure.is_self_guide
     return (
         <div className={`step-3 ${size}`}>
@@ -61,7 +61,7 @@ export default observer(function Step3({
             <div className="flex-change">
                 <div className="flex-box">
                     <div className="item-data">
-                        { departure.dateLabel && <div className="choosen-date">{departure.dateLabel}</div>}
+                        {departure.dateLabel && <div className="choosen-date">{departure.dateLabel}</div>}
                         <div
                             className="time-current-modal">
                             <span>{i18n.days[serviceDate.day]}, {serviceDate.dayNum} {i18n.months[serviceDate.month]} </span>
@@ -96,6 +96,9 @@ export default observer(function Step3({
                     </div>
                 }
 
+            </div>
+            <div className="dsadsasda">
+                {categories}
             </div>
             <FormCalendar
                 isRedirect={isRedirect}
