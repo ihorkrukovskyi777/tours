@@ -1,6 +1,6 @@
 
 export const fallbackLng = 'en';
-export const locales = [fallbackLng, 'fr', 'de', 'es', 'it', 'ru', 'pl', 'pt-pt', 'nl', 'cat'];
+export const locales = [fallbackLng, 'es', 'fr', 'de',  'it', 'pt-pt', 'pl', 'cat', 'nl', 'ru'];
 export const defaultNS = 'tour-strawbery';
 export const genitiveNS = 'tour-strawbery-genitive'
 

@@ -7,7 +7,7 @@ import {ADDITIONAL_ROUTE, CHECKOUT, PATH_TOURS} from "@shared/constants/route";
 import {ServiceDate} from "@shared/service/service-date";
 import {pad2, toHoursAndMinutes} from "@shared/helpers/date";
 import ClockSvg from '@/assets/images/svg/clock-svg';
-import ChangeOfLanguage from "@shared/ui/languages/change-of-language/change-of-language";
+import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import {locales} from "@/i18n/settings";
 import './style.css'
 
@@ -45,7 +45,7 @@ export default async function OderPage({params}: { params: { locale: string, cod
 
     }
 
-    const languages = locales.map(locale => ({slug: `${ADDITIONAL_ROUTE}/${params.code}`, locale}))
+    const languages = locales.filter(locale => locale !== 'ru').map(locale => ({slug: `${ADDITIONAL_ROUTE}/${params.code}`, locale}))
 
     const bookings = await response.json() as Booking[];
     const months = i18n.getMonths();
@@ -104,15 +104,17 @@ export default async function OderPage({params}: { params: { locale: string, cod
                 </div>
 
             </div>
-            <ChangeOfLanguage
+            <I18nChangeOfLanguage
                 languages={languages}
                 addQueries={false}
                 title={i18n.t('Booking Confirmation')}
+                locale={params.locale}
                 i18n={{
                     load_more: i18n.t('Load More'),
                     free_tour_tour_language: ''
                 }}
             />
+
         </div>
     )
 }
