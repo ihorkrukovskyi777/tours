@@ -9,7 +9,7 @@ import {
     ICivitatisCategory,
     PayloadRateCivitatis
 } from "@entities/lib/calendar/models/civitatis-categories.model";
-import {useCaseRedirectToCheckout} from "@entities/lib/calendar/usecases/index";
+import {useCaseRedirectToCheckout, useFetchAdditionalRedirect} from "@entities/lib/calendar/usecases/index";
 import {toJS} from "mobx";
 
 
@@ -86,6 +86,8 @@ export function useCaseBooking() {
 
 export function useCaseNextCivitatisAdditionalBooking() {
     const store = useContextStore();
+    const setAdditionalBooking = useFetchAdditionalRedirect();
+
     return useCallback(async function (dep: DepBooking, prevCategories: ICivitatisCategory[], peopleNumber: number) {
         if(Number(dep.is_civitatis) === 1) {
             store.formBooking.setDeparture(dep)
@@ -108,7 +110,8 @@ export function useCaseNextCivitatisAdditionalBooking() {
                 return
             }
             store.modals.openModal(MODAL.FORM_BOOKING)
-            store.loading.turnOff('loading-categories')
+
+            await setAdditionalBooking(store.formBooking.bookings.map(item => ({type: item.type, booking_id: item.booking_id})))
 
         }
     }, [store])
