@@ -54,6 +54,7 @@ export default observer(function ButtonsInfo({i18n, title}) {
                     onClick={loadingCancelBooking}
                     href={getHrefLocale(params.locale, `cancel-book?cancelCode=${code}`)}
                 >
+                    {getHrefLocale(params.locale, `cancel-book?cancelCode=${code}`)}
                     {i18n.cancel_book}
                 </a> : null}
 
