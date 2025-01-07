@@ -64,13 +64,14 @@ export class CivitatisCategoriesModel {
         })
     }
     setDistributeByCategories(peopleNumber: number, oldCategories: ICivitatisCategory[]) {
-        this.resetCatCount();
         const isMatchCategories = !oldCategories.some(cat =>
             !this.categories.find(item => item.text.toLowerCase().trim() === cat.text.toLowerCase().trim() && cat.canBookAlone === item.canBookAlone)
         )
 
 
         if (isMatchCategories) {
+            this.resetCatCount();
+
             let count = peopleNumber;
 
             const categories = [...this.categories].sort((a, b) => Number(b.canBookAlone) - Number(a.canBookAlone))
