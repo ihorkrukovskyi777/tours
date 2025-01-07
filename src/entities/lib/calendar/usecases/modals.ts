@@ -86,6 +86,8 @@ export function useCaseBooking() {
 
 export function useCaseNextCivitatisAdditionalBooking() {
     const store = useContextStore();
+    const setAdditionalBooking = useFetchAdditionalRedirect();
+
 
     return useCallback(async function (dep: DepBooking, prevCategories: ICivitatisCategory[], peopleNumber: number) {
         if(Number(dep.is_civitatis) === 1) {
@@ -106,6 +108,7 @@ export function useCaseNextCivitatisAdditionalBooking() {
             const firstBooking = store.formBooking.getFirstBooking();
             if(orEqual && !!prevCategories.length && firstBooking) {
                 await store.formBooking.fetchBookingDeparture(firstBooking.customer, '')
+                await setAdditionalBooking(store.formBooking.bookings.map(item => ({type: item.type, booking_id: item.booking_id})))
                 return
             }
             store.modals.openModal(MODAL.FORM_BOOKING)
