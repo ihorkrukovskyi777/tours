@@ -77,12 +77,11 @@ export function useCaseFetchBooking() {
         try {
             store.loading.set('fetch-booking')
             await store.formBooking.fetchBookingDeparture(data, token)
-
             if (store.formBooking.bookings.length > 1) {
-
                 await setAdditionalBooking(store.formBooking.bookings.map(item => ({ type: item.type, booking_id: item.booking_id})))
                 return;
             }
+
 
             const booking = store.formBooking.getFirstBooking();
             if (!booking || !!store.formBooking.errors.length) {
@@ -163,10 +162,15 @@ export function useCaseFetchBookingAdditional() {
                         pageLocale: depModel.option.page.locale,
                         civitatisCategories: undefined
                     })
-                    await setAdditionalBooking([
-                        data.data,
-                        ...store.formBooking.bookings.map(item => ({type: item.type, booking_id: item.booking_id}))
-                    ])
+                    if(data.data?.booking_id) {
+                        await setAdditionalBooking([
+                            data.data,
+                            ...store.formBooking.bookings.map(item => ({type: item.type, booking_id: item.booking_id}))
+                        ])
+                    } else {
+                        await setAdditionalBooking(store.formBooking.bookings.map(item => ({type: item.type, booking_id: item.booking_id})))
+                    }
+
 
                 } else {
                     store.loading.set('additional-booking')

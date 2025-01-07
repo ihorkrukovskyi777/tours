@@ -45,6 +45,9 @@ export class BookingFormModel {
         makeAutoObservable(this, {}, {autoBind: true});
     }
 
+    get isError() {
+        return !!this.errors.length
+    }
     setCategories(categories: CivitatisCategoriesModel[]) {
         this.civitatisCategories = categories
         if (categories.length) {
@@ -98,6 +101,9 @@ export class BookingFormModel {
 
         if (!!results.success === false) {
             this.errors = Object.values(results.errors)
+            if(this.errors.filter(val => !!val).length === 0) {
+                this.errors.push('Unknown error');
+            }
             return null
         }
         runInAction(() => {
