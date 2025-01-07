@@ -50,8 +50,7 @@ export class CivitatisCheckoutModel {
             const rate = rates[0]
             this.rate = new CivitatisCategoriesModel(rate.rate_id, rate.text, rate.categories, number_people, max_number_people);
 
-            this.rate.setDistributeByCategories(number_people, this.cacheOldSelect)
-;
+            this.rate.setDistributeByCategories(number_people, this.cacheOldSelect);
             this.isLoading = false
         })
     }
