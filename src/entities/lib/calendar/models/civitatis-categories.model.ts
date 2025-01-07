@@ -58,8 +58,13 @@ export class CivitatisCategoriesModel {
         }
     }
 
+    private resetCatCount() {
+        this.categories.forEach(cat => {
+            cat.count = 0;
+        })
+    }
     setDistributeByCategories(peopleNumber: number, oldCategories: ICivitatisCategory[]) {
-
+        this.resetCatCount();
         const isMatchCategories = !oldCategories.some(cat =>
             !this.categories.find(item => item.text.toLowerCase().trim() === cat.text.toLowerCase().trim() && cat.canBookAlone === item.canBookAlone)
         )

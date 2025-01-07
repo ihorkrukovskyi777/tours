@@ -175,7 +175,6 @@ export function useCaseFetchBookingAdditional() {
                 }
 
             } catch (err) {
-                console.log(err)
                 await redirect();
             }
 
