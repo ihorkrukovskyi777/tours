@@ -10,6 +10,11 @@
     margin: auto;
 
 }
+.page_orders .page_orders_error {
+    color: var(--main_color);
+    text-align: center;
+    display: block;
+}
 .page_orders h1 {
     font-size: 24px;
     max-width: 600px;

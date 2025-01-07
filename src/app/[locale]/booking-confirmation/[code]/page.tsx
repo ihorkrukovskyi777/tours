@@ -61,6 +61,7 @@ export default async function OderPage({params}: { params: { locale: string, cod
     return (
         <div className="page_orders_container">
             <div className="page_orders">
+                {bookings.length === 1 ? <span className="page_orders_error">{i18n.t('An error occurred while booking an additional tour.')}</span> : null}
                 <h1>{i18n.t('Click on the links below to see full booking confirmation and manage your bookings.')}</h1>
 
                 <div className="page_orders__items">
