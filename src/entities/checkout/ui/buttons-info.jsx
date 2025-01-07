@@ -44,6 +44,15 @@ export default observer(function ButtonsInfo({i18n, title}) {
             })
         } catch (err) {
             console.log(err)
+        } finally {
+            redirectPage()
+
+        }
+    }
+
+    const redirectPage = () => {
+        if(typeof window !== 'undefined') {
+            window.location.href =  getHrefLocale(params.locale, `cancel-book?cancelCode=${code}`)
         }
     }
     return (
@@ -53,14 +62,13 @@ export default observer(function ButtonsInfo({i18n, title}) {
             {isContactGuide && !isSelfGuide ?
                 <Button customClass="gray" onClick={toggleModalMessage}> {i18n.contact_your_guide} </Button> : null}
             {isActiveCheckout && !isSelfGuide ?
-                <a
+                <span
                     className="button_custom gray"
                     onClick={loadingCancelBooking}
-                    href={getHrefLocale(params.locale, `cancel-book?cancelCode=${code}`)}
                 >
-                    {getHrefLocale(params.locale, `cancel-book?cancelCode=${code}`)}
+
                     {i18n.cancel_book}
-                </a> : null}
+                </span> : null}
 
         </div>
     );
