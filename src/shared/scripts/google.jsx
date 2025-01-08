@@ -258,6 +258,7 @@ var klaroConfig = {
             purposeItem: {
                 services: 'services',
             },
+            privacyPolicyUrl: '/cat/avis-legal-page',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -291,7 +292,7 @@ var klaroConfig = {
                 text: '{privacyPolicy}.',
                 name: 'política de privacidad.',
             },
-            privacyPolicyUrl: '/es/aviso-legal',
+            privacyPolicyUrl: '/es/aviso-legal-page',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             
@@ -331,6 +332,7 @@ var klaroConfig = {
             purposeItem: {
                 services: 'services',
             },
+            privacyPolicyUrl: '/pt-pt/legal-page',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -370,6 +372,7 @@ var klaroConfig = {
             purposeItem: {
                 services: 'services',
             },
+            privacyPolicyUrl: '/de/rechtliches-page',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -409,6 +412,7 @@ var klaroConfig = {
             purposeItem: {
                 services: 'services',
             },
+            privacyPolicyUrl: '/fr/mentions-legales-page',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -448,6 +452,7 @@ var klaroConfig = {
             purposeItem: {
                 services: 'services',
             },
+            privacyPolicyUrl: '/it/condizioni-legali-page',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -487,6 +492,7 @@ var klaroConfig = {
             purposeItem: {
                 services: 'services',
             },
+            privacyPolicyUrl: '/pl/prawne-page',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -565,6 +571,7 @@ var klaroConfig = {
             purposeItem: {
                 services: 'services',
             },
+            privacyPolicyUrl: '/cat/avis-legal-page',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
@@ -604,6 +611,7 @@ var klaroConfig = {
             purposeItem: {
                 services: 'services',
             },
+            privacyPolicyUrl: '/nl/wettelijk-page',
             poweredBy: 'view config',
             ok: 'Wohoo!',
             purposes: {
