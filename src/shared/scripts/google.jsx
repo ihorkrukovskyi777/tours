@@ -212,7 +212,7 @@ var klaroConfig = {
             This can e.g. be useful for defining a fallback privacy policy URL.
         */
         zz: {
-            privacyPolicyUrl: '/legal',
+            privacyPolicyUrl: '/legal-page',
 
         },
         en: {
