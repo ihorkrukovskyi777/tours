@@ -135,7 +135,7 @@ export default class CalendarModel {
 
     getFormatDay(day) {
         const today = new Date(day);
-        const yyyy = today.getFullYear().toString().substr(-2);
+        const yyyy = today.getFullYear().toString()?.substr(-2);
         let mm = today.getMonth() + 1; // Months start at 0!
         let dd = today.getDate();
 
