@@ -41,6 +41,7 @@
   margin: 45px auto 0 auto;
   right: calc((1260px - 650px) / 3);
   position: relative;
+  word-break: break-word;
 }
 
 .checkout_section .additional-information h3 {
@@ -54,6 +55,7 @@
   font-size: 20px;
   font-weight: 400;
   line-height: 21px;
+  word-break: break-word;
 }
 .loader_checkout {
   position: fixed;
