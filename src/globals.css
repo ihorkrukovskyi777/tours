@@ -17,7 +17,7 @@
   --font_700: "Geomanist700", var(--font-ciliric);
 
 
-  --bokun-color-primary: #00A5FF;
+  --bokun-color-primary: #E10600;
   --bokun-color-price: rgba(29, 199, 36, 1);
   --bokun-color-success: #1DC724;
   --bokun-color-error: #ed4337;
@@ -26,6 +26,9 @@
   --bokun-color-title: #34404E;
   --bokun-color-subtitle: #57646F;
   --bokun-color-ui-secondary-text: #617688;
+  --bokun-font-primary: var(--font);
+  --bokun-font-secondary-title: var(--font);
+  --bokun-font-size-title: 24px;
 }
 
 html,

@@ -9,6 +9,7 @@ import {useSearchParams} from "next/navigation";
 import {ReferralTraffic} from "@/bokun-widget/src/entity/users-traffic-store";
 import {Ii18n} from "@/bokun-widget/src/common/i18n.type";
 import 'react-responsive-modal/styles.css';
+import './style.scss';
 
 interface Props {
     i18n: Ii18n
