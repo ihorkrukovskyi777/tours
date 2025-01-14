@@ -1,0 +1,3 @@
+[submodule "src/bokun-widget"]
+	path = src/bokun-widget
+	url = git@github.com:7FridaysDeveloper/bokun-widget.git

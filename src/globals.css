@@ -15,6 +15,17 @@
   --font_400: "Geomanist400", var(--font-ciliric);
   --font_500: "Geomanist500", var(--font-ciliric);
   --font_700: "Geomanist700", var(--font-ciliric);
+
+
+  --bokun-color-primary: #00A5FF;
+  --bokun-color-price: rgba(29, 199, 36, 1);
+  --bokun-color-success: #1DC724;
+  --bokun-color-error: #ed4337;
+  --bokun-color-disabled: #CCCCCC;
+  --bokun-color-disabled-text: #969696;
+  --bokun-color-title: #34404E;
+  --bokun-color-subtitle: #57646F;
+  --bokun-color-ui-secondary-text: #617688;
 }
 
 html,
