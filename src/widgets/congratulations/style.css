@@ -1,0 +1,59 @@
+.congratulations {
+    padding: 100px 0;
+}
+.congratulations h1 {
+    font-size: 24px;
+    text-align: center;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+.congratulations .sub_title {
+    font-size: 20px;
+    text-align: center;
+    font-family: var(--fontMedium);
+    max-width: 500px;
+    margin: auto;
+}
+.congratulations .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 16px;
+    margin-top: 32px;
+}
+.congratulations .see-all {
+    display: table;
+    margin: 26px auto;
+    color: #000000;
+    text-decoration: underline;
+    font-size: 16px;
+    font-family: var(--fontMedium);
+}
+.congratulations .create_account {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    font-family: var(--fontMedium);
+    font-size: 20px;
+    padding: 17px 10px;
+}
+.congratulations .decline_credit {
+    width: auto;
+    text-align: center;
+    justify-content: center;
+    font-family: var(--fontMedium);
+    font-size: 16px;
+    background: #F6F6F6;
+    padding: 13px 24px;
+    margin: 20px auto auto;
+    color: #686868;
+}
+@media(max-width: 1024px) {
+    .congratulations .cards {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media(max-width: 767px) {
+    .congratulations .cards {
+        grid-template-columns: 1fr;
+    }
+}
