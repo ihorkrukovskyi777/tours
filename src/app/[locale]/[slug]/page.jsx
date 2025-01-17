@@ -34,8 +34,6 @@ export default async function Page({params: {locale, slug }}) {
         notFound();
     }
 
-
-
     return (
         <main id={`page-id-${data.id}`}>
             {data.type === 'city' ?
@@ -68,7 +66,6 @@ export default async function Page({params: {locale, slug }}) {
                     title={data.title}
                 />
                 : null}
-
         </main>
     )
 }
