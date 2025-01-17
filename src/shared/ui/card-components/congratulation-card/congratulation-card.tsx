@@ -14,6 +14,7 @@ const CongratulationCard = ({title, attachment, url, sale}: Props) => {
         <div className="congratulation-card">
             <Link href={url}>
                 {attachment &&
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                         loading="lazy"
                         className="img"

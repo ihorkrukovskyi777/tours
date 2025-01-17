@@ -17,17 +17,15 @@ interface Props {
 const Congratulations = ({title , subTitle , children}: Props) => {
     return (
         <section className="congratulations">
-            <div className="container">
-                <div className="wrapper">
-                    <h1>{title}</h1>
-                    <p className="sub_title">{subTitle}</p>
-                    <div className="cards">
-                        {children}
-                    </div>
-                    <Link className="see-all" href={'/'}>See all paid tours</Link>
-                    <Button customClass={'create_account'}>Create account and save my credit</Button>
-                    <Button customClass={'decline_credit'}>Decline Credit</Button>
+            <div className="wrapper">
+                <h1>{title}</h1>
+                <p className="sub_title">{subTitle}</p>
+                <div className="grid gap_sm row_3">
+                    {children}
                 </div>
+                <Link className="see-all" href={'/'}>See all paid tours</Link>
+                <Button customClass={'create_account'}>Create account and save my credit</Button>
+                <Button customClass={'decline_credit'}>Decline Credit</Button>
             </div>
         </section>
     )

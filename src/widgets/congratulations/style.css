@@ -1,5 +1,5 @@
 .congratulations {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 .congratulations h1 {
     font-size: 24px;
@@ -15,9 +15,6 @@
     margin: auto;
 }
 .congratulations .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 16px;
     margin-top: 32px;
 }
 .congratulations .see-all {
@@ -47,13 +44,9 @@
     margin: 20px auto auto;
     color: #686868;
 }
-@media(max-width: 1024px) {
-    .congratulations .cards {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-@media(max-width: 767px) {
-    .congratulations .cards {
-        grid-template-columns: 1fr;
+@media(min-width: 1200px) {
+    .congratulations .create_account {
+        width: calc(33.333% - 15px);
+        margin: auto;
     }
 }
