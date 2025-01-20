@@ -20,7 +20,7 @@ const FlexibleContent = dynamic(
 export default async function Home({params: {locale}, ...props}) {
     const pageType = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/home?locale=${locale}`,
-        {next: {revalidate: 60}}
+        {next: {revalidate: 0}}
     )
     const data = await pageType.json();
 

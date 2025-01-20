@@ -26,7 +26,7 @@ export default async function Page({params: {locale, slug }}) {
 
     const pageType = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/${slug}?locale=${locale}`,
-        {next: {revalidate: 60,  tags: ['page']}}
+        {next: {revalidate: 0,  tags: ['page']}}
     )
     const data = await pageType.json();
 

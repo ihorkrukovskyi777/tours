@@ -41,6 +41,7 @@ export default getRequestConfig(async ({requestLocale}) => {
         return messages;
     }
     const messages = getTranslates();
+
     return {
         locale,
         messages: {
@@ -52,6 +53,19 @@ export default getRequestConfig(async ({requestLocale}) => {
             similarExperiences: translatesVouched.similarExperiences ?? 'Similar Experiences',
             from: translatesVouched.from,
             language: translatesVouched.language,
+            pleaseNote: translatesVouched.pleaseNote,
+            and: translatesVouched.and,
+            whatDoINeedToBring: translatesVouched.whatDoINeedToBring,
+            description: translatesVouched.description,
+            whatIsIncluded: translatesVouched.whatIsIncluded,
+            exclusions: translatesVouched.exclusions,
+            pickUp: translatesVouched.pickUp,
+            meetingPoints: translatesVouched.meetingPoints,
+            cancellationPolicy: translatesVouched.cancellationPolicy,
+            itinerary: translatesVouched.itinerary,
+            weOfferPickupNotice: translatesVouched.weOfferPickupNotice,
+            youCanStarPickup: translatesVouched.youCanStarPickup,
+            showLocation: translatesVouched.showLocation,
             // ...translates
         }
     };

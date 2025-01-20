@@ -15,8 +15,9 @@ export async function middleware(request) {
 
 
         const [slugApi410, nextSlug] = firstPath;
-        if((slugApi410.toLowerCase() === PAID_TOUR_IN_CITY.path.toLowerCase()) || (locales.includes(slugApi410) && nextSlug.toLowerCase() === PAID_TOUR_IN_CITY.path.toLowerCase())) {
 
+        console.log(firstPath, 'ssdasdsaa')
+        if((slugApi410.toLowerCase() === PAID_TOUR_IN_CITY.path.toLowerCase()) || (locales.includes(slugApi410) && nextSlug.toLowerCase() === PAID_TOUR_IN_CITY.path.toLowerCase())) {
             const locale = locales.includes(slugApi410.toLowerCase()) ? slugApi410 : 'en'
             return NextResponse.rewrite(new URL(`/${locale}/not-found`, request.url));
         }
