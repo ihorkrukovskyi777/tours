@@ -42,6 +42,7 @@ const PickADate = ({price, upcoming, onPick, perLabel, disabled = false, onPickD
                 disabled={disabled}
                 onClick={onPick}
                 icon={ButtonIcon}
+                customClass={'button_default'}
             >
                 {t('pickADate')}
             </Button>

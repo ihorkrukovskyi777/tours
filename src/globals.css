@@ -142,6 +142,26 @@ img {
   .grid.row_3 {grid-template-columns: 100%;}
   .grid.row_4 {grid-template-columns: 100%;}
 }
+.flex {
+  display: flex;
+}
+.flex.flex__row-bt {
+  justify-content: space-between;
+}
+.flex.flex__row-center {
+  align-items: center;
+}
+.flex.flex__gap_4 {
+  gap: 4px;
+}
+.flex.flex__gap_md {
+  gap: 32px;
+}
+.flex.flex__.wrap {
+  flex-wrap: wrap;
+}
+
+
 
 a {
   color: inherit;

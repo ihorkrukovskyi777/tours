@@ -1,3 +1,36 @@
+.bokun_choice_order__content  {
+  .calendar {
+    #days {
+      button {
+        transition: .4s;
+        div {
+          font-size: inherit;
+          display: block;
+          width: auto;
+          max-width: 100%;
+          margin: auto;
+          height: auto;
+          line-height: normal;
+          background: none;
+          transition: none !important;
+
+          div:first-child {
+            transition: .4s !important;
+          }
+
+          &.calendar__day_price {
+            transition: .4s !important;
+
+            &:hover {
+              color: var(--bokun-color-price) !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .booking_view {
   position: relative;
 
