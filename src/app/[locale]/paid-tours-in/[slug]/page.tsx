@@ -1,8 +1,10 @@
+
+import Footer from "@/shared/ui/layouts/footer/footer";
 import generateSeoPage from "@/shared/helpers/seo/generate-seo-page";
 import Congratulations from "@/widgets/congratulations";
 import CongratulationCard from "@/shared/ui/card-components/congratulation-card/congratulation-card";
 
-export default async function CongratulationsPage({params: {locale}}) {
+export default async function CongratulationsPage({params: {locale}}: any) {
     return (
         <>
             <div className="container">
@@ -16,11 +18,14 @@ export default async function CongratulationsPage({params: {locale}}) {
                     </Congratulations>
                 </div>
             </div>
+
+            <Footer locale={locale} resetCookies={false}/>
         </>
     )
 }
-export async function generateMetadata({ params : {locale} }) {
+export async function generateMetadata({ params : {locale} }: any) {
     const slug = 'congratulations';
 
+    // @ts-ignore
     return await generateSeoPage(slug, locale);
 }

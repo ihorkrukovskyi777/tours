@@ -1,0 +1,24 @@
+.locales {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  @media(max-width: 767px) {
+    gap: 6px;
+  }
+  .hieroglyph_icon {
+    img {
+      border-radius: 0;
+      object-fit: contain;
+      display: flex;
+    }
+  }
+  img {
+    width: 22px !important;
+    height: 22px !important;
+    flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}

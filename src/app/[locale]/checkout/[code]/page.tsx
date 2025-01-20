@@ -3,12 +3,14 @@ import {FetchBokunIntegration} from "@/bokun-widget/src/api/fetch-bokun-integrat
 import {NotFoundException} from "@/bokun-widget/src/api/exception";
 import useWidgetTranslate from "@/i18n/useWidgetTranslate";
 import I18nChangeOfLanguage from "@shared/ui/languages/change-of-language/i18n-change-of-language";
+import {notFound} from "next/navigation";
 
 interface Props {
     locale: string
     code: string
 }
 
+// @ts-ignore
 const Page = async ({params}: Props) => {
     const pageType = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/checkout?locale=${params.locale}`,
@@ -26,11 +28,14 @@ const Page = async ({params}: Props) => {
     })
 
     const d = (d: string) => d
-
+    console.log(page.languages)
+    const languages = page.languages.map(item => ({...item, slug: `${item.slug}/${params.code}`}))
+    // @ts-ignore
     return (
         <>
             <CheckoutView
                 locale={params.locale}
+                // @ts-ignore
                 checkout={checkout}
                 i18n={{
                     widget: i18n,
@@ -58,7 +63,8 @@ const Page = async ({params}: Props) => {
                     cancel: d('cancel'),
                 }}
             />
-            <I18nChangeOfLanguage filterQuery={['open_contact_modal']} locale={params.locale} languages={page.languages} addQueries={true}/>
+            {/*@ts-ignore*/}
+            <I18nChangeOfLanguage filterQuery={['open_contact_modal']} locale={params.locale} languages={languages} addQueries={true}/>
         </>
     )
 }

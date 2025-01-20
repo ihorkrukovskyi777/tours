@@ -17,6 +17,7 @@ export default async function  useWidgetTranslate(locale: string) : Promise<Ii18
             spaceAreNotAllowed: getErrorMessage('spaceAreNotAllowed'),
             invalidPhoneNumber: getErrorMessage('invalidPhoneNumber')
         },
+        orderSummary: t('orderSummary'),
         yes: t('yes'),
         back:  t('back'),
         no: t('no'),

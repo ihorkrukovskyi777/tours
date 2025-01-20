@@ -2,16 +2,25 @@
 import {NextResponse} from 'next/server';
 import {fallbackLng, locales} from './i18n/settings';
 import {Page410} from "@/page-410";
-
+import createMiddleware from "next-intl/middleware";
+import {PAID_TOUR_IN_CITY} from "@/i18n/path-rewrites/paid-tour-in-city.mjs";
 export async function middleware(request) {
     // Check if there is any supported locale in the pathname
     const pathname = request.nextUrl.pathname;
     const origin = request.nextUrl.origin;
 
-
     try {
         const firstPath = pathname.split('/').filter(slug => !!slug)
-        const [slugApi410] = firstPath;
+
+
+
+        const [slugApi410, nextSlug] = firstPath;
+        if((slugApi410.toLowerCase() === PAID_TOUR_IN_CITY.path.toLowerCase()) || (locales.includes(slugApi410) && nextSlug.toLowerCase() === PAID_TOUR_IN_CITY.path.toLowerCase())) {
+
+            const locale = locales.includes(slugApi410.toLowerCase()) ? slugApi410 : 'en'
+            return NextResponse.rewrite(new URL(`/${locale}/not-found`, request.url));
+        }
+
         if (slugApi410 === 'ajax_tour') {
             return new NextResponse(Page410(),
                 {status: 410, headers: {'content-type': 'text/html'}}
@@ -126,6 +135,15 @@ export async function middleware(request) {
     }
 }
 
+
+
+export default createMiddleware({
+    defaultLocale: fallbackLng,
+    locales,
+    localeDetection: false,
+    localePrefix: "as-needed",
+    // localePrefix: "always"
+});
 export const config = {
     // Do not run the middleware on the following paths
     matcher: ['/((?!api|_next/static|not-found|_next/image|manifest.json|assets|favicon.ico|robots.txt|default.json|sitemap/*).*)']
