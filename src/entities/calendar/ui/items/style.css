@@ -23,7 +23,6 @@
     max-width: 34px;
     margin: 5px;
     height: 34px;
-    color: var(--title_color);;
     line-height: 28px;
     transition: color .4s ease-in-out 0s,background .4s ease-in-out 0s;
     border-radius: 8px;

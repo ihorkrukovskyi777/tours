@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-shrink: 0;
+  /*flex-shrink: 0;*/
   flex-wrap: wrap;
   @media(max-width: 767px) {
     gap: 6px;

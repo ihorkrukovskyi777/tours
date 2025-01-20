@@ -87,11 +87,11 @@ const PaidTour = async ({id, slug}: Props) => {
                     <div className="layout_sidebar__sidebar"></div>
                 </div>
 
-            </div>
+
 
 
             {!!similar.length &&
-                <div className="padding_sm container_padding_left shadow overflow-hidden">
+                <div className="padding_sm shadow overflow-hidden">
                     <DefaultSection title={t('similarExperiences')} label={slug}>
                         <SwiperBlock
                             spaceBetween={16}
@@ -110,7 +110,8 @@ const PaidTour = async ({id, slug}: Props) => {
                     </DefaultSection>
                 </div>
             }
-            <div className="container padding_md">
+            </div>
+            <div className="padding_md">
                 {/*@ts-ignore*/}
                 <I18nChangeOfLanguage locale={locale} languages={languages}/>
             </div>
