@@ -16,6 +16,8 @@ import {PATH_TOURS} from "@shared/constants/route";
 import Footer from "@shared/ui/layouts/footer/footer";
 import BaseTabs from "@entities/paid-tour/views/base-table";
 import './styles/paid.scss'
+import BaseModal from "@entities/paid-tour/ui/modals/base-modal/base-modal";
+import Link from "next/link";
 
 interface Props {
     id: number
@@ -115,6 +117,29 @@ const PaidTour = async ({id, slug}: Props) => {
                 {/*@ts-ignore*/}
                 <I18nChangeOfLanguage locale={locale} languages={languages}/>
             </div>
+
+
+            <BaseModal>
+                <div className="title process_booking_line">
+                    <div className="title-text">Done</div>
+                    <div className="process_booking_line__block">
+                        <div className="process_booking_line__line">
+                            <div className="process_booking_line__circle" style={{width: 0}}></div>
+                        </div>
+                        <ul>
+                            <li>Details</li>
+                            <li>Booking confirmed</li>
+                            <li>Done</li>
+                        </ul>
+                    </div>
+                </div>
+                <h2>A booking confirmation email has been sent to your email address.</h2>
+                <h2>Upgrade your adventure with a $5 credit for paid tours!</h2>
+
+                <Link href={'/'} className={'button_custom'} >Claim your 5USD credit!</Link>
+                <Link href={'/'} className={'button_custom no_thanks'} >No, thanks</Link>
+            </BaseModal>
+
             <Footer locale={locale}/>
         </div>
     )
