@@ -93,7 +93,7 @@ export default async function OderPage({params}: { params: { locale: string, cod
                                 {days[serviceDate.day]}, {serviceDate.dayNum} {months[serviceDate.month]} {serviceDate.yearNum}, {serviceDate.time}
                             </span>
                                     <span>
-                              <ClockSvg/> <span>{duration.hours}:{pad2(duration.minutes)} {durationLabel}, {booking.number_people} {i18n.t('People')}</span>
+                              <ClockSvg/> <span>{duration.hours}:{pad2(duration.minutes)} {durationLabel}, {booking.number_people} {booking.number_people > 1 ? i18n.t('People') : i18n.t('Person')}  </span>
                             </span>
                                 </div>
                                 <Link href={checkoutSlug}

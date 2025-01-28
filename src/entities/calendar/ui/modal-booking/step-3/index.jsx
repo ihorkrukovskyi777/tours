@@ -79,7 +79,7 @@ export default observer(function Step3({
                                 </div>
                                 <div className="people">
                                     <span className="comma">,</span>
-                                    <span className="people-count">{people}</span>{i18n.people}
+                                    <span className="people-count">{people}</span>{people > 1 ? i18n.people : i18n.person}
                                 </div>
                                 <FlagsComponents
                                     className='country-box-select'

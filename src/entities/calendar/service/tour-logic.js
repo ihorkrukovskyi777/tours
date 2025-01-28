@@ -97,7 +97,7 @@ export default class TourLogic {
 
     getFormatDay(day) {
         const today = new Date(day);
-        const yyyy = today.getFullYear().toString().substr(-2);
+        const yyyy = today.getFullYear().toString()?.substr(-2);
         let mm = today.getMonth() + 1; // Months start at 0!
         let dd = today.getDate();
 
@@ -242,7 +242,7 @@ export default class TourLogic {
 
     * getDataMonth() {
         let month = new Date().getMonth();
-        let year = new Date().getFullYear().toString().substr(-2);
+        let year = new Date().getFullYear().toString()?.substr(-2);
         const deps = {...this.data[this.currentLang].deps};
         while (true) {
             if (Object.keys(deps).length === 0) return false;

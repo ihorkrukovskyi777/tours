@@ -46,6 +46,7 @@ export async function useCalendarTranslate(locale) {
         unsure_of_your_plans: i18n.t(`Unsure of your plans? You can book now to secure a spot and cancel anytime until the start time of the tour.`),
         faq: i18n.t('FAQs for Free Tours'),
         flexible: i18n.t('Flexible'),
+        person: i18n.t('Person'),
         genitive: {
             months: {
                 ...i18nGenitive.getMonths(),
