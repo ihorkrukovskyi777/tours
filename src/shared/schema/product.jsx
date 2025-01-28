@@ -2,8 +2,9 @@ import {getHrefLocale} from "@/i18n/get-href-locale";
 import Script from "next/script";
 import {fallbackLng} from "@/i18n/settings";
 
-const getSchemaProductCity = (item, date, locale, eventsTotal) => {
+const getSchemaProductCity = (item, date, locale, eventsTotal, reviews) => {
     const url = getHrefLocale(locale, item.slug)
+    console.log(reviews)
     return {
         "@context": "https://schema.org",
         "@type": "Product",
@@ -27,10 +28,25 @@ const getSchemaProductCity = (item, date, locale, eventsTotal) => {
             "bestRating": "5",
             "worstRating": "0",
         },
+        "review": reviews.map(item => {
+            return  {
+                "@type": "Review",
+                "author": item.author,
+                "datePublished": item.date,
+                "reviewBody": item.message,
+                "name": "Not a happy camper",
+                "reviewRating": {
+                    "@type": "Rating",
+                    "bestRating": "5",
+                    "ratingValue": item.rating,
+                    "worstRating": "0"
+                }
+            };
+        })
     };
 }
 
-const getSchemaProductTour = (item, date, locale) => {
+const getSchemaProductTour = (item, date, locale, reviews) => {
     const slug = getHrefLocale(locale, item.slug)
     const url = `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${slug}`;
     return {
@@ -54,6 +70,21 @@ const getSchemaProductTour = (item, date, locale) => {
             "bestRating": "5",
             "worstRating": "0",
         },
+        "review": reviews.map(item => {
+            return  {
+                "@type": "Review",
+                "author": item.author,
+                "datePublished": item.date,
+                "reviewBody": item.message,
+                "name": "Not a happy camper",
+                "reviewRating": {
+                    "@type": "Rating",
+                    "bestRating": "5",
+                    "ratingValue": item.rating,
+                    "worstRating": "0"
+                }
+            };
+        })
     };
 }
 const getSchemaBreadcrumbList = (item, locale) => {
@@ -122,10 +153,11 @@ export default async function ProductSchema({id, locale, type = 'city'}) {
             tags: ['schema']
         }
     })
-    const {product, eventsTotal} = await response.json();
+    const {product, eventsTotal, reviews} = await response.json();
 
 
-    const schemaData = type === 'tour' ? JSON.stringify(getSchemaProductTour(product, date, locale)) : JSON.stringify(getSchemaProductCity(product, date, locale, eventsTotal));
+    const schemaData = type === 'tour' ? JSON.stringify(getSchemaProductTour(product, date, locale, reviews)) : JSON.stringify(getSchemaProductCity(product, date, locale, eventsTotal, reviews));
+
     return (
         <>
             <Script
