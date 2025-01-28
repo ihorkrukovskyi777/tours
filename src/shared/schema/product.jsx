@@ -118,7 +118,7 @@ export default async function ProductSchema({id, locale, type = 'city'}) {
     const date = `${aYearFromNow.getFullYear()}-${aYearFromNow.getMonth() + 1}-${aYearFromNow.getDate()}`
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/product-${type}/${id}?locale=${locale}`, {
         next: {
-            revalidate: 5 * 60,
+            revalidate: 10,
             tags: ['schema']
         }
     })
