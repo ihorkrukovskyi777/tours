@@ -19,7 +19,7 @@ export default function ReviewCard({
 
     const helperDateHtml = new HelperDateHtml(time);
     return (
-        <div className={styles.review_item} itemScope="" itemType="https://schema.org/Review">
+        <div className={styles.review_item} itemScope="" itemProp="review" itemType="https://schema.org/Review">
             <meta content={helperDateHtml.yyyyMmDd} itemProp="datePublished"></meta>
             <div itemProp="reviewRating" itemScope="" itemType="https://schema.org/Rating">
                 <meta content={rating} itemProp="ratingValue"/>
