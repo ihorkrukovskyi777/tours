@@ -60,7 +60,7 @@ export default function GoogleScript() {
 
     return (
         <>
-            <div id="klaro" style={{zIndex: 9999}}></div>
+            <div id="klaro" style={{zIndex: 9999 , display: 'none'}}></div>
 
             <Script
                 id="klaro-script-include"
