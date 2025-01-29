@@ -53,4 +53,10 @@
         align-items: center;
         justify-content: center;
     }
+    .home_banner > div {
+        width: 100%;
+    }
+    .banner .title {
+        min-height: 106px;
+    }
 }
