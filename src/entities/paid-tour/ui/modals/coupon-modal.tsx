@@ -27,7 +27,7 @@ const CouponModal = observer(({onConfirm, onCancel, model, isLoading}: Props) =>
                     </ul>
                 </div>
             </div>
-            <h2 className="title">{model?.offerModal?.descriptions?.text}</h2>
+            <div className="title" dangerouslySetInnerHTML={{__html: model?.offerModal?.descriptions?.text}}></div>
 
             <Button onClick={onConfirm} customClass={'button_custom'} >{model?.offerModal?.callToActions?.text}</Button>
             <Button onClick={onCancel}  customClass={'button_custom no_thanks'} >{model.offerModal?.buttonsCancel?.text}</Button>
