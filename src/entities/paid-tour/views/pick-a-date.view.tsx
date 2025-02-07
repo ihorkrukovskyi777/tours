@@ -35,8 +35,8 @@ const PickADate = ({price, upcoming, onPick, perLabel, disabled = false, onPickD
     return (
         <div className="pick-a-date">
             <div className="pick-a-date__price">
-                ${price ? price : '~'}
-                <span>per {perLabel}</span>
+                <span>{price ? price : '~'} USD</span>
+                <span>{perLabel}</span>
             </div>
             <Button
                 disabled={disabled}

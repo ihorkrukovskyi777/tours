@@ -6,7 +6,9 @@ export enum MODAL {
     'FORM_BOOKING',
     'ADDITIONAL_SALES',
     'ADDITIONAL_SALES_CALENDAR',
-    'ADDITIONAL_SALES_DEP_DAY'
+    'ADDITIONAL_SALES_DEP_DAY',
+    'COUPON_MODAL',
+    'PAID_TOURS_MODAL'
 }
 
 type ModalT = {[key in MODAL]: { index: number, visibly: boolean, zIndex: number | null}}
@@ -20,6 +22,8 @@ export class ModalStepsModel {
         [MODAL.ADDITIONAL_SALES]: { index: 3, visibly: false, zIndex: null},
         [MODAL.ADDITIONAL_SALES_CALENDAR]: { index: 4, visibly: false, zIndex: null},
         [MODAL.ADDITIONAL_SALES_DEP_DAY]: { index: 5, visibly: false, zIndex: null},
+        [MODAL.COUPON_MODAL]: { index: 5, visibly: false, zIndex: null},
+        [MODAL.PAID_TOURS_MODAL]: { index: 5, visibly: false, zIndex: null},
     }
 
     constructor() {

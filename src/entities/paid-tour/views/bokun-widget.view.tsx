@@ -27,18 +27,19 @@ const BookingWidgetView = observer(({bokun_id, i18n}: Props) => {
     const depLength = model.firstDepartures.length;
     const booking_hash = search.get('booking_hash')
 
-    console.log((!!depLength) || (model.loader.isLoading && depLength === 0), '(!!depLength) || (model.loader.isLoading && depLength === 0)')
-
     const isShowBooking = (!!depLength) || (model.loader.isLoading && depLength === 0);
+
     return (
         <div className="booking_view">
-            {model.loader.isLoading && <div className="booking_view__loading">
-                <SpinnerCircle isLoading={model.loader.isLoading}/>
-            </div>}
+            {model.loader.isLoading &&
+                <div className="booking_view__loading">
+                    <SpinnerCircle isLoading={model.loader.isLoading}/>
+                </div>
+            }
 
             {isShowBooking &&
                 <PickADate
-                    perLabel={model.perLabel}
+                    perLabel={`${i18n.per} ${model.perLabel ?? ''}`}
                     onPick={model.toggleModal}
                     onPickDate={model.onPickFullDate}
                     price={model.price}
@@ -60,7 +61,7 @@ const BookingWidgetView = observer(({bokun_id, i18n}: Props) => {
                     model={model.choice_an_order}
                     i18n={i18n}
                 >
-                    <Logo />
+                    <Logo/>
                 </BokunChoiceAnOrderView>
             </Modal>
         </div>

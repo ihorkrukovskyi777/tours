@@ -10,7 +10,8 @@ import useEscHooks from "@shared/hooks/use-esc-event";
 import ProcessBookingLine from "@entities/lib/calendar/ui/process-booking-line";
 import {extract} from "@shared/helpers/index"
 import {useEffect,  useRef, useState} from "react";
-import {useCaseRedirectToCheckout} from "@entities/lib/calendar/usecases";
+import {useCaseFetchCouponModal} from "@entities/lib/calendar/usecases";
+import Loader from '@shared/ui/loaders/default-loader';
 import '@entities/lib/calendar/styles/additional-sales-list.css'
 
 
@@ -24,7 +25,7 @@ const ModalListToursView = observer(() => {
     const onClose = useCaseCloseModalAdditional()
 
     const onOpenCalendar = useCaseOpenAdditionalCalendar()
-    const redirectToCheckout = useCaseRedirectToCheckout();
+    const openCouponModal = useCaseFetchCouponModal();
 
     useEscHooks()
 
@@ -39,15 +40,6 @@ const ModalListToursView = observer(() => {
         setInit(true)
     }, [])
 
-    // useEffect(() => {
-    //     const redirect = async () => {
-    //         await push(viewModel.linkCity)
-    //     }
-    //     ref.current?.addEventListener('click', redirect)
-    //
-    //     return () => ref.current?.removeEventListener('click', redirect)
-    //
-    // }, [ref.current])
 
     if (!init) return null;
 
@@ -56,11 +48,13 @@ const ModalListToursView = observer(() => {
         <ModalBooking
             show={viewModel.isOpen}
             size={'step-1'}
+            style={{position: 'relative'}}
             halfOpacity={viewModel.halfOpacity}
             close={onClose}
         >
-
+            {viewModel.isRedirectToCheckout && <Loader style={{left: 0, zIndex: 5, opacity: '0.7'}}/>}
             <div className="step-1 default additional_sales_list">
+
                 <div className="close-button" onClick={onClose}><CloseSvg/></div>
                 <ProcessBookingLine title={i18n.booking_confirmed_} step={2}/>
                 <div className="additional_sales_list__content">
@@ -85,7 +79,7 @@ const ModalListToursView = observer(() => {
                         )
                     })}
                 </div>
-                <button className="additional_sales_list__no_thanks" onClick={redirectToCheckout}>{i18n.no_thanks.toLowerCase()}</button>
+                <button className="additional_sales_list__no_thanks" onClick={openCouponModal}>{i18n.no_thanks.toLowerCase()}</button>
             </div>
         </ModalBooking>
     )

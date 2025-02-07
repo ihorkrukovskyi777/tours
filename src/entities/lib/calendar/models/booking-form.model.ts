@@ -78,6 +78,12 @@ export class BookingFormModel {
         return null
     }
 
+    getLastBooking() {
+        const length = this.bookings.length - 1
+
+        return this.bookings[length] ?? null
+    }
+
     get tours_ids() {
         return this.bookings.map(item => item.tour_id)
     }

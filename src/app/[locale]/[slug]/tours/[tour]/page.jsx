@@ -53,7 +53,6 @@ export default async function Page({params: {locale, slug, tour}}) {
     ];
 
     const type = page.type;
-    console.log(page, 'languages')
     return (
         <>
             {

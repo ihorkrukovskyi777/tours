@@ -1,20 +1,30 @@
+'use client'
 import Link from "next/link";
+import {MouseEvent} from "react";
 import './style.css';
 
 interface Props {
     title: string,
     url: string,
-    attachment?: string,
+    attachment?: { src: string, alt: string },
     sale?: string,
+    size?:string
+    onLink?(link: string): void
 }
 
 
-const CongratulationCard = ({title, attachment, url, sale}: Props) => {
+const CongratulationCard = ({title, attachment, url, sale, size = 'public', onLink}: Props) => {
+
+    const onLinkClick = (e: MouseEvent<HTMLElement>) => {
+        if(onLink) {
+            e.preventDefault()
+            onLink(url)
+        }
+    }
     return (
         <div className="congratulation-card">
-            <Link href={url}>
+            <Link href={url} onClick={onLinkClick}>
                 {attachment &&
-                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                         loading="lazy"
                         className="img"

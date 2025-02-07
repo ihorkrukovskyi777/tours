@@ -1,17 +1,13 @@
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import {notFound} from "next/navigation";
-import LanguageImages from "@shared/ui/languages/language-images";
-import Link from "next/link";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import {ADDITIONAL_ROUTE, CHECKOUT, PATH_TOURS} from "@shared/constants/route";
 import {ServiceDate} from "@shared/service/service-date";
 import {pad2, toHoursAndMinutes} from "@shared/helpers/date";
-import ClockSvg from '@/assets/images/svg/clock-svg';
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import {locales} from "@/i18n/settings";
-import './style.css'
 import OrderBookingCard from "@shared/ui/card-components/order-booking-card/order-booking-card";
-
+import './style.css'
 interface Booking {
     profile: {
         title: string

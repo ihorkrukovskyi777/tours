@@ -23,9 +23,6 @@ const Congratulations = ({title , subTitle , children}: Props) => {
                 <div className="grid gap_sm row_3">
                     {children}
                 </div>
-                <Link className="see-all" href={'/'}>See all paid tours</Link>
-                <Button customClass={'create_account'}>Create account and save my credit</Button>
-                <Button customClass={'decline_credit'}>Decline Credit</Button>
             </div>
         </section>
     )

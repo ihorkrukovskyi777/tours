@@ -7,10 +7,8 @@ import {fetchCategories} from "@entities/lib/calendar/api/fetch-categories";
 import {
     CivitatisCategoriesModel,
     ICivitatisCategory,
-    PayloadRateCivitatis
 } from "@entities/lib/calendar/models/civitatis-categories.model";
 import {useCaseRedirectToCheckout, useFetchAdditionalRedirect} from "@entities/lib/calendar/usecases/index";
-import {toJS} from "mobx";
 
 
 export function useCaseOpenCalendar() {
@@ -20,6 +18,33 @@ export function useCaseOpenCalendar() {
     }, [store])
 }
 
+export function useCaseOpenCouponModal() {
+    const store = useContextStore();
+    return useCallback(function () {
+        store.modals.openModal(MODAL.COUPON_MODAL)
+        store.modals.closeAllExceptByName(MODAL.COUPON_MODAL)
+    }, [store])
+}
+export function useCaseOpenCouponToursModal() {
+    const store = useContextStore();
+    const redirectToCheckout = useCaseRedirectToCheckout()
+    return useCallback(async function () {
+
+        const booking = store.formBooking.getLastBooking();
+
+        if(!booking) {
+            await redirectToCheckout();
+            return
+        }
+        store.loading.set('redirect-to-checkout')
+
+        await store.couponModel.fetchCreateCoupon(booking.booking_id)
+
+        store.modals.closeAllExceptByName(MODAL.PAID_TOURS_MODAL)
+        store.modals.openModal(MODAL.PAID_TOURS_MODAL)
+        store.loading.turnOff('redirect-to-checkout')
+    }, [store])
+}
 export function useCaseCloseCalendar() {
     const store = useContextStore();
     return useCallback(function () {

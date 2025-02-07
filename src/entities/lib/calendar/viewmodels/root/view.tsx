@@ -9,7 +9,7 @@ import {useProcessBookingProps} from "@entities/lib/calendar/viewmodels/root/use
 
 import {
     useCaseCloseDeparturesDay,
-    useCaseOpenCalendar, useCaseBooking
+    useCaseOpenCalendar, useCaseBooking, useCaseOpenCouponToursModal
 } from "@entities/lib/calendar/usecases/modals";
 import FormBookingView from "@entities/lib/calendar/viewmodels/form-booking/view";
 import CalendarView from "@entities/lib/calendar/viewmodels/calendar/view";
@@ -18,8 +18,11 @@ import DeparturesDayItemsView from "@entities/lib/calendar/viewmodels/departures
 import {useDeparturesDayProps} from "@entities/lib/calendar/viewmodels/departures/day/use-props";
 import AdditionalSalesRootView from "@entities/lib/calendar/additiona-sales/viewmodels/root/view";
 import {useHowManyProps} from "@entities/lib/calendar/viewmodels/how-many/use-props";
-import "@/entities/calendar/ui/main/style.css";
+import CouponModal from "@entities/paid-tour/ui/modals/coupon-modal";
+import {useCaseRedirectToCheckout} from "@entities/lib/calendar/usecases";
+import CongratulationsModel from "@entities/paid-tour/ui/modals/congratulations-modal";
 
+import "@/entities/calendar/ui/main/style.css";
 
 const WrapperFixRender = observer(() => {
     return (
@@ -40,6 +43,7 @@ const ProcessBookingView = observer(() => {
         onBooking: useCaseBooking()
     })
 
+    const redirectToCheckout = useCaseRedirectToCheckout()
 
 
     const viewModelDeparturesDay = useDeparturesDayProps({
@@ -51,7 +55,10 @@ const ProcessBookingView = observer(() => {
     const viewModelCalendar = useCalendarProps();
     const viewModelHowMany =  useHowManyProps();
 
-    const onOpenCalendar = useCaseOpenCalendar()
+    const onOpenCalendar = useCaseOpenCalendar();
+
+    const openCouponToursModal = useCaseOpenCouponToursModal();
+
     return (
         <div className="calendar_wrap" style={{minHeight: '400px'}}>
             {getters.isShowTitle && <h2 className="title">{getters.title}</h2> }
@@ -75,6 +82,20 @@ const ProcessBookingView = observer(() => {
             </CalendarView>
             <DeparturesDayItemsView viewModel={viewModelDeparturesDay}/>
             <WrapperFixRender />
+            { getters.isOpenCouponModal.visibly &&
+                <CouponModal
+                    isLoading={getters.loadingModel.isRedirectToCheckout}
+                    model={getters.modelCoupon}
+                    onCancel={redirectToCheckout}
+                    onConfirm={openCouponToursModal}
+                />
+            }
+            { getters.isOpenCouponToursModal.visibly &&
+                <CongratulationsModel
+                    isLoading={getters.loadingModel.isRedirectToCheckout}
+                    model={getters.modelCoupon}
+                />
+            }
         </div>
     )
 })

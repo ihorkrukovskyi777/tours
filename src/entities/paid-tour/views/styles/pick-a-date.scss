@@ -19,6 +19,9 @@
       font-weight: 400;
       font-size: 24px;
     }
+    & > span:first-child {
+      font-size: 30px;
+    }
   }
   .button_default {
     width: 100%;

@@ -1,4 +1,3 @@
-
 import Footer from "@/shared/ui/layouts/footer/footer";
 import generateSeoPage from "@/shared/helpers/seo/generate-seo-page";
 import Congratulations from "@/widgets/congratulations";
@@ -10,8 +9,9 @@ export default async function CongratulationsPage({params: {locale}}: any) {
             <div className="container">
                 <div className="content">
                     <Congratulations
-                        title={'Congratulations!'}
-                        subTitle={'Use your credit now to book an unforgettable tour or save your 5USD credit for later — it’s your choice!'}>
+                        title={'Paid Tours in London!'}
+                        subTitle={''}
+                    >
                         <CongratulationCard title={'Paid Giza Pyramids Sphinx Tour'} url={'/'} />
                         <CongratulationCard title={'123'} url={'/'} sale={'- 5USD off!'} />
                         <CongratulationCard title={'123'} url={'/'} />
