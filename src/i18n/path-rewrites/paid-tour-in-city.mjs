@@ -12,6 +12,13 @@ export const PAID_TOUR_IN_CITY = {
             locale: 'de',
             source: 'bezahlte-touren-in-:slug',
         },
+        {
+            locale: 'es',
+            source: 'tours-pagados-en-:slug',
+        },
 
-    ]
+    ],
+    getPathByLocale(locale, slug) {
+        return this.paths.find(item => item.locale === locale)?.source?.replace(':slug', slug) ?? '/'
+    }
 }

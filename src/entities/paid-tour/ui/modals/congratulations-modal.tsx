@@ -9,7 +9,9 @@ import Link from "next/link";
 import {PAID_IN_TOURS_CITY, PATH_TOURS} from "@shared/constants/route";
 import {useCaseActivatedCouponForBooking, useCaseDeclineCouponForBooking} from "@entities/lib/calendar/usecases";
 import {getHrefLocale} from "@i18n/get-href-locale";
+import {PAID_TOUR_IN_CITY} from "@i18n/path-rewrites/paid-tour-in-city.mjs"
 import {useContextProcessBookingI18N} from "@entities/lib/calendar/process-booking.provider";
+import {toJS} from "mobx";
 import './base-modal/congratulations-model.scss'
 
 interface Props {
@@ -31,10 +33,7 @@ const CongratulationsModel = observer(({ model, isLoading}: Props) => {
     const couponValue = `- ${model.coupon?.value}${typeSale} ${i18n.offMark}`
 
 
-    const handleSeeAll = async (event: MouseEvent<HTMLElement>) => {
-        event.preventDefault()
-        await activatedCoupon(getHrefLocale(model.option.page.locale, `${PAID_IN_TOURS_CITY}${model.city?.slug}`))
-    }
+    const pathAllTours = PAID_TOUR_IN_CITY.getPathByLocale(model.option.page.locale, model.city?.slug)
     return (
         <BaseModal close={declineCouponForBooking} maxWidth={600} isLoading={isLoading}>
 
@@ -47,7 +46,6 @@ const CongratulationsModel = observer(({ model, isLoading}: Props) => {
                     {model.tours.map(tour => {
                         return (
                             <CongratulationCard
-                                onLink={activatedCoupon}
                                 attachment={tour.image}
                                 sale={couponValue}
                                 key={tour.id}
@@ -61,8 +59,7 @@ const CongratulationsModel = observer(({ model, isLoading}: Props) => {
                 <div className="congratulations_model__footer">
                     {isCity &&
                         <Link
-                            onClick={handleSeeAll}
-                            href={`${PAID_IN_TOURS_CITY}${model.city?.slug}`}
+                            href={pathAllTours}
                             className="congratulations_model__footer__item"
                         >
                             {model?.congratulationModal?.linkAllPage?.text}

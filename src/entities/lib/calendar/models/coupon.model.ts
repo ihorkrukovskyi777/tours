@@ -71,22 +71,9 @@ export class CouponModel {
     }
 
     get isEmpty() {
-        return !(this.tours.length > 0 && this.coupon !== null)
+        return (this.tours.length === 0 || this.coupon === null)
     }
 
-
-
-    async fetchActivatedCoupon() {
-        await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/bokun/coupon/activated/${this.couponForBooking}`, {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            next: {
-                revalidate: 0
-            }
-        })
-    }
     async fetchCreateCoupon(booking_id: number | string) {
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/bokun/coupon/create`, {
@@ -124,7 +111,7 @@ export class CouponModel {
     async fetchPaidModal(tour_id: number) {
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/bokun/coupon/tours/${tour_id}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/bokun/coupon/tours/${tour_id}?locale=${this.option.page.locale}`, {
                 next: {
                     revalidate: 0
                 }

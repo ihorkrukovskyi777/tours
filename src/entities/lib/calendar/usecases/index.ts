@@ -80,11 +80,9 @@ export function useCaseDeclineCouponForBooking() {
 }
 
 export function useCaseActivatedCouponForBooking() {
-    const store = useContextStore();
     const {push} = useRouter()
     return useCallback(async function(url: string) {
-        store.loading.set('redirect-to-checkout')
-        await store.couponModel.fetchActivatedCoupon()
+
         await push(url);
     }, [])
 }
@@ -106,6 +104,7 @@ export function useCaseFetchBooking() {
     const store = useContextStore();
     const redirect = useCaseRedirectToCheckout()
     const setAdditionalBooking = useFetchAdditionalRedirect();
+    const openCouponModel = useCaseOpenCouponModal()
     return useCallback(async function (data: FormDataBooking, token: string) {
         try {
             store.loading.set('fetch-booking')
@@ -140,7 +139,11 @@ export function useCaseFetchBooking() {
         } catch (err) {
 
             const booking = store.formBooking.getFirstBooking();
-            if (booking && store.couponModel.isEmpty) {
+
+            if(!store.couponModel.isEmpty) {
+                openCouponModel();
+            }
+            else if (booking) {
                 await redirect()
             } else {
                 store.loading.turnOff('fetch-booking')
