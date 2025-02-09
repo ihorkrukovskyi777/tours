@@ -1,17 +1,18 @@
 'use client'
 import {observer} from "mobx-react-lite";
-import {MouseEvent} from "react";
-import BaseModal from "@entities/paid-tour/ui/modals/base-modal/base-modal";
+import BaseModal from "@entities/lib/calendar/ui/modals/base-modal/base-modal";
 import {CouponModel} from "@entities/lib/calendar/models/coupon.model";
 import CongratulationCard from "@shared/ui/card-components/congratulation-card/congratulation-card";
 import Button from "@shared/ui/selectors/button/button";
 import Link from "next/link";
-import {PAID_IN_TOURS_CITY, PATH_TOURS} from "@shared/constants/route";
-import {useCaseActivatedCouponForBooking, useCaseDeclineCouponForBooking} from "@entities/lib/calendar/usecases";
+import { PATH_TOURS} from "@shared/constants/route";
+import {
+    useCaseDeclineCouponForBooking,
+    useCaseSendCouponEmail
+} from "@entities/lib/calendar/usecases";
 import {getHrefLocale} from "@i18n/get-href-locale";
 import {PAID_TOUR_IN_CITY} from "@i18n/path-rewrites/paid-tour-in-city.mjs"
 import {useContextProcessBookingI18N} from "@entities/lib/calendar/process-booking.provider";
-import {toJS} from "mobx";
 import './base-modal/congratulations-model.scss'
 
 interface Props {
@@ -27,10 +28,11 @@ const CongratulationsModel = observer(({ model, isLoading}: Props) => {
 
     const declineCouponForBooking = useCaseDeclineCouponForBooking();
 
-    const activatedCoupon = useCaseActivatedCouponForBooking();
+    const sendCouponEmail = useCaseSendCouponEmail();
 
     const typeSale = model.coupon?.type === 'percentage' ? '%' : 'USD'
     const couponValue = `- ${model.coupon?.value}${typeSale} ${i18n.offMark}`
+
 
 
     const pathAllTours = PAID_TOUR_IN_CITY.getPathByLocale(model.option.page.locale, model.city?.slug)
@@ -67,8 +69,7 @@ const CongratulationsModel = observer(({ model, isLoading}: Props) => {
                     }
                     <Button
                         customClass={'button_custom congratulations_model__footer__item congratulations_model__footer__item__success'}
-                        onClick={() => {
-                        }}
+                        onClick={sendCouponEmail}
                     >
                         {model?.congratulationModal?.callToActions?.text}
                     </Button>

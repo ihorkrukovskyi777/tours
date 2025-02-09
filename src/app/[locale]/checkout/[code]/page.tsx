@@ -4,6 +4,7 @@ import {NotFoundException} from "@/bokun-widget/src/api/exception";
 import useWidgetTranslate from "@/i18n/useWidgetTranslate";
 import I18nChangeOfLanguage from "@shared/ui/languages/change-of-language/i18n-change-of-language";
 import {notFound} from "next/navigation";
+import {getTranslations} from "next-intl/server";
 
 interface Props {
     locale: string
@@ -12,6 +13,8 @@ interface Props {
 
 // @ts-ignore
 const Page = async ({params}: Props) => {
+
+    const t = await getTranslations();
     const pageType = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/checkout?locale=${params.locale}`,
         {next: {revalidate: 0}}
@@ -26,11 +29,9 @@ const Page = async ({params}: Props) => {
             notFound()
         }
     })
-
-    const d = (d: string) => d
-    console.log(page.languages)
-    const languages = page.languages.map(item => ({...item, slug: `${item.slug}/${params.code}`}))
     // @ts-ignore
+    const languages = page.languages.map(item => ({...item, slug: `${item.slug}/${params.code}`}))
+
     return (
         <>
             <CheckoutView
@@ -39,28 +40,27 @@ const Page = async ({params}: Props) => {
                 checkout={checkout}
                 i18n={{
                     widget: i18n,
-                    pickup: 'pickup',
-                    time: 'time',
-                    tour: d('tour'),
-                    discount: d('discount'),
-                    bookingConfirmation: d('bookingConfirmation'),
-                    bookingId: d('bookingId'),
-                    firstName: d('firstName'),
-                    lastName: d('lastName'),
-                    email: d('email'),
-                    phoneNumber: d('phoneNumber'),
-                    date: d('date'),
-                    duration: d('duration'),
-                    'drop-off': d('drop-off'),
-                    pickup: d('pickup'),
-                    travelDocuments: d('travelDocuments'),
-                    invoice: d('invoice'),
-                    refund: d('refund'),
-                    orderSummary: d('orderSummary'),
-                    showMore: d('showMore'),
-                    bookingTotal: d('bookingTotal'),
-                    paid: d('paid'),
-                    cancel: d('cancel'),
+                    tour: t('tour'),
+                    time: t('time'),
+                    discount: t('discount'),
+                    bookingConfirmation: t('bookingConfirmation'),
+                    bookingId: t('bookingId'),
+                    firstName: t('firstName'),
+                    lastName: t('lastName'),
+                    email: t('email'),
+                    phoneNumber: t('phoneNumber'),
+                    date: t('date'),
+                    duration: t('duration'),
+                    'drop-off': t('drop-off'),
+                    pickup: t('pickup'),
+                    travelDocuments: t('travelDocuments'),
+                    invoice: t('invoice'),
+                    refund: t('refund'),
+                    orderSummary: t('orderSummary'),
+                    showMore: t('showMore'),
+                    bookingTotal: t('bookingTotal'),
+                    paid: t('paid'),
+                    cancel: t('cancel'),
                 }}
             />
             {/*@ts-ignore*/}

@@ -42,10 +42,18 @@ export default getRequestConfig(async ({requestLocale}) => {
     }
     const messages = getTranslates();
 
+    const getMessage = (key: string) => {
+        if(messages[key]) return messages[key]
+        return key;
+    }
+
     return {
         locale,
         messages: {
+            ...translatesVouched,
             ...cancellation,
+            'off!': getMessage('off!'),
+            'Paid Tours in {city}': getMessage('Paid Tours in {city}'),
             days: `{count, plural, =1 {${messages.Day}} other {${messages.Days}}}`,
             hours: `{count, plural, =1 {${messages.Hour}} other {${messages.Hours}}}`,
             months: translatesVouched.months,
@@ -66,6 +74,7 @@ export default getRequestConfig(async ({requestLocale}) => {
             weOfferPickupNotice: translatesVouched.weOfferPickupNotice,
             youCanStarPickup: translatesVouched.youCanStarPickup,
             showLocation: translatesVouched.showLocation,
+
             // ...translates
         }
     };

@@ -55,7 +55,8 @@ export async function fetchBooking (data: FormDataBooking, token: string, dep: D
             tour_id: dep.tourId,
             booking_id: results.booking_id,
             type: dep.is_civitatis ? 'civitatis' : 'oneport',
-            customer: toJS(data)
+            customer: toJS(data),
+
         }
     };
 }

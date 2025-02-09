@@ -7,9 +7,11 @@ import {
     CivitatisCategoriesModel,
     ICivitatisCategory,
 } from "@entities/lib/calendar/models/civitatis-categories.model";
+import {AdditionalOrderSingle} from "@entities/lib/calendar/models/single/additional-order.single";
 
 export interface FormDataBooking {
     tourName: string,
+    curLang: string,
     firstName: string,
     lastName: string,
     email: string,
@@ -23,7 +25,8 @@ interface Booking {
     booking_id: string
     customer: FormDataBooking
     civitatis_categories: ICivitatisCategory[]
-    tour_id: number
+    tour_id: number,
+    locale: string
 }
 
 export class BookingFormModel {
@@ -37,6 +40,8 @@ export class BookingFormModel {
     civitatisCategorySelected: CivitatisCategoriesModel | null = null;
 
     lastBookingPeopleNumber: number | null = null
+
+    additionalOrder = new AdditionalOrderSingle()
 
     constructor(readonly option: ProcessOptionModel) {
         this.departure = null;
@@ -92,6 +97,9 @@ export class BookingFormModel {
         if (!this.departure) {
             return null
         }
+
+        if(!this.bookings.length)
+            this.additionalOrder.remove()
 
         this.errors = [];
 

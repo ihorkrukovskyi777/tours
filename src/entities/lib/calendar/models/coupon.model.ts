@@ -1,10 +1,16 @@
-import {makeAutoObservable, runInAction} from "mobx";
+import {makeAutoObservable, runInAction, toJS} from "mobx";
 import {ProcessOptionModel} from "@entities/lib/calendar/models/process-option.model";
+import {NotFoundException} from "@/bokun-widget/src/api/exception";
+import {AdditionalOrderSingle} from "@entities/lib/calendar/models/single/additional-order.single";
+import {CouponCodeSingle, ICoupon} from "@entities/lib/calendar/models/single/coupon-code.single";
+import {CardExperience, Iimage} from "@entities/paid-tour/@types";
 
 interface IText {
     locale: string
     text: string
 }
+
+
 
 interface Coupon {
     active: boolean
@@ -64,10 +70,19 @@ export class CouponModel {
 
     city: City | null = null;
 
-    couponForBooking: number | null = null
+    couponForBooking: { id: number, code: string, time_to_finished: number} | null = null
+    additionalOrder = new AdditionalOrderSingle();
 
     constructor(readonly option: ProcessOptionModel,) {
         makeAutoObservable(this, {}, {autoBind: true})
+    }
+
+    setOrderLink(order: string) {
+        this.additionalOrder.set(order)
+    }
+
+    get additionalOrderId(): string | null {
+        return this.additionalOrder.id
     }
 
     get isEmpty() {
@@ -88,9 +103,17 @@ export class CouponModel {
                     revalidate: 0
                 }
             })
+            if(!response.ok)
+                throw new NotFoundException()
 
-            const data = await response.json()
-            this.couponForBooking = data.id
+            const data = await response.json() as ICoupon
+            this.couponForBooking = {
+                id: data.id,
+                code: data.code,
+                time_to_finished: data.time_to_finished,
+            }
+
+            new CouponCodeSingle().set(data)
             return data.id
         } catch (err) {
             console.log(err)
@@ -99,24 +122,27 @@ export class CouponModel {
 
     async fetchDecline() {
         if (this.couponForBooking) {
-            await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/bokun/coupon/decline/${this.couponForBooking}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/bokun/coupon/decline/${this.couponForBooking.id}`, {
                 method: 'DELETE',
                 next: {
                     revalidate: 0
                 }
             })
+
+            if(!response.ok)
+                throw new NotFoundException()
         }
     }
 
     async fetchPaidModal(tour_id: number) {
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/bokun/coupon/tours/${tour_id}?locale=${this.option.page.locale}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/paid-tours-search/by-free/${tour_id}?locale=${this.option.page.locale}&dep_locale=${this.option.locale}`, {
                 next: {
                     revalidate: 0
                 }
             })
-            const data = await response.json() as { coupon: Coupon, tours: any[], city: City };
+            const data = await response.json() as { coupon: Coupon, tours: CardExperience[], city: City };
             runInAction(() => {
                 this.offerModal = data.coupon.json.offer
                 this.congratulationModal = data.coupon.json.congratulation
@@ -131,6 +157,21 @@ export class CouponModel {
             })
         } catch (err) {
             this.coupon = null;
+        }
+    }
+
+    async sendEmail() {
+        if (this.couponForBooking) {
+           const response =  await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/bokun/coupon/send-email/${this.couponForBooking.id}?locale=${this.option.page.locale}`, {
+                method: 'GET',
+                next: {
+                    revalidate: 0
+                }
+            })
+
+            if(!response.ok)
+                throw new NotFoundException()
+
         }
     }
 }

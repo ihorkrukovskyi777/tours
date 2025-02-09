@@ -6,6 +6,15 @@ import {FetchBokunIntegration} from "@/bokun-widget/src/api/fetch-bokun-integrat
 import {RateEntity} from "@/bokun-widget/src/entity/rate.entity";
 import {ModelImpl} from "@shared/hooks/use-client-model";
 import {Upcoming} from "@entities/paid-tour/views/pick-a-date.view";
+import {CouponCodeSingle} from "@entities/lib/calendar/models/single/coupon-code.single";
+
+const getCoupon = () : {  code: string  } | undefined  => {
+    const coupon = new CouponCodeSingle();
+    if(coupon.coupon?.code) {
+        return { code: coupon.coupon.code}
+    }
+    return undefined
+}
 
 export class BokunWidgetModel implements ModelImpl {
     fetch: FetchBokunIntegration;
@@ -24,7 +33,9 @@ export class BokunWidgetModel implements ModelImpl {
                 referral_site: process.env.NEXT_PUBLIC_CANONICAL_DOMAIN as string,
                 locale,
                 review: new ReferralTraffic()
-            })
+            },
+            getCoupon()
+        )
 
         this.fetch = new FetchBokunIntegration(locale);
         makeAutoObservable(this, {}, {autoBind: true, deep: true})

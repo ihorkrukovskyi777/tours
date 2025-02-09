@@ -35,10 +35,13 @@ export function useProcessBookingProps() {
                 return store.modals
             },
             get isOpenCouponModal() {
-                return store.modals.modals[MODAL.COUPON_MODAL]
+                return store.modals.modals[MODAL.COUPON_MODAL].visibly
             },
             get isOpenCouponToursModal() {
-                return store.modals.modals[MODAL.PAID_TOURS_MODAL]
+                return store.modals.modals[MODAL.PAID_TOURS_MODAL].visibly
+            },
+            get isOpenCouponModalEmail() {
+                return store.modals.modals[MODAL.SUCCESS_SEND_EMAIL].visibly
             }
         },
         i18n,

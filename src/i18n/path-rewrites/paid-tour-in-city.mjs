@@ -10,11 +10,31 @@ export const PAID_TOUR_IN_CITY = {
         },
         {
             locale: 'de',
-            source: 'bezahlte-touren-in-:slug',
+            source: 'kostenpflichtige-touren-in-:slug',
         },
         {
             locale: 'es',
             source: 'tours-pagados-en-:slug',
+        },
+        {
+            locale: 'nl',
+            source: 'betaalde-rondleidingen-in:slug'
+        },
+        {
+            locale: 'fr',
+            source: 'visites-payantes-à:slug'
+        },
+        {
+            locale: 'pl',
+            source: 'płatne-wycieczki-po:slug'
+        },
+        {
+            locale: 'cat',
+            source: 'visites-de-pagament-a:slug'
+        },
+        {
+            locale: 'it',
+            source: 'tour-a-pagamento-a:slug'
         },
 
     ],

@@ -24,6 +24,7 @@ export async function useCalendarTranslate(locale) {
         change: i18n.t('change'),
         book_now: i18n.t('Book Now'),
         people: i18n.t('People'),
+        send_email_coupon: i18n.t('{discount} credit has been sent to your email!'),
         hours: i18n.t('Hours'),
         hour: i18n.t('Hour'),
         terms_and_conditions: i18n.t('Terms and Conditions'),

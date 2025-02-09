@@ -86,8 +86,6 @@ const PaidTour = async ({id, slug}: Props) => {
                 </div>
 
 
-
-
             {!!similar.length &&
                 <div className="padding_sm shadow overflow-hidden">
                     <DefaultSection title={t('similarExperiences')} label={slug}>

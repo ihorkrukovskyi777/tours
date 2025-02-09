@@ -60,7 +60,7 @@ export function useCaseFetchCouponModal() {
     const redirectToCheckout = useCaseRedirectToCheckout()
     const store = useContextStore();
     return useCallback(async function () {
-        if(!store.couponModel.isEmpty) {
+        if (!store.couponModel.isEmpty) {
             openCouponModal();
         } else {
             await redirectToCheckout()
@@ -72,27 +72,40 @@ export function useCaseFetchCouponModal() {
 export function useCaseDeclineCouponForBooking() {
     const store = useContextStore();
     const redirectToCheckout = useCaseRedirectToCheckout()
-    return useCallback(async function() {
+    return useCallback(async function () {
         store.loading.set('redirect-to-checkout')
         await store.couponModel.fetchDecline()
         await redirectToCheckout();
     }, [])
 }
 
-export function useCaseActivatedCouponForBooking() {
-    const {push} = useRouter()
-    return useCallback(async function(url: string) {
-
-        await push(url);
+export function useCaseSendCouponEmail() {
+    const store = useContextStore();
+    const redirectToCheckout = useCaseRedirectToCheckout()
+    return useCallback(async function () {
+        try {
+            store.loading.set('redirect-to-checkout')
+            await store.couponModel.sendEmail()
+            store.modals.openModal(MODAL.SUCCESS_SEND_EMAIL)
+            store.loading.turnOff('redirect-to-checkout')
+        } catch (err) {
+            await redirectToCheckout()
+        }
     }, [])
 }
+
 export function useCaseRedirectToCheckout() {
     const store = useContextStore();
     const {push} = useRouter()
     return useCallback(async function () {
-        const booking = store.formBooking.getFirstBooking();
         store.loading.set('redirect-to-checkout')
-        if (booking) {
+        const order = store.couponModel.additionalOrderId
+        if (order) {
+            const url = getHrefLocale(store.option.page.locale, `${ADDITIONAL_ROUTE}/${order}`)
+            await push(url)
+        } else {
+            const booking = store.formBooking.getFirstBooking();
+            if(!booking) return
             const url = getHrefLocale(store.option.page.locale, `${CHECKOUT}?code=${booking.booking_id}`)
             await push(url)
         }
@@ -111,7 +124,10 @@ export function useCaseFetchBooking() {
             await store.formBooking.fetchBookingDeparture(data, token)
 
             if (store.formBooking.bookings.length > 1) {
-                await setAdditionalBooking(store.formBooking.bookings.map(item => ({ type: item.type, booking_id: item.booking_id})))
+                await setAdditionalBooking(store.formBooking.bookings.map(item => ({
+                    type: item.type,
+                    booking_id: item.booking_id
+                })))
                 return;
             }
 
@@ -124,7 +140,6 @@ export function useCaseFetchBooking() {
             }
 
             await store.couponModel.fetchPaidModal(booking.tour_id)
-
 
 
             store.additionalSales.option.setPeople(store.formBooking.lastBookingPeopleNumber ?? 1)
@@ -140,10 +155,9 @@ export function useCaseFetchBooking() {
 
             const booking = store.formBooking.getFirstBooking();
 
-            if(!store.couponModel.isEmpty) {
+            if (!store.couponModel.isEmpty) {
                 openCouponModel();
-            }
-            else if (booking) {
+            } else if (booking) {
                 await redirect()
             } else {
                 store.loading.turnOff('fetch-booking')
@@ -172,9 +186,10 @@ export function useFetchAdditionalRedirect() {
         try {
             const order = await fetchBookingsAdditional(bookings)
 
-            if(!store.couponModel.isEmpty) {
+            if (!store.couponModel.isEmpty) {
+                store.couponModel.setOrderLink(order)
                 openCouponModal();
-            }else if (order) {
+            } else if (order) {
                 const url = getHrefLocale(store.option.page.locale, `${ADDITIONAL_ROUTE}/${order}`)
                 await push(url)
             } else {
@@ -205,13 +220,16 @@ export function useCaseFetchBookingAdditional() {
                         pageLocale: depModel.option.page.locale,
                         civitatisCategories: undefined
                     })
-                    if(data.data?.booking_id) {
+                    if (data.data?.booking_id) {
                         await setAdditionalBooking([
                             data.data,
                             ...store.formBooking.bookings.map(item => ({type: item.type, booking_id: item.booking_id}))
                         ])
                     } else {
-                        await setAdditionalBooking(store.formBooking.bookings.map(item => ({type: item.type, booking_id: item.booking_id})))
+                        await setAdditionalBooking(store.formBooking.bookings.map(item => ({
+                            type: item.type,
+                            booking_id: item.booking_id
+                        })))
                     }
 
                 } else {

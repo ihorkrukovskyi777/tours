@@ -1,19 +1,20 @@
 'use client'
 import Link from "next/link";
-import {MouseEvent} from "react";
+import {MouseEvent, ReactNode} from "react";
 import './style.css';
 
 interface Props {
     title: string,
     url: string,
-    attachment?: { src: string, alt: string },
+    attachment?: { src: string | null, alt: string },
     sale?: string,
     size?:string
     onLink?(link: string): void
+    children?: ReactNode
 }
 
 
-const CongratulationCard = ({title, attachment, url, sale, size = 'public', onLink}: Props) => {
+const CongratulationCard = ({children, title, attachment, url, sale, size = 'public', onLink}: Props) => {
 
     const onLinkClick = (e: MouseEvent<HTMLElement>) => {
         if(onLink) {
@@ -41,6 +42,7 @@ const CongratulationCard = ({title, attachment, url, sale, size = 'public', onLi
                 <div className="bottom_info">
                     {sale && <div className="sale">{sale}</div>}
                 </div>
+                {children}
             </Link>
         </div>
     )

@@ -1,5 +1,5 @@
 import {observer} from "mobx-react-lite";
-import BaseModal from "@entities/paid-tour/ui/modals/base-modal/base-modal";
+import BaseModal from "@entities/lib/calendar/ui/modals/base-modal/base-modal";
 import {useContextProcessBookingI18N} from "@entities/lib/calendar/process-booking.provider";
 import Button from "@shared/ui/selectors/button/button";
 import {CouponModel} from "@entities/lib/calendar/models/coupon.model";

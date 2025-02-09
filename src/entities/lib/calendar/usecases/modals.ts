@@ -25,6 +25,16 @@ export function useCaseOpenCouponModal() {
         store.modals.closeAllExceptByName(MODAL.COUPON_MODAL)
     }, [store])
 }
+
+export function useCaseCloseModelEmailCoupon() {
+    const store = useContextStore();
+    const redirectToCheckout = useCaseRedirectToCheckout()
+    return useCallback(async function () {
+
+        store.modals.closeModal(MODAL.SUCCESS_SEND_EMAIL)
+        await redirectToCheckout();
+    }, [store])
+}
 export function useCaseOpenCouponToursModal() {
     const store = useContextStore();
     const redirectToCheckout = useCaseRedirectToCheckout()
