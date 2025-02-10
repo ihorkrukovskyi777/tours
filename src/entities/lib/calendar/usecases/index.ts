@@ -74,6 +74,10 @@ export function useCaseDeclineCouponForBooking() {
     const redirectToCheckout = useCaseRedirectToCheckout()
     return useCallback(async function () {
         store.loading.set('redirect-to-checkout')
+
+        if(store.formBooking.bookings.length < 2) {
+            store.couponModel.removeOrder();
+        }
         await store.couponModel.fetchDecline()
         await redirectToCheckout();
     }, [])

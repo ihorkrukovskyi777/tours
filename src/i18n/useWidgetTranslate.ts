@@ -10,6 +10,7 @@ export default async function  useWidgetTranslate(locale: string) : Promise<Ii18
     const dayShort = (key: string) => i18n.daysShort[key]
     const dayShortDDD = (key: string) => i18n.daysShortDDD[key]
     return {
+        fees: t('fees'),
         errorMessage: {
             fieldIsRequired: getErrorMessage('fieldIsRequired'),
             invalidDate: getErrorMessage('invalidDate'),
@@ -115,7 +116,7 @@ export default async function  useWidgetTranslate(locale: string) : Promise<Ii18
             "Thu": dayShortDDD('Thu'),
             "Fri": dayShortDDD('Fri'),
             "Sat": dayShortDDD('Sat')
-        },
+        }
 
     }
 }

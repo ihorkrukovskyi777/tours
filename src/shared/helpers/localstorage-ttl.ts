@@ -29,8 +29,6 @@ function get<T>(variable: string): T | null {
                 const data: StoredData<T> = JSON.parse(item) as StoredData<T>;
 
                 if (data.expires_at && data.expires_at < Date.now()) {
-                    console.log(data.expires_at, Date.now())
-                    alert(3)
                     localStorage.removeItem(variable);
                     return null;
                 } else {

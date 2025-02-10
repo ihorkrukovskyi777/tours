@@ -7,7 +7,7 @@ import {RateEntity} from "@/bokun-widget/src/entity/rate.entity";
 import {ModelImpl} from "@shared/hooks/use-client-model";
 import {Upcoming} from "@entities/paid-tour/views/pick-a-date.view";
 import {CouponCodeSingle} from "@entities/lib/calendar/models/single/coupon-code.single";
-
+import {BokunWidgetPaymentMethodModel} from "@entities/paid-tour/models/bokun-widget-payment-method.model";
 const getCoupon = () : {  code: string  } | undefined  => {
     const coupon = new CouponCodeSingle();
     if(coupon.coupon?.code) {
@@ -34,6 +34,7 @@ export class BokunWidgetModel implements ModelImpl {
                 locale,
                 review: new ReferralTraffic()
             },
+            (model) => new BokunWidgetPaymentMethodModel(model),
             getCoupon()
         )
 

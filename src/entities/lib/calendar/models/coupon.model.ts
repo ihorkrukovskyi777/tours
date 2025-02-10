@@ -1,9 +1,9 @@
-import {makeAutoObservable, runInAction, toJS} from "mobx";
+import {makeAutoObservable, runInAction} from "mobx";
 import {ProcessOptionModel} from "@entities/lib/calendar/models/process-option.model";
 import {NotFoundException} from "@/bokun-widget/src/api/exception";
 import {AdditionalOrderSingle} from "@entities/lib/calendar/models/single/additional-order.single";
 import {CouponCodeSingle, ICoupon} from "@entities/lib/calendar/models/single/coupon-code.single";
-import {CardExperience, Iimage} from "@entities/paid-tour/@types";
+import {CardExperience} from "@entities/paid-tour/@types";
 
 interface IText {
     locale: string
@@ -81,6 +81,9 @@ export class CouponModel {
         this.additionalOrder.set(order)
     }
 
+    removeOrder() {
+        this.additionalOrder.remove()
+    }
     get additionalOrderId(): string | null {
         return this.additionalOrder.id
     }

@@ -4,5 +4,6 @@
     "simple": "Remboursement en cas d'annulation au moins {type, select, day {{day} {count, plural, =1{day} other {days}}} heure {{hour} {count_hours, plural, =1{hour} other {hours} }} autres {%full%}} avant l'événement",
     "full": "Les réservations sont entièrement remboursables jusqu'au moment de l'événement.",
     "non_refund": "Les réservations ne sont pas remboursables. Toutes les ventes sont définitives."
-  }
+  },
+  "fees": "Frais"
 }

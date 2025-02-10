@@ -58,6 +58,7 @@ const PaidTour = async ({id, slug}: Props) => {
                                 description={tour.excerpt}
                             />
                         </div>
+                        {t('language')}
                         <section className="information-tour border_top border_bottom padding_sm">
                             <div className="grid grid__row_3">
                                 <InfoAboutTourBlock icon={ImageDuration} title={t('duration')}>
@@ -108,8 +109,7 @@ const PaidTour = async ({id, slug}: Props) => {
             }
             </div>
             <div className="padding_md">
-                {/*@ts-ignore*/}
-                <I18nChangeOfLanguage locale={locale} languages={languages}/>
+                <I18nChangeOfLanguage title="" locale={locale} languages={languages}/>
             </div>
 
             <Footer locale={locale}/>

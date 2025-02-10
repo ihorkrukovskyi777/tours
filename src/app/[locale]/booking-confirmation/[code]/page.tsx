@@ -17,6 +17,7 @@ interface Booking {
         }
         locale: string
     }
+    type: 'civitatis' | 'bokun' | 'oneport'
     locale: string
     fullTime: string
     checkout_code: string
@@ -65,11 +66,17 @@ export default async function OderPage({params}: { params: { locale: string, cod
                     {sortBooking(bookings).map(booking => {
 
                         const serviceDate = new ServiceDate(booking.fullTime)
+
+
                         const slug = `${getHrefLocale(booking.profile.locale)}${booking.profile.city?.slug}/${PATH_TOURS}/${booking.profile.slug}`;
 
                         const duration = toHoursAndMinutes(booking.duration * 60);
 
-                        const checkoutSlug = getHrefLocale(booking.profile.locale, `${CHECKOUT}?code=${booking.checkout_code}`)
+                        let checkoutSlug = getHrefLocale(booking.profile.locale, `${CHECKOUT}?code=${booking.checkout_code}`)
+
+                        if(booking.type === 'bokun') {
+                            checkoutSlug = getHrefLocale(booking.profile.locale, `${CHECKOUT}/${booking.checkout_code}`)
+                        }
                         const isSelfGuide = serviceDate.time === '23:59'
                         const durationLabel = isSelfGuide ? i18n.t('Flexible') : booking.duration > 1 ? i18n.t('Hours') : i18n.t('Hour')
 
@@ -79,7 +86,7 @@ export default async function OderPage({params}: { params: { locale: string, cod
                                     id={booking.booking_id}
                                     slug={slug}
                                     title={booking.profile.title}
-                                    locale={'en'}
+                                    locale={booking.locale}
                                     checkoutSlug={checkoutSlug}
                                     durationLabel={durationLabel}
                                     hours={duration.hours}
@@ -89,7 +96,7 @@ export default async function OderPage({params}: { params: { locale: string, cod
                                     dayNum={serviceDate.dayNum}
                                     month={months[serviceDate.month]}
                                     year={serviceDate.yearNum}
-                                    time={serviceDate.time}
+                                    time={isSelfGuide ? i18n.t('Flexible') : serviceDate.time}
                                 />
                             </>
                         )

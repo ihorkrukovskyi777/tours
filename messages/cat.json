@@ -4,5 +4,6 @@
     "simple": "Reembossament si es cancel·la com a mínim {tipus, seleccioneu, dia {{dia} {compte, plural, =1{dia} altres {dies}}} hora {{hora} {count_hours, plural, =1{hora} altres {hores} }} altres {%full%}} abans de l'esdeveniment",
     "full": "Les reserves són totalment reemborsables fins al moment de l'esdeveniment.",
     "non_refund": "Les reserves no són reemborsables. Totes les vendes són definitives."
-  }
+  },
+  "fees": "Honoraris"
 }

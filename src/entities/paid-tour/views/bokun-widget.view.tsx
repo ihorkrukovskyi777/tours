@@ -1,7 +1,7 @@
 'use client'
 import {observer} from "mobx-react-lite";
 import {useLocale} from "use-intl";
-import {BokunWidgetModel} from "@entities/paid-tour/models/bokun-widget.model";
+import {BokunWidgetModel} from "@entities/paid-tour/models/bokun-widget-model";
 import SpinnerCircle from "@/bokun-widget/src/ui/spinner/spinner-circle";
 import {Modal} from 'react-responsive-modal';
 import ModalOnlyCheckout from "@/bokun-widget/src/views/checkout/modal-only-checkout";

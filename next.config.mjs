@@ -3,7 +3,7 @@ import {PAID_TOUR_IN_CITY} from "./src/i18n/path-rewrites/paid-tour-in-city.mjs"
 import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin();
 
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
 
     async rewrites() {

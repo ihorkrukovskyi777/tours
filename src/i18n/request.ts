@@ -5,7 +5,6 @@ import {defaultNS} from "@i18n/settings";
 export default getRequestConfig(async ({requestLocale}) => {
     // This typically corresponds to the `[locale]` segment
     let locale = await requestLocale;
-
     // Ensure that a valid locale is used
     if (!locale || !routing.locales.includes(locale as never)) {
         locale = routing.defaultLocale;
@@ -18,9 +17,10 @@ export default getRequestConfig(async ({requestLocale}) => {
         }
     });
 
+
     const responseVouched = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/influencer?locale=${locale}`, {
         next: {
-            revalidate: 2
+            revalidate: 0
         }
     });
     const translates = await response.json()

@@ -2,7 +2,6 @@ import ChangeOfLanguage from "@/shared/ui/languages/change-of-language/change-of
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 
 export default async function I18nChangeOfLanguage({locale, title, addQueries = false, ...props}) {
-    console.log(props)
     const i18n = await useDefaultI18n(locale)
     return (
         <ChangeOfLanguage

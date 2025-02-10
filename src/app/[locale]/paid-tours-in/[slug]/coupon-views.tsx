@@ -9,6 +9,7 @@ import {PATH_TOURS} from "@shared/constants/route";
 import {DataPagePaidTours} from "@/app/[locale]/paid-tours-in/[slug]/page";
 import {useTranslations} from "next-intl";
 import SpinnerCircle from "@/bokun-widget/src/ui/spinner/spinner-circle";
+import {NotFoundException} from "@/bokun-widget/src/api/exception";
 
 interface Coupon {
     code: string
@@ -17,14 +18,7 @@ interface Coupon {
     value: number
 }
 
-async function fetchCoupon(code: string) {
 
-    return fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/bokun/coupon/by-code/${code}`, {
-        next: {
-            revalidate: 0
-        }
-    })
-}
 
 interface Props {
     data: DataPagePaidTours
@@ -49,13 +43,17 @@ const CouponViews = ({data}: Props) => {
 
 
         setLoading(true);
-        fetchCoupon(code).then(res => res.json()).then(coupon => {
+        new CouponCodeSingle().fetchCoupon(code).then(res => res.json()).then(coupon => {
             if (coupon) {
                 new CouponCodeSingle().set(coupon)
                 setCoupon(coupon)
             }
 
-        }).catch().finally(() => {
+        }).catch((err) => {
+            if(err instanceof NotFoundException) {
+                setCoupon(null)
+            }
+        }).finally(() => {
 
             setLoading(false)
         })
@@ -74,6 +72,7 @@ const CouponViews = ({data}: Props) => {
         background: 'rgba(255,255,255, 1)'
     }
 
+    console.log(coupon, 'coupon')
     const typeSale = coupon?.type === 'percentage' ? '%' : 'USD'
     const couponValue = coupon ? `- ${coupon?.value}${typeSale} ${t('off!')}` : undefined
 
@@ -96,7 +95,7 @@ const CouponViews = ({data}: Props) => {
                                 url={getHrefLocale(tour.locale, `${tour.city?.slug}/${PATH_TOURS}/${tour.slug}`)}
                                 key={tour.id}
                                 title={tour.title}
-                                sale={couponValue}
+                                sale={coupon ? couponValue : undefined}
                                 attachment={tour.image}
                             >
 

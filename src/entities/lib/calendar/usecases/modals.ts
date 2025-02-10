@@ -38,6 +38,7 @@ export function useCaseCloseModelEmailCoupon() {
 export function useCaseOpenCouponToursModal() {
     const store = useContextStore();
     const redirectToCheckout = useCaseRedirectToCheckout()
+    const setAdditionalBooking = useFetchAdditionalRedirect();
     return useCallback(async function () {
 
         const booking = store.formBooking.getLastBooking();
@@ -47,6 +48,13 @@ export function useCaseOpenCouponToursModal() {
             return
         }
         store.loading.set('redirect-to-checkout')
+
+
+        if(!store.couponModel.additionalOrderId)
+            await setAdditionalBooking(store.formBooking.bookings.map(item => ({
+                type: item.type,
+                booking_id: item.booking_id
+            })))
 
         await store.couponModel.fetchCreateCoupon(booking.booking_id)
 
