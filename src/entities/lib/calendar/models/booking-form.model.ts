@@ -103,6 +103,7 @@ export class BookingFormModel {
 
         this.errors = [];
 
+
         const peopleNumber = this.civitatisCategorySelected?.peopleNumber ?? this.option.peopleNumber
 
         const results = await fetchBooking(data, token, {
@@ -125,9 +126,7 @@ export class BookingFormModel {
         })
         return results
     }
-
     addBooking(data: Booking) {
         this.bookings.push(data)
     }
-
 }

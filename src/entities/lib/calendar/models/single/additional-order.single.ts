@@ -1,5 +1,4 @@
 import localstorageTtl from "@shared/helpers/localstorage-ttl";
-
 export class AdditionalOrderSingle {
     constructor() {
     }

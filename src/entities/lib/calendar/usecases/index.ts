@@ -236,6 +236,8 @@ export function useCaseFetchBookingAdditional() {
                         type: item.type,
                         booking_id: item.booking_id
                     })))
+
+
                 } else {
                     store.loading.set('additional-booking')
                     await nextCivitatisAdditionalBooking(dep, store.formBooking.lastBookingCivCategories, depModel.option.peopleNumber)
