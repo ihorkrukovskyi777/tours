@@ -9,6 +9,7 @@ export async function useCalendarTranslate(locale) {
 
     return {
         details: i18n.t('Details'),
+        offMark: i18n.t('off!'),
         no_thanks: i18n.t('No, Thanks'),
         booking_confirmed_: i18n.t('Booking confirmed!'),
         booking_confirmed: i18n.t('Booking confirmed'),
@@ -23,6 +24,7 @@ export async function useCalendarTranslate(locale) {
         change: i18n.t('change'),
         book_now: i18n.t('Book Now'),
         people: i18n.t('People'),
+        send_email_coupon: i18n.t('{discount} credit has been sent to your email!'),
         hours: i18n.t('Hours'),
         hour: i18n.t('Hour'),
         terms_and_conditions: i18n.t('Terms and Conditions'),

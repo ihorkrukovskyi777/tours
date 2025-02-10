@@ -1,6 +1,7 @@
 'use client'
 import {useEffect, useState} from "react";
-import {useParams} from "next/navigation";
+import {useLocale} from "next-intl";
+import {locales} from "@/i18n/settings";
 const notFoundTitle = {
     en: 'Page Not Found',
     ru: 'Page Not Found',
@@ -17,11 +18,13 @@ export default function NotFound() {
         text: '',
         title: '',
     })
-    const params = useParams()
+    const paramsLocale = useLocale()
 
+
+    const locale = locales.includes(paramsLocale) ? paramsLocale : 'en'
     useEffect(() => {
         const fetchData = async () => {
-            const data = fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/not-found?locale=${params.locale}`, {next: {revalidate: 60 * 10 }});
+            const data = fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/page/type/not-found?locale=${locale}`, {next: {revalidate: 60 * 10 }});
             return (await data).json()
         }
         fetchData().then((res) => {
@@ -30,7 +33,7 @@ export default function NotFound() {
     }, [])
     return (
         <div>
-            <title>{notFoundTitle[params.locale] ?? notFoundTitle['en']}</title>
+            <title>{notFoundTitle[locale] ?? notFoundTitle['en']}</title>
             <div className="content page-404">
                 <div className="container">
                     <article>

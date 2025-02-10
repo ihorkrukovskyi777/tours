@@ -1,0 +1,29 @@
+.experience-page {
+  .booking_view {
+    .pick-a-date {
+      @media(max-width: 1199px) {
+        padding: 0;
+        box-shadow: none;
+        border: none;
+      }
+      .button_default {
+        @media(max-width: 1199px) {
+          margin-top: 0;
+          font-size: 20px;
+          font-weight: 400;
+          padding: 15px;
+        }
+      }
+    }
+    .pick-a-date__price {
+      @media(max-width: 1199px) {
+        display: none;
+      }
+    }
+  }
+  .vouched {
+    @media(max-width: 1199px) {
+      display: none;
+    }
+  }
+}

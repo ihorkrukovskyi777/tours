@@ -1,0 +1,9 @@
+{
+  "cancellation": {
+    "advance": "Cobraremos una tasa de cancelación del {percentage}% si la reserva se cancela {type, select, day {{day} {count, plural, =1{day} other {days}}} hora {{hour} {count_hours, plural, =1{hour} other {hours}}} other {%full%}} o menos antes del evento",
+    "simple": "Reembolso si cancela al menos {type, select, day {{day} {count, plural, =1{day} other {days}}} hora {{hour} {count_hours, plural, =1{hour} other {hours}}} other {%full%}} antes del evento",
+    "full": "Las reservas son completamente reembolsables hasta el momento del evento.",
+    "non_refund": "Las reservas no son reembolsables. "
+  },
+  "fees": "Honorarios"
+}

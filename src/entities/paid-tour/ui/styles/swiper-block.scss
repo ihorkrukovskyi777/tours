@@ -1,0 +1,141 @@
+.swiper_block {
+  position: relative;
+
+  &.count_slides_1
+    /* &.count_slides_2*/{
+    .MainSlider {
+      padding: 0;
+    }
+    &:before,
+    &:after {
+      display: none !important;
+    }
+  }
+
+
+  &.gradient_right_white {
+    &:before {
+      display: block;
+      content: '';
+      width: 60px;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      background: linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+      top: 0;
+      z-index: 11;
+    }
+  }
+  &.gradient_left_white {
+    &:after {
+      display: block;
+      content: '';
+      width: 60px;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
+      top: 0;
+      z-index: 11;
+    }
+  }
+  .MainSlider {
+    .gradient_left_white,
+    .gradient_right_white{
+      &:before,
+      &:after{
+        display: none;
+      }
+    }
+  }
+  &.padding_50 {
+    padding: 0 50px;
+    @media(max-width: 767px) {
+      padding: 0;
+      overflow: hidden;
+      margin: 0 -20px;
+    }
+
+  }
+  .swiper {
+    position: static;
+    border-radius: 8px;
+    @media(max-width: 767px) {
+      overflow: inherit;
+      padding: 0 76px;
+    }
+    &.border_radius_16 {
+      border-radius: 16px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev{
+      width: 38px;
+      height: 38px;
+      background: #EBF6FE;
+      flex-shrink: 0;
+      border-radius: 50%;
+      opacity: 1;
+      cursor: pointer;
+      transition: .3s;
+      z-index: 12;
+      @media(max-width: 767px) {
+        width: 28px;
+        height: 28px;
+        background: rgba(0,0,0, .25);
+      }
+      &:after {
+        font-size: 0;
+        background: url('../../../../assets/images/svg/arrow-right.svg');
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        @media(max-width: 767px) {
+          width: 12px;
+          height: 12px;
+          background: url('../../../../assets/images/svg/arrow-right-white.svg');
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+      }
+      &:hover {
+        opacity: .7;
+      }
+    }
+    .swiper-button-next {
+      right: var(--arrowPadding);
+      @media(max-width: 767px) {
+        right: 12px;
+      }
+    }
+    .swiper-button-prev {
+      transform: rotate(180deg);
+      left: var(--arrowPadding);
+      @media(max-width: 767px) {
+        left: 12px;
+      }
+    }
+  }
+  &.mobile_fixed_width {
+    @media(max-width: 767px) {
+      .swiper {
+        padding: 0;
+      }
+      .swiper-slide {
+        width: 270px;
+        max-width: 100%;
+      }
+    }
+  }
+
+  &.auto_height_slides {
+    .swiper-slide {
+      height: auto;
+    }
+  }
+}
+
