@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "NEXT_TOURS",
-      "script": "npm run start",
+      "script": "npm run start -p 9001",
       "instances": 1,
       "max_memory_restart": "200M"
     }
