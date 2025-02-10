@@ -21,7 +21,6 @@ export default function CardGuide({children , avatar , url , bottomView = [] , v
         videoRef.current.pause();
         setIsPlaying(false);
     };
-    console.log(videoURL , 'avatar');
 
     return (
         <div
