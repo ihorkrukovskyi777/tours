@@ -1,16 +1,17 @@
+import localstorageTtl from "@shared/helpers/localstorage-ttl";
 export class AdditionalOrderSingle {
     constructor() {
     }
 
     get id(): string | null {
-        return window.sessionStorage.getItem('additionalOrderId')
+        return localstorageTtl.get('additionalOrderId')
     }
 
     set(id: string) {
-        window.sessionStorage.setItem('additionalOrderId', id)
+        localstorageTtl.set('additionalOrderId', id, 1000 * 60 * 60)
     }
 
     remove() {
-        window.sessionStorage.removeItem('additionalOrderId')
+        localstorageTtl.remove('additionalOrderId')
     }
 }

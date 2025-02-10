@@ -122,8 +122,11 @@ export class BookingFormModel {
         }
         runInAction(() => {
             this.lastBookingPeopleNumber = peopleNumber
-            this.bookings.push({...results.data, civitatis_categories: this.civitatisCategorySelected?.notEmptyCategories ?? []})
+            this.addBooking({...results.data, civitatis_categories: this.civitatisCategorySelected?.notEmptyCategories ?? []})
         })
         return results
+    }
+    addBooking(data: Booking) {
+        this.bookings.push(data)
     }
 }

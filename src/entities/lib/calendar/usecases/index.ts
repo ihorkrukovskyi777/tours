@@ -75,7 +75,7 @@ export function useCaseDeclineCouponForBooking() {
     return useCallback(async function () {
         store.loading.set('redirect-to-checkout')
 
-        if(store.formBooking.bookings.length < 2) {
+        if (store.formBooking.bookings.length < 2) {
             store.couponModel.removeOrder();
         }
         await store.couponModel.fetchDecline()
@@ -91,6 +91,9 @@ export function useCaseSendCouponEmail() {
             store.loading.set('redirect-to-checkout')
             await store.couponModel.sendEmail()
             store.modals.openModal(MODAL.SUCCESS_SEND_EMAIL)
+            if (store.formBooking.bookings.length < 2) {
+                store.couponModel.removeOrder();
+            }
             store.loading.turnOff('redirect-to-checkout')
         } catch (err) {
             await redirectToCheckout()
@@ -109,7 +112,7 @@ export function useCaseRedirectToCheckout() {
             await push(url)
         } else {
             const booking = store.formBooking.getFirstBooking();
-            if(!booking) return
+            if (!booking) return
             const url = getHrefLocale(store.option.page.locale, `${CHECKOUT}?code=${booking.booking_id}`)
             await push(url)
         }
@@ -224,17 +227,16 @@ export function useCaseFetchBookingAdditional() {
                         pageLocale: depModel.option.page.locale,
                         civitatisCategories: undefined
                     })
-                    if (data.data?.booking_id) {
-                        await setAdditionalBooking([
-                            data.data,
-                            ...store.formBooking.bookings.map(item => ({type: item.type, booking_id: item.booking_id}))
-                        ])
-                    } else {
-                        await setAdditionalBooking(store.formBooking.bookings.map(item => ({
-                            type: item.type,
-                            booking_id: item.booking_id
-                        })))
-                    }
+                    store.formBooking.addBooking({
+                        type: 'oneport',
+                        ...data.data,
+                        civitatis_categories: [],
+                    })
+                    await setAdditionalBooking(store.formBooking.bookings.map(item => ({
+                        type: item.type,
+                        booking_id: item.booking_id
+                    })))
+
 
                 } else {
                     store.loading.set('additional-booking')

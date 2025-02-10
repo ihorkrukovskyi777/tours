@@ -6,7 +6,8 @@ import {ServiceDate} from "@shared/service/service-date";
 import {pad2, toHoursAndMinutes} from "@shared/helpers/date";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import {locales} from "@/i18n/settings";
-import OrderBookingCard from "@shared/ui/card-components/order-booking-card/order-booking-card";
+import OrderBookingCard from "@shared/ui/card-components/order-booking-card/order-booking-card"
+import ClientComponent from "@/app/[locale]/booking-confirmation/[code]/client-component";
 import './style.css'
 interface Booking {
     profile: {
@@ -59,6 +60,7 @@ export default async function OderPage({params}: { params: { locale: string, cod
     return (
         <div className="page_orders_container">
             <div className="page_orders">
+                <ClientComponent />
                 {bookings.length === 1 ? <span className="page_orders_error">{i18n.t('An error occurred while booking an additional tour.')}</span> : null}
                 <h1>{i18n.t('Click on the links below to see full booking confirmation and manage your bookings.')}</h1>
 
