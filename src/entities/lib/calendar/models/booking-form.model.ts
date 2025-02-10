@@ -103,7 +103,6 @@ export class BookingFormModel {
 
         this.errors = [];
 
-
         const peopleNumber = this.civitatisCategorySelected?.peopleNumber ?? this.option.peopleNumber
 
         const results = await fetchBooking(data, token, {
@@ -122,8 +121,13 @@ export class BookingFormModel {
         }
         runInAction(() => {
             this.lastBookingPeopleNumber = peopleNumber
-            this.bookings.push({...results.data, civitatis_categories: this.civitatisCategorySelected?.notEmptyCategories ?? []})
+            this.addBooking({...results.data, civitatis_categories: this.civitatisCategorySelected?.notEmptyCategories ?? []})
         })
         return results
     }
+
+    addBooking(data: Booking) {
+        this.bookings.push(data)
+    }
+
 }

@@ -40,7 +40,7 @@ export function useCaseOpenCouponToursModal() {
     const redirectToCheckout = useCaseRedirectToCheckout()
     const setAdditionalBooking = useFetchAdditionalRedirect();
     return useCallback(async function () {
-
+        console.log(store.formBooking.bookings.length, 'store.formBooking.bookings -111')
         const booking = store.formBooking.getLastBooking();
 
         if(!booking) {
@@ -50,12 +50,15 @@ export function useCaseOpenCouponToursModal() {
         store.loading.set('redirect-to-checkout')
 
 
-        if(!store.couponModel.additionalOrderId)
+        console.log(store.formBooking.bookings.length, 'store.formBooking.bookings -111')
+        if(!store.couponModel.additionalOrderId) {
             await setAdditionalBooking(store.formBooking.bookings.map(item => ({
                 type: item.type,
                 booking_id: item.booking_id
             })))
+        }
 
+        console.log(store.formBooking.bookings.length, 'useCaseOpenCouponToursModal')
         await store.couponModel.fetchCreateCoupon(booking.booking_id)
 
         store.modals.closeAllExceptByName(MODAL.PAID_TOURS_MODAL)

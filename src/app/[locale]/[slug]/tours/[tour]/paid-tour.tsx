@@ -58,7 +58,6 @@ const PaidTour = async ({id, slug}: Props) => {
                                 description={tour.excerpt}
                             />
                         </div>
-                        {t('language')}
                         <section className="information-tour border_top border_bottom padding_sm">
                             <div className="grid grid__row_3">
                                 <InfoAboutTourBlock icon={ImageDuration} title={t('duration')}>
