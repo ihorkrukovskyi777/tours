@@ -5,6 +5,7 @@ import {CardExperience} from "@entities/paid-tour/@types";
 
 import CouponViews from "@/app/[locale]/paid-tours-in/[slug]/coupon-views";
 import './style.css'
+import {getLocale} from "next-intl/server";
 export interface DataPagePaidTours {
     city: {
         title: string
@@ -21,9 +22,12 @@ async function fetchToursPaid(slug: string ,locale: string) {
     })
 }
 
-export default async function CongratulationsPage({params: {locale, slug}}: any) {
-    const response = await fetchToursPaid(slug, locale)
+export default async function CongratulationsPage({params: { slug}}: any) {
 
+    const locale = await getLocale()
+
+
+    const response = await fetchToursPaid(slug, locale)
     if (!response.ok) {
         notFound()
     }
