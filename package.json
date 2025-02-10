@@ -2,13 +2,11 @@
   "name": "tours",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 9001",
-    "lint": "next lint",
-    "pm2": "pm2 start pm2.json"
+    "start": "next start -p 3000",
+    "lint": "next lint"
   },
   "dependencies": {
     "@react-google-maps/api": "^2.20.3",
