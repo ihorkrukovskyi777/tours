@@ -1,3 +1,8 @@
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone"
+import utc from "dayjs/plugin/utc"
+dayjs.extend(utc);
+dayjs.extend(timezone);
 export class ServiceDate {
     constructor(date, fullNameDayWeek = true) {
         this.date = new Date(date);
@@ -61,9 +66,10 @@ export class ServiceDate {
     }
 
     get time() {
-        const time = this.date;
+        const time = this.date
 
-        return ("0" + time.getHours()).slice(-2) + ":" + ("0" + time.getMinutes()).slice(-2)
+
+        return dayjs.utc(time).format("HH:mm")
     }
 
     get differenceInDays() {

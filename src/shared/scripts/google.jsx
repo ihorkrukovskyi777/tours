@@ -2,6 +2,7 @@
 import {useEffect, useState} from "react";
 import Script from "next/script";
 import {type} from "os";
+import {CouponCodeSingle} from "@/entities/lib/calendar/models/single/coupon-code.single";
 
 export default function GoogleScript() {
 
@@ -16,6 +17,10 @@ export default function GoogleScript() {
         const docHeight = document.querySelector('body').scrollHeight - window.innerHeight - 100;
         setDocumentHeight(docHeight);
     };
+
+    useEffect(() => {
+        new CouponCodeSingle().revalidate().then()
+    }, [])
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, {passive: true});

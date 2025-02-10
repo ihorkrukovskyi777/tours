@@ -1,0 +1,9 @@
+{
+  "cancellation": {
+    "advance": "Addebiteremo una penale di cancellazione del {percentage}% se la prenotazione viene cancellata {type, select, day {{day} {count, plural, =1{day} other {days}}} ora {{hour} {count_hours, plural , =1{hour} other {hours}}} other {%full%}} o meno prima dell'evento",
+    "simple": "Rimborso in caso di annullamento almeno {type, select, day {{day} {count, plural, =1{day} other {days}}} ora {{hour} {count_hours, plural, =1{hour} other {hours} }} altro {%full%}} prima dell'evento",
+    "full": "Le prenotazioni sono completamente rimborsabili fino al momento dell'evento.",
+    "non_refund": "Le prenotazioni non sono rimborsabili. Tutte le vendite sono definitive."
+  },
+  "fees": "Commissioni"
+}

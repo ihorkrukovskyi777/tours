@@ -1,0 +1,8 @@
+{
+  "cancellation": {
+    "advance": "We will charge a cancellation fee of {percentage}% if booking is cancelled {type, select, day {{day} {count, plural, =1{day} other {days}}} hour {{hour} {count_hours, plural, =1{hour} other {hours}}} other {%full%}} or less before the event",
+    "simple": "Refund if cancelled at least {type, select, day {{day} {count, plural, =1{day} other {days}}} hour {{hour} {count_hours, plural, =1{hour} other {hours}}} other {%full%}}  before the event",
+    "full": "Bookings are fully refundable up to the time of the event.",
+    "non_refund": "Bookings are non-refundable. All sales are final."
+  }
+}

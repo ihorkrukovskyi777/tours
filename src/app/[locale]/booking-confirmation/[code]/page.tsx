@@ -1,16 +1,13 @@
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import {notFound} from "next/navigation";
-import LanguageImages from "@shared/ui/languages/language-images";
-import Link from "next/link";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import {ADDITIONAL_ROUTE, CHECKOUT, PATH_TOURS} from "@shared/constants/route";
 import {ServiceDate} from "@shared/service/service-date";
 import {pad2, toHoursAndMinutes} from "@shared/helpers/date";
-import ClockSvg from '@/assets/images/svg/clock-svg';
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import {locales} from "@/i18n/settings";
+import OrderBookingCard from "@shared/ui/card-components/order-booking-card/order-booking-card";
 import './style.css'
-
 interface Booking {
     profile: {
         title: string
@@ -20,6 +17,7 @@ interface Booking {
         }
         locale: string
     }
+    type: 'civitatis' | 'bokun' | 'oneport'
     locale: string
     fullTime: string
     checkout_code: string
@@ -68,38 +66,39 @@ export default async function OderPage({params}: { params: { locale: string, cod
                     {sortBooking(bookings).map(booking => {
 
                         const serviceDate = new ServiceDate(booking.fullTime)
+
+
                         const slug = `${getHrefLocale(booking.profile.locale)}${booking.profile.city?.slug}/${PATH_TOURS}/${booking.profile.slug}`;
 
                         const duration = toHoursAndMinutes(booking.duration * 60);
 
-                        const checkoutSlug = getHrefLocale(booking.profile.locale, `${CHECKOUT}?code=${booking.checkout_code}`)
+                        let checkoutSlug = getHrefLocale(booking.profile.locale, `${CHECKOUT}?code=${booking.checkout_code}`)
+
+                        if(booking.type === 'bokun') {
+                            checkoutSlug = getHrefLocale(booking.profile.locale, `${CHECKOUT}/${booking.checkout_code}`)
+                        }
                         const isSelfGuide = serviceDate.time === '23:59'
                         const durationLabel = isSelfGuide ? i18n.t('Flexible') : booking.duration > 1 ? i18n.t('Hours') : i18n.t('Hour')
 
                         return (
-                            <div key={booking.booking_id}>
-                                <div className="page_orders__item">
-                                    <Link href={slug}>
-                                        <h3 className="page_orders__title">
-                                            {booking.profile.title} <LanguageImages
-                                            locales={[{code: booking.locale, id: 1}]}/>
-                                        </h3>
-                                    </Link>
-                                    <span>
-                                {i18n.t('Booking ID')}: {booking.booking_id}
-                            </span>
-
-                                    <span>
-                                {days[serviceDate.day]}, {serviceDate.dayNum} {months[serviceDate.month]} {serviceDate.yearNum}, {serviceDate.time}
-                            </span>
-                                    <span>
-                              <ClockSvg/> <span>{duration.hours}:{pad2(duration.minutes)} {durationLabel}, {booking.number_people} {booking.number_people > 1 ? i18n.t('People') : i18n.t('Person')}  </span>
-                            </span>
-                                </div>
-                                <Link href={checkoutSlug}
-                                      className="page_orders__button">{i18n.t('Edit Booking')}
-                                </Link>
-                            </div>
+                            <>
+                                <OrderBookingCard
+                                    id={booking.booking_id}
+                                    slug={slug}
+                                    title={booking.profile.title}
+                                    locale={booking.locale}
+                                    checkoutSlug={checkoutSlug}
+                                    durationLabel={durationLabel}
+                                    hours={duration.hours}
+                                    minutes={pad2(duration.minutes)}
+                                    number_people={booking.number_people}
+                                    day={days[serviceDate.day]}
+                                    dayNum={serviceDate.dayNum}
+                                    month={months[serviceDate.month]}
+                                    year={serviceDate.yearNum}
+                                    time={isSelfGuide ? i18n.t('Flexible') : serviceDate.time}
+                                />
+                            </>
                         )
                     })}
                 </div>

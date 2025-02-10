@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx";
-type Loading = 'main' | 'fetch-booking' | 'additional' | 'additional-booking' | 'loading-categories'
+type Loading = 'main' | 'fetch-booking' | 'additional' | 'additional-booking' | 'loading-categories' | 'redirect-to-checkout'
 export class LoadingModel {
 
     private loading: Loading[] = ['main']
@@ -29,5 +29,9 @@ export class LoadingModel {
 
     get isAdditionalBooking() {
         return !!this.loading.find(val => val === 'additional-booking')
+    }
+
+    get isRedirectToCheckout() {
+        return !!this.loading.find(val => val === 'redirect-to-checkout')
     }
 }

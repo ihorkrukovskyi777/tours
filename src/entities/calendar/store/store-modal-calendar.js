@@ -19,7 +19,6 @@ export class StoreModalCalendar {
     }
 
     setDeparturesByDate(date) {
-        console.log(date, 'date')
         this.dateList = date;
     }
 

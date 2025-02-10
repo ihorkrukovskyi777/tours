@@ -4,6 +4,7 @@ import {DeparturesModel} from "@entities/lib/calendar/models/departures/departur
 import {LoadingModel} from "@entities/lib/calendar/models/loading.model";
 import {BookingFormModel} from "@entities/lib/calendar/models/booking-form.model";
 import {AdditionalSalesModel} from "@entities/lib/calendar/additiona-sales/models/additional-sales";
+import {CouponModel} from "@entities/lib/calendar/models/coupon.model";
 
 export class ProcessBookingStore {
 
@@ -15,5 +16,6 @@ export class ProcessBookingStore {
         readonly loading: LoadingModel,
         readonly formBooking: BookingFormModel,
         readonly additionalSales: AdditionalSalesModel,
+        readonly couponModel: CouponModel
     ) {}
 }
