@@ -32,10 +32,7 @@ const getSchemaProductCity = (item, date, locale, eventsTotal, reviews) => {
                 "@type": "Review",
                 "datePublished": item.date,
                 "reviewBody": item.message,
-                "author": {
-                    "@type": "Person",
-                    "author": item.author
-                },
+                "author": item.author,
                 "reviewRating": {
                     "@type": "Rating",
                     "bestRating": "10",
@@ -76,10 +73,7 @@ const getSchemaProductTour = (item, date, locale, reviews) => {
                 "@type": "Review",
                 "datePublished": item.date,
                 "reviewBody": item.message,
-                "author": {
-                    "@type": "Person",
-                    "author": item.author
-                },
+                "author": item.author,
                 "reviewRating": {
                     "@type": "Rating",
                     "bestRating": "10",
