@@ -28,11 +28,14 @@ const getSchemaProductCity = (item, date, locale, eventsTotal, reviews) => {
             "worstRating": "0",
         },
         "review": reviews?.map(item => {
-            return  {
+            return {
                 "@type": "Review",
                 "datePublished": item.date,
                 "reviewBody": item.message,
-                "author": item.author,
+                "author": {
+                    "@type": "Person",
+                    "name": item.author,
+                },
                 "reviewRating": {
                     "@type": "Rating",
                     "bestRating": "10",
@@ -69,11 +72,14 @@ const getSchemaProductTour = (item, date, locale, reviews) => {
             "worstRating": "0",
         },
         "review": reviews?.map(item => {
-            return  {
+            return {
                 "@type": "Review",
                 "datePublished": item.date,
                 "reviewBody": item.message,
-                "author": item.author,
+                "author": {
+                    "@type": "Person",
+                    "name": item.author,
+                },
                 "reviewRating": {
                     "@type": "Rating",
                     "bestRating": "10",
