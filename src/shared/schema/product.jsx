@@ -24,7 +24,7 @@ const getSchemaProductCity = (item, date, locale, eventsTotal, reviews) => {
             "@type": "AggregateRating",
             "ratingValue": Number(item.rating?.rating) || 5,
             "reviewCount": Number(item.rating?.reviews) || 1,
-            "bestRating": "5",
+            "bestRating": "10",
             "worstRating": "0",
         },
         "review": reviews?.map(item => {
@@ -33,10 +33,9 @@ const getSchemaProductCity = (item, date, locale, eventsTotal, reviews) => {
                 "author": item.author,
                 "datePublished": item.date,
                 "reviewBody": item.message,
-                "name": "Not a happy camper",
                 "reviewRating": {
                     "@type": "Rating",
-                    "bestRating": "5",
+                    "bestRating": "10",
                     "ratingValue": item.rating,
                     "worstRating": "0"
                 }
@@ -66,7 +65,7 @@ const getSchemaProductTour = (item, date, locale, reviews) => {
             "@type": "AggregateRating",
             "ratingValue": Number(item.rating?.rating) || 5,
             "reviewCount": Number(item.rating?.reviews) || 1,
-            "bestRating": "5",
+            "bestRating": "10",
             "worstRating": "0",
         },
         "review": reviews?.map(item => {
@@ -78,7 +77,7 @@ const getSchemaProductTour = (item, date, locale, reviews) => {
                 "name": item.author,
                 "reviewRating": {
                     "@type": "Rating",
-                    "bestRating": "5",
+                    "bestRating": "10",
                     "ratingValue": item.rating,
                     "worstRating": "0"
                 }
