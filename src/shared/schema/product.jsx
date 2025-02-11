@@ -4,7 +4,6 @@ import {fallbackLng} from "@/i18n/settings";
 
 const getSchemaProductCity = (item, date, locale, eventsTotal, reviews) => {
     const url = getHrefLocale(locale, item.slug)
-    console.log(reviews)
     return {
         "@context": "https://schema.org",
         "@type": "Product",
@@ -28,7 +27,7 @@ const getSchemaProductCity = (item, date, locale, eventsTotal, reviews) => {
             "bestRating": "5",
             "worstRating": "0",
         },
-        "review": reviews.map(item => {
+        "review": reviews?.map(item => {
             return  {
                 "@type": "Review",
                 "author": item.author,
@@ -47,7 +46,7 @@ const getSchemaProductCity = (item, date, locale, eventsTotal, reviews) => {
 }
 
 const getSchemaProductTour = (item, date, locale, reviews) => {
-    const slug = getHrefLocale(locale, item.slug)
+    const slug = getHrefLocale(locale, item?.slug)
     const url = `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${slug}`;
     return {
         "@context": "https://schema.org",
@@ -70,13 +69,13 @@ const getSchemaProductTour = (item, date, locale, reviews) => {
             "bestRating": "5",
             "worstRating": "0",
         },
-        "review": reviews.map(item => {
+        "review": reviews?.map(item => {
             return  {
                 "@type": "Review",
                 "author": item.author,
                 "datePublished": item.date,
                 "reviewBody": item.message,
-                "name": "Not a happy camper",
+                "name": item.author,
                 "reviewRating": {
                     "@type": "Rating",
                     "bestRating": "5",
@@ -88,7 +87,7 @@ const getSchemaProductTour = (item, date, locale, reviews) => {
     };
 }
 const getSchemaBreadcrumbList = (item, locale) => {
-    const url = getHrefLocale(locale, item.slug)
+    const url = getHrefLocale(locale, item?.slug)
     const homeLink = locale === fallbackLng ? process.env.NEXT_PUBLIC_CANONICAL_DOMAIN : `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}/${locale}`
     return {
         "@context": "https://schema.org",
@@ -149,7 +148,7 @@ export default async function ProductSchema({id, locale, type = 'city'}) {
     const date = `${aYearFromNow.getFullYear()}-${aYearFromNow.getMonth() + 1}-${aYearFromNow.getDate()}`
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/schema/product-${type}/${id}?locale=${locale}`, {
         next: {
-            revalidate: 10,
+            revalidate: 0,
             tags: ['schema']
         }
     })
