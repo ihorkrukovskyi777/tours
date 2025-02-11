@@ -33,6 +33,7 @@ export default async function Home({params: {locale}, ...props}) {
     const i18n = await useDefaultI18n(locale);
 
     const isAddReview = !!props.searchParams?.success_review_add
+
     return (
         <>
             {isAddReview ? <ThanksReviewModal message={i18n.t('review_confirmation_message')}/> : null}
