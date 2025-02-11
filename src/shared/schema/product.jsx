@@ -24,7 +24,7 @@ const getSchemaProductCity = (item, date, locale, eventsTotal, reviews) => {
             "@type": "AggregateRating",
             "ratingValue": Number(item.rating?.rating) || 5,
             "reviewCount": Number(item.rating?.reviews) || 1,
-            "bestRating": "10",
+            "bestRating": "5",
             "worstRating": "0",
         },
         "review": reviews?.map(item => {
@@ -38,7 +38,7 @@ const getSchemaProductCity = (item, date, locale, eventsTotal, reviews) => {
                 },
                 "reviewRating": {
                     "@type": "Rating",
-                    "bestRating": "10",
+                    "bestRating": "5",
                     "ratingValue": item.rating,
                     "worstRating": "0"
                 }
@@ -68,7 +68,7 @@ const getSchemaProductTour = (item, date, locale, reviews) => {
             "@type": "AggregateRating",
             "ratingValue": Number(item.rating?.rating) || 5,
             "reviewCount": Number(item.rating?.reviews) || 1,
-            "bestRating": "10",
+            "bestRating": "5",
             "worstRating": "0",
         },
         "review": reviews?.map(item => {
@@ -82,7 +82,7 @@ const getSchemaProductTour = (item, date, locale, reviews) => {
                 },
                 "reviewRating": {
                     "@type": "Rating",
-                    "bestRating": "10",
+                    "bestRating": "5",
                     "ratingValue": item.rating,
                     "worstRating": "0"
                 }
