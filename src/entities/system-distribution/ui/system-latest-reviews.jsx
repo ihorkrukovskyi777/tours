@@ -52,9 +52,9 @@ export default async function SystemLatestReviews({id, locale,  showTitle= true 
                                     brandName={item.brandName}
                                     country={countryTranslates[item.country] ?? ''}
                                     rating={item.rating}
+                                    message={item.message}
                                     reply={item.reply}
                                 >
-                                    {item.message}
                                 </ReviewCard>
                             )
                         })

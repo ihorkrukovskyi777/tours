@@ -34,9 +34,9 @@ export default function ListReviews({i18n, total, reviewsInit = 0, offset,  limi
                                 brandName={item.brandName}
                                 rating={item.rating}
                                 reply={item.reply}
+                                message={item.message}
                                 country={i18n[item.country] ?? ''}
                             >
-                                {item.message}
                             </ReviewCard>
                         )
                     })
