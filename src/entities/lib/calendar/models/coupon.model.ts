@@ -119,6 +119,7 @@ export class CouponModel {
             new CouponCodeSingle().set(data)
             return data.id
         } catch (err) {
+            throw err;
             console.log(err)
         }
     }
