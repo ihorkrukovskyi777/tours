@@ -56,11 +56,15 @@ export function useCaseOpenCouponToursModal() {
                 booking_id: item.booking_id
             })))
 
-        await store.couponModel.fetchCreateCoupon(booking.booking_id)
+        try {
+            await store.couponModel.fetchCreateCoupon(booking.booking_id)
 
-        store.modals.closeAllExceptByName(MODAL.PAID_TOURS_MODAL)
-        store.modals.openModal(MODAL.PAID_TOURS_MODAL)
-        store.loading.turnOff('redirect-to-checkout')
+            store.modals.closeAllExceptByName(MODAL.PAID_TOURS_MODAL)
+            store.modals.openModal(MODAL.PAID_TOURS_MODAL)
+            store.loading.turnOff('redirect-to-checkout')
+        } catch (err) {
+            await redirectToCheckout()
+        }
     }, [store])
 }
 export function useCaseCloseCalendar() {
