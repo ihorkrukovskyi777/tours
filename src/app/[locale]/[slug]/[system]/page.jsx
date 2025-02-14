@@ -50,7 +50,6 @@ const FLEXIBLE_CONTENT = {
     tours_box: SystemToursBox,
 };
 export default async function PageSystem({params}) {
-    console.log(params)
     const slug = `${params.system}/${params.slug}`
     const locale = params.locale
     const page = await getPageBySlug(process.env.NEXT_PUBLIC_SYSTEM_HOSTING, slug, params.locale);
