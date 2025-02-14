@@ -35,7 +35,7 @@ const CongratulationsModel = observer(({ model, isLoading}: Props) => {
 
 
 
-    const pathAllTours = PAID_TOUR_IN_CITY.getPathByLocale(model.option.page.locale, model.city?.slug)
+    const pathAllTours = getHrefLocale(model.option.page.locale, PAID_TOUR_IN_CITY.getPathByLocale(model.option.page.locale, model.city?.slug))
     return (
         <BaseModal close={declineCouponForBooking} maxWidth={600} isLoading={isLoading}>
 
