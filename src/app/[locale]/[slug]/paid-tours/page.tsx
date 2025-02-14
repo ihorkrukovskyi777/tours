@@ -1,9 +1,9 @@
-import Footer from "@/shared/ui/layouts/footer/footer";
+import Footer from "@shared/ui/layouts/footer/footer";
 import {notFound} from "next/navigation";
 import {CardExperience} from "@entities/paid-tour/@types";
 
 
-import CouponViews from "@/app/[locale]/paid-tours-in/[slug]/coupon-views";
+import CouponViews from "@/app/[locale]/[slug]/paid-tours/coupon-views";
 import './style.css'
 import {getLocale} from "next-intl/server";
 export interface DataPagePaidTours {
@@ -24,6 +24,7 @@ async function fetchToursPaid(slug: string ,locale: string) {
 
 export default async function CongratulationsPage({params: { slug}}: any) {
 
+    console.log(slug, 'slug')
     const locale = await getLocale()
 
 
