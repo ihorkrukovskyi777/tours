@@ -24,7 +24,6 @@ async function fetchToursPaid(slug: string ,locale: string) {
 
 export default async function CongratulationsPage({params: { slug}}: any) {
 
-    console.log(slug, 'slug', 2222)
     const locale = await getLocale()
 
 
