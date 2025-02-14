@@ -1,44 +1,44 @@
 const MAIN_PATH = 'paid-tours';
-const MAIN_PATH_SLUG = '/en/paid-tours';
+const MAIN_PATH_SLUG = '/en/:slug/paid-tours';
 export const PAID_TOUR_IN_CITY = {
     path: MAIN_PATH,
     slug: MAIN_PATH_SLUG,
     paths: [
         {
             locale: 'en',
-            source: 'paid-tours',
+            source: ':slug/paid-tours',
         },
         {
             locale: 'de',
-            source: 'kostenpflichtige-touren',
+            source: ':slug/kostenpflichtige-touren',
         },
         {
             locale: 'es',
-            source: 'tours-pagados',
+            source: ':slug/tours-pagados',
         },
         {
             locale: 'nl',
-            source: 'betaalde-rondleidingen'
+            source: ':slug/betaalde-rondleidingen'
         },
         {
             locale: 'fr',
-            source: 'visites-payantes'
+            source: ':slug/visites-payantes'
         },
         {
             locale: 'pl',
-            source: 'płatne-wycieczki'
+            source: ':slug/płatne-wycieczki'
         },
         {
             locale: 'cat',
-            source: 'excursions-pagades'
+            source: ':slug/excursions-pagades'
         },
         {
             locale: 'it',
-            source: 'tour-a-pagamento'
+            source: ':slug/tour-a-pagamento'
         },
 
     ],
     getPathByLocale(locale) {
-        return this.paths.find(item => item.locale === locale)?.source ?? '/'
+        return this.paths.find(item => item.locale === locale)?.source?.replace(':slug/', '') ?? '/'
     }
 }
