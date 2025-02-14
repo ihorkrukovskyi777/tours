@@ -61,7 +61,7 @@ const CongratulationsModel = observer(({ model, isLoading}: Props) => {
                 <div className="congratulations_model__footer">
                     {isCity &&
                         <Link
-                            href={`/${pathAllTours}`}
+                            href={`${pathAllTours}`}
                             className="congratulations_model__footer__item"
                         >
                             {model?.congratulationModal?.linkAllPage?.text}
