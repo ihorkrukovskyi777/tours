@@ -40,7 +40,6 @@ export function useCaseOpenCouponToursModal() {
     const redirectToCheckout = useCaseRedirectToCheckout()
     const setAdditionalBooking = useFetchAdditionalRedirect();
     return useCallback(async function () {
-
         const booking = store.formBooking.getLastBooking();
 
         if(!booking) {
@@ -63,6 +62,7 @@ export function useCaseOpenCouponToursModal() {
             store.modals.openModal(MODAL.PAID_TOURS_MODAL)
             store.loading.turnOff('redirect-to-checkout')
         } catch (err) {
+
             await redirectToCheckout()
         }
     }, [store])

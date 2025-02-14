@@ -6,7 +6,7 @@ import Congratulations from "@/widgets/congratulations";
 import CongratulationCard from "@shared/ui/card-components/congratulation-card/congratulation-card";
 import {getHrefLocale} from "@i18n/get-href-locale";
 import {PATH_TOURS} from "@shared/constants/route";
-import {DataPagePaidTours} from "@/app/[locale]/paid-tours-in/[slug]/page";
+import {DataPagePaidTours} from "@/app/[locale]/[slug]/paid-tours/page";
 import {useTranslations} from "next-intl";
 import SpinnerCircle from "@/bokun-widget/src/ui/spinner/spinner-circle";
 import {NotFoundException} from "@/bokun-widget/src/api/exception";
