@@ -90,4 +90,5 @@ export class ServiceDate {
     get yearYY() {
         return `${this.yearNum}`.replace('20', '')
     }
+
 }

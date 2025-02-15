@@ -48,13 +48,13 @@ export default async function LatestReviews({id, locale, type='city', showTitle=
                                         key={item.id}
                                         title={item.title}
                                         time={item.date}
-                                        author={item.author}
                                         brandName={item.brandName}
+                                        author={item.author}
+                                        message={item.message}
                                         country={countryTranslates[item.country] ?? ''}
                                         rating={item.rating}
                                         reply={item.reply}
                                     >
-                                        {item.message}
                                     </ReviewCard>
                                 )
                             })

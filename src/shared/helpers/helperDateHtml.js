@@ -16,6 +16,11 @@ export class HelperDateHtml extends ServiceDate {
         const monthNum = this.monthNum < 10 ? `0${this.monthNum}`: this.monthNum;
         return `${day}/${monthNum}/${this.yearYY}`;
     }
+    get yyyyMmDd() {
+        const day = this.dayNum < 10 ? `0${this.dayNum}`: this.dayNum;
+        const monthNum = this.monthNum < 10 ? `0${this.monthNum}`: this.monthNum;
+        return `${this.yearNum}-${monthNum}-${day}`;
+    }
     dayDeparture(days = {}, months = {}) {
 
         return `
