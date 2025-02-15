@@ -50,7 +50,7 @@ export default async function LatestReviews({id, locale, type='city', showTitle=
                                         metaBody={item.message}
                                         time={item.date}
                                         author={item.author}
-                                        message={item.brandName}
+                                        message={item.message}
                                         country={countryTranslates[item.country] ?? ''}
                                         rating={item.rating}
                                         reply={item.reply}
