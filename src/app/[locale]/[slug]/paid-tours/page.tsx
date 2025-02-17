@@ -6,6 +6,7 @@ import {CardExperience} from "@entities/paid-tour/@types";
 import CouponViews from "@/app/[locale]/[slug]/paid-tours/coupon-views";
 import './style.css'
 import {getLocale} from "next-intl/server";
+import {capitalizeFirstLetter} from "@shared/helpers";
 export interface DataPagePaidTours {
     city: {
         title: string
@@ -48,19 +49,20 @@ export default async function CongratulationsPage({params: { slug}}: any) {
 export async function generateMetadata({params}: any) {
     const isIndexation = process.env.NEXT_PUBLIC_GOOGLE_INDEXATION === 'yes';
     const locale = params?.locale ? params.locale : 'en'
+
     const titles = {
-        en: `Paid Tours in ${params?.slug?.toUpperCase()}`,
-        es: `Tours Pagados en ${params?.slug?.toUpperCase()}`,
-        'pt-pt': `Passeios pagos em ${params?.slug?.toUpperCase()}`,
-        fr: `Visites payantes à ${params?.slug?.toUpperCase()}`,
-        de: `Bezahlte Touren in ${params?.slug?.toUpperCase()}`,
-        nl: `Betaalde rondleidingen in ${params?.slug?.toUpperCase()}`,
-        pl: `Płatne wycieczki po ${params?.slug?.toUpperCase()}`,
-        cat: `Visites de pagament a ${params?.slug?.toUpperCase()}`,
+        en: `Paid Tours in ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        es: `Tours Pagados en ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        'pt-pt': `Passeios pagos em ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        fr: `Visites payantes à ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        de: `Bezahlte Touren in ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        nl: `Betaalde rondleidingen in ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        pl: `Płatne wycieczki po ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        cat: `Visites de pagament a ${capitalizeFirstLetter(params?.slug ?? '')}`,
     }
     return {
         robots: {index: isIndexation, follow: isIndexation},
         // @ts-ignore
-        title: titles[locale] ?? `Paid Tours in ${params?.slug?.toUpperCase()}`,
+        title: titles[locale] ?? `Paid Tours in ${capitalizeFirstLetter(params?.slug ?? '')}`,
     }
 }
