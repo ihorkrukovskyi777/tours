@@ -222,7 +222,7 @@ a {
   background: #f2f2f2;
 }
 .swiper .swiper-pagination-bullet-active {
-  background: var(--main_color);
+  background: var(--bokun-color-primary-icon)!important;
 }
 .show_modal {
   opacity: 1 !important;
