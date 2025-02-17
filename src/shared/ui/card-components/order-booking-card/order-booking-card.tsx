@@ -2,13 +2,13 @@ import Link from "next/link";
 import LanguageImages from "@shared/ui/languages/language-images";
 import ClockSvg from "@/assets/images/svg/clock-svg";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
+import {getLocale} from "next-intl/server";
 import './style.css';
 
 interface Props {
     id: number,
     slug: string,
     title: string,
-    locale: string,
     checkoutSlug: string,
     durationLabel: string,
     hours: number,
@@ -25,7 +25,6 @@ export default async function OrderBookingCard({
        id ,
        slug ,
        title ,
-       locale = 'en' ,
        checkoutSlug ,
        durationLabel,
        hours,
@@ -40,6 +39,7 @@ export default async function OrderBookingCard({
        }: Props)  {
 
 
+    const locale = await getLocale();
     const i18n = await useDefaultI18n(locale);
 
     return (

@@ -88,7 +88,6 @@ export default async function OderPage({params}: { params: { locale: string, cod
                                     id={booking.booking_id}
                                     slug={slug}
                                     title={booking.profile.title}
-                                    locale={booking.locale}
                                     checkoutSlug={checkoutSlug}
                                     durationLabel={durationLabel}
                                     hours={duration.hours}

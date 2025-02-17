@@ -31,7 +31,7 @@ const CongratulationsModel = observer(({ model, isLoading}: Props) => {
     const sendCouponEmail = useCaseSendCouponEmail();
 
     const typeSale = model.coupon?.type === 'percentage' ? '%' : 'USD'
-    const couponValue = `- ${model.coupon?.value}${typeSale} ${i18n.offMark}`
+    const couponValue = `${model.coupon?.value}${typeSale} ${i18n.offMark}`
 
 
 
@@ -45,7 +45,7 @@ const CongratulationsModel = observer(({ model, isLoading}: Props) => {
                     <p className="congratulations_model__description">{model?.congratulationModal?.descriptions?.text}</p>
                 </div>
                 <div className="content">
-                    {model.tours.map(tour => {
+                    {model.tours.slice(0, 3).map(tour => {
                         return (
                             <CongratulationCard
                                 attachment={tour.image}
@@ -59,7 +59,7 @@ const CongratulationsModel = observer(({ model, isLoading}: Props) => {
 
                 </div>
                 <div className="congratulations_model__footer">
-                    {isCity &&
+                    {isCity && model.tours?.length > 3 &&
                         <Link
                             href={`${pathAllTours}`}
                             className="congratulations_model__footer__item"

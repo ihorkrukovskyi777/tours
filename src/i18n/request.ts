@@ -46,7 +46,6 @@ export default getRequestConfig(async ({requestLocale}) => {
         if(messages[key]) return messages[key]
         return key;
     }
-
     return {
         locale,
         messages: {
@@ -74,6 +73,8 @@ export default getRequestConfig(async ({requestLocale}) => {
             weOfferPickupNotice: translatesVouched.weOfferPickupNotice,
             youCanStarPickup: translatesVouched.youCanStarPickup,
             showLocation: translatesVouched.showLocation,
+            'drop-off': translatesVouched.dropOff,
+            pickup: translatesVouched.pickup,
 
             // ...translates
         }

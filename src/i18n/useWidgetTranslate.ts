@@ -6,6 +6,7 @@ export default async function  useWidgetTranslate(locale: string) : Promise<Ii18
 
     const getErrorMessage = (key: string) => i18n.bokunWidget.errorMessage[key]
     const t = (key: string) => i18n.bokunWidget[key]
+    const g = (key: string) => i18n[key]
     const m = (key: string) => i18n.months[key]
     const dayShort = (key: string) => i18n.daysShort[key]
     const dayShortDDD = (key: string) => i18n.daysShortDDD[key]
@@ -26,6 +27,8 @@ export default async function  useWidgetTranslate(locale: string) : Promise<Ii18
         price: t('price'),
         at: t('at'),
         tax: t('tax'),
+        dropoff: g('drop-off'),
+        pickup: g('pickUp'),
         update: t('update'),
         duration: t('duration'),
         discount: t('discount'),

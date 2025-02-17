@@ -17,7 +17,8 @@
   --font_700: "Geomanist700", var(--font-ciliric);
 
 
-  --bokun-color-primary: #E10600;
+  --bokun-color-primary: black;
+  --bokun-color-primary-icon: var(--main_color);
   --bokun-color-price: rgba(29, 199, 36, 1);
   --bokun-color-success: #1DC724;
   --bokun-color-error: #ed4337;
@@ -103,6 +104,9 @@ img {
   padding: 0 20px;
   margin: 0 auto;
   max-width: 1260px;
+}
+.container .experience-page {
+  padding-top: 40px;
 }
 .main_wrapper {
   min-height: 830px;

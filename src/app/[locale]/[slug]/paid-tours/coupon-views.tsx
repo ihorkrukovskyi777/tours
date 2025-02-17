@@ -73,7 +73,7 @@ const CouponViews = ({data}: Props) => {
     }
 
     const typeSale = coupon?.type === 'percentage' ? '%' : 'USD'
-    const couponValue = coupon ? `- ${coupon?.value}${typeSale} ${t('off!')}` : undefined
+    const couponValue = coupon ? `${coupon?.value}${typeSale} ${t('off!')}` : undefined
 
 
     return (
