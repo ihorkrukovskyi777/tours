@@ -51,8 +51,8 @@ const ModalListToursView = observer(() => {
             style={{position: 'relative'}}
             halfOpacity={viewModel.halfOpacity}
             close={onClose}
+            loader={viewModel.isRedirectToCheckout && <Loader style={{left: 0, zIndex: 5, opacity: '0.7'}}/>}
         >
-            {viewModel.isRedirectToCheckout && <Loader style={{left: 0, zIndex: 5, opacity: '0.7'}}/>}
             <div className="step-1 default additional_sales_list">
 
                 <div className="close-button" onClick={onClose}><CloseSvg/></div>

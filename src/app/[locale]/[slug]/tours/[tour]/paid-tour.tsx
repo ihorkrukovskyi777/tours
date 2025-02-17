@@ -37,7 +37,7 @@ const PaidTour = async ({id, slug}: Props) => {
         return {title: item.tour.title, locale: item.tour.locale, slug: `${item.city.slug}/${PATH_TOURS}/${item.tour.slug}`};
     }) ?? []
 
-    const i18n = await useWidgetTranslate(locale)
+    const i18n = await useWidgetTranslate(locale);
     const images = [tour.image, tour.photos].flat().filter(img => !!img?.src)
     // console.log(tour, info, similar)
     const t = await getTranslations();
@@ -49,7 +49,7 @@ const PaidTour = async ({id, slug}: Props) => {
 
                 <div className="layout_sidebar">
                     <div className="layout_sidebar__content">
-                        <div className="padding_sm">
+                        <div className="padding_bottom_sm">
                             <SwiperGalleryVertical images={images}/>
                         </div>
                         <div className="padding_sm_bottom">

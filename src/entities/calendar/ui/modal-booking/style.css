@@ -33,7 +33,7 @@
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
 .custom_modal .modal_content {
-	max-width: 90%;
+	max-width: 100%;
 	background: #fff;
 	border-radius: 16px;
 	z-index: 2;
