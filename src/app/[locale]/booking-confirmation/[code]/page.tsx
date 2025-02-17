@@ -56,7 +56,6 @@ export default async function OderPage({params}: { params: { locale: string, cod
             return new Date(a.booked_datetime).getTime() - new Date(b.booked_datetime).getTime()
         })
     }
-
     return (
         <div className="page_orders_container">
             <div className="page_orders">
@@ -79,7 +78,7 @@ export default async function OderPage({params}: { params: { locale: string, cod
                         if(booking.type === 'bokun') {
                             checkoutSlug = getHrefLocale(booking.profile.locale, `${CHECKOUT}/${booking.checkout_code}`)
                         }
-                        const isSelfGuide = serviceDate.time === '23:59'
+                        const isSelfGuide = serviceDate.time === '23:59' || serviceDate.time === '00:00' && booking.type === 'bokun'
                         const durationLabel = isSelfGuide ? i18n.t('Flexible') : booking.duration > 1 ? i18n.t('Hours') : i18n.t('Hour')
 
                         return (
