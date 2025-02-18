@@ -29,6 +29,7 @@ export default async function  useWidgetTranslate(locale: string) : Promise<Ii18
         tax: t('tax'),
         dropoff: g('drop-off'),
         pickup: g('pickUp'),
+        included:  t('included'),
         update: t('update'),
         duration: t('duration'),
         discount: t('discount'),

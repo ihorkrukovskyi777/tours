@@ -28,6 +28,9 @@ export function useProcessBookingProps() {
             get modelCoupon() {
                 return store.couponModel
             },
+            get formBooking() {
+                return store.formBooking
+            },
             get loadingModel() {
                 return store.loading
             },

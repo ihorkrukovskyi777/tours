@@ -8,7 +8,14 @@ import GoogleScript from "@/shared/scripts/google";
 import NextTopLoader from 'nextjs-toploader';
 import '../../globals.css'
 import '../../layout.scss'
-
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1.0,
+    maximumScale: 1,
+    userScalable: false,
+    // Also supported but less commonly used
+    // interactiveWidget: 'resizes-visual',
+}
 export default function LocaleLayout({children, params}) {
 
     const messages = use(getMessages());
