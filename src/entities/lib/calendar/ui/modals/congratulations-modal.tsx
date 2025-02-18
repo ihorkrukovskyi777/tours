@@ -49,7 +49,7 @@ const CongratulationsModel = observer(({model, isLoading, onPrevRedirect}: Props
             <div className="congratulations_model">
                 <div className="congratulations_model__top">
                     <h3 className="congratulations_model__title">{model?.congratulationModal?.titles?.text}</h3>
-                    <p className="congratulations_model__description">{model?.congratulationModal?.descriptions?.text}</p>
+                    <p className="congratulations_model__description" dangerouslySetInnerHTML={{__html: model?.congratulationModal?.descriptions?.text ?? ''}}></p>
                 </div>
                 <div className="content">
                     {model.tours.slice(0, 3).map(tour => {
