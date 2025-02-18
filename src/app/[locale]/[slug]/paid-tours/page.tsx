@@ -48,8 +48,7 @@ export default async function CongratulationsPage({params: { slug}}: any) {
 // @ts-ignore
 export async function generateMetadata({params}: any) {
     const isIndexation = process.env.NEXT_PUBLIC_GOOGLE_INDEXATION === 'yes';
-    const locale = params?.locale ? params.locale : 'en'
-
+    const locale = await getLocale();
     const titles = {
         en: `Paid Tours in ${capitalizeFirstLetter(params?.slug ?? '')}`,
         es: `Tours Pagados en ${capitalizeFirstLetter(params?.slug ?? '')}`,
