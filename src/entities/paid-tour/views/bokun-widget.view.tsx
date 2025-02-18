@@ -48,7 +48,7 @@ const BookingWidgetView = observer(({bokun_id, i18n}: Props) => {
                 />
             }
 
-            {booking_hash && <ModalOnlyCheckout i18n={i18n} locale={locale} booking_hash={booking_hash}/>}
+            {booking_hash && <div className="bokun_view__modal"><ModalOnlyCheckout i18n={i18n} locale={locale} booking_hash={booking_hash}/></div>}
             <Modal
                 classNames={{
                     modal: `booking_view__modal`,
