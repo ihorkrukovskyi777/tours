@@ -51,13 +51,14 @@ export async function generateMetadata({params}: any) {
     const locale = await getLocale();
     const titles = {
         en: `Paid Tours in ${capitalizeFirstLetter(params?.slug ?? '')}`,
-        es: `Tours Pagados en ${capitalizeFirstLetter(params?.slug ?? '')}`,
-        'pt-pt': `Passeios pagos em ${capitalizeFirstLetter(params?.slug ?? '')}`,
-        fr: `Visites payantes à ${capitalizeFirstLetter(params?.slug ?? '')}`,
-        de: `Bezahlte Touren in ${capitalizeFirstLetter(params?.slug ?? '')}`,
-        nl: `Betaalde rondleidingen in ${capitalizeFirstLetter(params?.slug ?? '')}`,
-        pl: `Płatne wycieczki po ${capitalizeFirstLetter(params?.slug ?? '')}`,
-        cat: `Visites de pagament a ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        es: `Tours de pago en ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        'pt-pt': `Tours Pagos em ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        fr: `Tours Payants à ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        de: `Kostenpflichtige Tours in ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        nl: ` Betaalde Tours in ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        pl: `Płatne Tours w ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        cat: `Tours de Pagament a ${capitalizeFirstLetter(params?.slug ?? '')}`,
+        it: `Tours a Pagamento a ${capitalizeFirstLetter(params?.slug ?? '')}`,
     }
     return {
         robots: {index: isIndexation, follow: isIndexation},
