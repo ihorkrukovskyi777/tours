@@ -42,6 +42,18 @@ const PaidTour = async ({id, slug}: Props) => {
     // console.log(tour, info, similar)
     const t = await getTranslations();
 
+    const duration = tour.duration ?? 0;
+    const days = Math.trunc(duration / 24);
+    const hours = duration % 24;
+    const getLabelDuration = () => {
+        if(days > 0 && hours > 0) {
+            return `${days} ${t('days', {count: days})} ${t('and')} ${parseFloat((hours)?.toFixed(2))} ${t('hours', {count: duration})}`
+        } else if (days > 0 && hours === 0) {
+            return `${days} ${t('days', {count: days})}`
+        }
+        return `${parseFloat((hours)?.toFixed(2))} ${t('hours', {count: duration})}`
+
+    }
 
     return (
         <div className="experience-page">
@@ -61,7 +73,7 @@ const PaidTour = async ({id, slug}: Props) => {
                         <section className="information-tour border_top border_bottom padding_sm">
                             <div className="grid grid__row_3">
                                 <InfoAboutTourBlock icon={ImageDuration} title={t('duration')}>
-                                    <div>{(tour.duration).toFixed(2)} {t('hours', {count: tour.duration})}</div>
+                                    <div>{getLabelDuration()}</div>
                                 </InfoAboutTourBlock>
                                 <InfoAboutTourBlock icon={IconHieroglyph} title={t('language')}>
                                     <Languages languages={tour.bokun?.locales}/>
