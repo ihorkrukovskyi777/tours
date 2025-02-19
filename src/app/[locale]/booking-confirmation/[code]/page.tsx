@@ -96,7 +96,7 @@ export default async function OderPage({params}: { params: { locale: string, cod
                                     dayNum={serviceDate.dayNum}
                                     month={months[serviceDate.month]}
                                     year={serviceDate.yearNum}
-                                    time={isSelfGuide ? i18n.t('Flexible') : serviceDate.time}
+                                    time={isSelfGuide ? '' : serviceDate.time}
                                 />
                             </>
                         )
