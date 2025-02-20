@@ -3,7 +3,7 @@ import Link from "next/link";
 import IcloudImage from "@/bokun-widget/src/ui/image/cloudflaer-image";
 import SwiperBlock from "@entities/paid-tour/ui/swiper-block";
 import Languages from "@entities/paid-tour/ui/languages";
-import {getLocale, getTranslations} from "next-intl/server";
+import { getTranslations} from "next-intl/server";
 import {CardExperience} from "@entities/paid-tour/@types";
 import {getHrefLocale} from "@i18n/get-href-locale";
 import {PATH_TOURS} from "@shared/constants/route";
