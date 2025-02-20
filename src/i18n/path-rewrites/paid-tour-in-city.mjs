@@ -26,7 +26,7 @@ export const PAID_TOUR_IN_CITY = {
         },
         {
             locale: 'pl',
-            source: ':slug/płatne-tours'
+            source: ':slug/platne-tours'
         },
         {
             locale: 'cat',

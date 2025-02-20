@@ -120,7 +120,7 @@ const PaidTour = async ({id, slug}: Props) => {
             }
             </div>
             <div className="padding_md">
-                <I18nChangeOfLanguage title="" locale={locale} languages={languages}/>
+                <I18nChangeOfLanguage free_tour_tour_language={t('tours_in_your_language')} title='' locale={locale} languages={languages}/>
             </div>
 
             <Footer locale={locale}/>

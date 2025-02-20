@@ -64,7 +64,7 @@ const Page = async ({params}: Props) => {
                 }}
             />
             {/*@ts-ignore*/}
-            <I18nChangeOfLanguage filterQuery={['open_contact_modal']} locale={params.locale} languages={languages} addQueries={true}/>
+            <I18nChangeOfLanguage free_tour_tour_language={t('tours_in_your_language')} filterQuery={['open_contact_modal']} locale={params.locale} languages={languages} addQueries={true}/>
         </>
     )
 }

@@ -1,26 +1,28 @@
 "use client";
-import {useState} from "react";
-import {useParams, useSearchParams} from "next/navigation";
+import { useState} from "react";
+import {useSearchParams} from "next/navigation";
 import Button from "@/shared/ui/selectors/button/button";
 import {fallbackLng} from "@/i18n/settings";
 import Link from "next/link";
 import {countryLocales} from "@/i18n/locales";
 import FlagsComponents from "@/shared/ui/flags";
-
+import {useLocale} from "use-intl";
 import './style.css';
 
-export default function ChangeOfLanguage({i18n, languages, title, filterQuery = [], addQueries = false}) {
+export default function ChangeOfLanguage({parentLocale,i18n, languages, title, filterQuery = [], addQueries = false}) {
     const searchParams = useSearchParams()
     const [showLanguage, setShowLanguage] = useState(6);
-    const params = useParams();
+    const locale = parentLocale ? parentLocale : useLocale()
+
     const languagesFilter = languages?.filter(
-        (item) => item.locale !== params?.locale
+        (item) => item.locale !== locale
     ).filter(item => {
-        if(params?.locale === fallbackLng) {
+
+        if(locale === fallbackLng) {
             return true;
         }
 
-        if(params?.locale === 'es') {
+        if(locale === 'es') {
             return item.locale === fallbackLng
         }
         return item.locale === fallbackLng || item.locale === 'es';
@@ -30,7 +32,6 @@ export default function ChangeOfLanguage({i18n, languages, title, filterQuery = 
     for (const key of searchParams.entries()) {
         queries.push(key);
     }
-
     queries = queries.filter(([key]) => {
         return !filterQuery.includes(key)
     }).map(([key, value], index) => {
