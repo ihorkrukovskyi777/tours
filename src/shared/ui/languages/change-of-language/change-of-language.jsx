@@ -12,7 +12,9 @@ import './style.css';
 export default function ChangeOfLanguage({parentLocale,i18n, languages, title, filterQuery = [], addQueries = false}) {
     const searchParams = useSearchParams()
     const [showLanguage, setShowLanguage] = useState(6);
-    const locale = parentLocale ? parentLocale : useLocale()
+
+    const localePage = useLocale();
+    const locale = parentLocale ? parentLocale : localePage
 
     const languagesFilter = languages?.filter(
         (item) => item.locale !== locale
