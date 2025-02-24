@@ -65,7 +65,7 @@ export default async function CongratulationsPage({params: {slug}}: any) {
     )
     const page = await pageType.json();
 
-    if (page.statusCode === 404 || typeof page.id !== 'number' || ['tour-page', 'tours'].includes(slug)) {
+    if (!data?.tours?.length || page.statusCode === 404 || typeof page.id !== 'number' || ['tour-page', 'tours'].includes(slug)) {
         notFound();
     }
 
