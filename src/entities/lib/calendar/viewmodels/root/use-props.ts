@@ -5,6 +5,7 @@ import {
 import {useLocalObservable} from "mobx-react-lite";
 import {useEffect} from "react";
 import {useCaseFetchPhones, useFetchDepartures} from "@entities/lib/calendar/usecases";
+import {MODAL} from "@entities/lib/calendar/models/modal-steps.model";
 
 export function useProcessBookingProps() {
     const store = useContextStore();
@@ -24,11 +25,26 @@ export function useProcessBookingProps() {
             get depModel() {
                 return store.depModel
             },
+            get modelCoupon() {
+                return store.couponModel
+            },
+            get formBooking() {
+                return store.formBooking
+            },
             get loadingModel() {
                 return store.loading
             },
             get modals() {
                 return store.modals
+            },
+            get isOpenCouponModal() {
+                return store.modals.modals[MODAL.COUPON_MODAL].visibly
+            },
+            get isOpenCouponToursModal() {
+                return store.modals.modals[MODAL.PAID_TOURS_MODAL].visibly
+            },
+            get isOpenCouponModalEmail() {
+                return store.modals.modals[MODAL.SUCCESS_SEND_EMAIL].visibly
             }
         },
         i18n,

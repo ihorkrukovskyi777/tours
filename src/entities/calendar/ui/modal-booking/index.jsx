@@ -11,7 +11,8 @@ export default function ModalBooking({
                                          size,
                                          halfOpacity = false,
                                          close = () => {
-                                         }
+                                         },
+                                         loader,
                                      }) {
 
     const bgRef = useRef(null)
@@ -26,9 +27,12 @@ export default function ModalBooking({
             }}
             className={classNames({'show_modal': show}, `custom_modal transition ${size}`)}
             style={{...opacity, visibility: show ? 'visible' : 'hidden', pointerEvents: show ? 'auto' : 'none'}}>
-            <div className={classNames('modal_content', {'change': changeData})} style={style}>
-                <div className="flex-wrap">
-                    {children}
+            <div style={{margin: '0 auto', position: 'relative',  maxWidth: '90%'}}>
+                {loader}
+                <div className={classNames('modal_content', {'change': changeData})} style={style}>
+                    <div className="flex-wrap">
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>

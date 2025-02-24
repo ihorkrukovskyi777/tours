@@ -1,0 +1,9 @@
+{
+  "cancellation": {
+    "advance": "W przypadku anulowania rezerwacji pobieramy opłatę za anulowanie w wysokości {percentage}% {type, wybierz, dzień {{day} {count, plural, =1{day} other {days}}} godzina {{hour} {count_hours, plural , =1{hour} other {hours}}} other {%full%}} lub mniej przed wydarzeniem",
+    "simple": "Zwrot pieniędzy w przypadku anulowania co najmniej {type, select, dzień {{day} {count, plural, =1{day} other {days}}} godzina {{hours} {count_hours, plural, =1{godzina} other {godziny} }} other {%full%}} przed wydarzeniem",
+    "full": "Rezerwacje podlegają pełnemu zwrotowi do czasu wydarzenia.",
+    "non_refund": "Rezerwacje nie podlegają zwrotowi. Wszystkie transakcje sprzedaży są ostateczne."
+  },
+  "fees": "Opłaty"
+}

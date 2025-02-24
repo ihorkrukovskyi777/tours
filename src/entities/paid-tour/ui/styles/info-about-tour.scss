@@ -1,0 +1,37 @@
+.information-tour {
+  .grid {
+    gap: 20px;
+  }
+}
+.info_about_tour {
+  position: relative;
+  &:before {
+    display: block;
+    content: '';
+    height: 100%;
+    position: absolute;
+    left: 0;
+    border-radius: 5px;
+    width: 3px;
+    background-color: var(--main_color);
+  }
+  &__info {
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 20px;
+    color: #707D82;
+    font-weight: 400;
+    line-height: 1.1;
+    .icon {
+      width: 40px;
+      flex-shrink: 0;
+    }
+    h3 {
+      color: #394759;
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+}

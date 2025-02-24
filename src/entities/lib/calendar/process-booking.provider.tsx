@@ -10,6 +10,7 @@ import ProcessBookingView from "@entities/lib/calendar/viewmodels/root/view";
 import {LoadingModel} from "@entities/lib/calendar/models/loading.model";
 import {BookingFormModel} from "@entities/lib/calendar/models/booking-form.model";
 import {AdditionalSalesModel} from "@entities/lib/calendar/additiona-sales/models/additional-sales";
+import {CouponModel} from "@entities/lib/calendar/models/coupon.model";
 
 type ContextData = { store: ProcessBookingStore, i18n: { [key in string]: string } };
 // @ts-ignore
@@ -42,7 +43,8 @@ function createProcessBookingStore(option: ProcessOption): ProcessBookingStore {
         new DeparturesModel(optionModel),
         new LoadingModel(),
         new BookingFormModel(optionModel),
-        new AdditionalSalesModel(new ProcessOptionModel(option))
+        new AdditionalSalesModel(new ProcessOptionModel(option)),
+        new CouponModel(optionModel)
     )
 }
 

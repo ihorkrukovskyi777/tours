@@ -41,6 +41,10 @@ export function useAdditionalSalesProps() {
         },
         get isLoadingBooking() {
             return store.loading.isAdditionalBooking
+        },
+
+        get isRedirectToCheckout() {
+            return store.loading.isRedirectToCheckout
         }
     }))
 }

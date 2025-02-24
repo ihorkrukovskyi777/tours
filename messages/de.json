@@ -1,0 +1,9 @@
+{
+  "cancellation": {
+    "advance": "Wir berechnen eine Stornogebühr von {percentage} %, wenn die Buchung storniert wird. {type, select, day {{day} {count, plural, =1{day} other {days}}} Stunde {{hour } {count_hours, plural, =1{hour} other {hours}}} other {%full%}} oder weniger vor dem Ereignis",
+    "simple": "Rückerstattung bei Stornierung mindestens {type, select, day {{day} {count, plural, =1{day} other {days}}} Stunde {{hour} {count_hours, plural, =1{hour} other {hours} }} other {%full%}} vor dem Ereignis",
+    "full": "Buchungen sind bis zum Zeitpunkt der Veranstaltung vollständig erstattungsfähig.",
+    "non_refund": "Buchungen sind nicht erstattungsfähig. Alle Verkäufe sind endgültig."
+  },
+  "fees": "Gebühren"
+}

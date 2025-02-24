@@ -1,0 +1,17 @@
+.title_custom {
+    font-size: 35px;
+    color: #000;
+    margin: 25px 0;
+}
+.title_custom.small {
+    font-size: 20px;
+}
+.title_custom.small {
+    font-size: 20px;
+}
+.title_custom.medium {
+    font-size: 28px;
+}
+.title_custom.large {
+    font-size: 45px;
+}

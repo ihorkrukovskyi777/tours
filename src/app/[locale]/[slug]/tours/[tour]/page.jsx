@@ -1,31 +1,22 @@
-import {Suspense} from "react";
-import BannerTour from "@/entities/tour/ui/banner-tour";
 import {notFound} from "next/navigation";
 import {headers} from "next/headers";
-import SsrCalendar from "@/entities/calendar/ssr-calendar";
-import Guides from "@/shared/ui/guides";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
-import TextAndSliderTourPage from "@/entities/tour/ui/text-and-slider-tour-page";
 import {isMobileCheck} from "@/shared/helpers";
 import {PATH_TOURS} from "@/shared/constants/route";
-import LatestReviews from "@/widgets/latest-reviews";
-import Footer from "@/shared/ui/layouts/footer/footer";
 import {getHrefLocale} from "@/i18n/get-href-locale";
-import CityRow from "@/widgets/city-row/city-row";
-import TourRow from "@/widgets/tour-row/tour-row";
-import TextBlocks from "@/widgets/text-blocks";
 import {fallbackLng} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/seo/generator-seo";
-import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
-import PlaceSchema from "@/shared/schema/place";
-import ProductSchema from "@/shared/schema/product";
-import EventsSchema from "@/shared/schema/events";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
-import InsertCode from "@/widgets/insert-code/insert-code";
-import InsertPartnerCode from "@/widgets/insert-code/insert-partner-code";
-import TextQuote from "@/widgets/text-quote";
-import MapAndSliderTour from "@/entities/tour/ui/map-and-slider-tour/map-and-slider-tour";
+import dynamic from "next/dynamic";
 
+const OneportTours = dynamic(
+    () => import("@/app/[locale]/[slug]/tours/[tour]/oneport-tours"),
+    {ssr: true}
+)
+const PaidTour = dynamic(
+    () => import("@/app/[locale]/[slug]/tours/[tour]/paid-tour"),
+    {ssr: true}
+)
 export default async function Page({params: {locale, slug, tour}}) {
     const data = await fetch(
         `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/tour/${slug}/tours/${tour}?locale=${locale}`,
@@ -61,61 +52,24 @@ export default async function Page({params: {locale, slug, tour}}) {
         {title: page.title},
     ];
 
+    const type = page.type;
     return (
-        <main>
-            <BannerTour locale={page.locale} id={page.id} isMobile={isMobile}/>
-            <TextAndSliderTourPage
-                id={page.id}
-                locale={page.locale}
-                isMobile={isMobile}
-            />
-            <Suspense fallback={""}>
-                <EventsSchema id={page.id} locale={locale} type="tour"/>
-                <PlaceSchema id={page.id} locale={locale}/>
-                <ProductSchema id={page.id} locale={locale} type="tour"/>
-            </Suspense>
-            <Suspense fallback={""}>
-                <MapAndSliderTour hideBottom={false} locale={page.locale} id={page.id}>
-                    <TextQuote id={page.id} locale={locale} type="tour"/>
-                </MapAndSliderTour>
-                <SsrCalendar
-                    locale={page.locale}
-                    type="tour"
-                    id={page.id}
-                    title={page.title}
+        <>
+            {
+                type === 'free' && <OneportTours
+                    languages={languages}
                     isMobile={isMobile}
-                    titleCalendar={i18n.t("Tour Calendar")}
-                />
-                <LatestReviews
-                    id={page.id}
+                    page={page}
                     locale={locale}
-                    type="tour"
-                    showTitle={false}
+                    i18n={i18n}
+                    pagesBreadcrumbs={pagesBreadcrumbs}
                 />
-                <TextBlocks id={page.id} locale={locale} type="tour"/>
-                <Guides
-                    title={i18n.t("Guides Leading this Tour")}
-                    id={page.id}
-                    locale={page.locale}
-                    type="tour"
-                />
-                <InsertPartnerCode id={page.id} type="tour" locale={page.locale} isMobile={isMobile}/>
-                <InsertCode id={page.id} type="tour" locale={page.locale}/>
-                <TourRow
-                    id={page.id}
-                    locale={page.locale}
-                    title={`${i18n.t("Other Tours in")} ${page.city.title}`}
-                />
-                <CityRow
-                    id={page.id}
-                    locale={page.locale}
-                    title={`${i18n.t("See All Tours in")} ${page.city.title}`}
-                />
-                <I18nChangeOfLanguage locale={locale} languages={languages}/>
-                <Breadcrumbs pages={pagesBreadcrumbs} locale={locale}/>
-                <Footer locale={locale}/>
-            </Suspense>
-        </main>
+            }
+            {
+                type === 'paid' && <PaidTour id={page.defaultId} slug={slug}/>
+            }
+        </>
+
     );
 }
 
@@ -127,11 +81,13 @@ export async function generateMetadata({params: {slug, locale, tour}}) {
     const languages = {};
     if (Array.isArray(seo.languages)) {
         for (const lang of seo.languages) {
-            if(lang.locale === fallbackLng) {
-                languages['x-default'] = [{ url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(
+            if (lang.locale === fallbackLng) {
+                languages['x-default'] = [{
+                    url: `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(
                         lang.locale,
                         `${lang.citySlug}/${PATH_TOURS}/${lang.slug}`
-                    )}`}]
+                    )}`
+                }]
             }
             languages[lang.locale] = [
                 {

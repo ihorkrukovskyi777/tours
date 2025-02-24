@@ -7,9 +7,11 @@ import {
     CivitatisCategoriesModel,
     ICivitatisCategory,
 } from "@entities/lib/calendar/models/civitatis-categories.model";
+import {AdditionalOrderSingle} from "@entities/lib/calendar/models/single/additional-order.single";
 
 export interface FormDataBooking {
     tourName: string,
+    curLang: string,
     firstName: string,
     lastName: string,
     email: string,
@@ -23,7 +25,8 @@ interface Booking {
     booking_id: string
     customer: FormDataBooking
     civitatis_categories: ICivitatisCategory[]
-    tour_id: number
+    tour_id: number,
+    locale: string
 }
 
 export class BookingFormModel {
@@ -37,6 +40,8 @@ export class BookingFormModel {
     civitatisCategorySelected: CivitatisCategoriesModel | null = null;
 
     lastBookingPeopleNumber: number | null = null
+
+    additionalOrder = new AdditionalOrderSingle()
 
     constructor(readonly option: ProcessOptionModel) {
         this.departure = null;
@@ -78,6 +83,12 @@ export class BookingFormModel {
         return null
     }
 
+    getLastBooking() {
+        const length = this.bookings.length - 1
+
+        return this.bookings[length] ?? null
+    }
+
     get tours_ids() {
         return this.bookings.map(item => item.tour_id)
     }
@@ -86,6 +97,9 @@ export class BookingFormModel {
         if (!this.departure) {
             return null
         }
+
+        if(!this.bookings.length)
+            this.additionalOrder.remove()
 
         this.errors = [];
 
@@ -108,8 +122,11 @@ export class BookingFormModel {
         }
         runInAction(() => {
             this.lastBookingPeopleNumber = peopleNumber
-            this.bookings.push({...results.data, civitatis_categories: this.civitatisCategorySelected?.notEmptyCategories ?? []})
+            this.addBooking({...results.data, civitatis_categories: this.civitatisCategorySelected?.notEmptyCategories ?? []})
         })
         return results
+    }
+    addBooking(data: Booking) {
+        this.bookings.push(data)
     }
 }

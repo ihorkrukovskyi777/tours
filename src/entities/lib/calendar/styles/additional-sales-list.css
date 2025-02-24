@@ -1,5 +1,6 @@
 .additional_sales_list {
     max-width: 340px;
+    position: relative;
 }
 
 .additional_sales_list__no_thanks {
