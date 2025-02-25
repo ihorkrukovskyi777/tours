@@ -10,31 +10,35 @@ export const PAID_TOUR_IN_CITY = {
         },
         {
             locale: 'de',
-            source: ':slug/kostenpflichtige-touren',
+            source: ':slug/kostenpflichtige-tours',
         },
         {
             locale: 'es',
-            source: ':slug/tours-pagados',
+            source: ':slug/tours-de-pago',
         },
         {
             locale: 'nl',
-            source: ':slug/betaalde-rondleidingen'
+            source: ':slug/betaalde-tours'
         },
         {
             locale: 'fr',
-            source: ':slug/visites-payantes'
+            source: ':slug/tours-payants'
         },
         {
             locale: 'pl',
-            source: ':slug/płatne-wycieczki'
+            source: ':slug/platne-tours'
         },
         {
             locale: 'cat',
-            source: ':slug/excursions-pagades'
+            source: ':slug/tours-de-pagament'
         },
         {
             locale: 'it',
-            source: ':slug/tour-a-pagamento'
+            source: ':slug/tours-a-pagamento'
+        },
+        {
+            locale: 'pt-pt',
+            source: ':slug/tours-pagos'
         },
 
     ],

@@ -13,6 +13,7 @@ import {
     useCaseNextCivitatisAdditionalBooking, useCaseOpenCouponModal
 } from "@entities/lib/calendar/usecases/modals";
 import {toJS} from "mobx";
+import {CouponCodeSingle} from "@entities/lib/calendar/models/single/coupon-code.single";
 
 export function useFetchDepartures() {
     const store = useContextStore();
@@ -75,11 +76,18 @@ export function useCaseDeclineCouponForBooking() {
     return useCallback(async function () {
         store.loading.set('redirect-to-checkout')
 
-        if (store.formBooking.bookings.length < 2) {
-            store.couponModel.removeOrder();
+        if(!store.couponModel.emailHasSent) {
+            if (store.formBooking.bookings.length < 2) {
+                store.couponModel.removeOrder();
+            }
+            await store.couponModel.fetchDecline()
+            new CouponCodeSingle().remove()
+
+            await redirectToCheckout();
+        } else {
+
+            await redirectToCheckout();
         }
-        await store.couponModel.fetchDecline()
-        await redirectToCheckout();
     }, [])
 }
 
@@ -107,6 +115,8 @@ export function useCaseRedirectToCheckout() {
     return useCallback(async function () {
         store.loading.set('redirect-to-checkout')
         const order = store.couponModel.additionalOrderId
+
+        console.log(order, 'order')
         if (order) {
             const url = getHrefLocale(store.option.page.locale, `${ADDITIONAL_ROUTE}/${order}`)
             await push(url)

@@ -18,7 +18,7 @@ interface Props {
     dayNum: number,
     month: string,
     year: number,
-    time: string
+    time?: string
 }
 
 export default async function OrderBookingCard({
@@ -55,7 +55,7 @@ export default async function OrderBookingCard({
                     {i18n.t('Booking ID')}: {id}
                 </span>
                 <span>
-                    {day}, {dayNum} {month} {year}, {time}
+                    {day}, {dayNum} {month} {year}{time ? `, ${time}` : ''}
                 </span>
                 <span>
                     <ClockSvg/> <span>{hours}:{minutes} {durationLabel}, {number_people} {number_people > 1 ? i18n.t('People') : i18n.t('Person')}  </span>

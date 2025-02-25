@@ -22,7 +22,12 @@ import CouponModal from "@entities/lib/calendar/ui/modals/coupon-modal";
 import {useCaseRedirectToCheckout} from "@entities/lib/calendar/usecases";
 import CongratulationsModel from "@entities/lib/calendar/ui/modals/congratulations-modal";
 import BaseModal from "@entities/lib/calendar/ui/modals/base-modal/base-modal";
+import {useEffect} from "react";
+import {MODAL} from "@entities/lib/calendar/models/modal-steps.model";
+import {CouponCodeSingle} from "@entities/lib/calendar/models/single/coupon-code.single";
 import "@/entities/calendar/ui/main/style.css";
+import {usePathname} from "next/navigation";
+import {toJS} from "mobx";
 
 const WrapperFixRender = observer(() => {
     return (
@@ -64,6 +69,49 @@ const ProcessBookingView = observer(() => {
     const couponValue = `${getters.modelCoupon.coupon?.value} ${typeSale}`
 
     const closeModalEmailSuccess = useCaseCloseModelEmailCoupon()
+
+    useEffect(() => {
+        const state = window.history.state?.modalCongratulations?.couponModelTours;
+        const bookings = window.history.state?.modalCongratulations?.bookings;
+        const coupon = new CouponCodeSingle();
+
+        if(state && !!bookings?.length && coupon.coupon?.code === state?.couponForBooking?.code) {
+            getters.modelCoupon.restoreFromState(state)
+            getters.modals.openModal(MODAL.PAID_TOURS_MODAL)
+
+            // @ts-ignore
+            bookings.forEach(book => {
+                getters.formBooking.addBooking(book)
+            })
+
+
+        }
+        const beforeunload = () => {
+            const oldState = window.history.state ? window.history.state : {}
+            if(oldState?.modalCongratulations)
+                delete oldState.modalCongratulations
+            window.history.replaceState(oldState, '', pathName);
+        }
+
+        window.addEventListener("beforeunload", beforeunload);
+
+        return () => window.removeEventListener('beforeunload', beforeunload)
+    }, []);
+    const pathName = usePathname();
+
+    const prevRedirect = () => {
+        const oldState = window.history.state ? window.history.state : {}
+        window.history.replaceState({
+            ...oldState,
+            modalCongratulations: {
+                couponModelTours: getters.modelCoupon.historyState,
+                bookings: getters.formBooking.bookings.map(item => toJS(item)),
+            }
+        }, '',
+            pathName
+        );
+    }
+
     return (
         <div className="calendar_wrap" style={{minHeight: '400px'}}>
             {getters.isShowTitle && <h2 className="title">{getters.title}</h2> }
@@ -98,11 +146,15 @@ const ProcessBookingView = observer(() => {
             { getters.isOpenCouponToursModal &&
                 <CongratulationsModel
                     isLoading={getters.loadingModel.isRedirectToCheckout}
+                    onPrevRedirect={prevRedirect}
                     model={getters.modelCoupon}
                 />
             }
             {getters.isOpenCouponModalEmail &&
-                <BaseModal close={closeModalEmailSuccess}>
+                <BaseModal close={() => {
+                    prevRedirect();
+                    closeModalEmailSuccess().then()
+                }}>
                     <h5>{i18n.send_email_coupon.replace('{discount}', couponValue)}</h5>
                 </BaseModal>
             }

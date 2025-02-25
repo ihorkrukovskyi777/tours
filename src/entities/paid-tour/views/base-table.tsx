@@ -59,7 +59,7 @@ const BaseTabs = observer(({info}: Props) => {
                             isShow={!!model.cancellationPolicy.length}
                         >
 
-                            {model.cancellationPolicy.map((item) => {
+                            {Array.isArray(model?.cancellationPolicy) && model?.cancellationPolicy?.map((item) => {
                                 if (['SIMPLE', 'FULL_REFUND', 'NON_REFUNDABLE'].includes(item.cancellationPolicy.policyType)) {
                                     const policy = item.cancellationPolicy;
                                     return (

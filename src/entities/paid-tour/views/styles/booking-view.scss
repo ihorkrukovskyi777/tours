@@ -1,4 +1,5 @@
 .bokun_choice_order__content  {
+
   .calendar_bokun {
     #days {
       button {
@@ -29,9 +30,18 @@
     }
   }
 }
+.react-responsive-modal-modal {
+  margin: 0!important;
+}
 
+@media (max-width: 991px) {
+  .react-responsive-modal-modal.booking_view__modal {
+    /*height: 100%!important;*/
+  }
+}
 .booking_view {
   position: relative;
+
 
   &__loading {
     background-color: rgb(255, 255, 255, 0.9);

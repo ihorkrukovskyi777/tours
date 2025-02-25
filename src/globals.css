@@ -17,10 +17,11 @@
   --font_700: "Geomanist700", var(--font-ciliric);
 
 
-  --bokun-color-primary: black;
+  --bokun-color-primary: #394759;
   --bokun-color-primary-icon: var(--main_color);
   --bokun-color-price: rgba(29, 199, 36, 1);
   --bokun-color-success: #1DC724;
+  --bokun-border-color: #e2e8f0;
   --bokun-color-error: #ed4337;
   --bokun-color-disabled: #CCCCCC;
   --bokun-color-disabled-text: #969696;
