@@ -5,7 +5,7 @@ import useWidgetTranslate from "@/i18n/useWidgetTranslate";
 import I18nChangeOfLanguage from "@shared/ui/languages/change-of-language/i18n-change-of-language";
 import {notFound} from "next/navigation";
 import {getTranslations} from "next-intl/server";
-
+import generateSeoPage from "@/shared/helpers/seo/generate-seo-page";
 interface Props {
     locale: string
     code: string
@@ -70,3 +70,18 @@ const Page = async ({params}: Props) => {
 }
 
 export default Page
+
+interface MetaDataProps {
+    params: { locale: string }
+}
+export async function generateMetadata({params}: MetaDataProps ) {
+    const title = {
+        en: 'Checkout',
+
+    }
+    return {
+        robots: {index: false, follow: false},
+        // @ts-ignore
+        title: title[params?.locale] ?? 'Checkout',
+    }
+}
