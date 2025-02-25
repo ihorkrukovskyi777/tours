@@ -76,12 +76,18 @@ interface MetaDataProps {
 }
 export async function generateMetadata({params}: MetaDataProps ) {
     const title = {
-        en: 'Checkout',
-
+        en: 'Booking Confirmation | Strawberry Tours',
+        es: 'Confirmación de reserva | Strawberry Tours',
+        'pt-pt': 'Confirmação de reserva | Strawberry Tours',
+        fr: 'Confirmation de réservation | Strawberry Tours',
+        de: 'Buchungsbestätigung | Strawberry Tours',
+        nl: 'Boekingsbevestiging | Strawberry Tours',
+        pl: 'Potwierdzenie rezerwacji | Strawberry Tours',
+        cat: 'Confirmació de reserva | Strawberry Tours',
     }
     return {
         robots: {index: false, follow: false},
         // @ts-ignore
-        title: title[params?.locale] ?? 'Checkout',
+        title: title[params?.locale] ?? 'Booking Confirmation | Strawberry Tours',
     }
 }
