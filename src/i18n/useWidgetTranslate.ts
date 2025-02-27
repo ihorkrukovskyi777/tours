@@ -1,6 +1,8 @@
 import {Ii18n} from "@/bokun-widget/src/common/i18n.type";
+import {useTranslations} from "use-intl";
 export default async function  useWidgetTranslate(locale: string) : Promise<Ii18n> {
 
+    const tr = useTranslations();
     const translates = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/influencer?locale=${locale}`)
     const i18n = await translates.json();
 
@@ -12,7 +14,7 @@ export default async function  useWidgetTranslate(locale: string) : Promise<Ii18
     const dayShort = (key: string) => i18n.daysShort[key]
     const dayShortDDD = (key: string) => i18n.daysShortDDD[key]
     return {
-        fees: g('fees'),
+        fees: tr('fees'),
         errorMessage: {
             fieldIsRequired: getErrorMessage('fieldIsRequired'),
             invalidDate: getErrorMessage('invalidDate'),
