@@ -4,6 +4,7 @@ export default async function  useWidgetTranslate(locale: string) : Promise<Ii18
     const translates = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/influencer?locale=${locale}`)
     const i18n = await translates.json();
 
+
     const getErrorMessage = (key: string) => i18n.bokunWidget.errorMessage[key]
     const t = (key: string) => i18n.bokunWidget[key]
     const g = (key: string) => i18n[key]
@@ -11,7 +12,7 @@ export default async function  useWidgetTranslate(locale: string) : Promise<Ii18
     const dayShort = (key: string) => i18n.daysShort[key]
     const dayShortDDD = (key: string) => i18n.daysShortDDD[key]
     return {
-        fees: t('fees'),
+        fees: g('fees'),
         errorMessage: {
             fieldIsRequired: getErrorMessage('fieldIsRequired'),
             invalidDate: getErrorMessage('invalidDate'),
