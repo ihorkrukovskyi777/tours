@@ -51,6 +51,7 @@ export default getRequestConfig(async ({requestLocale}) => {
         messages: {
             ...translatesVouched,
             ...cancellation,
+            fees: 'fees',
             'off!': getMessage('off!'),
             'Paid Tours in {city}': getMessage('Paid Tours in {city}'),
             days: translatesVouched.days,
