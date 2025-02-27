@@ -9,7 +9,7 @@ import {headers} from "next/headers";
 import {isMobileCheck} from "@/shared/helpers";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Footer from "@/shared/ui/layouts/footer/footer";
-import {fallbackLng} from "@/i18n/settings";
+import {fallbackLng, locales} from "@/i18n/settings";
 import {generatorSeo} from "@/shared/helpers/seo/generator-seo";
 import {PATH_GUIDES} from "@/shared/constants/route";
 import ProductSchemaGuide from "@/shared/schema/guide/product";
@@ -24,7 +24,7 @@ export default async function PageGuide({params: {name, locale}}) {
 
     const i18n = await useDefaultI18n(locale);
 
-    if (pageSub?.statusCode === 404) {
+    if (pageSub?.statusCode === 404 || !locales.includes(locale) ) {
         notFound();
     }
 
