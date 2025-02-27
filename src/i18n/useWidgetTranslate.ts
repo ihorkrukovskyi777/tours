@@ -1,8 +1,8 @@
 import {Ii18n} from "@/bokun-widget/src/common/i18n.type";
-import {useTranslations} from "use-intl";
+import {getTranslations} from "next-intl/server";
 export default async function  useWidgetTranslate(locale: string) : Promise<Ii18n> {
 
-    const tr = useTranslations();
+    const tr = await getTranslations();
     const translates = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/influencer?locale=${locale}`)
     const i18n = await translates.json();
 
