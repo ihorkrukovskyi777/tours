@@ -52,7 +52,7 @@ export default getRequestConfig(async ({requestLocale}) => {
             ...translatesVouched,
             ...cancellation,
             'off!': getMessage('off!'),
-            paid_tours_in_city: translatesVouched['Paid Tours in {city}'],
+            paid_tours_in_city: translatesVouched?.paid_tours_in_city ?? '',
             days: translatesVouched.days,
             hours: translatesVouched.hours,
             months: translatesVouched.months,
