@@ -81,7 +81,7 @@ export default async function CongratulationsPage({params: {slug}}: any) {
     }) ?? []
     return (
         <>
-            <CouponViews data={data}/>
+            <CouponViews data={data}  key={locale}/>
             <div className="padding_md">
                 <I18nChangeOfLanguage
                     key={locale}
