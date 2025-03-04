@@ -85,7 +85,7 @@ const CouponViews = ({data}: Props) => {
             }
             <div className="content">
                 <Congratulations
-                    title={t('Paid Tours in {city}', {city: data.city.title})}
+                    title={t('paid_tours_in_city', {city: data.city.title})}
                     subTitle={''}
                 >
                     {data.tours.map(tour => {
