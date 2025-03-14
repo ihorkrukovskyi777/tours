@@ -1,6 +1,5 @@
 import {getToursInCityForWidgetUseCase, insertCode} from "@entities/api";
 import useParseCode from "@/shared/hooks/useParseCode";
-
 const ClientInsertCode = dynamic(
     () => import("@/widgets/insert-code/client/client-insert-code"),
     {

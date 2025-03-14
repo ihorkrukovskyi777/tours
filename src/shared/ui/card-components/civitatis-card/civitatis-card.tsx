@@ -29,6 +29,7 @@ export default function CivitatisCard({ card} : Props) {
     const img = card?.photos?.header[0]?.paths?.original
     return (
         <div className="civitatis_card">
+            <a target="_blank"  href={card.url} rel="noreferrer" className="civitatis_card__link"></a>
             <div className="civitatis_card__image">
                 <img src={img} alt=""/>
             </div>
@@ -43,7 +44,7 @@ export default function CivitatisCard({ card} : Props) {
 
             <div className="civitatis_card__footer">
                 <span>{t('free')}!</span>
-                <a href={card.url}>{t('book')}</a>
+                <div>{t('book')}</div>
             </div>
         </div>
     )
