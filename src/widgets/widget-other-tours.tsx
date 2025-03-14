@@ -10,8 +10,8 @@ const ClientInsertCode = dynamic(
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import CivitatisCard, {ICivitatisCard} from "@shared/ui/card-components/civitatis-card/civitatis-card";
-import './insert-code/style.css'
 import {getTranslations} from "next-intl/server";
+import './insert-code/style.css'
 
 
 interface Props {

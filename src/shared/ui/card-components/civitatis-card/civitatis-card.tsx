@@ -1,5 +1,6 @@
-import './style.css'
 import {useTranslations} from "next-intl";
+import './style.css'
+
 export interface ICivitatisCard {
     id: number,
     score: number;

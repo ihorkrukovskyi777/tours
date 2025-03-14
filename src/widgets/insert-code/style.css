@@ -7,6 +7,11 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
 }
+@media(max-width: 768px) {
+  .civitatis_widget_container > div:first-child {
+    grid-template-columns: 1fr;
+  }
+}
 .civitatis_widget_container__footer {
   display: flex;
   justify-content: center;
