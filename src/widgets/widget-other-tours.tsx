@@ -44,11 +44,10 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
         getToursInCityForWidgetUseCase(id, type, locale)
     ]) as [string | undefined, WidgetType]
 
-    // console.log(code, widget)
-    // // @ts-ignore
-    // if (typeof code === "string" && code.length > 30) {
-    //     return <InsertCode id={id} code={code}/>
-    // }
+    // @ts-ignore
+    if (typeof code === "string" && code.length > 30) {
+        return <InsertCode id={id} code={code}/>
+    }
 
     console.log(widget)
     if (widget.type === 'guruwalk') { // @ts-ignore
