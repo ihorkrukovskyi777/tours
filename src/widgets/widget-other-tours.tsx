@@ -85,9 +85,11 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
                         return <CivitatisCard card={tour} key={tour.id} />
                     })}
                 </div>
-                <div className="civitatis_widget_container__footer">
-                    <a href={`https://www.civitatis.com/${widget.locale}/${widget.slug}`} target="_blank" rel="noreferrer">{t('civitatis_widget_show_more')}</a>
-                </div>
+                {widget.tours.length >= 3 &&
+                    <div className="civitatis_widget_container__footer">
+                        <a href={`https://www.civitatis.com/${widget.locale}/${widget.slug}`} target="_blank" rel="noreferrer">{t('civitatis_widget_show_more')}</a>
+                    </div>
+                }
             </div>
         )
     }
