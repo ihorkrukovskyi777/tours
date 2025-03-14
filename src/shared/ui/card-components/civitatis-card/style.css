@@ -1,3 +1,4 @@
+
 .civitatis_card {
     display: flex;
     flex-direction: column;
@@ -6,14 +7,16 @@
 }
 
 .civitatis_card__image {
-    max-height: 10.625rem;
+    position: relative;
+    padding-bottom: 44.6875%;
 }
 .civitatis_card__image img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    display: inline-block;
-    vertical-align: middle;
-    max-width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }
 .civitatis_card__content {
     padding: 20px;
@@ -22,13 +25,13 @@
     gap: 5px;
 }
 .civitatis_card__content h5 {
-    font-size: 22px;
+    font-size: 24px;
     color: #f70759;
     line-height: 110%;
     font-family: var(--fontBold);
 }
 .civitatis_card__score {
-    font-size: 16px;
+    font-size: 18px;
     color: #f70759;
     font-family: var(--fontBold);
 }
@@ -36,12 +39,12 @@
     height: .75rem;
     line-height: .75rem;
     margin-left: .625rem;
-    font-size: .875rem;
+    font-size: 16px;
     color: #999;
     font-family: var(--fontMedium);
 }
 .civitatis_card__description {
-    font-size: 1rem;
+    font-size: 20px;
     font-weight: 300;
     font-family: var(--font);
     margin-top: 5px;
@@ -66,12 +69,17 @@
 }
 .civitatis_card__footer a {
     display: inline-block;
-    padding: .625rem 1.5rem .5625rem 1.75rem;
     border-top-left-radius: 1.5625rem;
     background-color: #f70759;
     color: #fff;
-    font-size: 1.125rem;
+    font-size: 24px;
+    padding: .625rem 1.5rem .5625rem 1.75rem;
     font-weight: 300;
     font-style: normal;
     text-transform: capitalize;
+}
+@media(min-width: 64rem) {
+    .civitatis_card__footer a {
+        padding: .75rem 2.5rem;
+    }
 }
