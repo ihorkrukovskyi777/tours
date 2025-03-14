@@ -1,3 +1,36 @@
 .cbxSxv {
   bottom: 80px !important;
 }
+
+.civitatis_widget_container > div:first-child {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
+.civitatis_widget_container__footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.civitatis_widget_container__footer a {
+  text-align: center;
+  min-width: 10.5rem;
+  color: #f70759;
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid #f70759 !important;
+  border-radius: 1000px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  font-weight: 300;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--fontMedium);
+  padding: 1.125rem 2.5625rem;
+}
+.civitatis_widget_container__footer a:hover {
+  background-color: #f70759;
+  color: #FFFFFF;
+  transition: 0.3s;
+}
