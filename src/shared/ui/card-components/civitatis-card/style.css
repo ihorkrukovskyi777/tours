@@ -1,0 +1,77 @@
+.civitatis_card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 .675rem .075rem rgba(0,0,0,.2);
+    min-height: 400px;
+}
+
+.civitatis_card__image {
+    max-height: 10.625rem;
+}
+.civitatis_card__image img {
+    width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+}
+.civitatis_card__content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.civitatis_card__content h5 {
+    font-size: 22px;
+    color: #f70759;
+    line-height: 110%;
+    font-family: var(--fontBold);
+}
+.civitatis_card__score {
+    font-size: 16px;
+    color: #f70759;
+    font-family: var(--fontBold);
+}
+.civitatis_card__reviews {
+    height: .75rem;
+    line-height: .75rem;
+    margin-left: .625rem;
+    font-size: .875rem;
+    color: #999;
+    font-family: var(--fontMedium);
+}
+.civitatis_card__description {
+    font-size: 1rem;
+    font-weight: 300;
+    font-family: var(--font);
+    margin-top: 5px;
+}
+.civitatis_card__footer {
+    padding-left: 20px;
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.civitatis_card__footer span {
+    display: flex;
+    align-items: center;
+    margin-bottom: -.1875rem;
+    line-height: 1;
+    color: #f70759;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+.civitatis_card__footer a {
+    display: inline-block;
+    padding: .625rem 1.5rem .5625rem 1.75rem;
+    border-top-left-radius: 1.5625rem;
+    background-color: #f70759;
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 300;
+    font-style: normal;
+    text-transform: capitalize;
+}

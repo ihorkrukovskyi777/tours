@@ -53,7 +53,7 @@ const getSchemaProductTour = (item, date, locale, reviews) => {
     return {
         "@context": "https://schema.org",
         "@type": "Product",
-        "url": `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${url}`,
+        "url": `${url}`,
         "name": item.name,
         "description": item.description,
         "image": `${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${item.attachment?.src}/public`,

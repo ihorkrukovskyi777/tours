@@ -299,3 +299,12 @@ export const fetchTravelResources = async (id, locale = 'en') => {
   );
   return data.json();
 }
+
+
+export const getToursInCityForWidgetUseCase = async (id, type = "city", locale) => {
+  const data = await fetch(
+      `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/section/widget-tours/${id}?locale=${locale}`,
+      { next: { revalidate: 0, tags: ["section"] } }
+  );
+  return data.json();
+};
