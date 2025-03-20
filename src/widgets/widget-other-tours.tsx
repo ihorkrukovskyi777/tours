@@ -49,7 +49,6 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
         return <InsertCode id={id} code={code}/>
     }
 
-    console.log(widget)
     if (widget.type === 'guruwalk') { // @ts-ignore
         return (
             <div className="insert-a-code container" style={{display: 'block'}}>
