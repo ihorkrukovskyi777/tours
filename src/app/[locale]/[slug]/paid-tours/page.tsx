@@ -69,7 +69,6 @@ export default async function CongratulationsPage({params: {slug}}: any) {
         notFound();
     }
 
-
     // @ts-ignore
     const languages = page.languages.filter(city => city.locale !== 'ru')?.map((city: any) => {
         return {
@@ -81,7 +80,7 @@ export default async function CongratulationsPage({params: {slug}}: any) {
     }) ?? []
     return (
         <>
-            <CouponViews data={data}  key={locale}/>
+            <CouponViews data={data} title={t('paid_tours_in_city', {city: data.city?.title})}/>
             <div className="padding_md">
                 <I18nChangeOfLanguage
                     key={locale}

@@ -22,9 +22,10 @@ interface Coupon {
 
 interface Props {
     data: DataPagePaidTours
+    title: string
 }
 
-const CouponViews = ({data}: Props) => {
+const CouponViews = ({data, title}: Props) => {
     const t = useTranslations()
     const search = useSearchParams()
 
@@ -85,7 +86,7 @@ const CouponViews = ({data}: Props) => {
             }
             <div className="content">
                 <Congratulations
-                    title={t('paid_tours_in_city', {city: data.city.title})}
+                    title={title}
                     subTitle={''}
                 >
                     {data.tours.map(tour => {
