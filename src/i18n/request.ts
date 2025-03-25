@@ -73,7 +73,7 @@ export default getRequestConfig(async ({requestLocale}) => {
             reviews: getMessage('Reviews'),
             book: getMessage('book'),
             free: getMessage('free'),
-            civitatis_widget_show_more: translatesVouched?.civitatis_widget_show_more ?? 'Check out all the available activities in Seville',
+            civitatis_widget_show_more: getMessage('Check out all the available activities in Seville'),
             weOfferPickupNotice: translatesVouched.weOfferPickupNotice,
             youCanStarPickup: translatesVouched.youCanStarPickup,
             showLocation: translatesVouched.showLocation,
