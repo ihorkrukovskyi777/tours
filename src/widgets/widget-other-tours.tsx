@@ -39,17 +39,12 @@ function InsertCode({code, id}: { code: string, id: number }) {
 export default async function WidgetOtherTours({id, type, locale}: Props) {
 
     const t = await getTranslations();
-    const [code, widget] = await Promise.all([
-        await insertCode(id, type, locale),
+    const [widget] = await Promise.all([
         getToursInCityForWidgetUseCase(id, type, locale)
-    ]) as [string | undefined, WidgetType]
+    ]) as [WidgetType]
 
-    // @ts-ignore
-    if (typeof code === "string" && code.length > 30) {
-        return <InsertCode id={id} code={code}/>
-    }
 
-    if (widget.type === 'guruwalk') { // @ts-ignore
+    if (widget?.type === 'guruwalk') { // @ts-ignore
         return (
             <div className="insert-a-code container" style={{display: 'block'}}>
                 <Script
@@ -74,15 +69,16 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
         )
     }
 
-    if(widget.type === 'civitatis') {
+    if(widget?.type === 'civitatis') {
         return (
             <div className="container civitatis_widget_container">
                 <div>
                     {widget.tours.map(tour => {
                         return <CivitatisCard card={tour} key={tour.id} />
                     })}
+
                 </div>
-                {widget.tours.length >= 3 &&
+                {!!widget.tours?.length &&
                     <div className="civitatis_widget_container__footer">
                         <a href={`https://www.civitatis.com/${widget.locale}/${widget.slug}`} target="_blank" rel="noreferrer">{t('civitatis_widget_show_more')}</a>
                     </div>
