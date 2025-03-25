@@ -23,6 +23,7 @@ interface WidgetType {
     type: null | 'guruwalk' | 'civitatis';
     locale: string;
     slug: string;
+    citySlugLocale?: string;
     tours: ICivitatisCard[];
 }
 
@@ -80,7 +81,7 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
                 </div>
                 {!!widget.tours?.length &&
                     <div className="civitatis_widget_container__footer">
-                        <a href={`https://www.civitatis.com/${widget.locale}/${widget.slug}`} target="_blank" rel="noreferrer">{t('civitatis_widget_show_more')}</a>
+                        <a href={`https://www.civitatis.com/${widget.locale}/${widget?.citySlugLocale ?? widget.slug}`} target="_blank" rel="noreferrer">{t('civitatis_widget_show_more')}</a>
                     </div>
                 }
             </div>
