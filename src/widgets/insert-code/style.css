@@ -1,15 +1,25 @@
 .cbxSxv {
   bottom: 80px !important;
 }
-
-.civitatis_widget_container > div:first-child {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
+.civitatis_widget_container>div:first-child {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
+.civitatis_widget_container>div:first-child :is(.civitatis_card:nth-child(3)) {
+  justify-content: space-between;
+}
+.civitatis_card {
+  width: calc(33.3334% - 40px / 3);
+}
+
 @media(max-width: 768px) {
   .civitatis_widget_container > div:first-child {
+    display: grid;
     grid-template-columns: 1fr;
+  }
+  .civitatis_card {
+    width: 100%;
   }
 }
 .civitatis_widget_container__footer {
