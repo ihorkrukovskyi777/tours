@@ -70,7 +70,7 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
             </div>
         )
     }
-
+    console.log(t('civitatis_widget_show_more'))
     if(widget?.type === 'civitatis') {
         return (
             <div className="container civitatis_widget_container">
@@ -83,7 +83,7 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
                 {!!widget.tours?.length &&
                     <div className="civitatis_widget_container__footer">
                         <a href={`https://www.civitatis.com/${widget.locale}/${widget?.citySlugLocale ?? widget.slug}`} target="_blank" rel="noreferrer">
-                            {t('civitatis_widget_show_more')?.replace('{city}', widget?.title ?? '')}
+                            {t('civitatis_widget_show_more', {city: widget?.title ?? ''})}
                         </a>
                     </div>
                 }
