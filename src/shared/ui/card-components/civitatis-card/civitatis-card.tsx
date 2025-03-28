@@ -29,7 +29,7 @@ export default function CivitatisCard({ card} : Props) {
     const img = card?.photos?.header[0]?.paths?.original
     return (
         <div className="civitatis_card">
-            <a target="_blank"  href={card.url+'&cpm=strawberrytours'} rel="noreferrer" className="civitatis_card__link"></a>
+            <a target="_blank"  href={card.url+'&cmp=strawberrytours'} rel="noreferrer" className="civitatis_card__link"></a>
             <div className="civitatis_card__image">
                 <img src={img} alt=""/>
             </div>
