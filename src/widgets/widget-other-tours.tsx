@@ -1,4 +1,4 @@
-import {getToursInCityForWidgetUseCase, insertCode} from "@entities/api";
+import {getToursInCityForWidgetUseCase} from "@entities/api";
 import useParseCode from "@/shared/hooks/useParseCode";
 const ClientInsertCode = dynamic(
     () => import("@/widgets/insert-code/client/client-insert-code"),
@@ -70,7 +70,6 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
             </div>
         )
     }
-    console.log(t('civitatis_widget_show_more'))
     if(widget?.type === 'civitatis') {
         return (
             <div className="container civitatis_widget_container">
@@ -80,7 +79,7 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
                     })}
 
                 </div>
-                {!!widget.tours?.length &&
+                {!!widget.tours?.length && widget?.title &&
                     <div className="civitatis_widget_container__footer">
                         <a href={`https://www.civitatis.com/${widget.locale}/${widget?.citySlugLocale ?? widget.slug}`} target="_blank" rel="noreferrer">
                             {t('civitatis_widget_show_more', {city: widget?.title ?? ''})}

@@ -9,12 +9,17 @@ import {
     ICivitatisCategory,
 } from "@entities/lib/calendar/models/civitatis-categories.model";
 import {useCaseRedirectToCheckout, useFetchAdditionalRedirect} from "@entities/lib/calendar/usecases/index";
+import {useAnalytics} from "@entities/analytics/analytics.provider";
 
 
 export function useCaseOpenCalendar() {
     const store = useContextStore();
+    const analytics = useAnalytics()
     return useCallback(function () {
         store.modals.openModal(MODAL.CALENDAR)
+        analytics?.addEventNoLastDuplicate({
+            type: 'click_pick_a_date'
+        })
     }, [store])
 }
 
@@ -71,6 +76,7 @@ export function useCaseCloseCalendar() {
     const store = useContextStore();
     return useCallback(function () {
         store.modals.closeModal(MODAL.CALENDAR)
+
     }, [store])
 }
 
@@ -134,7 +140,7 @@ export function useCaseBooking() {
 export function useCaseNextCivitatisAdditionalBooking() {
     const store = useContextStore();
     const setAdditionalBooking = useFetchAdditionalRedirect();
-
+    const analytics = useAnalytics()
 
     return useCallback(async function (dep: DepBooking, prevCategories: ICivitatisCategory[], peopleNumber: number) {
         if(Number(dep.is_civitatis) === 1) {
@@ -155,7 +161,9 @@ export function useCaseNextCivitatisAdditionalBooking() {
             const firstBooking = store.formBooking.getFirstBooking();
             if(orEqual && !!prevCategories.length && firstBooking) {
                 await store.formBooking.fetchBookingDeparture(firstBooking.customer, '')
-
+                analytics?.addEvent({
+                    type: 'additional_booking'
+                })
                 await setAdditionalBooking(store.formBooking.bookings.map(item => ({type: item.type, booking_id: item.booking_id})))
                 return
             }
@@ -176,6 +184,7 @@ export function useCaseCloseModalAdditional() {
         store.modals.closeModal(MODAL.ADDITIONAL_SALES)
         await redirectToCheckout();
 
+
     }, [store])
 }
 
@@ -186,6 +195,7 @@ export function useCaseOpenAdditionalCalendar() {
             store.loading.set('additional')
             store.modals.openModal(MODAL.ADDITIONAL_SALES_CALENDAR)
             await store.additionalSales.setCalendarTourId(id);
+
         } catch (err) {
             console.log(err)
         } finally {

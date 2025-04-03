@@ -1,8 +1,10 @@
+'use client'
 import {observer} from "mobx-react-lite";
 import BaseModal from "@entities/lib/calendar/ui/modals/base-modal/base-modal";
 import {useContextProcessBookingI18N} from "@entities/lib/calendar/process-booking.provider";
 import Button from "@shared/ui/selectors/button/button";
 import {CouponModel} from "@entities/lib/calendar/models/coupon.model";
+import {useAnalytics} from "@entities/analytics/analytics.provider";
 interface Props {
     onConfirm(): void
     onCancel(): void
@@ -11,9 +13,24 @@ interface Props {
 }
 
 const CouponModal = observer(({onConfirm, onCancel, model, isLoading}: Props) => {
+    const analytics = useAnalytics()
     const i18n = useContextProcessBookingI18N()
+
+    const closeHandler = () => {
+        analytics?.addEvent({
+            type: 'close_coupon_modal'
+        })
+        onCancel();
+    }
+
+    const confirmHandler = () => {
+        analytics?.addEvent({
+            type: 'accepted_the_coupon'
+        })
+        onConfirm();
+    }
     return (
-        <BaseModal close={onCancel} maxWidth={600} isLoading={isLoading}>
+        <BaseModal close={closeHandler} maxWidth={600} isLoading={isLoading}>
             <div className="title process_booking_line" >
                 <div className="title-text">{model?.offerModal?.titles?.text}</div>
                 <div className="process_booking_line__block">
@@ -29,8 +46,8 @@ const CouponModal = observer(({onConfirm, onCancel, model, isLoading}: Props) =>
             </div>
             <div className="title" dangerouslySetInnerHTML={{__html: model?.offerModal?.descriptions?.text}}></div>
 
-            <Button onClick={onConfirm} customClass={'button_custom'} >{model?.offerModal?.callToActions?.text}</Button>
-            <Button onClick={onCancel}  customClass={'button_custom no_thanks'} >{model.offerModal?.buttonsCancel?.text}</Button>
+            <Button onClick={confirmHandler} customClass={'button_custom'} >{model?.offerModal?.callToActions?.text}</Button>
+            <Button onClick={closeHandler}  customClass={'button_custom no_thanks'} >{model.offerModal?.buttonsCancel?.text}</Button>
         </BaseModal>
     )
 })

@@ -12,8 +12,8 @@ import {ADDITIONAL_ROUTE, CHECKOUT} from "@shared/constants/route";
 import {
     useCaseNextCivitatisAdditionalBooking, useCaseOpenCouponModal
 } from "@entities/lib/calendar/usecases/modals";
-import {toJS} from "mobx";
 import {CouponCodeSingle} from "@entities/lib/calendar/models/single/coupon-code.single";
+import {useAnalytics} from "@entities/analytics/analytics.provider";
 
 export function useFetchDepartures() {
     const store = useContextStore();
@@ -60,9 +60,13 @@ export function useCaseFetchCouponModal() {
     const openCouponModal = useCaseOpenCouponModal()
     const redirectToCheckout = useCaseRedirectToCheckout()
     const store = useContextStore();
+    const analytics = useAnalytics();
     return useCallback(async function () {
         if (!store.couponModel.isEmpty) {
             openCouponModal();
+            analytics?.addEvent({
+                type: 'show_coupon_modal'
+            })
         } else {
             await redirectToCheckout()
         }
@@ -72,10 +76,13 @@ export function useCaseFetchCouponModal() {
 
 export function useCaseDeclineCouponForBooking() {
     const store = useContextStore();
-    const redirectToCheckout = useCaseRedirectToCheckout()
+    const redirectToCheckout = useCaseRedirectToCheckout();
+    const analytics = useAnalytics();
     return useCallback(async function () {
         store.loading.set('redirect-to-checkout')
-
+        analytics?.addEvent({
+            type: 'decline_coupon'
+        })
         if(!store.couponModel.emailHasSent) {
             if (store.formBooking.bookings.length < 2) {
                 store.couponModel.removeOrder();
@@ -94,6 +101,7 @@ export function useCaseDeclineCouponForBooking() {
 export function useCaseSendCouponEmail() {
     const store = useContextStore();
     const redirectToCheckout = useCaseRedirectToCheckout()
+    const analytics = useAnalytics();
     return useCallback(async function () {
         try {
             store.loading.set('redirect-to-checkout')
@@ -102,6 +110,10 @@ export function useCaseSendCouponEmail() {
             if (store.formBooking.bookings.length < 2) {
                 store.couponModel.removeOrder();
             }
+
+            analytics?.addEvent({
+                type: 'send_coupon_email'
+            })
             store.loading.turnOff('redirect-to-checkout')
         } catch (err) {
             await redirectToCheckout()
@@ -116,7 +128,6 @@ export function useCaseRedirectToCheckout() {
         store.loading.set('redirect-to-checkout')
         const order = store.couponModel.additionalOrderId
 
-        console.log(order, 'order')
         if (order) {
             const url = getHrefLocale(store.option.page.locale, `${ADDITIONAL_ROUTE}/${order}`)
             await push(url)
@@ -134,7 +145,8 @@ export function useCaseFetchBooking() {
     const store = useContextStore();
     const redirect = useCaseRedirectToCheckout()
     const setAdditionalBooking = useFetchAdditionalRedirect();
-    const openCouponModel = useCaseOpenCouponModal()
+    const openCouponModel = useCaseOpenCouponModal();
+    const analytics = useAnalytics();
     return useCallback(async function (data: FormDataBooking, token: string) {
         try {
             store.loading.set('fetch-booking')
@@ -145,6 +157,9 @@ export function useCaseFetchBooking() {
                     type: item.type,
                     booking_id: item.booking_id
                 })))
+                analytics?.addEvent({
+                    type: 'additional_booking'
+                })
                 return;
             }
 
@@ -155,13 +170,18 @@ export function useCaseFetchBooking() {
                 store.loading.turnOff('fetch-booking')
                 return null
             }
-
+            analytics?.addEventNoLastDuplicate({
+                type: "first_booking"
+            })
             await store.couponModel.fetchPaidModal(booking.tour_id)
 
 
             store.additionalSales.option.setPeople(store.formBooking.lastBookingPeopleNumber ?? 1)
             store.additionalSales.setCustomer(booking.customer)
             await store.additionalSales.fetchAnotherTour(booking.booking_id, store.option.page.locale, store.formBooking.tours_ids)
+            analytics?.addEventNoLastDuplicate({
+                type: 'show_additional_modal'
+            })
             store.modals.openModal(MODAL.ADDITIONAL_SALES)
             store.modals.closeAllExceptByName(MODAL.ADDITIONAL_SALES)
             store.loading.turnOff('fetch-booking')
@@ -223,7 +243,7 @@ export function useCaseFetchBookingAdditional() {
     const redirect = useCaseRedirectToCheckout();
     const nextCivitatisAdditionalBooking = useCaseNextCivitatisAdditionalBooking();
     const setAdditionalBooking = useFetchAdditionalRedirect();
-
+    const analytics = useAnalytics();
     return useCallback(async function (dep: DepBooking) {
         const depModel = store.additionalSales.selectTourCalendar.departuresModel?.departuresCalendar
         const booking = store.formBooking.getFirstBooking();
@@ -246,8 +266,9 @@ export function useCaseFetchBookingAdditional() {
                         type: item.type,
                         booking_id: item.booking_id
                     })))
-
-
+                    analytics?.addEvent({
+                        type: 'additional_booking'
+                    })
                 } else {
                     store.loading.set('additional-booking')
                     await nextCivitatisAdditionalBooking(dep, store.formBooking.lastBookingCivCategories, depModel.option.peopleNumber)
