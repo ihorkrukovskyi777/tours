@@ -111,7 +111,6 @@ export class AnalyticsModel implements ModelImpl {
     }
 
     addEvent(event: AnalyticsEvent) {
-        console.log(event)
         if (!this.isCompareLastEvent(event)) {
             this.data.push({
                 type: event.type,
@@ -140,6 +139,7 @@ export class AnalyticsModel implements ModelImpl {
         if (lastEvent !== null) {
             try {
                 const data = JSON.parse(lastEvent) as AnalyticsData;
+                console.log(data, event)
                 return data.type === event.type
             } catch (err) {
                 console.log(err)
