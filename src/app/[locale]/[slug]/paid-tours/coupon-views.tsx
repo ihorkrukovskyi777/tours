@@ -26,7 +26,6 @@ interface Props {
 }
 
 const CouponViews = ({data, title}: Props) => {
-    const t = useTranslations()
     const search = useSearchParams()
 
     const [isLoading, setLoading] = useState(true)

@@ -13,12 +13,14 @@ import {useEffect,  useRef, useState} from "react";
 import {useCaseFetchCouponModal} from "@entities/lib/calendar/usecases";
 import Loader from '@shared/ui/loaders/default-loader';
 import '@entities/lib/calendar/styles/additional-sales-list.css'
+import {useAnalytics} from "@entities/analytics/analytics.provider";
 
 
 const ModalListToursView = observer(() => {
 
     const [init, setInit] = useState(false)
     const ref = useRef<HTMLParagraphElement>(null)
+    const analytics = useAnalytics();
 
     const i18n = useContextProcessBookingI18N()
     const viewModel = useAdditionalSalesProps();
@@ -29,11 +31,26 @@ const ModalListToursView = observer(() => {
 
     useEscHooks()
 
+    const closeHandler = async () => {
+        analytics?.addEventNoLastDuplicate({
+            type: 'closed_additional_sales'
+        })
+        await onClose();
+    }
+
     const getLink = (value: string) => {
         const stringExtractor = extract(['%', '%'])
         const text = stringExtractor(value);
 
         return `${value.replaceAll(`%${text}%`, `<span >${text}</>`)}`
+    }
+
+
+    const notThanksHandler = async () => {
+        analytics?.addEventNoLastDuplicate({
+            type: 'closed_additional_sales'
+        })
+        await openCouponModal()
     }
 
     useEffect(() => {
@@ -50,12 +67,12 @@ const ModalListToursView = observer(() => {
             size={'step-1'}
             style={{position: 'relative'}}
             halfOpacity={viewModel.halfOpacity}
-            close={onClose}
+            close={closeHandler}
             loader={viewModel.isRedirectToCheckout && <Loader style={{left: 0, zIndex: 5, opacity: '0.7'}}/>}
         >
             <div className="step-1 default additional_sales_list">
 
-                <div className="close-button" onClick={onClose}><CloseSvg/></div>
+                <div className="close-button" onClick={closeHandler}><CloseSvg/></div>
                 <ProcessBookingLine title={i18n.booking_confirmed_} step={2}/>
                 <div className="additional_sales_list__content">
                     <div className="title_text">
@@ -79,7 +96,7 @@ const ModalListToursView = observer(() => {
                         )
                     })}
                 </div>
-                <button className="additional_sales_list__no_thanks" onClick={openCouponModal}>{i18n.no_thanks.toLowerCase()}</button>
+                <button className="additional_sales_list__no_thanks" onClick={notThanksHandler}>{i18n.no_thanks.toLowerCase()}</button>
             </div>
         </ModalBooking>
     )

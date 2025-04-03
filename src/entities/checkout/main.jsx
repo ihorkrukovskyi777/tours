@@ -1,5 +1,5 @@
 "use client";
-import React, {useContext, useLayoutEffect, useState} from "react";
+import React, {useContext, useEffect, useLayoutEffect, useState} from "react";
 import Loader from "@/shared/ui/loaders/default-loader";
 import {observer} from "mobx-react-lite";
 import {
@@ -8,13 +8,23 @@ import {
 } from "@/entities/checkout/store/checkout-store";
 import CheckoutSection from "@/entities/checkout/ui";
 import {useSearchParams} from "next/navigation";
+import {useAnalytics} from "@/entities/analytics/analytics.provider";
+import {AdditionalOrderSingle} from "@/entities/lib/calendar/models/single/additional-order.single";
 
 const CheckoutContent = observer(({title, i18n}) => {
     const searchParams = useSearchParams()
     const code = searchParams.get('code');
     const store = useContext(CheckoutStoreContext);
+    const analytics = useAnalytics()
 
     const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        new AdditionalOrderSingle().remove();
+        analytics?.addEventAndResetSession({
+            type: 'checkout_page'
+        })
+    }, [])
 
     useLayoutEffect(() => {
         const fetchData = async () => {
@@ -37,6 +47,7 @@ const CheckoutContent = observer(({title, i18n}) => {
         width: '100%',
         height: '100%',
     }
+
     return (
         <main>
             {store.isLoading && <p>Loading...</p>}

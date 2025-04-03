@@ -1,6 +1,7 @@
 import {DeparturesModel} from "@entities/lib/calendar/models/departures/departures.model";
 import {useLocalObservable} from "mobx-react-lite";
 import {DepBooking} from "@entities/lib/calendar/@types";
+import {useAnalytics} from "@entities/analytics/analytics.provider";
 
 interface Loading {
     isMainLoading: boolean
@@ -15,6 +16,7 @@ interface Props {
 export type PropsReturn = ReturnType<typeof useDeparturesListProps>
 
 export function useDeparturesListProps({loading, depModel, onBooking}: Props) {
+    const analytics = useAnalytics()
     const data =  useLocalObservable(() => ({
         get isLoading() {
             return loading.isMainLoading
@@ -35,7 +37,14 @@ export function useDeparturesListProps({loading, depModel, onBooking}: Props) {
         get showEmpty() {
             return !this.departures.length && !this.isLoading
         },
-        onBooking: onBooking,
+        onBooking: (dep: any) => {
+            onBooking(dep);
+
+            analytics?.addEventNoLastDuplicate({
+                type: 'click_day_list'
+            })
+
+        },
         nextPage: depModel.nextPage
     }), {})
 

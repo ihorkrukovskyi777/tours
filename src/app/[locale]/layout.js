@@ -8,6 +8,8 @@ import GoogleScript from "@/shared/scripts/google";
 import NextTopLoader from 'nextjs-toploader';
 import '../../globals.css'
 import '../../layout.scss'
+import AnalyticsProvider from "@/entities/analytics/analytics.provider";
+
 export const viewport = {
     width: 'device-width',
     initialScale: 1.0,
@@ -27,9 +29,11 @@ export default function LocaleLayout({children, params}) {
             <main className={"main_flex_container"}>
                 <NextTopLoader color="var(--main_color)"/>
                 <WebSiteSchema/>
-                <NextIntlClientProvider  messages={messages}>
+                <NextIntlClientProvider messages={messages}>
                     <Header locale={params.locale}/>
-                    {children}
+                    <AnalyticsProvider>
+                        {children}
+                    </AnalyticsProvider>
                     <GoogleScript/>
                 </NextIntlClientProvider>
             </main>

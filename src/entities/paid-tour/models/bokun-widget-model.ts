@@ -89,8 +89,8 @@ export class BokunWidgetModel implements ModelImpl {
         })
     }
 
-    onPickFullDate(fullDate: string) {
-        this.toggleModal()
+    async onPickFullDate(fullDate: string) {
+        await this.toggleModal()
         this.choice_an_order.calendar.setSelectData(fullDate)
     }
 
