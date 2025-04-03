@@ -88,6 +88,9 @@ export class AnalyticsModel implements ModelImpl {
         this.data = backupAnalytics();
     }
 
+    get allEvents() {
+        return [...this.data, ...this.leftThePageAfterRedirect]
+    }
     clearEventLeftPageAfterRedirect(pathname: string) {
         this.leftThePageAfterRedirect = this.leftThePageAfterRedirect.filter(item => item.redirect_pathname !== pathname)
     }
@@ -125,8 +128,11 @@ export class AnalyticsModel implements ModelImpl {
 
     async addEventAndResetSession(event: AnalyticsEvent) {
         this.addEvent(event)
-        await this.sendAnalytics(this.data);
-        await this.storage.resetSession();
+        if(this.allEvents?.length) {
+            await this.sendAnalytics(this.data);
+            await this.storage.resetSession();
+        }
+
     }
 
     private clearEvents() {
