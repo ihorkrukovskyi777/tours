@@ -71,6 +71,7 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
         )
     }
     if(widget?.type === 'civitatis') {
+        const locale = widget.locale === 'pt-pt' ? 'pt' : widget.locale;
         return (
             <div className="container civitatis_widget_container">
                 <div>
@@ -81,7 +82,7 @@ export default async function WidgetOtherTours({id, type, locale}: Props) {
                 </div>
                 {!!widget.tours?.length && widget?.title &&
                     <div className="civitatis_widget_container__footer">
-                        <a href={`https://www.civitatis.com/${widget.locale}/${widget?.citySlugLocale ?? widget.slug}`} target="_blank" rel="noreferrer">
+                        <a href={`https://www.civitatis.com/${locale}/${widget?.citySlugLocale ?? widget.slug}&cmp=strawberrytours`} target="_blank" rel="noreferrer">
                             {t('civitatis_widget_show_more', {city: widget?.title ?? ''})}
                         </a>
                     </div>

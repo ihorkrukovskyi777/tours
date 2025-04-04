@@ -5,8 +5,10 @@ import {StoreSearchCity} from "@/entities/city/store/search-city";
 import debounce from 'lodash.debounce';
 import { getHrefLocale } from '@/i18n/get-href-locale';
 import Link from 'next/link';
+import {useTranslations} from "next-intl";
 
 export default observer(function DropdownSearch({locale, i18n}) {
+    const t = useTranslations()
     const [store] = useState(new StoreSearchCity(locale));
     const debouncedChangeHandler = useCallback(
         debounce(() => {store.getFetchCities()}, 300)
@@ -33,6 +35,7 @@ export default observer(function DropdownSearch({locale, i18n}) {
             </label>
             <div className="result">
                 <ul>
+                    {store.isEmpty && <li><div>{t('Not found')}</div></li>}
                     {store.cities.map((city) => <li key={city.id}><Link prefetch={false} href={getHrefLocale(locale , city.slug)} >{city.title}</Link></li>)}
                 </ul>
             </div>
