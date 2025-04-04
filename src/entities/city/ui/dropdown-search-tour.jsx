@@ -35,7 +35,7 @@ export default observer(function DropdownSearch({locale, i18n}) {
             </label>
             <div className="result">
                 <ul>
-                    {store.isEmpty && <li><div>{t('Not found')}</div></li>}
+                    {store.isEmpty && <li><div>{t('not_found')}</div></li>}
                     {store.cities.map((city) => <li key={city.id}><Link prefetch={false} href={getHrefLocale(locale , city.slug)} >{city.title}</Link></li>)}
                 </ul>
             </div>
