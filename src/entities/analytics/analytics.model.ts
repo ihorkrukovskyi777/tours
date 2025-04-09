@@ -87,6 +87,9 @@ export class AnalyticsModel implements ModelImpl {
         await this.storage.createUser();
         this.data = backupAnalytics();
     }
+    get pathName() {
+        return window.location.pathname
+    }
 
     get allEvents() {
         return [...this.data, ...this.leftThePageAfterRedirect]
@@ -97,7 +100,7 @@ export class AnalyticsModel implements ModelImpl {
 
     addEventNoLastDuplicate(event: AnalyticsEvent) {
         const length = this.data.length
-        if (this.data[length - 1]?.type !== event.type) {
+        if (this.data[length - 1]?.type !== event.type || this.pathName !== this.data[length-1].pathname) {
             this.addEvent(event)
         }
     }
