@@ -220,7 +220,7 @@ export class AnalyticsModel implements ModelImpl {
     visibilitychange =  async () => {
         if (this.lastEventShowModal && document.hidden && this.wasEventThisSession) {
             this.addEventNoLastDuplicate({
-                type: 'closed_the_browser'
+                type: 'closed_the_browser_or_updated_page_or_hidden'
             })
         }
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
