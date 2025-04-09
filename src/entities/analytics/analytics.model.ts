@@ -194,12 +194,12 @@ export class AnalyticsModel implements ModelImpl {
 
         if(this.data.find(item => item.type === 'show_additional_modal')) {
             this.addEvent({
-                type: 'closed_additional_sales',
+                type: 'closed_browser_additional_sales',
             })
         }
         if(this.data.find(item => item.type === 'show_coupon_modal')) {
             this.addEvent({
-                type: 'close_coupon_modal',
+                type: 'close_browser_coupon_modal',
             })
         }
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
