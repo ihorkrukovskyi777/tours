@@ -84,9 +84,11 @@ export class AnalyticsModel implements ModelImpl {
         this.enableSetTimeout = true;
         this.startSetTimeout();
         window.addEventListener('beforeunload', this.beforeunload);
+        window.addEventListener('visibilitychange', this.visibilitychange);
         await this.storage.createUser();
         this.data = backupAnalytics();
     }
+
     get pathName() {
         return window.location.pathname
     }
@@ -94,13 +96,14 @@ export class AnalyticsModel implements ModelImpl {
     get allEvents() {
         return [...this.data, ...this.leftThePageAfterRedirect]
     }
+
     clearEventLeftPageAfterRedirect(pathname: string) {
         this.leftThePageAfterRedirect = this.leftThePageAfterRedirect.filter(item => item.redirect_pathname !== pathname)
     }
 
     addEventNoLastDuplicate(event: AnalyticsEvent) {
         const length = this.data.length
-        if (this.data[length - 1]?.type !== event.type || this.pathName !== this.data[length-1].pathname) {
+        if (this.data[length - 1]?.type !== event.type || this.pathName !== this.data[length - 1].pathname) {
             this.addEvent(event)
         }
     }
@@ -131,7 +134,7 @@ export class AnalyticsModel implements ModelImpl {
 
     async addEventAndResetSession(event: AnalyticsEvent) {
         this.addEvent(event)
-        if(this.allEvents?.length) {
+        if (this.allEvents?.length) {
             await this.sendAnalytics(this.data);
             await this.storage.resetSession();
         }
@@ -159,6 +162,7 @@ export class AnalyticsModel implements ModelImpl {
     private get lastEvent() {
         return window.sessionStorage.getItem('last_event')
     }
+
     private serialization() {
         const data = JSON.stringify(this.data);
         window.localStorage.setItem('analytics_events', data);
@@ -168,7 +172,7 @@ export class AnalyticsModel implements ModelImpl {
         const events = [...this.data, ...this.leftThePageAfterRedirect];
 
         if (events.length) {
-            const json = JSON.stringify(events[events.length -1])
+            const json = JSON.stringify(events[events.length - 1])
             window.sessionStorage.setItem('last_event', json)
         }
     }
@@ -198,9 +202,19 @@ export class AnalyticsModel implements ModelImpl {
 
     beforeunload = async () => {
 
-        if(this.lastEvent !== null) {
+        if (this.lastEvent !== null) {
             this.addEvent({
                 type: 'closed_the_browser',
+            })
+        }
+        await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
+
+    }
+
+    async visibilitychange() {
+        if (this.lastEvent !== null) {
+            this.addEventNoLastDuplicate({
+                type: 'minimized_the_browser_or_changed_the_tab'
             })
         }
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
@@ -215,6 +229,7 @@ export class AnalyticsModel implements ModelImpl {
     dispose(): void {
         this.enableSetTimeout = false
         window.removeEventListener('beforeunload', this.beforeunload)
+        window.removeEventListener('visibilitychange', this.visibilitychange)
     }
 
 
