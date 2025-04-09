@@ -18,6 +18,7 @@ export type AnalyticsType =
     | 'pick_a_date_paid_tour'
     | 'pick_a_date_paid_tour_full_date'
     | 'checkout_page'
+    | 'minimized_the_browser_or_changed_the_tab'
 
 
 export interface AnalyticsData {
