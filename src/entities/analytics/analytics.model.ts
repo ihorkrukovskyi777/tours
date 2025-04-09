@@ -203,21 +203,13 @@ export class AnalyticsModel implements ModelImpl {
     }
 
     beforeunload = async () => {
-
-        if (this.lastEvent !== null && this.wasEventThisSession) {
-            this.addEvent({
-                type: 'closed_the_browser',
-            })
-        }
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
-
     }
 
     visibilitychange =  async () => {
         if (this.lastEvent !== null && document.hidden && this.wasEventThisSession) {
-
             this.addEventNoLastDuplicate({
-                type: 'minimized_the_browser_or_changed_the_tab'
+                type: 'closed_the_browser'
             })
         }
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
