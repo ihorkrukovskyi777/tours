@@ -224,7 +224,7 @@ export class AnalyticsModel implements ModelImpl {
             return false;
         }
         try {
-            return !['checkout_page', 'booking_confirmation_page'].includes(this.lastEvent.type)
+            return ['show_additional_modal', 'show_coupon_modal'].includes(this.lastEvent.type)
         } catch (err) {
             return false
         }
