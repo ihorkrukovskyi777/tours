@@ -144,7 +144,7 @@ export class AnalyticsModel implements ModelImpl {
     }
 
     private isCompareLastEvent(event: AnalyticsEvent, pathname: string) {
-        const lastEvent = window.sessionStorage.getItem('last_event');
+        const lastEvent = this.lastEvent;
         if (lastEvent !== null) {
             try {
                 const data = JSON.parse(lastEvent) as AnalyticsData;
@@ -156,6 +156,9 @@ export class AnalyticsModel implements ModelImpl {
         return false;
     }
 
+    private get lastEvent() {
+        return window.sessionStorage.getItem('last_event')
+    }
     private serialization() {
         const data = JSON.stringify(this.data);
         window.localStorage.setItem('analytics_events', data);
@@ -195,9 +198,11 @@ export class AnalyticsModel implements ModelImpl {
 
     beforeunload = async () => {
 
-        this.addEvent({
-            type: 'closed_the_browser',
-        })
+        if(this.lastEvent !== null) {
+            this.addEvent({
+                type: 'closed_the_browser',
+            })
+        }
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
     }
 
