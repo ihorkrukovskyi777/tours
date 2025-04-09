@@ -212,7 +212,7 @@ export class AnalyticsModel implements ModelImpl {
     }
 
     async visibilitychange() {
-        if (this.lastEvent !== null) {
+        if (this.lastEvent !== null && document.hidden) {
             this.addEventNoLastDuplicate({
                 type: 'minimized_the_browser_or_changed_the_tab'
             })
