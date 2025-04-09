@@ -206,8 +206,19 @@ export class AnalyticsModel implements ModelImpl {
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
     }
 
+    private get lastEventShowModal() {
+        if(this.lastEvent === null) {
+            return false;
+        }
+        try {
+            const data = JSON.parse(this.lastEvent) as AnalyticsData;
+            return !['checkout_page', 'booking_confirmation_page'].includes(data?.type)
+        } catch (err) {
+            return false
+        }
+    }
     visibilitychange =  async () => {
-        if (this.lastEvent !== null && document.hidden && this.wasEventThisSession) {
+        if (this.lastEventShowModal && document.hidden && this.wasEventThisSession) {
             this.addEventNoLastDuplicate({
                 type: 'closed_the_browser'
             })
