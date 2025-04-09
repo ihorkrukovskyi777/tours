@@ -75,6 +75,7 @@ export class AnalyticsModel implements ModelImpl {
 
     private enableSetTimeout = false;
 
+    private wasEventThisSession = false;
     constructor() {
 
 
@@ -121,6 +122,7 @@ export class AnalyticsModel implements ModelImpl {
 
     addEvent(event: AnalyticsEvent) {
         if (!this.isCompareLastEvent(event, window.location.pathname)) {
+            this.wasEventThisSession = true;
             this.data.push({
                 type: event.type,
                 created_at: new Date(),
@@ -202,7 +204,7 @@ export class AnalyticsModel implements ModelImpl {
 
     beforeunload = async () => {
 
-        if (this.lastEvent !== null) {
+        if (this.lastEvent !== null && this.wasEventThisSession) {
             this.addEvent({
                 type: 'closed_the_browser',
             })
@@ -212,7 +214,7 @@ export class AnalyticsModel implements ModelImpl {
     }
 
     async visibilitychange() {
-        if (this.lastEvent !== null && document.hidden) {
+        if (this.lastEvent !== null && document.hidden && this.wasEventThisSession) {
             this.addEventNoLastDuplicate({
                 type: 'minimized_the_browser_or_changed_the_tab'
             })
