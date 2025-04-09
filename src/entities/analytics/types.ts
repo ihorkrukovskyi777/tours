@@ -3,7 +3,7 @@ export type AnalyticsType =
     | 'click_day_list'
     | 'show_additional_modal'
     | 'closed_additional_sales'
-    | 'closed_the_browser_or_updated_page_or_hidden'
+    | 'closed_the_browser'
     | 'first_booking'
     | 'additional_booking'
     | 'show_coupon_modal'
