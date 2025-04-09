@@ -117,7 +117,7 @@ export class AnalyticsModel implements ModelImpl {
     }
 
     addEvent(event: AnalyticsEvent) {
-        if (!this.isCompareLastEvent(event)) {
+        if (!this.isCompareLastEvent(event, window.location.pathname)) {
             this.data.push({
                 type: event.type,
                 created_at: new Date(),
@@ -143,12 +143,12 @@ export class AnalyticsModel implements ModelImpl {
         this.serialization()
     }
 
-    private isCompareLastEvent(event: AnalyticsEvent) {
+    private isCompareLastEvent(event: AnalyticsEvent, pathname: string) {
         const lastEvent = window.sessionStorage.getItem('last_event');
         if (lastEvent !== null) {
             try {
                 const data = JSON.parse(lastEvent) as AnalyticsData;
-                return data.type === event.type
+                return data.type === event.type && data.pathname === pathname
             } catch (err) {
                 console.log(err)
             }
