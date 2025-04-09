@@ -13,8 +13,9 @@ import {
 import {getHrefLocale} from "@i18n/get-href-locale";
 import {PAID_TOUR_IN_CITY} from "@i18n/path-rewrites/paid-tour-in-city.mjs"
 import {useContextProcessBookingI18N} from "@entities/lib/calendar/process-booking.provider";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import './base-modal/congratulations-model.scss'
+import {useAnalytics} from "@entities/analytics/analytics.provider";
 
 interface Props {
 
@@ -27,8 +28,11 @@ interface Props {
 const CongratulationsModel = observer(({model, isLoading, onPrevRedirect}: Props) => {
     const i18n = useContextProcessBookingI18N()
 
+    const analytics = useAnalytics();
     const {push} = useRouter();
     const isCity = !!model.city?.slug
+
+    const pathname = usePathname()
 
     const declineCouponForBooking = useCaseDeclineCouponForBooking();
 
@@ -39,9 +43,21 @@ const CongratulationsModel = observer(({model, isLoading, onPrevRedirect}: Props
 
     const redirect = async (link: string) => {
         onPrevRedirect();
+        analytics?.addEventNoLastDuplicate({
+            type: 'click_paid_tour_card_modal'
+        })
         await push(link)
     }
 
+    const handlerSeeAllPage = () => {
+        analytics?.addEventNoLastDuplicate({
+            type: 'click_see_all_paid_tours'
+        })
+        analytics?.addEventLeftPageAfterRedirect({
+            type: 'left_the_see_all_paid_tours',
+        }, pathname)
+        onPrevRedirect()
+    }
     const pathAllTours = getHrefLocale(model?.option?.page.locale, `${model.city?.slug}/${PAID_TOUR_IN_CITY.getPathByLocale(model?.option?.page.locale)}`)
     return (
         <BaseModal close={declineCouponForBooking} maxWidth={600} isLoading={isLoading}>
@@ -73,7 +89,7 @@ const CongratulationsModel = observer(({model, isLoading, onPrevRedirect}: Props
                     </p>
                     {isCity && model.tours?.length > 3 &&
                         <Link
-                            onClick={onPrevRedirect}
+                            onClick={handlerSeeAllPage}
                             href={pathAllTours}
                             className="congratulations_model__footer__item"
                         >
