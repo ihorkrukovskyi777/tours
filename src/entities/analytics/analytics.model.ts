@@ -76,6 +76,7 @@ export class AnalyticsModel implements ModelImpl {
     private enableSetTimeout = false;
 
     private wasEventThisSession = false;
+    private wasLastEventsVisibilitychange = false
     constructor() {
 
 
@@ -181,6 +182,11 @@ export class AnalyticsModel implements ModelImpl {
         const events = [...this.data, ...this.leftThePageAfterRedirect];
 
         if (events.length) {
+            const event = events[events.length - 1];
+
+            if(!['hidden_the_tab_browser', 'visible_the_tab_browser'].includes(event.type)) {
+                this.wasLastEventsVisibilitychange = false;
+            }
             const json = JSON.stringify(events[events.length - 1])
             window.sessionStorage.setItem('last_event', json)
         }
@@ -235,14 +241,15 @@ export class AnalyticsModel implements ModelImpl {
         }
     }
     visibilitychange =  async () => {
-        if (this.lastEventShowModal && document.visibilityState === 'hidden' && this.wasEventThisSession) {
+        if (this.lastEventShowModal && document.visibilityState === 'hidden' && this.wasEventThisSession && !this.wasLastEventsVisibilitychange) {
             this.addEventNoLastDuplicate({
                 type: 'hidden_the_tab_browser'
             })
-        } else if (this.lastEventHidden && document.visibilityState === 'visible' && this.wasEventThisSession) {
+        } else if (this.lastEventHidden && document.visibilityState === 'visible' && this.wasEventThisSession && !this.wasLastEventsVisibilitychange) {
             this.addEventNoLastDuplicate({
                 type: 'visible_the_tab_browser'
             })
+            this.wasLastEventsVisibilitychange = true;
         }
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
     }
