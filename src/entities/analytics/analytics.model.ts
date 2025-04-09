@@ -149,11 +149,9 @@ export class AnalyticsModel implements ModelImpl {
     }
 
     private isCompareLastEvent(event: AnalyticsEvent, pathname: string) {
-        const lastEvent = this.lastEvent;
-        if (lastEvent !== null) {
+        if (this.lastEvent !== null) {
             try {
-                const data = JSON.parse(lastEvent) as AnalyticsData;
-                return data.type === event.type && data.pathname === pathname
+                return this.lastEvent.type === event.type && this.lastEvent.pathname === pathname
             } catch (err) {
                 console.log(err)
             }
@@ -161,8 +159,17 @@ export class AnalyticsModel implements ModelImpl {
         return false;
     }
 
-    private get lastEvent() {
-        return window.sessionStorage.getItem('last_event')
+    private get lastEvent() : AnalyticsData | null {
+        const event =  window.sessionStorage.getItem('last_event')
+
+        if(event === null) {
+            return null
+        }
+        try {
+            return JSON.parse(event) as AnalyticsData;
+        } catch (err) {
+            return null
+        }
     }
 
     private serialization() {
@@ -211,8 +218,18 @@ export class AnalyticsModel implements ModelImpl {
             return false;
         }
         try {
-            const data = JSON.parse(this.lastEvent) as AnalyticsData;
-            return !['checkout_page', 'booking_confirmation_page'].includes(data?.type)
+            return !['checkout_page', 'booking_confirmation_page'].includes(this.lastEvent.type)
+        } catch (err) {
+            return false
+        }
+    }
+
+    private get lastEventHidden() {
+        if(this.lastEvent === null) {
+            return false;
+        }
+        try {
+            return this.lastEvent.type === 'visible_the_tab_browser'
         } catch (err) {
             return false
         }
@@ -220,7 +237,11 @@ export class AnalyticsModel implements ModelImpl {
     visibilitychange =  async () => {
         if (this.lastEventShowModal && document.visibilityState === 'hidden' && this.wasEventThisSession) {
             this.addEventNoLastDuplicate({
-                type: 'closed_the_browser'
+                type: 'hidden_the_tab_browser'
+            })
+        } else if (this.lastEventHidden && document.visibilityState === 'visible' && this.wasEventThisSession) {
+            this.addEventNoLastDuplicate({
+                type: 'visible_the_tab_browser'
             })
         }
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
