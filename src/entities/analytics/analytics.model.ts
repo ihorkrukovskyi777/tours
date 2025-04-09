@@ -229,7 +229,7 @@ export class AnalyticsModel implements ModelImpl {
             return false;
         }
         try {
-            return this.lastEvent.type === 'visible_the_tab_browser'
+            return this.lastEvent.type === 'hidden_the_tab_browser'
         } catch (err) {
             return false
         }
