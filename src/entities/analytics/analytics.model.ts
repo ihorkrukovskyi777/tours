@@ -218,7 +218,7 @@ export class AnalyticsModel implements ModelImpl {
         }
     }
     visibilitychange =  async () => {
-        if (this.lastEventShowModal && document.hidden && this.wasEventThisSession) {
+        if (this.lastEventShowModal && document.visibilityState === 'hidden' && this.wasEventThisSession) {
             this.addEventNoLastDuplicate({
                 type: 'closed_the_browser'
             })
