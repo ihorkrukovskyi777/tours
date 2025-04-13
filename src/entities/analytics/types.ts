@@ -27,6 +27,8 @@ export interface AnalyticsData {
     created_at: Date
     pathname: string
     site: string
+    page_id: number | null
+    locale: string | null
 }
 
 export interface AnalyticsDataLeft extends AnalyticsData {

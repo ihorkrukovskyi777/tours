@@ -14,6 +14,8 @@ import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import PartnerTours from "@/entities/city/ui/partner-tours";
 import {getTextsBlocks} from "@/entities/api";
 import TravelResources from "@/widgets/travel-resources/travel-resources";
+import {AnalyticsUpdate} from "@/entities/analytics/update-page-id";
+
 
 export default async function CityPage({
                                            locale,
@@ -88,6 +90,7 @@ export default async function CityPage({
                     locale={locale}
                 />
                 <Footer locale={locale}/>
+                <AnalyticsUpdate page_id={id}  />
             </Suspense>
         </>
     );

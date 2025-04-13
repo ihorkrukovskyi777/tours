@@ -6,10 +6,9 @@ import {seoLocales} from "@/shared/constants/locales-seo";
 import WebSiteSchema from "@/shared/schema/web-site";
 import GoogleScript from "@/shared/scripts/google";
 import NextTopLoader from 'nextjs-toploader';
+import AnalyticsProvider from "@/entities/analytics/analytics.provider";
 import '../../globals.css'
 import '../../layout.scss'
-import AnalyticsProvider from "@/entities/analytics/analytics.provider";
-
 export const viewport = {
     width: 'device-width',
     initialScale: 1.0,
@@ -19,7 +18,6 @@ export const viewport = {
     // interactiveWidget: 'resizes-visual',
 }
 export default function LocaleLayout({children, params}) {
-
     const messages = use(getMessages());
     return (
         <>
