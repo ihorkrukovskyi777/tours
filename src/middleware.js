@@ -79,6 +79,7 @@ const i18nMiddleware = createMiddleware({
     locales,
     localeDetection: false,
     localePrefix: "as-needed",
+    alternateLinks: false,
     // localePrefix: "always"
 })
 

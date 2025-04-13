@@ -75,6 +75,8 @@ export class AnalyticsModel implements ModelImpl {
 
     private enableSetTimeout = false;
 
+    private wasEventThisSession = false;
+    private wasLastEventsVisibilitychange = false
     constructor() {
 
 
@@ -84,20 +86,26 @@ export class AnalyticsModel implements ModelImpl {
         this.enableSetTimeout = true;
         this.startSetTimeout();
         window.addEventListener('beforeunload', this.beforeunload);
+        window.addEventListener('visibilitychange', this.visibilitychange);
         await this.storage.createUser();
         this.data = backupAnalytics();
+    }
+
+    get pathName() {
+        return window.location.pathname
     }
 
     get allEvents() {
         return [...this.data, ...this.leftThePageAfterRedirect]
     }
+
     clearEventLeftPageAfterRedirect(pathname: string) {
         this.leftThePageAfterRedirect = this.leftThePageAfterRedirect.filter(item => item.redirect_pathname !== pathname)
     }
 
     addEventNoLastDuplicate(event: AnalyticsEvent) {
         const length = this.data.length
-        if (this.data[length - 1]?.type !== event.type) {
+        if (this.data[length - 1]?.type !== event.type || this.pathName !== this.data[length - 1].pathname) {
             this.addEvent(event)
         }
     }
@@ -114,7 +122,8 @@ export class AnalyticsModel implements ModelImpl {
     }
 
     addEvent(event: AnalyticsEvent) {
-        if (!this.isCompareLastEvent(event)) {
+        if (!this.isCompareLastEvent(event, window.location.pathname)) {
+            this.wasEventThisSession = true;
             this.data.push({
                 type: event.type,
                 created_at: new Date(),
@@ -128,7 +137,7 @@ export class AnalyticsModel implements ModelImpl {
 
     async addEventAndResetSession(event: AnalyticsEvent) {
         this.addEvent(event)
-        if(this.allEvents?.length) {
+        if (this.allEvents?.length) {
             await this.sendAnalytics(this.data);
             await this.storage.resetSession();
         }
@@ -140,18 +149,28 @@ export class AnalyticsModel implements ModelImpl {
         this.serialization()
     }
 
-    private isCompareLastEvent(event: AnalyticsEvent) {
-        const lastEvent = window.sessionStorage.getItem('last_event');
-        if (lastEvent !== null) {
+    private isCompareLastEvent(event: AnalyticsEvent, pathname: string) {
+        if (this.lastEvent !== null) {
             try {
-                const data = JSON.parse(lastEvent) as AnalyticsData;
-                console.log(data, event)
-                return data.type === event.type
+                return this.lastEvent.type === event.type && this.lastEvent.pathname === pathname
             } catch (err) {
                 console.log(err)
             }
         }
         return false;
+    }
+
+    private get lastEvent() : AnalyticsData | null {
+        const event =  window.sessionStorage.getItem('last_event')
+
+        if(event === null) {
+            return null
+        }
+        try {
+            return JSON.parse(event) as AnalyticsData;
+        } catch (err) {
+            return null
+        }
     }
 
     private serialization() {
@@ -163,7 +182,12 @@ export class AnalyticsModel implements ModelImpl {
         const events = [...this.data, ...this.leftThePageAfterRedirect];
 
         if (events.length) {
-            const json = JSON.stringify(events[events.length -1])
+            const event = events[events.length - 1];
+
+            if(!['hidden_the_tab_browser', 'visible_the_tab_browser'].includes(event.type)) {
+                this.wasLastEventsVisibilitychange = false;
+            }
+            const json = JSON.stringify(events[events.length - 1])
             window.sessionStorage.setItem('last_event', json)
         }
     }
@@ -195,6 +219,41 @@ export class AnalyticsModel implements ModelImpl {
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
     }
 
+    private get lastEventShowModal() {
+        if(this.lastEvent === null) {
+            return false;
+        }
+        try {
+            return ['show_additional_modal', 'show_coupon_modal'].includes(this.lastEvent.type)
+        } catch (err) {
+            return false
+        }
+    }
+
+    private get lastEventHidden() {
+        if(this.lastEvent === null) {
+            return false;
+        }
+        try {
+            return this.lastEvent.type === 'hidden_the_tab_browser'
+        } catch (err) {
+            return false
+        }
+    }
+    visibilitychange =  async () => {
+        if (this.lastEventShowModal && document.visibilityState === 'hidden' && this.wasEventThisSession && !this.wasLastEventsVisibilitychange) {
+            this.addEventNoLastDuplicate({
+                type: 'hidden_the_tab_browser'
+            })
+        } else if (this.lastEventHidden && document.visibilityState === 'visible' && this.wasEventThisSession && !this.wasLastEventsVisibilitychange) {
+            this.addEventNoLastDuplicate({
+                type: 'visible_the_tab_browser'
+            })
+            this.wasLastEventsVisibilitychange = true;
+        }
+        await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
+    }
+
     private startSetTimeout() {
         if (this.enableSetTimeout) {
             setTimeout(() => this.sendAnalytics(this.data), 10000)
@@ -204,6 +263,7 @@ export class AnalyticsModel implements ModelImpl {
     dispose(): void {
         this.enableSetTimeout = false
         window.removeEventListener('beforeunload', this.beforeunload)
+        window.removeEventListener('visibilitychange', this.visibilitychange)
     }
 
 
