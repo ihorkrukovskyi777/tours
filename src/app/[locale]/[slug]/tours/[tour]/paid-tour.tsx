@@ -15,6 +15,7 @@ import I18nChangeOfLanguage from "@shared/ui/languages/change-of-language/i18n-c
 import {PATH_TOURS} from "@shared/constants/route";
 import Footer from "@shared/ui/layouts/footer/footer";
 import BaseTabs from "@entities/paid-tour/views/base-table";
+import {AnalyticsUpdate} from "@entities/analytics/update-page-id";
 import './styles/paid.scss'
 
 interface Props {
@@ -122,7 +123,7 @@ const PaidTour = async ({id, slug}: Props) => {
             <div className="padding_md">
                 <I18nChangeOfLanguage free_tour_tour_language={t('tours_in_your_language')} title='' locale={locale} languages={languages}/>
             </div>
-
+            <AnalyticsUpdate page_id={id}  />
             <Footer locale={locale}/>
         </div>
     )
