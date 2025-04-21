@@ -77,9 +77,22 @@ export class AnalyticsModel implements ModelImpl {
 
     private wasEventThisSession = false;
     private wasLastEventsVisibilitychange = false
+
+    private page_id: number | null = null
+    private locale: string | null = null
+
     constructor() {
 
 
+    }
+    updatePage(id: number | null, locale: string | null) {
+        this.page_id = id;
+        this.locale = locale;
+    }
+
+    resetPage(locale: string) {
+        this.page_id = null;
+        this.locale = locale
     }
 
     async init() {
@@ -89,6 +102,7 @@ export class AnalyticsModel implements ModelImpl {
         window.addEventListener('visibilitychange', this.visibilitychange);
         await this.storage.createUser();
         this.data = backupAnalytics();
+        console.log(this)
     }
 
     get pathName() {
@@ -116,7 +130,9 @@ export class AnalyticsModel implements ModelImpl {
             created_at: new Date(),
             redirect_pathname: pathname,
             pathname: window.location.pathname,
-            site: 'strawberrytours'
+            site: 'strawberrytours',
+            page_id: this.page_id,
+            locale: this.locale
         })
 
     }
@@ -128,7 +144,9 @@ export class AnalyticsModel implements ModelImpl {
                 type: event.type,
                 created_at: new Date(),
                 pathname: window.location.pathname,
-                site: 'strawberrytours'
+                site: 'strawberrytours',
+                page_id: this.page_id,
+                locale: this.locale
             })
             this.serialization();
             this.serializationLastEvent();
@@ -203,6 +221,8 @@ export class AnalyticsModel implements ModelImpl {
                     pathname: item.pathname,
                     site: item.site,
                     session_id: this.storage.session_id,
+                    page_id: item.page_id,
+                    locale: this.locale
                 }));
                 const data = serialize({events}, {indices: true})
                 navigator.sendBeacon(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/analytics`, data);
@@ -245,11 +265,6 @@ export class AnalyticsModel implements ModelImpl {
             this.addEventNoLastDuplicate({
                 type: 'hidden_the_tab_browser'
             })
-        } else if (this.lastEventHidden && document.visibilityState === 'visible' && this.wasEventThisSession && !this.wasLastEventsVisibilitychange) {
-            this.addEventNoLastDuplicate({
-                type: 'visible_the_tab_browser'
-            })
-            this.wasLastEventsVisibilitychange = true;
         }
         await this.sendAnalytics([...this.data, ...this.leftThePageAfterRedirect])
     }

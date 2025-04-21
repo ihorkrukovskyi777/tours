@@ -7,8 +7,8 @@ export default async function  useWidgetTranslate(locale: string) : Promise<Ii18
     const i18n = await translates.json();
 
 
-    const getErrorMessage = (key: string) => i18n.bokunWidget.errorMessage[key]
-    const t = (key: string) => i18n.bokunWidget[key]
+    const getErrorMessage = (key: string) => i18n.bokunWidget?.errorMessage[key] || key
+    const t = (key: string) => i18n?.bokunWidget[key]
     const g = (key: string) => i18n[key]
     const m = (key: string) => i18n.months[key]
     const dayShort = (key: string) => i18n.daysShort[key]

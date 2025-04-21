@@ -17,6 +17,7 @@ import CityRow from "@/widgets/city-row/city-row";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
 import Footer from "@/shared/ui/layouts/footer/footer";
+import {AnalyticsUpdate} from "@/entities/analytics/update-page-id";
 
 const OneportTours = ({ languages, isMobile, page, locale, i18n, pagesBreadcrumbs }) => {
     return (
@@ -72,6 +73,7 @@ const OneportTours = ({ languages, isMobile, page, locale, i18n, pagesBreadcrumb
                 <I18nChangeOfLanguage locale={locale} languages={languages}/>
                 <Breadcrumbs pages={pagesBreadcrumbs} locale={locale}/>
                 <Footer locale={locale}/>
+                <AnalyticsUpdate page_id={page.id}  />
             </Suspense>
         </main>
     )
