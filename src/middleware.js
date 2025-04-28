@@ -86,5 +86,5 @@ const i18nMiddleware = createMiddleware({
 
 export const config = {
     // Do not run the middleware on the following paths
-    matcher: ['/((?!api|_next/static|not-found|_next/image|manifest.json|assets|favicon.ico|robots.txt|default.json|sitemap/*).*)']
+    matcher: ['/((?!api|_next/static|not-found|_next/image|manifest.json|assets|favicon.ico|robots.txt|ads.txt|default.json|sitemap/*).*)']
 };
