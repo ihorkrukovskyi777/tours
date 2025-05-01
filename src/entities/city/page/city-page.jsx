@@ -13,7 +13,7 @@ import EventsSchema from "@/shared/schema/events";
 import useDefaultI18n from "@/i18n/hooks/useDefaultI18n";
 import PartnerTours from "@/entities/city/ui/partner-tours";
 import {getTextsBlocks} from "@/entities/api";
-import TravelResources from "@/widgets/travel-resources/travel-resources";
+// import TravelResources from "@/widgets/travel-resources/travel-resources";
 import {AnalyticsUpdate} from "@/entities/analytics/update-page-id";
 
 
@@ -78,7 +78,7 @@ export default async function CityPage({
                     textSectionData={texts}
                 />
                 <Guides id={id} locale={locale} title={i18n.t('Free Tour Guides in') + ' ' + title} type="city"/>
-                <TravelResources id={id} locale={locale}/>
+                {/*<TravelResources id={id} locale={locale}/>*/}
                 <MostPopularCity locale={locale} id={id} slug={slug} size={"medium"} title={i18n.t("Free Tours in More Cities")}/>
                 <I18nChangeOfLanguage
                     locale={locale}
