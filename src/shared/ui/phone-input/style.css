@@ -1,0 +1,11 @@
+.phone_input {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    height: 40px;
+    position: relative;
+    input {
+        height: 100%;
+        width: 200px;
+    }
+}
