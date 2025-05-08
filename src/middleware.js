@@ -68,6 +68,35 @@ export async function middleware(request) {
     } catch (err) {
         console.log(err);
     }
+
+    if (pathname !== '/') {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/redirect/${encodeURIComponent(pathname)}`, {
+                next: {
+                    revalidate: 60,
+                    tags: ['redirect']
+                }
+            });
+            const redirect = await response.json();
+
+            if (redirect.code) {
+
+                const replaceList = [
+                    process.env.NEXT_PUBLIC_CANONICAL_DOMAIN,
+                    process.env.NEXT_PUBLIC_CANONICAL_DOMAIN.replace('https://', ''),
+                    process.env.NEXT_PUBLIC_CANONICAL_DOMAIN.replace('http://', ''),
+                ]
+                const to = replaceList.reduce((to, val) => {
+                    return to.replace(val, '')
+                }, redirect.to)
+                return NextResponse.redirect(new URL(`${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${to}`), {status: redirect?.code || 307})
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
     if (pathname !== pathname.toLowerCase()) {
         return NextResponse.redirect(new URL(origin + pathname.toLowerCase()), 301)
     }
