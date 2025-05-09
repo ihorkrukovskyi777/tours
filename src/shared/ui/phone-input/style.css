@@ -1,11 +1,24 @@
 .phone_input {
     display: inline-flex;
     align-items: center;
-    border: 1px solid #ccc;
-    height: 40px;
+    border: 2px solid #f6f6f6;
+    border-radius: 8px;
+    height: 54px;
     position: relative;
-    input {
+    background-color: rgba(0, 0, 0, .05);
+    font-size: 18px;
+    #phone_input_mask {
         height: 100%;
-        width: 200px;
+        width: 100%;
+        border: none;
+        outline: none;
+        padding-left: 10px;
+        border-radius: 0 6px 6px 0;
+        font-size: 18px;
+        font-weight: 400;
+        &::placeholder {
+            color: #BDBDBD;
+            font-weight: 400;
+        }
     }
 }

@@ -16,10 +16,7 @@ export default observer (function PhoneInput({model} : Props) {
     return (
         <div className="phone_input">
             <SwitcherIcons model={model}/>
-            <div>
-                <PhoneInputMask model={model} />
-            </div>
-
+            <PhoneInputMask model={model} />
         </div>
     );
 })
