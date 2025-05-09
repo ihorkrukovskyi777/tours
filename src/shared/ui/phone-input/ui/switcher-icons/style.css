@@ -62,8 +62,6 @@
     .all_countries {
         display: flex;
         flex-direction: column;
-        margin-bottom: 5px;
-        padding-bottom: 5px;
         .flag {
             margin-right: 5px;
         }
