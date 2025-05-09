@@ -1,5 +1,4 @@
 import {CountryData} from "@/models/input/country-data";
-import {CountryTranslations} from "@/models/input/country-translation";
 import {makeAutoObservable, runInAction} from "mobx";
 
 type RawCountry = [string, string, number?, string[]?, string?];
@@ -8,26 +7,22 @@ type SelectedCountry = string;
 export class InputPhoneModel {
     countries: RawCountry[];
     // @ts-ignore
-    countriesTranslate: CountryTranslations[];
     selectedCountry: SelectedCountry[];
     activeCountry: string;
     search: string;
     value: string;
     dropdownOpen: boolean;
-    validation: boolean;
     phone: any[]; // відфільтровані дані
     allPhones: any[]; // оригінальні дані
 
     constructor() {
         this.countries = CountryData;
-        this.countriesTranslate = CountryTranslations;
         this.activeCountry = 'US';
         this.selectedCountry = ["US", "GB"];
         this.phone = [];
         this.allPhones = [];
         this.search = '';
         this.value = '';
-        this.validation = false;
         this.dropdownOpen = false;
         this.init().then(data => console.log(data));
         makeAutoObservable(this, {}, { autoBind: true });
@@ -95,8 +90,8 @@ export class InputPhoneModel {
         let maxLength = Math.max(...numbers);
         if (value.length <= maxLength) {
             this.value = value;
-            this.validatePhone();
         }
+        console.log(this.validatePhone);
     }
 
     toggleDropdown() {
@@ -106,19 +101,16 @@ export class InputPhoneModel {
         this.dropdownOpen = false;
     }
 
-    validatePhone() {
+    get validatePhone() {
         let data_validation_numbers: number[] = [];
         if (this.select_phone.validation_numbers.includes(',')) {
             data_validation_numbers = JSON.parse('[' + this.select_phone.validation_numbers + ']');
         } else {
             data_validation_numbers = [+this.select_phone.validation_numbers];
         }
-
-        this.validation = data_validation_numbers.includes(this.value.length);
-
-        console.log(this.validation , 'this.validation');
-
+        return data_validation_numbers.includes(this.value.length);
     }
+
 
     get currentValue() {
         let formatted = "";
