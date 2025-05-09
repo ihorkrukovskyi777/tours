@@ -21,7 +21,7 @@ export class InputPhoneModel {
     constructor() {
         this.countries = CountryData;
         this.countriesTranslate = CountryTranslations;
-        this.activeCountry = 'AG';
+        this.activeCountry = 'US';
         this.selectedCountry = ["US", "GB"];
         this.phone = [];
         this.allPhones = [];

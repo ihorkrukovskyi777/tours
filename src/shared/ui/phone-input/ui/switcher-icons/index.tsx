@@ -2,11 +2,16 @@ import {observer} from "mobx-react-lite";
 import {toJS} from "mobx";
 import SearchIcon from "@/assets/images/svg/search-icon.svg";
 import Image from "next/image";
-import './style.css';
 import {useEffect, useRef} from "react";
+import {InputPhoneModel} from "@/models/input/input-phone.model";
 
+import './style.css';
 
-export default observer(function SwitcherIcons({ model }) {
+interface Props {
+    model: InputPhoneModel
+}
+
+export default observer(function SwitcherIcons({ model }: Props) {
     const countries = model.countries;
 
     const activeCountry = { ...model.select_phone };
@@ -14,11 +19,8 @@ export default observer(function SwitcherIcons({ model }) {
     const selected_country = selected_country_data.map(item => toJS(item));
     const allCountriesJS = toJS(model.phone);
     const allCountries = allCountriesJS.filter(item => item.image !== null).sort((a, b) => a.name.localeCompare(b.name));
-
-    const inputRef = useRef(null);
-
+    const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
-        // Set focus when the component mounts
         inputRef.current?.focus();
     }, [model.dropdownOpen]);
 

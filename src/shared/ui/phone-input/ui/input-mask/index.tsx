@@ -1,8 +1,11 @@
 import {observer} from "mobx-react-lite";
+import {InputPhoneModel} from "@/models/input/input-phone.model";
 
+interface Props {
+    model: InputPhoneModel
+}
 
-export default observer(function PhoneInputMask({ model }) {
-
+export default observer(function PhoneInputMask({ model }: Props) {
     return (
         <input
             id="phone_input_mask"
