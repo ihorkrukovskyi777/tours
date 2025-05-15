@@ -1,15 +1,30 @@
 .switcher_icons {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap:8px;
     padding-left: 10px;
     padding-right: 10px;
     height: 100%;
     cursor: default;
+    .iti__selected-dial-code {
+        line-height: 1;
+    }
     .flag {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .arrow {
+        width: 0;
+        height: 0;
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        border-top: 4px solid #555;
+        position: relative;
+        top: 2px;
+        &.active {
+            transform: rotate(180deg);
+        }
     }
 }
 
@@ -18,7 +33,7 @@
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.13);
     border-radius: 6px;
-    height: 32px;
+    height: 36px;
     margin: 11px 15px 7px;
 
     .search_icon {
@@ -30,9 +45,8 @@
         top: calc(50% - 8px);
     }
     input {
-        padding-left: 36px;
-        padding-right: 10px;
-        height: 100%;
+        padding: 0 10px 0 36px !important;
+        height: 100% !important;
         width: 100%;
         border: none;
         outline: none;

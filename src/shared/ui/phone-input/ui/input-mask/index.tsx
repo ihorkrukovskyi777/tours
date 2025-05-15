@@ -1,12 +1,16 @@
 import {observer} from "mobx-react-lite";
 import {InputPhoneModel} from "@/models/input/input-phone.model";
+import {toJS} from "mobx";
 
 interface Props {
-    model: InputPhoneModel
+    model: InputPhoneModel,
 }
 
-export default observer(function PhoneInputMask({ model }: Props) {
+export default observer(function PhoneInputMask({model}: Props) {
+
+    const data = toJS(model.select_phone);
     return (
+
         <input
             id="phone_input_mask"
             type="tel"
@@ -14,6 +18,10 @@ export default observer(function PhoneInputMask({ model }: Props) {
             onClick={model.closeDropdown}
             onChange={(e) => model.onChange(e.target.value.replace(/\D/g, ""))}
             placeholder={model.input_placeholder}
+            /*name="phone"*/
+            required
+            validation-number={data?.validation_numbers}
+
         />
     );
 });

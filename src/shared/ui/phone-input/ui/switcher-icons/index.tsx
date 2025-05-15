@@ -4,8 +4,10 @@ import SearchIcon from "@/assets/images/svg/search-icon.svg";
 import Image from "next/image";
 import {useEffect, useRef} from "react";
 import {InputPhoneModel} from "@/models/input/input-phone.model";
+import {useDetectClickOutside} from "react-detect-click-outside";
 
 import './style.css';
+
 
 interface Props {
     model: InputPhoneModel
@@ -24,16 +26,19 @@ export default observer(function SwitcherIcons({ model }: Props) {
         inputRef.current?.focus();
     }, [model.dropdownOpen]);
 
+    const ref = useDetectClickOutside({ onTriggered: model.toggleDropdown });
+
 
     return (
         <>
             <div className="switcher_icons" onClick={model.toggleDropdown}>
-                <div className={`flag iti__${activeCountry.code?.toLowerCase()}`}></div>
-                <span>+{activeCountry.phone_code}</span>
+                <div className={`flag iti__${activeCountry.code?.toLowerCase()}`} data-slug={activeCountry.code?.toLowerCase()}></div>
+                <p className="iti__selected-dial-code">+{activeCountry.phone_code}</p>
+                <span className={`arrow ${model.dropdownOpen ? 'active' : ''}`}></span>
             </div>
 
             {model.dropdownOpen &&
-                <div className="switcher_dropdown">
+                <div className="switcher_dropdown" ref={ref}>
                     <div className="dropdown_search">
                         <Image className="search_icon" src={SearchIcon} alt='facebook'/>
                         <input
@@ -43,7 +48,6 @@ export default observer(function SwitcherIcons({ model }: Props) {
                             onChange={(e) => model.search_filter(e.target.value)}
                             value={model.search} />
                     </div>
-
                     <div className="selected_countries">
                         {selected_country.map((item) => (
                             <div className="item_row" key={item.id} onClick={() => model.change_country(item.code)}>

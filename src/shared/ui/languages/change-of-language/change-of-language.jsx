@@ -7,8 +7,6 @@ import Link from "next/link";
 import {countryLocales} from "@/i18n/locales";
 import FlagsComponents from "@/shared/ui/flags";
 import {useLocale} from "use-intl";
-import PhoneInput from "@shared/ui/phone-input";
-import {InputPhoneModel} from "@/models/input/input-phone.model";
 import './style.css';
 
 
@@ -52,8 +50,6 @@ export default function ChangeOfLanguage({parentLocale,i18n, languages, title, f
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
 
-    const [model , setModel] = useState(() => new InputPhoneModel());
-
     return (
         <section id="change-of-language">
 
@@ -82,8 +78,6 @@ export default function ChangeOfLanguage({parentLocale,i18n, languages, title, f
                     :
                     null
                 }
-
-                <PhoneInput model={model} />
             </div>
         </section>
     )

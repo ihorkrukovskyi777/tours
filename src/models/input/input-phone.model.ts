@@ -1,6 +1,8 @@
 import {CountryData} from "@/models/input/country-data";
 import {makeAutoObservable, runInAction} from "mobx";
 
+
+
 type RawCountry = [string, string, number?, string[]?, string?];
 type SelectedCountry = string;
 
@@ -14,18 +16,21 @@ export class InputPhoneModel {
     dropdownOpen: boolean;
     phone: any[]; // відфільтровані дані
     allPhones: any[]; // оригінальні дані
+    locale: string
 
-    constructor() {
+    constructor(locale = 'en') {
         this.countries = CountryData;
-        this.activeCountry = 'US';
+        this.activeCountry = locale.toUpperCase();
         this.selectedCountry = ["US", "GB"];
         this.phone = [];
         this.allPhones = [];
         this.search = '';
         this.value = '';
+        this.locale = locale;
         this.dropdownOpen = false;
         this.init().then(data => console.log(data));
         makeAutoObservable(this, {}, { autoBind: true });
+
 
     }
 
@@ -33,7 +38,7 @@ export class InputPhoneModel {
         await this.getCountryPhone();
     }
 
-    async getCountryPhone(locale = "en") {
+    async getCountryPhone(locale = this.locale) {
         try {
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/phone?locale=${locale}`,
@@ -91,7 +96,7 @@ export class InputPhoneModel {
         if (value.length <= maxLength) {
             this.value = value;
         }
-        console.log(this.validatePhone);
+
     }
 
     toggleDropdown() {
