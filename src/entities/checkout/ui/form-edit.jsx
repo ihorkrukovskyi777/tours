@@ -9,11 +9,15 @@ import {getHrefLocale} from "@/i18n/get-href-locale";
 import Notification from "@/shared/ui/notification/notification";
 import {validationFirstName, validationEmail, validationPhone} from "@/shared/helpers/validation-form";
 import dynamic from "next/dynamic";
+import PhoneInput from "@/shared/ui/phone-input";
+import {InputPhoneModel} from "@/models/input/input-phone.model";
 
+/*
 const InternationalInput = dynamic(
     () => import("@/shared/ui/selectors/international-input"),
     {ssr: false}
 )
+*/
 
 
 const initialStateFormError = {
@@ -24,6 +28,8 @@ const initialStateFormError = {
 
 }
 export default observer(function FormEdit({i18n}) {
+
+
     const searchParams = useSearchParams()
     const [error, setError] = useState(false);
     const [submitEventForm, setSubmitEventForm] = useState(false);
@@ -55,13 +61,14 @@ export default observer(function FormEdit({i18n}) {
         if (submitEventForm) {
             return;
         }
-        let mask = document.querySelector('#phone').getAttribute('validation-number');
+        //let mask = document.querySelector('#phone').getAttribute('validation-number');
         const errorLists = {
             firstName: validationFirstName(editDeparture.firstName),
             lastName: validationFirstName(editDeparture.lastName),
             email: validationEmail(editDeparture.email),
-            phone: validationPhone({val: editDeparture.phone, mask: mask}),
+            phone: model.validatePhone,
         }
+        console.log(model.validatePhone , '1111');
 
         setValidForm({...validForm, ...errorLists})
         if (!Object.values(errorLists).filter(Boolean).length) {
@@ -88,6 +95,11 @@ export default observer(function FormEdit({i18n}) {
     }
 
     const [validForm, setValidForm] = useState({...initialStateFormError});
+
+    const [model , setModel] = useState(() => new InputPhoneModel(editDeparture.tourLocale));
+    model.phone_value = editDeparture.phone.replace(/\s+/g, '');
+    console.log(editDeparture);
+
 
     return (
         <form id='edit_tour' onSubmit={preSubmitForValidation} ref={refForm}>
@@ -130,13 +142,14 @@ export default observer(function FormEdit({i18n}) {
             <div className="item">
                 <label htmlFor="">{i18n.phone}</label>
                 {phones.state === 'fulfilled' ?
-                    <InternationalInput
+                    <PhoneInput model={model} />
+                    /*<InternationalInput
                         locale={editDeparture.countrySlug}
                         allPhoneNumbers={phones.value}
                         handleChange={(e) => editDeparture.setPhone(e.target.value)}
                         phoneDefault={editDeparture.phoneNumber ?? ''}
                         changeCountryCode={editDeparture.changeCountryCode}
-                    />
+                    />*/
                     : null}
                 <EditSvg/>
                 {validForm.phone ? <span className='error-message'> {i18n.errors[validForm.phone] ?? ''} </span> : null}

@@ -105,6 +105,10 @@ export class InputPhoneModel {
         return this.allPhones?.find(item => item.code === this.activeCountry)?.mask_number;
     }
 
+    set phone_value(value:string) {
+        this.value = value;
+    }
+
     change_country(slug: string) {
         this.activeCountry = slug;
         this.value = '';
