@@ -11,6 +11,7 @@ import PhoneInput from "@/shared/ui/phone-input";
 
 
 export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, locale, fetchBookingDeparture, errorsMessage, isLoading}) {
+
     const [model , setModel] = useState(() => new InputPhoneModel(locale));
 
 

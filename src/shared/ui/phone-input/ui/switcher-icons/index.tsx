@@ -26,19 +26,24 @@ export default observer(function SwitcherIcons({ model }: Props) {
         inputRef.current?.focus();
     }, [model.dropdownOpen]);
 
-    const ref = useDetectClickOutside({ onTriggered: model.toggleDropdown });
+    const ref = useDetectClickOutside({ onTriggered: model.closeDropdown });
 
 
     return (
-        <>
-            <div className="switcher_icons" onClick={model.toggleDropdown}>
+        <div ref={ref}>
+            <div className="switcher_icons"
+                 onClick={(e) => {
+                     e.stopPropagation();
+                     model.toggleDropdown();
+                 }}
+            >
                 <div className={`flag iti__${activeCountry.code?.toLowerCase()}`} data-slug={activeCountry.code?.toLowerCase()}></div>
                 <p className="iti__selected-dial-code">+{activeCountry.phone_code}</p>
                 <span className={`arrow ${model.dropdownOpen ? 'active' : ''}`}></span>
             </div>
 
             {model.dropdownOpen &&
-                <div className="switcher_dropdown" ref={ref}>
+                <div className="switcher_dropdown">
                     <div className="dropdown_search">
                         <Image className="search_icon" src={SearchIcon} alt='facebook'/>
                         <input
@@ -71,6 +76,6 @@ export default observer(function SwitcherIcons({ model }: Props) {
                     </div>
                 </div>
             }
-        </>
+        </div>
     );
 })

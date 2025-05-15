@@ -18,30 +18,37 @@ export class InputPhoneModel {
     allPhones: any[]; // оригінальні дані
     locale: string
 
-    constructor(locale = 'en') {
+    constructor(locale = 'EN') {
         this.countries = CountryData;
-        this.activeCountry = locale.toUpperCase();
         this.selectedCountry = ["US", "GB"];
         this.phone = [];
         this.allPhones = [];
         this.search = '';
         this.value = '';
+        this.activeCountry = this.changeSlugCountry(locale)  //'GB';
         this.locale = locale;
         this.dropdownOpen = false;
         this.init().then(data => console.log(data));
         makeAutoObservable(this, {}, { autoBind: true });
-
-
     }
 
     async init() {
         await this.getCountryPhone();
     }
 
-    async getCountryPhone(locale = this.locale) {
+    async getCountryPhone() {
+
+        let localeFetch = '';
+        switch (this.locale) {
+            case "cat":
+                localeFetch = "es";
+                break;
+            default:
+                localeFetch = this.locale;
+        }
         try {
             const res = await fetch(
-                `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/phone?locale=${locale}`,
+                `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/phone?locale=${localeFetch}`,
                 { next: { revalidate: 60 * 60, tags: ["phones"] } }
             );
             const data = await res.json();
@@ -52,6 +59,25 @@ export class InputPhoneModel {
         } catch (err) {
             console.log(err);
         }
+    }
+
+
+    changeSlugCountry(country: string) {
+        let filterLocale = '';
+        switch (country) {
+            case "en":
+                filterLocale = "gb";
+                break;
+            case "pt-pt":
+                filterLocale = "pt";
+                break;
+            case "cat":
+                filterLocale = "es";
+                break;
+            default:
+                filterLocale = country;
+        }
+        return filterLocale.toUpperCase();
     }
 
     search_filter(value: string) {
