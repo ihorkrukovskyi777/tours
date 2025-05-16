@@ -17,8 +17,9 @@ export class InputPhoneModel {
     phone: any[]; // відфільтровані дані
     allPhones: any[]; // оригінальні дані
     locale: string
+    countryFetch: string
 
-    constructor(locale = 'EN') {
+    constructor(locale = 'EN' , countryFetch = 'en') {
         this.countries = CountryData;
         this.selectedCountry = ["US", "GB"];
         this.phone = [];
@@ -27,6 +28,7 @@ export class InputPhoneModel {
         this.value = '';
         this.activeCountry = this.changeSlugCountry(locale)  //'GB';
         this.locale = locale;
+        this.countryFetch = countryFetch;
         this.dropdownOpen = false;
         this.init().then(data => console.log(data));
         makeAutoObservable(this, {}, { autoBind: true });
@@ -39,12 +41,12 @@ export class InputPhoneModel {
     async getCountryPhone() {
 
         let localeFetch = '';
-        switch (this.locale) {
+        switch (this.countryFetch) {
             case "cat":
                 localeFetch = "es";
                 break;
             default:
-                localeFetch = this.locale;
+                localeFetch = this.countryFetch;
         }
         try {
             const res = await fetch(
