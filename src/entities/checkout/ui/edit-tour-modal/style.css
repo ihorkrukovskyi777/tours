@@ -42,6 +42,12 @@
 .edit_tour_modal #edit_tour {
     width: 100%;
 }
+.edit_tour_modal #edit_tour .phone_input {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #ccc;
+    height: 38px;
+}
 .edit_tour_modal .modal_content {
 	/*max-width: 90%;*/
 	background: #fff;
