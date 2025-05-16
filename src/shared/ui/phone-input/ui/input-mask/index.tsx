@@ -20,7 +20,7 @@ export default observer(function PhoneInputMask({model}: Props) {
             placeholder={model.input_placeholder}
             /*name="phone"*/
             required
-            validation-number={data?.validation_numbers}
+            data-validation-number={data?.validation_numbers}
 
         />
     );
