@@ -4,7 +4,6 @@ import {useParams} from "next/navigation";
 import {useRouter} from "next/navigation";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import classNames from "classnames";
-import recaptcha from "@/shared/util/recaptcha";
 import {InputPhoneModel} from "@/models/input/input-phone.model";
 import Link from "next/link";
 import PhoneInput from "@/shared/ui/phone-input";
@@ -12,7 +11,7 @@ import PhoneInput from "@/shared/ui/phone-input";
 
 export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, locale, fetchBookingDeparture, errorsMessage, isLoading}) {
 
-    const [model , setModel] = useState(() => new InputPhoneModel(locale , locale));
+    const [model , setModel] = useState(() => new InputPhoneModel(locale , locale , true));
 
 
     const refSendFetch = useRef(false);

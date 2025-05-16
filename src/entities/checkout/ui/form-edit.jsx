@@ -42,6 +42,7 @@ export default observer(function FormEdit({i18n}) {
     }, [])
 
     const refForm = useRef(null);
+    console.log(editDeparture)
     const [model , setModel] = useState(() => new InputPhoneModel(editDeparture.countrySlug , editDeparture.locale));
     useEffect(() => {
         model.phone_value = editDeparture.phone.replace(/\s+/g, '');

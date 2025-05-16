@@ -18,8 +18,9 @@ export class InputPhoneModel {
     allPhones: any[]; // оригінальні дані
     locale: string
     countryFetch: string
+    autoCodeComplete: boolean
 
-    constructor(locale = 'EN' , countryFetch = 'en') {
+    constructor(locale = 'EN' , countryFetch = 'en' , autoCodeComplete = false) {
         this.countries = CountryData;
         this.selectedCountry = ["US", "GB"];
         this.phone = [];
@@ -30,6 +31,7 @@ export class InputPhoneModel {
         this.locale = locale;
         this.countryFetch = countryFetch;
         this.dropdownOpen = false;
+        this.autoCodeComplete = autoCodeComplete;
         this.init().then(data => console.log(data));
         makeAutoObservable(this, {}, { autoBind: true });
     }
@@ -50,13 +52,17 @@ export class InputPhoneModel {
         }
         try {
             const res = await fetch(
-                `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/phone?locale=${localeFetch}`,
+                `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/phone/v2/?locale=${localeFetch}`,
                 { next: { revalidate: 60 * 60, tags: ["phones"] } }
             );
             const data = await res.json();
             runInAction(() => {
-                this.allPhones = data;
-                this.phone = data;
+                this.allPhones = data.phones;
+                this.phone = data.phones;
+                if (this.autoCodeComplete) {
+                    this.activeCountry = this.changeSlugCountry(data.countryCode);
+                }
+
             });
         } catch (err) {
             console.log(err);
