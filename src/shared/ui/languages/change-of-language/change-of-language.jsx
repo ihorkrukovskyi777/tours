@@ -1,5 +1,5 @@
 "use client";
-import { useState} from "react";
+import {useEffect, useState} from "react";
 import {useSearchParams} from "next/navigation";
 import Button from "@/shared/ui/selectors/button/button";
 import {fallbackLng} from "@/i18n/settings";
@@ -8,6 +8,7 @@ import {countryLocales} from "@/i18n/locales";
 import FlagsComponents from "@/shared/ui/flags";
 import {useLocale} from "use-intl";
 import './style.css';
+
 
 export default function ChangeOfLanguage({parentLocale,i18n, languages, title, filterQuery = [], addQueries = false}) {
     const searchParams = useSearchParams()
@@ -46,8 +47,12 @@ export default function ChangeOfLanguage({parentLocale,i18n, languages, title, f
     if(!languagesFilter.length) {
         return null;
     }
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+
     return (
         <section id="change-of-language">
+
             <div className="container">
                 <h2>{i18n.free_tour_tour_language}</h2>
                 <ul>
