@@ -43,7 +43,6 @@ export default observer(function FormEdit({i18n}) {
 
     const refForm = useRef(null);
     const [model , setModel] = useState(() => new InputPhoneModel('ES'));
-    const [validPhone, setValidPhone] = useState(false);
     useEffect(() => {
         model.phone_value = editDeparture.phone.replace(/\s+/g, '');
     }, [model]);
@@ -69,17 +68,19 @@ export default observer(function FormEdit({i18n}) {
             email: validationEmail(editDeparture.email),
            // phone: validationPhone({val: editDeparture.phone, mask: mask}),
         }
-        console.log(validPhone , 'validPhone');
         if (model.validatePhone) {
             model.phone_value = model.value;
             editDeparture.setPhone(model.value);
             setShowErrorPhoneMsg(false);
         } else {
+            setValidForm({...validForm, ...errorLists})
             setShowErrorPhoneMsg(true);
             return;
         }
 
         setValidForm({...validForm, ...errorLists})
+
+
         if (!Object.values(errorLists).filter(Boolean).length) {
             setSubmitEventForm(true)
             submitForm().then(() => {
