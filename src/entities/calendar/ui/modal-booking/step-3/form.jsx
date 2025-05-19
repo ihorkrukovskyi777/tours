@@ -35,7 +35,6 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
 
     const [loadValidate, setLoadValidate] = useState(false);
     const [validate, setValidate] = useState(null);
-    const [valueMask, setValueMask] = useState('');
     const stateAll = {
         firstName: null,
         lastName: null,
@@ -142,7 +141,7 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
                 lastName: document.getElementsByName('lastName')[0].value,
                 email: document.getElementsByName('email')[0].value,
                 phone_county_code: document.querySelector('.phone_input .iti__selected-dial-code').innerText,
-                phone: document.getElementById('phone_input_mask').value,
+                phone: document.getElementById('phone_input_mask').value.replace(/ /g, '').replace(/[-()]/g, ''),
                 phone_country_slug: document.querySelector('.switcher_icons .flag').getAttribute('data-slug').toLowerCase(),
             }
             try {

@@ -7,8 +7,7 @@ import {observer} from "mobx-react-lite";
 import {useParams, useRouter, useSearchParams} from "next/navigation";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import Notification from "@/shared/ui/notification/notification";
-import {validationFirstName, validationEmail, validationPhone} from "@/shared/helpers/validation-form";
-import dynamic from "next/dynamic";
+import {validationFirstName, validationEmail} from "@/shared/helpers/validation-form";
 import PhoneInput from "@/shared/ui/phone-input";
 import {InputPhoneModel} from "@/models/input/input-phone.model";
 
@@ -22,9 +21,7 @@ const initialStateFormError = {
 
 }
 export default observer(function FormEdit({i18n}) {
-
-
-
+    
     const searchParams = useSearchParams()
     const [error, setError] = useState(false);
     const [submitEventForm, setSubmitEventForm] = useState(false);
@@ -42,7 +39,6 @@ export default observer(function FormEdit({i18n}) {
     }, [])
 
     const refForm = useRef(null);
-    console.log(editDeparture)
     const [model , setModel] = useState(() => new InputPhoneModel(editDeparture.countrySlug , editDeparture.locale));
     useEffect(() => {
         model.phone_value = editDeparture.phone.replace(/\s+/g, '');
@@ -57,6 +53,7 @@ export default observer(function FormEdit({i18n}) {
         //phone: ({target}) => editDeparture.setPhone(target.value),
     }
 
+    editDeparture.changeSlugCountry(model.select_phone?.code);
     function preSubmitForValidation(e) {
         e.preventDefault();
         if (submitEventForm) {
@@ -89,9 +86,9 @@ export default observer(function FormEdit({i18n}) {
             });
         }
     }
-
     const submitForm = async () => {
         const token = '';
+
         const data = await editDeparture.updateDeparture(token);
 
         if ((data?.isEdit === true && data.success) || data?.isCancel) {
