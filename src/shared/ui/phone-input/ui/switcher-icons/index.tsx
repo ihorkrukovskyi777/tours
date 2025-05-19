@@ -28,7 +28,6 @@ export default observer(function SwitcherIcons({ model }: Props) {
 
     const ref = useDetectClickOutside({ onTriggered: model.closeDropdown });
 
-
     return (
         <div ref={ref}>
             <div className="switcher_icons"

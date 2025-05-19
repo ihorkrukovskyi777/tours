@@ -371,6 +371,10 @@ class EditDeparture {
         this.countrySlug = slugCountry;
     }
 
+    changeSlugCountry(slugCountry){
+        this.countrySlug = slugCountry;
+    }
+
     setFirstName(value) {
         this.firstName = value;
     }
