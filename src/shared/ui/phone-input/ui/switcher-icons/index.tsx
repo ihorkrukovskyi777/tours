@@ -40,8 +40,10 @@ export default observer(function SwitcherIcons({ model }: Props) {
                      e.stopPropagation();
                      model.toggleDropdown();
                  }}
+
             >
-                <div className={`flag iti__${activeCountry.code?.toLowerCase()}`} data-slug={activeCountry.code?.toLowerCase()}></div>
+                <div className={`flag iti__${activeCountry.code?.toLowerCase()}`}
+                     data-slug={activeCountry.code?.toLowerCase()}></div>
                 <p className="iti__selected-dial-code">+{activeCountry.phone_code}</p>
                 <span className={`arrow ${model.dropdownOpen ? 'active' : ''}`}></span>
             </div>
