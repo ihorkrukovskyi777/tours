@@ -7,6 +7,7 @@ import {InputPhoneModel} from "@/models/input/input-phone.model";
 import {useDetectClickOutside} from "react-detect-click-outside";
 
 import './style.css';
+import {PAID_TOUR_IN_CITY} from "@i18n/path-rewrites/paid-tour-in-city.mjs";
 
 
 interface Props {
@@ -27,6 +28,8 @@ export default observer(function SwitcherIcons({ model }: Props) {
     }, [model.dropdownOpen]);
 
     const ref = useDetectClickOutside({ onTriggered: model.closeDropdown });
+
+
 
     return (
         <div ref={ref}>
@@ -70,7 +73,7 @@ export default observer(function SwitcherIcons({ model }: Props) {
                                     <span>+{item.phone_code}</span>
                                 </div>
                             ))
-                            : <h2>Not Found</h2>
+                            : <h2>Not Found {t('tour_in_language')}</h2>
                         }
                     </div>
                 </div>

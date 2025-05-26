@@ -21,7 +21,7 @@ const initialStateFormError = {
 
 }
 export default observer(function FormEdit({i18n}) {
-    
+
     const searchParams = useSearchParams()
     const [error, setError] = useState(false);
     const [submitEventForm, setSubmitEventForm] = useState(false);
@@ -54,6 +54,7 @@ export default observer(function FormEdit({i18n}) {
     }
 
     editDeparture.changeSlugCountry(model.select_phone?.code);
+    editDeparture.changeDialCode(model.select_phone?.phone_code);
     function preSubmitForValidation(e) {
         e.preventDefault();
         if (submitEventForm) {
