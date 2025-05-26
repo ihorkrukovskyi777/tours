@@ -5,8 +5,10 @@ import Image from "next/image";
 import {useEffect, useRef} from "react";
 import {InputPhoneModel} from "@/models/input/input-phone.model";
 import {useDetectClickOutside} from "react-detect-click-outside";
+import {useTranslations} from "next-intl";
 
 import './style.css';
+
 
 
 interface Props {
@@ -15,6 +17,7 @@ interface Props {
 
 export default observer(function SwitcherIcons({ model }: Props) {
     const countries = model.countries;
+    const t = useTranslations();
 
     const activeCountry = { ...model.select_phone };
     const selected_country_data = model.selected_country;
@@ -27,6 +30,8 @@ export default observer(function SwitcherIcons({ model }: Props) {
     }, [model.dropdownOpen]);
 
     const ref = useDetectClickOutside({ onTriggered: model.closeDropdown });
+
+
 
     return (
         <div ref={ref}>
@@ -70,7 +75,7 @@ export default observer(function SwitcherIcons({ model }: Props) {
                                     <span>+{item.phone_code}</span>
                                 </div>
                             ))
-                            : <h2>Not Found</h2>
+                            : <h2>{t('not_found')}</h2>
                         }
                     </div>
                 </div>

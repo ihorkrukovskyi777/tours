@@ -48,18 +48,18 @@
         padding: 0 10px 0 36px !important;
         height: 100% !important;
         width: 100%;
-        border: none;
+        border: none !important;
         outline: none;
         font-size: 18px;
         font-weight: 400;
     }
 }
 .switcher_dropdown {
-    width: 100%;
+    width: calc(100% + 4px);
     background: #fff;
     height: 200px;
     position: absolute;
-    left: 0;
+    left: -2px;
     top: 100%;
     overflow: auto;
     border-radius: 8px;
