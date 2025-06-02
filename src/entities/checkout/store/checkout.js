@@ -370,6 +370,12 @@ class EditDeparture {
         this.dialCode = `+${dialCode}`;
         this.countrySlug = slugCountry;
     }
+    changeDialCode(dialCode) {
+        this.dialCode = `+${dialCode}`
+    }
+    changeSlugCountry(slugCountry){
+        this.countrySlug = slugCountry;
+    }
 
     setFirstName(value) {
         this.firstName = value;

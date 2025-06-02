@@ -1,14 +1,19 @@
 'use client'
 import {useState, useRef} from 'react';
 import {useParams} from "next/navigation";
-import InternationalInput from '../../../../../shared/ui/selectors/international-input';
 import {useRouter} from "next/navigation";
 import {getHrefLocale} from "@/i18n/get-href-locale";
 import classNames from "classnames";
-import recaptcha from "@/shared/util/recaptcha";
+import {InputPhoneModel} from "@/models/input/input-phone.model";
 import Link from "next/link";
+import PhoneInput from "@/shared/ui/phone-input";
+
 
 export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, locale, fetchBookingDeparture, errorsMessage, isLoading}) {
+
+    const [model , setModel] = useState(() => new InputPhoneModel(locale , locale , true));
+
+
     const refSendFetch = useRef(false);
     const refForm = useRef();
     const [showError, setShowError] = useState(false);
@@ -30,7 +35,6 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
 
     const [loadValidate, setLoadValidate] = useState(false);
     const [validate, setValidate] = useState(null);
-    const [valueMask, setValueMask] = useState('');
     const stateAll = {
         firstName: null,
         lastName: null,
@@ -76,14 +80,14 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
                         ? ''
                         : i18n.errors.email_error;
                 break;
-            case 'phone':
+            /*case 'phone':
                 const valuePhone = value.toString().replace(/ /g, '').replace(/[-()]/g, '').length;
                 const validateArray = document.querySelector(`#booking input[name=${name}]`).getAttribute('validation-number').split(',').map(i => Number(i));
                 if (!validateArray.includes(valuePhone)) {
                     errorMsg = i18n.errors.phone_number_error;
                 }
                 errors.phone = errorMsg
-                break;
+                break;*/
             case 'accept':
                 if (checked === false) errorMsg = i18n.errors.field_is_required;
                 errors.accept = errorMsg
@@ -98,11 +102,12 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
         const {name} = event.target;
         let errors = state.errors;
 
+
         validateSwitch(name);
         setState({errors, [name]: value, });
-        if (name === 'phone') {
+        /*if (name === 'phone') {
             setValueMask(value);
-        }
+        }*/
 
 
         !loadValidate && setLoadValidate(true);
@@ -112,10 +117,11 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
    async function handleSubmit(event) {
         event.preventDefault();
         if (validate === null) {
+
             errors.firstName = i18n.errors.field_is_required;
             errors.lastName = i18n.errors.field_is_required;
             errors.email = i18n.errors.field_is_required;
-            errors.phone = i18n.errors.field_is_required;
+            //errors.phone = i18n.errors.field_is_required;
             errors.accept = i18n.errors.field_is_required;
             document.querySelectorAll('#booking input').forEach((item) => {
                 if (item.hasAttribute('name')) {
@@ -125,8 +131,7 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
             });
             !loadValidate && setLoadValidate(true);
         }
-
-       if (validateForm(state.errors) && loadValidate === true &&  refSendFetch.current === false) {
+       if (validateForm(state.errors) && loadValidate === true && refSendFetch.current === false && model.validatePhone === true) {
            refSendFetch.current = true;
            setValidate(true);
             //REDIRECT TO CHECKOUT PAGE
@@ -135,9 +140,9 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
                 firstName: document.getElementsByName('firstName')[0].value,
                 lastName: document.getElementsByName('lastName')[0].value,
                 email: document.getElementsByName('email')[0].value,
-                phone_county_code: document.querySelector('.international-phone .iti__selected-dial-code').innerText,
-                phone: document.getElementsByName('phone')[0].value,
-                phone_country_slug: document.getElementById('phone').getAttribute('data-slug').toLowerCase(),
+                phone_county_code: document.querySelector('.phone_input .iti__selected-dial-code').innerText,
+                phone: document.getElementById('phone_input_mask').value.replace(/ /g, '').replace(/[-()]/g, ''),
+                phone_country_slug: document.querySelector('.switcher_icons .flag').getAttribute('data-slug').toLowerCase(),
             }
             try {
                 // const token = await recaptcha("booking");
@@ -172,8 +177,8 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
         } else {
             setShowError(true);
         }
-
     }
+
 
     // end validation
 
@@ -205,13 +210,8 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
                 <div className="item-form">
                     <div className="label">
                         <span>{i18n.phone_number}<span className="red">*</span></span>
-                        <InternationalInput
-                            locale={locale}
-                            allPhoneNumbers={allPhoneNumbers}
-                            handleChange={handleChange}
-                            valueMask={valueMask}
-                        />
-                        {showError && errors.phone.length > 0 ? <span className='error-message'>{errors.phone}</span> : null}
+                        <PhoneInput model={model} handlechange={handleChange} />
+                        {showError && model.validatePhone === false ? <span className='error-message'>{i18n.errors.phone_number_error}</span> : null}
                     </div>
 
                 </div>
@@ -235,7 +235,7 @@ export default function FormCalendar({isRedirect = true, i18n, allPhoneNumbers, 
             </div>
         </form>
     )
-}
+};
 
 
 
