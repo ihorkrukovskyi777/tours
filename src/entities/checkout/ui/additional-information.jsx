@@ -21,7 +21,7 @@ export default function AdditionalInformation({ i18n }) {
     return (
         <div className="additional-information">
             <h3>{i18n.additional_information}<span className="dot">:</span></h3>
-            <p>{message}</p>
+            <p dangerouslySetInnerHTML={{__html: message}}></p>
         </div>
     );
 }
