@@ -100,7 +100,7 @@ export default async function PageSystem({params}) {
 
 export async function generateMetadata({params: {slug, locale, system}}) {
 
-        const systemPage = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/system-distribution/external-api/seo/${system}/${slug}?locale=${locale}`, {next: {revalidate: 0}})
+        const systemPage = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/system-distribution/external-api/seo/${system}/${slug}?locale=${locale}&host=${process.env.NEXT_PUBLIC_SYSTEM_HOSTING}`, {next: {revalidate: 0}})
         const isIndexation = process.env.NEXT_PUBLIC_GOOGLE_INDEXATION === 'yes';
 
         try {
