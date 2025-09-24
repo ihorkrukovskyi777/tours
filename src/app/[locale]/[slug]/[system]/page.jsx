@@ -106,7 +106,9 @@ export async function generateMetadata({params: {slug, locale, system}}) {
         try {
             const page = await systemPage.json();
             const seo = page.data.seo.locales.find(item => item.locale === locale);
-            const canonical = seo ? `${process.env.NEXT_PUBLIC_CANONICAL_DOMAIN}${getHrefLocale(seo.locale, seo.slug)}` : undefined;
+
+            const pageCurrentLocale = page.data.slugs?.find(item => item.locale === locale);
+            const canonical = locale === fallbackLng ? pageCurrentLocale?.slug : `${locale}/${pageCurrentLocale?.slug}`
             const languages = {};
 
             if (Array.isArray(page.data.slugs)) {
