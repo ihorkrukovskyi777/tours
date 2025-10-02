@@ -106,7 +106,9 @@ export async function generateMetadata({params: {slug, locale, system}}) {
         try {
             const page = await systemPage.json();
             const seo = page.data.seo.locales.find(item => item.locale === locale);
-            const canonical = locale === fallbackLng ? slug : `${locale}/${slug}`
+
+            const pageCurrentLocale = page.data.slugs?.find(item => item.locale === locale);
+            const canonical = locale === fallbackLng ? pageCurrentLocale?.slug : `${locale}/${pageCurrentLocale?.slug}`
             const languages = {};
 
             if (Array.isArray(page.data.slugs)) {

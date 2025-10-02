@@ -30,7 +30,7 @@ export class Fetch {
     }
 
     async post<T>(path: string, body?: any): Promise<T | void> {
-
+console.log(321321321312);
         const results = await fetch(`${this.host}/${path}`, {
             method: 'POST',
             headers: {

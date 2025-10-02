@@ -24,6 +24,7 @@ export default async function SystemToursBox({ id, locale, flexible }) {
                 days: i18n.getDays(),
                 not_departure: i18n.t("No Departures Available. Check Soon!"),
                 reviews: i18n.t("Reviews"),
+                flexible: i18n.t("Flexible"),
                 months: i18n.getMonths(),
             }}
         />

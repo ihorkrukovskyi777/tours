@@ -32,7 +32,7 @@ export class InputPhoneModel {
         this.countryFetch = countryFetch;
         this.dropdownOpen = false;
         this.autoCodeComplete = autoCodeComplete;
-        this.init().then(data => console.log(data));
+        this.init().then();
         makeAutoObservable(this, {}, { autoBind: true });
     }
 

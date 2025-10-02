@@ -102,7 +102,6 @@ export class AnalyticsModel implements ModelImpl {
         window.addEventListener('visibilitychange', this.visibilitychange);
         await this.storage.createUser();
         this.data = backupAnalytics();
-        console.log(this)
     }
 
     get pathName() {
