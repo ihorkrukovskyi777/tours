@@ -2,6 +2,7 @@ import {getPartnerTours} from "@/entities/system-distribution/api";
 import {getContentFlexibleTitle} from "@/entities/system-distribution/helpers";
 import {useTranslations} from "next-intl";
 import '../styles/system-partners-tours.scss';
+import useDefaultI18n from "@i18n/hooks/useDefaultI18n";
 
 interface PartnerTour {
     id: number;
@@ -42,7 +43,7 @@ export default async function SystemPartnersTours({id, locale, flexible}: System
                 <h2 className="title">{title}</h2>
                 <div className="partners_tours_grid">
                     {data.tours.map((tour: PartnerTour) => (
-                        <PartnerTourCard key={tour.id} tour={tour} locale={locale}/>
+                        <PartnerTourCard  key={tour.id} tour={tour} locale={locale}/>
                     ))}
                 </div>
             </div>
@@ -103,7 +104,7 @@ function PartnerTourCard({tour}: PartnerTourCardProps) {
                     rel="noopener noreferrer"
                     className="partner_tour_card__button"
                 >
-                    {t('See details')}
+                    {t('see_details')}
                 </a>
             </div>
         </div>
