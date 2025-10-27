@@ -13,14 +13,14 @@ export default getRequestConfig(async ({requestLocale}) => {
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${locale === 'en' ? 'es' : locale}/${defaultNS}`, {
         next: {
-            revalidate: 0
+            revalidate: 5
         }
     });
 
 
     const responseVouched = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/influencer?locale=${locale}`, {
         next: {
-            revalidate: 0
+            revalidate: 5
         }
     });
     const translates = await response.json()
