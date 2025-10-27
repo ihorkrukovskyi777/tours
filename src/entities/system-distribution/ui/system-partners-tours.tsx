@@ -103,7 +103,7 @@ function PartnerTourCard({tour}: PartnerTourCardProps) {
                     rel="noopener noreferrer"
                     className="partner_tour_card__button"
                 >
-                    {t('see_details')}
+                    {t('See details')}
                 </a>
             </div>
         </div>
