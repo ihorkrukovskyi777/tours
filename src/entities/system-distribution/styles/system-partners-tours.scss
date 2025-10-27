@@ -1,0 +1,208 @@
+// Колірні змінні
+$primary-red: #E10600;
+$primary-red-hover: #c00500;
+$text-black: #000;
+$text-gray: #999;
+$text-dark-gray: #333;
+$bg-white: #fff;
+$bg-light: #f5f5f5;
+
+// Розміри
+$border-radius: 8px;
+$section-padding: 60px 0;
+$card-shadow: 0 0 0.675rem 0.075rem rgba(0, 0, 0, 0.2);
+$card-shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.3);
+
+.partners_tours_section {
+    padding: $section-padding;
+
+    .title {
+        font-size: 40px;
+        line-height: 110%;
+        margin-bottom: 40px;
+        color: $text-black;
+        font-family: var(--fontBold);
+    }
+}
+
+.partners_tours_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.partner_tour_card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: $card-shadow;
+    min-height: 450px;
+    position: relative;
+    border-radius: $border-radius;
+    overflow: hidden;
+    background: $bg-white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: $card-shadow-hover;
+
+        .partner_tour_card__image img {
+            transform: scale(1.05);
+        }
+    }
+
+    &__image {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        overflow: hidden;
+        background: $bg-light;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    &__content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex: 1;
+
+        h3 {
+            font-size: 20px;
+            color: $text-black;
+            line-height: 120%;
+            font-family: var(--fontBold);
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+
+    &__rating {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin: 5px 0;
+    }
+
+    &__score {
+        font-size: 18px;
+        color: $text-black;
+        font-family: var(--fontBold);
+    }
+
+    &__reviews {
+        font-size: 14px;
+        color: $text-gray;
+        font-family: var(--fontMedium);
+    }
+
+    &__description {
+        font-size: 16px;
+        font-weight: 700;
+        font-family: var(--fontBold);
+        color: $text-dark-gray;
+        line-height: 1.5;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    &__footer {
+        padding: 0 20px;
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 60px;
+    }
+
+    &__price {
+        display: flex;
+        align-items: center;
+        color: $primary-red;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 20px;
+        font-family: var(--fontBold);
+        text-transform: capitalize;
+    }
+
+    &__button {
+        display: inline-block;
+        border-radius: $border-radius;
+        background-color: $primary-red;
+        color: $bg-white;
+        font-size: 18px;
+        padding: 12px 24px;
+        font-weight: 700;
+        font-style: normal;
+        text-transform: capitalize;
+        font-family: var(--fontBold);
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        z-index: 3;
+        position: relative;
+        text-decoration: none;
+
+        &:hover {
+            background-color: $primary-red-hover;
+        }
+    }
+}
+
+// Адаптивність
+@media (max-width: 768px) {
+    .partners_tours_section {
+        padding: 40px 0;
+
+        .title {
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+    }
+
+    .partners_tours_grid {
+        gap: 20px;
+    }
+
+    .partner_tour_card {
+        &__content h3 {
+            font-size: 18px;
+        }
+
+        &__description {
+            font-size: 14px;
+        }
+
+        &__price {
+            font-size: 18px;
+        }
+
+        &__button {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+    }
+}
+

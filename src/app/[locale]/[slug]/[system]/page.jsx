@@ -16,6 +16,10 @@ const SystemMapAndSliders = dynamic(
     () => import("@/entities/system-distribution/ui/system-map-and-sliders"),
     {ssr: true}
 )
+const PartnersTours = dynamic(
+    () => import("@/entities/system-distribution/ui/system-partners-tours"),
+    {ssr: true}
+)
 const SystemLatestReviews = dynamic(
     () => import("@/entities/system-distribution/ui/system-latest-reviews"),
     {ssr: true}
@@ -48,6 +52,7 @@ const FLEXIBLE_CONTENT = {
     calendar: SystemSsrCalendar,
     banner: BannerSystem,
     tours_box: SystemToursBox,
+    partner_tours: PartnersTours,
 };
 export default async function PageSystem({params}) {
     const slug = `${params.system}/${params.slug}`

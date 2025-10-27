@@ -62,6 +62,13 @@ export async function getSystemGuides(id, locale) {
     );
     return data.json();
 }
+export async function getPartnerTours(id, locale) {
+    const data = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/system-distribution/external-api/section/${id}/partner-tours?locale=${locale}`,
+        { next: { revalidate: 0 } }
+    );
+    return data.json();
+}
 
 export async function getSystemActiveLanguage(id, locale) {
     const data = await fetch(
