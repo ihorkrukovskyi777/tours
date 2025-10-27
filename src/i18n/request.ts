@@ -52,6 +52,7 @@ export default getRequestConfig(async ({requestLocale}) => {
             ...translatesVouched,
             ...cancellation,
             'off!': getMessage('off!'),
+            see_details: getMessage('See details'),
             paid_tours_in_city: translatesVouched?.paid_tours_in_city ?? '',
             days: translatesVouched.days,
             hours: translatesVouched.hours,
