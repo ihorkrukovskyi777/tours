@@ -10,19 +10,22 @@ export default getRequestConfig(async ({requestLocale}) => {
         locale = routing.defaultLocale;
     }
 
+    const [response, responseVouched] = await Promise.all([
+         fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${locale === 'en' ? 'es' : locale}/${defaultNS}`, {
+            next: {
+                revalidate: 5
+            }
+        }),
+        fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/influencer?locale=${locale}`, {
+            next: {
+                revalidate: 5
+            }
+        })
+    ])
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/${locale === 'en' ? 'es' : locale}/${defaultNS}`, {
-        next: {
-            revalidate: 5
-        }
-    });
 
 
-    const responseVouched = await fetch(`${process.env.NEXT_PUBLIC_NEST_API}/api/v1/file-translates/influencer?locale=${locale}`, {
-        next: {
-            revalidate: 5
-        }
-    });
+
     const translates = await response.json()
     const translatesVouched = await responseVouched.json()
     const cancellation = (await import(`../../messages/${locale}.json`)).default;
