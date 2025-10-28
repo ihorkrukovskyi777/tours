@@ -34,7 +34,6 @@ export default async function SystemPartnersTours({id, locale, flexible}: System
     if (!data?.tours?.length) {
         return null
     }
-
     const {title} = getContentFlexibleTitle(flexible, locale);
 
     return (
@@ -62,13 +61,13 @@ function PartnerTourCard({tour}: PartnerTourCardProps) {
     const rating = (tour.rating?.rating || 0).toFixed(1);
     const reviews = tour.rating?.reviews || 0;
     const price = tour.price?.amount ? `${tour.price.currency} ${tour.price.amount}` : '';
-
+    console.log(img, 'sss', tour)
     return (
         <div className="partner_tour_card">
             <div className="partner_tour_card__image">
                 {img && (
                     <img
-                        src={`${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${img}/390x250`}
+                        src={`${img}`}
                         alt={tour.image?.alt || tour.title}
                         loading="lazy"
                     />
