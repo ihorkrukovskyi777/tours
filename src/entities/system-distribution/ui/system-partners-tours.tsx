@@ -61,7 +61,6 @@ function PartnerTourCard({tour}: PartnerTourCardProps) {
     const rating = (tour.rating?.rating || 0).toFixed(1);
     const reviews = tour.rating?.reviews || 0;
     const price = tour.price?.amount ? `${tour.price.currency} ${tour.price.amount}` : '';
-    console.log(img, 'sss', tour)
     return (
         <div className="partner_tour_card">
             <div className="partner_tour_card__image">
@@ -98,7 +97,7 @@ function PartnerTourCard({tour}: PartnerTourCardProps) {
                     {t('from')} {price}
                 </span>
                 <a
-                    href={tour.url}
+                    href={`${tour.url}?aid=3715&cmp=SystemTours`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="partner_tour_card__button"
