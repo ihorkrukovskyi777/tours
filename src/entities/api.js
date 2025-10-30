@@ -11,7 +11,7 @@ export async function getBannerData(id, locale, type = "city", revalidate = 0) {
 export async function getReviews(id, locale, limit, offset = 0, type = "city") {
 
   if(type === 'system') {
-    return getSystemReviews(id, locale, limit, offset = 0)
+    return getSystemReviews(id, locale, limit, offset)
   }
   const data = await fetch(
     `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/${type}/reviews/${id}?locale=${locale}&limit=${limit}&offset=${offset}`,
