@@ -9,7 +9,7 @@ import '../../../widgets/latest-reviews/style.css';
 
 export default async function SystemLatestReviews({id, locale,  showTitle= true , flexible}) {
     const i18n = await useDefaultI18n(locale)
-    const limit = 9
+    const limit = 3
 
     const reviews = await getSystemReviews(id, locale, limit, 0)
 
@@ -35,8 +35,8 @@ export default async function SystemLatestReviews({id, locale,  showTitle= true 
                     id={id}
                     reviewsInit={reviews.data?.length}
                     total={reviews.total}
-                    limit={9}
-                    offset={limit}
+                    limit={3}
+                    offset={0}
                     type={'system'}
                 >
                     {

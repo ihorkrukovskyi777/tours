@@ -29,10 +29,14 @@ interface SystemPartnersToursGridProps {
 
 export default function SystemPartnersToursGrid({ tours, locale }: SystemPartnersToursGridProps) {
     const t = useTranslations();
-    const [showAll, setShowAll] = useState(false);
+    const [visibleCount, setVisibleCount] = useState(9);
     
-    const visibleTours = showAll ? tours : tours.slice(0, 9);
-    const hasMore = tours.length > 9;
+    const visibleTours = tours.slice(0, visibleCount);
+    const hasMore = visibleCount < tours.length;
+
+    const handleShowMore = () => {
+        setVisibleCount(prev => prev + 9);
+    };
 
     return (
         <>
@@ -42,10 +46,10 @@ export default function SystemPartnersToursGrid({ tours, locale }: SystemPartner
                 ))}
             </div>
             
-            {hasMore && !showAll && (
+            {hasMore && (
                 <div className="partners_tours_show_more">
                     <button 
-                        onClick={() => setShowAll(true)}
+                        onClick={handleShowMore}
                         className="partners_tours_show_more_button"
                     >
                         {t('show_me_more')}
