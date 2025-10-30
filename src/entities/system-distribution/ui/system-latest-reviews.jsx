@@ -35,8 +35,8 @@ export default async function SystemLatestReviews({id, locale,  showTitle= true 
                     id={id}
                     reviewsInit={reviews.data?.length}
                     total={reviews.total}
-                    limit={3}
-                    offset={0}
+                    limit={9}
+                    offset={limit}
                     type={'system'}
                 >
                     {
