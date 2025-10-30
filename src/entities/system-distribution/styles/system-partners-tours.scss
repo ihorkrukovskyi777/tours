@@ -171,6 +171,34 @@ $card-shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 }
 
+// Show More Button
+.partners_tours_show_more {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.partners_tours_show_more_button {
+    display: inline-block;
+    border-radius: $border-radius;
+    background-color: $primary-red;
+    color: $bg-white;
+    font-size: 18px;
+    padding: 12px 24px;
+    font-weight: 700;
+    font-style: normal;
+    text-transform: capitalize;
+    font-family: var(--fontBold);
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+
+    &:hover {
+        background-color: $primary-red-hover;
+    }
+}
+
 // Адаптивність
 @media (max-width: 768px) {
     .partners_tours_section {
@@ -203,6 +231,15 @@ $card-shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.3);
             font-size: 16px;
             padding: 10px 20px;
         }
+    }
+
+    .partners_tours_show_more {
+        margin-top: 30px;
+    }
+
+    .partners_tours_show_more_button {
+        font-size: 16px;
+        padding: 10px 20px;
     }
 }
 
