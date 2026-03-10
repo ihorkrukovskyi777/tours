@@ -44,6 +44,10 @@ const SystemToursBox = dynamic(
     () => import("@/entities/system-distribution/ui/system-tours-box"),
     {ssr: true}
 )
+const SystemSimilarPages = dynamic(
+    () => import("@/entities/system-distribution/ui/system-similar-pages"),
+    { ssr: true }
+)
 const FLEXIBLE_CONTENT = {
     map_places: SystemMapAndSliders,
     reviews: SystemLatestReviews,
@@ -92,6 +96,8 @@ export default async function PageSystem({params}) {
                     />
                 )
             })}
+
+            <SystemSimilarPages id={page.id} locale={locale} />
 
             <I18nChangeOfLanguage languages={languages} title={pageTitle.name} locale={locale}/>
             <Breadcrumbs

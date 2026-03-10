@@ -1,0 +1,33 @@
+$section-padding: 60px 0;
+$text-black: #000;
+
+.similar_pages_section {
+    padding: $section-padding;
+
+    .title {
+        font-size: 40px;
+        line-height: 110%;
+        margin-bottom: 24px;
+        color: $text-black;
+        font-family: var(--fontBold);
+    }
+}
+
+.similar_pages_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+}
+
+.similar_pages_link {
+    color: var(--color-link, #E10600);
+    text-decoration: none;
+    font-size: 18px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

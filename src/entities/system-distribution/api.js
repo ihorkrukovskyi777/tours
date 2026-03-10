@@ -77,3 +77,11 @@ export async function getSystemActiveLanguage(id, locale) {
     );
     return data.json();
 }
+
+export async function getSystemSimilarPages(page_id, locale) {
+    const data = await fetch(
+        `${process.env.NEXT_PUBLIC_NEST_API}/api/v1/system-distribution/external-api/section/${page_id}/similar-pages?locale=${locale}`,
+        { next: { revalidate: 0 } }
+    );
+    return data.json();
+}

@@ -1,20 +1,23 @@
 import Link from "next/link";
 
-export default function Card({font = '' ,attachment = '', url, title, children, size = 'public', topElement, bottomElement}) {
+export default function Card({ font = '', attachment = '', url, title, children, size = 'public', topElement, bottomElement }) {
+    const hasImage = attachment?.src;
     return (
         <div className='item_wrap'>
             <div className="item">
-
-                <img
-                    loading="lazy"
-                    className="img"
-                    key={attachment.src}
-                    width={518}
-                    height={250}
-                    src={`${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${attachment.src}/${size}`}
-                    alt={attachment.alt ?? 'trip'}
-                />
-
+                {hasImage ? (
+                    <img
+                        loading="lazy"
+                        className="img"
+                        key={attachment.src}
+                        width={518}
+                        height={250}
+                        src={`${process.env.NEXT_PUBLIC_CLOUD_IMAGE}/${attachment.src}/${size}`}
+                        alt={attachment.alt ?? 'trip'}
+                    />
+                ) : (
+                    <div className="img img_placeholder" aria-hidden />
+                )}
                 <div className={`intro ${font}`}>
                     <Link href={url} prefetch={false}>{title}</Link>
                 </div>
@@ -23,5 +26,5 @@ export default function Card({font = '' ,attachment = '', url, title, children, 
             </div>
             {children}
         </div>
-    )
+    );
 }

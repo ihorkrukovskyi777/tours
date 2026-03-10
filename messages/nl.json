@@ -1,4 +1,5 @@
 {
+  "similar_pages": "Vergelijkbare pagina's",
   "cancellation": {
     "advance": "We brengen annuleringskosten van {percentage}% in rekening als de boeking wordt geannuleerd {type, select, day {{day} {count, plural, =1{day} other {days}}} uur {{hour} {count_hours, plural , =1{uur} andere {uren}}} andere {%full%}} of minder vóór het evenement",
     "simple": "Terugbetaling bij annulering ten minste {type, select, day {{day} {count, plural, =1{day} other {days}}} uur {{hour} {count_hours, plural, =1{hour} other {hours} }} andere {%full%}} vóór het evenement",

@@ -1,4 +1,5 @@
 {
+  "similar_pages": "Ähnliche Seiten",
   "cancellation": {
     "advance": "Wir berechnen eine Stornogebühr von {percentage} %, wenn die Buchung storniert wird. {type, select, day {{day} {count, plural, =1{day} other {days}}} Stunde {{hour } {count_hours, plural, =1{hour} other {hours}}} other {%full%}} oder weniger vor dem Ereignis",
     "simple": "Rückerstattung bei Stornierung mindestens {type, select, day {{day} {count, plural, =1{day} other {days}}} Stunde {{hour} {count_hours, plural, =1{hour} other {hours} }} other {%full%}} vor dem Ereignis",

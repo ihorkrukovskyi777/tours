@@ -1,4 +1,5 @@
 {
+  "similar_pages": "Páginas semelhantes",
   "cancellation": {
     "advance": "Cobraremos uma taxa de cancelamento de {percentage}% se a reserva for cancelada {type, select, day {{day} {count, plural, =1{day} other {days}}} hora {{hour} {count_hours, plural , =1{hora} other {horas}}} other {%full%}} ou menos antes do evento",
     "simple": "Reembolso se cancelado pelo menos {type, select, day {{day} {count, plural, =1{day} other {days}}} hora {{hour} {count_hours, plural, =1{hour} other {hours} }} other {%full%}} antes do evento",
