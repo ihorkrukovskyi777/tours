@@ -79,6 +79,10 @@
 .most_popular_city.small .item .intro.large > a {
     font-size: 32px;
 }
+.most_popular_city.similar_pages_cards .item .intro.large > a {
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+}
 .most_popular_city .item .intro > a:hover{
     text-decoration: underline;
 }
