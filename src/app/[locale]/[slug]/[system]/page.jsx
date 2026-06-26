@@ -1,7 +1,7 @@
 import {getPageBySlug,} from "@/entities/system-distribution/api";
 import dynamic from "next/dynamic";
 import I18nChangeOfLanguage from "@/shared/ui/languages/change-of-language/i18n-change-of-language";
-import {notFound} from "next/navigation";
+import {notFound, permanentRedirect} from "next/navigation";
 import Footer from "@/shared/ui/layouts/footer/footer";
 import SystemPlaceSchema from "@/entities/system-distribution/schema/SystemPlaceSchema";
 import Breadcrumbs from "@/shared/ui/breadcrumbs";
@@ -64,6 +64,11 @@ export default async function PageSystem({params}) {
     const page = await getPageBySlug(process.env.NEXT_PUBLIC_SYSTEM_HOSTING, slug, params.locale);
     if (page.statusCode === 404) {
         notFound();
+    }
+
+    const citySlug = page.location?.slugs?.find(item => item.locale === locale && item.published)?.slug;
+    if (citySlug) {
+        permanentRedirect(locale === fallbackLng ? `/${citySlug}` : `/${locale}/${citySlug}`);
     }
     const i18n = await useDefaultI18n(locale);
     const languages = page?.slugs.filter(slug => slug.published).map(slug => ({
